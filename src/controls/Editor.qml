@@ -1,24 +1,102 @@
-    import QtQuick 2.15
-    import QtQuick.Controls 2.15
-    import QtQuick.Layouts 1.3
-    
-    import org.kde.mauikit 1.3 as Maui
-    import org.kde.kirigami 2.14 as Kirigami
-    
-    import "private"
-    
-    /**
-     * Editor
-     * A text area for editing text with convinient functions.
-     * The Editor is controlled by the DocumentHandler which controls the files I/O,
-     * the syntax highlighting styles, and many more text editing properties.
-     *
-     *
-     *
-     *
-     *
-     */
-    Maui.Page
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.3
+
+import org.kde.mauikit 1.3 as Maui
+import org.kde.kirigami 2.14 as Kirigami
+
+import "private"
+
+/*!
+  \since org.kde.mauikit.labs 1.0
+  \inqmlmodule org.kde.mauikit
+
+  A text area for editing text with convinient functions.
+  The Editor is controlled by the DocumentHandler which controls the files I/O,
+  the syntax highlighting styles, and many more text editing properties.
+*/
+Maui.Page
+{
+    id: control
+    Kirigami.Theme.inherit: false
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+
+    /*!
+      If a small text tooltip should be visible at the editor right bottom area, displaying the
+      number of count of lines and words.
+    */
+    property bool showLineCount : true
+
+    /*!
+    */
+    property bool showSyntaxHighlightingLanguages: false
+
+    /*!
+      \qmlproperty TextArea Editor::body
+      * Access to the editor text area.
+    */
+    property alias body : body
+
+    /*!
+      \qmlproperty DocumentHandler Editor::document
+    */
+    property alias document : document
+
+    /*!
+      \qmlproperty ScrollablePage Editor::scrollView
+    */
+    property alias scrollView: _scrollView
+
+    /*!
+      \qmlproperty string Editor::text
+    */
+    property alias text: body.text
+
+    /*!
+      \qmlproperty bool Editor::uppercase
+    */
+    property alias uppercase: document.uppercase
+
+    /*!
+      \qmlproperty bool Editor::underline
+    */
+    property alias underline: document.underline
+
+    /*!
+      \qmlproperty bool Editor::italic
+    */
+    property alias italic: document.italic
+
+    /*!
+      \qmlproperty bool Editor::bold
+    */
+    property alias bold: document.bold
+
+    /*!
+      \qmlproperty bool Editor::canRedo
+    */
+    property alias canRedo: body.canRedo
+
+    /*!
+      \qmlproperty url Editor::fileUrl
+
+      If a file url is provided the DocumentHandler will try to open its contents and display it.
+    */
+    property alias fileUrl : document.fileUrl
+
+    /*!
+      \qmlproperty bool Editor::showLineNumbers
+
+      If a sidebar listing each line number should be visible.
+    */
+    property bool showLineNumbers : false
+
+    focus: true
+    title: document.fileName
+    showTitle: false
+    flickable: _scrollView.flickable
+
+    Maui.DocumentHandler
     {
         id: control
         Kirigami.Theme.inherit: false
@@ -671,4 +749,21 @@
             
         }
     }
-    
+
+    /*!
+      Zooms in.
+    */
+    function zoomIn()
+    {
+        body.font.pointSize = body.font.pointSize *1.5
+    }
+
+    /*!
+      Zooms out.
+    */
+    function zoomOut()
+    {
+        body.font.pointSize = body.font.pointSize / 1.5
+
+    }
+}
