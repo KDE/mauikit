@@ -48,7 +48,7 @@ Drawer
     y: (window().header && !window().altHeader ? window().header.height : 0)
     //    closePolicy: modal || collapsed ?  Popup.CloseOnEscape | Popup.CloseOnPressOutside : Popup.NoAutoClose
 
-    interactive: modal || collapsed || !visible
+    interactive: (modal || collapsed || !visible) && Maui.Handy.isTouch
 
 //     dragMargin: Maui.Style.iconSizes.huge
 
@@ -178,6 +178,14 @@ Drawer
         {
             control.contentDropped(drop)
         }
+    }
+
+    function toggle()
+    {
+        if(control.position > 0 && control.visible)
+            control.close()
+        else
+            control.open()
     }
 }
 

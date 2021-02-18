@@ -688,5 +688,65 @@
         <file>icons/luv-icon-theme/Luv/actions/22/edit-paste.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/16/love.svg</file>
         <file>icons/luv-icon-theme/Luv/mimetypes/64/audio-x-generic.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/alarm.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/application-exit.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/arrow-down.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/arrow-left.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/arrow-right.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/arrow-up.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/clock.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/continuous.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/dialog-ok.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/document-open-recent.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/document-print.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/document-revert.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-brush.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-calligraphic.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-circle.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-eraser.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-freehand.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-highlight.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-rectangle.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-entry.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/editor.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/filename-title-amarok.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/tool_pen.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-visible.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/delete.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/draw-watercolor.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-copy.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-cut.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-delete.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-opacity.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-rename.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/filename-bpm-amarok.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/collapse.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/dialer-call-pause.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/dialog-ok-apply.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/expand.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/get-hot-new-stuff.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/handle-left.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/help-feedback.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/mail-attachment.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/media-mount.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/media-seek-backward.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/media-seek-forward.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/name-space.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/player-volume-muted.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/link.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/player-volume.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/stopwatch.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/system-run.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/tab-new.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/timer.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/tools-report-bug.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/two-pages.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-filter.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/quickview.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-split-left-right.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-split-top-bottom.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/file-zoom-in.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/file-zoom-out.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/tools.svg</file>
     </qresource>
 </RCC>

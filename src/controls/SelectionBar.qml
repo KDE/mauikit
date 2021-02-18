@@ -42,8 +42,8 @@ Item
     visible: control.count > 0
     focus: true
     
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+//     Kirigami.Theme.inherit: false
+//     Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
     
     /**
      * actions : list<Action>
@@ -386,8 +386,8 @@ Item
                     {
                         action: modelData
                         display: control.display
-                        Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                        Kirigami.Theme.inherit: false
+//                         Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+//                         Kirigami.Theme.inherit: false
                         ToolTip.delay: 1000
                         ToolTip.timeout: 5000
                         ToolTip.visible: hovered || pressed && action.text

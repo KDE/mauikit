@@ -25,30 +25,36 @@ import QtQuick.Templates 2.14 as T
 
 import org.kde.mauikit 1.2 as Maui
 
+
+import QtQuick 2.12
+import QtQuick.Templates 2.12 as T
+import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material.impl 2.12
+
 T.ProgressBar {
-    id: controlRoot
+    id: control
 
-    implicitWidth: 250
-    implicitHeight: 22
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            implicitContentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitContentHeight + topPadding + bottomPadding)
 
-    hoverEnabled: true
+    contentItem: ProgressBarImpl {
+        implicitHeight: 4
 
-    contentItem: Item {}
-    
-//    background: StylePrivate.StyleItem {
-//        elementType: "progressbar"
+        scale: control.mirrored ? -1 : 1
+        color: control.Material.accentColor
+        progress: control.position
+        indeterminate: control.visible && control.indeterminate
+    }
 
-//        control: controlRoot
-//        maximum: indeterminate ? 0 : controlRoot.to*100
-//        minimum: indeterminate ? 0 : controlRoot.from*100
-//        value: indeterminate ? 0 : ((!controlRoot.inverted ? controlRoot.visualPosition : 1 - controlRoot.visualPosition)*controlRoot.to*100)
-//        horizontal: true
-//        enabled: controlRoot.enabled
-//        Timer {
-//            interval: 50
-//            running: controlRoot.indeterminate
-//            repeat: true
-//            onTriggered: parent.updateItem();
-//        }
-//    }
+    background: Rectangle {
+        implicitWidth: 200
+        implicitHeight: 4
+        y: (control.height - height) / 2
+        height: 4
+
+        color: Qt.rgba(control.Material.accentColor.r, control.Material.accentColor.g, control.Material.accentColor.b, 0.25)
+    }
 }
+
