@@ -44,6 +44,48 @@ Maui.Dialog
     template.iconSizeHint: Maui.Style.iconSizes.huge
     template.implicitHeight: Math.max(template.leftLabels.implicitHeight, 64)
     
+    property Component listDelegate : Maui.ListItemTemplate
+    {
+        width: ListView.view.width
+        height: Maui.Style.rowHeight
+        property var item : Maui.FM.getFileInfo(modelData)
+        label1.text: item.label
+        label3.text: Maui.FM.formatSize(item.size)
+        rightLabels.visible: true
+        iconVisible: true
+        iconSource: item.icon
+        imageSource: item.thumbnail
+        iconSizeHint: Maui.Style.iconSizes.medium
+        imageSizeHint : height * 0.9
+        leftMargin: 0
+        rightMargin: 0
+        
+        ToolButton
+        {
+            //text: i18n("Clear")
+            icon.name: "edit-clear"
+            icon.width: Maui.Style.iconSizes.small
+            icon.height: Maui.Style.iconSizes.small
+            
+            onClicked: 
+            {
+                var array = control.urls
+                const index = array.indexOf(modelData);
+                if (index > -1) {
+                    array.splice(index, 1);
+                }
+                
+                if(array.length === 0)
+                {
+                    control.close()
+                    return
+                }
+                
+                control.urls = array                            
+            }
+        }
+    }
+    
     template.leftLabels.data:  Column
     {
         id: _content
@@ -135,46 +177,6 @@ Maui.Dialog
         margins: 0
         verticalScrollBarPolicy: ScrollBar.AlwaysOff
         
-        delegate: Maui.ListItemTemplate
-        {
-            width: ListView.view.width
-            height: 22
-            property var item : Maui.FM.getFileInfo(modelData)
-            label1.text: item.label
-            label3.text: Maui.FM.formatSize(item.size)
-            rightLabels.visible: true
-            iconVisible: true
-            iconSource: item.icon
-            imageSource: item.thumbnail
-            iconSizeHint: Maui.Style.iconSizes.medium
-            imageSizeHint : height * 0.9
-            leftMargin: 0
-            rightMargin: 0
-            
-            ToolButton
-            {
-                //text: i18n("Clear")
-                icon.name: "list-remove"
-                icon.width: Maui.Style.iconSizes.small
-                icon.height: Maui.Style.iconSizes.small
-                
-                onClicked: 
-                {
-                    var array = control.urls
-                    const index = array.indexOf(modelData);
-                    if (index > -1) {
-                        array.splice(index, 1);
-                    }
-                    
-                    if(array.length === 0)
-                    {
-                        control.close()
-                        return
-                    }
-                    
-                    control.urls = array                            
-                }
-            }
-        }
+        delegate: control.listDelegate
     }
 }
