@@ -358,8 +358,8 @@ Pane
         width: visible ? parent.width : 0
         height: visible ? implicitHeight : 0
 
-        Kirigami.Theme.inherit: false
-        Kirigami.Theme.colorSet: Maui.Handy.isWindows ? Kirigami.Theme.View : Kirigami.Theme.Window
+//         Kirigami.Theme.inherit: false
+//         Kirigami.Theme.colorSet: Maui.Handy.isWindows ? Kirigami.Theme.View : Kirigami.Theme.Window
 
         //             Label
         //             {
