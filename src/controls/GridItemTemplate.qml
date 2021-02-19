@@ -192,7 +192,7 @@ Item
                     id: _emblem
 
                     visible: control.checkable || control.checked
-                    size: Maui.Style.iconSizes.medium
+                    size: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.2)
                     anchors.margins: Maui.Style.space.medium
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.bottom
@@ -207,23 +207,17 @@ Item
                         control.toggled(control.checked)
                     }
 
-                    Maui.CheckMark
+                    Kirigami.Icon
                     {
                         visible: opacity > 0
                         color: Kirigami.Theme.highlightedTextColor
                         anchors.centerIn: parent
-                        height: control.checked ? 10 : 0
+                        height: control.checked ? Math.round(parent.height * 0.9) : 0
                         width: height
                         opacity: control.checked ? 1 : 0
-
-                        Behavior on height
-                        {
-                            NumberAnimation
-                            {
-                                duration: Kirigami.Units.shortDuration
-                                easing.type: Easing.InOutQuad
-                            }
-                        }
+                        isMask: true
+                        
+                        source: "qrc:/assets/checkmark.svg"
 
                         Behavior on opacity
                         {

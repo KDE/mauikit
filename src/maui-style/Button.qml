@@ -56,6 +56,7 @@ T.Button
     
     background: Rectangle
     {
+        visible: !control.flat
         implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
         implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
 

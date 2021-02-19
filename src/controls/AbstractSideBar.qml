@@ -50,12 +50,12 @@ Drawer
 
     interactive: (modal || collapsed || !visible) && Maui.Handy.isTouch
 
-//     dragMargin: Maui.Style.iconSizes.huge
+    dragMargin: Maui.Style.space.big
 
     modal: false
 
     opacity: _dropArea.containsDrag ? 0.5 : 1
-
+    
     contentItem: null
 
     background: Rectangle

@@ -223,7 +223,7 @@ Maui.Page
             objectName: "FM ListBrowser"
             property alias currentFMList : _browserModel.list
             property alias currentFMModel : _browserModel
-            selectionMode: control.selectionMode
+//             selectionMode: control.selectionMode
             property bool checkable: control.selectionMode
             enableLassoSelection: true
             currentIndex: control.currentIndex
@@ -680,7 +680,7 @@ Maui.Page
                     {
                         id: _millerListView
                         anchors.fill: parent
-                        selectionMode: control.selectionMode
+//                         selectionMode: control.selectionMode
                         property bool checkable: control.selectionMode
                         onKeyPress: _millerControl.keyPress(event)
                         currentIndex : -1

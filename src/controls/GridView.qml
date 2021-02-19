@@ -263,7 +263,7 @@ Item
             HoverHandler
             {
                 id: _hoverHandler
-                enabled: control.enableLassoSelection && control.selectionMode && !controlView.flicking
+                enabled: control.enableLassoSelection && control.selectionMode && !controlView.movingVertically
                 acceptedDevices: PointerDevice.TouchScreen
                 acceptedPointerTypes : PointerDevice.Finger
                 grabPermissions : PointerHandler.ApprovesTakeOverByItems
