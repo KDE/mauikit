@@ -240,9 +240,7 @@ Rectangle
                     const index = item.index
                     
                     if(action.enabled)
-                    {
-                        
-                        console.log("Trigger action", action.text)
+                    {                        
                         control.currentIndex = index
                         action.triggered()     
                     }              
@@ -356,13 +354,16 @@ Rectangle
                     property Action m_action : m_item.action
                     
                     onClicked: triggerAction()
+                    
+//                     checkable: control.checkable
+//                     checked: m_action.checked
                                         
-                    Binding on checked
-                    {
-                        when: control.canCyclic
-                        value: control.currentIndex === _defaultButtonIcon.m_item.index
-                        restoreMode: Binding.RestoreBindingOrValue
-                    }
+                    //Binding on checked
+                    //{
+                        //when: control.canCyclic
+                        //value: _defaultButtonIcon.m_action.checked
+                        //restoreMode: Binding.RestoreBindingOrValue
+                    //}
                     
                     icon.width:  Maui.Style.iconSizes.small
                     icon.height: Maui.Style.iconSizes.small
