@@ -230,20 +230,20 @@ Rectangle
             hoverEnabled: true
             width: implicitWidth
             implicitWidth: _defaultButtonLayout.implicitWidth
-            
-            Label
-            {
-                color: "orange"
-                text: control.currentIndex
-            }
-            
+                        
             function triggerAction()
             {
                 if(control.canCyclic)
                 {
-                    const action = buttonAction()
+                    const item = buttonAction()
+                    const action = item.action
+                    const index = item.index
+                    
                     if(action.enabled)
                     {
+                        
+                        console.log("Trigger action", action.text)
+                        control.currentIndex = index
                         action.triggered()     
                     }              
                     
@@ -259,33 +259,52 @@ Rectangle
                     _menu.close()
                 }
             }             
-                    function buttonAction()
-                    {
-                        if(control.canCyclic)
-                        {
-                            let index = control.currentIndex + 1                    
-                            
-                            index = index >= control.actions.length ? 0 : index
-                            
-                            if(control.actions[index].enabled)
-                            {
-                                //control.currentIndex = index
-                                return control.actions[index]                       
-                            }    
-                            
-                            if(control.currentAction.enabled)
-                            {
-                                return control.currentAction
-                            }else
-                            {
-                                return control.actions[1]
-                            }
-                        }else
-                        {
-                            return control.currentAction
-                        }
-                    }
+            function buttonAction()
+            {
+                if(control.canCyclic)
+                {
+                    let index = control.currentIndex + 1                    
                     
+                    index = index >= control.actions.length ? 0 : index
+                    
+                    if(control.actions[index].enabled)
+                    {                        
+                        var res = ( {
+                            'action' : control.actions[index],  
+                            'index': index
+                        })
+                        
+                        return res;
+                    }    
+                    
+                    if(control.currentAction.enabled)
+                    {                                 
+                        var res = ({
+                            'action': control.currentAction,
+                            'index': control.currentIndex
+                        })
+                        
+                        return res;
+                    }else
+                    {                                 
+                        var res =({
+                            'action': control.actions[1],
+                            'index': 1
+                        })
+                        
+                        return res;
+                    }
+                }else
+                {                    
+                    var res =( {
+                        'action': control.currentAction,
+                        'index': control.currentIndex
+                    })
+                    
+                    return res;
+                }
+            }
+            
             onClicked: triggerAction()
             
             Menu
@@ -319,7 +338,7 @@ Rectangle
                 color: control.currentAction ? (control.currentAction.enabled && (_defaultButtonMouseArea.containsMouse || _defaultButtonMouseArea.containsPress) ? Kirigami.Theme.highlightColor : "transparent") : "transparent"
                 opacity: 0.15
                 radius: control.radius
-            }
+            }                    
             
             RowLayout
             {
@@ -327,23 +346,36 @@ Rectangle
                 height: parent.height
                 spacing: 0
                 
+                
                 Private.BasicToolButton
                 {
                     id: _defaultButtonIcon
                     Layout.fillHeight: true
                     
+                    property var m_item : buttonAction()
+                    property Action m_action : m_item.action
+                    
                     onClicked: triggerAction()
+                                        
+                    Binding on checked
+                    {
+                        when: control.canCyclic
+                        value: control.currentIndex === _defaultButtonIcon.m_item.index
+                        restoreMode: Binding.RestoreBindingOrValue
+                    }
                     
                     icon.width:  Maui.Style.iconSizes.small
                     icon.height: Maui.Style.iconSizes.small
-                    icon.color: buttonAction() ? (buttonAction().icon.color && buttonAction().icon.color.length ? buttonAction().icon.color : ( _defaultButtonMouseArea.containsPress ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor)) :  control.Kirigami.Theme.textColor
+                    icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : ( _defaultButtonMouseArea.containsPress ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor)) :  control.Kirigami.Theme.textColor
                     
-                    icon.name: buttonAction() ? buttonAction().icon.name : control.defaultIconName
+                    icon.name: m_action ? m_action.icon.name : control.defaultIconName
                     
-                    enabled: buttonAction() ? buttonAction().enabled : true
+                    enabled: m_action ? m_action.enabled : true
                     
-                    text: buttonAction().text
-                   
+                    text: m_action.text
+                    
+                    display: control.display                   
+                    
                 }
                 
                 Kirigami.Separator
