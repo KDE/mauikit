@@ -53,6 +53,8 @@ Rectangle
      */
     property bool cyclic: false
     
+    readonly property bool canCyclic : control.cyclic && control.count === 2  && control.autoExclusive
+    
     /**
      * flat : bool
      */
@@ -229,13 +231,22 @@ Rectangle
             width: implicitWidth
             implicitWidth: _defaultButtonLayout.implicitWidth
             
+            Label
+            {
+                color: "orange"
+                text: control.currentIndex
+            }
+            
             function triggerAction()
             {
-                if(control.cyclic && control.autoExclusive)
+                if(control.canCyclic)
                 {
-                    const index = control.currentIndex + 1
-                    control.currentIndex = index >= control.actions.length ? 0 : index
-                    control.currentAction.triggered()
+                    const action = buttonAction()
+                    if(action.enabled)
+                    {
+                        action.triggered()     
+                    }              
+                    
                     return
                 }
                 
@@ -247,8 +258,34 @@ Rectangle
                 {
                     _menu.close()
                 }
-            }
-            
+            }             
+                    function buttonAction()
+                    {
+                        if(control.canCyclic)
+                        {
+                            let index = control.currentIndex + 1                    
+                            
+                            index = index >= control.actions.length ? 0 : index
+                            
+                            if(control.actions[index].enabled)
+                            {
+                                //control.currentIndex = index
+                                return control.actions[index]                       
+                            }    
+                            
+                            if(control.currentAction.enabled)
+                            {
+                                return control.currentAction
+                            }else
+                            {
+                                return control.actions[1]
+                            }
+                        }else
+                        {
+                            return control.currentAction
+                        }
+                    }
+                    
             onClicked: triggerAction()
             
             Menu
@@ -305,29 +342,20 @@ Rectangle
                     
                     enabled: buttonAction() ? buttonAction().enabled : true
                     
-                    function buttonAction()
-                    {
-                        if(control.cyclic && control.autoExclusive)
-                        {
-                            const index = control.currentIndex + 1
-                            return control.actions[index >= control.actions.length ? 0 : index]
-                        }else
-                        {
-                            return control.currentAction
-                        }
-                    }
+                    text: buttonAction().text
+                   
                 }
                 
                 Kirigami.Separator
                 {
-                    visible: !control.cyclic && !control.flat
+                    visible: !control.canCyclic && !control.flat
                     color: control.border.color
                     Layout.fillHeight: true
                 }
                 
                 Item
                 {
-                    visible: !control.cyclic
+                    visible: !control.canCyclic
                     Layout.fillHeight: true
                     Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
                     
