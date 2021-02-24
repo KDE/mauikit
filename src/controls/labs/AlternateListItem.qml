@@ -23,7 +23,7 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-        color: Kirigami.Theme.backgroundColor 
+        color: control.Kirigami.Theme.backgroundColor 
 
         Maui.Separator
         {

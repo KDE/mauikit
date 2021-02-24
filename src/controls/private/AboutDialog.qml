@@ -71,15 +71,75 @@ Maui.Dialog
     {
         id: _header
         Layout.fillWidth: true
-        implicitHeight: (_div1.height * 1.5) + Maui.Style.space.big
+        implicitHeight: (_div1.implicitHeight * 1.5) + Maui.Style.space.big
         alt: true
+        
+        Item
+        {
+            id: _iconItem
+           anchors.fill: parent
+            clip: true
+            
+            Item
+            {
+                id: _iconRec
+                anchors.fill: parent
+//                 color: Kirigami.Theme.backgroundColor
+                
+                FastBlur
+                {
+                    id: fastBlur
+                    height: parent.height * 2
+                    width: parent.width * 2
+                    anchors.centerIn: parent
+                    source: _div1.iconItem
+                    radius: 64
+                    transparentBorder: true
+                    cached: true
+                }
+                
+                Rectangle
+                {
+                    anchors.fill: parent
+                    opacity: 0.8
+                    color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                }
+            }
+            
+            OpacityMask
+            {
+                source: mask
+                maskSource: _iconRec
+            }
+            
+            LinearGradient
+            {
+                id: mask
+                anchors.fill: parent
+                gradient: Gradient {
+                    GradientStop { position: 0.2; color: "transparent"}
+                    GradientStop { position: 0.5; color: control.background.color}
+                }
+                
+                start: Qt.point(0, 0)
+                end: Qt.point(_iconRec.width, _iconRec.height)
+            }
+            
+            Maui.Separator
+            {
+                position: Qt.Horizontal
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+            }
+        }
 
         Maui.ListItemTemplate
         {
             id: _div1
 
             width: parent.width 
-            height: label2.implicitHeight + label1.implicitHeight
+            
             anchors.centerIn: parent
             imageBorder: false
             imageSource: Maui.App.iconName
