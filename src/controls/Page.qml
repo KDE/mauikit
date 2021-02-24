@@ -415,7 +415,7 @@ Pane
             Maui.Separator
             {
                 id: _border
-                position: Qt.Horizontal
+                edge: Qt.BottomEdge
                 color: parent.color
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -479,7 +479,7 @@ Pane
 
             Maui.Separator
             {
-                position: Qt.Horizontal
+                edge: Qt.TopEdge
                 color: parent.color
                 anchors.top: parent.top
                 anchors.left: parent.left

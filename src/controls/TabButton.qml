@@ -54,7 +54,7 @@ TabButton
 
         Maui.Separator
         {
-            position: Qt.Vertical
+            edge: Qt.RightEdge
             anchors
             {
                 bottom: parent.bottom

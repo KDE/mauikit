@@ -93,7 +93,7 @@ Maui.ToolBar
 
         Maui.Separator
         {
-            position: Qt.Horizontal
+            edge: Qt.TopEdge
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right

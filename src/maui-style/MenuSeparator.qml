@@ -51,6 +51,6 @@ T.MenuSeparator
 
     contentItem: Maui.Separator
     {
-       position: Qt.Horizontal
+        edge: Qt.BottomEdge
     }
 }

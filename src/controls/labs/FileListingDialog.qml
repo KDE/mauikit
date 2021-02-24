@@ -144,10 +144,9 @@ Maui.Dialog
         }        
     }
 
- 
-
     Maui.Separator
     {
+        edge: Qt.TopEdge
         Layout.preferredWidth: 100
         Layout.alignment: Qt.AlignCenter
         radius: 1

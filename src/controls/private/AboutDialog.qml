@@ -127,7 +127,7 @@ Maui.Dialog
             
             Maui.Separator
             {
-                position: Qt.Horizontal
+                edge: Qt.BottomEdge
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom

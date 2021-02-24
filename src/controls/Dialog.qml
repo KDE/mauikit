@@ -300,6 +300,7 @@ Maui.Popup
         {
             Layout.fillWidth: true
             visible: _defaultButtonsLayout.visible
+            edge: Qt.TopEdge
         }
 
         RowLayout
@@ -332,11 +333,12 @@ Maui.Popup
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                 }
-
+                
                 onClicked: rejected()
-                   Maui.Separator
+                
+                Maui.Separator
                 {
-                    position: Qt.Vertical
+                    edge: Qt.RightEdge
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
@@ -369,7 +371,7 @@ Maui.Popup
 
                 Maui.Separator
                 {
-                    position: Qt.Vertical
+                    edge: Qt.RightEdge
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
@@ -404,7 +406,7 @@ Maui.Popup
 
                     Maui.Separator
                     {
-                        position: Qt.Vertical
+                        edge: Qt.RightEdge
                         anchors.top: parent.top
                         anchors.bottom: parent.bottom
                         anchors.right: parent.right

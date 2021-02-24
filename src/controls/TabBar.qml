@@ -49,7 +49,8 @@ TabBar
         Maui.Separator
         {
             color: parent.color
-
+            edge: control.position === TabBar.Footer ?  Qt.TopEdge : Qt.BottomEdge
+            
             anchors
             {
                 left: parent.left

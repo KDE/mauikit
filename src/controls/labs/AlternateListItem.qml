@@ -29,7 +29,7 @@ Maui.ItemDelegate
         {
             id: _sep
             visible: !control.lastOne
-            position: Qt.Horizontal
+            edge: Qt.BottomEdge
             color: parent.color
             anchors.left: parent.left
             anchors.right: parent.right
