@@ -224,7 +224,6 @@ Maui.Page
             property alias currentFMList : _browserModel.list
             property alias currentFMModel : _browserModel
 //             selectionMode: control.selectionMode
-            property bool checkable: control.selectionMode
             enableLassoSelection: true
             currentIndex: control.currentIndex
 
@@ -286,7 +285,7 @@ Maui.Page
 
                 tooltipText: model.path
 
-                checkable: _listViewBrowser.checkable
+                checkable: control.selectionMode
                 imageSource: settings.showThumbnails ? model.thumbnail : ""
                 checked: selectionBar ? selectionBar.contains(model.path) : false
                 opacity: model.hidden == "true" ? 0.5 : 1
@@ -407,10 +406,9 @@ Maui.Page
             property alias currentFMModel : _browserModel
             itemSize : control.gridItemSize
             itemHeight: itemSize * 1.3
-            property bool checkable: control.selectionMode
             enableLassoSelection: true
             currentIndex: control.currentIndex
-//            selectionMode: control.selectionMode
+           selectionMode: control.selectionMode
 
             signal itemClicked(int index)
             signal itemDoubleClicked(int index)
@@ -469,7 +467,7 @@ Maui.Page
                     padding: Maui.Style.space.tiny
                     isCurrentItem: parent.isCurrentItem
                     tooltipText: model.path
-                    checkable: _gridViewBrowser.checkable
+                    checkable: control.selectionMode
                     checked: (selectionBar ? selectionBar.contains(model.path) : false)
                     draggable: true
                     opacity: model.hidden == "true" ? 0.5 : 1
@@ -681,7 +679,6 @@ Maui.Page
                         id: _millerListView
                         anchors.fill: parent
 //                         selectionMode: control.selectionMode
-                        property bool checkable: control.selectionMode
                         onKeyPress: _millerControl.keyPress(event)
                         currentIndex : -1
                         onCurrentIndexChanged: _millerControl.currentIndex = currentIndex
@@ -769,7 +766,7 @@ Maui.Page
                             imageSizeHint : height * 0.8
                             imageSource: settings.showThumbnails ? model.thumbnail : ""
 
-                            checkable: _millerListView.checkable
+                            checkable: control.selectionMode
                             checked: selectionBar ? selectionBar.contains(model.path) : false
                             opacity: model.hidden == "true" ? 0.5 : 1
                             draggable: true

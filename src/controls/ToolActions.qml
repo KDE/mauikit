@@ -159,9 +159,7 @@ Rectangle
         {
             id: _row
             spacing: 0
-            
-            clip: true
-            
+                        
             Behavior on width
             {
                 NumberAnimation
@@ -182,17 +180,21 @@ Rectangle
                     action : modelData
                     checkable: control.checkable
                     rec.radius: 0
+                    
                     Binding on checked
                     {
                         when: autoExclusive
                         value: control.currentIndex === index
                     }
                     autoExclusive: control.autoExclusive
-                    width: implicitWidth
+
                     height: parent.height
+                    
                     enabled: action.enabled
                     opacity: enabled ? 1 : 0.5
+                    
                     display: control.autoExclusive ? (checked && control.enabled ? control.display : ToolButton.IconOnly) : control.display
+                    
                     icon.name: action.icon.name
                     icon.width:  action.icon.width ?  action.icon.width : Maui.Style.iconSizes.small
                     icon.height:  action.icon.height ?  action.icon.height : Maui.Style.iconSizes.small

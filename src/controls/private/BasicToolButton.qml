@@ -90,12 +90,11 @@ focusPolicy: Qt.NoFocus
      
         rowSpacing: 0
         columnSpacing: 0
-        clip: true
                
         Item
         {
             implicitWidth: visible ? _icon.width + Maui.Style.space.medium : 0
-            implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium))
+            implicitHeight: Math.floor( _icon.height + (Maui.Style.space.medium))
 
             Layout.column: 0
             Layout.row: 0
