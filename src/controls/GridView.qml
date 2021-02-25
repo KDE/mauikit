@@ -211,7 +211,9 @@ Item
         {
             id: controlView
 
-            property alias position : _hoverHandler.point.position
+            readonly property alias position : _hoverHandler.point.position
+            property bool firstSelectionPress
+           readonly property bool verticalSelection :  ( Math.round(position.y) < Math.abs(  Math.round(_hoverHandler.point.pressPosition.y) - 5) ||  Math.round(position.y) > Math.abs(  Math.round(_hoverHandler.point.pressPosition.y) + 5)) && control.selectionMode && _hoverHandler.hovered
             property var selectedIndexes : []
 
             //nasty trick
@@ -227,7 +229,7 @@ Item
 
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight
-
+            
             boundsBehavior: !Kirigami.Settings.isMobile? Flickable.StopAtBounds : Flickable.OvershootBounds
             flickableDirection: Flickable.AutoFlickDirection
             snapMode: GridView.NoSnap
@@ -239,17 +241,18 @@ Item
             keyNavigationEnabled : true
             keyNavigationWraps : true
             Keys.onPressed: control.keyPress(event)
-
-            //             Kirigami.WheelHandler
-            //             {
-            //                 id: wheelHandler
-            //                 target: parent
-            //             }
-
+            
+            Label
+            {
+                color: "orange"
+                text: controlView.verticalSelection + "/" + Math.round(controlView.position.y) + " / " + Math.round(_hoverHandler.point.pressPosition.y)
+            }
+                  
             onPositionChanged:
             {
                 console.log("===>" +_hoverHandler.point.pressPosition.y, _hoverHandler.point.sceneGrabPosition.y, position.y, _hoverHandler.point.scenePressPosition)
-                if(_hoverHandler.hovered && !controlView.moving && _hoverHandler.point.pressPosition.y != position.y)
+               
+                if(_hoverHandler.hovered && _hoverHandler.point.pressPosition.y != position.y &&  _hoverHandler.point.pressPosition.x != position.x && !controlView.verticalSelection)
                 {
                     const index = controlView.indexAt(position.x, position.y)
                     if(!selectedIndexes.includes(index))
@@ -263,7 +266,7 @@ Item
             HoverHandler
             {
                 id: _hoverHandler
-                enabled: control.enableLassoSelection && control.selectionMode && !controlView.movingVertically
+                enabled: control.enableLassoSelection && control.selectionMode && !controlView.draggingVertically
                 acceptedDevices: PointerDevice.TouchScreen
                 acceptedPointerTypes : PointerDevice.Finger
                 grabPermissions : PointerHandler.ApprovesTakeOverByItems

@@ -234,7 +234,7 @@ Item
             boundsBehavior: !Kirigami.Settings.isMobile? Flickable.StopAtBounds :
                                                          Flickable.OvershootBounds
 
-            interactive: Kirigami.Settings.hasTransientTouchInput
+            interactive: Kirigami.Settings.hasTransientTouchInput && (control.selectionMode ? _listView.position.x > 84 : true)
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
@@ -245,7 +245,7 @@ Item
 
             onPositionChanged:
             {
-                if(_hoverHandler.hovered && position.x < control.width * 0.25 &&  _hoverHandler.point.pressPosition.y != position.y)
+                if(_hoverHandler.hovered && position.x < 84 &&  _hoverHandler.point.pressPosition.y != position.y)
                 {
                     const index = _listView.indexAt(position.x, position.y)
                     if(!selectedIndexes.includes(index) && index > -1 && index < _listView.count)
@@ -260,7 +260,7 @@ Item
             {
                 id: _hoverHandler
                 margin: Maui.Style.space.big
-                enabled: control.enableLassoSelection && control.selectionMode && !_listView.flicking
+                enabled: control.enableLassoSelection && control.selectionMode && !_listView.draggingVertically
                 acceptedDevices: PointerDevice.TouchScreen
                 acceptedPointerTypes : PointerDevice.Finger
                 grabPermissions : PointerHandler.CanTakeOverFromAnything
@@ -279,12 +279,6 @@ Item
                 id: _holder
                 anchors.fill : parent
             }
-
-//             Kirigami.WheelHandler
-//             {
-//                 id: wheelHandler
-//                 target: parent
-//             }
 
             MouseArea
             {
