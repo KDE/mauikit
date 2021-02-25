@@ -106,6 +106,16 @@ Maui.Dialog
                 }
             }
             
+            HueSaturation
+            {
+                anchors.fill: _iconRec
+                source: _iconRec
+                hue: 0
+                saturation: 1
+                lightness: 0
+            }
+            
+            
             OpacityMask
             {
                 source: mask
@@ -125,6 +135,7 @@ Maui.Dialog
                 end: Qt.point(_iconRec.width, _iconRec.height)
             }
             
+           
             Maui.Separator
             {
                 edge: Qt.BottomEdge

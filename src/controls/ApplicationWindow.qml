@@ -342,10 +342,10 @@ Window
             icon.name: "application-menu"
             checked: _mainMenu.visible
             focusPolicy: Qt.NoFocus
-            
+                        
             onClicked:
             {
-                _mainMenu.popup(parent, 0 , root.headBar.height)
+                _mainMenu.popup(parent, 0 , root.altHeader ? 0 - _mainMenu.implicitHeight - Maui.Style.space.medium  : root.headBar.height)
                 menuButtonClicked()
             }
 
@@ -354,7 +354,8 @@ Window
                 id: _mainMenu
                 modal: true
                 width: 250
-
+                y: root.altHeader ? 0 - _mainMenu.implicitHeight - Maui.Style.space.medium : root.headBar.height
+                
                 Loader
                 {
                     id: _accountsMenuLoader
