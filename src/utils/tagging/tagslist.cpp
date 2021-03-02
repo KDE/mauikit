@@ -11,8 +11,8 @@ TagsList::TagsList(QObject *parent)
             this->append(FMH::toModel(tag));
         }
     });
-
-    this->setList();
+    
+    connect(this, &TagsList::urlsChanged, this, &TagsList::setList);
 }
 
 void TagsList::setList()
@@ -155,7 +155,6 @@ void TagsList::setUrls(const QStringList &value)
         return;
 
     this->urls = value;
-    this->setList();
     emit this->urlsChanged();
 }
 

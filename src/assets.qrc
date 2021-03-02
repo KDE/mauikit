@@ -10,5 +10,8 @@
         <file>assets/dialog-information.svg</file>
         <file>assets/cover.png</file>
         <file>assets/checkmark.svg</file>
+        <file>assets/kde.svg</file>
+        <file>assets/nitrux.svg</file>
+        <file>assets/mauikit.svg</file>
     </qresource>
 </RCC>
