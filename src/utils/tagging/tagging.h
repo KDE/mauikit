@@ -91,7 +91,7 @@ public:
      * Strictly enforced check
      * @return
      */
-    Q_INVOKABLE bool urlTagExists(const QString &url, const QString &tag, const bool &strict = false);
+    Q_INVOKABLE bool urlTagExists(const QString &url, const QString &tag);
 
     /* INSERTIIONS */
     /**
@@ -257,10 +257,9 @@ private:
 
     void setApp();
 
-    QString application = QString();
-    QString version = QString();
-    QString comment = QString();
-    QString uri = QString();
+    QString appName;
+    QString appComment;
+    QString appOrg;
 
     bool app();
     bool user();

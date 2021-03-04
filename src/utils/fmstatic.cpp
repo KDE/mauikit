@@ -463,7 +463,7 @@ bool FMStatic::unFav(const QUrl &url)
 bool FMStatic::isFav(const QUrl &url, const bool &strict)
 {
 #ifdef COMPONENT_TAGGING
-    return Tagging::getInstance()->urlTagExists(url.toString(), "fav", strict);
+    return Tagging::getInstance()->urlTagExists(url.toString(), "fav");
 #endif
 }
 
@@ -555,7 +555,7 @@ FMH::MODEL_LIST FMStatic::getUrlTags(const QUrl &url)
 bool FMStatic::urlTagExists(const QUrl &url, const QString tag)
 {
 #ifdef COMPONENT_TAGGING
-    return Tagging::getInstance()->urlTagExists(url.toString(), tag, false);
+    return Tagging::getInstance()->urlTagExists(url.toString(), tag);
 #endif
 }
 
