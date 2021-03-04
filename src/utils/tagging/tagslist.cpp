@@ -61,7 +61,7 @@ void TagsList::updateToUrls(const QStringList &tags)
 {
     if (this->urls.isEmpty())
         return;
-
+    
     for (const auto &url : qAsConst(urls))
         this->tag->updateUrlTags(url, tags);
 

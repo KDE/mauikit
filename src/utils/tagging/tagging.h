@@ -133,7 +133,7 @@ public:
      * New set of tags to be associated to the file URL
      * @return
      */
-    Q_INVOKABLE bool updateUrlTags(const QString &url, const QStringList &tags);
+    Q_INVOKABLE bool updateUrlTags(const QString &url, const QStringList &tags, const bool &strict = false);
 
     /**
      * @brief updateUrl
@@ -154,7 +154,7 @@ public:
      * @param strict
      * @return
      */
-    Q_INVOKABLE QVariantList getUrlsTags(const bool &strict = true);
+    Q_INVOKABLE QVariantList getUrlsTags(const bool &strict = false);
 
     /**
      * @brief getAllTags
@@ -164,7 +164,7 @@ public:
      * @return
      * Model with the info of all the requested tags
      */
-    Q_INVOKABLE QVariantList getAllTags(const bool &strict = true);
+    Q_INVOKABLE QVariantList getAllTags(const bool &strict = false);
 
     /**
      * @brief getUrls
@@ -182,7 +182,7 @@ public:
      * A callback function that sends as an argument a reference to the current item being retrieved, which can be modified, and expects a boolean value to be returned to decide if such item should be added to the model or not
      * @return
      */
-    Q_INVOKABLE QVariantList getUrls(const QString &tag, const bool &strict = true, const int &limit = MAX_LIMIT, const QString &mimeType = "", std::function<bool(QVariantMap &item)> modifier = nullptr);
+    Q_INVOKABLE QVariantList getUrls(const QString &tag, const bool &strict = false, const int &limit = MAX_LIMIT, const QString &mimeType = "", std::function<bool(QVariantMap &item)> modifier = nullptr);
 
     /**
      * @brief getUrlTags
@@ -193,7 +193,7 @@ public:
      * Strictly enforced to only tags created by the application making the request
      * @return
      */
-    Q_INVOKABLE QVariantList getUrlTags(const QString &url, const bool &strict = true);
+    Q_INVOKABLE QVariantList getUrlTags(const QString &url, const bool &strict = false);
 
     /* DELETES */
     /**
@@ -204,7 +204,7 @@ public:
      * @return
      * If the operation was sucessfull
      */
-    Q_INVOKABLE bool removeUrlTags(const QString &url);
+    Q_INVOKABLE bool removeUrlTags(const QString &url, const bool &strict = false);
 
     /**
      * @brief removeUrlTag

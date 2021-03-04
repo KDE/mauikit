@@ -103,6 +103,7 @@ Maui.Dialog
                 list: TagsList
                 {
                     id: _tagsList
+                    strict: false
                 }
             }
 
@@ -129,7 +130,6 @@ Maui.Dialog
             Layout.leftMargin: Maui.Style.contentMargins
             Layout.rightMargin: Maui.Style.contentMargins
             height: Maui.Style.rowHeight
-            width: parent.width
             onTagRemoved: list.remove(index)
             placeholderText: ""
         }

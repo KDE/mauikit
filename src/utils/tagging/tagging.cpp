@@ -94,7 +94,7 @@ bool Tagging::tag(const QString &tag, const QString &color, const QString &comme
     
     this->insert(TAG::TABLEMAP[TAG::TABLE::TAGS], tag_map);
     
-    QVariantMap appTag_map {
+    const QVariantMap appTag_map {
         {FMH::MODEL_NAME[FMH::MODEL_KEY::TAG], tag}, 
         {FMH::MODEL_NAME[FMH::MODEL_KEY::ORG], this->appOrg}, 
         {FMH::MODEL_NAME[FMH::MODEL_KEY::ADDDATE], QDateTime::currentDateTime().toString(Qt::TextDate)}};
@@ -132,9 +132,10 @@ bool Tagging::tagUrl(const QString &url, const QString &tag, const QString &colo
     return false;
 }
 
-bool Tagging::updateUrlTags(const QString &url, const QStringList &tags)
+bool Tagging::updateUrlTags(const QString &url, const QStringList &tags, const bool &strict)
 {
-    this->removeUrlTags(url);
+    this->removeUrlTags(url, strict);    
+   
     for (const auto &tag : qAsConst(tags))
     {
         this->tagUrl(url, tag);
@@ -148,7 +149,7 @@ bool Tagging::updateUrl(const QString &url, const QString &newUrl)
     return this->update(TAG::TABLEMAP[TAG::TABLE::TAGS_URLS], {{FMH::MODEL_KEY::URL, newUrl}}, {{FMH::MODEL_NAME[FMH::MODEL_KEY::URL], url}});
 }
 
-QVariantList Tagging::getUrlsTags(const bool &strict) //all used tags, emaningin, all tags that are used wiht a url in tags_url table
+QVariantList Tagging::getUrlsTags(const bool &strict) //all used tags, meaning, all tags that are used with an url in tags_url table
 {
     const auto query = !strict ? QString("select distinct t.* from TAGS t inner join TAGS_URLS turl where t.tag = turl.tag") :
     QString("select distinct t.* from TAGS t inner join APP_TAGS at on at.tag = t.tag inner join TAGS_URLS turl on t.tag = turl.tag where at.org = '%1'").arg(this->appOrg);    
@@ -189,19 +190,15 @@ QVariantList Tagging::getUrlTags(const QString &url, const bool &strict)
                                    .arg(this->appOrg, url));
 }
 
-bool Tagging::removeUrlTags(const QString &url)
+bool Tagging::removeUrlTags(const QString &url, const bool &strict) // same as removing the url from the tags_urls
 {
-    const auto tags = getUrlTags(url);
-    for (const auto &map : tags) {
-        const auto tag = map.toMap().value(FMH::MODEL_NAME[FMH::MODEL_KEY::TAG]).toString();
-        this->removeUrlTag(url, tag);
-    }
-
-    return true;
+    Q_UNUSED(strict)
+    return this->removeUrl(url);
 }
 
 bool Tagging::removeUrlTag(const QString &url, const QString &tag)
 {
+    qDebug() << "Remove url tag" << url << tag;
     FMH::MODEL data {{FMH::MODEL_KEY::URL, url}, {FMH::MODEL_KEY::TAG, tag}};
     return this->remove(TAG::TABLEMAP[TAG::TABLE::TAGS_URLS], data);
 }
@@ -214,7 +211,7 @@ bool Tagging::removeUrl(const QString &url)
 bool Tagging::app()
 {
     qDebug() << "REGISTER APP" << this->appName << this->appOrg << this->appComment;
-    QVariantMap app_map {
+    const QVariantMap app_map {
         {FMH::MODEL_NAME[FMH::MODEL_KEY::NAME], this->appName},
         {FMH::MODEL_NAME[FMH::MODEL_KEY::ORG], this->appOrg},
         {FMH::MODEL_NAME[FMH::MODEL_KEY::ADDDATE], QDateTime::currentDateTime()},
