@@ -125,6 +125,7 @@ bool Tagging::tagUrl(const QString &url, const QString &tag, const QString &colo
 
     if(this->insert(TAG::TABLEMAP[TAG::TABLE::TAGS_URLS], tag_url_map))
     {
+        qDebug() << "tagging url" << url <<tag;
         emit this->urlTagged(url, myTag);
         return true;
     }

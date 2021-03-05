@@ -3,9 +3,8 @@
 
 TagsList::TagsList(QObject *parent)
     : MauiList(parent)
+    , tag(Tagging::getInstance())
 {
-    this->tag = Tagging::getInstance();
-
     connect(this->tag, &Tagging::tagged, [&](QVariantMap tag) {
         if (this->urls.isEmpty()) {
             this->append(FMH::toModel(tag));
@@ -13,22 +12,27 @@ TagsList::TagsList(QObject *parent)
     });
     
     connect(this, &TagsList::urlsChanged, this, &TagsList::setList);
+    connect(this, &TagsList::strictChanged, this, &TagsList::setList);
 }
 
 void TagsList::setList()
 {
     emit this->preListChanged();
-
-    if (this->urls.isEmpty())
-        this->list = FMH::toModelList(this->tag->getAllTags(this->strict));
-    else {
+    
+    if (this->urls.isEmpty()) {
+        this->list = FMH::toModelList(this->tag->getAllTags(this->strict));  
+        
+    } else if(this->urls.size() > 1) {
+        this->list.clear();
+        
+    } else {
         this->list.clear();
         this->list = std::accumulate(this->urls.constBegin(), this->urls.constEnd(), FMH::MODEL_LIST(), [&](FMH::MODEL_LIST &list, const QString &url) {
             list << FMH::toModelList(this->tag->getUrlTags(url, this->strict));
             return list;
         });
     }
-
+    
     emit this->tagsChanged();
     emit this->postListChanged();
 }
@@ -57,13 +61,24 @@ void TagsList::insertToUrls(const QString &tag)
     this->refresh();
 }
 
-void TagsList::updateToUrls(const QStringList &tags)
+void TagsList::updateToUrls(const QStringList &tags) //if there is only one url update the tags if there are more than one url then add the new tags
 {
     if (this->urls.isEmpty())
         return;
     
-    for (const auto &url : qAsConst(urls))
-        this->tag->updateUrlTags(url, tags);
+    if(this->urls.size() == 1)
+    {
+        this->tag->updateUrlTags(this->urls.first(), tags);
+    }else
+    {
+        for (const auto &url : qAsConst(this->urls))
+        {
+            for(const auto &tag : tags)
+            {
+                this->tag->tagUrl(url, tag);
+            }
+        }
+    }   
 
     this->refresh();
 }
@@ -132,7 +147,6 @@ void TagsList::setStrict(const bool &value)
         return;
 
     this->strict = value;
-    this->setList();
     emit this->strictChanged();
 }
 
