@@ -48,7 +48,7 @@ Maui.Dialog
     verticalAlignment: Qt.AlignBottom
 
     defaultButtons: true
-
+    persistent: false
     rejectButton.visible: false
     acceptButton.text: i18n("Open with")
     onAccepted:  control.openWith()

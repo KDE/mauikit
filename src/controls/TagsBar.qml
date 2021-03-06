@@ -85,7 +85,7 @@ Maui.ToolBar
       */
     signal tagsEdited(var tags)
 
-    preferredHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
+    preferredHeight: Maui.Style.toolBarHeight + Maui.Style.space.tiny
 
     background: Rectangle
     {

@@ -6,14 +6,16 @@ import org.kde.mauikit 1.2 as Maui
 import TagsList 1.0
 import "."
 
-ListView
+Maui.ListBrowser
 {
     id: control
     orientation: ListView.Horizontal
-    clip: true
     spacing: Maui.Style.contentMargins
-    boundsBehavior: Kirigami.Settings.isMobile ?  Flickable.DragOverBounds : Flickable.StopAtBounds
-
+    implicitHeight: Maui.Style.toolBarHeight
+    horizontalScrollBarPolicy: ScrollBar.AlwaysOff
+    snapMode: ListView.SnapOneItem
+    verticalScrollBarPolicy: ScrollBar.AlwaysOff
+    
     /**
       *
       */
@@ -57,7 +59,7 @@ ListView
     {
         anchors.fill: parent
         verticalAlignment: Qt.AlignVCenter
-        text: qsTr(control.placeholderText)
+        text: control.placeholderText
         opacity: 0.7
         visible: count === 0 && control.showPlaceHolder
         color: Kirigami.Theme.textColor
@@ -65,13 +67,12 @@ ListView
 
     delegate: TagDelegate
     {
-        showDeleteIcon: control.showDeleteIcon
+        showCloseButton: control.showDeleteIcon
         Kirigami.Theme.textColor: control.Kirigami.Theme.textColor
-        anchors.verticalCenter: parent.verticalCenter
-        
+       
         ListView.onAdd:
         {
-            control.positionViewAtEnd()
+            control.flickable.positionViewAtEnd()
         }
         
         onRemoveTag: tagRemoved(index)

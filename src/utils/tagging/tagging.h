@@ -57,6 +57,9 @@ public:
         return &tag;
     }
 
+    
+public slots:
+    
     /**
      * @brief get
      * Retrieve the information into a model, optionally you can pass a modifier callback function to manipulate or discard items in the model
@@ -68,7 +71,7 @@ public:
      * The model
      */
     Q_INVOKABLE const QVariantList get(const QString &query, std::function<bool(QVariantMap &item)> modifier = nullptr);
-
+    
     /**
      * @brief tagExists
      * Checks if a given tag exists, it can be strictly enforced, meaning it is checked if the tag was created by the application making the request
@@ -79,7 +82,7 @@ public:
      * @return
      */
     Q_INVOKABLE bool tagExists(const QString &tag, const bool &strict = false);
-
+    
     /**
      * @brief urlTagExists
      * Checks if a given tag is associated to a give file URL. The check can be strictly enforced, meaning the given URL was tagged by the application making the request
@@ -92,7 +95,7 @@ public:
      * @return
      */
     Q_INVOKABLE bool urlTagExists(const QString &url, const QString &tag);
-
+    
     /* INSERTIIONS */
     /**
      * @brief tag
@@ -107,7 +110,7 @@ public:
      * Returns if the operation was sucessfull, meaning the tag was created
      */
     Q_INVOKABLE bool tag(const QString &tag, const QString &color = QString(), const QString &comment = QString());
-
+    
     /**
      * @brief tagUrl
      * Adds a tag to a given file URL, if the given tag doesnt exists then it gets created
@@ -122,7 +125,7 @@ public:
      * @return
      */
     Q_INVOKABLE bool tagUrl(const QString &url, const QString &tag, const QString &color = QString(), const QString &comment = QString());
-
+    
     /* UPDATES */
     /**
      * @brief updateUrlTags
@@ -134,7 +137,7 @@ public:
      * @return
      */
     Q_INVOKABLE bool updateUrlTags(const QString &url, const QStringList &tags, const bool &strict = false);
-
+    
     /**
      * @brief updateUrl
      * Updates a file URL to a new URL, preserving all associated tags. This is useful if a file is rename or moved to a new location
@@ -145,9 +148,9 @@ public:
      * @return
      */
     Q_INVOKABLE bool updateUrl(const QString &url, const QString &newUrl);
-
+    
     /* QUERIES */
-
+    
     /**
      * @brief getUrlsTags \deprecated
      * Give a list of all tags associated to files
@@ -155,7 +158,7 @@ public:
      * @return
      */
     Q_INVOKABLE QVariantList getUrlsTags(const bool &strict = false);
-
+    
     /**
      * @brief getAllTags
      * Retruns a list model of all the tags. The model can be strictly enforced to only tags that were created by the application making the call
@@ -165,7 +168,7 @@ public:
      * Model with the info of all the requested tags
      */
     Q_INVOKABLE QVariantList getAllTags(const bool &strict = false);
-
+    
     /**
      * @brief getUrls
      * Returns a model of all the file URLs associated to a tag, the result can be strictly enforced to only file URLs associated to a tag created by the application making the request, restrinct it to a maximum limit, filter by the
@@ -183,7 +186,7 @@ public:
      * @return
      */
     Q_INVOKABLE QVariantList getUrls(const QString &tag, const bool &strict = false, const int &limit = MAX_LIMIT, const QString &mimeType = "", std::function<bool(QVariantMap &item)> modifier = nullptr);
-
+    
     /**
      * @brief getUrlTags
      * Returns a model list of all the tags associated to a file URL. The result can be strictly enforced to only tags created by the application making the call
@@ -194,7 +197,7 @@ public:
      * @return
      */
     Q_INVOKABLE QVariantList getUrlTags(const QString &url, const bool &strict = false);
-
+    
     /* DELETES */
     /**
      * @brief removeUrlTags
@@ -205,7 +208,7 @@ public:
      * If the operation was sucessfull
      */
     Q_INVOKABLE bool removeUrlTags(const QString &url, const bool &strict = false);
-
+    
     /**
      * @brief removeUrlTag
      * Removes a given tag associated to a given file URL
@@ -217,7 +220,7 @@ public:
      * If the operation was sucessfull
      */
     Q_INVOKABLE bool removeUrlTag(const QString &url, const QString &tag);
-
+    
     /**
      * @brief removeUrl /todo
      * Removes a URL with its associated tags
@@ -227,26 +230,7 @@ public:
      * If the operation was sucessfull
      */
     Q_INVOKABLE bool removeUrl(const QString &url);
-
-    /*STATIC METHODS*/
-
-    /**
-     * @brief mac
-     * @return
-     */
-    static QString mac();
-
-    /**
-     * @brief device
-     * @return
-     */
-    static QString device();
-
-    /**
-     * @brief id
-     * @return
-     */
-    static QString id();
+    
 
 private:
     Tagging();

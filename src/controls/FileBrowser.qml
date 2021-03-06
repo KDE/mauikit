@@ -657,6 +657,23 @@ Maui.Page
                 id: _browser
                 anchors.fill: parent
                 selectionMode: control.selectionMode
+                
+                Maui.NewTagDialog
+                {
+                    id: _newTagDialog
+                }
+                
+                Maui.FloatingButton
+                {
+                    visible: String(control.currentPath) === "tags:///"
+                    
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.margins: Maui.Style.toolBarHeight
+                    anchors.bottomMargin: Maui.Style.toolBarHeight + control.flickable.bottomMargin
+                    icon.name : "list-add"
+                    onClicked: _newTagDialog.open()
+                }
             }
             
             Menu

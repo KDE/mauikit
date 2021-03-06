@@ -71,9 +71,9 @@ MouseArea
         {
             anchors.fill: parent
             color: "transparent"
-            radius: Maui.Style.radiusV
-            border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
-            opacity: 0.7
+            radius: parent.radius
+            border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+            opacity: 0.8
 
             Rectangle
             {
@@ -81,7 +81,7 @@ MouseArea
                 color: "transparent"
                 radius: parent.radius - 0.5
                 border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                opacity: 0.8
+                opacity: 0.3
                 anchors.margins: 1
             }
         }
@@ -97,17 +97,19 @@ MouseArea
             onClicked: control.clicked()
         }
     }
-
+       
     DropShadow
     {
-        anchors.fill: parent
+        id: rectShadow
+        anchors.fill: _rec
         cached: true
         horizontalOffset: 0
         verticalOffset: 0
         radius: 8.0
         samples: 16
-        color: "#333"
+        color:  "#80000000"
         smooth: true
         source: _rec
-    }
+    }      
+    
 }

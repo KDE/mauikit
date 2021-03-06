@@ -48,7 +48,7 @@ Maui.Dialog
     maxWidth: 500
 
     verticalAlignment: Qt.AlignBottom
-
+    persistent: false
     defaultButtons: false
 
     page.title: i18n("Share with")

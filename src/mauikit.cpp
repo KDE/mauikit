@@ -43,6 +43,7 @@
 
 #ifdef COMPONENT_TAGGING
 #include "tagslist.h"
+#include "tagging.h"
 #endif
 
 #ifdef COMPONENT_EDITOR
@@ -240,10 +241,19 @@ void MauiKit::registerTypes(const char *uri)
 
 #ifdef COMPONENT_TAGGING
     /** TAGGING INTERFACES AND MODELS **/
+//     qmlRegisterSingletonInstance(uri, 1, 3, "Tagging", );
+    
+    qmlRegisterSingletonType<FMStatic>(uri, 1, 3, "Tagging", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+        return Tagging::getInstance();
+    });
+    
     qmlRegisterType<TagsList>("TagsList", 1, 0, "TagsList");
     qmlRegisterType(componentUrl(QStringLiteral("private/TagList.qml")), uri, 1, 0, "TagList");
     qmlRegisterType(componentUrl(QStringLiteral("TagsBar.qml")), uri, 1, 0, "TagsBar");
     qmlRegisterType(componentUrl(QStringLiteral("TagsDialog.qml")), uri, 1, 0, "TagsDialog");
+    qmlRegisterType(componentUrl(QStringLiteral("NewTagDialog.qml")), uri, 1, 3, "NewTagDialog");
 #endif
 
     /** MAUI APPLICATION SPECIFIC PROPS **/
