@@ -107,8 +107,7 @@ Maui.Dialog
                 Kirigami.Theme.backgroundColor: control.currentColor
                 iconSource: "tag"
             }
-        }
-       
+        }       
     }
     
     onClosed:
@@ -118,7 +117,7 @@ Maui.Dialog
 
     function clear()
     {
-        control.currentColor = undefined
+        control.currentColor = ""
         textEntry.clear()
     }
     

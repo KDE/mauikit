@@ -42,7 +42,7 @@ static const QMap<TABLE, QString> TABLEMAP = {{TABLE::TAGS, "tags"},
                                               {TABLE::APPS, "apps"}};
                                               
 static const QString TaggingPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/maui/tagging/";
-static const QString DBName = "tagging.db";
+static const QString DBName = "tagging-v2.db";
 }
 
 #endif // TAG_H

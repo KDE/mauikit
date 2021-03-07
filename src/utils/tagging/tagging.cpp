@@ -85,6 +85,11 @@ bool Tagging::tag(const QString &tag, const QString &color, const QString &comme
     if (tag.isEmpty())
         return false;
     
+    if(tag.contains(" ") || tag.contains("\n"))
+    {
+        return false;
+    }
+    
     QVariantMap tag_map {
         {FMH::MODEL_NAME[FMH::MODEL_KEY::TAG], tag},
         {FMH::MODEL_NAME[FMH::MODEL_KEY::COLOR], color},

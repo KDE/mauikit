@@ -60,6 +60,7 @@ Maui.Dialog
             Layout.fillWidth: true
             Layout.maximumWidth: 500
             placeholderText: i18n("Filter or add a new tag")
+//             validator: RegExpValidator { regExp: /[0-9A-F]+/ }
             onAccepted:
             {
                 const tags = tagText.text.split(",")
@@ -145,8 +146,7 @@ Maui.Dialog
                     _listView.currentIndex = index
                     if(Maui.Handy.singleClick)
                     {
-                        tagListComposer.list.append(_tagsList.get(_listView.currentIndex ).tag)
-                        
+                        tagListComposer.list.append(_tagsList.get(_listView.currentIndex ).tag)                        
                     }
                 }
                 

@@ -167,7 +167,7 @@ Maui.Dialog
     
     Maui.ListBrowser
     {
-        //visible: _dropDown.checked
+        visible: control.urls.length > 1
         
         Layout.fillWidth: true
         implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)

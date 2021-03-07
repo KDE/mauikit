@@ -405,17 +405,27 @@ Maui.Page
         
         Maui.NewDialog
         {
+            id: _renameDialog
             property var item : control.currentFMList ? control.currentFMModel.get(control.currentIndex) : ({})
             title: i18n("Rename")
-//             message: i18n("Change the name of a file or folder")
+            message: i18n("Change the name of a file or folder")
             template.iconSource: item.icon
             template.imageSource: item.thumbnail
+            template.iconSizeHint: Maui.Style.iconSizes.huge
             textEntry.text: item.label
             textEntry.placeholderText: i18n("New name")
             onFinished: Maui.FM.rename(item.path, textEntry.text)
             onRejected: close()
             acceptButton.text: i18n("Rename")
             rejectButton.text: i18n("Cancel")
+            
+            template.iconComponent: Maui.GridItemTemplate
+            {
+                anchors.fill: parent
+                iconSource: _renameDialog.template.iconSource
+                imageSource: _renameDialog.template.imageSource
+                label1.text: _renameDialog.textEntry.text
+            }
         }
     }
     
@@ -429,13 +439,13 @@ Maui.Page
         onCopyClicked:
         {
             if(item)
-                control.copy([item.path])
+                control.copy(filterSelection(currentPath, item.path))
         }
         
         onCutClicked:
         {
             if(item)
-                control.cut([item.path])
+                control.cut(filterSelection(currentPath, item.path))
         }
         
         onRenameClicked:
@@ -447,7 +457,7 @@ Maui.Page
         onRemoveClicked:
         {
             console.log("REMOVE", item.path)
-            control.remove([item.path])
+            control.remove(filterSelection(currentPath, item.path))
         }
     }
     
