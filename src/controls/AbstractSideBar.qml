@@ -50,7 +50,7 @@ Drawer
 
     interactive: (modal || collapsed || !visible) && Maui.Handy.isTouch
 
-    dragMargin: Maui.Style.space.big
+//     dragMargin: Maui.Style.space.big
 
     modal: false
 

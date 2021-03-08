@@ -228,6 +228,11 @@ Item
         property var _items : []
     }
     
+    TapHandler
+    {
+        grabPermissions: PointerHandler.TakeOverForbidden
+    }
+    
     Item
     {
         id: _container
