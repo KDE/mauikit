@@ -228,11 +228,6 @@ Item
         property var _items : []
     }
     
-    TapHandler
-    {
-        grabPermissions: PointerHandler.TakeOverForbidden
-    }
-    
     Item
     {
         id: _container
@@ -301,6 +296,8 @@ Item
             {
                 anchors.fill: parent
                 acceptedButtons: Qt.RightButton | Qt.LeftButton
+                propagateComposedEvents: false
+                preventStealing: true
                 
                 onClicked:
                 {
