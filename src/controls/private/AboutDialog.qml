@@ -42,7 +42,7 @@ Maui.Dialog
          * mainHeader : AlternateListItem
          */
         property alias mainHeader : _header
-//         defaultButtonsLayout.visible: flickable.atYEnd
+        //         defaultButtonsLayout.visible: flickable.atYEnd
         page.padding: 0
         actions: [
         Action
@@ -115,7 +115,6 @@ Maui.Dialog
                     lightness: 0
                 }
                 
-                
                 OpacityMask
                 {
                     source: mask
@@ -134,8 +133,7 @@ Maui.Dialog
                     start: Qt.point(0, 0)
                     end: Qt.point(_iconRec.width, _iconRec.height)
                 }
-                
-                
+                                
                 Maui.Separator
                 {
                     edge: Qt.BottomEdge
@@ -143,44 +141,43 @@ Maui.Dialog
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                 }
-            }
+            }            
             
-                        
-                Maui.ListItemTemplate
-                {
-                    id: _div1
-                    
-                       width: parent.width
+            Maui.ListItemTemplate
+            {
+                id: _div1
+                
+                width: parent.width
                 anchors.centerIn: parent
                 
-                    imageBorder: false
-                    imageSource: Maui.App.iconName
-                    imageWidth: Math.min(Maui.Style.iconSizes.huge, parent.width)
-                    imageHeight: imageWidth
-                    fillMode: Image.PreserveAspectFit
-                    imageSizeHint: imageWidth
-                    
-                    spacing: Maui.Style.space.big
-                    label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    label1.text: Maui.App.about.displayName
-                    label1.font.weight: Font.Bold
-                    label1.font.bold: true
-                    label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
-                    
-                    label2.text:  Maui.App.about.version + "\n" + Maui.App.about.shortDescription
-                    label2.elide: Text.ElideRight
-                    label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    leftLabels.spacing: Maui.Style.space.medium
-                    leftLabels.data:    Repeater
+                imageBorder: false
+                imageSource: Maui.App.iconName
+                imageWidth: Math.min(Maui.Style.iconSizes.huge, parent.width)
+                imageHeight: imageWidth
+                fillMode: Image.PreserveAspectFit
+                imageSizeHint: imageWidth
+                
+                spacing: Maui.Style.space.big
+                label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                label1.text: Maui.App.about.displayName
+                label1.font.weight: Font.Bold
+                label1.font.bold: true
+                label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
+                
+                label2.text:  Maui.App.about.version + "\n" + Maui.App.about.shortDescription
+                label2.elide: Text.ElideRight
+                label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                leftLabels.spacing: Maui.Style.space.medium
+                leftLabels.data:    Repeater
+                {
+                    model: Maui.App.about.licenses
+                    Label
                     {
-                        model: Maui.App.about.licenses
-                        Label
-                        {
-                            Layout.fillWidth: true
-                            text: "© " + modelData.name
-                        }
+                        Layout.fillWidth: true
+                        text: "© " + modelData.name
                     }
-                } 
+                }
+            } 
         }
         
         Maui.AlternateListItem
@@ -221,8 +218,7 @@ Maui.Dialog
                 }
             }
         }
-        
-        
+                
         Maui.AlternateListItem
         {
             Layout.fillWidth: true
@@ -248,8 +244,7 @@ Maui.Dialog
                     }
                 }
             }
-        }
-        
+        }        
         
         Maui.AlternateListItem
         {
@@ -303,8 +298,7 @@ Maui.Dialog
                     }
                 }
             }
-        }
-        
+        }        
         
         Maui.AlternateListItem
         {

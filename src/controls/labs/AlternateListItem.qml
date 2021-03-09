@@ -11,7 +11,7 @@ Maui.ItemDelegate
     /**
       *
       */
-    property bool alt : index ? index % 2 === 0 : false
+    property bool alt : false
 
     /**
       *
