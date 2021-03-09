@@ -24,6 +24,10 @@
 #include "syncing.h"
 #endif
 
+#ifdef COMPONENT_TAGGING
+#include "tagging.h"
+#endif
+
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 #include <KIO/EmptyTrashJob>
 #endif
@@ -112,6 +116,16 @@ FMList::FMList(QObject *parent)
             emit this->postItemAppended();
         }
     });
+    
+    #ifdef COMPONENT_TAGGING 
+    connect(Tagging::getInstance(), &Tagging::urlTagged, [this](QString, QString tag)
+    {
+        if(this->path.toString().endsWith(tag))
+        {
+            this->refresh();
+        }
+    });
+    #endif
 }
 
 void FMList::assignList(const FMH::MODEL_LIST &list)
