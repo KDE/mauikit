@@ -38,4 +38,17 @@ Maui.FlexListItem
         opacity: 0.5
         color: control.enabled ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) :  "transparent"
     }
+    
+    onClicked:
+    {
+        const item = control.content[0]
+        if(item.hasOwnProperty("checkable"))
+        {
+            if(item.checkable)
+            {
+                //item.checked = !item.checked
+                item.toggled()
+            }
+        }
+    }
 }

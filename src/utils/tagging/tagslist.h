@@ -48,7 +48,7 @@ private:
      * @param tags
      * List of tags to be added to the model
      */
-    void append(const FMH::MODEL &tags);
+    void append(const FMH::MODEL &tag);
 
 signals:
     void strictChanged();
@@ -65,7 +65,8 @@ public slots:
      * The tag to be aaded to the model
      */
     void append(const QString &tag);
-
+    void appendItem(const QVariantMap &tag);
+    
     /**
      * @brief append
      * Adds a given list of tags to the model. Tags that already exists in the model are ignored

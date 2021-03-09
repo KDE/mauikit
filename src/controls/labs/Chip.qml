@@ -39,6 +39,12 @@ ItemDelegate
         
         Item
         {
+            visible: !_icon.valid
+            Layout.fillHeight: true
+        }
+        
+        Item
+        {
             visible: _icon.valid
             Layout.fillHeight: true
             implicitWidth: visible ? Maui.Style.iconSizes.medium : 0
@@ -79,6 +85,12 @@ ItemDelegate
                 anchors.centerIn: parent
                 color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.4 : 0.7))
             }
+        }
+        
+        Item
+        {
+            visible: !showCloseButton
+            Layout.fillHeight: true
         }
     }
 }

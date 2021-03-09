@@ -87,7 +87,9 @@ Maui.Popup
       * If the Accept and Reject buttons should by displayed in the footer bar.
       */
     property bool defaultButtons: true
-
+    
+    property alias defaultButtonsLayout : _defaultButtonsLayout
+    
     /**
       * persistent : bool
       * If the dialog should be closed when it loses focus or not.
@@ -146,6 +148,16 @@ Maui.Popup
       */
     property alias closeButton: _closeButton
 
+    property alias flickable : _flickable
+    property alias scrollView : _scrollView
+    
+    property int verticalScrollBarPolicy: ScrollBar.AsNeeded
+    
+    /**
+     * horizontalScrollBarPolicy : ScrollBar.policy
+     */
+    property int horizontalScrollBarPolicy:  ScrollBar.AlwaysOff
+    
     /**
       * accepted :
       * Triggered when the accepted button is clicked.
@@ -223,8 +235,8 @@ Maui.Popup
                 anchors.fill: parent
                 visible: _stack.children.length === 0
 
-                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-                ScrollBar.vertical.policy: ScrollBar.AsNeeded
+                ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
+                ScrollBar.vertical.policy: control.verticalScrollBarPolicy
 
                 Flickable
                 {
@@ -308,7 +320,7 @@ Maui.Popup
             id: _defaultButtonsLayout
             spacing: 0
             Layout.fillWidth: true
-            Layout.preferredHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
+            Layout.preferredHeight: visible ? Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25) : 0
             Layout.maximumHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
             visible: control.defaultButtons || control.actions.length
 
@@ -318,7 +330,7 @@ Maui.Popup
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                implicitWidth: width
+
                 visible: control.defaultButtons
                 text: i18n("Cancel")
                 background: Rectangle
@@ -351,7 +363,7 @@ Maui.Popup
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                implicitWidth: width
+
                 text: i18n("Accept")
                 visible: control.defaultButtons
                 background: Rectangle
@@ -387,7 +399,6 @@ Maui.Popup
                     id: _actionButton
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    implicitWidth: width
 
                     action: modelData
 

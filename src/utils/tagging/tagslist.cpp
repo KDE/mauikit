@@ -177,6 +177,11 @@ void TagsList::append(const QString &tag)
     this->append(FMH::MODEL {{FMH::MODEL_KEY::TAG, tag}});
 }
 
+void TagsList::appendItem(const QVariantMap &tag)
+{
+    this->append(FMH::toModel(tag));
+}
+
 void TagsList::append(const FMH::MODEL &tag)
 {
     if (this->exists(FMH::MODEL_KEY::TAG, tag[FMH::MODEL_KEY::TAG]))

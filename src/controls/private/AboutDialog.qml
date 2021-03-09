@@ -42,7 +42,7 @@ Maui.Dialog
          * mainHeader : AlternateListItem
          */
         property alias mainHeader : _header
-        
+//         defaultButtonsLayout.visible: flickable.atYEnd
         page.padding: 0
         actions: [
         Action
@@ -67,12 +67,13 @@ Maui.Dialog
         }
         ]
         
+        verticalScrollBarPolicy: ScrollBar.AlwaysOff
+        
         Maui.AlternateListItem
         {
             id: _header
             Layout.fillWidth: true
-            implicitHeight: (_div1.implicitHeight * 1.5) + Maui.Style.space.big
-            alt: true
+            implicitHeight: Math.max((_div1.implicitHeight * 1.5) + Maui.Style.space.big, control.page.height+ Maui.Style.space.tiny)
             
             Item
             {
@@ -144,38 +145,48 @@ Maui.Dialog
                 }
             }
             
-            Maui.ListItemTemplate
-            {
-                id: _div1
-                
-                width: parent.width 
-                
+                        
+                Maui.ListItemTemplate
+                {
+                    id: _div1
+                    
+                       width: parent.width
                 anchors.centerIn: parent
-                imageBorder: false
-                imageSource: Maui.App.iconName
-                imageWidth: Math.min(Maui.Style.iconSizes.huge, parent.width)
-                imageHeight: imageWidth
-                fillMode: Image.PreserveAspectFit
-                imageSizeHint: imageWidth
                 
-                spacing: Maui.Style.space.big
-                label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                label1.text: Maui.App.about.displayName 
-                label1.font.weight: Font.Bold
-                label1.font.bold: true
-                label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
-                
-                label2.text: Maui.App.about.version + "\n"+ Maui.App.about.shortDescription
-                label2.elide: Text.ElideRight
-                label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            }
+                    imageBorder: false
+                    imageSource: Maui.App.iconName
+                    imageWidth: Math.min(Maui.Style.iconSizes.huge, parent.width)
+                    imageHeight: imageWidth
+                    fillMode: Image.PreserveAspectFit
+                    imageSizeHint: imageWidth
+                    
+                    spacing: Maui.Style.space.big
+                    label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    label1.text: Maui.App.about.displayName
+                    label1.font.weight: Font.Bold
+                    label1.font.bold: true
+                    label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
+                    
+                    label2.text:  Maui.App.about.version + "\n" + Maui.App.about.shortDescription
+                    label2.elide: Text.ElideRight
+                    label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    leftLabels.spacing: Maui.Style.space.medium
+                    leftLabels.data:    Repeater
+                    {
+                        model: Maui.App.about.licenses
+                        Label
+                        {
+                            Layout.fillWidth: true
+                            text: "© " + modelData.name
+                        }
+                    }
+                } 
         }
         
         Maui.AlternateListItem
         {
             Layout.fillWidth: true
             Layout.preferredHeight: _credits.implicitHeight + Maui.Style.space.huge
-            alt: false
             
             Column
             {
@@ -193,7 +204,6 @@ Maui.Dialog
                         iconSource: "view-media-artist"
                         iconSizeHint: Maui.Style.iconSizes.medium
                         width: parent.width
-                        height: implicitHeight
                         spacing: Maui.Style.space.medium
                         label1.text: modelData.name
                         label2.text: String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress)
@@ -217,7 +227,6 @@ Maui.Dialog
         {
             Layout.fillWidth: true
             Layout.preferredHeight: _licenses.implicitHeight + Maui.Style.space.huge
-            alt: true
             
             Column
             {
@@ -233,7 +242,6 @@ Maui.Dialog
                     {
                         iconSource: "license"
                         width: parent.width
-                        height: implicitHeight
                         iconSizeHint: Maui.Style.iconSizes.medium
                         spacing: Maui.Style.space.medium
                         label1.text: modelData.name
@@ -247,7 +255,6 @@ Maui.Dialog
         {
             Layout.fillWidth: true
             Layout.preferredHeight: _poweredBy.implicitHeight + Maui.Style.space.huge
-            alt: false
             
             Maui.ListItemTemplate
             {
@@ -269,14 +276,12 @@ Maui.Dialog
                     }
                 }
             }
-        }
-        
+        }        
         
         Maui.AlternateListItem
         {
             Layout.fillWidth: true
             Layout.preferredHeight: _libraries.implicitHeight + Maui.Style.space.huge
-            alt: true
             
             Column
             {
@@ -292,7 +297,6 @@ Maui.Dialog
                     {
                         iconSource: "plugins"
                         width: parent.width
-                        height: implicitHeight
                         iconSizeHint: Maui.Style.iconSizes.medium
                         spacing: Maui.Style.space.medium
                         label1.text: modelData
@@ -306,7 +310,6 @@ Maui.Dialog
         {
             Layout.fillWidth: true
             Layout.preferredHeight: _footerColumn.implicitHeight + Maui.Style.space.huge
-            alt: false
             lastOne: true
             
             ColumnLayout

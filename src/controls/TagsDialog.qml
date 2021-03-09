@@ -111,6 +111,8 @@ Maui.Dialog
             Layout.fillHeight: true
             Layout.fillWidth: true
             
+            currentIndex: -1
+            
             holder.emoji: "qrc:/assets/Electricity.png"
             holder.visible: _listView.count === 0
             holder.isMask: false
@@ -141,12 +143,20 @@ Maui.Dialog
                 iconName: model.icon
                 iconSize: Maui.Style.iconSizes.small
                 
+                template.content: Rectangle
+                {
+                    color: model.color ? model.color : "transparent"
+                    height: Maui.Style.iconSizes.small
+                    radius: height/2
+                    width: height
+                }
+                
                 onClicked:
                 {
                     _listView.currentIndex = index
                     if(Maui.Handy.singleClick)
                     {
-                        tagListComposer.list.append(_tagsList.get(_listView.currentIndex ).tag)                        
+                        tagListComposer.list.appendItem(_tagsList.get(_listView.currentIndex))                        
                     }
                 }
                 
@@ -155,12 +165,19 @@ Maui.Dialog
                     _listView.currentIndex = index
                     if(!Maui.Handy.singleClick)
                     {
-                        tagListComposer.list.append(_tagsList.get(_listView.currentIndex ).tag)                        
+                        tagListComposer.list.appendItem(_tagsList.get(_listView.currentIndex))                        
                     }
+                }
+                
+                onPressAndHold:
+                {
+                    _listView.currentIndex = index                    
+                    _menu.popup()
                 }
                 
                 onRightClicked:
                 {
+                    _listView.currentIndex = index                    
                     _menu.popup()
                 }
             }
