@@ -190,8 +190,33 @@ ToolBar
         
         Item
         {
+            id : _holder
             height: control.implicitHeight
             width: control.width
+            states: [State
+            {
+                when: control.position === ToolBar.Header
+                
+                AnchorChanges
+                {
+                    target: _holder
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                }
+            },
+            
+            State
+            {
+                when: control.position === ToolBar.Footer
+                
+                AnchorChanges
+                {
+                    target: _holder
+                    anchors.top: parent.top
+                    anchors.bottom: undefined
+                }
+            }
+            ]
             
             RowLayout
             {            

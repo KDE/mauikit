@@ -242,6 +242,7 @@ Maui.Popup
                 {
                     id: _flickable
                     contentHeight: _pageContent.implicitHeight
+                    boundsBehavior: Flickable.StopAtBounds
                     clip: true
 
                     ColumnLayout

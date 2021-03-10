@@ -87,7 +87,7 @@ Pane
     /**
       * headerPositioning : ListView.positioning
       */
-    property int headerPositioning : Kirigami.Settings.isMobile && flickable ? ListView.PullBackHeader : ListView.InlineHeader
+    property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
 
     /**
       * title : string

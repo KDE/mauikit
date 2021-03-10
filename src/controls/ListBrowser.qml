@@ -284,11 +284,11 @@ Item
             {
                 id: _mouseArea
                 z: -1
-                enabled: !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid
+//                 enabled: !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid
                 anchors.fill: parent
                 propagateComposedEvents: true
                 //             preventStealing: true
-                acceptedButtons:  Qt.RightButton | Qt.LeftButton
+                //acceptedButtons:  Qt.RightButton | Qt.LeftButton
 
                 onClicked:
                 {
@@ -330,9 +330,7 @@ Item
 
                 onPressed:
                 {
-                    if (mouse.source === Qt.MouseEventNotSynthesized)
-                    {
-                        if(control.enableLassoSelection && mouse.button === Qt.LeftButton )
+                    if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
                         {
                             selectLayer.visible = true;
                             selectLayer.x = mouseX;
@@ -341,13 +339,12 @@ Item
                             selectLayer.newY = mouseY;
                             selectLayer.width = 0
                             selectLayer.height = 0;
-                        }
-                    }
+                        }                    
                 }
 
                 onPressAndHold:
                 {
-                    if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible )
+                    if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
                     {
                         selectLayer.visible = true;
                         selectLayer.x = mouseX;

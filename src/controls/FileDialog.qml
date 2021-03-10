@@ -160,7 +160,6 @@ Maui.Dialog
         {
             id: _tagsBar
             visible: control.mode === modes.SAVE
-            position: ToolBar.Footer
             width: parent.width
             list.urls: [""]
             list.strict: false
