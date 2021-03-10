@@ -231,6 +231,8 @@ public slots:
      */
     Q_INVOKABLE bool removeUrl(const QString &url);
     
+    bool removeTag(const QString &tag);
+    
 
 private:
     Tagging();
@@ -245,8 +247,8 @@ private:
     QString appComment;
     QString appOrg;
 
+    //register the app
     bool app();
-    bool user();
 
 protected:
     static bool setTagIconName(QVariantMap &item);
@@ -254,6 +256,7 @@ protected:
 signals:
     void urlTagged(const QString &url, const QString &tag);
     void tagged(const QVariantMap &tag);
+    void tagRemoved(const QString &tag);
 };
 
 #endif // TAGGING_H

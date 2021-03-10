@@ -227,4 +227,26 @@ bool Tagging::app()
    return this->insert(TAG::TABLEMAP[TAG::TABLE::APPS], app_map);
 }
 
+bool Tagging::removeTag(const QString& tag)
+{
+     FMH::MODEL data1 {{FMH::MODEL_KEY::TAG, tag}};
+    
+     if(this->remove(TAG::TABLEMAP[TAG::TABLE::TAGS_URLS], data1))
+    {
+             FMH::MODEL data2 {{FMH::MODEL_KEY::TAG, tag}, {FMH::MODEL_KEY::ORG, this->appOrg}};
+
+        if(this->remove(TAG::TABLEMAP[TAG::TABLE::APP_TAGS], data2))
+        {
+            if(this->remove(TAG::TABLEMAP[TAG::TABLE::TAGS], data1))
+            {
+                emit this->tagRemoved(tag);
+                return true;
+            }
+        }
+    }    
+    
+    return false;
+}
+
+
 

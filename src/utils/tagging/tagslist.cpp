@@ -11,6 +11,10 @@ TagsList::TagsList(QObject *parent)
         }
     });
     
+    connect(this->tag, &Tagging::tagRemoved, [&](QString tag) {
+        this->refresh();
+    });    
+    
     connect(this, &TagsList::urlsChanged, this, &TagsList::setList);
     connect(this, &TagsList::strictChanged, this, &TagsList::setList);
 }

@@ -85,6 +85,24 @@ Maui.Dialog
             id: _newTagDialog
         }
         
+        Maui.Dialog
+        {
+         id: _deleteDialog
+         
+         page.margins: Maui.Style.space.big
+         property string tag
+         title: i18n("Delete %1", tag)
+         message: i18n("Are you sure you want to delete this tag? This action can not be undone.")
+         template.iconSource: "tag"
+         onAccepted: 
+         {
+             Maui.Tagging.removeTag(tag)
+             _deleteDialog.close()
+         }
+         
+         onRejected: _deleteDialog.close()         
+        }
+        
         Menu
         {
             id: _menu
@@ -99,6 +117,11 @@ Maui.Dialog
             {
                 text: i18n("Delete")
                 icon.name: "delete"
+                onTriggered:
+                {
+                    _deleteDialog.tag = _tagsModel.get(_listView.currentIndex).tag
+                    _deleteDialog.open()
+                }
             }
         }
         
@@ -187,7 +210,8 @@ Maui.Dialog
         {
             id: _info
             visible: tagListComposer.list.urls.length > 1
-            width: parent.width
+            Layout.fillWidth: true
+            Layout.preferredHeight: implicitHeight
             property var itemInfo : Maui.FM.getFileInfo( tagListComposer.list.urls[0])
             label1.text: i18n("Tagging %1 files", tagListComposer.list.urls.length)
             label2.text: i18n("Add new tags or compose the tags for the files.")
