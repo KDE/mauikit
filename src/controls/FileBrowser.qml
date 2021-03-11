@@ -481,8 +481,13 @@ Maui.Page
         interval: 500        
         onTriggered:
         {
-              control.currentIndex = control.currentFMList.indexOfName(typingQuery)
-              typingQuery = ""
+            const index = control.currentFMList.indexOfName(typingQuery)
+            if(index > -1)
+            {
+                control.currentIndex = index
+            }
+            
+            typingQuery = ""
         }
     }
     
@@ -503,8 +508,6 @@ Maui.Page
             {
                typingQuery += event.text
                 _typingTimer.restart()   
-                                console.log(event.key, event.text, typingQuery)
-
             }
             
             // Shortcuts for refreshing
