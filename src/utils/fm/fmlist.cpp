@@ -655,7 +655,7 @@ void FMList::remove(const int &index)
     emit this->postItemRemoved();
 }
 
-int FMList::indexOfName(const QString& query, const int& lastIndex)
+int FMList::indexOfName(const QString& query)
 {
      const auto it = std::find_if(this->items().constBegin(), this->items().constEnd(), [&](const FMH::MODEL &item) -> bool {
         return item[FMH::MODEL_KEY::LABEL].startsWith(query, Qt::CaseInsensitive);

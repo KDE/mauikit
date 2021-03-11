@@ -26,6 +26,7 @@ Rectangle
     implicitWidth: _container.implicitWidth
     implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.12)
     opacity: enabled ? 1 : 0.5
+    
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     
     /**
@@ -190,8 +191,7 @@ Rectangle
 
                     height: parent.height
                     
-                    enabled: action.enabled
-                    opacity: enabled ? 1 : 0.5
+                    enabled: action.enabled                    
                     
                     display: control.autoExclusive ? (checked && control.enabled ? control.display : ToolButton.IconOnly) : control.display
                     
@@ -318,6 +318,7 @@ Rectangle
                     
                     MenuItem
                     {
+                        enabled: modelData.enabled
                         text: modelData.text
                         icon.name: modelData.icon.name
                         autoExclusive: control.autoExclusive

@@ -477,10 +477,8 @@ Maui.Page
     
     Timer
     {
-        id: _typingTimer
-        
-        interval: 500
-        
+        id: _typingTimer        
+        interval: 500        
         onTriggered:
         {
               control.currentIndex = control.currentFMList.indexOfName(typingQuery)

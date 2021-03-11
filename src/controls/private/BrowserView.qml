@@ -580,9 +580,15 @@ Maui.Page
             id: _millerControl
             property Maui.FMList currentFMList
             property Maui.BaseModel currentFMModel
-            property int currentIndex
+            property int currentIndex : -1
+            
+            Binding on currentIndex
+            {
+                when : _millerColumns.currentItem
+                value: _millerColumns.currentItem.currentIndex
+            }
 
-            property Flickable flickable : _millerColumns.currentItem.list
+            property Flickable flickable : _millerColumns.currentItem.list.flickable
 
             signal itemClicked(int index)
             signal itemDoubleClicked(int index)
@@ -655,6 +661,10 @@ Maui.Page
                     property alias currentFMList : _millersFMList
                     property alias currentFMModel : _millersFMModel
                     property alias list : _millerListView
+                    
+                    property alias currentIndex : _millerListView.currentIndex
+                    
+                    readonly property bool isCurrentColumn :  ListView.isCurrentItem
                     property int _index : index
                     width: Math.min(Kirigami.Units.gridUnit * 22, control.width)
                     height: parent.height
@@ -663,6 +673,15 @@ Maui.Page
                     function forceActiveFocus()
                     {
                         _millerListView.forceActiveFocus()
+                    }
+                    
+                    Rectangle
+                    {
+                        color: Kirigami.Theme.highlightColor
+                        width: parent.width
+                        height: 5
+                        anchors.bottom: parent.bottom
+                        visible: isCurrentColumn
                     }
 
                     Kirigami.Separator
@@ -826,7 +845,7 @@ Maui.Page
                             onClicked:
                             {
                                 _millerColumns.currentIndex = _index
-                                control.currentIndex = index
+                                _millerListView.currentIndex = index
 
                                 if ((mouse.button == Qt.LeftButton) && (mouse.modifiers & Qt.ControlModifier))
                                 {
@@ -840,7 +859,7 @@ Maui.Page
                             onDoubleClicked:
                             {
                                 _millerColumns.currentIndex = _index
-                                control.currentIndex = index
+                                _millerListView.currentIndex = index
                                 _millerControl.itemDoubleClicked(index)
                             }
 
@@ -850,21 +869,21 @@ Maui.Page
                                     return
 
                                     _millerColumns.currentIndex = _index
-                                    control.currentIndex = index
+                                    _millerListView.currentIndex = index
                                     _millerControl.itemRightClicked(index)
                             }
 
                             onRightClicked:
                             {
                                 _millerColumns.currentIndex = _index
-                                control.currentIndex = index
+                                _millerListView.currentIndex = index
                                 _millerControl.itemRightClicked(index)
                             }
 
                             onToggled:
                             {
                                 _millerColumns.currentIndex = _index
-                                control.currentIndex = index
+                                _millerListView.currentIndex = index
                                 _millerControl.itemToggled(index, state)
                             }
 

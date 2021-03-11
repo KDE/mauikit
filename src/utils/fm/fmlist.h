@@ -428,7 +428,7 @@ public slots:
      */
     const QUrl posteriorPath();
     
-    int indexOfName(const QString &query, const int &lastIndex = -1);
+    int indexOfName(const QString &query);
 
 signals:
     void pathChanged();

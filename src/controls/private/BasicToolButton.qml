@@ -65,6 +65,8 @@ focusPolicy: Qt.NoFocus
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
 
+    opacity: enabled ? 1 : 0.5
+    
     background: Rectangle
     {
         id: _background
