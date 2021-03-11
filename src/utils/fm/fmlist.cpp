@@ -125,6 +125,14 @@ FMList::FMList(QObject *parent)
             this->refresh();
         }
     });
+    
+    connect(Tagging::getInstance(), &Tagging::tagged, [this](QVariantMap)
+    {
+        if(this->pathType == PATHTYPE::TAGS_PATH)
+        {
+            this->refresh();
+        }
+    });
     #endif
 }
 
@@ -645,4 +653,16 @@ void FMList::remove(const int &index)
     emit this->preItemRemoved(index);
     this->list.remove(index);
     emit this->postItemRemoved();
+}
+
+int FMList::indexOfName(const QString& query, const int& lastIndex)
+{
+     const auto it = std::find_if(this->items().constBegin(), this->items().constEnd(), [&](const FMH::MODEL &item) -> bool {
+        return item[FMH::MODEL_KEY::LABEL].startsWith(query, Qt::CaseInsensitive);
+    });
+
+    if (it != this->items().constEnd())
+        return this->mappedIndexFromSource(std::distance(this->items().constBegin(), it));
+    else
+        return -1;
 }

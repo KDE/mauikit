@@ -211,10 +211,10 @@ Maui.Dialog
             id: _info
             visible: tagListComposer.list.urls.length > 1
             Layout.fillWidth: true
-            Layout.preferredHeight: implicitHeight
+            Layout.preferredHeight: 100
             property var itemInfo : Maui.FM.getFileInfo( tagListComposer.list.urls[0])
             label1.text: i18n("Tagging %1 files", tagListComposer.list.urls.length)
-            label2.text: i18n("Add new tags or compose the tags for the files.")
+            label2.text: i18n("Add new tags for the selected files.")
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             iconSource : itemInfo.icon
             imageSource: itemInfo.thumbnail

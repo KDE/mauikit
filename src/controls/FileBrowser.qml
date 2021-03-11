@@ -461,6 +461,33 @@ Maui.Page
         }
     }
     
+    property string typingQuery
+    
+    Maui.Chip
+    {
+        z: control.z + 99999
+        Kirigami.Theme.colorSet:Kirigami.Theme.Complementary
+        visible: _typingTimer.running
+        label.text: typingQuery
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        showCloseButton: false
+        anchors.margins: Maui.Style.space.medium
+    }
+    
+    Timer
+    {
+        id: _typingTimer
+        
+        interval: 500
+        
+        onTriggered:
+        {
+              control.currentIndex = control.currentFMList.indexOfName(typingQuery)
+              typingQuery = ""
+        }
+    }
+    
     Connections
     {
         enabled: control.currentView
@@ -470,7 +497,17 @@ Maui.Page
         function onKeyPress(event)
         {
             const index = control.currentIndex
-            const item = control.currentFMModel.get(index)
+            const item = control.currentFMModel.get(index)            
+            
+            var pat = /^([a-zA-Z0-9 _-]+)$/
+            
+            if(event.count === 1 && pat.test(event.text))
+            {
+               typingQuery += event.text
+                _typingTimer.restart()   
+                                console.log(event.key, event.text, typingQuery)
+
+            }
             
             // Shortcuts for refreshing
             if((event.key === Qt.Key_F5))
