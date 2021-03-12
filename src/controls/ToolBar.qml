@@ -125,17 +125,12 @@ ToolBar
          * visibleCount: int
          */
         readonly property int visibleCount : leftRowContent.visibleChildren.length + middleRowContent.visibleChildren.length  + rightRowContent.visibleChildren.length + farLeftRowContent.visibleChildren.length  + farRightRowContent.visibleChildren.length
-        
-        /**
-         * flickable : bool
-         */
-        property bool flickable: true
-        
+                
         EdgeShadow
         {
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            visible: !mainFlickable.atXEnd && !control.fits && control.flickable
+            visible: !mainFlickable.atXEnd && !control.fits 
             opacity: 0.7
             z: 999
             edge: Qt.RightEdge
@@ -151,7 +146,7 @@ ToolBar
         {
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            visible: !mainFlickable.atXBeginning && !control.fits && control.flickable
+            visible: !mainFlickable.atXBeginning && !control.fits 
             opacity: 0.7
             z: 999
             edge: Qt.LeftEdge
@@ -190,34 +185,15 @@ ToolBar
         
         Item
         {
-            id : _holder
             height: control.implicitHeight
             width: control.width
-            states: [State
-            {
-                when: control.position === ToolBar.Header
-                
-                AnchorChanges
-                {
-                    target: _holder
-                    anchors.top: undefined
-                    anchors.bottom: parent.bottom
-                }
-            },
             
-            State
-            {
-                when: control.position === ToolBar.Footer
-                
-                AnchorChanges
-                {
-                    target: _holder
-                    anchors.top: parent.top
-                    anchors.bottom: undefined
-                }
-            }
-            ]
-            
+//             Label{
+//                 z: parent.z + 9999
+//                 color: "orange"
+//                 text: mainFlickable.contentWidth + " / " + control.width + " / " + _scrollView.width
+//             }
+//             
             RowLayout
             {            
                 spacing: control.spacing
@@ -233,11 +209,17 @@ ToolBar
                     Layout.minimumWidth: implicitWidth
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     spacing: control.spacing
-                }                   
+                }   
+                
+                ToolSeparator
+                {
+                    visible: farLeftRowContent.visibleChildren.length
+                }
+                
                 ScrollView
                 {
                     id: _scrollView
-                    readonly property bool fits : mainFlickable.contentWidth < parent.width
+                    readonly property bool fits : mainFlickable.contentWidth < width
                     onFitsChanged: mainFlickable.returnToBounds()
                     
                     Layout.fillWidth: true
@@ -294,6 +276,7 @@ ToolBar
                                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                 Layout.fillHeight: true
                                 Layout.fillWidth: true
+                                Layout.minimumWidth: implicitWidth
                                 spacing: visibleChildren.length > 1 ? control.spacing : 0
                             }
                             
@@ -316,6 +299,12 @@ ToolBar
                             }                                
                         }
                     }
+                }
+                
+                
+                ToolSeparator
+                {
+                    visible: farRightRowContent.visibleChildren.length
                 }
                 
                 Row

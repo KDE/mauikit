@@ -331,7 +331,8 @@ Maui.Popup
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-
+                implicitWidth: width
+                
                 visible: control.defaultButtons
                 text: i18n("Cancel")
                 background: Rectangle
@@ -364,7 +365,8 @@ Maui.Popup
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-
+                implicitWidth: width
+                
                 text: i18n("Accept")
                 visible: control.defaultButtons
                 background: Rectangle
@@ -400,7 +402,8 @@ Maui.Popup
                     id: _actionButton
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-
+                    implicitWidth: width
+                    
                     action: modelData
 
                     background: Rectangle
