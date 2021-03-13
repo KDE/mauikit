@@ -38,6 +38,8 @@ Item
     id: control
     anchors.fill: parent
     visible: false
+    
+    default property list<Action> actions
 
     /**
       * emoji : string
@@ -125,7 +127,8 @@ Item
     {
         id: _layout
         anchors.centerIn: parent
-
+        spacing: Maui.Style.space.medium
+        
         Loader
         {
             id: loader
@@ -149,6 +152,35 @@ Item
             elide: Text.ElideRight
             color: _mouseArea.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             wrapMode: Text.Wrap
+        }
+        
+        Repeater
+        {
+            model: control.actions
+            
+            Button
+            {
+                id: _button
+              
+                anchors.horizontalCenter: parent.horizontalCenter
+                flat: true
+                action: modelData
+                
+                background: Rectangle
+                {
+                    radius: Maui.Style.radiusV
+                    color: _button.hovered || _button.down || _button.pressed ? "#26c6da" : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
+                }
+                
+                contentItem: Label
+                {
+                    text: _button.text
+                    opacity: 0.8
+                    color:  _button.hovered || _button.down || _button.pressed ?  "#fafafa" : Kirigami.Theme.textColor
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                }
+            }
         }
     }
 }
