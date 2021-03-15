@@ -276,7 +276,7 @@ ToolBar
                                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                 Layout.fillHeight: true
                                 Layout.fillWidth: true
-                                Layout.minimumWidth: implicitWidth
+//                                 Layout.minimumWidth: implicitWidth
                                 spacing: visibleChildren.length > 1 ? control.spacing : 0
                             }
                             

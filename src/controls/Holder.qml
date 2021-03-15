@@ -40,6 +40,8 @@ Item
     visible: false
     
     default property list<Action> actions
+    
+    property alias content : _layout.data
 
     /**
       * emoji : string
