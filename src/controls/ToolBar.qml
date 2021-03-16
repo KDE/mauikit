@@ -213,7 +213,9 @@ ToolBar
                 
                 ToolSeparator
                 {
-                    visible: farLeftRowContent.visibleChildren.length
+                    visible: farLeftRowContent.visibleChildren.length && leftRowContent.visibleChildren.length
+                    implicitHeight: Maui.Style.iconSizes.tiny
+                    Layout.alignment: Qt.AlignCenter
                 }
                 
                 ScrollView
@@ -304,7 +306,9 @@ ToolBar
                 
                 ToolSeparator
                 {
-                    visible: farRightRowContent.visibleChildren.length
+                    visible: farRightRowContent.visibleChildren.length && rightRowContent.visibleChildren.length
+                    implicitHeight: Maui.Style.iconSizes.tiny
+                    Layout.alignment: Qt.AlignCenter
                 }
                 
                 Row

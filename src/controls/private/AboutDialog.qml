@@ -35,8 +35,8 @@ Maui.Dialog
         widthHint: 0.9
         heightHint: 0.8
         
-        maxWidth: 350
-        maxHeight: 250
+        maxWidth: 400
+        maxHeight: Math.max(250, _header.height)
         
         /**
          * mainHeader : AlternateListItem
@@ -168,15 +168,28 @@ Maui.Dialog
                 label2.elide: Text.ElideRight
                 label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 leftLabels.spacing: Maui.Style.space.medium
-                leftLabels.data:    Repeater
+                leftLabels.data: [ Repeater
                 {
                     model: Maui.App.about.licenses
                     Label
                     {
                         Layout.fillWidth: true
                         text: "© " + modelData.name
+                        opacity: 0.6
+                        font.pointSize: Maui.Style.fontSizes.small
                     }
+                },
+                
+                Label
+                {
+                    Layout.fillWidth: true
+                    text: Maui.App.about.otherText
+                    font.family: "Monospace"
+                    opacity: 0.6
+                    font.pointSize: Maui.Style.fontSizes.small
                 }
+                
+                ]
             } 
         }
         
