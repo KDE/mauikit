@@ -18,6 +18,7 @@
  */
 
 import QtQuick 2.14
+import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.3
@@ -48,7 +49,7 @@ Drawer
     y: (window().header && !window().altHeader ? window().header.height : 0)
     //    closePolicy: modal || collapsed ?  Popup.CloseOnEscape | Popup.CloseOnPressOutside : Popup.NoAutoClose
 
-    interactive: (modal || collapsed || !visible) && Maui.Handy.isTouch
+    interactive: (modal || collapsed ) && Maui.Handy.isTouch && enabled
 
     dragMargin: Maui.Style.space.medium
 
@@ -100,10 +101,17 @@ Drawer
       * contentDropped
       */
     signal contentDropped(var drop)
+    
+    Binding on position
+    {
+        when: !control.enabled
+        value: 0
+        restoreMode: Binding.RestoreBindingOrValue
+    }
 
     onCollapsedChanged:
     {
-        if(collapsed)
+        if(collapsed || !control.enabled)
         {
             control.position = 0
             control.close()
@@ -182,10 +190,20 @@ Drawer
 
     function toggle()
     {
+        if(!control.enabled)
+        {
+             close()
+             return
+        }
+        
         if(control.position > 0 && control.visible)
+        {
             control.close()
+        }
         else
+        {
             control.open()
+        }
     }
 }
 

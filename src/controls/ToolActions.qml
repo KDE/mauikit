@@ -376,10 +376,9 @@ Rectangle
                     
                     enabled: m_action ? m_action.enabled : true
                     
-                    text: m_action.text
+                    text: m_action ?  m_action.text : ""
                     
-                    display: control.display                   
-                    
+                    display: control.display  
                 }
                 
                 Kirigami.Separator

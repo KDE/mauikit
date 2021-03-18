@@ -274,15 +274,14 @@ Maui.Page
             }
         }
         
-        actions.data: ToolButton
+        actions: Action
         {
             id: _filterButton
             icon.name: "view-filter"
             //             text: i18n("Filter")
             checkable: true
             checked: true
-            flat: true
-            onClicked:
+            onTriggered:
             {
                 control.view.filter = ""
                 _searchField.clear()
@@ -493,8 +492,7 @@ Maui.Page
     
     Connections
     {
-        enabled: control.currentView
-        target: control.currentView
+        target: _browser
         ignoreUnknownSignals: true
         
         function onKeyPress(event)
@@ -659,11 +657,16 @@ Maui.Page
         function onAreaClicked(mouse)
         {
             if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
+            {
                 browserMenu.show(control)
-                else return
-                    
-                    control.rightClicked()
-                    control.currentView.forceActiveFocus()
+            }
+            else 
+            {
+                return
+            }
+            
+            control.rightClicked()
+            control.currentView.forceActiveFocus()
         }
         
         function onAreaRightClicked(mouse)

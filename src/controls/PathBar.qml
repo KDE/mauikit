@@ -137,11 +137,11 @@ Rectangle
                 color: "transparent"
             }
 
-            actions.data: ToolButton
+            actions: Action
             {
                 icon.name: "go-next"
                 icon.color: control.Kirigami.Theme.textColor
-                onClicked:
+                onTriggered:
                 {
                     pathChanged(entry.text)
                     showEntryBar()

@@ -119,7 +119,13 @@ Maui.ItemDelegate
     ToolTip.visible: control.hovered && control.tooltipText
     ToolTip.text: control.tooltipText
 
-    background: Item {}
+    background: Rectangle 
+    {
+        visible: control.hovered
+        color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
+        opacity: 0.3
+        radius: Maui.Style.radiusV
+    }
 
     DropArea
     {

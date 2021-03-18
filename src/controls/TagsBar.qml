@@ -148,11 +148,10 @@ Control
                 selectedTextColor: Kirigami.Theme.highlightedTextColor
                 onAccepted: control.saveTags()
                 
-                actions.data: ToolButton
+                actions: Action
                 {
-                    Layout.alignment: Qt.AlignLeft
                     icon.name: "checkbox"
-                    onClicked: editTagsEntry.accepted()
+                    onTriggered: editTagsEntry.accepted()
                 }
                 
                 background: Rectangle

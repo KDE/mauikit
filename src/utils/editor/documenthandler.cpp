@@ -490,7 +490,7 @@ void DocumentHandler::setCursorPosition(int position)
         return;
 
     m_cursorPosition = position;
-    reset();
+//     reset();
     emit cursorPositionChanged();
 }
 
@@ -874,7 +874,7 @@ void DocumentHandler::mergeFormatOnWordOrSelection(const QTextCharFormat &format
     cursor.mergeCharFormat(format);
 }
 
-void DocumentHandler::find(const QString &query)
+void DocumentHandler::find(const QString &query, const bool &forward)
 {
     qDebug() << "Asked to find" << query;
     QTextDocument *doc = textDocument();
@@ -883,28 +883,142 @@ void DocumentHandler::find(const QString &query)
         return;
     }
 
-    doc->undo();
-
-    QTextCursor highlightCursor(doc);
-    QTextCursor cursor(doc);
-
-    cursor.beginEditBlock();
-
-    QTextCharFormat plainFormat(highlightCursor.charFormat());
-    QTextCharFormat colorFormat = plainFormat;
-    colorFormat.setBackground(Qt::yellow);
-
-    while (!highlightCursor.isNull() && !highlightCursor.atEnd()) {
-        highlightCursor = doc->find(query, highlightCursor, QTextDocument::FindWholeWords);
-
-        if (!highlightCursor.isNull()) {
-            //             found = true;
-            highlightCursor.movePosition(QTextCursor::WordRight, QTextCursor::KeepAnchor);
-            highlightCursor.mergeCharFormat(colorFormat);
-        }
+    QTextDocument::FindFlags searchFlags = QTextDocument::FindWholeWords;
+    QTextDocument::FindFlags newFlags = searchFlags;
+    if (!forward)
+        newFlags = searchFlags | QTextDocument::FindBackward;
+    
+    QTextCursor start = this->textCursor();
+    
+    if(query != m_searchQuery )
+    {
+        start.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor);
+        m_searchQuery = query;
     }
+    
+    if (!start.isNull() && !start.atEnd()) 
+    {
+         QTextCursor found = doc->find(m_searchQuery, start, newFlags);
+         if (found.isNull())
+         {
+             if (!forward)
+                 start.movePosition (QTextCursor::End, QTextCursor::MoveAnchor);
+             else
+                 start.movePosition (QTextCursor::Start, QTextCursor::MoveAnchor);
+             
+             this->setCursorPosition(start.position());
+             
+             found = doc->find(m_searchQuery, start, newFlags);
+         }
+         
+         if (!found.isNull())
+         {
+//              found.movePosition(QTextCursor::WordRight, QTextCursor::MoveAnchor);
+             setSelectionStart(found.selectionStart());
+             setSelectionEnd(found.selectionEnd());
+             setCursorPosition(found.position());
+             emit searchFound(selectionStart(), selectionEnd());
+         }   
+    }
+}
 
-    cursor.endEditBlock();
+void DocumentHandler::replace(const QString &query, const QString &value)
+{
+    if(value.isEmpty())
+    {
+        return;
+    }    
+    
+    if (this->textDocument()) {
+        
+        if(m_searchQuery.isEmpty() || query != m_searchQuery)
+        {
+            find(query);
+        }
+        
+        auto cursor = this->textCursor();
+        cursor.beginEditBlock();
+        cursor.insertText(value);
+        cursor.endEditBlock();
+        
+        find(query);
+    }    
+}
+
+void DocumentHandler::replaceAll(const QString &query, const QString &value)
+{
+    this->m_text.replace(query, value);
+    emit this->textChanged();
+}
+
+bool DocumentHandler::isFoldable(const int &line) const
+{
+    if(!m_highlighter)
+        return false;
+    
+    if(auto doc = this->textDocument())
+    {
+        return m_highlighter->startsFoldingRegion(doc->findBlockByLineNumber(line));
+    }
+    
+    return false;
+}
+
+bool DocumentHandler::isFolded(const int &line) const
+{
+    if(!m_highlighter)
+        return false;
+    
+    if(auto doc = this->textDocument())
+    {        
+        auto block = doc->findBlockByLineNumber(line);
+        
+        if (!block.isValid())
+            return false;
+        
+        const auto nextBlock = block.next();
+        
+        if (!nextBlock.isValid())
+            return false;
+        
+        return !nextBlock.isVisible();
+    }
+    
+    return false;
+}
+
+void DocumentHandler::toggleFold(const int &line)
+{
+    if(!m_highlighter)
+        return;
+    
+    if(auto doc = this->textDocument())
+    {        
+        auto startBlock = doc->findBlockByLineNumber(line);
+        
+        // we also want to fold the last line of the region, therefore the ".next()"
+        const auto endBlock =
+        m_highlighter->findFoldingRegionEnd(startBlock).next();
+        
+     
+            // fold
+            auto block = startBlock.next();
+            while (block.isValid() && block != endBlock) 
+            {
+                block.setVisible(false);
+                block.setLineCount(0);
+                block = block.next();
+            }
+        
+        
+        // redraw document
+        doc->markContentsDirty(
+            startBlock.position(), endBlock.position() - startBlock.position() + 1);
+        
+//         // update scrollbars
+//         emit doc->documentLayout()->documentSizeChanged(
+//             doc->documentLayout()->documentSize());
+    }
 }
 
 int DocumentHandler::lineHeight(const int &line)

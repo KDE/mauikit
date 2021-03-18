@@ -21,8 +21,8 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 
-import org.kde.kirigami 2.9 as Kirigami
-import org.kde.mauikit 1.2 as Maui
+import org.kde.kirigami 2.14 as Kirigami
+import org.kde.mauikit 1.3 as Maui
 
 /**
  * TextField
@@ -46,7 +46,7 @@ TextField
     /**
       * actions : RowLayout
       */
-    property alias actions : _actions
+    property list<Action> actions
 
     /**
       * cleared
@@ -70,7 +70,7 @@ TextField
 
     //Layout.maximumWidth: 500
 
-    rightPadding: _actions.implicitWidth + Maui.Style.space.small
+    rightPadding: _actionsLayout.implicitWidth + Maui.Style.space.small
 
     selectByMouse: !Kirigami.Settings.isMobile
 
@@ -118,14 +118,15 @@ TextField
 
     Row
     {
-        id: _actions
+        id: _actionsLayout
         z: parent.z + 1
         anchors.right: control.right
         anchors.verticalCenter: parent.verticalCenter
 
-        ToolButton
+         Maui.BasicToolButton
         {
             property int previousEchoMode
+            flat: true
             icon.name: control.echoMode === TextInput.Normal ? "view-hidden" : "view-visible"
             icon.color: control.color
             onClicked:
@@ -146,9 +147,10 @@ TextField
             }
         }
 
-        ToolButton
+        Maui.BasicToolButton
         {
             id: clearButton
+            flat: true
             visible: control.text.length
             icon.name: "edit-clear"
             icon.color: control.color
@@ -156,6 +158,17 @@ TextField
             {
                 control.clear()
                 cleared()
+            }
+        }
+        
+        Repeater
+        {
+            model: control.actions
+            
+            Maui.BasicToolButton
+            {
+                flat: true
+                action: modelData
             }
         }
     }

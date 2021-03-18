@@ -283,6 +283,8 @@ class MAUIKIT_EXPORT DocumentHandler : public QObject
     Q_PROPERTY(QString theme READ theme WRITE setTheme NOTIFY themeChanged)
 
     Q_PROPERTY(bool enableSyntaxHighlighting READ enableSyntaxHighlighting WRITE setEnableSyntaxHighlighting NOTIFY enableSyntaxHighlightingChanged)
+    
+//     Q_PROPERTY(int cursorYPos READ cursorYPos NOTIFY cursorYPosChanged)
 
 public:
     explicit DocumentHandler(QObject *parent = nullptr);
@@ -599,7 +601,15 @@ public slots:
      * @brief find
      * @param query
      */
-    void find(const QString &query);
+    void find(const QString &query, const bool &forward = true);
+
+    void replace(const QString &query, const QString &value);
+    
+    void replaceAll(const QString &query, const QString &value);
+    
+    bool isFoldable(const int &line) const;
+    bool isFolded(const int &line) const;
+    void toggleFold(const int &line);
 
     /**
      * @brief lineHeight
@@ -613,6 +623,8 @@ public slots:
      * @return
      */
     int getCurrentLineIndex();
+    
+//     int cursorYPos() const;
 
     /**
      * @brief getLanguageNameList
@@ -677,6 +689,10 @@ signals:
 
     void enableSyntaxHighlightingChanged();
     void themeChanged();
+    
+    void searchFound(int start, int end);
+    
+//     void cursorYPosChanged();
 
 private:
     void reset();
@@ -719,6 +735,9 @@ private:
 
     bool m_enableSyntaxHighlighting = false;
     QString m_theme;
+    
+    QString m_searchQuery;
+    QString m_replaceText;
 
     Alerts *m_alerts;
     DocumentAlert *missingAlert();
@@ -726,7 +745,7 @@ private:
     DocumentAlert *canNotSaveAlert(const QString &details);
 
     QTimer m_autoSaveTimer;
-
+    
     void refreshAllBlocks();
 };
 
