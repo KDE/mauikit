@@ -145,8 +145,7 @@ Maui.ItemDelegate
         anchors.fill: parent
 
         hovered: control.hovered || control.containsPress || _dropArea.containsDrag
-        checkable : control.checkable
-        checked : control.checked
+     
 //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
         onToggled: control.toggled(state)
