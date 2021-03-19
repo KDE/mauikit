@@ -323,17 +323,9 @@ Window
         Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
         headerBackground.color: Maui.App.enableCSD ? Qt.darker(Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
 
-        headBar.farLeftContent: Loader
+        Maui.WindowControls
         {
-            id: _leftControlsLoader
-            visible: active
-            active: Maui.App.enableCSD && Maui.App.leftWindowControls.length
-            Layout.preferredWidth: active ? implicitWidth : 0
-            Layout.fillHeight: true
-            sourceComponent:  Maui.WindowControls
-            {
-                order: Maui.App.leftWindowControls
-            }
+            toolbar: _page.headBar
         }
 
         headBar.leftContent: ToolButton
@@ -392,20 +384,7 @@ Window
                     onTriggered: root.close()
                 }
             }
-        }
-
-        headBar.farRightContent: Loader
-        {
-            id: _rightControlsLoader
-            visible: active
-            active: Maui.App.enableCSD && Maui.App.rightWindowControls.length
-            width: active ? implicitWidth : 0
-            height: parent.height
-            sourceComponent: Maui.WindowControls
-            {
-                order: Maui.App.rightWindowControls
-            }
-        }
+        }       
 
         Item
         {

@@ -13,36 +13,47 @@ Item
 {
     id: control
 
-    implicitWidth: _controlsLayout.implicitWidth
 
-    /**
-      *
-      */
-    property var order : []
+    property Maui.ToolBar toolbar : window().headBar
+    
 
     /**
       *
       */
     signal buttonClicked(var type)
-
-    Row
-    {
-        id: _controlsLayout
-        spacing: Maui.Style.space.medium
-        width: parent.width
-        height: parent.height
-
-        Repeater
+    
+    
+        Component.onCompleted:
         {
-            model: control.order
-            delegate: auroraeThemeEngine.isEnabled ? auroraeButton : pluginButton
+            if(!Maui.App.enableCSD)
+            {
+                return
+            }
+            
+            console.log("CREATING CSD BUTTONS")
+            
+            for(var br of Maui.App.rightWindowControls)
+            {               
+                               
+                var button = pluginButton.createObject(control.toolbar.rightLayout, {type: mapControl(br)});
+                
+                console.log("CREATING CSD BUTTONS", br, pluginButton.errorString(), button.color)
+                
+            }
+            
+//             for(var bl of Maui.App.lefttWindowControls)
+//             {               
+//                 var button = pluginButton.createObject(control.toolbar.farLeftLayout, {type: mapControl(bl)});
+//                 console.log("CREATING CSD BUTTONS", bl, pluginButton.errorString())
+//                 
+//             }
         }
-    }
+    
 
     Component
     {
         id: pluginButton
-
+        
         AppletDecoration.Button
         {
             width: 22
@@ -51,15 +62,15 @@ Item
             bridge: bridgeItem.bridge
             sharedDecoration: sharedDecorationItem
             scheme: plasmaThemeExtended.colors.schemeFile
-            type: mapControl(modelData)
+            
             //                 isOnAllDesktops: root.isLastActiveWindowPinned
             isMaximized: Window.window.visibility === Window.Maximized
             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
-
+            
             //                 localX: x
             //                 localY: y
             isActive: Window.window.active
-            onClicked: buttonClicked(type)
+            onClicked: buttonClicked(type)            
         }
     }
 
@@ -86,67 +97,67 @@ Item
 //
 //         }
     }
-
+    
     AppletDecoration.WindowSystem
     {
         id: windowSystem
     }
-
+    
     AppletDecoration.PlasmaThemeExtended
     {
         id: plasmaThemeExtended
-
-                readonly property bool isActive: plasmoid.configuration.selectedScheme === "_plasmatheme_"
-
-                    function triggerUpdate()
-                    {
-                        if (isActive)
-                        {
-//                             initButtons();
-                            sharedDecorationItem.createDecoration();
-                        }
-                    }
-
-                    onThemeChanged: triggerUpdate();
-                    onColorsChanged: triggerUpdate();
+        
+        readonly property bool isActive: true
+        
+        function triggerUpdate()
+        {
+            if (isActive)
+            {
+                //                             initButtons();
+                sharedDecorationItem.createDecoration();
+            }
+        }
+        
+        onThemeChanged: triggerUpdate();
+        onColorsChanged: triggerUpdate();
     }
-
+    
     AppletDecoration.Bridge
     {
         id: bridgeItem
         plugin: decorations.currentPlugin
         theme: decorations.currentTheme
     }
-
+    
     AppletDecoration.Settings
     {
         id: settingsItem
         bridge: bridgeItem.bridge
         borderSizesIndex: 0 // Normal
     }
-
+    
     AppletDecoration.SharedDecoration
     {
         id: sharedDecorationItem
         bridge: bridgeItem.bridge
         settings: settingsItem
     }
-
+    
     AppletDecoration.DecorationsModel
     {
         id: decorations
     }
-
+    
     AppletDecoration.AuroraeTheme
     {
         id: auroraeThemeEngine
         theme: isEnabled ? decorations.currentTheme : ""
-
+        
         readonly property bool isEnabled: decorations.isAurorae(decorations.currentPlugin, decorations.currentTheme);
     }
-
-//     PlasmaTasksModel{id: windowInfo}
-
+    
+    //     PlasmaTasksModel{id: windowInfo}
+    
     function mapControl(key)
     {
         switch(key)
@@ -159,5 +170,7 @@ Item
             default: return null;
         }
     }
+    
+
 
 }

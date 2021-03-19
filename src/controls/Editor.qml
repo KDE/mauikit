@@ -330,159 +330,178 @@
                 
                 ScrollView
                 {
-                                        id: _scrollView
+                    id: _scrollView
                     anchors.fill: parent
-
-              Flickable
-                {
-                 id: _flickable
-                     TextArea.flickable: TextArea
+                    
+                    Flickable
                     {
-                        id: body
-//                         width: control.width
-                        //implicitHeight: Math.max( control.height, contentHeight)
-                        text: document.text
-                        placeholderText: i18n("Body")
-                        selectByKeyboard: !Kirigami.Settings.isMobile
-                        selectByMouse : !Kirigami.Settings.isMobile
-                        textFormat: TextEdit.AutoText
-                        wrapMode: TextEdit.WrapAnywhere
-                        color: control.Kirigami.Theme.textColor
-                        activeFocusOnPress: true
-                        activeFocusOnTab: true
-                        persistentSelection: true
-//                         textMargin: Maui.Style.space.medium
-                        background: Rectangle
-                        {
-                            color: "transparent"       
-                        }                        
+                        id: _flickable
                         
-                     
-                        Keys.onPressed:
+                        boundsBehavior: Flickable.StopAtBounds
+                        boundsMovement :Flickable.StopAtBounds 
+                        
+                        TextArea.flickable: TextArea
                         {
-                            if(event.key === Qt.Key_PageUp)
+                            id: body                           
+                           
+                            text: document.text
+                            placeholderText: i18n("Body")
+                            selectByKeyboard: !Kirigami.Settings.isMobile
+                            selectByMouse : !Kirigami.Settings.isMobile
+                            textFormat: TextEdit.AutoText
+                            wrapMode: TextEdit.WrapAnywhere
+                            color: control.Kirigami.Theme.textColor
+                            activeFocusOnPress: true
+                            activeFocusOnTab: true
+                            persistentSelection: true
+                            
+                            leftInset: leftPadding
+                            leftPadding: _linesCounter.width + Maui.Style.space.small
+                            
+                            background: Rectangle
                             {
-                                flickable.flick(0,  60*Math.sqrt(flickable.height))
+                                color: "transparent"       
                             }   
                             
-                            if(event.key === Qt.Key_PageDown)
+                            Keys.onPressed:
                             {
-                                flickable.flick(0, -60*Math.sqrt(flickable.height))                                    
-                            }                                    // TODO: Move cursor
-                        }
-            
-                        onPressAndHold:
-                        {
-                            documentMenu.popup()
-                        } 
-                        
-                        onPressed:
-                        {
-                            if(!Kirigami.Settings.isMobile && event.button === Qt.RightButton)
-                                documentMenu.popup()
-                        }
-                        
-                        leftInset: leftPadding
-                        leftPadding: _linesCounter.width + Maui.Style.space.small
-                        
-                        HoverHandler
-                        {
-                            //active: true
-                            target: _scrollView
-                            cursorShape: Qt.IBeamCursor
-                        }
-                        
-                        Loader
-                        {
-                            id: _linesCounter
-                            active: control.showLineNumbers && !document.isRich
-                            anchors.left: parent.left
-                            height: Math.max(body.height, control.height)
-                            width: active ? 64 : 0
-                            sourceComponent: _linesCounterComponent
-                        }
-                        
-                        Component
-                        {
-                            id: _linesCounterComponent
-                            Rectangle
-                            {
-                                Kirigami.Theme.inherit: false
-                                Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                                color: Qt.darker(Kirigami.Theme.backgroundColor, 1)
-                                
-                                ListView
+                                if(event.key === Qt.Key_PageUp)
                                 {
-                                    currentIndex: document.currentLineIndex
-                                    model: body.lineCount
-                                    orientation: ListView.Vertical
-                                    interactive: false
-                                    anchors.fill: parent
-                                    anchors.topMargin: 7
-                                    snapMode: ListView.NoSnap
+                                    flickable.flick(0,  60*Math.sqrt(flickable.height))
+                                }   
+                                
+                                if(event.key === Qt.Key_PageDown)
+                                {
+                                    flickable.flick(0, -60*Math.sqrt(flickable.height))                                    
+                                }                                    // TODO: Move cursor
+                            }
+                            
+                            onPressAndHold:
+                            {
+                                documentMenu.popup()
+                            } 
+                            
+                            onPressed:
+                            {
+                                if(!Kirigami.Settings.isMobile && event.button === Qt.RightButton)
+                                    documentMenu.popup()
+                            }
+                            
+                            HoverHandler
+                            {
+                                //active: true
+                                target: _scrollView
+                                cursorShape: Qt.IBeamCursor
+                            }
+                            
+                            Loader
+                            {
+                                id: _linesCounter
+                                active: control.showLineNumbers && !document.isRich
+                                anchors.left: parent.left
+                                height: Math.max(body.height, control.height)
+                                width: active ? 32 : 0
+                                sourceComponent: _linesCounterComponent
+                            }
+                            
+                            Component
+                            {
+                                id: _linesCounterComponent
+                                
+                                Rectangle
+                                {
+                                    Kirigami.Theme.inherit: false
+                                    Kirigami.Theme.colorSet: Kirigami.Theme.Window
+                                    color: Qt.darker(Kirigami.Theme.backgroundColor, 1)
                                     
-                                    delegate: RowLayout
+                                    ListView
                                     {
-                                        property bool foldable : document.isFoldable(index)
-                                        property bool folded : document.isFolded(index)
-                                        property int line : index
-                                        width:  ListView.view.width
-                                        height: document.lineHeight(index)
-                                        spacing: 0
+                                        currentIndex: document.currentLineIndex
+                                        model: body.lineCount
+                                        orientation: ListView.Vertical
+                                        interactive: false
+                                        anchors.fill: parent
+                                        anchors.topMargin: 7
+                                        snapMode: ListView.NoSnap
                                         
-                                        readonly property bool isCurrentItem : ListView.isCurrentItem
+                                        boundsBehavior: Flickable.StopAtBounds
+                                        boundsMovement :Flickable.StopAtBounds 
                                         
-                                        Label
+                                        preferredHighlightBegin: 0
+                                        preferredHighlightEnd: width
+                                        
+                                        highlightRangeMode: ListView.StrictlyEnforceRange
+                                        highlightMoveDuration: 0
+                                        highlightFollowsCurrentItem: false
+                                        highlightResizeDuration: 0
+                                        highlightMoveVelocity: -1
+                                        highlightResizeVelocity: -1
+                                        
+                                        maximumFlickVelocity: 4 * (orientation === Qt.Horizontal ? width : height)
+                                        
+                                        delegate: RowLayout
                                         {
-                                            Layout.fillWidth: true
-                                            Layout.fillHeight: true
-                                            Layout.leftMargin: Maui.Style.space.small
-                                            opacity: isCurrentItem  ? 1 : 0.7
-                                            color:  isCurrentItem ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-                                            font.pointSize: Math.min(Maui.Style.fontSizes.medium, body.font.pointSize)
-                                            horizontalAlignment: Text.AlignLeft
-                                            verticalAlignment: Text.AlignTop
-                                            renderType: Text.NativeRendering
-                                            font.family: "Monospace"
-                                            text: index+1
-                                        }
-                                        
-                                        MouseArea
-                                        {
-                                            visible: foldable
+                                            //property bool foldable : document.isFoldable(index)
+                                            //property bool folded : document.isFolded(index)
+                                            readonly property int line : index
+                                            width:  ListView.view.width
+                                            height: document.lineHeight(index)
+                                            spacing: 0
                                             
-                                            Layout.preferredWidth: visible ? 16 : 0
-                                            Layout.fillHeight: true
-                                            onClicked:
+                                            readonly property bool isCurrentItem : ListView.isCurrentItem
+                                            
+                                            Label
                                             {
-                                                console.log("toggle fold", line)
-                                                 document.toggleFold(line)                                            
+                                                Layout.fillWidth: true
+                                                Layout.fillHeight: true
+                                                
+//                                                 Layout.leftMargin: Maui.Style.space.small
+                                                opacity: isCurrentItem  ? 1 : 0.7
+                                                color:  isCurrentItem ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                                                font.pointSize: Math.min(Maui.Style.fontSizes.medium, body.font.pointSize)
+                                                horizontalAlignment: Text.AlignHCenter
+                                                verticalAlignment: Text.AlignTop
+                                                renderType: Text.NativeRendering
+                                                font.family: "Monospace"
+                                                text: index+1
                                             }
                                             
-                                            Kirigami.Icon
-                                            {
-                                                source: folded ? "arrow-down" : "arrow-up"
-                                                anchors.centerIn: parent
-                                                height: visible ? 12 : 0
-                                                width: height
-                                                color: Kirigami.Theme.textColor
-                                                isMask: true
-                                            }
+                                            //MouseArea
+                                            //{
+                                                //visible: foldable
+                                                
+                                                //Layout.preferredWidth: visible ? 16 : 0
+                                                //Layout.fillHeight: true
+                                                //onClicked:
+                                                //{
+                                                    //console.log("toggle fold", line)
+                                                    //document.toggleFold(line)                                            
+                                                //}
+                                                
+                                                //Kirigami.Icon
+                                                //{
+                                                    //source: folded ? "arrow-down" : "arrow-up"
+                                                    //anchors.centerIn: parent
+                                                    //height: visible ? 12 : 0
+                                                    //width: height
+                                                    //color: Kirigami.Theme.textColor
+                                                    //isMask: true
+                                                //}
+                                            //}
                                         }
                                     }
-                                }
-                                
-                                Kirigami.Separator
-                                {
-                                    anchors.top: parent.top
-                                    anchors.bottom: parent.bottom
-                                    anchors.right: parent.right
+                                    
+                                    Kirigami.Separator
+                                    {
+                                        anchors.top: parent.top
+                                        anchors.bottom: parent.bottom
+                                        anchors.right: parent.right
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
             }
         }
         

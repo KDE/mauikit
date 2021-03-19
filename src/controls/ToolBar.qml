@@ -102,6 +102,16 @@ ToolBar
         property alias rightLayout : rightRowContent
         
         /**
+         * farRightLayout : RowLayout
+         */
+        property alias farRightLayout : farRightRowContent
+        
+        /**
+         * rightLayout : RowLayout
+         */
+        property alias farLeftLayout : farLeftRowContent
+        
+        /**
          * layout : RowLayout
          */
         property alias layout : layout
@@ -191,9 +201,9 @@ ToolBar
 //             Label{
 //                 z: parent.z + 9999
 //                 color: "orange"
-//                 text: mainFlickable.contentWidth + " / " + control.width + " / " + _scrollView.width
+//                 text: farLeftRowContent.implicitWidth + " / " + control.width + " / " + _scrollView.width
 //             }
-//             
+            
             RowLayout
             {            
                 spacing: control.spacing
@@ -213,7 +223,7 @@ ToolBar
                 
                 ToolSeparator
                 {
-                    visible: farLeftRowContent.visibleChildren.length && leftRowContent.visibleChildren.length
+                    visible: farLeftRowContent.visibleChildren.length && (leftRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
                     implicitHeight: Maui.Style.iconSizes.tiny
                     Layout.alignment: Qt.AlignCenter
                 }
@@ -306,7 +316,7 @@ ToolBar
                 
                 ToolSeparator
                 {
-                    visible: farRightRowContent.visibleChildren.length && rightRowContent.visibleChildren.length
+                    visible: farRightRowContent.visibleChildren.length && (rightRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
                     implicitHeight: Maui.Style.iconSizes.tiny
                     Layout.alignment: Qt.AlignCenter
                 }
