@@ -41,7 +41,8 @@ Maui.Dialog
     maxHeight: Kirigami.Settings.isMobile ? parent.height * 0.95 : 500
     maxWidth: 700
     page.padding: 0
-
+    closeButton.visible: false
+    
     /**
       * currentPath : url
       * The current path of the directory URL.

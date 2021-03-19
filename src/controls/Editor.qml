@@ -109,7 +109,7 @@
             selectionEnd: body.selectionEnd
             backgroundColor: control.Kirigami.Theme.backgroundColor
             enableSyntaxHighlighting: false
-            
+                        
             onCurrentLineIndexChanged:
             {
                 //_scrollView.flickable.contentY = documentcurrentLineIndex * 
@@ -146,7 +146,6 @@
         Menu
         {
             id: documentMenu
-            z: 999
             
             MenuItem
             {
@@ -378,13 +377,24 @@
                             
                             onPressAndHold:
                             {
+                                if(Maui.Handy.isLinux)
+                                {
+                                    return
+                                }
                                 documentMenu.popup()
                             } 
                             
                             onPressed:
                             {
+                                 if(Maui.Handy.isLinux)
+                                {
+                                    return
+                                }
+                                
                                 if(!Kirigami.Settings.isMobile && event.button === Qt.RightButton)
+                                {
                                     documentMenu.popup()
+                                }
                             }
                             
                             HoverHandler

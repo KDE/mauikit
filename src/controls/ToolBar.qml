@@ -195,6 +195,7 @@ ToolBar
         
         Item
         {
+            id: _container
             height: control.implicitHeight
             width: control.width
             
@@ -203,7 +204,31 @@ ToolBar
 //                 color: "orange"
 //                 text: farLeftRowContent.implicitWidth + " / " + control.width + " / " + _scrollView.width
 //             }
-            
+             states: [State
+            {
+                when: control.position === ToolBar.Header
+
+                AnchorChanges
+                {
+                    target: _container
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                }
+            },
+
+            State
+            {
+                when: control.position === ToolBar.Footer
+
+                AnchorChanges
+                {
+                    target: _container
+                    anchors.top: parent.top
+                    anchors.bottom: undefined
+                }
+            }
+        ]
+
             RowLayout
             {            
                 spacing: control.spacing

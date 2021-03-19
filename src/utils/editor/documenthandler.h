@@ -282,7 +282,12 @@ class MAUIKIT_EXPORT DocumentHandler : public QObject
 
     Q_PROPERTY(QString theme READ theme WRITE setTheme NOTIFY themeChanged)
 
-    Q_PROPERTY(bool enableSyntaxHighlighting READ enableSyntaxHighlighting WRITE setEnableSyntaxHighlighting NOTIFY enableSyntaxHighlightingChanged)
+    Q_PROPERTY(bool enableSyntaxHighlighting READ enableSyntaxHighlighting WRITE setEnableSyntaxHighlighting NOTIFY enableSyntaxHighlightingChanged)    
+        
+    Q_PROPERTY(bool findWholeWords MEMBER m_findWholeWords NOTIFY findWholeWordsChanged)    
+    
+    Q_PROPERTY(bool findCaseSensitively MEMBER m_findCaseSensitively NOTIFY findCaseSensitivelyChanged)
+
     
 //     Q_PROPERTY(int cursorYPos READ cursorYPos NOTIFY cursorYPosChanged)
 
@@ -691,7 +696,8 @@ signals:
     void themeChanged();
     
     void searchFound(int start, int end);
-    
+    void findCaseSensitivelyChanged();
+    void findWholeWordsChanged();
 //     void cursorYPosChanged();
 
 private:
@@ -725,6 +731,9 @@ private:
 
     bool m_externallyModified = false;
     bool m_internallyModified = false;
+    
+    bool m_findCaseSensitively = false;
+    bool m_findWholeWords = false;
 
     QColor m_backgroundColor;
 
