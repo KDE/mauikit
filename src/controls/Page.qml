@@ -40,7 +40,7 @@ Pane
 {
     id: control
     focus: true
-
+    clip: true
     padding: 0
     leftPadding: control.padding
     rightPadding: control.padding

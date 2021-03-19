@@ -31,6 +31,19 @@
          */
         property bool showLineCount : true
         
+        property bool showFindBar: false
+        
+        onShowFindBarChanged:
+        {
+            if(showFindBar)
+            {
+                _findField.forceActiveFocus()
+            }else
+            {
+                body.forceActiveFocus()
+            }
+        }
+        
         /**
          * showSyntaxHighlightingLanguages : bool
          */
@@ -120,8 +133,27 @@
                 body.select(start, end)
             }
         }
+
+   Keys.enabled: true
+    Keys.onPressed:
+    {
+        if((event.key === Qt.Key_F) && (event.modifiers & Qt.ControlModifier))
+        {
+            control.showFindBar = true
+            _findField.text = control.body.selectedText
+            _findField.forceActiveFocus()
+        }
+
+        if((event.key === Qt.Key_R) && (event.modifiers & Qt.ControlModifier))
+        {
+            control.showFindBar = true
+            _replaceButton.checked = true
+            _findField.text = control.body.selectedText
+            _replaceField.forceActiveFocus()
+        }
+    }
         
-        Row
+        Rectangle
         {
             z: _scrollView.z +1
             visible: showLineCount
@@ -131,12 +163,14 @@
                 bottom: parent.bottom
                 margins: Maui.Style.space.big
             }
-            
-            width: implicitWidth
-            height: implicitHeight
+            color: Kirigami.Theme.backgroundColor
+            width: _countLabel.implicitWidth
+            height: Maui.Style.rowHeight
             
             Label
             {
+                id: _countLabel
+                anchors.centerIn: parent
                 text: body.length + " / " + body.lineCount
                 color: control.Kirigami.Theme.textColor
                 opacity: 0.5
@@ -251,6 +285,109 @@
             currentIndex: -1
             onCurrentIndexChanged: document.formatName = model[currentIndex]
         }
+        
+
+    footerColumn: [
+
+        Maui.ToolBar
+        {
+            id: _findToolBar
+            visible: showFindBar
+            width: parent.width
+            position: ToolBar.Footer
+
+            rightContent: [ToolButton
+            {
+                id: _replaceButton
+                icon.name: "edit-find-replace"
+                checkable: true
+                checked: false
+            },
+
+            Maui.ToolButtonMenu
+            {
+                icon.name: "games-config-options"
+
+                MenuItem
+                {
+                    id: _findCaseSensitively
+                    checkable: true
+                    text: i18n("Case Sensitive")
+                }
+
+                MenuItem
+                {
+                    id: _findWholeWords
+                    checkable: true
+                    text: i18n("Whole Words Only")
+                }
+            }]
+
+            middleContent: Maui.TextField
+            {
+                id: _findField
+                Layout.fillWidth: true
+                Layout.maximumWidth: 500
+                placeholderText: i18n("Find")
+
+                onAccepted:
+                {
+                    document.find(text)
+                }
+
+                actions:[
+
+                    Action
+                    {
+                        enabled: _findField.text.length
+                        icon.name: "arrow-up"
+                        onTriggered: document.find(_findField.text, false)
+                    }
+
+//                    Action
+//                    {
+//                        enabled: _findField.text.length
+//                        icon.name: "arrow-down"
+//                        onTriggered: document.find(_findField.text, true)
+//                    }
+                ]
+            }
+        },
+
+        Maui.ToolBar
+        {
+            id: _replaceToolBar
+            position: ToolBar.Footer
+            visible: _replaceButton.checked
+            width: parent.width
+    enabled: !body.readOnly
+    
+            middleContent: Maui.TextField
+            {
+                id: _replaceField
+                placeholderText: i18n("Replace")
+                Layout.fillWidth: true
+                Layout.maximumWidth: 500
+
+                actions: Action
+                {
+                    text: i18n("Replace")
+                    enabled: _replaceField.text.length
+                    icon.name: "checkmark"
+                    onTriggered: document.replace(_findField.text, _replaceField.text)
+                }
+            }
+
+            rightContent: [
+                Button
+                {
+                    enabled: _replaceField.text.length
+                    text: i18n("Replace All")
+                    onClicked: document.replaceAll(_findField.text, _replaceField.text)
+                }
+            ]
+        }
+    ]
         
         ColumnLayout
         {
