@@ -336,7 +336,7 @@
                     Flickable
                     {
                         id: _flickable
-                        
+                        interactive: Kirigami.Settings.hasTransientTouchInput
                         boundsBehavior: Flickable.StopAtBounds
                         boundsMovement :Flickable.StopAtBounds 
                         
@@ -347,7 +347,7 @@
                             text: document.text
                             placeholderText: i18n("Body")
                             selectByKeyboard: !Kirigami.Settings.isMobile
-                            selectByMouse : !Kirigami.Settings.isMobile
+                            selectByMouse : !Kirigami.Settings.hasTransientTouchInput
                             textFormat: TextEdit.AutoText
                             wrapMode: TextEdit.WrapAnywhere
                             color: control.Kirigami.Theme.textColor
