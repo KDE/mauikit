@@ -122,6 +122,8 @@
             selectionEnd: body.selectionEnd
             backgroundColor: control.Kirigami.Theme.backgroundColor
             enableSyntaxHighlighting: false
+            findCaseSensitively:  _findCaseSensitively.checked
+            findWholeWords: _findWholeWords.checked
                         
             onCurrentLineIndexChanged:
             {
@@ -358,7 +360,7 @@
         {
             id: _replaceToolBar
             position: ToolBar.Footer
-            visible: _replaceButton.checked
+            visible: _replaceButton.checked && _findToolBar.visible
             width: parent.width
     enabled: !body.readOnly
     
