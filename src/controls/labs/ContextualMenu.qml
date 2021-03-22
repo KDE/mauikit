@@ -21,8 +21,8 @@ QQC2.Container {
         id: _loader
         anchors.fill: parent
         asynchronous: true
-//         sourceComponent: Kirigami.Settings.isMobile && Kirigami.Settings.hasTransientTouchInput ? mobileMenu : regularMenu
-        sourceComponent: mobileMenu
+        sourceComponent: Kirigami.Settings.isMobile && Kirigami.Settings.hasTransientTouchInput ? mobileMenu : regularMenu
+        //sourceComponent: mobileMenu
         
     }
     
@@ -69,10 +69,10 @@ QQC2.Container {
     }    
     
     function open() {
-        //if (Kirigami.Settings.isMobile)
+        if (Kirigami.Settings.isMobile)
 			_loader.item.open()
-// 		else
-			//_loader.item.popup()
+		else
+			_loader.item.popup()
     }
     
     function close()
