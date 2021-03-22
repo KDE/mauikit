@@ -42,9 +42,10 @@ QQC2.Container {
             height: Math.min(window().height * 0.5, _listView.contentHeight+ Maui.Style.space.big)
             edge: Qt.BottomEdge
             padding: 0
-            interactive: false
+            interactive: opened
             dragMargin: 0
             modal: true
+            closePolicy: Popup.CloseOnPressOutside
             
             ListView 
             {
