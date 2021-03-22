@@ -21,8 +21,8 @@ QQC2.Container {
         id: _loader
         anchors.fill: parent
         asynchronous: true
-        sourceComponent: Kirigami.Settings.isMobile && Kirigami.Settings.hasTransientTouchInput ? mobileMenu : regularMenu
-        //sourceComponent: mobileMenu
+//         sourceComponent: Kirigami.Settings.isMobile && Kirigami.Settings.hasTransientTouchInput ? mobileMenu : regularMenu
+        sourceComponent: mobileMenu
         
     }
     
@@ -30,8 +30,48 @@ QQC2.Container {
         id: regularMenu
         
         QQC2.Menu {
-            contentData: control.contentData
-            //contentModel: control.contentModel
+            id: _menu
+            implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                                    contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
+            implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                                     contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
+                                     
+                                     
+                                     delegate: QQC2.MenuItem
+                                     { 
+                                         onImplicitWidthChanged: _menu.contentItem.contentItem.childrenChanged()
+                                         
+                                     }      
+            
+            margins: 0
+            padding: 0
+//             verticalPadding: 8
+            spacing: 0
+            transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
+            
+            contentItem: ListView
+            {
+                id: _listView
+                implicitHeight: contentHeight
+                implicitWidth: {
+                    var maxWidth = 0;
+                    for (var i = 0; i < contentItem.children.length; ++i) {
+                        maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
+                    }
+                    return maxWidth;
+                }
+                
+                model: control.contentModel
+                boundsBehavior: Flickable.StopAtBounds                
+                interactive: Window.window ? contentHeight > Window.window.height : false
+                clip: true
+                currentIndex: control.currentIndex || 0
+                spacing: 0
+                keyNavigationEnabled: true
+                keyNavigationWraps: true
+                
+                QQC2.ScrollIndicator.vertical: QQC2.ScrollIndicator {}
+            }
         }
     }
     
@@ -56,7 +96,13 @@ QQC2.Container {
                 clip: true
                 currentIndex: -1
                 boundsBehavior: Flickable.StopAtBounds
-                implicitWidth: width
+                implicitWidth: {
+                    var maxWidth = 0;
+                    for (var i = 0; i < contentItem.children.length; ++i) {
+                        maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
+                    }
+                    return maxWidth;
+                }
                 implicitHeight: contentHeight
                 interactive: Window.window ? contentHeight > Window.window.height : false
                 spacing: control.spacing
@@ -69,10 +115,10 @@ QQC2.Container {
     }    
     
     function open() {
-        if (Kirigami.Settings.isMobile)
+        //if (Kirigami.Settings.isMobile)
 			_loader.item.open()
-		else
-			_loader.item.popup()
+// 		else
+			//_loader.item.popup()
     }
     
     function close()
