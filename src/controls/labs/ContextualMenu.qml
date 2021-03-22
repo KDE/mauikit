@@ -15,7 +15,7 @@ QQC2.Container
     id: control
     
     spacing: Maui.Style.space.medium
-    property bool responsive: true
+    property bool responsive: Kirigami.Settings.isMobile
     
     signal opened()
     
