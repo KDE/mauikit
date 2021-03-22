@@ -12,7 +12,7 @@ public_lib: true
 deprecated: false
 release: true
 logo: logo.png
-irc: '' # do we have one?
+irc: '#kde-maui'
 mailinglist: '' # do we have one?
 group: Maui
 qdoc: true
