@@ -42,7 +42,7 @@ QQC2.Container {
             height: Math.min(window().height * 0.5, _listView.contentHeight+ Maui.Style.space.big)
             edge: Qt.BottomEdge
             padding: 0
-            interactive: visible
+            interactive: false
             dragMargin: 0
             modal: true
             
@@ -54,7 +54,7 @@ QQC2.Container {
                 clip: true
                 currentIndex: -1
                 boundsBehavior: Flickable.StopAtBounds
-
+                implicitWidth: width
                 implicitHeight: contentHeight
                 interactive: Window.window ? contentHeight > Window.window.height : false
                 spacing: control.spacing
