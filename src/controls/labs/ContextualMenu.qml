@@ -29,8 +29,8 @@ QQC2.Container {
         id: regularMenu
         
         QQC2.Menu {
-            //contentData: control.contentData
-            contentModel: control.contentModel
+            contentData: control.contentData
+            //contentModel: control.contentModel
         }
     }
     
