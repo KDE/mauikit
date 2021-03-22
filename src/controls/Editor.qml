@@ -10,6 +10,7 @@ import "private"
 /*!
   \since org.kde.mauikit.labs 1.0
   \inqmlmodule org.kde.mauikit
+  \brief Integrated text editor component
 
   A text area for editing text with convinient functions.
   The Editor is controlled by the DocumentHandler which controls the files I/O,

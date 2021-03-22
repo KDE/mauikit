@@ -28,6 +28,7 @@ import org.kde.mauikit 1.2 as Maui
 /*!
 \since org.kde.mauikit 1.0
 \inqmlmodule org.kde.mauikit
+\brief Collapsible sidebar
 
 A global sidebar for the application window that can be collapsed.
 To use a collapsable sidebar is a better idea to make use of the SideBar or ActionSideBar components which are ready for it and are handled by a ListView, you only need a data model or list of actions to be used.

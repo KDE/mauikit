@@ -25,6 +25,7 @@ import org.kde.kirigami 2.7 as Kirigami
 /*!
 \since org.kde.mauikit 1.0
 \inqmlmodule org.kde.mauikit
+\brief Lazy-loads app views
 
 Wraps a component into a loader that is active only if it is the next, current or previous view in used, or if it has already been created.
 This component is useful when the AppViews has more then 4 different views to relief the loading of many views at the same time.

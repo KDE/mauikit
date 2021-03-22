@@ -27,6 +27,7 @@ import "private"
 /*!
 \since org.kde.mauikit 1.0
 \inqmlmodule org.kde.mauikit
+\brief Collapsible sidebar with actions
 
 ActionSideBar
 A global sidebar for the application window that can be collapsed.
