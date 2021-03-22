@@ -84,6 +84,7 @@ QQC2.Container
         
         QQC2.Menu
         {
+            id:_mobileMenu
             parent: window()
             
             x: 0            
@@ -116,6 +117,30 @@ QQC2.Container
                 
                 QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
             }
+            
+   enter: Transition
+   {
+        NumberAnimation
+        {
+            property: "y"
+            from: window().height
+            to: window().height - _mobileMenu.height 
+            easing.type: Easing.InOutQuad
+            duration: Kirigami.Units.shortDuration
+        }
+    }
+
+    exit: Transition 
+    {
+        NumberAnimation 
+        {
+            property: "y"
+            from: _mobileMenu.y
+            to: window().height
+            easing.type: Easing.InOutQuad
+            duration: Kirigami.Units.shortDuration
+        }
+    }
             
             background: Rectangle
             {               
