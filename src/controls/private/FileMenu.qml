@@ -7,7 +7,7 @@ import org.kde.kirigami 2.2 as Kirigami
 Maui.ContextualMenu
 {
     id: control
-//     implicitWidth: 200
+    implicitWidth: 800
 
     /**
       *

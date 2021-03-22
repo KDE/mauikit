@@ -12,10 +12,10 @@ import QtQuick.Window 2.15
 
 QQC2.Container {
     id: control
-    
+
     spacing: Maui.Style.space.medium
-    
-    
+
+
     contentItem: Loader
     {
         id: _loader
@@ -23,12 +23,12 @@ QQC2.Container {
         asynchronous: true
         sourceComponent: Kirigami.Settings.isMobile && Kirigami.Settings.hasTransientTouchInput ? mobileMenu : regularMenu
         //sourceComponent: mobileMenu
-        
+
     }
-    
+
     Component {
         id: regularMenu
-        
+
         QQC2.Menu {
             id: _menu
             //             contentData: control.contentData
@@ -69,28 +69,30 @@ QQC2.Container {
             }
         }
     }
-    
+
     Component {
         id: mobileMenu
-        
-        QQC2.Drawer {
-            width: window().width
-            height: Math.min(window().height * 0.5, _listView.contentHeight+ Maui.Style.space.big)
-            edge: Qt.BottomEdge
-            padding: 0
-            interactive: opened
-            dragMargin: 0
+
+        QQC2.Menu {
+            x: 0
+            y: window().height - height
+
             modal: true
-            closePolicy: Popup.CloseOnPressOutside
-            
-            ListView
-            {
-                id: _listView
+            parent: window()
+
+            width: window().width
+            height:Math.min(window().height * 0.5, contentHeight)
+
+            margins: 0
+
+            delegate: QQC2.MenuItem { onImplicitWidthChanged: control.contentItem.contentItem.childrenChanged() }
+
+            contentItem: ListView {
+                implicitHeight: contentHeight
+                property bool hasCheckables: false
+                property bool hasIcons: false
                 model: control.contentModel
-                anchors.fill: parent
-                clip: true
-                currentIndex: -1
-                boundsBehavior: Flickable.StopAtBounds
+
                 implicitWidth: {
                     var maxWidth = 0;
                     for (var i = 0; i < contentItem.children.length; ++i) {
@@ -98,30 +100,44 @@ QQC2.Container {
                     }
                     return maxWidth;
                 }
-                implicitHeight: contentHeight
+
                 interactive: Window.window ? contentHeight > Window.window.height : false
-                spacing: control.spacing
+                clip: true
+                currentIndex: control.currentIndex || 0
                 keyNavigationEnabled: true
                 keyNavigationWraps: true
-                
-                QQC2.ScrollIndicator.vertical: QQC2.ScrollIndicator {}
+
+                QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
+            }
+
+
+            background: Kirigami.ShadowedRectangle {
+                radius: 2
+                implicitWidth: Kirigami.Units.gridUnit * 8
+                color: Kirigami.Theme.backgroundColor
+
+                property color borderColor: Kirigami.Theme.textColor
+                border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
+                border.width: 1
+
+                shadow.xOffset: 0
+                shadow.yOffset: 2
+                shadow.color: Qt.rgba(0, 0, 0, 0.3)
+                shadow.size: 8
             }
         }
     }
-    
+
     function open() {
         if (Kirigami.Settings.isMobile)
-        {
             _loader.item.open()
-        }
         else
-        {
             _loader.item.popup()
-        }
     }
-    
+
     function close()
     {
         _loader.item.close()
     }
 }
+
