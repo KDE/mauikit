@@ -36,7 +36,7 @@ Maui.Dialog
         heightHint: 0.8
         
         maxWidth: 400
-        maxHeight: Math.max(250, _header.height + defaultButtonsLayout.height)
+        maxHeight: 250 + defaultButtonsLayout.height
         
         /**
          * mainHeader : AlternateListItem

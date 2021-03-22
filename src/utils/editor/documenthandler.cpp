@@ -893,12 +893,12 @@ void DocumentHandler::find(const QString &query,const bool &forward)
     
     if (m_findCaseSensitively)
     {
-        newFlags = searchFlags | QTextDocument::FindCaseSensitively;
+        newFlags = newFlags | QTextDocument::FindCaseSensitively;
     }
     
     if (m_findWholeWords)
     {
-        newFlags = searchFlags | QTextDocument::FindWholeWords;
+        newFlags = newFlags | QTextDocument::FindWholeWords;
     }
     
     QTextCursor start = this->textCursor();

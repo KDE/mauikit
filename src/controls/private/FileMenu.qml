@@ -1,13 +1,13 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
-import org.kde.mauikit 1.0 as Maui
+import org.kde.mauikit 1.3 as Maui
 import org.kde.kirigami 2.2 as Kirigami
 
-Menu
+Maui.ContextualMenu
 {
     id: control
-    implicitWidth: 200
+    implicitWidth: 800
 
     /**
       *
@@ -162,7 +162,7 @@ Menu
                 control.isDir = item.isdir == true || item.isdir == "true"
                 control.isExec = item.executable == true || item.executable == "true"
                 control.isFav = Maui.FM.isFav(item.path)
-                popup()
+                control.open()
             }
     }
 }

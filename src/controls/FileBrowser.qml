@@ -433,7 +433,6 @@ Maui.Page
     Private.FileMenu
     {
         id: itemMenu
-        width: 200
         onBookmarkClicked: control.bookmarkFolder([item.path])
         onCopyClicked:
         {

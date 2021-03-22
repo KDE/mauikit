@@ -93,6 +93,7 @@
         <file alias="private/TerminalInputArea.qml">controls/private/TerminalInputArea.qml</file>
         <file alias="labs/FlexListItem">controls/labs/FlexListItem.qml</file>
         <file alias="labs/Chip">controls/labs/Chip.qml</file>
+        <file alias="labs/ContextualMenu">controls/labs/ContextualMenu.qml</file>
         <file alias="NewTagDialog">controls/NewTagDialog.qml</file>
     </qresource>
     <qresource prefix="/"/>
