@@ -92,3 +92,5 @@ Doodle 1.3 labs/Doodle.qml
 FlexListItem 1.3 labs/FlexListItem.qml
 IconItem 1.3 labs/IconItem.qml
 Chip 1.3 labs/Chip.qml
+ContextualMenu 1.3 labs/ContextualMenu.qml
+NewTagDialog 1.3 NewTagDialog.qml

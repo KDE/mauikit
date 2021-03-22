@@ -230,7 +230,8 @@ Item
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight
             
-            boundsBehavior: !Kirigami.Settings.isMobile? Flickable.StopAtBounds : Flickable.OvershootBounds
+            boundsBehavior: Flickable.StopAtBounds
+
             flickableDirection: Flickable.AutoFlickDirection
             snapMode: GridView.NoSnap
             highlightMoveDuration: 0
