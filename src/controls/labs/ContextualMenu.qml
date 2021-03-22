@@ -29,7 +29,8 @@ QQC2.Container {
         id: regularMenu
         
         QQC2.Menu {
-            contentData: control.contentData
+            //contentData: control.contentData
+            contentModel: control.contentModel
         }
     }
     
@@ -38,7 +39,7 @@ QQC2.Container {
         
         QQC2.Drawer {
             width: window().width
-            height: Math.max(200, _listView.contentHeight+ Maui.Style.space.big)
+            height: Math.min(window().height * 0.5, _listView.contentHeight+ Maui.Style.space.big)
             edge: Qt.BottomEdge
             padding: 0
             interactive: visible
