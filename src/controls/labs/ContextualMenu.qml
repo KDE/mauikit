@@ -13,9 +13,9 @@ import QtQuick.Window 2.15
 QQC2.Container
 {
     id: control
-    
+    visible: false
     spacing: Maui.Style.space.medium
-    property bool responsive: Kirigami.Settings.isMobile
+    property bool responsive: true
     
     signal opened()
     

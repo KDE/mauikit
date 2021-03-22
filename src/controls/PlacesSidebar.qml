@@ -17,10 +17,11 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-import org.kde.mauikit 1.0 as Maui
+
+import org.kde.mauikit 1.3 as Maui
 import org.kde.kirigami 2.6 as Kirigami
 
 Maui.SideBar
@@ -60,9 +61,9 @@ Maui.SideBar
 			control.collapse()
 	}
 	
-	onItemRightClicked: _menu.popup()
+	onItemRightClicked: _menu.open()
 	
-	Menu
+	Maui.ContextualMenu
 	{
 		id: _menu
 		property int index

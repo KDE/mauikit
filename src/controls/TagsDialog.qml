@@ -103,7 +103,7 @@ Maui.Dialog
          onRejected: _deleteDialog.close()         
         }
         
-        Menu
+        Maui.ContextualMenu
         {
             id: _menu
             
@@ -195,13 +195,13 @@ Maui.Dialog
                 onPressAndHold:
                 {
                     _listView.currentIndex = index                    
-                    _menu.popup()
+                    _menu.open()
                 }
                 
                 onRightClicked:
                 {
                     _listView.currentIndex = index                    
-                    _menu.popup()
+                    _menu.open()
                 }
             }
         },
