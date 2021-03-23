@@ -105,6 +105,7 @@ QQC2.Container
                 model: control.contentModel
                 interactive: true
                 clip: true
+                spacing: Maui.Styel.space.medium
                 currentIndex: control.currentIndex || 0
                 keyNavigationEnabled: true
                 keyNavigationWraps: true

@@ -20,10 +20,11 @@ Private.BasicToolButton
     id: control
 
     /*!
+      \qmlproperty list<QtObject> ToolButtonMenu::content
       List of items, such as MenuItems to populate the contextual menu.
       This is the default property, so declaring the menu entries is straight forward.
     */
-    default property list<Item> content
+    default property alias content : _menu.contentData
 
     /*!
       \qmlproperty Menu ToolButtonMenu::menu
