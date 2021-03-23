@@ -152,7 +152,7 @@ Item
             Layout.alignment: Qt.AlignVCenter
             display: checked ? ToolButton.TextBesideIcon : ToolButton.IconOnly
             
-            menu.closePolicy: Popup.CloseOnReleaseOutsideParent
+//             menu.closePolicy: Popup.CloseOnReleaseOutsideParent
             
             
             Behavior on implicitWidth

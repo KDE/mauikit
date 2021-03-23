@@ -13,7 +13,7 @@ import QtQuick.Window 2.15
 QQC2.Container
 {
     id: control
-    visible: false
+    visible: _loader.item ? _loader.item.visible : false
     spacing: Maui.Style.space.medium
     property bool responsive: true
     
@@ -51,7 +51,8 @@ QQC2.Container
             margins: 0
             padding: 0
             spacing: 0
-            
+                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
             contentItem: ListView
             {
                 id: _listView
@@ -95,7 +96,8 @@ QQC2.Container
             
             modal: true
             margins: 0        
-            
+                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
             contentItem: ListView 
             {
                 implicitHeight: contentHeight                
@@ -158,7 +160,7 @@ QQC2.Container
         }
     }
     
-    function open() 
+    function open(x, y) 
     {
         if (control.responsive)
         {
@@ -166,7 +168,7 @@ QQC2.Container
         }
         else
         {
-            _loader.item.popup()
+            _loader.item.popup(x,y)
         }
     }
     

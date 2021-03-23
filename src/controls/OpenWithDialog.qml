@@ -67,7 +67,8 @@ Maui.Dialog
         {
             width: ListView.view.width
             height: Maui.Style.rowHeight * 2
-
+            hoverEnabled: true
+    
             Maui.ListItemTemplate
             {
                 isCurrentItem: parent.hovered

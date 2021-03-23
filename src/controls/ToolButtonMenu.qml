@@ -24,7 +24,7 @@ ToolButton
     /**
       * content : list<Item>
       */
-    default property list<Item> content
+    default property alias content : _menu.contentData
 
     /**
       * menu : Menu
@@ -35,20 +35,12 @@ ToolButton
     checked: _menu.visible
     display: ToolButton.IconOnly
     
-    onClicked:
-    {
-        if(_menu.visible)
-            _menu.close()
-        else
-            _menu.popup(0, height)
-    }
+    onClicked: _menu.open(0, height)    
 
-    Menu
+    Maui.ContextualMenu
     {
         id: _menu
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-        contentData: control.content
     }
     
-    Component.onCompleted: control.background.showMenuArrow = true    
+    //Component.onCompleted: control.background.showMenuArrow = true    
 }

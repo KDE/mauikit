@@ -11,26 +11,22 @@ Maui.ItemDelegate
     /**
       *
       */
-    property bool alt : false
-
-    /**
-      *
-      */
     property bool lastOne : false
+    hoverEnabled: false
 
     leftPadding: Maui.Style.space.big
     rightPadding: Maui.Style.space.big
 
     background: Rectangle
     {
-        color: control.Kirigami.Theme.backgroundColor 
-
+        color: control.hovered ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : control.Kirigami.Theme.backgroundColor 
+opacity: control.hovered ? 0.5 : 1
         Maui.Separator
         {
             id: _sep
             visible: !control.lastOne
             edge: Qt.BottomEdge
-            color: parent.color
+//             color: parent.color
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom

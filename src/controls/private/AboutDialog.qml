@@ -73,7 +73,7 @@ Maui.Dialog
         {
             id: _header
             Layout.fillWidth: true
-            implicitHeight: Math.max((_div1.implicitHeight * 1.5) + Maui.Style.space.big, control.page.height+ Maui.Style.space.tiny)
+            implicitHeight: Math.max((_div1.implicitHeight * 1.5) + Maui.Style.space.medium, control.page.height+ Maui.Style.space.tiny)
             
             Item
             {
