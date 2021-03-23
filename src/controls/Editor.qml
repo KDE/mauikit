@@ -27,6 +27,20 @@ Maui.Page
       number of count of lines and words.
     */
     property bool showLineCount : true
+    
+  
+        property bool showFindBar: false
+        
+        onShowFindBarChanged:
+        {
+            if(showFindBar)
+            {
+                _findField.forceActiveFocus()
+            }else
+            {
+                body.forceActiveFocus()
+            }
+        }
 
     /*!
     */
@@ -95,104 +109,28 @@ Maui.Page
     focus: true
     title: document.fileName
     showTitle: false
-    flickable: _scrollView.flickable
+ flickable: _flickable 
 
-    Maui.DocumentHandler
+   Keys.enabled: true
+    Keys.onPressed:
     {
-        id: control
-        Kirigami.Theme.inherit: false
-        Kirigami.Theme.colorSet: Kirigami.Theme.View
-        
-        /**
-         * showLineCount : bool
-         * If a small text tooltip should be visible at the editor right bottom area, displaying the
-         * number of count of lines and words.
-         */
-        property bool showLineCount : true
-        
-        property bool showFindBar: false
-        
-        onShowFindBarChanged:
+        if((event.key === Qt.Key_F) && (event.modifiers & Qt.ControlModifier))
         {
-            if(showFindBar)
-            {
-                _findField.forceActiveFocus()
-            }else
-            {
-                body.forceActiveFocus()
-            }
+            control.showFindBar = true
+            _findField.text = control.body.selectedText
+            _findField.forceActiveFocus()
         }
-        
-        /**
-         * showSyntaxHighlightingLanguages : bool
-         */
-        property bool showSyntaxHighlightingLanguages: false
-        
-        /**
-         * body : TextArea
-         * Access to the editor text area.
-         */
-        property alias body : body
-        
-        /**
-         * document : DocumentHandler
-         *  The DocumentHandler
-         */
-        property alias document : document
-        
-        /**
-         * scrollView : ScrollablePage
-         */
-        property alias scrollView: _scrollView
-        
-        /**
-         * text : string
-         */
-        property alias text: body.text
-        
-        /**
-         * uppercase : bool
-         */
-        property alias uppercase: document.uppercase
-        
-        /**
-         * underline : bool
-         */
-        property alias underline: document.underline
-        
-        /**
-         * italic : bool
-         */
-        property alias italic: document.italic
-        
-        /**
-         * bold : bool
-         */
-        property alias bold: document.bold
-        
-        /**
-         * canRedo : bool
-         */
-        property alias canRedo: body.canRedo
-        
-        /**
-         * fileUrl : url
-         * If a file url is provided the DocumentHandler will try to open its contents and display it.
-         */
-        property alias fileUrl : document.fileUrl
-        
-        /**
-         * showLineNumbers : bool
-         * If a sidebar listing each line number should be visible.
-         */
-        property bool showLineNumbers : false
-        
-        focus: true
-        title: document.fileName
-        showTitle: false
-        flickable: _flickable
-        
-        Maui.DocumentHandler
+
+        if((event.key === Qt.Key_R) && (event.modifiers & Qt.ControlModifier))
+        {
+            control.showFindBar = true
+            _replaceButton.checked = true
+            _findField.text = control.body.selectedText
+            _replaceField.forceActiveFocus()
+        }
+    }
+ 
+    Maui.DocumentHandler
         {
             id: document
             document: body.textDocument
@@ -214,26 +152,7 @@ Maui.Page
                 body.select(start, end)
             }
         }
-
-   Keys.enabled: true
-    Keys.onPressed:
-    {
-        if((event.key === Qt.Key_F) && (event.modifiers & Qt.ControlModifier))
-        {
-            control.showFindBar = true
-            _findField.text = control.body.selectedText
-            _findField.forceActiveFocus()
-        }
-
-        if((event.key === Qt.Key_R) && (event.modifiers & Qt.ControlModifier))
-        {
-            control.showFindBar = true
-            _replaceButton.checked = true
-            _findField.text = control.body.selectedText
-            _replaceField.forceActiveFocus()
-        }
-    }
-        
+            
         Rectangle
         {
             z: _scrollView.z +1
@@ -258,7 +177,7 @@ Maui.Page
             }
         }
         
-        Menu
+        Maui.ContextualMenu
         {
             id: documentMenu
             
@@ -733,23 +652,6 @@ Maui.Page
             }
         }
         
-        /**
-         * 
-         */
-        function zoomIn()
-        {
-            body.font.pointSize = body.font.pointSize *1.5
-        }
-        
-        /**
-         * 
-         */
-        function zoomOut()
-        {
-            body.font.pointSize = body.font.pointSize / 1.5
-            
-        }
-    }
 
     /*!
       Zooms in.

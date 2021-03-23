@@ -158,22 +158,36 @@ Maui.Popup
     */
     property alias closeButton: _closeButton
 
-<<<<<<< HEAD
+      /*!
+      \qmlproperty Flickable Dialog::closeButton
+
+      MouseArea for the close button when the dialog is marked as persistent.
+    */
     property alias flickable : _flickable
+    
+      /*!
+      \qmlproperty ScrollView Dialog::scrollView
+
+      MouseArea for the close button when the dialog is marked as persistent.
+    */
     property alias scrollView : _scrollView
     
+      /*!
+      \qmlproperty int ScrollBar::policy
+
+      MouseArea for the close button when the dialog is marked as persistent.
+    */
     property int verticalScrollBarPolicy: ScrollBar.AsNeeded
     
-    /**
-     * horizontalScrollBarPolicy : ScrollBar.policy
-     */
-    property int horizontalScrollBarPolicy:  ScrollBar.AlwaysOff
+   
+      /*!
+      \qmlproperty int ScrollBar::policy
+
+      MouseArea for the close button when the dialog is marked as persistent.
+    */
+    property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
     
-    /**
-      * accepted :
-=======
-    /*!
->>>>>>> c97cff64 (Set up documentation infrastructure for MauiKit)
+     /*!
       * Triggered when the accepted button is clicked.
     */
     signal accepted()
