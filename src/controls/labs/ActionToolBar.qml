@@ -6,13 +6,17 @@ import org.kde.kirigami 2.7 as Kirigami
 import org.kde.mauikit 1.0 as Maui
 import org.kde.mauikit 1.1 as MauiLab
 
+/*!
+  \since org.kde.mauikit.labs 1.0
+  \inqmlmodule org.kde.mauikit.labs
+*/
 Kirigami.ActionToolBar
 {
     id: control
 
-    /**
-      *
-      */
+    /*!
+      List of actions on this toolbar.
+    */
     default property list<MauiLab.ToolButtonAction> mauiActions
     actions:  mauiActions
 }

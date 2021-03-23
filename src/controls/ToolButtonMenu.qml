@@ -7,28 +7,30 @@ import org.kde.mauikit 1.3 as Maui
 
 import "private" as Private
 
-/**
- * ToolButtonMenu
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
- */
-ToolButton
+/*!
+\since org.kde.mauikit 1.0
+\inqmlmodule org.kde.mauikit
+\brief A tool button that triggers a contextual menu.
+
+This provides a quick way to have a menu attached to a tool button.
+All child items will be positioned in a menu.
+*/
+Private.BasicToolButton
 {
     id: control
 
-    /**
-      * content : list<Item>
-      */
-    default property alias content : _menu.contentData
+    /*!
+      List of items, such as MenuItems to populate the contextual menu.
+      This is the default property, so declaring the menu entries is straight forward.
+    */
+    default property list<Item> content
 
-    /**
-      * menu : Menu
-      */
+    /*!
+      \qmlproperty Menu ToolButtonMenu::menu
+
+      Alias to the actual menu component holding the menu entries.
+      This can be modified for fine tuning the menu position or look.
+    */
     property alias menu : _menu
     
     focusPolicy: Qt.NoFocus
