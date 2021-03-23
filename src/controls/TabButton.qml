@@ -1,3 +1,4 @@
+
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
@@ -30,10 +31,12 @@ TabButton
       */
     property alias template: _template
 
+    property alias closeButtonVisible: _closeButton.visible
+
     /**
       * closeClicked :
       */
-    signal closeClicked(int index)
+    signal closeClicked()
 
     Kirigami.Separator
     {
@@ -82,7 +85,7 @@ TabButton
             property int position : Maui.App.leftWindowControls.includes("X") ? Qt.AlignLeft : Qt.AlignRight
 
             hoverEnabled: true
-            onClicked: control.closeClicked(index)
+            onClicked: control.closeClicked()
             Layout.preferredWidth: height
             Layout.fillHeight: true
 

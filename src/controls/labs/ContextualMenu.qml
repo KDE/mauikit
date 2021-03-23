@@ -5,12 +5,12 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.10
 import org.kde.kirigami 2.13 as Kirigami
-import QtQuick.Controls 2.10 as QQC2
+import QtQuick.Controls 2.15
 
 import org.kde.mauikit 1.3 as Maui
 import QtQuick.Window 2.15
 
-QQC2.Container
+Container
 {
     id: control
     visible: _loader.item ? _loader.item.visible : false
@@ -36,11 +36,11 @@ QQC2.Container
         }
     }
     
-    Component 
+    Component
     {
         id: regularMenu
         
-        QQC2.Menu 
+        Menu
         {
             id: _menu
             implicitWidth: Math.max(background ? background.implicitWidth : 0,
@@ -51,7 +51,7 @@ QQC2.Container
             margins: 0
             padding: 0
             spacing: 0
-                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
             contentItem: ListView
             {
@@ -74,33 +74,33 @@ QQC2.Container
                 keyNavigationEnabled: true
                 keyNavigationWraps: true
                 
-                QQC2.ScrollIndicator.vertical: QQC2.ScrollIndicator {}
+                ScrollIndicator.vertical: ScrollIndicator {}
             }
         }
     }
     
-    Component 
+    Component
     {
         id: mobileMenu
         
-        QQC2.Menu
+        Menu
         {
             id:_mobileMenu
             parent: window()
             
-            x: 0            
-            y: window().height - height           
+            x: 0
+            y: window().height - height
             
             width: window().width
             height: Math.min(window().height * 0.5, contentHeight)
             
             modal: true
-            margins: 0        
-                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+            margins: 0
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-            contentItem: ListView 
+            contentItem: ListView
             {
-                implicitHeight: contentHeight                
+                implicitHeight: contentHeight
                 boundsBehavior: Flickable.StopAtBounds
                 model: control.contentModel
                 interactive: true
@@ -109,7 +109,7 @@ QQC2.Container
                 currentIndex: control.currentIndex || 0
                 keyNavigationEnabled: true
                 keyNavigationWraps: true
-                implicitWidth: 
+                implicitWidth:
                 {
                     var maxWidth = 0;
                     for (var i = 0; i < contentItem.children.length; ++i) {
@@ -118,35 +118,35 @@ QQC2.Container
                     return maxWidth;
                 }
                 
-                QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
+                ScrollBar.vertical: ScrollBar {}
             }
             
-   enter: Transition
-   {
-        NumberAnimation
-        {
-            property: "y"
-            from: window().height
-            to: window().height - _mobileMenu.height 
-            easing.type: Easing.InOutQuad
-            duration: Kirigami.Units.shortDuration
-        }
-    }
+            enter: Transition
+            {
+                NumberAnimation
+                {
+                    property: "y"
+                    from: window().height
+                    to: window().height - _mobileMenu.height
+                    easing.type: Easing.InOutQuad
+                    duration: Kirigami.Units.shortDuration
+                }
+            }
 
-    exit: Transition 
-    {
-        NumberAnimation 
-        {
-            property: "y"
-            from: _mobileMenu.y
-            to: window().height
-            easing.type: Easing.InOutQuad
-            duration: Kirigami.Units.shortDuration
-        }
-    }
+            exit: Transition
+            {
+                NumberAnimation
+                {
+                    property: "y"
+                    from: _mobileMenu.y
+                    to: window().height
+                    easing.type: Easing.InOutQuad
+                    duration: Kirigami.Units.shortDuration
+                }
+            }
             
             background: Rectangle
-            {               
+            {
                 implicitWidth: Kirigami.Units.gridUnit * 8
                 color: Kirigami.Theme.backgroundColor
                 
@@ -161,7 +161,7 @@ QQC2.Container
         }
     }
     
-    function open(x, y) 
+    function open(x, y)
     {
         if (control.responsive)
         {

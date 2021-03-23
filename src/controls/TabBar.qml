@@ -61,11 +61,6 @@ TabBar
         }
     }
 
-    Kirigami.WheelHandler
-    {
-        target: _flickable
-    }
-
     contentItem: RowLayout
     {
         spacing: 0
