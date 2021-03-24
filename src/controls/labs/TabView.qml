@@ -7,10 +7,10 @@ import QtGraphicalEffects 1.0
 import org.kde.kirigami 2.13 as Kirigami
 import org.kde.mauikit 1.3 as Maui
 
-SwipeView
+Container
 {
     id: control
-    interactive: false
+    
     clip: true
     
     property bool mobile : true
@@ -30,7 +30,7 @@ SwipeView
         onRejected: close()
         onAccepted: 
         {
-            control.closeTab(control.currentItem)
+            control.closeTab(control.currentIndex)
             close()
         }
     }
@@ -146,6 +146,7 @@ SwipeView
                 Layout.fillHeight: true
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.title
+                checked: true
                 
                 onCloseClicked: 
                 {
@@ -154,7 +155,7 @@ SwipeView
                         _confirmDialog.open()
                     }else
                     {
-                        control.closeTab(index)
+                        control.closeTab(control.currentIndex)
                     }
                 }
             }
@@ -167,15 +168,7 @@ SwipeView
                 icon.name: "tab-new"
                 text: control.count
                 flat: true
-            },
-            
-            ToolButton
-            {
-                icon.name: "list-add"
-                flat: true
-                onClicked: control.newTabClicked()
-            }   
-            
+            }            
             ]         
         }        
         
@@ -184,11 +177,10 @@ SwipeView
             Layout.fillWidth: true
             Layout.fillHeight: true
             model: control.contentModel
-            visible: !control.overviewMode
-            interactive: control.interactive
+            interactive: false
             currentIndex: control.currentIndex
-            spacing: control.spacing
-            orientation: control.orientation
+            spacing: 0
+            orientation: ListView.Horizontal
             snapMode: ListView.SnapOneItem
             boundsBehavior: Flickable.StopAtBounds
             
@@ -202,163 +194,177 @@ SwipeView
             highlightMoveVelocity: -1
             highlightResizeVelocity: -1
             
-            maximumFlickVelocity: 4 * (control.orientation === Qt.Horizontal ? width : height)
+            maximumFlickVelocity: 4 * width
             
-            
+            cacheBuffer: control.count * width
             keyNavigationEnabled : false
-            keyNavigationWraps : false            
-        }
-        
-        Rectangle
-        {
-            id: _overview
-            visible: control.overviewMode
+            keyNavigationWraps : false    
             
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            
-            Kirigami.Theme.colorSet: Kirigami.Theme.Window
-            Kirigami.Theme.inherit: false     
-            
-            color: Kirigami.Theme.backgroundColor
-            
-            Maui.GridView
+            Rectangle
             {
-                id: _overviewGrid
+                id: _overview
+                visible: control.overviewMode && control.mobile
                 
-                anchors.fill: parent
-                model: control.count
-                currentIndex: control.currentIndex
-                itemSize: width / 3
-                itemHeight:  (height / 3)
+               anchors.fill: parent
                 
-                onAreaClicked:
+                Kirigami.Theme.colorSet: Kirigami.Theme.Window
+                Kirigami.Theme.inherit: false     
+                
+                color: Kirigami.Theme.backgroundColor
+                
+                Maui.GridView
                 {
-                    _tabsOverview.checked = false
-                }
-                
-                delegate: Item
-                {
-                    height: _overviewGrid.cellHeight
-                    width: _overviewGrid.cellWidth
+                    id: _overviewGrid
                     
-                    property bool isCurrentItem : GridView.isCurrentItem
+                    anchors.fill: parent
+                    model: control.count
+                    currentIndex: control.currentIndex
+                    itemSize: width / 3
+                    itemHeight:  (height / 3)
                     
-                    ItemDelegate
+                    onAreaClicked:
                     {
-                        anchors.fill: parent
-                        anchors.margins: Maui.Style.space.small
+                        _tabsOverview.checked = false
+                    }
+                    
+                    delegate: Item
+                    {
+                        height: _overviewGrid.cellHeight
+                        width: _overviewGrid.cellWidth
                         
-                        onClicked:
+                        property bool isCurrentItem : GridView.isCurrentItem
+                        
+                        ItemDelegate
                         {
-                            control.currentIndex = index
-                            _tabsOverview.checked = false
-                        }
-                        background: null
-                        contentItem: Rectangle
-                        {
-                            color: Kirigami.Theme.backgroundColor
-                            radius: Maui.Style.radiusV
+                            anchors.fill: parent
+                            anchors.margins: Maui.Style.space.small
                             
-                            ShaderEffectSource
+                            onClicked:
                             {
-                                id: _effect
-                                anchors.fill: parent
-                                anchors.margins: Maui.Style.space.tiny
+                                control.currentIndex = index
+                                _tabsOverview.checked = false
+                            }
+                            background: null
+                            contentItem: Rectangle
+                            {
+                                color: Kirigami.Theme.backgroundColor
+                                radius: Maui.Style.radiusV
                                 
-                                hideSource: visible
-                                live: true
-                                textureSize: Qt.size(width,height)
-                                sourceItem: control.contentModel.get(index)
-                                layer.enabled: true
-                                layer.effect: OpacityMask
+                                ShaderEffectSource
                                 {
-                                    maskSource: Item
+                                    id: _effect
+                                    anchors.fill: parent
+                                    anchors.margins: Maui.Style.space.tiny
+                                    
+                                    hideSource: visible
+                                    live: true
+                                    textureSize: Qt.size(width,height)
+                                    sourceItem: control.contentModel.get(index)
+                                    layer.enabled: true
+                                    layer.effect: OpacityMask
                                     {
-                                        width: control.width
-                                        height: control.height
-                                        Rectangle
+                                        maskSource: Item
                                         {
-                                            anchors.fill: parent
-                                            radius: Maui.Style.radiusV
+                                            width: control.width
+                                            height: control.height
+                                            Rectangle
+                                            {
+                                                anchors.fill: parent
+                                                radius: Maui.Style.radiusV
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            
-                            Rectangle
-                            {
-                                height: parent.height * 0.2
-                                anchors.bottom: parent.bottom
-                                anchors.left: parent.left
-                                anchors.right: parent.right
-                                color: Kirigami.Theme.backgroundColor
                                 
-                                Maui.Separator
+                                Rectangle
                                 {
-                                    edge: Qt.TopEdge
-                                    anchors.top: parent.top
+                                    height: parent.height * 0.2
+                                    anchors.bottom: parent.bottom
                                     anchors.left: parent.left
                                     anchors.right: parent.right
-                                }
-                                
-                                Label
-                                {
-                                    anchors.fill: parent
-                                    horizontalAlignment: Qt.AlignHCenter
-                                    verticalAlignment: Qt.AlignVCenter
-                                    text: control.contentModel.get(index).title || index
-                                }
-                                
-                                Maui.CloseButton
-                                {
-                                    height: parent.height
-                                    implicitWidth: height
+                                    color: Kirigami.Theme.backgroundColor
+                                    clip: true
                                     
-                                    onClicked: 
+                                    Maui.Separator
                                     {
-                                        control.currentIndex = index
-                                        if(control.confirmClose)
-                                        {
-                                            _confirmDialog.open()
-                                        }else
-                                        {
-                                            control.closeTab(index)
-                                        }
-                                    }  
+                                        edge: Qt.TopEdge
+                                        anchors.top: parent.top
+                                        anchors.left: parent.left
+                                        anchors.right: parent.right
+                                    }
+                                    
+                                    Label
+                                    {
+                                        anchors.fill: parent
+                                        anchors.leftMargin: Maui.Style.space.small
+                                        anchors.rightMargin: Maui.Style.space.small
+                                        elide: Text.ElideRight
+                                        wrapMode: Text.WrapAnywhere
+                                        horizontalAlignment: Qt.AlignHCenter
+                                        verticalAlignment: Qt.AlignVCenter
+                                        text: control.contentModel.get(index).title || index
+                                    }
+                                    
+                                    //Maui.CloseButton
+                                    //{
+                                        //height: parent.height
+                                        //implicitWidth: height
+                                        
+                                        //onClicked: 
+                                        //{
+                                            //control.currentIndex = index
+                                            //if(control.confirmClose)
+                                            //{
+                                                //_confirmDialog.open()
+                                            //}else
+                                            //{
+                                                //control.closeTab(index)
+                                            //}
+                                        //}  
+                                    //}
                                 }
-                            }
-                            
-                            Rectangle
-                            {
-                                anchors.fill: parent
-                                border.color: isCurrentItem ? Kirigami.Theme.highlightColor : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-                                radius: parent.radius
-                                
-                                border.width: isCurrentItem ? 2 : 1
-                                color: "transparent"
-                                opacity: 0.8
                                 
                                 Rectangle
                                 {
                                     anchors.fill: parent
+                                    border.color: isCurrentItem ? Kirigami.Theme.highlightColor : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+                                    radius: parent.radius
+                                    
+                                    border.width: isCurrentItem ? 2 : 1
                                     color: "transparent"
-                                    anchors.margins: 1
-                                    radius: parent.radius - 0.5
-                                    border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                                    opacity: 0.3
-                                }
-                            }                                
+                                    opacity: 0.8
+                                    
+                                    Rectangle
+                                    {
+                                        anchors.fill: parent
+                                        color: "transparent"
+                                        anchors.margins: 1
+                                        radius: parent.radius - 0.5
+                                        border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                                        opacity: 0.3
+                                    }
+                                }                                
+                            }
                         }
                     }
                 }
             }
+            
         }
         
+      
     }
     
     function closeTab(index)
     {
         control.removeItem(control.takeItem(index))
+    }
+    
+    function addTab(component, properties)
+    {
+        const object = component.createObject(control.contentModel, properties);
+        control.addItem(object)
+        object.forceActiveFocus()
+        return object
     }
 }
