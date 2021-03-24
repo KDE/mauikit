@@ -233,6 +233,7 @@ Maui.Page
     headBar.middleContent: Maui.TextField
     {
         id: _searchField
+        focus: true
         Layout.fillWidth: true
         Layout.maximumWidth: 500
         placeholderText: _filterButton.checked ? i18n("Filter") : ("Search")

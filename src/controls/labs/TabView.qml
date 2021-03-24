@@ -10,51 +10,65 @@ import org.kde.mauikit 1.3 as Maui
 SwipeView
 {
     id: control
-    interactive: true
+    interactive: false
     clip: true
-    focus: true
-
+    
     property bool mobile : true
-    property int tabBarPosition : TabBar.Header
-
-    property url sourceUrl
-
+    property bool confirmClose : false
+    readonly property bool overviewMode : _tabsOverview.checked
+    
     signal newTabClicked()
-
+       
+    Maui.Dialog
+    {
+        id: _confirmDialog
+        title: control.currentItem.title
+        closeButton.visible: false
+        page.margins: Maui.Style.space.big
+        message: i18n("Are you sure you want to close this tab?")
+        template.iconSource: "emblem-warning"
+        onRejected: close()
+        onAccepted: 
+        {
+            control.closeTab(control.currentItem)
+            close()
+        }
+    }
+    
     contentItem: ColumnLayout
     {
         spacing: 0
-
+        
         Maui.TabBar
         {
             id: tabsBar
             visible: control.count > 1 && !mobile
             Layout.fillWidth: true
-
+            
             position: control.position
-
+            
             currentIndex : control.currentIndex
-
+            
             onNewTabClicked: control.newTabClicked()
-
+            
             Keys.onPressed:
             {
                 if(event.key == Qt.Key_Return)
                 {
                     control.currentIndex = currentIndex
                 }
-
+                
                 if(event.key == Qt.Key_Down)
                 {
                     control.currentItem.forceActiveFocus()
                 }
             }
-
+            
             Repeater
             {
                 id: _repeater
                 model: control.count
-
+                
                 Maui.TabButton
                 {
                     id: _tabButton
@@ -62,29 +76,59 @@ SwipeView
                     implicitWidth: Math.max(parent.width / _repeater.count, 160)
                     checked: index === control.currentIndex
                     text: control.contentModel.get(index).title
-
+                    
                     onClicked:
                     {
                         control.currentIndex = index
                     }
-
-                    onCloseClicked: control.removeItem(control.takeIndex(index))
-
+                    
+                    onCloseClicked: 
+                    {
+                        control.currentIndex = index
+                        
+                        if(control.confirmClose)
+                        {
+                            _confirmDialog.open()
+                        }else
+                        {
+                            control.closeTab(index)
+                        }
+                    }
+                    
                     DropArea
                     {
                         id: _dropArea
                         anchors.fill: parent
                         onEntered: control.currentIndex = index
                     }
+                    
+                    Maui.Separator
+                    {
+                        edge: Qt.RightEdge
+                        visible: index < control.count
+                        anchors
+                        {
+                            bottom: parent.bottom
+                            top: parent.top
+                            right: parent.right
+                        }
+                    }
                 }
             }
         }
-
+        
         Maui.ToolBar
         {
+            Layout.fillWidth: true
+            preferredHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
+            
+            visible: (control.count > 1 && mobile) || control.overviewMode
+            
+            position: ToolBar.Header
+            
             background: Rectangle
             {
-                color: _tabsOverview.checked ? _overviewGrid.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor
+                color: control.overviewMode ? _overviewGrid.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor
                 
                 Maui.Separator
                 {
@@ -92,46 +136,55 @@ SwipeView
                     anchors.bottom: parent.bottom
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    visible: !_tabsOverview.checked
+                    visible: !control.overviewMode
                 }
-            }
-            visible: (control.count > 1 && mobile) || _tabsOverview.checked
-            position: ToolBar.Header
-            preferredHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
-            Layout.fillWidth: true
+            }            
+            
             middleContent: Maui.TabButton
             {
                 Layout.fillWidth: true
+                Layout.fillHeight: true
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.title
-                onCloseClicked: control.removeItem(control.currentItem)
-            }
-
-            rightContent: [
-
-                ToolButton
-                {
-                    id: _tabsOverview
-                    checkable: true
-                    icon.name: "tab-new"
-                    text: control.count
-                },
                 
-                ToolButton
+                onCloseClicked: 
                 {
-                    icon.name: "list-add"
-                    onClicked: control.newTabClicked()
+                    if(control.confirmClose)
+                    {
+                        _confirmDialog.open()
+                    }else
+                    {
+                        control.closeTab(index)
+                    }
                 }
-            ]
-        }
-        
+            }
+            
+            farRightContent: [            
+            ToolButton
+            {
+                id: _tabsOverview
+                checkable: true
+                icon.name: "tab-new"
+                text: control.count
+                flat: true
+            },
+            
+            ToolButton
+            {
+                icon.name: "list-add"
+                flat: true
+                onClicked: control.newTabClicked()
+            }   
+            
+            ]         
+        }        
         
         ListView
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
             model: control.contentModel
-            
+            visible: !control.overviewMode
             interactive: control.interactive
             currentIndex: control.currentIndex
             spacing: control.spacing
@@ -151,160 +204,161 @@ SwipeView
             
             maximumFlickVelocity: 4 * (control.orientation === Qt.Horizontal ? width : height)
             
-            Rectangle
+            
+            keyNavigationEnabled : false
+            keyNavigationWraps : false            
+        }
+        
+        Rectangle
+        {
+            id: _overview
+            visible: control.overviewMode
+            
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            
+            Kirigami.Theme.colorSet: Kirigami.Theme.Window
+            Kirigami.Theme.inherit: false     
+            
+            color: Kirigami.Theme.backgroundColor
+            
+            Maui.GridView
             {
-                id: _overview
-                visible: _tabsOverview.checked
+                id: _overviewGrid
+                
                 anchors.fill: parent
+                model: control.count
+                currentIndex: control.currentIndex
+                itemSize: width / 3
+                itemHeight:  (height / 3)
                 
-                Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                Kirigami.Theme.inherit: false     
-                
-                color: Kirigami.Theme.backgroundColor
-                
-                Maui.GridView
+                onAreaClicked:
                 {
-                    id: _overviewGrid
+                    _tabsOverview.checked = false
+                }
+                
+                delegate: Item
+                {
+                    height: _overviewGrid.cellHeight
+                    width: _overviewGrid.cellWidth
                     
-                    anchors.fill: parent
-                    model: control.count
-                    currentIndex: control.currentIndex
-                    itemSize: width / 3
-                    itemHeight:  (height / 3)
+                    property bool isCurrentItem : GridView.isCurrentItem
                     
-                    onAreaClicked: _tabsOverview.checked = false
-                    
-                    delegate: Item
+                    ItemDelegate
                     {
-                        height: _overviewGrid.cellHeight
-                        width: _overviewGrid.cellWidth
+                        anchors.fill: parent
+                        anchors.margins: Maui.Style.space.small
                         
-                        property bool isCurrentItem : GridView.isCurrentItem
-                        
-                        ItemDelegate
+                        onClicked:
                         {
-                            anchors.fill: parent
-                            anchors.margins: Maui.Style.space.medium
-                           
-                            //                            label1.text: control.contentModel.get(index).title || index
+                            control.currentIndex = index
+                            _tabsOverview.checked = false
+                        }
+                        background: null
+                        contentItem: Rectangle
+                        {
+                            color: Kirigami.Theme.backgroundColor
+                            radius: Maui.Style.radiusV
                             
-                            onClicked:
+                            ShaderEffectSource
                             {
-                                control.currentIndex = index
-                                _tabsOverview.checked = false
-                            }
-                            
-                            contentItem: Rectangle
-                            {
-                                color: Kirigami.Theme.backgroundColor
-                                radius: Maui.Style.radiusV
+                                id: _effect
+                                anchors.fill: parent
+                                anchors.margins: Maui.Style.space.tiny
                                 
-                                ShaderEffectSource
+                                hideSource: visible
+                                live: true
+                                textureSize: Qt.size(width,height)
+                                sourceItem: control.contentModel.get(index)
+                                layer.enabled: true
+                                layer.effect: OpacityMask
                                 {
-                                    id: _effect
-                                    anchors.fill: parent
-                                    anchors.margins: Maui.Style.space.tiny
-                                    
-                                    hideSource: visible
-                                    live: true
-                                    textureSize: Qt.size(width,height)
-                                    sourceItem: control.contentModel.get(index)
-                                    layer.enabled: true
-                                    layer.effect: OpacityMask
+                                    maskSource: Item
                                     {
-                                        maskSource: Item
-                                        {
-                                            width: control.width
-                                            height: control.height
-                                            Rectangle
-                                            {
-                                                anchors.fill: parent
-                                                radius: Maui.Style.radiusV
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                                Rectangle
-                                {
-                                    height: parent.height * 0.2
-                                    anchors.bottom: parent.bottom
-                                    anchors.left: parent.left
-                                    anchors.right: parent.right
-                                    color: Kirigami.Theme.backgroundColor
-                                    
-                                    Maui.Separator
-                                    {
-                                        edge: Qt.TopEdge
-                                        anchors.top: parent.top
-                                        anchors.left: parent.left
-                                        anchors.right: parent.right
-                                    }
-                                 
-                                        Label
+                                        width: control.width
+                                        height: control.height
+                                        Rectangle
                                         {
                                             anchors.fill: parent
-                                            horizontalAlignment: Qt.AlignHCenter
-                                            verticalAlignment: Qt.AlignVCenter
-                                            text: control.contentModel.get(index).title || index
+                                            radius: Maui.Style.radiusV
                                         }
-                                        
-                                        MouseArea
-                                        {
-                                            hoverEnabled: true
-                                            onClicked: control.removeItem(control.takeItem(index))
-                                            height: parent.height
-                                            implicitWidth: height
-                                            anchors.right: parent.right
-//                                             opacity: Kirigami.Settings.isMobile ? 1 : (hovered || pressed ? 1 : 0)
-                                            Behavior on opacity
-                                            {
-                                                NumberAnimation
-                                                {
-                                                    duration: Kirigami.Units.longDuration
-                                                    easing.type: Easing.InOutQuad
-                                                }
-                                            }
-                                            
-                                            Maui.X
-                                            {
-                                                height: Maui.Style.iconSizes.tiny
-                                                width: height
-                                                anchors.centerIn: parent
-                                                color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
-                                            }
-                                        }
-                                    
+                                    }
                                 }
+                            }
+                            
+                            Rectangle
+                            {
+                                height: parent.height * 0.2
+                                anchors.bottom: parent.bottom
+                                anchors.left: parent.left
+                                anchors.right: parent.right
+                                color: Kirigami.Theme.backgroundColor
+                                
+                                Maui.Separator
+                                {
+                                    edge: Qt.TopEdge
+                                    anchors.top: parent.top
+                                    anchors.left: parent.left
+                                    anchors.right: parent.right
+                                }
+                                
+                                Label
+                                {
+                                    anchors.fill: parent
+                                    horizontalAlignment: Qt.AlignHCenter
+                                    verticalAlignment: Qt.AlignVCenter
+                                    text: control.contentModel.get(index).title || index
+                                }
+                                
+                                Maui.CloseButton
+                                {
+                                    height: parent.height
+                                    implicitWidth: height
+                                    
+                                    onClicked: 
+                                    {
+                                        control.currentIndex = index
+                                        if(control.confirmClose)
+                                        {
+                                            _confirmDialog.open()
+                                        }else
+                                        {
+                                            control.closeTab(index)
+                                        }
+                                    }  
+                                }
+                            }
+                            
+                            Rectangle
+                            {
+                                anchors.fill: parent
+                                border.color: isCurrentItem ? Kirigami.Theme.highlightColor : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+                                radius: parent.radius
+                                
+                                border.width: isCurrentItem ? 2 : 1
+                                color: "transparent"
+                                opacity: 0.8
                                 
                                 Rectangle
                                 {
                                     anchors.fill: parent
-                                    border.color: isCurrentItem ? Kirigami.Theme.highlightColor : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-                                    radius: parent.radius
-                                    
-                                    border.width: isCurrentItem ? 2 : 1
                                     color: "transparent"
-                                    opacity: 0.8
-                                    
-                                    Rectangle
-                                    {
-                                        anchors.fill: parent
-                                        color: "transparent"
-                                        anchors.margins: 1
-                                        radius: parent.radius - 0.5
-                                        border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                                        opacity: 0.3
-                                    }
+                                    anchors.margins: 1
+                                    radius: parent.radius - 0.5
+                                    border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                                    opacity: 0.3
                                 }
-                                
-                            }
+                            }                                
                         }
                     }
                 }
             }
         }
         
-        
+    }
+    
+    function closeTab(index)
+    {
+        control.removeItem(control.takeItem(index))
     }
 }

@@ -21,7 +21,7 @@ import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-import org.kde.mauikit 1.2 as Maui
+import org.kde.mauikit 1.3 as Maui
 import org.kde.kirigami 2.9 as Kirigami
 
 import QtGraphicalEffects 1.0
@@ -221,32 +221,12 @@ Maui.Popup
             padding: 0
             headBar.visible: control.persistent
             headerBackground.color: "transparent"
-            headBar.farLeftContent: MouseArea
+            headBar.farLeftContent: Maui.CloseButton
             {
                 id: _closeButton
                 visible: control.persistent
-                hoverEnabled: !Kirigami.Settings.isMobile
-//                 Layout.fillHeight: true
-                implicitWidth: Maui.Style.iconSizes.medium
-                implicitHeight: Maui.Style.iconSizes.medium
-                onClicked: close()
-
-                Rectangle
-                {
-                    height: Maui.Style.iconSizes.medium
-                    width: height
-                    anchors.centerIn: parent
-                    radius: height
-                    color: _closeButton.containsMouse || _closeButton.containsPress ? Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"
-
-                    Maui.X
-                    {
-                        height: Maui.Style.iconSizes.tiny
-                        width: height
-                        anchors.centerIn: parent
-                        color: _closeButton.containsMouse || _closeButton.containsPress ? Kirigami.Theme.negativeTextColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.2))
-                    }
-                }
+              
+                onClicked: close()                
             }
 
             ColumnLayout
