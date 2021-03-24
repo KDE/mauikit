@@ -48,29 +48,16 @@ TabButton
         
         background: null
         
-        contentItem: Item
+        contentItem: RowLayout
         {
-            Maui.ListItemTemplate
-            {
-                id: _template
-                anchors.fill: parent
-                label1.text: control.text
-                label1.horizontalAlignment: Qt.AlignHCenter
-                label1.color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-                label1.wrapMode: Text.NoWrap
-                label1.elide: Text.ElideMiddle
-                leftMargin: Maui.Style.space.small
-                rightMargin: leftMargin       
-            }
-            
-            Maui.CloseButton
+             Maui.CloseButton
             {
                 id: _closeButton
                 
                 opacity: Kirigami.Settings.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)     
                 
-                width: height
-                height: parent.height    
+                implicitWidth: height
+                Layout.fillHeight: true  
                 
                 onClicked: control.closeClicked()
                 Behavior on opacity
@@ -83,6 +70,21 @@ TabButton
                 }
                 
             }
+            Maui.ListItemTemplate
+            {
+                id: _template
+               Layout.fillWidth: true
+               Layout.fillHeight: true
+                label1.text: control.text
+                label1.horizontalAlignment: Qt.AlignHCenter
+                label1.color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                label1.wrapMode: Text.NoWrap
+                label1.elide: Text.ElideMiddle
+                leftMargin: Maui.Style.space.small
+                rightMargin: leftMargin       
+            }
+            
+           
         }
 }
 

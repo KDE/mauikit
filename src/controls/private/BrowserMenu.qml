@@ -1,10 +1,10 @@
-import QtQuick 2.9
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-import org.kde.mauikit 1.0 as Maui
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+
+import org.kde.mauikit 1.3 as Maui
 import org.kde.kirigami 2.6 as Kirigami
 
-Menu
+Maui.ContextualMenu
 {
     id: control
     MenuItem
@@ -50,7 +50,7 @@ Menu
       */
     function show(parent = control, x, y)
     {
-            popup(parent, x, y)
+          control.open(x, y)
     }
 }
 

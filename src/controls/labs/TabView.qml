@@ -146,8 +146,8 @@ Container
                 Layout.fillHeight: true
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.title
-                checked: true
-                
+                checked: !control.overviewMode
+                onClicked: _tabsOverview.toggle()
                 onCloseClicked: 
                 {
                     if(control.confirmClose)
@@ -158,18 +158,18 @@ Container
                         control.closeTab(control.currentIndex)
                     }
                 }
-            }
-            
-            farRightContent: [            
-            ToolButton
+                
+                template.content:   ToolButton
             {
                 id: _tabsOverview
                 checkable: true
-                icon.name: "tab-new"
+//                 icon.name: "tab-new"
                 text: control.count
                 flat: true
-            }            
-            ]         
+            }  
+            }
+            
+                  
         }        
         
         ListView
