@@ -12,7 +12,7 @@ Container
     id: control
     
     clip: true
-    
+    property alias holder : _holder
     property bool mobile : true
     property bool confirmClose : false
     readonly property bool overviewMode : _tabsOverview.checked
@@ -198,7 +198,15 @@ Container
             
             cacheBuffer: control.count * width
             keyNavigationEnabled : false
-            keyNavigationWraps : false    
+            keyNavigationWraps : false   
+            
+            Maui.Holder
+            {
+                id: _holder
+                visible: !control.count
+                emojiSize: Maui.Style.iconSizes.huge
+                isMask: true
+            }
             
             Rectangle
             {
