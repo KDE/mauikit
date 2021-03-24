@@ -245,13 +245,13 @@ Container
                         ItemDelegate
                         {
                             anchors.fill: parent
-                            anchors.margins: Maui.Style.space.small
                             
                             onClicked:
                             {
                                 control.currentIndex = index
                                 _tabsOverview.checked = false
                             }
+                            
                             background: null
                             contentItem: Rectangle
                             {
@@ -262,7 +262,7 @@ Container
                                 {
                                     id: _effect
                                     anchors.fill: parent
-                                    anchors.margins: Maui.Style.space.tiny
+                                    anchors.margins: 2
                                     
                                     hideSource: visible
                                     live: true
