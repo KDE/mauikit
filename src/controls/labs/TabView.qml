@@ -117,16 +117,15 @@ Container
             }
         }
         
-        Maui.ToolBar
+        Maui.TabBar
         {
             Layout.fillWidth: true
-            preferredHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
-            
-            visible: (control.count > 1 && mobile) || control.overviewMode
+
+            visible: control.count > 1 && mobile && !control.overviewMode
             
             position: ToolBar.Header
             
-            background: Rectangle
+           /* background: Rectangle
             {
                 color: control.overviewMode ? _overviewGrid.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor
                 
@@ -138,12 +137,12 @@ Container
                     anchors.right: parent.right
                     visible: !control.overviewMode
                 }
-            }            
+            } */           
             
-            middleContent: Maui.TabButton
+            Maui.TabButton
             {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                width: parent.width
+                height: parent.height
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.title
                 checked: !control.overviewMode
@@ -301,35 +300,39 @@ Container
                                         anchors.right: parent.right
                                     }
                                     
-                                    Label
+                                    RowLayout
                                     {
                                         anchors.fill: parent
-                                        anchors.leftMargin: Maui.Style.space.small
-                                        anchors.rightMargin: Maui.Style.space.small
+                                        
+                                    Maui.CloseButton
+                                    {
+                                        Layout.fillHeight: true
+                                        implicitWidth: height
+                                        
+                                        onClicked: 
+                                        {
+                                            control.currentIndex = index
+                                            if(control.confirmClose)
+                                            {
+                                                _confirmDialog.open()
+                                            }else
+                                            {
+                                                control.closeTab(index)
+                                            }
+                                        }  
+                                    }
+                                    Label
+                                    {
+                                        Layout.fillHeight: true
+                                        Layout.fillWidth: true
                                         elide: Text.ElideRight
                                         wrapMode: Text.WrapAnywhere
-                                        horizontalAlignment: Qt.AlignHCenter
+                                        horizontalAlignment: Qt.AlignLeft
                                         verticalAlignment: Qt.AlignVCenter
                                         text: control.contentModel.get(index).title || index
                                     }
+                                    }
                                     
-                                    //Maui.CloseButton
-                                    //{
-                                        //height: parent.height
-                                        //implicitWidth: height
-                                        
-                                        //onClicked: 
-                                        //{
-                                            //control.currentIndex = index
-                                            //if(control.confirmClose)
-                                            //{
-                                                //_confirmDialog.open()
-                                            //}else
-                                            //{
-                                                //control.closeTab(index)
-                                            //}
-                                        //}  
-                                    //}
                                 }
                                 
                                 Rectangle

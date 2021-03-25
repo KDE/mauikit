@@ -77,7 +77,7 @@ Rectangle
     property int currentIndex : -1
     onCurrentIndexChanged:
     {
-        if(control.autoExclusive)
+        if(control.autoExclusive && control.count > 0)
         {
             control.currentAction = actions[control.currentIndex]
         }
