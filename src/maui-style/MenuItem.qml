@@ -35,11 +35,12 @@
 ****************************************************************************/
 
 import QtQuick 2.12
-import QtQuick.Templates 2.12 as T
+import QtQuick.Layouts 1.10
 import QtQuick.Controls 2.12
+
 import QtQuick.Controls.impl 2.12
-import QtQuick.Controls.Material 2.12
-import QtQuick.Controls.Material.impl 2.12
+import QtQuick.Templates 2.12 as T
+
 import org.kde.kirigami 2.7 as Kirigami
 import org.kde.mauikit 1.0 as Maui
 
@@ -48,12 +49,11 @@ T.MenuItem
     id: control
 
     hoverEnabled: !Kirigami.Settings.isMobile
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            implicitContentWidth + leftPadding + rightPadding)
+    implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: visible ? Math.max(implicitBackgroundHeight + topInset + bottomInset,
                                        implicitContentHeight + topPadding + bottomPadding,
                                        implicitIndicatorHeight + topPadding + bottomPadding) : 0
-                                       
+    Layout.fillWidth: true
     padding: Maui.Style.space.small
     verticalPadding: Maui.Style.space.small
     spacing: Maui.Style.space.small

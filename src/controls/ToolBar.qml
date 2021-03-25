@@ -278,7 +278,9 @@ ToolBar
                         interactive: !fits && Maui.Handy.isTouch
                         contentWidth: layout.implicitWidth
                         
-                        boundsBehavior: Kirigami.Settings.isMobile ? Flickable.DragOverBounds : Flickable.StopAtBounds
+                        boundsBehavior: Flickable.StopAtBounds
+                        boundsMovement :Flickable.StopAtBounds
+
                         clip: true
                         
                         RowLayout

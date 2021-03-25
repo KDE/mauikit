@@ -67,6 +67,7 @@ Container
                 
                 model: control.contentModel
                 boundsBehavior: Flickable.StopAtBounds
+                boundsMovement :Flickable.StopAtBounds
                 interactive: Window.window ? contentHeight > Window.window.height : false
                 clip: true
                 currentIndex: control.currentIndex || 0
@@ -92,7 +93,7 @@ Container
             y: window().height - height
             
             width: window().width
-            height: Math.min(window().height * 0.5, contentHeight)
+            height: Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big)
             
             modal: true
             margins: 0
@@ -102,21 +103,14 @@ Container
             {
                 implicitHeight: contentHeight
                 boundsBehavior: Flickable.StopAtBounds
+                boundsMovement :Flickable.StopAtBounds
                 model: control.contentModel
                 interactive: true
                 clip: true
-                spacing: Maui.Styel.space.medium
+                spacing: Maui.Style.space.medium
                 currentIndex: control.currentIndex || 0
                 keyNavigationEnabled: true
-                keyNavigationWraps: true
-                implicitWidth:
-                {
-                    var maxWidth = 0;
-                    for (var i = 0; i < contentItem.children.length; ++i) {
-                        maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
-                    }
-                    return maxWidth;
-                }
+                keyNavigationWraps: true               
                 
                 ScrollBar.vertical: ScrollBar {}
             }

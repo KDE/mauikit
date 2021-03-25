@@ -151,6 +151,7 @@ Maui.Dialog
     Maui.Separator
     {
         edge: Qt.TopEdge
+        visible: _listView.visible
         Layout.preferredWidth: 100
         Layout.alignment: Qt.AlignCenter
         radius: 1
@@ -171,6 +172,7 @@ Maui.Dialog
     
     Maui.ListBrowser
     {
+        id: _listView
         visible: control.urls.length > 1
         
         Layout.fillWidth: true

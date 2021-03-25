@@ -241,19 +241,62 @@ Container
                         
                         property bool isCurrentItem : GridView.isCurrentItem
                         
-                        ItemDelegate
+                        Maui.ItemDelegate
                         {
                             anchors.fill: parent
+                            anchors.margins: Maui.Style.space.small
+
+                            Maui.ContextualMenu
+                            {
+                                id: _overViewMenu
+
+                                MenuItem
+                                {
+                                    text: i18n("Open")
+                                    onTriggered:
+                                    {
+                                        _tabsOverview.checked = false
+                                    }
+                                }
+
+                                MenuItem
+                                {
+                                    text: i18n("Close")
+                                    onTriggered:
+                                    {
+                                        if(control.confirmClose)
+                                        {
+                                            _confirmDialog.open()
+                                        }else
+                                        {
+                                            control.closeTab(control.currentIndex)
+                                        }
+                                    }
+                                }
+                            }
                             
+                            onRightClicked:
+                            {
+                                 control.currentIndex = index
+                                _overViewMenu.open()
+                            }
+
                             onClicked:
                             {
                                 control.currentIndex = index
                                 _tabsOverview.checked = false
                             }
+
+                            onPressAndHold:
+                            {
+                                control.currentIndex = index
+                                _overViewMenu.open()
+                            }
                             
                             background: null
-                            contentItem: Rectangle
+                             Rectangle
                             {
+                                anchors.fill: parent
                                 color: Kirigami.Theme.backgroundColor
                                 radius: Maui.Style.radiusV
                                 
@@ -285,7 +328,7 @@ Container
                                 
                                 Rectangle
                                 {
-                                    height: parent.height * 0.2
+                                    height: _overviewCardTitle.implicitHeight + Maui.Style.space.medium
                                     anchors.bottom: parent.bottom
                                     anchors.left: parent.left
                                     anchors.right: parent.right
@@ -299,40 +342,18 @@ Container
                                         anchors.left: parent.left
                                         anchors.right: parent.right
                                     }
-                                    
-                                    RowLayout
-                                    {
-                                        anchors.fill: parent
-                                        
-                                    Maui.CloseButton
-                                    {
-                                        Layout.fillHeight: true
-                                        implicitWidth: height
-                                        
-                                        onClicked: 
-                                        {
-                                            control.currentIndex = index
-                                            if(control.confirmClose)
-                                            {
-                                                _confirmDialog.open()
-                                            }else
-                                            {
-                                                control.closeTab(index)
-                                            }
-                                        }  
-                                    }
+
                                     Label
                                     {
-                                        Layout.fillHeight: true
-                                        Layout.fillWidth: true
+                                        id: _overviewCardTitle
+                                        anchors.centerIn: parent
+                                        width: parent.width - Maui.Style.space.medium
                                         elide: Text.ElideRight
                                         wrapMode: Text.WrapAnywhere
-                                        horizontalAlignment: Qt.AlignLeft
+                                        horizontalAlignment: Qt.AlignHCenter
                                         verticalAlignment: Qt.AlignVCenter
                                         text: control.contentModel.get(index).title || index
-                                    }
-                                    }
-                                    
+                                    }                                    
                                 }
                                 
                                 Rectangle
