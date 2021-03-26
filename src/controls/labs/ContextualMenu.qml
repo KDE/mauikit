@@ -16,7 +16,7 @@ Container
     visible: _loader.item ? _loader.item.visible : false
     spacing: Maui.Style.space.medium
 
-    property bool responsive: false
+    property bool responsive: Kirigami.Settings.isMobile
     
     signal opened()
     

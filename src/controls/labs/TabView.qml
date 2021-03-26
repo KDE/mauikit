@@ -13,7 +13,7 @@ Container
     
     clip: true
     property alias holder : _holder
-    property bool mobile : true
+    property bool mobile : Kirigami.Settings.isMobile
     property bool confirmClose : false
     readonly property bool overviewMode : _tabsOverview.checked
     
