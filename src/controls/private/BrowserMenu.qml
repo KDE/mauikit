@@ -50,7 +50,7 @@ Maui.ContextualMenu
       */
     function show(parent = control, x, y)
     {
-          control.open(x, y)
+          control.open(x, y, parent)
     }
 }
 

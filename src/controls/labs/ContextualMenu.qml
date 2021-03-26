@@ -15,7 +15,8 @@ Container
     id: control
     visible: _loader.item ? _loader.item.visible : false
     spacing: Maui.Style.space.medium
-    property bool responsive: true
+
+    property bool responsive: false
     
     signal opened()
     
@@ -43,7 +44,7 @@ Container
         Menu
         {
             id: _menu
-            implicitWidth: Math.max(background ? background.implicitWidth : 0,
+            implicitWidth: Math.max(250,
                                     contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
             implicitHeight: Math.max(background ? background.implicitHeight : 0,
                                      contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
@@ -52,6 +53,7 @@ Container
             padding: 0
             spacing: 0
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+//            modal: true
 
             contentItem: ListView
             {
@@ -155,7 +157,7 @@ Container
         }
     }
     
-    function open(x, y)
+    function open(x, y, parent)
     {
         if (control.responsive)
         {
@@ -163,7 +165,7 @@ Container
         }
         else
         {
-            _loader.item.popup(x,y)
+            _loader.item.popup(parent,x,y)
         }
     }
     

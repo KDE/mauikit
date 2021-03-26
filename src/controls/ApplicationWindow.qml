@@ -338,68 +338,60 @@ Window
         Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
         headerBackground.color: Maui.App.enableCSD ? Qt.darker(Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
 
-//         Maui.WindowControls
-//         {
-//             toolbar: _page.headBar
-//         }
+        //         Maui.WindowControls
+        //         {
+        //             toolbar: _page.headBar
+        //         }
 
-        headBar.leftContent: ToolButton
+        headBar.leftContent: Maui.ToolButtonMenu
         {
             id: menuBtn
             icon.name: "application-menu"
-            checked: _mainMenu.visible
+            //            checked: _mainMenu.visible
             focusPolicy: Qt.NoFocus
-                        
-            onClicked:
+
+            //            onClicked:
+            //            {
+            //                _mainMenu.popup(parent, 0 , root.altHeader ? 0 - _mainMenu.implicitHeight - Maui.Style.space.medium  : root.headBar.height)
+            //                menuButtonClicked()
+            //            }
+
+            Loader
             {
-                _mainMenu.popup(parent, 0 , root.altHeader ? 0 - _mainMenu.implicitHeight - Maui.Style.space.medium  : root.headBar.height)
-                menuButtonClicked()
+                id: _accountsMenuLoader
+                visible: active
+                width: parent.width - (Maui.Style.space.medium*2)
+                anchors.horizontalCenter: parent.horizontalCenter
+                active: Maui.App.handleAccounts
+                sourceComponent: _accountsComponent
             }
 
-            Menu
+            MenuSeparator {visible: _accountsMenuLoader.active}
+
+            Repeater
             {
-                id: _mainMenu
-                modal: true
-                width: 250
-                y: root.altHeader ? 0 - _mainMenu.implicitHeight - Maui.Style.space.medium : root.headBar.height
-                
-                Loader
-                {
-                    id: _accountsMenuLoader
-                    visible: active
-                    width: parent.width - (Maui.Style.space.medium*2)
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    active: Maui.App.handleAccounts
-                    sourceComponent: _accountsComponent
-                }
-
-                MenuSeparator {visible: _accountsMenuLoader.active}
-
-                Repeater
-                {
-                    model: root.mainMenu
-                    MenuItem
-                    {
-                        action: modelData
-                    }
-                }
-
-                MenuSeparator{visible: root.mainMenu.length}
-
+                model: root.mainMenu
                 MenuItem
                 {
-                    text: i18n("About")
-                    icon.name: "documentinfo"
-                    onTriggered: aboutDialog.open()
-                }
-
-                MenuItem
-                {
-                    text: i18n("Quit")
-                    onTriggered: root.close()
+                    action: modelData
                 }
             }
-        }       
+
+            MenuSeparator{visible: root.mainMenu.length}
+
+            MenuItem
+            {
+                text: i18n("About")
+                icon.name: "documentinfo"
+                onTriggered: aboutDialog.open()
+            }
+
+            MenuItem
+            {
+                text: i18n("Quit")
+                onTriggered: root.close()
+            }
+        }
 
         Item
         {
@@ -582,7 +574,7 @@ Window
                         if(root.accounts)
                             accounts.open()
 
-                        _mainMenu.close()
+                        menuBtn.menu.close()
                     }
                 }
             }
