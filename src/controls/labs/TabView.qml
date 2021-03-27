@@ -100,7 +100,7 @@ Container
             Layout.fillWidth: true
 
             visible: control.count > 1 && mobile && !control.overviewMode
-            
+            showNewTabButton: false
             position: ToolBar.Header
             
             Maui.TabButton
