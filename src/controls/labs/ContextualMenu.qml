@@ -101,6 +101,8 @@ Container
             margins: 0
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
+            topPadding: Maui.Style.space.medium
+
             contentItem: ListView
             {
                 implicitHeight: contentHeight

@@ -33,22 +33,22 @@ MouseArea
 //         leftMargin: 0
 //         rightMargin: 0
 //         
-        Item
-        {
-            Layout.alignment: Qt.AlignCenter
-            implicitHeight: Maui.Style.iconSizes.medium
-            implicitWidth: implicitHeight
+//        Item
+//        {
+//            Layout.alignment: Qt.AlignCenter
+//            implicitHeight: Maui.Style.iconSizes.medium
+//            implicitWidth: implicitHeight
             
-            Maui.Triangle
-            {
-                anchors.centerIn: parent
-                height: Maui.Style.iconSizes.tiny
-                width: height
-                rotation: !control.checked ? -45 : -225
-                color: control.hovered || control.pressed || control.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-                opacity: 0.7
-            }            
-        }
+//            Maui.Triangle
+//            {
+//                anchors.centerIn: parent
+//                height: Maui.Style.iconSizes.tiny
+//                width: height
+//                rotation: !control.checked ? -45 : -225
+//                color: control.hovered || control.pressed || control.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+//                opacity: 0.7
+//            }
+//        }
     }
     
     onClicked: control.checked = !control.checked    
