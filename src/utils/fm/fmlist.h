@@ -157,9 +157,7 @@ public:
 
     enum VIEW_TYPE : uint_fast8_t {
         ICON_VIEW,
-        LIST_VIEW,
-        MILLERS_VIEW
-
+        LIST_VIEW
     };
     Q_ENUM(VIEW_TYPE)
 

@@ -6,7 +6,7 @@ import QtQml 2.14
 import QtGraphicalEffects 1.0
 
 import org.kde.kirigami 2.7 as Kirigami
-import org.kde.mauikit 1.2 as Maui
+import org.kde.mauikit 1.3 as Maui
 
 import "private" as Private
 
@@ -24,7 +24,7 @@ Rectangle
 {
     id: control
     implicitWidth: _container.implicitWidth
-    implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.12)
+    implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.3))
     opacity: enabled ? 1 : 0.5
     
     Kirigami.Theme.colorSet: Kirigami.Theme.View
@@ -149,8 +149,7 @@ Rectangle
                 }
             }
         }
-    }
-    
+    }    
     
     Component
     {
@@ -190,7 +189,8 @@ Rectangle
                     autoExclusive: control.autoExclusive
 
                     height: parent.height
-                    
+                    width : implicitWidth + Maui.Style.space.medium
+
                     enabled: action.enabled                    
                     
                     display: control.autoExclusive ? (checked && control.enabled ? control.display : ToolButton.IconOnly) : control.display
@@ -252,7 +252,7 @@ Rectangle
                 
                 if(!_menu.visible)
                 {
-                    _menu.popup(control, 0, control.height)
+                    _menu.open(0, control.height, control)
                     
                 }else
                 {
@@ -269,7 +269,7 @@ Rectangle
                     
                     if(control.actions[index].enabled)
                     {                        
-                        var res = ( {
+                        var res = ({
                             'action' : control.actions[index],  
                             'index': index
                         })
@@ -287,7 +287,7 @@ Rectangle
                         return res;
                     }else
                     {                                 
-                        var res =({
+                        var res = ({
                             'action': control.actions[1],
                             'index': 1
                         })
@@ -296,7 +296,7 @@ Rectangle
                     }
                 }else
                 {                    
-                    var res =( {
+                    var res = ({
                         'action': control.currentAction,
                         'index': control.currentIndex
                     })
@@ -307,10 +307,9 @@ Rectangle
             
             onClicked: triggerAction()
             
-            Menu
+            Maui.ContextualMenu
             {
                 id: _menu
-                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
                 
                 Repeater
                 {

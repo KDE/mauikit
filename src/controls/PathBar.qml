@@ -39,7 +39,7 @@ Rectangle
 {
     id: control
 
-    implicitHeight: Maui.Style.rowHeight
+    implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
 
     /**
       * url : string

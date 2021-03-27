@@ -12,29 +12,15 @@ Container
     id: control
     
     clip: true
+
     property alias holder : _holder
     property bool mobile : Kirigami.Settings.isMobile
-    property bool confirmClose : false
+
     readonly property bool overviewMode : _tabsOverview.checked
     
     signal newTabClicked()
-       
-    Maui.Dialog
-    {
-        id: _confirmDialog
-        title: control.currentItem.title
-        closeButton.visible: false
-        page.margins: Maui.Style.space.big
-        message: i18n("Are you sure you want to close this tab?")
-        template.iconSource: "emblem-warning"
-        onRejected: close()
-        onAccepted: 
-        {
-            control.closeTab(control.currentIndex)
-            close()
-        }
-    }
-    
+    signal closeTabClicked(int index)
+
     contentItem: ColumnLayout
     {
         spacing: 0
@@ -82,17 +68,9 @@ Container
                         control.currentIndex = index
                     }
                     
-                    onCloseClicked: 
+                    onCloseClicked:
                     {
-                        control.currentIndex = index
-                        
-                        if(control.confirmClose)
-                        {
-                            _confirmDialog.open()
-                        }else
-                        {
-                            control.closeTab(index)
-                        }
+                        control.closeTabClicked(index)
                     }
                     
                     DropArea
@@ -125,20 +103,6 @@ Container
             
             position: ToolBar.Header
             
-           /* background: Rectangle
-            {
-                color: control.overviewMode ? _overviewGrid.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor
-                
-                Maui.Separator
-                {
-                    edge: Qt.BottomEdge
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    visible: !control.overviewMode
-                }
-            } */           
-            
             Maui.TabButton
             {
                 width: parent.width
@@ -147,29 +111,21 @@ Container
                 text: control.currentItem.title
                 checked: !control.overviewMode
                 onClicked: _tabsOverview.toggle()
-                onCloseClicked: 
+                onCloseClicked:
                 {
-                    if(control.confirmClose)
-                    {
-                        _confirmDialog.open()
-                    }else
-                    {
-                        control.closeTab(control.currentIndex)
-                    }
+                    control.closeTabClicked(control.currentIndex)
                 }
                 
-                template.content:   ToolButton
-            {
-                id: _tabsOverview
-                checkable: true
-//                 icon.name: "tab-new"
-                text: control.count
-                flat: true
-            }  
+                content: ToolButton
+                {
+                    id: _tabsOverview
+                    checkable: true
+                    icon.name: "tab-new"
+                    text: control.count
+                    flat: true
+                }
             }
-            
-                  
-        }        
+        }
         
         ListView
         {
@@ -197,7 +153,7 @@ Container
             
             cacheBuffer: control.count * width
             keyNavigationEnabled : false
-            keyNavigationWraps : false   
+            keyNavigationWraps : false
             
             Maui.Holder
             {
@@ -212,10 +168,10 @@ Container
                 id: _overview
                 visible: control.overviewMode && control.mobile
                 
-               anchors.fill: parent
+                anchors.fill: parent
                 
                 Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                Kirigami.Theme.inherit: false     
+                Kirigami.Theme.inherit: false
                 
                 color: Kirigami.Theme.backgroundColor
                 
@@ -264,20 +220,14 @@ Container
                                     text: i18n("Close")
                                     onTriggered:
                                     {
-                                        if(control.confirmClose)
-                                        {
-                                            _confirmDialog.open()
-                                        }else
-                                        {
-                                            control.closeTab(control.currentIndex)
-                                        }
+                                        control.closeTabClicked(control.currentIndex)
                                     }
                                 }
                             }
                             
                             onRightClicked:
                             {
-                                 control.currentIndex = index
+                                control.currentIndex = index
                                 _overViewMenu.open()
                             }
 
@@ -294,7 +244,7 @@ Container
                             }
                             
                             background: null
-                             Rectangle
+                            Rectangle
                             {
                                 anchors.fill: parent
                                 color: Kirigami.Theme.backgroundColor
@@ -353,7 +303,7 @@ Container
                                         horizontalAlignment: Qt.AlignHCenter
                                         verticalAlignment: Qt.AlignVCenter
                                         text: control.contentModel.get(index).title || index
-                                    }                                    
+                                    }
                                 }
                                 
                                 Rectangle
@@ -375,16 +325,13 @@ Container
                                         border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
                                         opacity: 0.3
                                     }
-                                }                                
+                                }
                             }
                         }
                     }
                 }
-            }
-            
+            }            
         }
-        
-      
     }
     
     function closeTab(index)

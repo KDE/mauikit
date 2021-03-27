@@ -43,7 +43,8 @@ QtObject
     /**
       * rowHeight : int
       */
-    readonly property int rowHeight: Math.round(iconSizes.big)
+    readonly property int rowHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
+
 
     /**
       * rowHeightAlt : int

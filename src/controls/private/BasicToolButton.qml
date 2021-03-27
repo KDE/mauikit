@@ -53,14 +53,14 @@ AbstractButton
       */
     property alias rec : _background
 
-//    Kirigami.Theme.inherit: false
-//    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    //    Kirigami.Theme.inherit: false
+    //    Kirigami.Theme.colorSet: Kirigami.Theme.Button
 
-focusPolicy: Qt.NoFocus
+    focusPolicy: Qt.NoFocus
 
     hoverEnabled: !Kirigami.Settings.isMobile
     implicitHeight: _layoutButton.implicitHeight
-    implicitWidth: Math.floor(_layoutButton.implicitWidth + (Maui.Style.space.medium *  2))
+    implicitWidth: Math.floor(_layoutButton.implicitWidth + (Maui.Style.space.medium ))
 
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
@@ -89,10 +89,10 @@ focusPolicy: Qt.NoFocus
     {
         id: _layoutButton
         anchors.centerIn: parent
-     
+
         rowSpacing: 0
         columnSpacing: 0
-               
+
         Item
         {
             implicitWidth: visible ? _icon.width + Maui.Style.space.medium : 0
@@ -102,7 +102,7 @@ focusPolicy: Qt.NoFocus
             Layout.row: 0
             Layout.alignment: Qt.AlignCenter
 
-            visible: _icon.source && _icon.source.length && (control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || control.display === ToolButton.IconOnly)            
+            visible: _icon.source && _icon.source.length && (control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || control.display === ToolButton.IconOnly)
 
             Kirigami.Icon
             {
@@ -121,7 +121,7 @@ focusPolicy: Qt.NoFocus
         Label
         {
             id: _label
-            Layout.column: control.display === ToolButton.TextUnderIcon? 0 : 1 
+            Layout.column: control.display === ToolButton.TextUnderIcon? 0 : 1
             Layout.row: control.display === ToolButton.TextUnderIcon ? 1 : 0
             text: control.text
             visible: text.length && (control.display === ToolButton.TextOnly || control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || !_icon.visible)
