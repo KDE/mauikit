@@ -1048,6 +1048,7 @@ Maui.Page
     function quitSearch()
     {
         _stackView.pop(StackView.Immediate)
+         _browser.forceActiveFocus()
     }
     
     /**
@@ -1059,6 +1060,7 @@ Maui.Page
         _searchField.text = query
         _stackView.currentItem.title = i18n("Search: %1").arg(query)
         _stackView.currentItem.currentFMList.search(query, _browser.currentFMList)
+        _stackView.currentItem.forceActiveFocus()
     }
     
     /**

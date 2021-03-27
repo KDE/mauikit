@@ -137,8 +137,10 @@ Container
             spacing: 0
             orientation: ListView.Horizontal
             snapMode: ListView.SnapOneItem
+
             boundsBehavior: Flickable.StopAtBounds
-            
+            boundsMovement :Flickable.StopAtBounds
+
             preferredHighlightBegin: 0
             preferredHighlightEnd: width
             
