@@ -95,7 +95,7 @@ Maui.AltBrowser
     signal keyPress(var event)
     signal areaClicked(var mouse)
     signal areaRightClicked(var mouse)
-    
+
     Connections
     {
         target: control.currentView

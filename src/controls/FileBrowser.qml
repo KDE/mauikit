@@ -18,6 +18,7 @@
  */
 
 import QtQuick 2.14
+import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
@@ -78,7 +79,13 @@ Maui.Page
 
       Current index of the item selected in the file browser.
     */
-    property alias currentIndex : _browser.currentIndex
+    property int currentIndex  : -1
+
+    Binding on currentIndex
+    {
+        value: currentView.currentIndex
+        restoreMode: Binding.RestoreBindingOrValue
+    }
     
     /*!
       \qmlproperty Item FileBrowser::currentView
@@ -87,7 +94,7 @@ Maui.Page
       Grid = GridView
       Miller = ListView
     */
-    readonly property QtObject currentView : _stackView.currentItem.currentView
+    readonly property QtObject currentView : _stackView.currentItem.browser
     
     /*!
       The file browser model list controller being used. The List and Grid views use the same FMList, the
@@ -492,7 +499,7 @@ Maui.Page
     
     Connections
     {
-        target: _browser
+        target: control.currentView
         ignoreUnknownSignals: true
         
         function onKeyPress(event)
@@ -685,7 +692,7 @@ Maui.Page
         initialItem: DropArea
         {
             id: _dropArea
-            property alias currentView : _browser.currentView
+            property alias browser : _browser
             property alias currentFMList : _browser.currentFMList
             property alias currentFMModel: _browser.currentFMModel
             property alias filter: _browser.filter
@@ -708,7 +715,8 @@ Maui.Page
                 id: _browser
                 anchors.fill: parent
                 selectionMode: control.selectionMode
-                
+                currentIndex: control.currentIndex
+
                 Maui.NewTagDialog
                 {
                     id: _newTagDialog
@@ -781,7 +789,11 @@ Maui.Page
             Private.BrowserView
             {
                 id: _searchBrowser
+                property alias browser : _searchBrowser
+                currentIndex: control.currentIndex
                 objectName: "searchView"
+                gridItemSize: control.gridItemSize
+                listItemSize: control.listItemSize
                 settings.viewType: control.settings.viewType === Maui.FMList.MILLERS_VIEW ? Maui.FMList.LIST_VIEW : control.settings.viewType // do not use millersview it does not makes sense since search does not follow a path url structures
             }
         }
@@ -1001,19 +1013,32 @@ Maui.Page
         {
             Maui.FM.bookmark(paths[i])
         }
+    }    
+
+    function toggleSearchBar() //only opens the searchbar toolbar, not the search view page
+    {
+        if(control.headBar.visible)
+        {
+            control.headBar.visible = false
+            quitSearch()
+            _browser.forceActiveFocus()
+        }else
+        {
+            control.headBar.visible = true
+           _searchField.forceActiveFocus()
+        }
     }
-    
     
     /**
      * 
      **/
-    function openSearch()
+    function openSearch() //opens the search view and focuses the search field
     {
         if(!control.isSearchView)
         {
             _stackView.push(_searchBrowserComponent, StackView.Immediate)
         }
-        control.headBar.visible= true
+        control.headBar.visible = true
         _searchField.forceActiveFocus()
     }
     
