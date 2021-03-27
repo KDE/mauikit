@@ -249,6 +249,7 @@ Maui.Page
                 control.search(text)
             }
         }
+
         onCleared:
         {
             if(_filterButton.checked)
@@ -256,12 +257,14 @@ Maui.Page
                 control.view.filter = ""
             }
         }
+
         onTextChanged:
         {
             if(_filterButton.checked)
                 _searchField.accepted()
                 
         }
+
         Keys.enabled: _filterButton.checked
         Keys.onPressed:
         {
@@ -276,7 +279,7 @@ Maui.Page
         {
             id: _filterButton
             icon.name: "view-filter"
-            //             text: i18n("Filter")
+//            text: i18n("Filter")
             checkable: true
             checked: true
             onTriggered:
