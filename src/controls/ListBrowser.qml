@@ -232,7 +232,9 @@ Item
             
             spacing: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
             snapMode: ListView.NoSnap
+
             boundsBehavior: Flickable.StopAtBounds
+            boundsMovement :Flickable.StopAtBounds
 
             interactive: Kirigami.Settings.hasTransientTouchInput && (control.selectionMode ? _listView.position.x > 84 : true)
             highlightFollowsCurrentItem: true

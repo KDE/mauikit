@@ -292,6 +292,7 @@ Item
                 id: _pinchArea
                 anchors.fill: parent
                 z: -1
+                enabled: false
                 onPinchFinished:
                 {
                     resizeContent(pinch.scale)

@@ -212,7 +212,8 @@ Rectangle
                     interactive: Maui.Handy.isTouch
                     highlightFollowsCurrentItem: true
 
-                    boundsBehavior: Kirigami.Settings.isMobile ?  Flickable.DragOverBounds : Flickable.StopAtBounds
+                    boundsBehavior: Flickable.StopAtBounds
+                    boundsMovement :Flickable.StopAtBounds
 
                     model: _pathModel
 
