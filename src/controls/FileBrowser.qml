@@ -84,7 +84,7 @@ Maui.Page
     Binding on currentIndex
     {
         value: currentView.currentIndex
-        restoreMode: Binding.RestoreBindingOrValue
+//         restoreMode: Binding.RestoreBindingOrValue
     }
     
     /*!
@@ -490,6 +490,7 @@ Maui.Page
             const index = control.currentFMList.indexOfName(typingQuery)
             if(index > -1)
             {
+                console.log("FOUDN TRYPIGN IDNEX", index)
                 control.currentIndex = index
             }
             
@@ -715,8 +716,12 @@ Maui.Page
                 id: _browser
                 anchors.fill: parent
                 selectionMode: control.selectionMode
-                currentIndex: control.currentIndex
-
+                Binding on currentIndex
+                {
+                    value: control.currentIndex
+                    restoreMode: Binding.RestoreBindingOrValue
+                }
+                
                 Maui.NewTagDialog
                 {
                     id: _newTagDialog
@@ -790,7 +795,12 @@ Maui.Page
             {
                 id: _searchBrowser
                 property alias browser : _searchBrowser
-                currentIndex: control.currentIndex
+                Binding on currentIndex
+                {
+                    value: control.currentIndex
+                    restoreMode: Binding.RestoreBindingOrValue
+                }
+                
                 objectName: "searchView"
                 gridItemSize: control.gridItemSize
                 listItemSize: control.listItemSize
