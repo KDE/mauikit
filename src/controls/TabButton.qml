@@ -82,6 +82,13 @@ TabButton
             wrapMode: Text.NoWrap
             elide: Text.ElideMiddle
         }
+        
+        Item
+        {
+            Layout.fillHeight: true
+            implicitWidth: height
+            visible: _closeButton.visible
+        }
     }
 }
 

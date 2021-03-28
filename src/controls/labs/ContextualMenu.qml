@@ -175,5 +175,10 @@ Container
     {
         _loader.item.close()
     }
+    
+    function dismiss()
+    {
+        close()
+    }
 }
 
