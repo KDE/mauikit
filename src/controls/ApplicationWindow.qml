@@ -17,12 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.12
-import QtQuick.Controls 2.3
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
-import QtQuick.Window 2.12
+import QtQuick.Window 2.14
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.kde.mauikit 1.2 as Maui

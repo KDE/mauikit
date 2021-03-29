@@ -46,10 +46,6 @@
 #include "tagging.h"
 #endif
 
-#ifdef COMPONENT_EDITOR
-#include "documenthandler.h"
-#endif
-
 #ifdef Q_OS_ANDROID
 #include "platforms/android/mauiandroid.h"
 #elif defined Q_OS_LINUX
@@ -207,14 +203,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("FileBrowser.qml")), uri, 1, 0, "FileBrowser");
     qmlRegisterType(componentUrl(QStringLiteral("PlacesListBrowser.qml")), uri, 1, 0, "PlacesListBrowser");
     qmlRegisterType(componentUrl(QStringLiteral("FileDialog.qml")), uri, 1, 0, "FileDialog");
-#endif
-
-#ifdef COMPONENT_EDITOR
-    /** EDITOR CONTROLS **/
-    qmlRegisterType<DocumentHandler>(uri, 1, 0, "DocumentHandler");
-    qmlRegisterAnonymousType<Alerts>(uri, 1);
-    qmlRegisterAnonymousType<DocumentAlert>(uri, 1);
-    qmlRegisterType(componentUrl(QStringLiteral("Editor.qml")), uri, 1, 0, "Editor");
 #endif
 
     /** PLATFORMS SPECIFIC CONTROLS **/
