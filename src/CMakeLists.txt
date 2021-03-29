@@ -72,23 +72,6 @@ if(${COMPONENT_ACCOUNTS})
     add_definitions(-DCOMPONENT_ACCOUNTS)
 endif()
 
-if(${COMPONENT_EDITOR})
-    message(STATUS "INCLUDING EDITOR COMPONENT")
-    set(editor_SRCS
-        utils/editor/documenthandler.cpp
-        )
-
-    set(editor_HDRS
-        utils/editor/documenthandler.h
-        )
-
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/editor
-        ${CMAKE_CURRENT_BINARY_DIR}/utils/editor
-        )
-    add_definitions(-DCOMPONENT_EDITOR)
-endif()
-
 if(${COMPONENT_FM})
     message(STATUS "INCLUDING FM COMPONENT")
 
@@ -234,9 +217,6 @@ add_library(MauiKit
     ${accounts_HDRS}
     ${accounts_SRCS}
 
-    ${editor_HDRS}
-    ${editor_SRCS}
-
     ${syncing_HDRS}
     ${syncing_SRCS}
     
@@ -305,11 +285,6 @@ target_link_libraries(MauiKit
     Qt5::Xml
     )
 
-if(${COMPONENT_EDITOR})
-    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS SyntaxHighlighting)
-    target_link_libraries(MauiKit PRIVATE KF5::SyntaxHighlighting)
-endif()
-
 if(IS_APPIMAGE_PACKAGE)
     target_compile_definitions(MauiKit PUBLIC APPIMAGE_PACKAGE)
 endif()
@@ -341,7 +316,6 @@ install(FILES
     ${tagging_HDRS}
     ${fm_HDRS}
     ${syncing_HDRS}
-    ${editor_HDRS}
     ${accounts_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit
