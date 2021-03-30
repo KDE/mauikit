@@ -16,7 +16,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH}
     ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 #DEFAULT COMPONENTS DEFINITIONS
-option(COMPONENT_FM "Build filemanager component" ON)
 option(COMPONENT_ACCOUNTS "Build accounts component" ON)
 option(COMPONENT_TERMINAL "Build terminal component" ON)
 option(COMPONENT_TAGGING "Build tagging component" ON)

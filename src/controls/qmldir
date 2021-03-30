@@ -32,9 +32,6 @@ TagsBar 1.0 TagsBar.qml
 TagsDialog 1.0 TagsDialog.qml
 Taglist 1.0 private/TagList.qml
 ListBrowser 1.0 ListBrowser.qml
-FileBrowser 1.0 FileBrowser.qml
-FileDialog 1.0 FileDialog.qml
-PlacesListBrowser 1.0 PlacesListBrowser.qml
 PathBar 1.0 PathBar.qml
 Dialog 1.0 Dialog.qml
 Popup 1.0 Popup.qml

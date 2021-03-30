@@ -72,27 +72,6 @@ if(${COMPONENT_ACCOUNTS})
     add_definitions(-DCOMPONENT_ACCOUNTS)
 endif()
 
-if(${COMPONENT_FM})
-    message(STATUS "INCLUDING FM COMPONENT")
-
-    set(fm_SRCS
-        utils/fm/downloader.cpp
-        utils/fm/fileloader.cpp
-        utils/fm/thumbnailer.cpp
-        )
-
-    set(fm_HDRS     
-        utils/fm/downloader.h
-        utils/fm/fileloader.h
-        utils/fm/thumbnailer.h
-        )
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/fm
-        ${CMAKE_CURRENT_BINARY_DIR}/utils/fm
-        )
-    add_definitions(-DCOMPONENT_FM)
-endif()
-
 if(${COMPONENT_TAGGING})
     message(STATUS "INCLUDING TAGGING COMPONENT")
     set(tagging_SRCS
@@ -205,9 +184,6 @@ endif()
 
 add_library(MauiKit
 
-    ${fm_HDRS}
-    ${fm_SRCS}
-
     ${accounts_HDRS}
     ${accounts_SRCS}
 
@@ -308,7 +284,6 @@ install(FILES
     ${mauikit_HDRS}
     ${mauikit_PLATFORM_HDRS}
     ${tagging_HDRS}
-    ${fm_HDRS}
     ${syncing_HDRS}
     ${accounts_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
