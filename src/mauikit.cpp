@@ -34,10 +34,6 @@
 #include "mauiaccounts.h"
 #endif
 
-#ifdef COMPONENT_FM
-#include "thumbnailer.h"
-#endif
-
 #ifdef COMPONENT_TAGGING
 #include "tagslist.h"
 #include "tagging.h"
@@ -71,11 +67,6 @@ void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
     Q_UNUSED(uri);
     KLocalizedString::setApplicationDomain("mauikit");
     engine->rootContext()->setContextObject(new KLocalizedContext(engine));
-
-    /** IMAGE PROVIDERS **/
-#ifdef COMPONENT_FM
-    engine->addImageProvider("thumbnailer", new Thumbnailer());
-#endif
 }
 
 void MauiKit::registerTypes(const char *uri)
@@ -187,13 +178,12 @@ void MauiKit::registerTypes(const char *uri)
 #endif
 
     /** FM CONTROLS, MODELS AND INTERFACES **/
-#ifdef COMPONENT_FM  
+
     qmlRegisterSingletonType<FMStatic>(uri, 1, 0, "FM", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
         return new FMStatic;
     });
-#endif
 
     /** PLATFORMS SPECIFIC CONTROLS **/
 #if defined Q_OS_LINUX || defined Q_OS_MACOS
