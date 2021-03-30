@@ -1,5 +1,5 @@
 #include "syncing.h"
-#include "fm.h"
+// #include "fm.h"
 
 #include <QEventLoop>
 #include <QFile>
@@ -76,7 +76,8 @@ void Syncing::listDirOutputHandler(WebDAVReply *reply, const QStringList &filter
 
 QUrl Syncing::getCacheFile(const QUrl &path)
 {
-    const auto directory = FM::resolveUserCloudCachePath(this->host, this->user);
+//     const auto directory = FM::resolveUserCloudCachePath(this->host, this->user);
+    const auto directory = "";
     const auto file = directory + path.toString().replace("remote.php/webdav/", "");
 
     qDebug() << "resolving file" << file;

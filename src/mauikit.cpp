@@ -35,9 +35,6 @@
 #endif
 
 #ifdef COMPONENT_FM
-#include "fm.h"
-#include "fmlist.h"
-#include "placeslist.h"
 #include "thumbnailer.h"
 #endif
 
@@ -113,7 +110,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("Badge.qml")), uri, 1, 0, "Badge");
     qmlRegisterType(componentUrl(QStringLiteral("ListBrowser.qml")), uri, 1, 0, "ListBrowser");
     qmlRegisterType(componentUrl(QStringLiteral("GridView.qml")), uri, 1, 0, "GridView");
-    qmlRegisterType(componentUrl(QStringLiteral("ImageViewer.qml")), uri, 1, 0, "ImageViewer");
     qmlRegisterType(componentUrl(QStringLiteral("TabBar.qml")), uri, 1, 0, "TabBar");
     qmlRegisterType(componentUrl(QStringLiteral("TabButton.qml")), uri, 1, 0, "TabButton");
     qmlRegisterType(componentUrl(QStringLiteral("ActionSideBar.qml")), uri, 1, 0, "ActionSideBar");
@@ -191,18 +187,12 @@ void MauiKit::registerTypes(const char *uri)
 #endif
 
     /** FM CONTROLS, MODELS AND INTERFACES **/
-#ifdef COMPONENT_FM
-    qmlRegisterType<PlacesList>(uri, 1, 0, "PlacesList");
-    qmlRegisterType<FMList>(uri, 1, 0, "FMList");
+#ifdef COMPONENT_FM  
     qmlRegisterSingletonType<FMStatic>(uri, 1, 0, "FM", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
         return new FMStatic;
     });
-
-    qmlRegisterType(componentUrl(QStringLiteral("FileBrowser.qml")), uri, 1, 0, "FileBrowser");
-    qmlRegisterType(componentUrl(QStringLiteral("PlacesListBrowser.qml")), uri, 1, 0, "PlacesListBrowser");
-    qmlRegisterType(componentUrl(QStringLiteral("FileDialog.qml")), uri, 1, 0, "FileDialog");
 #endif
 
     /** PLATFORMS SPECIFIC CONTROLS **/

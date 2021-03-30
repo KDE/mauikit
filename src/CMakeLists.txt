@@ -76,18 +76,12 @@ if(${COMPONENT_FM})
     message(STATUS "INCLUDING FM COMPONENT")
 
     set(fm_SRCS
-        utils/fm/fm.cpp
-        utils/fm/fmlist.cpp
-        utils/fm/placeslist.cpp
         utils/fm/downloader.cpp
         utils/fm/fileloader.cpp
         utils/fm/thumbnailer.cpp
         )
 
-    set(fm_HDRS
-        utils/fm/fm.h
-        utils/fm/fmlist.h
-        utils/fm/placeslist.h
+    set(fm_HDRS     
         utils/fm/downloader.h
         utils/fm/fileloader.h
         utils/fm/thumbnailer.h
@@ -325,4 +319,4 @@ install(FILES
 install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
 
 ##INSTALL THE DECO FOR CSD
-install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/maui)
+#install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/maui)
