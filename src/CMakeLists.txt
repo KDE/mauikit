@@ -94,37 +94,6 @@ if(${COMPONENT_TAGGING})
     add_definitions(-DCOMPONENT_TAGGING)
 endif()
 
-if(${COMPONENT_SYNCING})
-    message(STATUS "INCLUDING SYNCING COMPONENT")
-    set(syncing_SRCS
-        utils/syncing/syncing.cpp
-        utils/syncing/libwebdavclient/lib/WebDAVClient.cpp
-        utils/syncing/libwebdavclient/lib/dto/WebDAVItem.cpp
-        utils/syncing/libwebdavclient/lib/utils/Environment.cpp
-        utils/syncing/libwebdavclient/lib/utils/NetworkHelper.cpp
-        utils/syncing/libwebdavclient/lib/utils/WebDAVReply.cpp
-        utils/syncing/libwebdavclient/lib/utils/XMLHelper.cpp
-        )
-
-    set(syncing_HDRS
-        utils/syncing/syncing.h
-        utils/syncing/libwebdavclient/lib/WebDAVClient.hpp
-        utils/syncing/libwebdavclient/lib/dto/WebDAVItem.hpp
-        utils/syncing/libwebdavclient/lib/utils/Environment.hpp
-        utils/syncing/libwebdavclient/lib/utils/NetworkHelper.hpp
-        utils/syncing/libwebdavclient/lib/utils/WebDAVReply.hpp
-        utils/syncing/libwebdavclient/lib/utils/XMLHelper.hpp
-        )
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/syncing
-        ${CMAKE_CURRENT_BINARY_DIR}/utils/syncing
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/syncing/libwebdavclient/lib
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/syncing/libwebdavclient/lib/utils
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/syncing/libwebdavclient/lib/dto
-        )
-    add_definitions(-DCOMPONENT_SYNCING)
-endif()
-
 if(${SUPPORT_PLUGINS})
        message(STATUS "INCLUDING PLUGINS SUPPORT")
     set(mauikitplugin_SRCS
@@ -251,8 +220,6 @@ target_link_libraries(MauiKit
     Qt5::Quick
     Qt5::QuickControls2
     Qt5::Svg
-    Qt5::Network
-    Qt5::Xml
     )
 
 if(IS_APPIMAGE_PACKAGE)
