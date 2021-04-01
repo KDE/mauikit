@@ -5,6 +5,17 @@ find_dependency(Qt5Core @REQUIRED_QT_VERSION@)
 
 # Any changes in this ".cmake" file will be overwritten by CMake, the source is the ".cmake.in" file.
 
+foreach(PKG IN LISTS MauiKit_FIND_COMPONENTS)
+    find_package(MauiKit${PKG})
+    if(MauiKit_FIND_REQUIRED_${PKG})
+        set_package_properties(MauiKit${PKG} PROPERTIES TYPE REQUIRED)
+    else()
+        set_package_properties(MauiKit${PKG} PROPERTIES TYPE OPTIONAL)
+    endif()
+
+    set(MauiKit_${PKG}_FOUND ${MauiKit${PKG}_FOUND})
+endforeach()
+
 include("${CMAKE_CURRENT_LIST_DIR}/MauiKitTargets.cmake")
 
 set(MauiKit_INSTALL_PREFIX "@PACKAGE_CMAKE_INSTALL_PREFIX@")
