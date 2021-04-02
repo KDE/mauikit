@@ -25,10 +25,6 @@
         <file alias="SelectionBar.qml">controls/SelectionBar.qml</file>
         <file alias="LabelDelegate.qml">controls/LabelDelegate.qml</file>
         <file alias="NewDialog.qml">controls/NewDialog.qml</file>
-        <file alias="TagsBar.qml">controls/TagsBar.qml</file>
-        <file alias="TagsDialog.qml">controls/TagsDialog.qml</file>
-        <file alias="private/TagList.qml">controls/private/TagList.qml</file>
-        <file alias="private/TagDelegate.qml">controls/private/TagDelegate.qml</file>
         <file alias="ListBrowser.qml">controls/ListBrowser.qml</file>
         <file alias="PathBar.qml">controls/PathBar.qml</file>
         <file alias="Dialog.qml">controls/Dialog.qml</file>
@@ -84,7 +80,6 @@
         <file alias="labs/FlexListItem">controls/labs/FlexListItem.qml</file>
         <file alias="labs/Chip">controls/labs/Chip.qml</file>
         <file alias="labs/ContextualMenu">controls/labs/ContextualMenu.qml</file>
-        <file alias="NewTagDialog">controls/NewTagDialog.qml</file>
         <file alias="TabView">controls/labs/TabView.qml</file>
         <file alias="CloseButton">controls/CloseButton.qml</file>
     </qresource>

@@ -23,7 +23,6 @@ include_directories(
 
 set(mauikit_SRCS
     mauikit.cpp
-    utils/fmstatic.cpp
     utils/appsettings.cpp
     utils/fmh.cpp
     utils/mauiapp.cpp
@@ -37,7 +36,6 @@ set(mauikit_SRCS
 
 set(mauikit_HDRS
     mauikit.h
-    utils/fmstatic.h
     utils/appsettings.h
     utils/fmh.h
     utils/utils.h
@@ -70,28 +68,6 @@ if(${COMPONENT_ACCOUNTS})
         utils/accounts/accountsdb.h
         )
     add_definitions(-DCOMPONENT_ACCOUNTS)
-endif()
-
-if(${COMPONENT_TAGGING})
-    message(STATUS "INCLUDING TAGGING COMPONENT")
-    set(tagging_SRCS
-        utils/tagging/tagging.cpp
-        utils/tagging/tagdb.cpp
-        utils/tagging/tagslist.cpp
-        utils/tagging/tagging.qrc
-        )
-
-    set(tagging_HDRS
-        utils/tagging/tag.h
-        utils/tagging/tagging.h
-        utils/tagging/tagdb.h
-        utils/tagging/tagslist.h
-        )
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/tagging
-        ${CMAKE_CURRENT_BINARY_DIR}/utils/tagging
-        )
-    add_definitions(-DCOMPONENT_TAGGING)
 endif()
 
 if(${SUPPORT_PLUGINS})
@@ -155,12 +131,6 @@ add_library(MauiKit
 
     ${accounts_HDRS}
     ${accounts_SRCS}
-
-    ${syncing_HDRS}
-    ${syncing_SRCS}
-    
-    ${tagging_HDRS}
-    ${tagging_SRCS}
 
     ${mauikit_HDRS}
     ${mauikit_SRCS}
@@ -250,8 +220,6 @@ install(TARGETS MauiKit DESTINATION
 install(FILES
     ${mauikit_HDRS}
     ${mauikit_PLATFORM_HDRS}
-    ${tagging_HDRS}
-    ${syncing_HDRS}
     ${accounts_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit

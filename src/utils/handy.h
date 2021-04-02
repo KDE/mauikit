@@ -140,6 +140,42 @@ public slots:
      */
     static bool isIOS();
 
+    /**
+     * @brief formatSize
+     * Format a file size
+     * @param size
+     * size in bytes
+     * @return
+     * Formated into a readable string
+     */
+    static QString formatSize(const int &size);
+    
+    /**
+     * @brief formatTime
+     * Format a milliseconds value to a readable format
+     * @param value
+     * Milliseconds
+     * @return
+     * Readable formated value
+     */
+    static QString formatTime(const qint64 &value);
+    
+    /**
+     * @brief formatDate
+     * Given a date string, a format and a intended format return a readable string
+     * @param dateStr
+     * Date format
+     * @param format
+     * Intended format, by default "dd/MM/yyyy"
+     * @param initFormat
+     * Date format
+     * @return
+     */
+    static QString formatDate(const QString &dateStr, const QString &format = QString("dd/MM/yyyy"), const QString &initFormat = QString());
+
+    static void saveSettings(const QString &key, const QVariant &value, const QString &group);
+    static QVariant loadSettings(const QString &key, const QString &group, const QVariant &defaultValue);
+    
 signals:
     /**
      * @brief singleClickChanged

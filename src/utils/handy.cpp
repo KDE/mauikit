@@ -239,3 +239,44 @@ bool Handy::isMac()
 {
     return FMH::isMac();
 }
+
+
+QString Handy::formatSize(const int &size)
+{
+    const QLocale locale;
+    return locale.formattedDataSize(size);
+}
+
+QString Handy::formatDate(const QString &dateStr, const QString &format, const QString &initFormat)
+{
+    if (initFormat.isEmpty())
+        return QDateTime::fromString(dateStr, Qt::TextDate).toString(format);
+    else
+        return QDateTime::fromString(dateStr, initFormat).toString(format);
+}
+
+QString Handy::formatTime(const qint64 &value)
+{
+    QString tStr;
+    if (value) {
+        QTime time((value / 3600) % 60, (value / 60) % 60, value % 60, (value * 1000) % 1000);
+        QString format = "mm:ss";
+        if (value > 3600)
+            format = "hh:mm:ss";
+            tStr = time.toString(format);
+    }
+    
+    return tStr.isEmpty() ? "00:00" : tStr;
+}
+
+
+void Handy::saveSettings(const QString &key, const QVariant &value, const QString &group)
+{
+    UTIL::saveSettings(key, value, group);
+}
+
+QVariant Handy::loadSettings(const QString &key, const QString &group, const QVariant &defaultValue)
+{
+    return UTIL::loadSettings(key, group, defaultValue);
+}
+

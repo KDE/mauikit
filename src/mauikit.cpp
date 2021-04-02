@@ -23,7 +23,6 @@
 
 #include "appsettings.h"
 #include "appview.h"
-#include "fmstatic.h"
 #include "handy.h"
 #include "mauiapp.h"
 #include "mauilist.h"
@@ -32,11 +31,6 @@
 
 #ifdef COMPONENT_ACCOUNTS
 #include "mauiaccounts.h"
-#endif
-
-#ifdef COMPONENT_TAGGING
-#include "tagslist.h"
-#include "tagging.h"
 #endif
 
 #ifdef Q_OS_ANDROID
@@ -177,14 +171,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #endif
 
-    /** FM CONTROLS, MODELS AND INTERFACES **/
-
-    qmlRegisterSingletonType<FMStatic>(uri, 1, 0, "FM", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-        Q_UNUSED(engine)
-        Q_UNUSED(scriptEngine)
-        return new FMStatic;
-    });
-
     /** PLATFORMS SPECIFIC CONTROLS **/
 #if defined Q_OS_LINUX || defined Q_OS_MACOS
     qmlRegisterType(componentUrl(QStringLiteral("Terminal.qml")), uri, 1, 0, "Terminal");
@@ -207,22 +193,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST
     qmlRegisterType<MauiModel>(uri, 1, 0, "BaseModel"); // BASE MODEL
 
-#ifdef COMPONENT_TAGGING
-    /** TAGGING INTERFACES AND MODELS **/
-//     qmlRegisterSingletonInstance(uri, 1, 3, "Tagging", );
-    
-    qmlRegisterSingletonType<FMStatic>(uri, 1, 3, "Tagging", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-        Q_UNUSED(engine)
-        Q_UNUSED(scriptEngine)
-        return Tagging::getInstance();
-    });
-    
-    qmlRegisterType<TagsList>("TagsList", 1, 0, "TagsList");
-    qmlRegisterType(componentUrl(QStringLiteral("private/TagList.qml")), uri, 1, 0, "TagList");
-    qmlRegisterType(componentUrl(QStringLiteral("TagsBar.qml")), uri, 1, 0, "TagsBar");
-    qmlRegisterType(componentUrl(QStringLiteral("TagsDialog.qml")), uri, 1, 0, "TagsDialog");
-    qmlRegisterType(componentUrl(QStringLiteral("NewTagDialog.qml")), uri, 1, 3, "NewTagDialog");
-#endif
 
     /** MAUI APPLICATION SPECIFIC PROPS **/
 #ifdef COMPONENT_ACCOUNTS

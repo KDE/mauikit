@@ -6,12 +6,14 @@
 #include <QString>
 #include <QUrl>
 
+#include "mauikit_export.h"
+
 /**
  * @brief The AbstractPlatform class
  * Defines abstract methods and properties that are common to be implemeted by each different platform Maui supports.
  * For detailed information check each platform  own's implementation
  */
-class AbstractPlatform : public QObject
+class MAUIKIT_EXPORT AbstractPlatform : public QObject
 {
     Q_OBJECT
 

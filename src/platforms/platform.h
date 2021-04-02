@@ -4,9 +4,11 @@
 #include <QObject>
 #include <QQmlEngine>
 
+#include "mauikit_export.h"
+
 #include "abstractplatform.h"
 
-class Platform : public AbstractPlatform
+class MAUIKIT_EXPORT Platform : public AbstractPlatform
 {
     Q_OBJECT
 public:

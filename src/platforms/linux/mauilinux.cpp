@@ -287,7 +287,7 @@ bool MAUIKDE::hasMouse()
 void MAUIKDE::openUrl(const QUrl &url)
 {
     //    //     return QDesktopServices::openUrl(QUrl::fromUserInput(url));
-    KRun::runUrl(url, FMH::getFileInfoModel(url)[FMH::MODEL_KEY::MIME], nullptr, false, KRun::RunFlag::DeleteTemporaryFiles);
+    KRun::runUrl(url, FMH::getMime(url), nullptr, false, KRun::RunFlag::DeleteTemporaryFiles);
 }
 
 void MAUIKDE::shareFiles(const QList<QUrl> &urls)

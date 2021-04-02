@@ -897,20 +897,6 @@ static const QMap<QString, QString> folderIcon {{PicturesPath, "folder-pictures"
 bool MAUIKIT_EXPORT fileExists(const QUrl &path);
 
 /**
- * @brief fileDir
- * @param path
- * @return
- */
-const QString MAUIKIT_EXPORT fileDir(const QUrl &path);
-
-/**
- * @brief parentDir
- * @param path
- * @return
- */
-const QUrl MAUIKIT_EXPORT parentDir(const QUrl &path);
-
-/**
  * Return the configuration of a single directory represented
  * by a QVariantMap.
  * The passed path must be a local file URL.
@@ -955,53 +941,6 @@ const QString MAUIKIT_EXPORT getMime(const QUrl &path);
  * @return
  */
 bool MAUIKIT_EXPORT checkFileType(const FILTER_TYPE &type, const QString &mimeTypeName);
-
-/**
- * @brief thumbnailUrl
- * Returns a valid thumbnail Url to an image provider if supported, otherwise an empty URL
- * @param url
- * @return
- */
-const QUrl MAUIKIT_EXPORT thumbnailUrl(const QUrl &url, const QString &mimetype);
-
-#if (!defined Q_OS_ANDROID && defined Q_OS_LINUX) || defined Q_OS_WIN
-/**
- * @brief packFileInfo
- * @param item
- * @return
- */
-const MODEL MAUIKIT_EXPORT getFileInfo(const KFileItem &kfile);
-#endif
-
-/**
- * @brief getFileInfoModel
- * @param path
- * @return
- */
-const MODEL MAUIKIT_EXPORT getFileInfoModel(const QUrl &path);
-
-/**
- * @brief getFileInfo
- * @param path
- * @return
- */
-const QVariantMap MAUIKIT_EXPORT getFileInfo(const QUrl &path);
-
-/**
- * @brief getDirInfoModel
- * @param path
- * @param type
- * @return
- */
-const MODEL MAUIKIT_EXPORT getDirInfoModel(const QUrl &path, const QString &type = QString());
-
-/**
- * @brief getDirInfo
- * @param path
- * @param type
- * @return
- */
-const QVariantMap MAUIKIT_EXPORT getDirInfo(const QUrl &path);
 
 /**
  * @brief getPathType
