@@ -327,7 +327,7 @@ Window
             const width = root.width
             const x = root.x
             const y = root.y
-            Maui.FM.saveSettings("GEOMETRY", Qt.rect(x, y, width, height), "WINDOW")
+            Maui.Handy.saveSettings("GEOMETRY", Qt.rect(x, y, width, height), "WINDOW")
         }
     }
 
@@ -690,7 +690,7 @@ Window
 
         if(!Kirigami.Settings.isMobile)
         {
-            const rect = Maui.FM.loadSettings("GEOMETRY", "WINDOW", Qt.rect(root.x, root.y, root.width, root.height))
+            const rect = Maui.Handy.loadSettings("GEOMETRY", "WINDOW", Qt.rect(root.x, root.y, root.width, root.height))
             root.x = rect.x
             root.y = rect.y
             root.width = rect.width

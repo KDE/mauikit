@@ -23,6 +23,7 @@ import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.8 as Kirigami
 import org.kde.mauikit 1.3 as Maui
+import org.mauikit.filebrowsing 1.0 as FB
 
 /*!
   \since org.kde.mauikit.labs 1.0
@@ -35,7 +36,7 @@ Maui.Dialog
     default property alias content : _content.data
     property var urls: []
     
-    readonly property var singleItem : Maui.FM.getFileInfo(control.urls[0])
+    readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
     
     maxWidth: 400
      closeButton.visible: false 
@@ -52,9 +53,9 @@ Maui.Dialog
     {
         width: ListView.view.width
         height: Maui.Style.rowHeight
-        property var item : Maui.FM.getFileInfo(modelData)
+        property var item : FB.FM.getFileInfo(modelData)
         label1.text: item.label
-        label3.text: Maui.FM.formatSize(item.size)
+        label3.text: Maui.Handy.formatSize(item.size)
         rightLabels.visible: true
         iconVisible: true
         iconSource: item.icon
