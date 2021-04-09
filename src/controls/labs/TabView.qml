@@ -31,7 +31,7 @@ Container
             visible: control.count > 1 && !mobile
             Layout.fillWidth: true
             
-            position: control.position
+            position: TabBar.Header
             
             currentIndex : control.currentIndex
             
