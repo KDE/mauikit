@@ -46,11 +46,6 @@ void Platform::shareText(const QString &text)
     m_platform->shareText(text);
 }
 
-void Platform::openUrl(const QUrl &url)
-{
-    m_platform->openUrl(url);
-}
-
 bool Platform::hasKeyboard()
 {
     return m_platform->hasKeyboard();

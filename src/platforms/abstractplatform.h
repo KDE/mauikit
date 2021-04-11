@@ -35,12 +35,6 @@ public slots:
     virtual void shareText(const QString &urls) = 0;
 
     /**
-     * @brief openUrl
-     * @param url
-     */
-    virtual void openUrl(const QUrl &url) = 0;
-
-    /**
      * @brief hasKeyboard
      * @return
      */

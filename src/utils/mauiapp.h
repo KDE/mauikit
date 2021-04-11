@@ -42,7 +42,7 @@ class MauiAccounts;
  * @brief The MauiApp class
  * The MauiApp is a global instance and is declared to QML as an attached property, so it can be used widely by importing the org.kde.maui namespace
  * Example:
- * import org.kde.mauikit 1.2 as Maui
+ * import org.mauikit.controls 1.2 as Maui
  *
  * Maui.ApplicationWindow
  * {

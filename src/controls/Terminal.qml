@@ -5,7 +5,7 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.7 as Kirigami
-import org.kde.mauikit 1.0 as Maui
+import org.mauikit.controls 1.0 as Maui
 import "private" as Private
 
 /**

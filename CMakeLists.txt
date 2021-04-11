@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(MAUIKIT_VERSION 1.2.2)
 
-set(AUTOMOC_MOC_OPTIONS -Muri=org.kde.maui)
+set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.controls)
 
 project(mauikit VERSION ${MAUIKIT_VERSION})
 
@@ -42,7 +42,7 @@ if(ANDROID)
     find_package(Qt5 REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 else()
-    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Notifications Config Service KIO)
+    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config Service)
 endif()
 
 find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons)

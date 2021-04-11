@@ -24,7 +24,7 @@
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
 
-static constexpr const char *MAUIKIT_URI = "org.kde.mauikit";
+static constexpr const char *MAUIKIT_URI = "org.mauikit.controls";
 
 class MauiAccounts;
 class MAUIKIT_EXPORT MauiKit : public QQmlExtensionPlugin
@@ -41,7 +41,7 @@ private:
     QString resolveFilePath(const QString &path) const
     {
 #if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        return QStringLiteral(":/android_rcc_bundle/qml/org/kde/mauikit/") + path;
+        return QStringLiteral(":/android_rcc_bundle/qml/org/mauikit/controls/") + path;
 #else
         return baseUrl().toLocalFile() + QLatin1Char('/') + path;
 #endif
@@ -49,7 +49,7 @@ private:
     QString resolveFileUrl(const QString &filePath) const
     {
 #if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        return QStringLiteral("qrc:/android_rcc_bundle/qml/org/kde/mauikit/") + filePath;
+        return QStringLiteral("qrc:/android_rcc_bundle/qml/org/mauikit/controls/") + filePath;
 #else
         return baseUrl().toString() + QLatin1Char('/') + filePath;
 #endif

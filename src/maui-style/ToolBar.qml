@@ -23,7 +23,7 @@
 import QtQuick 2.6
 import QtQuick.Templates 2.5 as T
 import org.kde.kirigami 2.4 as Kirigami
-import org.kde.mauikit 1.0 as Maui
+import org.mauikit.controls 1.0 as Maui
 
 T.ToolBar {
     id: controlRoot

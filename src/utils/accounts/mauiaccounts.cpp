@@ -55,13 +55,14 @@ FMH::MODEL_LIST MauiAccounts::getCloudAccounts()
     FMH::MODEL_LIST res;
     for (const auto &account : qAsConst(accounts)) {
         auto map = account.toMap();
-        res << FMH::MODEL {{FMH::MODEL_KEY::PATH, FMH::PATHTYPE_URI[FMH::PATHTYPE_KEY::CLOUD_PATH] + map[FMH::MODEL_NAME[FMH::MODEL_KEY::USER]].toString()},
+        /*{FMH::MODEL_KEY::PATH, FMH::PATHTYPE_URI[FMH::PATHTYPE_KEY::CLOUD_PATH] + map[FMH::MODEL_NAME[FMH::MODEL_KEY::USER]].toString()},*/
+        /*  {FMH::MODEL_KEY::TYPE, FMH::PATHTYPE_LABEL[FMH::PATHTYPE_KEY::CLOUD_PATH]}*/
+        res << FMH::MODEL {
                            {FMH::MODEL_KEY::ICON, "folder-cloud"},
                            {FMH::MODEL_KEY::LABEL, map[FMH::MODEL_NAME[FMH::MODEL_KEY::USER]].toString()},
                            {FMH::MODEL_KEY::USER, map[FMH::MODEL_NAME[FMH::MODEL_KEY::USER]].toString()},
                            {FMH::MODEL_KEY::SERVER, map[FMH::MODEL_NAME[FMH::MODEL_KEY::SERVER]].toString()},
-                           {FMH::MODEL_KEY::PASSWORD, map[FMH::MODEL_NAME[FMH::MODEL_KEY::PASSWORD]].toString()},
-                           {FMH::MODEL_KEY::TYPE, FMH::PATHTYPE_LABEL[FMH::PATHTYPE_KEY::CLOUD_PATH]}};
+                           {FMH::MODEL_KEY::PASSWORD, map[FMH::MODEL_NAME[FMH::MODEL_KEY::PASSWORD]].toString()}};
     }
     return res;
 }

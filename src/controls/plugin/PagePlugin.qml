@@ -20,7 +20,7 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
-import org.kde.mauikit 1.1 as Maui
+import org.mauikit.controls 1.1 as Maui
 
 
 Maui.Page

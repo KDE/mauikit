@@ -25,7 +25,7 @@ import org.kde.kirigami 2.2 as Kirigami
 import QtQuick.Templates 2.3 as T
 
 import org.kde.kirigami 2.7 as Kirigami
-import org.kde.mauikit 1.0 as Maui
+import org.mauikit.controls 1.0 as Maui
 
 T.TabBar {
     id: controlRoot

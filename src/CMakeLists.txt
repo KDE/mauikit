@@ -167,13 +167,7 @@ else()
     target_link_libraries(MauiKit 
     PUBLIC 
     KF5::ConfigCore
-    KF5::KIOCore
-    KF5::KIOWidgets
-    KF5::KIOFileWidgets
-
-    PRIVATE 
-    KF5::Service 
-    KF5::KIONTLM)
+ )
 endif()
 
 target_link_libraries(MauiKit
@@ -181,9 +175,9 @@ target_link_libraries(MauiKit
     Qt5::Core
     Qt5::Sql
     Qt5::Gui
-    Qt5::Concurrent
     KF5::I18n
     KF5::CoreAddons    
+    KF5::Service
 
     PRIVATE
     Qt5::Qml
@@ -200,29 +194,29 @@ generate_export_header(MauiKit BASE_NAME MauiKit)
 install(TARGETS MauiKit EXPORT MauiKitTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 target_include_directories(MauiKit
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit>")
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core>")
 
 add_custom_target(copy)
 
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/org/kde/mauikit)
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/org/mauikit/controls)
 add_custom_command(TARGET copy PRE_BUILD COMMAND ${CMAKE_COMMAND}
     -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/controls
-    ${CMAKE_BINARY_DIR}/bin/org/kde/mauikit/)
+    ${CMAKE_BINARY_DIR}/bin/org/mauikit/controls)
 
 add_dependencies(MauiKit copy)
 
 install(DIRECTORY controls/ DESTINATION
-    ${KDE_INSTALL_QMLDIR}/org/kde/mauikit)
+    ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 install(TARGETS MauiKit DESTINATION
-    ${KDE_INSTALL_QMLDIR}/org/kde/mauikit)
+    ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 install(FILES
     ${mauikit_HDRS}
     ${mauikit_PLATFORM_HDRS}
     ${accounts_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core
     COMPONENT Devel)
 
 ##INSTALL MAUI STYLE

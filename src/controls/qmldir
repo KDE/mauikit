@@ -1,4 +1,4 @@
-module org.kde.mauikit
+module org.mauikit.controls
 plugin MauiKit
 classname MauiKit
 depends QtQuick.Controls 2.13
@@ -92,4 +92,3 @@ Chip 1.3 labs/Chip.qml
 ContextualMenu 1.3 labs/ContextualMenu.qml
 TabView 1.3 labs/TabView.qml
 CloseButton 1.3 CloseButton.qml
-NewTagDialog 1.3 NewTagDialog.qml

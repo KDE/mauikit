@@ -19,12 +19,16 @@
 
 #include "handy.h"
 #include "utils.h"
+#include "fmh.h"
+
+#include <QDateTime>
 #include <QClipboard>
 #include <QDebug>
 #include <QIcon>
 #include <QMimeData>
 #include <QOperatingSystemVersion>
 #include <QTouchDevice>
+#include <QStandardPaths>
 
 #include "platforms/platform.h"
 
@@ -34,14 +38,14 @@
 #include <QApplication>
 #endif
 
-#include "fmh.h"
-
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 #include <KSharedConfig>
+#include <KConfig>
+#include <KConfigGroup>
 #include <QFileSystemWatcher>
 #endif
 
-static const QUrl CONF_FILE = FMH::ConfigPath + "/kdeglobals";
+static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/kdeglobals";
 
 #ifdef KSHAREDCONFIG_H
 static const auto confCheck = [](QString key, QVariant defaultValue) -> QVariant {

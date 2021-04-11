@@ -24,7 +24,7 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.12
 
 import org.kde.kirigami 2.8 as Kirigami
-import org.kde.mauikit 1.2 as Maui
+import org.mauikit.controls 1.2 as Maui
 
 Maui.Dialog
 {

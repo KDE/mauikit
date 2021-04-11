@@ -22,7 +22,7 @@
 import QtQuick 2.13
 import QtQuick.Templates 2.3 as T
 import org.kde.kirigami 2.8 as Kirigami
-import org.kde.mauikit 1.0 as Maui
+import org.mauikit.controls 1.0 as Maui
 import QtQuick.Controls.impl 2.12
 
 T.Button
