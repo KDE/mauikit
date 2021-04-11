@@ -42,7 +42,7 @@ if(ANDROID)
     find_package(Qt5 REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 else()
-    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config Service)
+    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
 endif()
 
 find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons)

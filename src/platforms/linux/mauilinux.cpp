@@ -18,16 +18,8 @@
  */
 
 #include "mauilinux.h"
-#include <KToolInvocation>
 
-#include <QColor>
 #include <QDebug>
-#include <QFileInfo>
-#include <QModelIndex>
-#include <QVariantList>
-#include <QMimeDatabase>
-
-#include "kdeconnect.h"
 
 MAUIKDE *MAUIKDE::qmlAttachedProperties(QObject *object)
 {
@@ -40,37 +32,6 @@ MAUIKDE::MAUIKDE(QObject *parent)
 {
 }
 
-bool MAUIKDE::sendToDevice(const QString &device, const QString &id, const QStringList &urls)
-{
-    for (const auto &url : urls)
-        KdeConnect::sendToDevice(device, id, url);
-
-    return true;
-}
-
-QVariantList MAUIKDE::devices()
-{
-    return KdeConnect::getDevices();
-}
-
-void MAUIKDE::attachEmail(const QStringList &urls)
-{
-    if (urls.isEmpty())
-        return;
-
-    QFileInfo file(urls[0]);
-
-    KToolInvocation::invokeMailer("", "", "", file.baseName(), "Files shared... ", "", urls);
-    //    QDesktopServices::openUrl(QUrl("mailto:?subject=test&body=test&attachment;="
-    //    + url));
-}
-
-void MAUIKDE::email(const QString &to, const QString &cc, const QString &bcc, const QString &subject, const QString &body, const QString &messageFile, const QStringList &urls)
-{
-    KToolInvocation::invokeMailer(to, cc, bcc, subject, body, messageFile, urls);
-    //    QDesktopServices::openUrl(QUrl("mailto:?subject=test&body=test&attachment;="
-    //    + url));
-}
 
 void MAUIKDE::setColorScheme(const QString &schemeName)
 {
