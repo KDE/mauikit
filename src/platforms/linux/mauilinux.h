@@ -53,39 +53,6 @@ private:
 
 public slots:
     /**
-     * @brief devices
-     * @return
-     */
-    static QVariantList devices();
-
-    /**
-     * @brief sendToDevice
-     * @param device
-     * @param id
-     * @param urls
-     * @return
-     */
-    static bool sendToDevice(const QString &device, const QString &id, const QStringList &urls);
-
-    /**
-     * @brief attachEmail
-     * @param urls
-     */
-    static void attachEmail(const QStringList &urls);
-
-    /**
-     * @brief email
-     * @param to
-     * @param cc
-     * @param bcc
-     * @param subject
-     * @param body
-     * @param messageFile
-     * @param urls
-     */
-    static void email(const QString &to = "", const QString &cc = "", const QString &bcc = "", const QString &subject = "", const QString &body = "", const QString &messageFile = "", const QStringList &urls = QStringList());
-
-    /**
      * @brief setColorScheme
      * @param schemeName
      * @param bg

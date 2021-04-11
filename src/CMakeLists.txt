@@ -110,12 +110,10 @@ elseif(UNIX)
 
     set(mauikit_PLATFORM_SRCS
         platforms/linux/mauilinux.cpp
-        platforms/linux/kdeconnect.cpp
         )
 
     set(mauikit_PLATFORM_HDRS
         platforms/linux/mauilinux.h
-        platforms/linux/kdeconnect.h
         )
 elseif(WIN32)
     set(mauikit_PLATFORM_SRCS
@@ -177,7 +175,6 @@ target_link_libraries(MauiKit
     Qt5::Gui
     KF5::I18n
     KF5::CoreAddons    
-    KF5::Service
 
     PRIVATE
     Qt5::Qml
