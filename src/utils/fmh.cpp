@@ -1,5 +1,8 @@
 #include "fmh.h"
 
+#include <QDebug>
+#include <QFileInfo>
+
 namespace FMH
 {
 const QVector<int> modelRoles(const FMH::MODEL &model)
@@ -130,133 +133,5 @@ bool fileExists(const QUrl &path)
     return QFileInfo::exists(path.toLocalFile());
 }
 
-const QVariantMap dirConf(const QUrl &path)
-{
-    if (!path.isLocalFile()) {
-        qWarning() << "URL recived is not a local file" << path;
-        return QVariantMap();
-    }
-
-    if (!fileExists(path))
-        return QVariantMap();
-
-    QString icon, iconsize, hidden, detailview, showthumbnail, showterminal;
-
-    uint count = 0, sortby = MODEL_KEY::MODIFIED, viewType = 0;
-
-    bool foldersFirst = false;
-
-#if defined Q_OS_ANDROID || defined Q_OS_WIN || defined Q_OS_MACOS || defined Q_OS_IOS
-    QSettings file(path.toLocalFile(), QSettings::Format::NativeFormat);
-    file.beginGroup(QString("Desktop Entry"));
-    icon = file.value("Icon").toString();
-    file.endGroup();
-
-    file.beginGroup(QString("Settings"));
-    hidden = file.value("HiddenFilesShown").toString();
-    file.endGroup();
-
-    file.beginGroup(QString("MAUIFM"));
-    iconsize = file.value("IconSize").toString();
-    detailview = file.value("DetailView").toString();
-    showthumbnail = file.value("ShowThumbnail").toString();
-    showterminal = file.value("ShowTerminal").toString();
-    count = file.value("Count").toInt();
-    sortby = file.value("SortBy").toInt();
-    foldersFirst = file.value("FoldersFirst").toBool();
-    viewType = file.value("ViewType").toInt();
-    file.endGroup();
-
-#else
-    KConfig file(path.toLocalFile());
-    icon = file.entryMap(QString("Desktop Entry"))["Icon"];
-    hidden = file.entryMap(QString("Settings"))["HiddenFilesShown"];
-    iconsize = file.entryMap(QString("MAUIFM"))["IconSize"];
-    detailview = file.entryMap(QString("MAUIFM"))["DetailView"];
-    showthumbnail = file.entryMap(QString("MAUIFM"))["ShowThumbnail"];
-    showterminal = file.entryMap(QString("MAUIFM"))["ShowTerminal"];
-    count = file.entryMap(QString("MAUIFM"))["Count"].toInt();
-    sortby = file.entryMap(QString("MAUIFM"))["SortBy"].toInt();
-    foldersFirst = file.entryMap(QString("MAUIFM"))["FoldersFirst"] == "true" ? true : false;
-    viewType = file.entryMap(QString("MAUIFM"))["ViewType"].toInt();
-#endif
-
-    return QVariantMap({{MODEL_NAME[MODEL_KEY::ICON], icon.isEmpty() ? "folder" : icon},
-                        {MODEL_NAME[MODEL_KEY::ICONSIZE], iconsize},
-                        {MODEL_NAME[MODEL_KEY::COUNT], count},
-                        {MODEL_NAME[MODEL_KEY::SHOWTERMINAL], showterminal.isEmpty() ? "false" : showterminal},
-                        {MODEL_NAME[MODEL_KEY::SHOWTHUMBNAIL], showthumbnail.isEmpty() ? "false" : showthumbnail},
-                        {MODEL_NAME[MODEL_KEY::DETAILVIEW], detailview.isEmpty() ? "false" : detailview},
-                        {MODEL_NAME[MODEL_KEY::HIDDEN], hidden.isEmpty() ? false : (hidden == "true" ? true : false)},
-                        {MODEL_NAME[MODEL_KEY::SORTBY], sortby},
-                        {MODEL_NAME[MODEL_KEY::FOLDERSFIRST], foldersFirst},
-                        {MODEL_NAME[MODEL_KEY::VIEWTYPE], viewType}});
-}
-
-void setDirConf(const QUrl &path, const QString &group, const QString &key, const QVariant &value)
-{
-    if (!path.isLocalFile()) {
-        qWarning() << "URL recived is not a local file" << path;
-        return;
-    }
-
-#if defined Q_OS_ANDROID || defined Q_OS_WIN || defined Q_OS_MACOS || defined Q_OS_IOS
-    QSettings file(path.toLocalFile(), QSettings::Format::IniFormat);
-    file.beginGroup(group);
-    file.setValue(key, value);
-    file.endGroup();
-    file.sync();
-#else
-    KConfig file(path.toLocalFile(), KConfig::SimpleConfig);
-    auto kgroup = file.group(group);
-    kgroup.writeEntry(key, value);
-    // 		file.reparseConfiguration();
-    file.sync();
-#endif
-}
-
-const QString getIconName(const QUrl &path)
-{
-    if (path.isLocalFile() && QFileInfo(path.toLocalFile()).isDir()) {
-        if (folderIcon.contains(path.toString()))
-            return folderIcon[path.toString()];
-        else {
-            const auto icon = dirConf(QString(path.toString() + "/%1").arg(".directory"))[MODEL_NAME[MODEL_KEY::ICON]].toString();
-            return icon.isEmpty() ? "folder" : icon;
-        }
-
-    } else {
-#if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_IOS
-        QMimeDatabase mime;
-        const auto type = mime.mimeTypeForFile(path.toString());
-        return type.iconName();
-#else
-        KFileItem mime(path);
-        return mime.iconName();
-#endif
-    }
-}
-
-const QString getMime(const QUrl &path)
-{
-    if (!path.isLocalFile()) {
-        qWarning() << "URL recived is not a local file, getMime" << path;
-        return QString();
-    }
-
-    const QMimeDatabase mimedb;
-    return mimedb.mimeTypeForFile(path.toLocalFile()).name();
-}
-
-
-PATHTYPE_KEY getPathType(const QUrl &url)
-{
-    return PATHTYPE_SCHEME_NAME[url.scheme()];
-}
-
-bool checkFileType(const FMH::FILTER_TYPE &type, const QString &mimeTypeName)
-{
-    return SUPPORTED_MIMETYPES[type].contains(mimeTypeName);
-}
 
 }

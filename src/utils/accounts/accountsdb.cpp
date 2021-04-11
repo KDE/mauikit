@@ -1,6 +1,7 @@
 #include "accountsdb.h"
 
 #include <QUuid>
+#include <QStandardPaths>
 
 #ifdef Q_OS_ANDROID
 #include "mauiandroid.h"

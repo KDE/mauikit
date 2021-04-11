@@ -47,31 +47,11 @@ public:
     MAUIKDE &operator=(const MAUIKDE &) = delete;
     MAUIKDE(MAUIKDE &&) = delete;
     MAUIKDE &operator=(MAUIKDE &&) = delete;
-
-    /**
-     * @brief getApps
-     * @return
-     */
-    static FMH::MODEL_LIST getApps();
-
-    /**
-     * @brief getApps
-     * @param groupStr
-     * @return
-     */
-    static FMH::MODEL_LIST getApps(const QString &groupStr);
-
+   
 private:
     MAUIKDE(QObject *parent = nullptr);
 
 public slots:
-    /**
-     * @brief services
-     * @param url
-     * @return
-     */
-    static QVariantList services(const QUrl &url);
-
     /**
      * @brief devices
      * @return
@@ -86,13 +66,6 @@ public slots:
      * @return
      */
     static bool sendToDevice(const QString &device, const QString &id, const QStringList &urls);
-
-    /**
-     * @brief openWithApp
-     * @param exec
-     * @param urls
-     */
-    static void openWithApp(const QString &exec, const QStringList &urls);
 
     /**
      * @brief attachEmail
@@ -118,36 +91,10 @@ public slots:
      * @param bg
      * @param fg
      */
-    static void setColorScheme(const QString &schemeName, const QString &bg = QString(), const QString &fg = QString());
-
-    /**
-     * @brief appsList
-     * @return
-     */
-    static QVariantList appsList()
-    {
-        return FMH::toMapList(getApps());
-    }
-
-    /**
-     * @brief appsList
-     * @param groupStr
-     * @return
-     */
-    static QVariantList appsList(const QString &groupStr)
-    {
-        return FMH::toMapList(getApps(groupStr));
-    }
-
-    /**
-     * @brief launchApp
-     * @param app
-     */
-    static void launchApp(const QString &app);
-
+    static void setColorScheme(const QString &schemeName);
+    
     void shareFiles(const QList<QUrl> &urls) override final;
     void shareText(const QString &text) override final;
-    void openUrl(const QUrl &url) override final;
     bool hasKeyboard() override final;
     bool hasMouse() override final;
 };

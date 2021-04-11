@@ -17,6 +17,7 @@
  */
 
 #include "pathlist.h"
+#include <QDebug>
 
 PathList::PathList(QObject *parent)
     : MauiList(parent)

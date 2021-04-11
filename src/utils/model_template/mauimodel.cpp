@@ -19,6 +19,8 @@
 #include "mauimodel.h"
 #include "mauilist.h"
 
+#include <QDateTime>
+
 MauiModel::MauiModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_model(new PrivateAbstractListModel(this))

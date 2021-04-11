@@ -36,7 +36,7 @@
 
 import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
-import org.kde.mauikit 1.2 as Maui
+import org.mauikit.controls 1.2 as Maui
 
 T.MenuSeparator
 {

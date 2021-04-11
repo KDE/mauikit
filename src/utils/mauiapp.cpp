@@ -21,6 +21,8 @@
 #include "handy.h"
 #include "utils.h"
 
+#include <QStandardPaths>
+
 #ifdef COMPONENT_ACCOUNTS
 #include "mauiaccounts.h"
 #endif
@@ -39,7 +41,7 @@
 
 #include "../mauikit_version.h"
 
-static const QUrl CONF_FILE = FMH::ConfigPath + "/kwinrc";
+static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/kwinrc";
 
 MauiApp *MauiApp::m_instance = nullptr;
 

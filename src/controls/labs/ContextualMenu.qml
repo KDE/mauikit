@@ -7,7 +7,7 @@ import QtQuick.Layouts 1.10
 import org.kde.kirigami 2.13 as Kirigami
 import QtQuick.Controls 2.15
 
-import org.kde.mauikit 1.3 as Maui
+import org.mauikit.controls 1.3 as Maui
 import QtQuick.Window 2.15
 
 Container

@@ -28,7 +28,6 @@ public:
 public slots:
     void shareFiles(const QList<QUrl> &urls) override final;
     void shareText(const QString &text) override final;
-    void openUrl(const QUrl &url) override final;
     bool hasKeyboard() override final;
     bool hasMouse() override final;
 
