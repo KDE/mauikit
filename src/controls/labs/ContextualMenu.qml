@@ -24,7 +24,7 @@ Container
     {
         id: _loader
         anchors.fill: parent
-        asynchronous: true
+        asynchronous: false
         sourceComponent: control.responsive ? mobileMenu : regularMenu
     }
     
@@ -44,41 +44,7 @@ Container
         Menu
         {
             id: _menu
-            implicitWidth: Math.max(250,
-                                    contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
-            implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                                     contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
-            
-            margins: 0
-            padding: 0
-            spacing: 0
-            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-//            modal: true
-
-            contentItem: ListView
-            {
-                id: _listView
-                implicitHeight: contentHeight
-                implicitWidth: {
-                    var maxWidth = 0;
-                    for (var i = 0; i < contentItem.children.length; ++i) {
-                        maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
-                    }
-                    return maxWidth;
-                }
-                
-                model: control.contentModel
-                boundsBehavior: Flickable.StopAtBounds
-                boundsMovement :Flickable.StopAtBounds
-                interactive: Window.window ? contentHeight > Window.window.height : false
-                clip: true
-                currentIndex: control.currentIndex || 0
-                spacing: 0
-                keyNavigationEnabled: true
-                keyNavigationWraps: true
-                
-                ScrollIndicator.vertical: ScrollIndicator {}
-            }
+            contentData: control.contentData
         }
     }
     
@@ -91,14 +57,19 @@ Container
             id:_mobileMenu
             parent: window()
             
+            contentData: control.contentData
+//             contentChildren: control.contentChildren
+            
             x: 0
             y: window().height - height
             
             width: window().width
             height: Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big)
-            
+            currentIndex: control.currentIndex
             modal: true
             margins: 0
+            spacing: Maui.Style.space.medium
+            
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
             topPadding: Maui.Style.space.medium
@@ -106,13 +77,13 @@ Container
             contentItem: ListView
             {
                 implicitHeight: contentHeight
+                spacing: _mobileMenu.spacing
                 boundsBehavior: Flickable.StopAtBounds
                 boundsMovement :Flickable.StopAtBounds
-                model: control.contentModel
+                model: _mobileMenu.contentModel
                 interactive: true
                 clip: true
-                spacing: Maui.Style.space.medium
-                currentIndex: control.currentIndex || 0
+                currentIndex: _mobileMenu.currentIndex || 0
                 keyNavigationEnabled: true
                 keyNavigationWraps: true               
                 
