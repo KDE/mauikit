@@ -21,9 +21,15 @@ Item
         
         property bool responsive: false
         
+        signal opened()
+        signal closed()
+        
         Menu
         {
             id: _menu
+            onOpened: control.opened()
+            onClosed: control.closed()
+            
             spacing: control.responsive ?  Maui.Style.space.medium : 0
             
             parent: control.responsive ?  window() : undefined
