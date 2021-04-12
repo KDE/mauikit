@@ -65,7 +65,7 @@ void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
 
 void MauiKit::registerTypes(const char *uri)
 {
-    Q_ASSERT(uri == QLatin1String(MAUIKIT_URI));
+//     Q_ASSERT(uri == QLatin1String(MAUIKIT_URI));
 
     this->initResources();
 

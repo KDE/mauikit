@@ -51,10 +51,10 @@ Maui.Dialog
 
     verticalAlignment: Qt.AlignBottom
 
-    defaultButtons: true
+    defaultButtons: false
     persistent: false
     rejectButton.visible: false
-    acceptButton.text: i18n("Open with")
+//     acceptButton.text: i18n("Open with")
     onAccepted:  control.openWith()
 
     page.title: i18n("Share with")
@@ -67,11 +67,11 @@ Maui.Dialog
         onClicked: _purpose.pop()
     }
 
-    Maui.OpenWithDialog
-    {
-        id: _openWithDialog
-        urls: control.urls
-    }
+    //Maui.OpenWithDialog
+    //{
+        //id: _openWithDialog
+        //urls: control.urls
+    //}
 
     stack: Purpose.AlternativesView
     {
