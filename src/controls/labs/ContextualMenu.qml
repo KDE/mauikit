@@ -89,6 +89,7 @@ Item
 
             Rectangle
             {
+                visible: !control.responsive
                 anchors.fill: parent
                 radius: Maui.Style.radiusV
                 color: "transparent"
