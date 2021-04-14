@@ -19,7 +19,7 @@ Item
     default property alias contentData: _menu.contentData
     visible : _menu.visible
 
-    property bool responsive: false
+    property bool responsive: Kirigami.Settings.isMobile
 
     signal opened()
     signal closed()
