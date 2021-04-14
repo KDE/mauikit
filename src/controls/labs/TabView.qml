@@ -12,7 +12,8 @@ Container
     id: control
     
     clip: true
-
+    spacing: 0
+    
     property alias holder : _holder
     property bool mobile : Kirigami.Settings.isMobile
 
@@ -105,8 +106,7 @@ Container
             
             Maui.TabButton
             {
-                width: parent.width
-                height: parent.height
+                anchors.fill: parent
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.title
                 checked: !control.overviewMode
@@ -120,6 +120,8 @@ Container
                 {
                     id: _tabsOverview
                     checkable: true
+                    icon.width: Maui.Style.iconSizes.small
+                    icon.height: icon.width
                     icon.name: "tab-new"
                     text: control.count
                     flat: true
