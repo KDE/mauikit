@@ -340,7 +340,9 @@ Maui.Popup
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                
                 implicitWidth: width
+                implicitHeight: height
                 
                 visible: control.defaultButtons
                 text: i18n("Cancel")

@@ -6,7 +6,7 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.10
 import org.kde.kirigami 2.13 as Kirigami
 import QtQuick.Controls 2.15
-
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Window 2.15
 import QtGraphicalEffects 1.0
@@ -24,14 +24,10 @@ Item
     signal opened()
     signal closed()
 
-    Menu
+    T.Menu
     {
         id: _menu
-        onOpened: control.opened()
-        onClosed: control.closed()
-
-        spacing: control.responsive ?  Maui.Style.space.medium : 0
-
+        
         parent: control.responsive ?  window() : undefined
 
         x: control.responsive ? 0 : 0
@@ -40,18 +36,42 @@ Item
         width: control.responsive ? window().width :  Math.max(250,
                                                                contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
 
-        height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big) :  Math.max(background ? background.implicitHeight : 0,
-                                                                                                                       contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
-
+        height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
+        
         modal: control.responsive
+        
+        spacing: control.responsive ?  Maui.Style.space.medium : (Maui.Handy.isTouch ? Maui.Style.space.small : 0)
+        
         margins: 0
-        //             spacing: Maui.Style.space.medium
-
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
+        
+        padding: 1
         topPadding: Maui.Style.space.medium
         bottomPadding: Maui.Style.space.medium
-        padding: 2
+        
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+                
+        onOpened: control.opened()
+        onClosed: control.closed()
+        
+        
+        contentItem: Maui.ListBrowser
+        {
+            id: _listView
+           
+            implicitWidth: {
+                var maxWidth = 0;
+                for (var i = 0; i < contentItem.children.length; ++i) {
+                    maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
+                }
+                return maxWidth;
+            }
+            
+            implicitHeight: contentHeight
+            margins: _menu.margins
+            model: _menu.contentModel
+            spacing: _menu.spacing
+            currentIndex: _menu.currentIndex || 0
+        }        
 
         enter: Transition
         {
@@ -78,8 +98,6 @@ Item
                 duration: Kirigami.Units.shortDuration
             }
         }
-
-
 
         background: Rectangle
         {
