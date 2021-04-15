@@ -109,7 +109,7 @@ Container
                 anchors.fill: parent
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.title
-                checked: !control.overviewMode
+//                 checked: !control.overviewMode
                 onClicked: _tabsOverview.toggle()
                 onCloseClicked:
                 {
