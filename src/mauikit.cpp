@@ -146,7 +146,8 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/ContextualMenu.qml")), uri, 1, 3, "ContextualMenu");
     qmlRegisterType(componentUrl(QStringLiteral("labs/TabView.qml")), uri, 1, 3, "TabView");
     qmlRegisterType(componentUrl(QStringLiteral("CloseButton.qml")), uri, 1, 3, "CloseButton");
-
+    qmlRegisterType(componentUrl(QStringLiteral("labs/ColorsRow.qml")), uri, 1, 3, "ColorsRow");
+    
     /// NON UI CONTROLS
     qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created App");
     qmlRegisterType<SettingSection>(uri, 1, 2, "SettingSection");

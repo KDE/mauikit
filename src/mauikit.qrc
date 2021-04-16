@@ -79,6 +79,7 @@
         <file alias="labs/FlexListItem">controls/labs/FlexListItem.qml</file>
         <file alias="labs/Chip">controls/labs/Chip.qml</file>
         <file alias="labs/ContextualMenu">controls/labs/ContextualMenu.qml</file>
+        <file alias="labs/ColorsRow">controls/labs/ColorsRow.qml</file>
         <file alias="TabView">controls/labs/TabView.qml</file>
         <file alias="CloseButton">controls/CloseButton.qml</file>
     </qresource>
