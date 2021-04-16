@@ -15,7 +15,7 @@ Container
     spacing: 0
     
     property alias holder : _holder
-    property bool mobile : true
+    property bool mobile : Kirigami.Settings.isMobile
 
     readonly property bool overviewMode : _tabsOverview.checked
     
