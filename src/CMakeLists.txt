@@ -178,13 +178,13 @@ target_link_libraries(MauiKit
     Qt5::Sql
     Qt5::Gui
     KF5::I18n
+    KF5::CoreAddons
 
     PRIVATE
     Qt5::Qml
     Qt5::Quick
     Qt5::QuickControls2
     Qt5::Svg
-    KF5::CoreAddons
 
     )
 
