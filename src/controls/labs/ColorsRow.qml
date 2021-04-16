@@ -12,12 +12,12 @@ Row
     id: control
     
     default property var colors : []
-        property string defaultColor : Kirigami.Theme.backgroundColor 
-        property string currentColor 
-        
-        spacing: Maui.Style.space.medium
-        
-        signal colorPicked (string color)
+    property string defaultColor : Kirigami.Theme.backgroundColor
+    property string currentColor
+
+    spacing: Maui.Style.space.medium
+
+    signal colorPicked (string color)
     
     Repeater
     {
@@ -34,7 +34,7 @@ Row
             {
                 anchors.fill: parent
                 radius: height/2
-                color: modelData             
+                color: modelData
                 
                 Kirigami.Icon
                 {
@@ -58,18 +58,23 @@ Row
                     }
                 }
             }
-        }    
+        }
     }
     
-    ToolButton
+    Item
     {
-        flat: true
         implicitHeight: Maui.Style.iconSizes.medium
         implicitWidth: implicitHeight
-        icon.name: "edit-clear"
-        onClicked: 
+
+        ToolButton
         {
-            control.colorPicked(control.defaultColor)
+            flat: true
+            anchors.centerIn: parent
+            icon.name: "edit-clear"
+            onClicked:
+            {
+                control.colorPicked(control.defaultColor)
+            }
         }
     }
 }

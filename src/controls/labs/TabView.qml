@@ -15,12 +15,13 @@ Container
     spacing: 0
     
     property alias holder : _holder
-    property bool mobile : Kirigami.Settings.isMobile
+    property bool mobile : true
 
     readonly property bool overviewMode : _tabsOverview.checked
     
     signal newTabClicked()
     signal closeTabClicked(int index)
+
 
     contentItem: ColumnLayout
     {
@@ -103,6 +104,29 @@ Container
             visible: control.count > 1 && mobile && !control.overviewMode
             showNewTabButton: false
             position: ToolBar.Header
+
+            Maui.ContextualMenu
+            {
+                id: _overViewMenu
+
+                MenuItem
+                {
+                    text: i18n("Open")
+                    onTriggered:
+                    {
+                        _tabsOverview.checked = false
+                    }
+                }
+
+                MenuItem
+                {
+                    text: i18n("Close")
+                    onTriggered:
+                    {
+                        control.closeTabClicked(control.currentIndex)
+                    }
+                }
+            }
             
             Maui.TabButton
             {
@@ -205,29 +229,6 @@ Container
                         {
                             anchors.fill: parent
                             anchors.margins: Maui.Style.space.small
-
-                            Maui.ContextualMenu
-                            {
-                                id: _overViewMenu
-
-                                MenuItem
-                                {
-                                    text: i18n("Open")
-                                    onTriggered:
-                                    {
-                                        _tabsOverview.checked = false
-                                    }
-                                }
-
-                                MenuItem
-                                {
-                                    text: i18n("Close")
-                                    onTriggered:
-                                    {
-                                        control.closeTabClicked(control.currentIndex)
-                                    }
-                                }
-                            }
                             
                             onRightClicked:
                             {

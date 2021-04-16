@@ -382,20 +382,6 @@ QVariantMap MAUIAndroid::createVariantMap(jobject data)
     return res;
 }
 
-QStringList MAUIAndroid::defaultPaths()
-{
-    QStringList paths;
-
-    paths.append(PATHS::HomePath);
-    paths.append(PATHS::DocumentsPath);
-    paths.append(PATHS::MusicPath);
-    paths.append(PATHS::VideosPath);
-    paths.append(PATHS::PicturesPath);
-    paths.append(PATHS::DownloadsPath);
-
-    return paths;
-}
-
 bool MAUIAndroid::checkRunTimePermissions(const QStringList &permissions)
 {
     qDebug() << "CHECKIGN PERMISSSIONS";
