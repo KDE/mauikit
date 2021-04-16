@@ -104,6 +104,10 @@ if (ANDROID)
         platforms/android/mauiandroid.cpp
     )
 
+    set(mauikit_PLATFORM_HDRS
+        platforms/android/mauiandroid.h
+        )
+
     kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX)
     #add_subdirectory(csd/libappletdecoration)
@@ -174,13 +178,14 @@ target_link_libraries(MauiKit
     Qt5::Sql
     Qt5::Gui
     KF5::I18n
-    KF5::CoreAddons    
 
     PRIVATE
     Qt5::Qml
     Qt5::Quick
     Qt5::QuickControls2
     Qt5::Svg
+    KF5::CoreAddons
+
     )
 
 if(IS_APPIMAGE_PACKAGE)

@@ -115,13 +115,7 @@ public slots:
      * @brief openUrl
      * @param url
      */
-    void openUrl(const QUrl &url) override final;
-
-    /**
-     * @brief defaultPaths
-     * @return
-     */
-    static QStringList defaultPaths();
+    static void openUrl(const QUrl &url);
 
     /**
      * @brief homePath
@@ -153,14 +147,14 @@ signals:
     void folderPicked(QString path);
 };
 
-namespace PATHS
-{
-const QString HomePath = MAUIAndroid::homePath();
-const QString PicturesPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_PICTURES", "Ljava/lang/String;").toString();
-const QString DownloadsPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOWNLOADS", "Ljava/lang/String;").toString();
-const QString DocumentsPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOCUMENTS", "Ljava/lang/String;").toString();
-const QString MusicPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MUSIC", "Ljava/lang/String;").toString();
-const QString VideosPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MOVIES", "Ljava/lang/String;").toString();
-}
+//namespace PATHS
+//{
+//const QString HomePath = MAUIAndroid::homePath();
+//const QString PicturesPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_PICTURES", "Ljava/lang/String;").toString();
+//const QString DownloadsPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOWNLOADS", "Ljava/lang/String;").toString();
+//const QString DocumentsPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOCUMENTS", "Ljava/lang/String;").toString();
+//const QString MusicPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MUSIC", "Ljava/lang/String;").toString();
+//const QString VideosPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MOVIES", "Ljava/lang/String;").toString();
+//}
 
 #endif // ANDROID_H
