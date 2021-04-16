@@ -92,3 +92,4 @@ Chip 1.3 labs/Chip.qml
 ContextualMenu 1.3 labs/ContextualMenu.qml
 TabView 1.3 labs/TabView.qml
 CloseButton 1.3 CloseButton.qml
+ColorsRow 1.3 labs/ColorsRow.qml
