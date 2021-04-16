@@ -6,7 +6,7 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.10
 import org.kde.kirigami 2.13 as Kirigami
 import QtQuick.Controls 2.15
-
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Window 2.15
 import QtGraphicalEffects 1.0
@@ -15,17 +15,18 @@ Item
 {
     id: control
     //     visible: _loader.item ? _loader.item.visible : false
-    
+
     default property alias contentData: _menu.contentData
-<<<<<<< HEAD
     visible : _menu.visible
 
     property bool responsive: Kirigami.Settings.isMobile
 
-    Menu
+    signal opened()
+    signal closed()
+
+    T.Menu
     {
         id: _menu
-        spacing: control.responsive ?  Maui.Style.space.medium : 0
 
         parent: control.responsive ?  window() : undefined
 
@@ -35,124 +36,48 @@ Item
         width: control.responsive ? window().width :  Math.max(250,
                                                                contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
 
-        height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big) :  Math.max(background ? background.implicitHeight : 0,
-                                                                                                                       contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
+        height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
 
         modal: control.responsive
+
+        spacing: control.responsive ?  Maui.Style.space.medium : (Maui.Handy.isTouch ? Maui.Style.space.small : 0)
+
         margins: 0
-        //             spacing: Maui.Style.space.medium
+
+        padding: 1
+        topPadding: Maui.Style.space.medium
+        bottomPadding: Maui.Style.space.medium
 
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-        topPadding: control.responsive ? Maui.Style.space.medium : 0
+        onOpened: control.opened()
+        onClosed: control.closed()
+
+
+        contentItem: Maui.ListBrowser
+        {
+            id: _listView
+
+            implicitWidth: {
+                var maxWidth = 0;
+                for (var i = 0; i < contentItem.children.length; ++i) {
+                    maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
+                }
+                return maxWidth;
+            }
+
+            implicitHeight: contentHeight
+            margins: _menu.margins
+            model: _menu.contentModel
+            spacing: _menu.spacing
+            currentIndex: _menu.currentIndex || 0
+        }
 
         enter: Transition
-=======
-        visible : _menu.visible
-        
-        property bool responsive: false
-        
-        signal opened()
-        signal closed()
-        
-        Menu
-        {
-            id: _menu
-            onOpened: control.opened()
-            onClosed: control.closed()
-            
-            spacing: control.responsive ?  Maui.Style.space.medium : 0
-            
-            parent: control.responsive ?  window() : undefined
-            
-            x: control.responsive ? 0 : 0
-            y: control.responsive ? window().height - height : 0
-            
-            width: control.responsive ? window().width :  Math.max(250,
-                                                                   contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
-            
-            height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big) :  Math.max(background ? background.implicitHeight : 0,
-                                                                                                                           contentItem ? contentItem.implicitHeight : 0) + topPadding + bottomPadding
-                                                                                                                           
-                                                                                                                           modal: control.responsive
-                                                                                                                           margins: 0
-                                                                                                                           //             spacing: Maui.Style.space.medium
-                                                                                                                           
-                                                                                                                           closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-                                                                                                                           
-                                                                                                                           topPadding: control.responsive ? Maui.Style.space.medium : 0
-                                                                                                                           
-                                                                                                                           enter: Transition
-                                                                                                                           {
-                                                                                                                               NumberAnimation
-                                                                                                                               {
-                                                                                                                                   property: control.responsive ? "y" : undefined
-                                                                                                                                   from: window().height
-                                                                                                                                   to: window().height - _menu.height
-                                                                                                                                   easing.type: Easing.InOutQuad
-                                                                                                                                   duration: Kirigami.Units.shortDuration
-                                                                                                                               }
-                                                                                                                           }
-                                                                                                                           
-                                                                                                                           exit: Transition
-                                                                                                                           {
-                                                                                                                               enabled: control.responsive
-                                                                                                                               
-                                                                                                                               NumberAnimation
-                                                                                                                               {
-                                                                                                                                   property: control.responsive ? "y" : undefined
-                                                                                                                                   from: _menu.y
-                                                                                                                                   to: window().height
-                                                                                                                                   easing.type: Easing.InOutQuad
-                                                                                                                                   duration: Kirigami.Units.shortDuration
-                                                                                                                               }
-                                                                                                                           }
-                                                                                                                           
-                                                                                                                           background: Rectangle
-                                                                                                                           {
-                                                                                                                               implicitWidth: Kirigami.Units.gridUnit * 8
-                                                                                                                               color: Kirigami.Theme.backgroundColor
-                                                                                                                               radius: control.responsive ? 0 : Maui.Style.radiusV
-                                                                                                                               border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
-                                                                                                                               
-                                                                                                                               Rectangle
-                                                                                                                               {
-                                                                                                                                   anchors.fill: parent
-                                                                                                                                   radius: Maui.Style.radiusV
-                                                                                                                                   color: "transparent"
-                                                                                                                                   border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
-                                                                                                                                   opacity: 0.8
-                                                                                                                                   
-                                                                                                                                   Rectangle
-                                                                                                                                   {
-                                                                                                                                       anchors.fill: parent
-                                                                                                                                       anchors.margins: 1
-                                                                                                                                       color: "transparent"
-                                                                                                                                       radius: parent.radius - 0.5
-                                                                                                                                       border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                                                                                                                                       opacity: 0.8
-                                                                                                                                   }
-                                                                                                                                   
-                                                                                                                               }
-                                                                                                                               
-                                                                                                                               Maui.Separator
-                                                                                                                               {
-                                                                                                                                   visible: control.responsive
-                                                                                                                                   anchors.top: parent.top
-                                                                                                                                   anchors.left: parent.left
-                                                                                                                                   anchors.right: parent.right
-                                                                                                                                   edge: Qt.TopEdge
-                                                                                                                               }
-                                                                                                                               
-                                                                                                                               
-                                                                                                                           }
-        }
-        function open(x, y, parent)
->>>>>>> 5623bef (expose contextualmenu opened and closed signals)
         {
             NumberAnimation
             {
-                property: control.responsive ? "y" : undefined
+                property: control.responsive ? "y" : ""
                 from: window().height
                 to: window().height - _menu.height
                 easing.type: Easing.InOutQuad
@@ -166,7 +91,7 @@ Item
 
             NumberAnimation
             {
-                property: control.responsive ? "y" : undefined
+                property: control.responsive ? "y" : ""
                 from: _menu.y
                 to: window().height
                 easing.type: Easing.InOutQuad
@@ -179,15 +104,15 @@ Item
             implicitWidth: Kirigami.Units.gridUnit * 8
             color: Kirigami.Theme.backgroundColor
             radius: control.responsive ? 0 : Maui.Style.radiusV
-            border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
 
             Rectangle
             {
+                visible: !control.responsive
                 anchors.fill: parent
                 radius: Maui.Style.radiusV
                 color: "transparent"
                 border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
-                opacity: 0.8
+                opacity: 0.6
 
                 Rectangle
                 {
@@ -196,7 +121,7 @@ Item
                     color: "transparent"
                     radius: parent.radius - 0.5
                     border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                    opacity: 0.8
+                    opacity: 0.7
                 }
 
             }
@@ -209,9 +134,10 @@ Item
                 anchors.right: parent.right
                 edge: Qt.TopEdge
             }
-
         }
+
     }
+
     function open(x, y, parent)
     {
         if (control.responsive)
@@ -238,6 +164,5 @@ Item
     {
         _menu.addItem(item)
     }
-
 }
 
