@@ -56,7 +56,7 @@ T.MenuItem
     Layout.fillWidth: true
     padding: Maui.Style.space.small
     verticalPadding: Maui.Style.space.small
-    spacing: Maui.Style.space.small
+    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.medium :  Maui.Style.space.small
 
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
@@ -104,7 +104,7 @@ T.MenuItem
     background: Rectangle
     {
         implicitWidth: 200
-        implicitHeight: control.visible ? Maui.Style.rowHeightAlt : 0
+        implicitHeight: control.visible ? (Kirigami.Settings.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) : 0
         radius: Maui.Style.radiusV
 
         anchors
