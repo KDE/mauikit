@@ -52,5 +52,6 @@ T.MenuSeparator
     contentItem: Maui.Separator
     {
         edge: Qt.BottomEdge
+        opacity: 0.7
     }
 }

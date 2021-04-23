@@ -102,6 +102,7 @@ if (ANDROID)
 
     set(mauikit_PLATFORM_SRCS
         platforms/android/mauiandroid.cpp
+        platforms/android/qtquickcontrols2.conf
     )
 
     set(mauikit_PLATFORM_HDRS
@@ -110,7 +111,6 @@ if (ANDROID)
 
     kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX)
-    #add_subdirectory(csd/libappletdecoration)
 
     set(mauikit_PLATFORM_SRCS
         platforms/linux/mauilinux.cpp

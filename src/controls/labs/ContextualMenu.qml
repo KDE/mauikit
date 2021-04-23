@@ -4,17 +4,19 @@
 
 import QtQuick 2.10
 import QtQuick.Layouts 1.10
-import org.kde.kirigami 2.13 as Kirigami
 import QtQuick.Controls 2.15
+
 import QtQuick.Templates 2.15 as T
-import org.mauikit.controls 1.3 as Maui
+
 import QtQuick.Window 2.15
 import QtGraphicalEffects 1.0
+
+import org.kde.kirigami 2.13 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 Item
 {
     id: control
-    //     visible: _loader.item ? _loader.item.visible : false
 
     default property alias contentData: _menu.contentData
     visible : _menu.visible
@@ -33,10 +35,9 @@ Item
         x: control.responsive ? 0 : 0
         y: control.responsive ? window().height - height : 0
 
-        width: control.responsive ? window().width :  Math.max(250,
-                                                               contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
+        width: control.responsive ? window().width :  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
 
-        height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.big) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
+        height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.huge) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
 
         modal: control.responsive
 
@@ -45,7 +46,7 @@ Item
         margins: 0
 
         padding: 1
-        topPadding: Maui.Style.space.medium
+        topPadding: Maui.Style.space.big
         bottomPadding: Maui.Style.space.medium
 
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
@@ -63,7 +64,7 @@ Item
                 for (var i = 0; i < contentItem.children.length; ++i) {
                     maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
                 }
-                return maxWidth;
+                return Math.min(250, maxWidth);
             }
 
             implicitHeight: contentHeight
@@ -73,31 +74,33 @@ Item
             currentIndex: _menu.currentIndex || 0
         }
 
-        enter: Transition
-        {
-            NumberAnimation
-            {
-                property: control.responsive ? "y" : ""
-                from: window().height
-                to: window().height - _menu.height
-                easing.type: Easing.InOutQuad
-                duration: Kirigami.Units.shortDuration
-            }
-        }
+//        enter: Transition
+//        {
+//            enabled: control.responsive
 
-        exit: Transition
-        {
-            enabled: control.responsive
+//            NumberAnimation
+//            {
+//                property: control.responsive ? "y" : ""
+//                from: window().height
+//                to: window().height - _menu.height
+//                easing.type: Easing.InOutQuad
+//                duration: Kirigami.Units.shortDuration
+//            }
+//        }
 
-            NumberAnimation
-            {
-                property: control.responsive ? "y" : ""
-                from: _menu.y
-                to: window().height
-                easing.type: Easing.InOutQuad
-                duration: Kirigami.Units.shortDuration
-            }
-        }
+//        exit: Transition
+//        {
+//            enabled: control.responsive
+
+//            NumberAnimation
+//            {
+//                property: control.responsive ? "y" : ""
+//                from: _menu.y
+//                to: window().height
+//                easing.type: Easing.InOutQuad
+//                duration: Kirigami.Units.shortDuration
+//            }
+//        }
 
         background: Rectangle
         {
