@@ -112,7 +112,7 @@ Item
         height: parent.height
         width: control.strech ? parent.width : undefined
         // 		width: Math.min(implicitWidth, parent.width)
-        spacing: Maui.Style.space.medium
+        spacing: Maui.Style.space.big
         
         Repeater
         {
