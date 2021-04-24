@@ -19,6 +19,8 @@
 #include "mauiaccounts.h"
 #include "accountsdb.h"
 
+MauiAccounts *MauiAccounts::m_instance = nullptr;
+
 MauiAccounts::MauiAccounts()
     : MauiList(nullptr)
     , db(new AccountsDB(nullptr))

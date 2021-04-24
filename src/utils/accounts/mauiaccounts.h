@@ -43,8 +43,11 @@ class MAUIKIT_EXPORT MauiAccounts : public MauiList
 public:
     static MauiAccounts *instance()
     {
-        static MauiAccounts accounts;
-        return &accounts;
+        if (m_instance)
+            return m_instance;
+
+        m_instance = new MauiAccounts;
+        return m_instance;
     }
 
     MauiAccounts(const MauiAccounts &) = delete;
@@ -124,6 +127,8 @@ public slots:
 private:
     MauiAccounts();
     ~MauiAccounts();
+
+    static MauiAccounts *m_instance;
 
     AccountsDB *db;
     FMH::MODEL_LIST m_data;

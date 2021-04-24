@@ -46,7 +46,7 @@ Item
         margins: 0
 
         padding: 1
-        topPadding: Maui.Style.space.big
+        topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
         bottomPadding: Maui.Style.space.medium
 
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside

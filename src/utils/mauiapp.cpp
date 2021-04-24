@@ -69,6 +69,8 @@ MauiApp::MauiApp()
 #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
     setDefaultMauiStyle();
 #endif
+
+//    qputenv("QT_QUICK_CONTROLS_CONF",  "://qtquickcontrols2.conf");
 }
 
 QString MauiApp::getMauikitVersion()
