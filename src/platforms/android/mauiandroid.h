@@ -92,24 +92,10 @@ public slots:
     void shareText(const QString &text) override final;
 
     /**
-     * @brief sendSMS
-     * @param tel
-     * @param subject
-     * @param message
-     */
-    static void sendSMS(const QString &tel, const QString &subject, const QString &message);
-
-    /**
      * @brief shareLink
      * @param link
      */
     static void shareLink(const QString &link);
-
-    /**
-     * @brief shareContact
-     * @param id
-     */
-    static void shareContact(const QString &id);
 
     /**
      * @brief openUrl
