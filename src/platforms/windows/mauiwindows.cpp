@@ -14,11 +14,6 @@ void MAUIWindows::shareText(const QString &urls)
 {
 }
 
-void MAUIWindows::openUrl(const QUrl &url)
-{
-    QDesktopServices::openUrl(url);
-}
-
 bool MAUIWindows::hasKeyboard()
 {
     return true;

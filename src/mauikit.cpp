@@ -41,7 +41,7 @@
 
 #include "platform.h"
 
-#if defined Q_OS_MACOS || defined Q_OS_WIN
+#if defined Q_OS_MACOS
 #include <KF5/KI18n/KLocalizedContext>
 #include <KF5/KI18n/KLocalizedString>
 #else

@@ -30,8 +30,6 @@
 
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 #include <KAboutData>
-#elif defined Q_OS_WIN
-#include <KF5/KCoreAddons/KAboutData>
 #else
 #include <KCoreAddons/KAboutData>
 #endif
