@@ -59,6 +59,8 @@ QUrl MauiKit::componentUrl(const QString &fileName) const
 void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
 {
     Q_UNUSED(uri);
+    this->initResources();
+
     KLocalizedString::setApplicationDomain("mauikit");
     engine->rootContext()->setContextObject(new KLocalizedContext(engine));
 }
@@ -66,8 +68,6 @@ void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
 void MauiKit::registerTypes(const char *uri)
 {
 //     Q_ASSERT(uri == QLatin1String(MAUIKIT_URI));
-
-    this->initResources();
 
     qmlRegisterSingletonType(componentUrl(QStringLiteral("Style.qml")), uri, 1, 0, "Style");
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
@@ -224,6 +224,7 @@ void MauiKit::initResources()
 #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
     Q_INIT_RESOURCE(mauikit);
     Q_INIT_RESOURCE(style);
+    Q_INIT_RESOURCE(icons);
 #endif
 }
 
