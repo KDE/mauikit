@@ -25,7 +25,7 @@ Maui.Dialog
 
     acceptButton.text: i18n("Accept")
     rejectButton.text: i18n("Cancel")
-    closeButton.visible: false
+    closeButtonVisible: false
     
     onAccepted: done()
     onRejected:

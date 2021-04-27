@@ -152,11 +152,11 @@ Maui.Popup
     property alias headBar: _page.headBar
 
     /*!
-      \qmlproperty MouseArea ApplicationWindow::closeButton
+      \qmlproperty bool closeButton
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
-    property alias closeButton: _closeButton
+    property bool closeButtonVisible: control.persistent
 
     /*!
       \qmlproperty Flickable Dialog::closeButton
@@ -226,14 +226,13 @@ Maui.Popup
             headerBackground.color: "transparent"
             headBar.farLeftContent: [Maui.CloseButton
                 {
-                    id: _closeButton
-                    visible: control.persistent && !control.filling
+                    visible: control.persistent && !control.filling && closeButtonVisible
                     onClicked: close()
                 },
 
                 ToolButton
                 {
-                    visible: control.filling && control.persistent
+                    visible: control.filling && control.persistent && closeButtonVisible
                     icon.name: "go-previous"
                     onClicked: control.close()
                 }

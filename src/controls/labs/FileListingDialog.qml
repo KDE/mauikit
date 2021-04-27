@@ -39,7 +39,7 @@ Maui.Dialog
     readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
     
     maxWidth: 400
-     closeButton.visible: false 
+    closeButtonVisible: false
     page.margins: Maui.Style.space.big
     
     spacing: Maui.Style.space.medium
