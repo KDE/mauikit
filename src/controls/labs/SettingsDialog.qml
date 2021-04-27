@@ -14,7 +14,7 @@ Maui.Dialog
     maxHeight: implicitHeight
     maxWidth: 500
     defaultButtons: false
-
+    hint: 1
     page.title: i18n("Settings")
     headBar.visible: true
 

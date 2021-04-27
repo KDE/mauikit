@@ -24,7 +24,7 @@ Rectangle
 {
     id: control
     implicitWidth: _container.implicitWidth
-    implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.3))
+    implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.4))
     opacity: enabled ? 1 : 0.5
     
     Kirigami.Theme.colorSet: Kirigami.Theme.View
@@ -69,7 +69,7 @@ Rectangle
     /**
      * currentAction : Action
      */
-    property Action currentAction : control.autoExclusive ? actions[0] : null
+    property Action currentAction : control.autoExclusive ? actions[Math.max(0, control.currentIndex)] : null
     
     /**
      * currentIndex : int
@@ -258,7 +258,8 @@ Rectangle
                 {
                     _menu.close()
                 }
-            }             
+            }    
+            
             function buttonAction()
             {
                 if(control.canCyclic)
@@ -344,8 +345,7 @@ Rectangle
             {
                 id: _defaultButtonLayout
                 height: parent.height
-                spacing: 0
-                
+                spacing: 0                
                 
                 Private.BasicToolButton
                 {

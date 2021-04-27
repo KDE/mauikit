@@ -41,19 +41,23 @@ Popup
     
     parent: ApplicationWindow.overlay
 
-    width: Math.round(Math.max(Math.min(parent.width * widthHint, maxWidth), Math.min(maxWidth, parent.width * widthHint)))
-    height: Math.round(Math.max(Math.min(parent.height * heightHint, maxHeight), Math.min(maxHeight, parent.height * heightHint)))
+    width: filling ? parent.width : mWidth
+    height: filling ? parent.height : mHeight
 
-    x: Math.round( parent.width / 2 - width / 2 )
-    y: Math.round( positionY() )
+    readonly property int mWidth:  Math.round(Math.min(control.parent.width * widthHint, maxWidth))
+    readonly property int mHeight: Math.round(Math.min(control.parent.height * heightHint, maxHeight))
 
-    modal: control.width !== control.parent.width && control.height !== control.parent.height
+    x: filling ? 0 : Math.round( parent.width / 2 - width / 2 )
+    y: filling ? 0 : Math.round( positionY() )
 
-    margins: 1
-    padding: 1
-        clip: true
+    modal: !filling
 
-   topPadding: control.padding
+    margins: filling ? 0 : 1
+    padding: filling ? 0 : 1
+
+    clip: true
+
+    topPadding: control.padding
     bottomPadding: control.padding
     leftPadding: control.padding
     rightPadding: control.padding
@@ -62,9 +66,10 @@ Popup
     leftMargin: control.margins
     topMargin: control.margins
     bottomMargin: control.margins
-      
-    contentItem: null 
+
+    contentItem: null
     
+    property bool filling : false
     /**
       * content : Item.data
       */
@@ -73,12 +78,12 @@ Popup
     /**
       * maxWidth : int
       */
-    property int maxWidth : parent.width
+    property int maxWidth : 700
 
     /**
       * maxHeight : int
       */
-    property int maxHeight : parent.height
+    property int maxHeight : 400
 
     /**
       * hint : double
@@ -104,6 +109,7 @@ Popup
     {
         id: _content
         anchors.fill: parent
+
         layer.enabled: true
         layer.effect: OpacityMask
         {
@@ -124,6 +130,7 @@ Popup
 
     Rectangle
     {
+        visible: !control.filling
         anchors.fill: parent
         color: "transparent"
         radius: Maui.Style.radiusV - 0.5
@@ -131,13 +138,13 @@ Popup
         opacity: 0.6
     }
 
-    background: Rectangle 
-    {        
+    background: Rectangle
+    {
         color: Kirigami.Theme.backgroundColor
-        opacity: 0.7
-        border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-        radius: Maui.Style.radiusV       
-    }    
+        opacity: control.filling ? 1 : 0.7
+        border.color: control.filling ? "transparent" : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+        radius: control.filling ? 0 : Maui.Style.radiusV
+    }
 
     /**
       *

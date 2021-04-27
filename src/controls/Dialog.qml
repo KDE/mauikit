@@ -158,36 +158,36 @@ Maui.Popup
     */
     property alias closeButton: _closeButton
 
-      /*!
+    /*!
       \qmlproperty Flickable Dialog::closeButton
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property alias flickable : _flickable
     
-      /*!
+    /*!
       \qmlproperty ScrollView Dialog::scrollView
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property alias scrollView : _scrollView
     
-      /*!
+    /*!
       \qmlproperty int ScrollBar::policy
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property int verticalScrollBarPolicy: ScrollBar.AsNeeded
     
-   
-      /*!
+
+    /*!
       \qmlproperty int ScrollBar::policy
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
     
-     /*!
+    /*!
       * Triggered when the accepted button is clicked.
     */
     signal accepted()
@@ -202,8 +202,11 @@ Maui.Popup
     maxWidth: 300
     maxHeight: implicitHeight
     implicitHeight: _layout.implicitHeight
-    widthHint: 0.9
+
+    hint: 0.9
     heightHint: 0.9
+
+    filling: persistent && mWidth === control.parent.width
 
     ColumnLayout
     {
@@ -221,13 +224,20 @@ Maui.Popup
             padding: 0
             headBar.visible: control.persistent
             headerBackground.color: "transparent"
-            headBar.farLeftContent: Maui.CloseButton
-            {
-                id: _closeButton
-                visible: control.persistent
-              
-                onClicked: close()                
-            }
+            headBar.farLeftContent: [Maui.CloseButton
+                {
+                    id: _closeButton
+                    visible: control.persistent && !control.filling
+                    onClicked: close()
+                },
+
+                ToolButton
+                {
+                    visible: control.filling && control.persistent
+                    icon.name: "go-previous"
+                    onClicked: control.close()
+                }
+            ]
 
             ColumnLayout
             {
@@ -250,7 +260,7 @@ Maui.Popup
                     id: _flickable
                     contentHeight: _pageContent.implicitHeight
                     boundsBehavior: Flickable.StopAtBounds
-                    boundsMovement :Flickable.StopAtBounds 
+                    boundsMovement :Flickable.StopAtBounds
                     
                     clip: true
 
@@ -284,7 +294,7 @@ Maui.Popup
                                 focus: visible
                                 onAccepted: control.accepted()
                             }
-                        }                       
+                        }
 
                         Label
                         {
@@ -296,11 +306,11 @@ Maui.Popup
                             verticalAlignment: Qt.AlignVCenter
 
                             color: switch(level)
-                            {
-                                case 0: return Kirigami.Theme.positiveTextColor
-                                case 1: return Kirigami.Theme.neutralTextColor
-                                case 2: return Kirigami.Theme.negativeTextColor
-                            }
+                                   {
+                                   case 0: return Kirigami.Theme.positiveTextColor
+                                   case 1: return Kirigami.Theme.neutralTextColor
+                                   case 2: return Kirigami.Theme.negativeTextColor
+                                   }
 
                             SequentialAnimation on x
                             {
@@ -443,7 +453,7 @@ Maui.Popup
         }
     }
     
-    onOpened: 
+    onOpened:
     {
         if(control.entryField)
             control.textEntry.forceActiveFocus()
