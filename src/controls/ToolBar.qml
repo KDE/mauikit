@@ -290,10 +290,11 @@ ToolBar
                             height: mainFlickable.height
                             spacing: control.spacing
                             
-                            Row
+                            RowLayout
                             {
                                 id: leftRowContent
                                 spacing: control.spacing
+                                Layout.fillWidth: true
                                 Layout.preferredWidth: implicitWidth
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
@@ -327,10 +328,11 @@ ToolBar
                                 Layout.maximumWidth: visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
                             }
                             
-                            Row
+                            RowLayout
                             {
                                 id: rightRowContent
                                 spacing: control.spacing
+                                Layout.fillWidth: true
                                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                                 Layout.preferredWidth: implicitWidth
                                 Layout.maximumWidth: implicitWidth

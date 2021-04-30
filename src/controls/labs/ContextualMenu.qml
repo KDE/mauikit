@@ -35,7 +35,7 @@ Item
         x: control.responsive ? 0 : 0
         y: control.responsive ? window().height - height : 0
 
-        width: control.responsive ? window().width :  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
+        width: control.responsive ? window().width :  Math.min(window().width, Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
 
         height: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.huge) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
 
