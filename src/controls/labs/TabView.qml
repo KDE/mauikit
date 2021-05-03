@@ -137,7 +137,7 @@ Container
             {
                 anchors.fill: parent
                 closeButtonVisible: control.count > 1
-                text: control.currentItem.title
+                text: control.currentItem.Maui.TabViewInfo.tabTitle
 //                 checked: !control.overviewMode
                 onClicked: _tabsOverview.toggle()
                 onCloseClicked:
