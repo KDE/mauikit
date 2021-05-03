@@ -22,7 +22,10 @@
 #include <QDebug>
 
 #include "appsettings.h"
+
 #include "appview.h"
+#include "tabview.h"
+
 #include "handy.h"
 #include "mauiapp.h"
 #include "mauilist.h"
@@ -149,7 +152,9 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/ColorsRow.qml")), uri, 1, 3, "ColorsRow");
     
     /// NON UI CONTROLS
-    qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created App");
+    qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
+    qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
+
     qmlRegisterType<SettingSection>(uri, 1, 2, "SettingSection");
     //     qmlRegisterSingletonInstance<Platform>(uri, 1, 2, "Platform", Platform::instance());
     qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {

@@ -168,7 +168,7 @@ Maui.Page
         Layout.fillWidth: true
         placeholderText: i18n("Find...")
         horizontalAlignment: Qt.Left
-        onAccepted: ksession.find(text)
+        onAccepted: ksession.search(text)
     }
 
 // 			Keys.enabled: true
@@ -204,18 +204,16 @@ Maui.Page
             initialWorkingDirectory: "$HOME"
             onFinished: Qt.quit()
 
-            // 			onMatchFound:
-            // 			{
-            // 				console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
-            // 			}
-            // 			onNoMatchFound:
-            // 			{
-            // 				console.log("not found");
-            // 			}
-            function find(query)
-            {
-                ksession.search(query)
-            }
+            			onMatchFound:
+            			{
+            				console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
+            			}
+            			onNoMatchFound:
+            			{
+            				console.log("not found");
+            			}
+            			
+            
         }
 
         MouseArea

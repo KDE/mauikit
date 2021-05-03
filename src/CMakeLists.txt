@@ -45,6 +45,7 @@ set(mauikit_HDRS
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
     controls/libs/appview.h
+    controls/libs/tabview.h
     platforms/abstractplatform.h
     platforms/platform.h
     )

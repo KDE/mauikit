@@ -63,7 +63,12 @@ Container
                     implicitHeight: tabsBar.implicitHeight
                     implicitWidth: Math.max(parent.width / _repeater.count, 160)
                     checked: index === control.currentIndex
-                    text: control.contentModel.get(index).title
+                    text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                    
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: ( _tabButton.hovered )
+                    ToolTip.text: control.contentModel.get(index).Maui.TabViewInfo.tabToolTipText
                     
                     onClicked:
                     {
@@ -307,7 +312,7 @@ Container
                                         wrapMode: Text.WrapAnywhere
                                         horizontalAlignment: Qt.AlignHCenter
                                         verticalAlignment: Qt.AlignVCenter
-                                        text: control.contentModel.get(index).title || index
+                                        text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle || index
                                     }
                                 }
                                 

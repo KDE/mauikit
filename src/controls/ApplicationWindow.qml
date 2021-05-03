@@ -606,6 +606,7 @@ Window
         verticalAlignment: Qt.AlignTop
         defaultButtons: _notify.cb !== null
         rejectButton.visible: false
+        
         onAccepted:
         {
             if(_notify.cb)
@@ -639,10 +640,10 @@ Window
         stack: MouseArea
         {
             id: _mouseArea
-            Layout.fillHeight: true
+//             Layout.fillHeight: true
             Layout.fillWidth: true
             hoverEnabled: true
-            implicitHeight: _notifyTemplate.implicitHeight
+            implicitHeight: _notifyTemplate.implicitHeight + Maui.Style.space.huge
 
             Maui.ListItemTemplate
             {
