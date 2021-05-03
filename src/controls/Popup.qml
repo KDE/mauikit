@@ -43,6 +43,24 @@ Popup
 
     width: filling ? parent.width : mWidth
     height: filling ? parent.height : mHeight
+    
+    Behavior on width
+    {
+        NumberAnimation
+        {
+            duration: Kirigami.Units.shortDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
+    
+    Behavior on height
+    {
+        NumberAnimation
+        {
+            duration: Kirigami.Units.shortDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
 
     readonly property int mWidth:  Math.round(Math.min(control.parent.width * widthHint, maxWidth))
     readonly property int mHeight: Math.round(Math.min(control.parent.height * heightHint, maxHeight))
