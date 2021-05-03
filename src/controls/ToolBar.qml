@@ -290,7 +290,7 @@ ToolBar
                             height: mainFlickable.height
                             spacing: control.spacing
                             
-                            RowLayout
+                            Row
                             {
                                 id: leftRowContent
                                 spacing: control.spacing
@@ -328,7 +328,7 @@ ToolBar
                                 Layout.maximumWidth: visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
                             }
                             
-                            RowLayout
+                            Row
                             {
                                 id: rightRowContent
                                 spacing: control.spacing
