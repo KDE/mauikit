@@ -46,6 +46,8 @@ Popup
     
     Behavior on width
     {
+        enabled: control.hint === 1
+        
         NumberAnimation
         {
             duration: Kirigami.Units.shortDuration
@@ -55,6 +57,8 @@ Popup
     
     Behavior on height
     {
+        enabled: control.hint === 1
+        
         NumberAnimation
         {
             duration: Kirigami.Units.shortDuration
