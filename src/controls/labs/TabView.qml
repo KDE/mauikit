@@ -312,7 +312,8 @@ Container
                                         wrapMode: Text.WrapAnywhere
                                         horizontalAlignment: Qt.AlignHCenter
                                         verticalAlignment: Qt.AlignVCenter
-                                        text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle || index
+//                                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle || index
+                                        text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
                                     }
                                 }
                                 
