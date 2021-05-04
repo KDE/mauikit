@@ -59,7 +59,7 @@ T.MenuItem
     padding: Maui.Style.space.small
     verticalPadding: Maui.Style.space.small
 
-    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.medium :  Maui.Style.space.small
+    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
 
     icon.width: Kirigami.Settings.isMobile ?  Maui.Style.iconSizes.medium : Maui.Style.iconSizes.small
     icon.height: Kirigami.Settings.isMobile ?  Maui.Style.iconSizes.medium : Maui.Style.iconSizes.small
@@ -130,7 +130,10 @@ T.MenuItem
             }
         }
 
-        color: control.pressed || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : control.Kirigami.Theme.backgroundColor
+        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+
+        color: control.pressed || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)
+
         border.color: control.checked || control.down ? control.Kirigami.Theme.highlightColor : "transparent"
     }
 }

@@ -183,7 +183,7 @@ Item
         Item
         {
             id: _iconContainer
-            Layout.margins: 2
+            Layout.margins: 1
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: control.imageSource ? control.imageSizeHint : control.iconSizeHint
