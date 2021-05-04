@@ -45,12 +45,12 @@ Item
                 
             }
             
-//             for(var bl of Maui.App.lefttWindowControls)
-//             {               
-//                 var button = pluginButton.createObject(control.toolbar.farLeftLayout, {type: mapControl(bl)});
-//                 console.log("CREATING CSD BUTTONS", bl, pluginButton.errorString())
-//                 
-//             }
+            for(var bl of Maui.App.lefttWindowControls)
+            {               
+                var button = pluginButton.createObject(control.toolbar.farLeftLayout, {type: mapControl(bl)});
+                console.log("CREATING CSD BUTTONS", bl, pluginButton.errorString())
+                
+            }
         }
     
 

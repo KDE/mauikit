@@ -148,10 +148,10 @@ Rectangle
                     
                     width: img.status === Image.Ready ? Math.min(parent.width, img.paintedWidth) : parent.width
                     height:  img.status === Image.Ready ? Math.min(parent.height, img.paintedHeight) : parent.height
-                    border.color: control.highlighted ? Kirigami.Theme.highlightColor : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+                    border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
                     radius: control.maskRadius
                     
-                    border.width: control.highlighted ? 2 : 1
+                    border.width: 1
                     color: "transparent"
                     opacity: 0.8
                     

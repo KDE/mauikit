@@ -22,7 +22,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 import QtGraphicalEffects 1.0
 
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 /**
@@ -64,6 +64,11 @@ Item
       */
     property alias iconVisible : _iconContainer.visible
 
+    /**
+     * labelSizeHint : int
+     */
+    property int labelSizeHint : height * 0.4
+    
     /**
       * iconSizeHint : int
       */
@@ -160,8 +165,8 @@ Item
             iconSizeHint: control.iconSizeHint
             imageSizeHint: control.imageSizeHint
             
-            imageWidth: control.imageWidth
-            imageHeight: control.imageHeight
+            imageWidth: Math.max(control.imageWidth, width)
+            imageHeight: Math.max(control.imageHeight, height)
             
             fillMode: control.fillMode
             maskRadius: control.maskRadius
@@ -178,7 +183,9 @@ Item
         Item
         {
             id: _iconContainer
+            Layout.margins: 2
             Layout.fillWidth: true
+            Layout.fillHeight: true
             Layout.preferredHeight: control.imageSource ? control.imageSizeHint : control.iconSizeHint
 
             Loader
@@ -245,43 +252,93 @@ Item
             }
         }
 
-        Item
+        Kirigami.ShadowedRectangle
         {
             visible: control.labelsVisible && _label1.text
-            Layout.fillHeight: true
-            Layout.preferredHeight: Math.min(_label1.implicitHeight, height)
+//             Layout.fillHeight: true
+//Layout.preferredHeight:  control.isCurrentItem && _label1.implicitHeight > 48 ? Math.min(_label1.implicitHeight , control.height*0.8): 48
+Layout.preferredHeight: 48
             Layout.fillWidth: true
-
-            Rectangle
+            Layout.maximumHeight: Math.min(48, control.labelSizeHint)
+            Layout.minimumHeight: Math.min(_label1.implicitHeight, 48)
+            color: Kirigami.Theme.backgroundColor
+//             radius: Maui.Style.radiusV
+            
+            corners
             {
-                width: Math.min(_label1.implicitWidth + Maui.Style.space.big, parent.width)
-                height: Math.min(_label1.implicitHeight + Maui.Style.space.tiny, parent.height)
-                anchors.centerIn: parent
-                Behavior on color
-                {
-                    ColorAnimation
-                    {
-                        duration: Kirigami.Units.longDuration
-                    }
-                }
-
-                color: control.isCurrentItem || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
-
-                radius: Maui.Style.radiusV
-                border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : "transparent"
+                topLeftRadius: 0
+                topRightRadius: 0
+                bottomLeftRadius: Maui.Style.radiusV
+                bottomRightRadius: Maui.Style.radiusV
             }
+            Layout.margins: 2
+            //Rectangle
+            //{
+                //width: Math.min(_label1.implicitWidth + Maui.Style.space.big, parent.width)
+                //height: Math.min(_label1.implicitHeight + Maui.Style.space.tiny, parent.height)
+                //anchors.centerIn: parent
+                //Behavior on color
+                //{
+                    //ColorAnimation
+                    //{
+                        //duration: Kirigami.Units.longDuration
+                    //}
+                //}
+
+                //color: control.isCurrentItem || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
+
+                //radius: Maui.Style.radiusV
+                //border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : "transparent"
+            //}
 
             Label
             {
                 id: _label1
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
-                anchors.fill: parent
-                anchors.margins: Maui.Style.space.tiny
+//                 anchors.fill: parent
+//                 anchors.margins: Maui.Style.space.tiny
+width: parent.width
+height: parent.height
                 elide: Qt.ElideRight
                 wrapMode: Text.Wrap
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+            } 
+            
+            Rectangle
+            {
+                visible: (control.hovered ) && _label1.implicitHeight > _label1.height
+                height: Math.min(_label2.implicitHeight, control.height)
+                width: parent.width
+                color: Kirigami.Theme.backgroundColor
+                anchors.bottom: parent.bottom
+                radius: Maui.Style.radiusV
+                
+                Rectangle
+                {
+                    anchors.fill: parent
+                    color: control.isCurrentItem || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
+                    
+                    radius: Maui.Style.radiusV
+                    border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : "transparent"
+                }
+                
+                Label
+                {
+                    id: _label2
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    text: _label1.text
+                    width: parent.width
+                    height: implicitHeight
+                    elide: Qt.ElideRight
+                    wrapMode: Text.Wrap
+                    color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                }
+                
             }
         }
     }
+    
+   
 }

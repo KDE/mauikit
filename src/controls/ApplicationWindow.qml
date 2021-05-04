@@ -338,10 +338,10 @@ Window
         Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
         headerBackground.color: Maui.App.enableCSD ? Qt.darker(Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
 
-        //         Maui.WindowControls
-        //         {
-        //             toolbar: _page.headBar
-        //         }
+        Maui.WindowControls
+        {
+            //toolbar: _page.headBar
+        }
 
         headBar.leftContent: Maui.ToolButtonMenu
         {
