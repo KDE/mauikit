@@ -337,10 +337,23 @@ Window
         anchors.fill: parent
         Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
         headerBackground.color: Maui.App.enableCSD ? Qt.darker(Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
-
-        Maui.WindowControls
+        
+        headBar.farRightContent: Loader
         {
-            //toolbar: _page.headBar
+            active: Maui.App.enableCSD
+            sourceComponent: Maui.WindowControls
+            {
+                side: Qt.RightEdge
+            }
+        }
+        
+        headBar.farLeftContent: Loader
+        {
+            active: Maui.App.enableCSD
+            sourceComponent: Maui.WindowControls
+            {
+                side: Qt.LeftEdge
+            }
         }
 
         headBar.leftContent: Maui.ToolButtonMenu

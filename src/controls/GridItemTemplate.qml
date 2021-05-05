@@ -137,7 +137,7 @@ Item
     /**
       * imageBorder : bool
       */
-    property bool imageBorder: true
+    property bool imageBorder: false
 
      /**
       * iconComponent : Component

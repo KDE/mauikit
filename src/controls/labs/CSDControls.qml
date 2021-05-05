@@ -16,44 +16,42 @@ import org.kde.appletdecoration 0.1 as AppletDecoration
 Item
 {
     id: control
-
-
-    property Maui.ToolBar toolbar : window().headBar
     
-
+    implicitHeight: Maui.Style.iconSizes.medium
+    implicitWidth: _row.implicitWidth
+    
+    visible: model.length > 0
+    
+    enum Side {
+        Left,
+        Right
+    }
+    
+    required property int side 
+    
+    readonly property var model : control.side === Qt.LeftEdge ?  Maui.App.leftWindowControls :  Maui.App.rightWindowControls
+    
+    
     /**
-      *
-      */
+     * 
+     */
     signal buttonClicked(var type)
     
-    
-        Component.onCompleted:
+        
+    Row
+    {
+        id: _row
+        height: parent.height
+        spacing: Maui.Style.space.medium
+        
+        Repeater
         {
-            if(!Maui.App.enableCSD)
-            {
-                return
-            }
-            
-            console.log("CREATING CSD BUTTONS")
-            
-            for(var br of Maui.App.rightWindowControls)
-            {               
-                               
-                var button = pluginButton.createObject(control.toolbar.rightLayout, {type: mapControl(br)});
-                
-                console.log("CREATING CSD BUTTONS", br, pluginButton.errorString(), button.color)
-                
-            }
-            
-            for(var bl of Maui.App.lefttWindowControls)
-            {               
-                var button = pluginButton.createObject(control.toolbar.farLeftLayout, {type: mapControl(bl)});
-                console.log("CREATING CSD BUTTONS", bl, pluginButton.errorString())
-                
-            }
+            model: control.model
+            delegate: pluginButton
         }
+    }
     
-
+   
     Component
     {
         id: pluginButton
@@ -62,6 +60,7 @@ Item
         {
             width: 22
             height: 22
+            type:  mapControl(modelData)
             anchors.verticalCenter: parent.verticalCenter
             bridge: bridgeItem.bridge
             sharedDecoration: sharedDecorationItem
