@@ -14,4 +14,5 @@ Item
       */
     property var model : []
     property int side
+    visible: false
 }
