@@ -17,10 +17,10 @@ Item
 {
     id: control
     
-    implicitHeight: Maui.Style.iconSizes.medium
-    implicitWidth: _row.implicitWidth
+    implicitHeight: visible ? Maui.Style.iconSizes.medium : 0
+    implicitWidth: visible ? _row.implicitWidth : 0
     
-    visible: model.length > 0
+    visible: control.model.length > 0
     
     enum Side {
         Left,
