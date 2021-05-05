@@ -12,5 +12,6 @@ Item
     /**
       *
       */
-    property var order : []
+    property var model : []
+    property int side
 }
