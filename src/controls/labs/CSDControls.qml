@@ -13,19 +13,12 @@ import org.kde.appletdecoration 0.1 as AppletDecoration
   \since org.kde.mauikit.labs 1.0
   \inqmlmodule org.kde.mauikit.labs
 */
-Item
+Loader
 {
     id: control
     
-    implicitHeight: visible ? Maui.Style.iconSizes.medium : 0
-    implicitWidth: visible ? _row.implicitWidth : 0
-    
-    visible: control.model.length > 0
-    
-    enum Side {
-        Left,
-        Right
-    }
+    active: Maui.App.enableCSD 
+    visible: model.length
     
     required property int side 
     
@@ -38,7 +31,14 @@ Item
     signal buttonClicked(var type)
     
         
-    Row
+    sourceComponent: Item 
+    {
+        implicitHeight: visible ? Maui.Style.iconSizes.medium : 0
+        implicitWidth: visible ? _row.implicitWidth : 0
+        
+        visible: control.model.length > 0
+        
+        Row
     {
         id: _row
         height: parent.height
@@ -51,7 +51,7 @@ Item
         }
     }
     
-   
+    
     Component
     {
         id: pluginButton
@@ -76,29 +76,29 @@ Item
             onClicked: buttonClicked(type)            
         }
     }
-
+    
     Component
     {
         id: auroraeButton
         Item {}
-//         AppletDecoration.AuroraeButton
-//         {
-//             width: 22
-//             height: 22
-//
-//             isMaximized: Window.window.visibility === Window.Maximized
-//             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
-//
-//             //                 localX: x
-//             //                 localY: y
-//             isActive: Window.window.active
-//
-//             onClicked: performActiveWindowAction(buttonType)
-//
-//             buttonType: mapControl(modelData)
-//             auroraeTheme: auroraeThemeEngine
-//
-//         }
+        //         AppletDecoration.AuroraeButton
+        //         {
+        //             width: 22
+        //             height: 22
+        //
+        //             isMaximized: Window.window.visibility === Window.Maximized
+        //             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
+        //
+        //             //                 localX: x
+        //             //                 localY: y
+        //             isActive: Window.window.active
+        //
+        //             onClicked: performActiveWindowAction(buttonType)
+        //
+        //             buttonType: mapControl(modelData)
+        //             auroraeTheme: auroraeThemeEngine
+        //
+        //         }
     }
     
     AppletDecoration.WindowSystem
@@ -174,6 +174,10 @@ Item
         }
     }
     
+    
+    }
+    
+   
 
 
 }
