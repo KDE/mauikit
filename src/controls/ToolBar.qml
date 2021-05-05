@@ -199,11 +199,11 @@ ToolBar
             height: control.implicitHeight
             width: control.width
             
-            Label{
-                z: parent.z + 9999
-                color: "orange"
-                text: farLeftRowContent.implicitWidth + " / " + farRightRowContent.implicitWidth + " / " + _scrollView.width
-            }
+//             Label{
+//                 z: parent.z + 9999
+//                 color: "orange"
+//                 text: farLeftRowContent.implicitWidth + " / " + farRightRowContent.implicitWidth + " / " + _scrollView.width
+//             }
              states: [State
             {
                 when: control.position === ToolBar.Header
@@ -302,13 +302,13 @@ ToolBar
                             }
                             
                             
-                            //Item //helper to force center middle content
-                            //{
-                                //visible: control.forceCenterMiddleContent
-                                //Layout.minimumWidth: 0
-                                //Layout.fillWidth: visible
-                                //Layout.maximumWidth: visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
-                            //}
+                            Item //helper to force center middle content
+                            {
+                                visible: control.forceCenterMiddleContent
+                                Layout.minimumWidth: 0
+//                                 Layout.fillWidth: visible
+                                Layout.maximumWidth: visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
+                            }
                             
                             RowLayout
                             {
@@ -320,13 +320,13 @@ ToolBar
                                 spacing: visibleChildren.length > 1 ? control.spacing : 0
                             }
                             
-                            //Item //helper to force center middle content
-                            //{
-                                //visible: control.forceCenterMiddleContent
-                                //Layout.minimumWidth: 0
-                                //Layout.fillWidth: visible
-                                //Layout.maximumWidth: visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
-                            //}
+                            Item //helper to force center middle content
+                            {
+                                visible: control.forceCenterMiddleContent
+                                Layout.minimumWidth: 0
+//                                 Layout.fillWidth: visible
+                                Layout.maximumWidth: visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
+                            }
                             
                             Row
                             {
