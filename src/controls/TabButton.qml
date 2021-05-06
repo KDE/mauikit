@@ -25,6 +25,7 @@ TabButton
     property alias content: _content.data
 
     property alias closeButtonVisible: _closeButton.visible
+    property bool centerLabel : true
 
     /**
          * closeClicked :
@@ -87,7 +88,7 @@ TabButton
         {
             Layout.fillHeight: true
             implicitWidth: height
-            visible: _closeButton.visible
+            visible: _closeButton.visible && control.centerLabel
         }
     }
 }

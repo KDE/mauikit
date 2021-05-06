@@ -138,22 +138,33 @@ Container
                 anchors.fill: parent
                 closeButtonVisible: control.count > 1
                 text: control.currentItem.Maui.TabViewInfo.tabTitle
-//                 checked: !control.overviewMode
+                checked: true
+                centerLabel: false
                 onClicked: _tabsOverview.toggle()
                 onCloseClicked:
                 {
                     control.closeTabClicked(control.currentIndex)
                 }
                 
-                content: ToolButton
+                content: Item
                 {
-                    id: _tabsOverview
-                    checkable: true
-                    icon.width: Maui.Style.iconSizes.small
-                    icon.height: icon.width
-                    icon.name: "tab-new"
-                    text: control.count
-                    flat: true
+                    Layout.fillHeight: true
+                    implicitWidth: height
+
+                    Maui.Badge
+                    {
+                        id: _tabsOverview
+                        anchors.centerIn: parent
+                        text: control.count
+                        radius: Maui.Style.radiusV
+
+                        property bool checked : false
+
+                        function toggle()
+                        {
+                            checked = !checked
+                        }
+                    }
                 }
             }
         }
@@ -312,7 +323,7 @@ Container
                                         wrapMode: Text.WrapAnywhere
                                         horizontalAlignment: Qt.AlignHCenter
                                         verticalAlignment: Qt.AlignVCenter
-//                                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle || index
+                                        //                                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle || index
                                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
                                     }
                                 }
@@ -341,7 +352,7 @@ Container
                         }
                     }
                 }
-            }            
+            }
         }
     }
     
