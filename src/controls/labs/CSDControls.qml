@@ -67,12 +67,12 @@ Loader
             scheme: plasmaThemeExtended.colors.schemeFile
             
             //                 isOnAllDesktops: root.isLastActiveWindowPinned
-            isMaximized: Window.window.visibility === Window.Maximized
+            isMaximized: root.visibility === Window.Maximized
             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
             
             //                 localX: x
             //                 localY: y
-            isActive: Window.window.active
+            isActive: root.active
             onClicked: buttonClicked(type)            
         }
     }

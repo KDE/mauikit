@@ -67,7 +67,7 @@ Item
      * barHeight : int
      * height of the selection bar withouh the padding.
      */
-    property int barHeight: Maui.Style.toolBarHeightAlt
+    property int barHeight: Maui.Style.toolBarHeight
     
     /**
      * display : int

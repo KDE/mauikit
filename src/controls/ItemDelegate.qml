@@ -256,7 +256,6 @@ Kirigami.DelegateRecycler
 
         background: Rectangle
         {
-            opacity: 1
             Behavior on color
             {
                 ColorAnimation
