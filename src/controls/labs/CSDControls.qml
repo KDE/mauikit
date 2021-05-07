@@ -18,7 +18,7 @@ Loader
     id: control
     
     active: Maui.App.enableCSD 
-    visible: model.length
+    visible: model.length && active
     
     required property int side 
     

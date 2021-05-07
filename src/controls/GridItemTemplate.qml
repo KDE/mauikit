@@ -258,6 +258,8 @@ Item
 //             Layout.fillHeight: true
 //Layout.preferredHeight:  control.isCurrentItem && _label1.implicitHeight > 48 ? Math.min(_label1.implicitHeight , control.height*0.8): 48
 Layout.preferredHeight: 48
+Layout.margins: 2
+
             Layout.fillWidth: true
             Layout.maximumHeight: Math.min(48, control.labelSizeHint)
             Layout.minimumHeight: Math.min(_label1.implicitHeight, 48)
@@ -271,7 +273,6 @@ Layout.preferredHeight: 48
                 bottomLeftRadius: Maui.Style.radiusV
                 bottomRightRadius: Maui.Style.radiusV
             }
-            Layout.margins: 2
             //Rectangle
             //{
                 //width: Math.min(_label1.implicitWidth + Maui.Style.space.big, parent.width)
@@ -313,16 +314,7 @@ height: parent.height
                 color: Kirigami.Theme.backgroundColor
                 anchors.bottom: parent.bottom
                 radius: Maui.Style.radiusV
-                
-                Rectangle
-                {
-                    anchors.fill: parent
-                    color: control.isCurrentItem || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
-                    
-                    radius: Maui.Style.radiusV
-                    border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : "transparent"
-                }
-                
+                              
                 Label
                 {
                     id: _label2

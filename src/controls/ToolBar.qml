@@ -306,7 +306,7 @@ ToolBar
                             {
                                 visible: control.forceCenterMiddleContent
                                 Layout.minimumWidth: 0
-//                                 Layout.fillWidth: visible
+                                Layout.fillWidth: visible
                                 Layout.maximumWidth: visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
                             }
                             
@@ -324,7 +324,7 @@ ToolBar
                             {
                                 visible: control.forceCenterMiddleContent
                                 Layout.minimumWidth: 0
-//                                 Layout.fillWidth: visible
+                                Layout.fillWidth: visible
                                 Layout.maximumWidth: visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
                             }
                             
