@@ -6,8 +6,8 @@ import org.mauikit.controls 1.2 as Maui
 import QtGraphicalEffects 1.0
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 */
 Maui.ItemDelegate
 {

@@ -27,8 +27,8 @@ import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.7 as Kirigami
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief A page with a header and footer bar, that can be switched among many other features.
 
 This page has a header and footer bar that by default are a MauiKit ToolBar,

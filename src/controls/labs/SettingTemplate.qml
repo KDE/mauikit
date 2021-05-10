@@ -25,8 +25,8 @@ import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.7 as Kirigami
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 */
 Maui.FlexListItem
 {

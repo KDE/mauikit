@@ -26,8 +26,8 @@ import org.kde.kirigami 2.9 as Kirigami
 import "private" as Private
 
 /*!
-\since org.kde.mauikit 1.2
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.2
+\inqmlmodule org.mauikit.controls
 \brief View switcher component
 
 Lists the different views declared into a swipe view, that does not jump around

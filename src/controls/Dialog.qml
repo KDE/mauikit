@@ -27,8 +27,8 @@ import org.kde.kirigami 2.9 as Kirigami
 import QtGraphicalEffects 1.0
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 
 A scrollable dialog popup, with a Page as its main content.
 With default buttons styled, a close button and a predefiend layout.

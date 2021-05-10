@@ -7,8 +7,8 @@ import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.0 as Maui
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief A convinient way of switching from a grid to a list view.
 
 The AltBrowser makes use of the GridView and ListBrowser components,

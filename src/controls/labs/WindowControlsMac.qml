@@ -7,8 +7,8 @@ import QtQuick.Window 2.3
 import org.mauikit.controls 1.1 as MauiLab
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 */
 Item
 {

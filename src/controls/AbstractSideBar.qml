@@ -26,8 +26,8 @@ import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief Collapsible sidebar
 
 A global sidebar for the application window that can be collapsed.

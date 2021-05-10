@@ -25,8 +25,8 @@ import org.mauikit.controls 1.0 as Maui
 import "private"
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief Collapsible sidebar with actions
 
 ActionSideBar

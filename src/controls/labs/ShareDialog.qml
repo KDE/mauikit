@@ -9,8 +9,8 @@ import org.mauikit.filebrowsing 1.0 as FB
 import "."
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 */
 Item
 {

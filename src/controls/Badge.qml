@@ -24,8 +24,8 @@ import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.7 as Kirigami
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief Badge to show a counter or an icon as a notification hint.
 */
 Rectangle

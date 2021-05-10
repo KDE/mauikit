@@ -7,8 +7,8 @@ import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief A tool button that triggers a contextual menu.
 
 This provides a quick way to have a menu attached to a tool button.

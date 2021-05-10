@@ -3,8 +3,8 @@ import QtQuick.Layouts 1.2
 import org.kde.kirigami 2.8 as Kirigami
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 
   A visual separator.
 */

@@ -1,4 +1,4 @@
-module org.kde.mauikit.plugin
+module org.mauikit.controls.plugin
 
 plugin mauikitplugin
 AppViewsPlugin 1.2 AppViewsPlugin.qml

@@ -26,8 +26,8 @@ import org.mauikit.controls 1.2 as Maui
 
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 
   A template to position text besides an icon or image with a flex content side, that flexes under constrained spaces.
 */

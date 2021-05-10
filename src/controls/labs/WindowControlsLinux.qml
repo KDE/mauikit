@@ -8,8 +8,8 @@ import org.mauikit.controls 1.1 as MauiLab
 import org.kde.appletdecoration 0.1 as AppletDecoration
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 */
 MauiLab.CSDControls
 {

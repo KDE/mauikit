@@ -23,8 +23,8 @@ import org.mauikit.controls 1.0 as Maui
 import org.kde.kirigami 2.7 as Kirigami
 
 /*!
-\since org.kde.mauikit 1.0
-\inqmlmodule org.kde.mauikit
+\since org.mauikit.controls 1.0
+\inqmlmodule org.mauikit.controls
 \brief Lazy-loads app views
 
 Wraps a component into a loader that is active only if it is the next, current or previous view in used, or if it has already been created.

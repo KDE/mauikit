@@ -10,8 +10,8 @@ import org.kde.appletdecoration 0.1 as AppletDecoration
 // import org.kde.plasma.plasmoid 2.0
 
 /*!
-  \since org.kde.mauikit.labs 1.0
-  \inqmlmodule org.kde.mauikit.labs
+  \since org.mauikit.controls.labs 1.0
+  \inqmlmodule org.mauikit.controls.labs
 */
 Loader
 {
