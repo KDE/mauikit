@@ -21,16 +21,122 @@ Container
     
     signal newTabClicked()
     signal closeTabClicked(int index)
-
-
+ 
+    Keys.enabled: true
+    Keys.onPressed:
+    {
+        if((event.key === Qt.Key_H) && (event.modifiers & Qt.ControlModifier))
+        {          
+            control.findTab()
+        }
+    }
+    
+    Maui.Dialog
+    {
+        id: _quickSearch
+        defaultButtons: false
+            persistent: false
+            headBar.visible: true
+            
+            function find(query)
+            {
+                for(var i = 0; i < control.count; i ++)
+                {
+                    var obj = control.contentModel.get(i)
+                    if(obj.Maui.TabViewInfo.tabTitle)
+                    {
+                        console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
+                        
+                        if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
+                        {
+                            return i
+                        }
+                    }
+                }
+                
+                return -1
+            }
+            
+            Timer
+            {
+                id: _typingTimer        
+                interval: 250        
+                onTriggered:
+                {
+                    var index = _quickSearch.find(_quickSearchField.text)
+                    if(index > -1)
+                    {                                    
+                        _filterTabsList.currentIndex = index
+                    }  
+                }
+            }
+      
+        headBar.middleContent: Maui.TextField
+        {
+            id: _quickSearchField
+            Layout.fillWidth: true
+            Layout.maximumWidth: 500
+            
+            onTextChanged: _typingTimer.restart()   
+            
+            onAccepted: 
+            {
+                control.currentIndex = _filterTabsList.currentIndex
+                _quickSearch.close()
+                control.currentItem.forceActiveFocus()                  
+            }
+            
+            Keys.enabled: true
+            
+            Keys.onPressed:
+            {
+                if((event.key === Qt.Key_Up))
+                {
+                    _filterTabsList.flickable.decrementCurrentIndex()
+                }
+                
+                if((event.key === Qt.Key_Down))
+                {
+                    _filterTabsList.flickable.incrementCurrentIndex()
+                }
+            }
+        }
+        
+        stack: Maui.ListBrowser
+        {
+            id: _filterTabsList
+            Layout.fillWidth: true
+            Layout.fillHeight: true  
+            currentIndex: control.currentIndex
+            
+            model: control.count
+            
+            delegate: Maui.ListDelegate
+            {
+                width: ListView.view.width
+                
+                label: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                
+                onClicked:
+                {
+                    currentIndex =index
+                    control.currentIndex = index
+                    _quickSearch.close()
+                }
+            }
+        }
+    }
+    
     contentItem: ColumnLayout
     {
         spacing: 0
         
+      
+        
         Maui.TabBar
         {
             id: tabsBar
-            visible: control.count > 1 && !mobile
+            visible: control.count > 1 && !mobile 
             Layout.fillWidth: true
             
             position: TabBar.Header
@@ -362,10 +468,22 @@ Container
     }
     
     function addTab(component, properties)
-    {
-        const object = component.createObject(control.contentModel, properties);
-        control.addItem(object)
+    {       
+        const object = component.createObject(control.contentModel, properties);        
+           
+        control.addItem(object)        
+        control.currentIndex = control.count -1
         object.forceActiveFocus()
+        
         return object
+    }
+    
+    function findTab()
+    {
+        if(control.count > 1)
+        {
+        _quickSearch.open()
+        _quickSearchField.forceActiveFocus()
+        }
     }
 }
