@@ -139,8 +139,10 @@ Kirigami.DelegateRecycler
 
     Drag.active: mouseArea.drag.active && control.draggable
     Drag.dragType: Drag.Automatic
-    Drag.supportedActions: Qt.CopyAction
-
+    Drag.supportedActions: Qt.MoveAction
+    Drag.hotSpot.x: control.width / 2
+    Drag.hotSpot.y: control.height / 2 
+    
     Control
     {
         id: _delegate
