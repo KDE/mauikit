@@ -483,11 +483,11 @@ Item
     function adaptGrid()
     {
         var fullWidth = controlView.width
-        var realAmount = parseInt(fullWidth / controlView.size_, 10)
-        var amount = parseInt(fullWidth / control.cellWidth, 10)
+        var realAmount = parseInt(fullWidth / controlView.size_, 0)
+        var amount = parseInt(fullWidth / control.cellWidth, 0)
 
-        var leftSpace = parseInt(fullWidth - ( realAmount * controlView.size_ ), 10)
-        var size = Math.min(amount, realAmount) >= control.count ? Math.max(control.cellWidth, control.itemSize) : parseInt((controlView.size_) + (parseInt(leftSpace/realAmount, 10)), 10)
+        var leftSpace = parseInt(fullWidth - ( realAmount * controlView.size_ ), 0)
+        var size = Math.min(amount, realAmount) >= control.count ? Math.max(control.cellWidth, control.itemSize) : parseInt((controlView.size_) + (parseInt(leftSpace/realAmount, 0)), 0)
 
         control.cellWidth = size
     }
