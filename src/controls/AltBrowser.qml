@@ -21,7 +21,11 @@ one could use the viewType property binded to a size condition.
 */
 Maui.Page
 {
-    id: control
+    id: control    
+    
+    //color scheme
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Kirigami.Theme.inherit: false
 
     /*!
       The current view being used, the GridView or the ListBrowser.

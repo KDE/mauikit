@@ -147,6 +147,18 @@ Maui.ItemDelegate
       */
     signal toggled(bool state)
 
+    
+    //background: Rectangle 
+    //{
+        ////visible: control.hovered
+        //readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
+        //color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)
+        ////         opacity: 0.3
+        //radius: Maui.Style.radiusV
+        //border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"
+        
+    //}
+    
     DropArea
     {
         id: _dropArea

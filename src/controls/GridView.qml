@@ -37,9 +37,12 @@ import QtGraphicalEffects 1.0
 Item
 {
     id: control
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
     focus: true
-
+        
+    //color scheme
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Kirigami.Theme.inherit: false
+    
     implicitHeight: contentHeight + margins*2
     implicitWidth: contentWidth + margins*2
 

@@ -39,7 +39,11 @@ Item
 
     implicitHeight: contentHeight + margins*2
     implicitWidth: contentWidth + margins*2
-
+    
+    //color scheme
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Kirigami.Theme.inherit: false
+    
     /**
       * model : var
       */
@@ -199,8 +203,6 @@ Item
       * keyPress :
       */
     signal keyPress(var event)
-
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
 
     Keys.enabled : true
     Keys.forwardTo : _listView
