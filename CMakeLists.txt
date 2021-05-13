@@ -5,7 +5,7 @@ set(REQUIRED_KF5_VERSION 5.40.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(MAUIKIT_VERSION 1.2.2)
+set(MAUIKIT_VERSION 2.0.0)
 
 set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.controls)
 

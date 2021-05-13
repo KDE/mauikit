@@ -5,7 +5,7 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.7 as Kirigami
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
 /**
@@ -122,7 +122,7 @@ Maui.Page
         onTriggered: footBar.visible = !footBar.visible
     }
 
-    Menu
+    Maui.ContextualMenu
     {
         id: terminalMenu
 
@@ -233,7 +233,7 @@ Maui.Page
             {
                 if((!kterminal.terminalUsesMouse || mouse.modifiers & Qt.ShiftModifier) && mouse.button == Qt.RightButton)
                 {
-                    terminalMenu.popup();
+                    terminalMenu.open();
                 } else
                 {
                     var coord = correctDistortion(mouse.x, mouse.y);
@@ -257,7 +257,7 @@ Maui.Page
             {
                 if(mouse.button === Qt.RightButton)
                 {
-                    terminalMenu.popup()
+                    terminalMenu.open()
                     
                 } else if(mouse.button === Qt.LeftButton)
                 {                    
@@ -270,7 +270,7 @@ Maui.Page
             onPressAndHold:
             {
                 if(Maui.Handy.isTouch)
-                    terminalMenu.popup()
+                    terminalMenu.open()
             }
         }
         
@@ -383,7 +383,7 @@ enabled: true
             // Force the hiddenButton in the event position.
             //hiddenButton.x = x;
             //hiddenButton.y = y;
-            terminalMenu.popup()
+            terminalMenu.open()
         }
     }
 

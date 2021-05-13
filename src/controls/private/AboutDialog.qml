@@ -373,6 +373,7 @@ Maui.Dialog
                 spacing: Maui.Style.space.medium
                 label1.text: Maui.App.about.copyrightStatement
                 label1.horizontalAlignment: Qt.AlignHCenter
+                label1.font.family: "Monospace"
             }
         }
     }
