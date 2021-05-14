@@ -31,8 +31,7 @@
 #include <QObject>
 
 class MauiModel;
-class MAUIKIT_EXPORT MauiList : public QObject, public QQmlParserStatus
-{
+class MAUIKIT_EXPORT MauiList : public QObject, public QQmlParserStatus {
     Q_INTERFACES(QQmlParserStatus)
 
     Q_OBJECT

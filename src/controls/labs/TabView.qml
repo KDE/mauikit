@@ -131,8 +131,6 @@ Container
     {
         spacing: 0
         
-      
-        
         Maui.TabBar
         {
             id: tabsBar
@@ -179,6 +177,7 @@ Container
                     onClicked:
                     {
                         control.currentIndex = index
+                        control.currentItem.forceActiveFocus()   
                     }
                     
                     onCloseClicked:
@@ -362,6 +361,7 @@ Container
                             {
                                 control.currentIndex = index
                                 _tabsOverview.checked = false
+                                control.currentItem.forceActiveFocus()   
                             }
 
                             onPressAndHold:
@@ -472,7 +472,7 @@ Container
         const object = component.createObject(control.contentModel, properties);        
            
         control.addItem(object)        
-        control.currentIndex = control.count -1
+        control.currentIndex = Math.max(control.count -1, 0)
         object.forceActiveFocus()
         
         return object

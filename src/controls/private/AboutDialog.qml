@@ -166,7 +166,7 @@ Maui.Dialog
             label1.font.bold: true
             label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
 
-            label2.text:  Maui.App.about.version + "\n" + Maui.App.about.shortDescription
+            label2.text: Maui.App.about.shortDescription
              label2.font.pointSize: Maui.Style.fontSizes.big
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -186,7 +186,7 @@ Maui.Dialog
                 Label
                 {
                     Layout.fillWidth: true
-                    text: Maui.App.about.otherText
+                    text:   Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
