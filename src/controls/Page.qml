@@ -26,6 +26,9 @@ import QtGraphicalEffects 1.0
 import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.7 as Kirigami
 
+import QtQuick.Controls.Material 2.12
+import QtQuick.Controls.Material.impl 2.12
+
 /*!
 \since org.mauikit.controls 1.0
 \inqmlmodule org.mauikit.controls

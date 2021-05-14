@@ -277,7 +277,7 @@ Maui.Dialog
             iconSizeHint: Maui.Style.iconSizes.medium
             spacing: Maui.Style.space.medium
             label1.text: "Powered by"
-            label2.text: "<a href='https://mauikit.org'>MauiKit</a> " + Maui.App.mauikitVersion
+            label2.text: "MauiKit Framework " + Maui.App.mauikitVersion
             Connections
             {
                 target: _poweredBy.label2
