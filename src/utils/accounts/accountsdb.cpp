@@ -8,7 +8,7 @@
 #endif
 
 const static QUrl FMPath = QUrl::fromLocalFile(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/maui/");
-const QString DBName = "accounts.db";
+const static QString DBName = "accounts.db";
 
 AccountsDB::AccountsDB(QObject *parent)
     : QObject(parent)
@@ -216,8 +216,10 @@ bool AccountsDB::remove(const QString &tableName, const FMH::MODEL &removeData)
         strValues.append(QString("%1 = \"%2\"").arg(FMH::MODEL_NAME[key], removeData[key]));
         i++;
 
-        if (removeData.keys().size() > 1 && i < removeData.keys().size())
-            strValues.append(" AND ");
+        if (keys.size() > 1 && i < keys.size())
+        {
+             strValues.append(" AND ");
+        }
     }
 
     QString sqlQueryString = "DELETE FROM " + tableName + " WHERE " + strValues;

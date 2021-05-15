@@ -22,8 +22,11 @@ const QString mapValue(const QVariantMap &map, const FMH::MODEL_KEY &key)
 const QVariantMap toMap(const FMH::MODEL &model)
 {
     QVariantMap map;
-    for (const auto &key : model.keys())
+    const auto keys = model.keys();
+    for (const auto &key : keys)
+    {
         map.insert(FMH::MODEL_NAME[key], model[key]);
+    }
 
     return map;
 }
@@ -31,8 +34,11 @@ const QVariantMap toMap(const FMH::MODEL &model)
 const FMH::MODEL toModel(const QVariantMap &map)
 {
     FMH::MODEL model;
-    for (const auto &key : map.keys())
+    const auto keys = map.keys();
+    for (const auto &key : keys)
+    {
         model.insert(FMH::MODEL_NAME_KEY[key], map[key].toString());
+    }
 
     return model;
 }

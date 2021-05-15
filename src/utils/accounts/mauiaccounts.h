@@ -38,7 +38,6 @@ class MAUIKIT_EXPORT MauiAccounts : public MauiList
     Q_PROPERTY(int currentAccountIndex READ getCurrentAccountIndex WRITE setCurrentAccountIndex NOTIFY currentAccountIndexChanged)
 
     Q_PROPERTY(QVariantMap currentAccount READ getCurrentAccount NOTIFY currentAccountChanged)
-    Q_PROPERTY(uint count READ getCount NOTIFY countChanged)
 
 public:
     static MauiAccounts *instance()
@@ -168,7 +167,6 @@ signals:
      * @param index
      */
     void currentAccountIndexChanged(int index);
-    void countChanged(uint count);
 };
 
 #endif // MAUIACCOUNTS_H

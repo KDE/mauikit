@@ -327,9 +327,12 @@ Qt::ItemFlags MauiModel::PrivateAbstractListModel::flags(const QModelIndex &inde
 QHash<int, QByteArray> MauiModel::PrivateAbstractListModel::roleNames() const
 {
     QHash<int, QByteArray> names;
+    const auto keys = FMH::MODEL_NAME.keys();
 
-    for (const auto &key : FMH::MODEL_NAME.keys())
+    for (const auto &key : keys)
+    {
         names[key] = QString(FMH::MODEL_NAME[key]).toUtf8();
+    }
 
     return names;
 }

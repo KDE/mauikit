@@ -47,7 +47,7 @@ void MauiAccounts::setAccounts()
     qDebug() << "ACCOUNTS LIST" << this->m_data;
 
     this->m_count = this->m_data.count();
-    emit this->countChanged(this->m_count);
+    emit this->countChanged();
     emit this->postListChanged();
 }
 

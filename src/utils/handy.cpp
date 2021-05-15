@@ -67,7 +67,6 @@ Handy::Handy(QObject *parent)
     auto configWatcher = new QFileSystemWatcher({CONF_FILE.toLocalFile()}, this);
 
     m_singleClick = confCheck("SingleClick", m_singleClick).toBool();
-    emit singleClickChanged();
 
     connect(configWatcher, &QFileSystemWatcher::fileChanged, [&](QString) {
         m_singleClick = confCheck("SingleClick", m_singleClick).toBool();
@@ -266,8 +265,10 @@ QString Handy::formatTime(const qint64 &value)
         QTime time((value / 3600) % 60, (value / 60) % 60, value % 60, (value * 1000) % 1000);
         QString format = "mm:ss";
         if (value > 3600)
+        {
             format = "hh:mm:ss";
-            tStr = time.toString(format);
+        }
+        tStr = time.toString(format);
     }
     
     return tStr.isEmpty() ? "00:00" : tStr;
