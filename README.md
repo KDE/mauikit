@@ -2,7 +2,7 @@
 Kit for developing MAUI Apps.
 
 MauiKit is a set of utilities and "templated" controls based on Kirigami and QCC2 that follow the ongoing work on the Maui HIG.
-It let you quickly create a Maui application and access utilities and widgets shared amoing the other Maui apps.
+It let you quickly create a Maui application and access utilities and widgets shared among the other Maui apps.
 
 ## Controls
 
