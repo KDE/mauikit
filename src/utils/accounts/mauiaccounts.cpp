@@ -103,9 +103,10 @@ QVariantList MauiAccounts::get(const QString &queryTxt)
     auto query = this->db->getQuery(queryTxt);
 
     if (query.exec()) {
+        const auto keys = FMH::MODEL_NAME.keys();
+
         while (query.next()) {
             QVariantMap data;
-            const auto keys = FMH::MODEL_NAME.keys();
             for (auto key : keys)
                 if (query.record().indexOf(FMH::MODEL_NAME[key]) > -1)
                     data[FMH::MODEL_NAME[key]] = query.value(FMH::MODEL_NAME[key]).toString();
