@@ -267,8 +267,7 @@ Kirigami.DelegateRecycler
             }
             color: control.isCurrentItem || control.hovered || _mouseArea.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
 
-            radius: control.radius
-            border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.draggable ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"
+            radius: control.radiusui
         }
     }
 }
