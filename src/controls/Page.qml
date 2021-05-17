@@ -457,6 +457,8 @@ Pane
             active: control.title && control.showTitle
             sourceComponent: _titleComponent
 
+            asynchronous: true
+            
             Layout.fillWidth: true
             Layout.fillHeight: true
         }

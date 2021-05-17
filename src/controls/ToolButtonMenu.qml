@@ -37,7 +37,16 @@ ToolButton
     checked: _menu.visible
     display: ToolButton.IconOnly
     
-    onClicked: _menu.open(0, height + Maui.Style.space.medium)
+    onClicked:
+    {
+        if(_menu.visible)
+        {
+            _menu.close()
+        }else
+        {
+            _menu.open(0, height + Maui.Style.space.medium)
+        }
+    }
 
     Maui.ContextualMenu
     {

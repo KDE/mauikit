@@ -130,6 +130,7 @@ Rectangle
         Loader
         {
             id: _loader
+            asynchronous: true
             height: parent.height
             sourceComponent: control.expanded ? _rowComponent : _menuComponent
         } 

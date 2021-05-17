@@ -17,10 +17,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
+import QtQuick 2.15
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.14
-import QtGraphicalEffects 1.0
+import QtQuick.Controls 2.15
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -139,7 +138,7 @@ Item
       */
     property bool imageBorder: false
 
-     /**
+    /**
       * iconComponent : Component
       */
     property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
@@ -183,15 +182,16 @@ Item
         Item
         {
             id: _iconContainer
-            Layout.margins: 1
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: control.imageSource ? control.imageSizeHint : control.iconSizeHint
+            Layout.margins: 1
 
             Loader
             {
                 id: _iconLoader
                 anchors.fill: parent
+                asynchronous: true
                 sourceComponent: control.iconComponent
 
                 Maui.Badge
@@ -206,7 +206,7 @@ Item
 
                     color: control.checked ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.5)
 
-                    border.color: Kirigami.Theme.textColor
+                    border.color: Kirigami.Theme.highlightedTextColor
 
                     onClicked:
                     {
@@ -236,35 +236,20 @@ Item
                         }
                     }
                 }
-
-                DropShadow
-                {
-                    anchors.fill: _emblem
-                    z: _emblem.z
-                    visible: _emblem.visible
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 9.0
-                    samples: 18
-                    color: "#80000000"
-                    source: _emblem
-                }
             }
         }
 
         Kirigami.ShadowedRectangle
         {
             visible: control.labelsVisible && _label1.text
-//             Layout.fillHeight: true
-//Layout.preferredHeight:  control.isCurrentItem && _label1.implicitHeight > 48 ? Math.min(_label1.implicitHeight , control.height*0.8): 48
-Layout.preferredHeight: 48
-Layout.margins: 2
+
+            Layout.preferredHeight: Maui.Style.iconSizes.big
+            Layout.margins: 2
 
             Layout.fillWidth: true
             Layout.maximumHeight: Math.min(48, control.labelSizeHint)
             Layout.minimumHeight: Math.min(_label1.implicitHeight, 48)
             color: Kirigami.Theme.backgroundColor
-//             radius: Maui.Style.radiusV
             
             corners
             {
@@ -273,38 +258,20 @@ Layout.margins: 2
                 bottomLeftRadius: Maui.Style.radiusV
                 bottomRightRadius: Maui.Style.radiusV
             }
-            //Rectangle
-            //{
-                //width: Math.min(_label1.implicitWidth + Maui.Style.space.big, parent.width)
-                //height: Math.min(_label1.implicitHeight + Maui.Style.space.tiny, parent.height)
-                //anchors.centerIn: parent
-                //Behavior on color
-                //{
-                    //ColorAnimation
-                    //{
-                        //duration: Kirigami.Units.longDuration
-                    //}
-                //}
-
-                //color: control.isCurrentItem || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
-
-                //radius: Maui.Style.radiusV
-                //border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : "transparent"
-            //}
 
             Label
             {
                 id: _label1
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
-//                 anchors.fill: parent
-//                 anchors.margins: Maui.Style.space.tiny
-width: parent.width
-height: parent.height
+
+                width: parent.width
+                height: parent.height
+
                 elide: Qt.ElideRight
                 wrapMode: Text.Wrap
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-            } 
+            }
             
             Rectangle
             {
@@ -314,7 +281,7 @@ height: parent.height
                 color: Kirigami.Theme.backgroundColor
                 anchors.bottom: parent.bottom
                 radius: Maui.Style.radiusV
-                              
+
                 Label
                 {
                     id: _label2
@@ -331,6 +298,4 @@ height: parent.height
             }
         }
     }
-    
-   
 }

@@ -366,10 +366,15 @@ Window
             Loader
             {
                 id: _accountsMenuLoader
+                
+                asynchronous: true
                 visible: active
-                width: parent.width - (Maui.Style.space.medium*2)
-                anchors.horizontalCenter: parent.horizontalCenter
                 active: Maui.App.handleAccounts
+                
+                width: parent.width - (Maui.Style.space.medium*2)
+                
+                anchors.horizontalCenter: parent.horizontalCenter
+                
                 sourceComponent: _accountsComponent
             }
 

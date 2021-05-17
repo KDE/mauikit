@@ -118,11 +118,6 @@ Item
     property alias layout : _layout
 
     /**
-      * background : Rectangle
-      */
-    property alias background : _background
-
-    /**
       * iconSizeHint : int
       */
     property int iconSizeHint : Maui.Style.iconSizes.big
@@ -251,13 +246,6 @@ Item
         }
     }
 
-    Rectangle
-    {
-        id: _background
-        visible: false
-        anchors.fill: parent
-    }
-
     RowLayout
     {
         id: _layout
@@ -286,7 +274,7 @@ Item
 
             color: control.checked ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.8)
 
-            border.color: Kirigami.Theme.textColor
+            border.color: Kirigami.Theme.highlightedTextColor
 
             onClicked:
             {
@@ -332,7 +320,7 @@ Item
             {
                 id: _iconLoader
                 anchors.centerIn: parent
-
+                asynchronous: true
                 width: Math.min(parent.height, Math.max(control.iconSizeHint, control.imageSizeHint))
                 height: width
 

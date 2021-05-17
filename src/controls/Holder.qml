@@ -137,6 +137,7 @@ Item
             visible: control.height > (textHolder.implicitHeight + emojiSize)
             height: control.emoji && visible ? emojiSize : 0
             width: height
+            asynchronous: true
             anchors.horizontalCenter: parent.horizontalCenter
             sourceComponent: control.emoji ? (isGif ? animComponent : imgComponent) : null
         }

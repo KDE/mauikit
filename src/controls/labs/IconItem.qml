@@ -94,8 +94,8 @@ Rectangle
     Loader
     {
         anchors.fill: parent
-        
-        sourceComponent: control.imageSource ? _imgComponent : (control.iconSource ?  _iconComponent : null)   
+        asynchronous: true
+        sourceComponent: control.imageSource ? _imgComponent : (control.iconSource ?  _iconComponent : null)
         
         Component
         {
@@ -103,23 +103,20 @@ Rectangle
             
             Item
             {
-                height: parent.height
-                width: parent.width
-                
                 Image
                 {
                     id: img
                     anchors.fill: parent
                     source: control.imageSource
 
-                sourceSize.width: control.imageWidth
-                sourceSize.height: control.imageHeight
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                fillMode: control.fillMode
-                cache: true
-                asynchronous: true
-                smooth: false
+                    sourceSize.width: control.imageWidth
+                    sourceSize.height: control.imageHeight
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    fillMode: control.fillMode
+                    cache: true
+                    asynchronous: true
+                    smooth: false
                     
                     layer.enabled: control.maskRadius
                     layer.effect: OpacityMask
@@ -137,32 +134,6 @@ Rectangle
                                 radius: control.maskRadius
                             }
                         }
-                    }
-                }
-                
-                Rectangle
-                {
-                    Kirigami.Theme.inherit: false
-                    visible: control.imageBorder
-                    anchors.centerIn: parent
-                    
-                    width: img.status === Image.Ready ? Math.min(parent.width, img.paintedWidth) : parent.width
-                    height:  img.status === Image.Ready ? Math.min(parent.height, img.paintedHeight) : parent.height
-                    border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-                    radius: control.maskRadius
-                    
-                    border.width: 1
-                    color: "transparent"
-                    opacity: 0.8
-                    
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        color: "transparent"
-                        anchors.margins: 1
-                        radius: parent.radius - 0.5
-                        border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                        opacity: 0.3
                     }
                 }
                 
@@ -188,7 +159,7 @@ Rectangle
                     source: parent
                     color: control.hovered || control.highlighted  ? control.Kirigami.Theme.highlightColor : "#000"
                 }
-            }  
+            }
         }
         
         Component
@@ -216,6 +187,6 @@ Rectangle
                     }
                 }
             }
-        }        
+        }
     }
 }
