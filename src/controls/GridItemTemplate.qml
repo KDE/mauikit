@@ -74,11 +74,6 @@ Item
     property int iconSizeHint : Maui.Style.iconSizes.big
 
     /**
-      * imageSizeHint : int
-      */
-    property int imageSizeHint : iconSizeHint
-
-    /**
       * imageWidth : int
       */
     property int imageWidth : iconSizeHint
@@ -134,11 +129,6 @@ Item
     property bool hovered: false
 
     /**
-      * imageBorder : bool
-      */
-    property bool imageBorder: false
-
-    /**
       * iconComponent : Component
       */
     property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
@@ -162,14 +152,9 @@ Item
             hovered: control.hovered
             
             iconSizeHint: control.iconSizeHint
-            imageSizeHint: control.imageSizeHint
-            
-            imageWidth: Math.max(control.imageWidth, width)
-            imageHeight: Math.max(control.imageHeight, height)
-            
+
             fillMode: control.fillMode
             maskRadius: control.maskRadius
-            imageBorder: control.imageBorder
         }
     }
 
@@ -184,8 +169,19 @@ Item
             id: _iconContainer
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredHeight: control.imageSource ? control.imageSizeHint : control.iconSizeHint
-            Layout.margins: 1
+            Layout.margins: 1            
+
+            Kirigami.Icon
+            {
+                visible: _iconLoader.status !== Loader.Ready
+                anchors.centerIn: parent
+                height: Math.min(Maui.Style.iconSizes.medium, Math.floor( parent.height * 0.7))
+                width: height
+                source:  control.iconSource || "folder-images"
+                isMask: true
+                color: Kirigami.Theme.textColor
+                opacity: 0.5
+            }
 
             Loader
             {

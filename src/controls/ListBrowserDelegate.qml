@@ -93,11 +93,6 @@ Maui.ItemDelegate
     property alias iconSizeHint : _template.iconSizeHint
 
     /**
-      * imageSizeHint : int
-      */
-    property alias imageSizeHint : _template.imageSizeHint
-
-    /**
       * imageSource : string
       */
     property alias imageSource : _template.imageSource
@@ -203,14 +198,9 @@ Maui.ItemDelegate
             hovered: _template.hovered
             
             iconSizeHint: _template.iconSizeHint
-            imageSizeHint: _template.imageSizeHint
-            
-            imageWidth: _template.imageWidth
-            imageHeight: _template.imageHeight
-            
+
             fillMode: _template.fillMode
             maskRadius: _template.maskRadius
-            imageBorder: _template.imageBorder
         }
     }
 }

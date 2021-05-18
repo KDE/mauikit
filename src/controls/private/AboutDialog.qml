@@ -152,13 +152,12 @@ Maui.Dialog
             width: parent.width
             anchors.centerIn: parent
 
-            imageBorder: false
             imageSource: Maui.App.iconName
-            imageWidth: Math.min(Maui.Style.iconSizes.huge, parent.width)
-            imageHeight: imageWidth
-            fillMode: Image.PreserveAspectFit
-            imageSizeHint: imageWidth
 
+            fillMode: Image.PreserveAspectFit
+            iconSizeHint: Math.min(Maui.Style.iconSizes.huge, parent.width)
+            headerSizeHint: iconSizeHint + Maui.Style.space.medium
+            
             spacing: Maui.Style.space.big
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             label1.text: Maui.App.about.displayName
@@ -211,11 +210,15 @@ Maui.Dialog
             Repeater
             {
                 model: Maui.App.about.authors
+
                 Maui.ListItemTemplate
                 {
                     id: _credits
                     iconSource: "view-media-artist"
+
                     iconSizeHint: Maui.Style.iconSizes.medium
+                    headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
                     width: parent.width
                     spacing: Maui.Style.space.medium
                     label1.text: modelData.name
@@ -254,7 +257,10 @@ Maui.Dialog
                 {
                     iconSource: "license"
                     width: parent.width
+
                     iconSizeHint: Maui.Style.iconSizes.medium
+                    headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
                     spacing: Maui.Style.space.medium
                     label1.text: modelData.name
                 }
@@ -275,6 +281,8 @@ Maui.Dialog
 
             iconSource: "code-context"
             iconSizeHint: Maui.Style.iconSizes.medium
+            headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
             spacing: Maui.Style.space.medium
             label1.text: "Powered by"
             label2.text: "MauiKit Framework " + Maui.App.mauikitVersion
@@ -308,7 +316,10 @@ Maui.Dialog
                 {
                     iconSource: "plugins"
                     width: parent.width
+
                     iconSizeHint: Maui.Style.iconSizes.medium
+                    headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
                     spacing: Maui.Style.space.medium
                     label1.text: modelData
                 }
@@ -370,6 +381,8 @@ Maui.Dialog
                 Layout.fillWidth: true
 
                 iconSizeHint: Maui.Style.iconSizes.medium
+                headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
                 spacing: Maui.Style.space.medium
                 label1.text: Maui.App.about.copyrightStatement
                 label1.horizontalAlignment: Qt.AlignHCenter

@@ -61,7 +61,6 @@ Maui.Dialog
         iconSource: item.icon
         imageSource: item.thumbnail
         iconSizeHint: Maui.Style.iconSizes.medium
-        imageSizeHint : height * 0.9
         leftMargin: 0
         rightMargin: 0
         

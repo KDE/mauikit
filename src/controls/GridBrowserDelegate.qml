@@ -69,12 +69,7 @@ Maui.ItemDelegate
       */
     property alias iconSizeHint : _template.iconSizeHint
 
-    /**
-      * imageSizeHint : int
-      */
-    property alias imageSizeHint : _template.imageSizeHint
-
-    /**
+     /**
       * imageSource : string
       */
     property alias imageSource : _template.imageSource

@@ -49,21 +49,16 @@ Rectangle
      * iconSizeHint : int
      */
     property int iconSizeHint : Maui.Style.iconSizes.big
-    
-    /**
-     * imageSizeHint : int
-     */
-    property int imageSizeHint : iconSizeHint
-    
+
     /**
      * imageWidth : int
      */
-    property int imageWidth : imageSizeHint
+    property alias imageWidth : img.sourceSize.width
     
     /**
      * imageHeight : int
      */
-    property int imageHeight : imageSizeHint
+    property alias imageHeight : img.sourceSize.height
     
     /**
      * imageSource : string
@@ -78,115 +73,77 @@ Rectangle
     /**
      * fillMode : Image.fillMode
      */
-    property int fillMode : Image.PreserveAspectCrop
+    property alias fillMode : img.fillMode
     
     /**
      * maskRadius : int
      */
     property int maskRadius: Maui.Style.radiusV
-    
-    /**
-     * imageBorder : bool
-     */
-    property bool imageBorder: false
-    
-    
-    Loader
-    {
-        anchors.fill: parent
-        asynchronous: true
-        sourceComponent: control.imageSource ? _imgComponent : (control.iconSource ?  _iconComponent : null)
-        
-        Component
-        {
-            id: _imgComponent
-            
-            Item
-            {
-                Image
-                {
-                    id: img
-                    anchors.fill: parent
-                    source: control.imageSource
 
-                    sourceSize.width: control.imageWidth
-                    sourceSize.height: control.imageHeight
-                    horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignVCenter
-                    fillMode: control.fillMode
-                    cache: true
-                    asynchronous: true
-                    smooth: false
-                    
-                    layer.enabled: control.maskRadius
-                    layer.effect: OpacityMask
-                    {
-                        maskSource: Item
-                        {
-                            width: img.width
-                            height: img.height
-                            
-                            Rectangle
-                            {
-                                anchors.centerIn: parent
-                                width: Math.min(parent.width, img.paintedWidth)
-                                height: Math.min(parent.height, img.paintedHeight)
-                                radius: control.maskRadius
-                            }
-                        }
-                    }
-                }
-                
-                Kirigami.Icon
-                {
-                    visible: img.status !== Image.Ready
-                    anchors.centerIn: parent
-                    height: Math.min(22, Math.floor( parent.height * 0.7))
-                    width: height
-                    source: "folder-images"
-                    isMask: true
-                    color: Kirigami.Theme.textColor
-                    opacity: 0.5
-                }
-                
-                ColorOverlay
-                {
-                    anchors.fill: parent
-                    
-                    visible: control.hovered || control.checked ||control.highlighted
-                    opacity: 0.3
-                    
-                    source: parent
-                    color: control.hovered || control.highlighted  ? control.Kirigami.Theme.highlightColor : "#000"
-                }
-            }
-        }
-        
-        Component
+    Kirigami.Icon
+    {
+        id: icon
+        visible: control.imageSource ? img.status !== Image.Ready : true
+
+        anchors.centerIn: parent
+        fallback: "folder-images"
+        source: control.iconSource || "folder-images"
+        height: control.imageSource ? Math.min(Maui.Style.iconSizes.medium, Math.floor( parent.height * 0.7)) : Math.floor(Math.min(parent.height, control.iconSizeHint))
+        width: height
+        color: control.highlighted ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+        isMask: height <= Maui.Style.iconSizes.medium
+
+        opacity: control.imageSource ? 0.5 : 1
+    }
+
+    Image
+    {
+        id: img
+
+        anchors.fill: parent
+
+        sourceSize.width: width
+        sourceSize.height: height
+
+        horizontalAlignment: Qt.AlignHCenter
+        verticalAlignment: Qt.AlignVCenter
+
+        fillMode: Image.PreserveAspectCrop
+
+        source: control.imageSource
+
+        cache: true
+        asynchronous: true
+        smooth: true
+
+        layer.enabled: control.maskRadius
+        layer.effect: OpacityMask
         {
-            id: _iconComponent
-            
-            Item
+            maskSource: Item
             {
-                Kirigami.Icon
+                width: img.width
+                height: img.height
+
+                Rectangle
                 {
-                    source: control.iconSource
                     anchors.centerIn: parent
-                    fallback: "qrc:/assets/application-x-zerosize.svg"
-                    height: Math.floor(Math.min(parent.height, control.iconSizeHint))
-                    width: height
-                    color: control.highlighted ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-                    
-                    ColorOverlay
-                    {
-                        visible: control.hovered
-                        opacity: 0.3
-                        anchors.fill: parent
-                        source: parent
-                        color: control.hovered ? control.Kirigami.Theme.highlightColor : "#000"
-                    }
+                    width: Math.min(parent.width, img.paintedWidth)
+                    height: Math.min(parent.height, img.paintedHeight)
+                    radius: control.maskRadius
                 }
             }
         }
     }
+
+    //        ColorOverlay
+    //        {
+    //            anchors.fill: parent
+
+    //            visible: control.hovered || control.checked ||control.highlighted
+    //            opacity: 0.3
+
+    //            source: parent
+    //            color: control.hovered || control.highlighted  ? control.Kirigami.Theme.highlightColor : "#000"
+    //        }
+
 }

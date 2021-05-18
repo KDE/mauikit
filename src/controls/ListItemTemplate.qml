@@ -121,21 +121,18 @@ Item
       * iconSizeHint : int
       */
     property int iconSizeHint : Maui.Style.iconSizes.big
-
-    /**
-      * imageSizeHint : int
-      */
-    property int imageSizeHint : iconSizeHint
+    
+    property int headerSizeHint : height
 
     /**
       * imageWidth : int
       */
-    property int imageWidth : imageSizeHint
+    property int imageWidth : iconSizeHint
 
     /**
       * imageHeight : int
       */
-    property int imageHeight : imageSizeHint
+    property int imageHeight : iconSizeHint
 
     /**
       * imageSource : string
@@ -181,11 +178,6 @@ Item
       * maskRadius : int
       */
     property int maskRadius: Maui.Style.radiusV
-
-    /**
-      * imageBorder : bool
-      */
-    property bool imageBorder: false
 
     /**
       * margins : int
@@ -235,14 +227,12 @@ Item
             hovered: control.hovered
             
             iconSizeHint: control.iconSizeHint
-            imageSizeHint: control.imageSizeHint
             
             imageWidth: control.imageWidth
             imageHeight: control.imageHeight
             
             fillMode: control.fillMode
             maskRadius: control.maskRadius
-            imageBorder: control.imageBorder
         }
     }
 
@@ -310,19 +300,31 @@ Item
             id: _iconContainer
             visible: (control.width > Kirigami.Units.gridUnit * 10) && (iconSource.length > 0 || imageSource.length > 0)
             Layout.alignment: Qt.AlignCenter
+
             Layout.fillHeight: true
             Layout.fillWidth: !control.labelsVisible
-            Layout.preferredWidth: Math.max(control.iconSizeHint, control.imageSizeHint) + Maui.Style.space.medium
 
-            Layout.preferredHeight: Math.max(control.iconSizeHint, control.imageSizeHint) + Maui.Style.space.medium
+            Layout.preferredWidth: Math.min(height, control.headerSizeHint)
+            Layout.preferredHeight: Math.max(height, control.headerSizeHint)
+
+            Kirigami.Icon
+            {
+                visible: _iconLoader.status !== Loader.Ready
+                anchors.centerIn: parent
+                height: Math.min(Maui.Style.iconSizes.medium, Math.floor( parent.height * 0.7))
+                width: height
+                source:  control.iconSource || "folder-images"
+                isMask: true
+                color: Kirigami.Theme.textColor
+                opacity: 0.5
+            }
 
             Loader
             {
                 id: _iconLoader
-                anchors.centerIn: parent
                 asynchronous: true
-                width: Math.min(parent.height, Math.max(control.iconSizeHint, control.imageSizeHint))
-                height: width
+                anchors.fill: parent
+                anchors.margins: Maui.Style.space.tiny
 
                 sourceComponent: control.iconComponent
             }
