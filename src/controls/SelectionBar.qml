@@ -130,7 +130,7 @@ Item
      * listDelegate : Component
      * Delegate to be used in the component where the grouped elements are listed.
      */
-    property Component listDelegate: Maui.ItemDelegate
+    property Component listDelegate: Maui.ListBrowserDelegate
     {
         id: delegate
         height: Maui.Style.rowHeight * 1.5
@@ -138,22 +138,17 @@ Item
         
         Kirigami.Theme.backgroundColor: "transparent"
         Kirigami.Theme.textColor: control.Kirigami.Theme.textColor
-        
+
+        iconVisible: false
+        label1.text: model.uri
+
+        checkable: true
+        checked: true
+        onToggled: control.removeAtIndex(index)
+
         onClicked: control.itemClicked(index)
         onPressAndHold: control.itemPressAndHold(index)
-        
-        Maui.ListItemTemplate
-        {
-            id: _template
-            anchors.fill: parent
-            iconVisible: false
-            labelsVisible: true
-            label1.text: model.uri
-            
-            checkable: true
-            checked: true
-            onToggled: control.removeAtIndex(index)
-        }
+
     }
     
     /**

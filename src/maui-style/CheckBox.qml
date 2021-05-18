@@ -41,12 +41,12 @@ T.CheckBox {
 
     hoverEnabled: true
 
-   indicator: CheckIndicator
-   {       
-       control: controlRoot
-   }
+    indicator: CheckIndicator
+    {
+        control: controlRoot
+    }
 
-    contentItem: Label 
+    contentItem: Label
     {
         leftPadding: controlRoot.indicator && !controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
         rightPadding: controlRoot.indicator && controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0

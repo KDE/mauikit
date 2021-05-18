@@ -23,6 +23,8 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
+import "private" as Private
+
 /**
  * GridBrowserDelegate
  * A GridItemTemplate wrapped into a ItemDelegate to make it clickable and draggable.
@@ -36,116 +38,127 @@ import org.mauikit.controls 1.2 as Maui
 Maui.ItemDelegate
 {
     id: control
-
+    
     isCurrentItem : GridView.isCurrentItem || checked
-
+    
     /**
-      * tooltipText : string
-      */
+     * tooltipText : string
+     */
     property string tooltipText
-
+    
     /**
-      * template : GridItemTemplate
-      */
+     * template : GridItemTemplate
+     */
     property alias template : _template
-
+    
     /**
-      * label1 : Label
-      */
+     * label1 : Label
+     */
     property alias label1 : _template.label1
-
+    
     /**
-      * iconItem : Item
-      */
+     * iconItem : Item
+     */
     property alias iconItem : _template.iconItem
-
+    
     /**
-      * iconVisible : bool
-      */
+     * iconVisible : bool
+     */
     property alias iconVisible : _template.iconVisible
-
+    
     /**
-      * iconSizeHint : int
-      */
+     * iconSizeHint : int
+     */
     property alias iconSizeHint : _template.iconSizeHint
-
-     /**
-      * imageSource : string
-      */
+    
+    /**
+     * imageSource : string
+     */
     property alias imageSource : _template.imageSource
-
+    
     /**
-      * iconSource : string
-      */
+     * iconSource : string
+     */
     property alias iconSource : _template.iconSource
-
+    
     /**
-      * showLabel : bool
-      */
+     * showLabel : bool
+     */
     property alias showLabel : _template.labelsVisible
-
+    
     /**
-      * checked : bool
-      */
-    property alias checked : _template.checked
-
+     * checked : bool
+     */
+    property alias checked : _emblem.checked
+    
     /**
-      * checkable : bool
-      */
-    property alias checkable: _template.checkable
-
+     * checkable : bool
+     */
+    property bool checkable: false
+    
     /**
-      * dropArea : DropArea
-      */
+     * dropArea : DropArea
+     */
     property alias dropArea : _dropArea
-
+    
     /**
-      * contentDropped :
-      */
+     * contentDropped :
+     */
     signal contentDropped(var drop)
-
+    
     /**
-      * toggled :
-      */
+     * toggled :
+     */
     signal toggled(bool state)
-
+    
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && control.tooltipText
     ToolTip.text: control.tooltipText
-
-    background: Rectangle 
+    
+    background: Rectangle
     {
         //visible: control.hovered
-        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
+        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)
-//         opacity: 0.3
+        //         opacity: 0.3
         radius: Maui.Style.radiusV
         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"
         
     }
-
+    
     DropArea
     {
         id: _dropArea
         anchors.fill: parent
         enabled: control.draggable
-
+        
         onDropped:
         {
             control.contentDropped(drop)
         }
     }
-
+    
     Maui.GridItemTemplate
     {
         id: _template
         anchors.fill: parent
-
+        
         hovered: control.hovered || control.containsPress || _dropArea.containsDrag
-     
-//        label1.elide: Text.ElideMiddle // TODO this is broken ???
+        
+        //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
+    }
+    
+    Private.CheckBoxItem
+    {
+        id: _emblem
+        visible: control.checkable || control.checked
+        height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.2)
+        width: height
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.margins: Maui.Style.space.big
         onToggled: control.toggled(state)
     }
 }

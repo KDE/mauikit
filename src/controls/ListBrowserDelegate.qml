@@ -20,10 +20,11 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
+
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
-import QtGraphicalEffects 1.0
-import "private"
+
+import "private" as Private
 
 /**
  * ListBrowserDelegate
@@ -110,12 +111,12 @@ Maui.ItemDelegate
     /**
       * checked : bool
       */
-    property alias checked : _template.checked
+    property alias checked : _emblem.checked
 
     /**
       * checkable : bool
       */
-    property alias checkable: _template.checkable
+    property bool checkable: false
 
     /**
       * leftLabels : ColumnLayout
@@ -175,32 +176,53 @@ Maui.ItemDelegate
         }
     }
 
-    Maui.ListItemTemplate
+    RowLayout
     {
-        id: _template
         anchors.fill: parent
-        isCurrentItem : control.isCurrentItem
-        hovered: parent.hovered
-        checkable : control.checkable
-        checked : control.checked
-        onToggled: control.toggled(state)
-        leftMargin: iconVisible ? 0 : Maui.Style.space.medium
-        
-        iconComponent: Maui.IconItem
-        {
-            radius: Maui.Style.radiusV
-           color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-           
-           iconSource: control.iconSource
-           imageSource: _template.imageSource
-            
-            highlighted: _template.isCurrentItem
-            hovered: _template.hovered
-            
-            iconSizeHint: _template.iconSizeHint
+        spacing: _template.spacing
 
-            fillMode: _template.fillMode
-            maskRadius: _template.maskRadius
+        Item
+        {
+            Layout.preferredHeight: _emblem.height
+            visible: _emblem.visible
         }
+
+        Private.CheckBoxItem
+        {
+            id: _emblem        
+            visible: control.checkable || control.checked
+            implicitHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
+            implicitWidth: height        
+            Layout.alignment: Qt.AlignCenter     
+            onToggled: control.toggled(state)      
+        }
+        
+        Maui.ListItemTemplate
+        {
+            id: _template
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            isCurrentItem : control.isCurrentItem
+            hovered: control.hovered
+            leftMargin: iconVisible ? 0 : Maui.Style.space.medium
+
+            iconComponent: Maui.IconItem
+            {
+                radius: Maui.Style.radiusV
+                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+
+                iconSource: control.iconSource
+                imageSource: _template.imageSource
+
+                highlighted: _template.isCurrentItem
+                hovered: _template.hovered
+
+                iconSizeHint: _template.iconSizeHint
+
+                fillMode: _template.fillMode
+                maskRadius: _template.maskRadius
+            }
+        }
+
     }
 }

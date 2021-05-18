@@ -57,12 +57,7 @@ Kirigami.DelegateRecycler
       */
     property bool isCurrentItem :  false
 
-    /**
-      * radius :
-      */
-    property int radius: Maui.Style.radiusV
-
-    /**
+      /**
       * padding :
       */
     property alias padding: _delegate.padding
@@ -147,8 +142,7 @@ Kirigami.DelegateRecycler
     {
         id: _delegate
 
-        width: parent.width
-        height: parent.height
+       anchors.fill: parent
 
         hoverEnabled: !Kirigami.Settings.isMobile
 
@@ -267,7 +261,7 @@ Kirigami.DelegateRecycler
             }
             color: control.isCurrentItem || control.hovered || _mouseArea.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
 
-            radius: control.radius
+            radius: Maui.Style.radiusV
         }
     }
 }

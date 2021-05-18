@@ -125,16 +125,6 @@ Item
     property int headerSizeHint : height
 
     /**
-      * imageWidth : int
-      */
-    property int imageWidth : iconSizeHint
-
-    /**
-      * imageHeight : int
-      */
-    property int imageHeight : iconSizeHint
-
-    /**
       * imageSource : string
       */
     property string imageSource
@@ -143,16 +133,6 @@ Item
       * iconSource : string
       */
     property string iconSource
-
-    /**
-      * checkable : bool
-      */
-    property bool checkable : false
-
-    /**
-      * checked : bool
-      */
-    property bool checked : false
 
     /**
       * isCurrentItem : bool
@@ -208,11 +188,6 @@ Item
       * iconComponent : Component
       */
     property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
-    
-    /**
-      * toggled
-      */
-    signal toggled(bool state)
 
     Component
     {
@@ -222,15 +197,12 @@ Item
         {
             iconSource: control.iconSource
             imageSource: control.imageSource
-            
+
             highlighted: control.isCurrentItem
             hovered: control.hovered
-            
+
             iconSizeHint: control.iconSizeHint
-            
-            imageWidth: control.imageWidth
-            imageHeight: control.imageHeight
-            
+
             fillMode: control.fillMode
             maskRadius: control.maskRadius
         }
@@ -248,53 +220,7 @@ Item
 
         spacing: Maui.Style.space.small
 
-        Item
-        {
-            Layout.preferredHeight: _emblem.height
-            visible: _emblem.visible
-        }
 
-        Maui.Badge
-        {
-            id: _emblem
-
-            visible: control.checkable || control.checked
-
-            size: Math.min(Maui.Style.iconSizes.medium, _layout.height)
-
-            color: control.checked ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.8)
-
-            border.color: Kirigami.Theme.highlightedTextColor
-
-            onClicked:
-            {
-                control.checked = !control.checked
-                control.toggled(control.checked)
-            }
-
-            Kirigami.Icon
-            {
-                visible: opacity > 0
-                color: Kirigami.Theme.highlightedTextColor
-                anchors.centerIn: parent
-                height: control.checked ? Math.round(parent.height * 0.9) : 0
-                width: height
-                opacity: control.checked ? 1 : 0
-                isMask: true
-                
-                source: "qrc:/assets/checkmark.svg"
-                
-                Behavior on opacity
-                {
-                    NumberAnimation
-                    {
-                        duration: Kirigami.Units.shortDuration
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-            }
-        }
-        
         Item
         {
             id: _iconContainer
@@ -311,7 +237,7 @@ Item
             {
                 visible: _iconLoader.status !== Loader.Ready
                 anchors.centerIn: parent
-                height: Math.min(Maui.Style.iconSizes.medium, Math.floor( parent.height * 0.7))
+                height: Maui.Style.iconSizes.small
                 width: height
                 source:  control.iconSource || "folder-images"
                 isMask: true

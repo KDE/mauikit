@@ -748,5 +748,6 @@
         <file>icons/luv-icon-theme/Luv/actions/22/file-zoom-in.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/file-zoom-out.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/tools.svg</file>
+        <file>controls/private/CheckBoxItem.qml</file>
     </qresource>
 </RCC>

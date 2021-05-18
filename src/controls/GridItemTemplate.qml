@@ -61,27 +61,17 @@ Item
     /**
       * iconVisible : bool
       */
-    property alias iconVisible : _iconContainer.visible
+    property alias iconVisible : _iconLoader.visible
 
     /**
      * labelSizeHint : int
      */
     property int labelSizeHint : height * 0.4
-    
+
     /**
       * iconSizeHint : int
       */
     property int iconSizeHint : Maui.Style.iconSizes.big
-
-    /**
-      * imageWidth : int
-      */
-    property int imageWidth : iconSizeHint
-
-    /**
-      * imageHeight : int
-      */
-    property int imageHeight : iconSizeHint
 
     /**
       * imageSource : string
@@ -92,16 +82,6 @@ Item
       * iconSource : string
       */
     property string iconSource
-
-    /**
-      * checkable : bool
-      */
-    property bool checkable : false
-
-    /**
-      * checked : bool
-      */
-    property bool checked : false
 
     /**
       * isCurrentItem : bool
@@ -131,26 +111,20 @@ Item
     /**
       * iconComponent : Component
       */
-    property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
-
-
-    /**
-      * toggled :
-      */
-    signal toggled(bool state)
+    property Component iconComponent :  _iconLoader.visible ? _iconComponent : null
 
     Component
     {
         id: _iconComponent
-        
+
         Maui.IconItem
         {
             iconSource: control.iconSource
             imageSource: control.imageSource
-            
+
             highlighted: control.isCurrentItem
             hovered: control.hovered
-            
+
             iconSizeHint: control.iconSizeHint
 
             fillMode: control.fillMode
@@ -164,74 +138,26 @@ Item
         anchors.fill: parent
         spacing: Maui.Style.space.tiny
 
-        Item
+        Loader
         {
-            id: _iconContainer
+            id: _iconLoader
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.margins: 1            
+            Layout.margins: 1
+
+            asynchronous: true
+            sourceComponent: control.iconComponent
 
             Kirigami.Icon
             {
                 visible: _iconLoader.status !== Loader.Ready
                 anchors.centerIn: parent
-                height: Math.min(Maui.Style.iconSizes.medium, Math.floor( parent.height * 0.7))
+                height: Maui.Style.iconSizes.small
                 width: height
                 source:  control.iconSource || "folder-images"
                 isMask: true
                 color: Kirigami.Theme.textColor
                 opacity: 0.5
-            }
-
-            Loader
-            {
-                id: _iconLoader
-                anchors.fill: parent
-                asynchronous: true
-                sourceComponent: control.iconComponent
-
-                Maui.Badge
-                {
-                    id: _emblem
-
-                    visible: control.checkable || control.checked
-                    size: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.2)
-                    anchors.margins: Maui.Style.space.medium
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.bottom: parent.bottom
-
-                    color: control.checked ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.5)
-
-                    border.color: Kirigami.Theme.highlightedTextColor
-
-                    onClicked:
-                    {
-                        control.checked = !control.checked
-                        control.toggled(control.checked)
-                    }
-
-                    Kirigami.Icon
-                    {
-                        visible: opacity > 0
-                        color: Kirigami.Theme.highlightedTextColor
-                        anchors.centerIn: parent
-                        height: control.checked ? Math.round(parent.height * 0.9) : 0
-                        width: height
-                        opacity: control.checked ? 1 : 0
-                        isMask: true
-                        
-                        source: "qrc:/assets/checkmark.svg"
-
-                        Behavior on opacity
-                        {
-                            NumberAnimation
-                            {
-                                duration: Kirigami.Units.shortDuration
-                                easing.type: Easing.InOutQuad
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -246,7 +172,7 @@ Item
             Layout.maximumHeight: Math.min(48, control.labelSizeHint)
             Layout.minimumHeight: Math.min(_label1.implicitHeight, 48)
             color: Kirigami.Theme.backgroundColor
-            
+
             corners
             {
                 topLeftRadius: 0
@@ -268,30 +194,29 @@ Item
                 wrapMode: Text.Wrap
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
             }
-            
-            Rectangle
-            {
-                visible: (control.hovered ) && _label1.implicitHeight > _label1.height
-                height: Math.min(_label2.implicitHeight, control.height)
-                width: parent.width
-                color: Kirigami.Theme.backgroundColor
-                anchors.bottom: parent.bottom
-                radius: Maui.Style.radiusV
 
-                Label
-                {
-                    id: _label2
-                    horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignVCenter
-                    text: _label1.text
-                    width: parent.width
-                    height: implicitHeight
-                    elide: Qt.ElideRight
-                    wrapMode: Text.Wrap
-                    color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-                }
-                
-            }
+//            Rectangle
+//            {
+//                visible: (control.hovered ) && _label1.implicitHeight > _label1.height
+//                height: Math.min(_label2.implicitHeight, control.height)
+//                width: parent.width
+//                color: Kirigami.Theme.backgroundColor
+//                anchors.bottom: parent.bottom
+//                radius: Maui.Style.radiusV
+
+//                Label
+//                {
+//                    id: _label2
+//                    horizontalAlignment: Qt.AlignHCenter
+//                    verticalAlignment: Qt.AlignVCenter
+//                    text: _label1.text
+//                    width: parent.width
+//                    height: implicitHeight
+//                    elide: Qt.ElideRight
+//                    wrapMode: Text.Wrap
+//                    color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+//                }
+//            }
         }
     }
 }

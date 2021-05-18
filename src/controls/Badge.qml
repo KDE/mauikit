@@ -103,6 +103,7 @@ Rectangle
     {
         id: loader
         anchors.fill: parent
+        asynchronous: true
         sourceComponent: control.text.length && !control.iconName.length ? labelComponent : (!control.text.length && control.iconName.length ? iconComponent : undefined)
     }
 

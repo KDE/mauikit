@@ -49,16 +49,6 @@ Rectangle
      * iconSizeHint : int
      */
     property int iconSizeHint : Maui.Style.iconSizes.big
-
-    /**
-     * imageWidth : int
-     */
-    property alias imageWidth : img.sourceSize.width
-    
-    /**
-     * imageHeight : int
-     */
-    property alias imageHeight : img.sourceSize.height
     
     /**
      * imageSource : string
@@ -73,8 +63,7 @@ Rectangle
     /**
      * fillMode : Image.fillMode
      */
-    property alias fillMode : img.fillMode
-    
+    property int fillMode : Image.PreserveAspectFit
     /**
      * maskRadius : int
      */
@@ -83,24 +72,24 @@ Rectangle
     Kirigami.Icon
     {
         id: icon
-        visible: control.imageSource ? img.status !== Image.Ready : true
+        visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
 
         anchors.centerIn: parent
-        fallback: "folder-images"
         source: control.iconSource || "folder-images"
-        height: control.imageSource ? Math.min(Maui.Style.iconSizes.medium, Math.floor( parent.height * 0.7)) : Math.floor(Math.min(parent.height, control.iconSizeHint))
+        height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
         color: control.highlighted ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
         isMask: height <= Maui.Style.iconSizes.medium
-
-        opacity: control.imageSource ? 0.5 : 1
     }
 
     Image
     {
         id: img
 
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height
+
+        anchors.centerIn: parent
 
         sourceSize.width: width
         sourceSize.height: height
@@ -108,7 +97,7 @@ Rectangle
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
 
-        fillMode: Image.PreserveAspectCrop
+        fillMode: control.fillMode
 
         source: control.imageSource
 
