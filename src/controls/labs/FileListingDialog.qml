@@ -44,6 +44,7 @@ Maui.Dialog
     
     spacing: Maui.Style.space.medium
     
+    template.headerSizeHint: template.iconSizeHint + Maui.Style.space.big
     template.iconSource: singleItem.icon
     template.imageSource: singleItem.thumbnail
     template.iconSizeHint: Maui.Style.iconSizes.huge
@@ -96,57 +97,57 @@ Maui.Dialog
         Layout.fillWidth: true
     }
     
-//    template.iconComponent: Item
-//    {
-//        Item
-//        {
-//            anchors.fill: parent
-//            layer.enabled: true
+    template.iconComponent: Item
+    {
+        Item
+        {
+            anchors.fill: parent
+            layer.enabled: true
             
-//            Rectangle
-//            {
-//                visible: control.urls ? control.urls.length > 1 : false
-//                anchors.fill: parent
-//                anchors.leftMargin: Maui.Style.space.small
-//                anchors.rightMargin: Maui.Style.space.small
-//                radius: Maui.Style.radiusV
-//                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-//                border.color: Kirigami.Theme.backgroundColor
-//            }
+            Rectangle
+            {
+                visible: control.urls ? control.urls.length > 1 : false
+                anchors.fill: parent
+                anchors.leftMargin: Maui.Style.space.small
+                anchors.rightMargin: Maui.Style.space.small
+                radius: Maui.Style.radiusV
+                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                border.color: Kirigami.Theme.backgroundColor
+            }
             
-//            Rectangle
-//            {
-//                visible: control.urls ? control.urls.length > 1 : false
-//                anchors.fill: parent
-//                anchors.topMargin: Maui.Style.space.tiny
-//                anchors.leftMargin: Maui.Style.space.tiny
-//                anchors.rightMargin: Maui.Style.space.tiny
-//                radius: Maui.Style.radiusV
-//                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-//                border.color: Kirigami.Theme.backgroundColor
-//            }
+            Rectangle
+            {
+                visible: control.urls ? control.urls.length > 1 : false
+                anchors.fill: parent
+                anchors.topMargin: Maui.Style.space.tiny
+                anchors.leftMargin: Maui.Style.space.tiny
+                anchors.rightMargin: Maui.Style.space.tiny
+                radius: Maui.Style.radiusV
+                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                border.color: Kirigami.Theme.backgroundColor
+            }
             
-//            Rectangle
-//            {
-//                anchors.fill: parent
-//                anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
-//                border.color: Kirigami.Theme.backgroundColor
+            Rectangle
+            {
+                anchors.fill: parent
+                anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
+                border.color: Kirigami.Theme.backgroundColor
                 
-//                radius: Maui.Style.radiusV
-//                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                radius: Maui.Style.radiusV
+                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
                 
-//                Maui.GridItemTemplate
-//                {
-//                    anchors.fill: parent
-//                    anchors.margins: Maui.Style.space.tiny
-//                    iconSizeHint: height
+                Maui.GridItemTemplate
+                {
+                    anchors.fill: parent
+                    anchors.margins: Maui.Style.space.tiny
+                    iconSizeHint: height
                     
-//                    iconSource: control.template.iconSource
-//                    imageSource:  control.template.imageSource
-//                }
-//            }
-//        }
-//    }
+                    iconSource: control.template.iconSource
+                    imageSource:  control.template.imageSource
+                }
+            }
+        }
+    }
 
     Maui.Separator
     {
@@ -157,17 +158,7 @@ Maui.Dialog
         radius: 1
         Layout.margins: Maui.Style.space.medium
     }
-/*
-    Maui.SectionDropDown
-    {
-        id: _dropDown
-        Layout.fillWidth: true
-        implicitHeight: Maui.Style.rowHeight
-        checked: true
-        label1.text: i18n("List files")
-        label2.text: i18n("Review and edit selected files.")
-    }
-    */
+
     Item {Layout.fillWidth: true}
     
     Maui.ListBrowser
