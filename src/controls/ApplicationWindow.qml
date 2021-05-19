@@ -272,23 +272,6 @@ Window
     property var currentAccount: Maui.App.handleAccounts ? Maui.App.accounts.currentAccount : ({})
 
     /*!
-      \qmlproperty Dialog ApplicationWindow::notifyDialog
-
-      The inline notification dialog.
-      To trigger an inline notification use the function notify()
-      This only gives access to the dialog interface properties.
-    */
-    property alias notifyDialog: _notify
-
-    /*!
-      \qmlproperty AboutDialog ApplicationWindow::aboutDialog
-
-      The about dialog with information about the application.
-      Can be used to append more sections to the dialog or modify existing ones.
-    */
-    property alias aboutDialog: aboutDialog
-
-    /*!
       \qmlproperty Component ApplicationWindow::background
 
       The application main page background.
@@ -339,15 +322,15 @@ Window
         headerBackground.color: Maui.App.enableCSD ? Qt.darker(Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
         
         headBar.farRightContent: Maui.WindowControls
-            {
-                side: Qt.RightEdge
-            }
+        {
+            side: Qt.RightEdge
+        }
         
         
         headBar.farLeftContent:  Maui.WindowControls
-            {
-                side: Qt.LeftEdge
-            }
+        {
+            side: Qt.LeftEdge
+        }
         
 
         headBar.leftContent: Maui.ToolButtonMenu
@@ -395,7 +378,11 @@ Window
             {
                 text: i18n("About")
                 icon.name: "documentinfo"
-                onTriggered: aboutDialog.open()
+                onTriggered:
+                {
+                    dialogLoader.sourceComponent = _aboutDialogComponent
+                    dialog.open()
+                }
             }
 
             MenuItem
@@ -593,9 +580,11 @@ Window
         }
     }
 
-    Private.AboutDialog
+
+    Component
     {
-        id: aboutDialog
+        id: _aboutDialogComponent
+        Private.AboutDialog {}
     }
 
     Loader
@@ -605,81 +594,86 @@ Window
         source: "private/AccountsHelper.qml"
     }
 
-    Maui.Dialog
+    Component
     {
-        id: _notify
-        property var cb : ({})
+        id: _notifyDialogComponent
 
-        property alias iconName : _notifyTemplate.iconSource
-        property alias title : _notifyTemplate.label1
-        property alias body: _notifyTemplate.label2
-
-        persistent: false
-        verticalAlignment: Qt.AlignTop
-        defaultButtons: _notify.cb !== null
-        rejectButton.visible: false
-        
-        onAccepted:
+        Maui.Dialog
         {
-            if(_notify.cb)
-            {
-                _notify.cb()
-                _notify.close()
-            }
-        }
+            id: _notify
+            property var cb : ({})
 
-        page.margins: Maui.Style.space.big
-        footBar.background: null
-        widthHint: 0.8
+            property alias iconName : _notifyTemplate.iconSource
+            property alias title : _notifyTemplate.label1
+            property alias body: _notifyTemplate.label2
+            property alias timeInterval : _notifyTimer.interval
+            persistent: false
+            verticalAlignment: Qt.AlignTop
+            defaultButtons: _notify.cb !== null
+            rejectButton.visible: false
 
-        Timer
-        {
-            id: _notifyTimer
-            onTriggered:
+            onAccepted:
             {
-                if(_mouseArea.containsPress || _mouseArea.containsMouse)
+                if(_notify.cb)
                 {
-                    _notifyTimer.restart();
-                    return
+                    _notify.cb()
+                    _notify.close()
                 }
-
-                _notify.close()
             }
-        }
 
-        onClosed: _notifyTimer.stop()
+            page.margins: Maui.Style.space.big
+            footBar.background: null
+            widthHint: 0.8
 
-        stack: MouseArea
-        {
-            id: _mouseArea
-//             Layout.fillHeight: true
-            Layout.fillWidth: true
-            hoverEnabled: true
-            implicitHeight: _notifyTemplate.implicitHeight + Maui.Style.space.huge
-
-            Maui.ListItemTemplate
+            Timer
             {
-                id: _notifyTemplate
-                spacing: Maui.Style.space.big
-                anchors.fill: parent
+                id: _notifyTimer
+                onTriggered:
+                {
+                    if(_mouseArea.containsPress || _mouseArea.containsMouse)
+                    {
+                        _notifyTimer.restart();
+                        return
+                    }
 
-                iconSizeHint: Maui.Style.iconSizes.big
-                label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                label1.font.bold: true
-                label1.font.weight: Font.Bold
-                label1.font.pointSize: Maui.Style.fontSizes.big
-                iconSource: "dialog-warning"
+                    _notify.close()
+                }
             }
-        }
 
-        function show(callback)
-        {
-            _notify.cb = callback || null
-            _notifyTimer.start()
-            _notify.open()
+            onClosed: _notifyTimer.stop()
+
+            stack: MouseArea
+            {
+                id: _mouseArea
+                //             Layout.fillHeight: true
+                Layout.fillWidth: true
+                hoverEnabled: true
+                implicitHeight: _notifyTemplate.implicitHeight + Maui.Style.space.huge
+
+                Maui.ListItemTemplate
+                {
+                    id: _notifyTemplate
+                    spacing: Maui.Style.space.big
+                    anchors.fill: parent
+
+                    iconSizeHint: Maui.Style.iconSizes.big
+                    headerSizeHint: iconSizeHint + Maui.Style.space.big
+                    label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    label1.font.bold: true
+                    label1.font.weight: Font.Bold
+                    label1.font.pointSize: Maui.Style.fontSizes.big
+                    iconSource: "dialog-warning"
+                }
+            }
+
+            function show(callback)
+            {
+                _notify.cb = callback || null
+                _notifyTimer.start()
+                _notify.open()
+            }
         }
     }
-
     Loader
     {
         id: dialogLoader
@@ -734,12 +728,13 @@ Window
       */
     function notify(icon, title, body, callback, timeout, buttonText)
     {
-        _notify.iconName = icon || "emblem-warning"
-        _notify.title.text = title
-        _notify.body.text = body
-        _notifyTimer.interval = timeout ? timeout : 2500
-        _notify.acceptButton.text = buttonText || qsTr ("Accept")
-        _notify.show(callback)
+        dialogLoader.sourceComponent = _notifyDialogComponent
+        dialog.iconName = icon || "emblem-warning"
+        dialog.title.text = title
+        dialog.body.text = body
+        dialog.timeInterval = timeout ? timeout : 2500
+        dialog.acceptButton.text = buttonText || qsTr ("Accept")
+        dialog.show(callback)
     }
 
     /**

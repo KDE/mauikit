@@ -11,9 +11,9 @@ MouseArea {
     implicitWidth: implicitHeight
     
     property bool checked : false
-    
-    signal toggled(bool state)    
-  
+
+    signal toggled(bool state)
+
     onClicked:
     {
         control.checked = !control.checked

@@ -33,7 +33,7 @@ import org.mauikit.controls 1.2 as Maui
  *
  *
  */
-Kirigami.DelegateRecycler
+Item
 {
     id: control
 
