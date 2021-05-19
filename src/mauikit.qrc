@@ -83,6 +83,7 @@
         <file alias="labs/ColorsRow">controls/labs/ColorsRow.qml</file>
         <file alias="TabView">controls/labs/TabView.qml</file>
         <file alias="CloseButton">controls/CloseButton.qml</file>
+        <file alias="BrowserDelegate">controls/BrowserDelegate.qml</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
