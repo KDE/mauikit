@@ -142,7 +142,8 @@ Kirigami.DelegateRecycler
     {
         id: _delegate
 
-       anchors.fill: parent
+       height: parent.height
+       width: parent.width
 
         hoverEnabled: !Kirigami.Settings.isMobile
 

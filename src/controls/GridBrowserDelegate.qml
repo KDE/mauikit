@@ -145,7 +145,6 @@ Maui.ItemDelegate
         anchors.fill: parent
         
         hovered: control.hovered || control.containsPress || _dropArea.containsDrag
-        
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
     }
