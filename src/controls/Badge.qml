@@ -134,7 +134,7 @@ Rectangle
             color: Kirigami.Theme.textColor
             width: control.size
             height: width
-            isMask: color !== "transparent"
+            isMask: true
         }
     }
 

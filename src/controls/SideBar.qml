@@ -80,7 +80,6 @@ Maui.AbstractSideBar
         id: itemDelegate
         iconSize: Maui.Style.iconSizes.small
         label: model.label
-        count: model.count > 0 ? model.count : ""
         iconName: model.icon +  (Qt.platform.os == "android" || Qt.platform.os == "osx" ? ("-sidebar") : "")
         iconVisible: true
         template.leftMargin: Maui.Style.space.medium

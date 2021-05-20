@@ -19,7 +19,7 @@ ItemDelegate
     property alias label : _label1
     property alias iconSource : _icon.source
 
-    property bool showCloseButton : true
+    property bool showCloseButton : false
 
     ToolTip.visible: hovered
     ToolTip.text: label.text

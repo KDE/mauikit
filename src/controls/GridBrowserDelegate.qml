@@ -157,7 +157,7 @@ Maui.ItemDelegate
         width: height
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.margins: Maui.Style.space.big
+        anchors.margins: Maui.Style.space.medium
         onToggled: control.toggled(state)
     }
 }

@@ -21,7 +21,7 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 import org.kde.kirigami 2.7 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
  * ListDelegate
@@ -68,11 +68,6 @@ Maui.ItemDelegate
     property alias iconName: _template.iconSource
 
     /**
-      * count : int
-      */
-    property alias count : _badge.text
-
-    /**
       * template : ListItemTemplate
       */
     property alias template : _template
@@ -93,21 +88,5 @@ Maui.ItemDelegate
         labelsVisible: control.labelVisible
         hovered: parent.hovered
         isCurrentItem: control.isCurrentItem
-
-        Maui.Badge
-        {
-            id: _badge
-            text: control.count
-            visible: control.count.length > 0 && control.labelVisible
-        }
-    }
-
-    /**
-      *
-      */
-    function clearCount()
-    {
-        console.log("CLEANING SIDEBAR COUNT")
-        control.count = ""
     }
 }

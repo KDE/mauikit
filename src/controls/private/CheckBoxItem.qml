@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
-MouseArea {
+Item {
     id: control
 
     Kirigami.Theme.inherit: false
@@ -17,11 +17,6 @@ MouseArea {
 
     signal toggled(bool state)
 
-    onClicked:
-    {
-        control.checked = !control.checked
-        control.toggled(control.checked)
-    }
     
     Rectangle
     {
@@ -51,5 +46,22 @@ MouseArea {
                 }
             }
         }
-    }     
+    }
+
+    MouseArea
+    {
+        hoverEnabled: true
+
+        readonly property int targetMargin:  Kirigami.Settings.hasTransientTouchInput ? Maui.Style.space.big : 0
+
+        height: parent.height + targetMargin
+        width: parent.width + targetMargin
+
+
+        onClicked:
+        {
+            control.checked = !control.checked
+            control.toggled(control.checked)
+        }
+    }
 }
