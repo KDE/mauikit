@@ -57,10 +57,6 @@ class MAUIKIT_EXPORT MauiApp : public QObject
 
     Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
     Q_PROPERTY(QString qtVersion READ getQtVersion CONSTANT FINAL)
-    Q_PROPERTY(bool handleAccounts READ getHandleAccounts WRITE setHandleAccounts NOTIFY handleAccountsChanged)
-#ifdef COMPONENT_ACCOUNTS
-    Q_PROPERTY(MauiAccounts *accounts READ getAccounts CONSTANT FINAL)
-#endif
 
     // CSD support
     Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
@@ -127,21 +123,6 @@ public:
     void setDonationPage(const QString &value);
 
     /**
-     * @brief getHandleAccounts
-     * If the application is meant to support online accounts
-     * @return
-     * True if the application supports online account
-     */
-    bool getHandleAccounts() const;
-
-    /**
-     * @brief setHandleAccounts
-     * Set if the application is meant to support online accounts, if it supports online accounts a list of avaliable accounts is shown in the main application menu
-     * @param value
-     */
-    void setHandleAccounts(const bool &value);
-
-    /**
      * @brief getCredits
      * Returns a model of the credits represented as a QVariantList, some of the fields used are: name, email, year.
      * @return
@@ -166,21 +147,11 @@ public:
      */
     void setEnableCSD(const bool &value);
 
-#ifdef COMPONENT_ACCOUNTS
-    /**
-     * @brief getAccounts
-     * Model of the avaliable accounts in the system. This feature can be skipped on building time making use of the variable COMPONENT_ACCOUNTS, if such variable has been set to false then this method doesn't exists.
-     * @return
-     */
-    MauiAccounts *getAccounts() const;
-#endif
-
     static void setDefaultMauiStyle();
 
 private:
     static MauiApp *m_instance;
     MauiApp();
-    MauiAccounts *m_accounts;
 
     QString m_iconName;
     QString m_donationPage;
@@ -191,12 +162,10 @@ private:
     QStringList m_rightWindowControls;
 
     void getWindowControlsSettings();
-    bool handleAccounts = false;
 
 signals:
     void iconNameChanged();
     void donationPageChanged();
-    void handleAccountsChanged();
     void sendNotification(QString iconName, QString title, QString body, QJSValue callback, int timeout, QString buttonText);
 
     // CSD support

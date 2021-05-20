@@ -50,27 +50,6 @@ set(mauikit_HDRS
     platforms/platform.h
     )
 
-if(${COMPONENT_ACCOUNTS})
-    message(STATUS "INCLUDING ACCOUNTS COMPONENT")
-
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/accounts
-        ${CMAKE_CURRENT_BINARY_DIR}/utils/accounts
-        )
-
-    set(accounts_SRCS
-        utils/accounts/mauiaccounts.cpp
-        utils/accounts/accountsdb.cpp
-        utils/accounts/accounts.qrc
-        )
-
-    set(accounts_HDRS
-        utils/accounts/mauiaccounts.h
-        utils/accounts/accountsdb.h
-        )
-    add_definitions(-DCOMPONENT_ACCOUNTS)
-endif()
-
 if(${SUPPORT_PLUGINS})
        message(STATUS "INCLUDING PLUGINS SUPPORT")
     set(mauikitplugin_SRCS
@@ -133,9 +112,6 @@ endif()
 
 add_library(MauiKit
 
-    ${accounts_HDRS}
-    ${accounts_SRCS}
-
     ${mauikit_HDRS}
     ${mauikit_SRCS}
 
@@ -177,7 +153,6 @@ endif()
 target_link_libraries(MauiKit
     PUBLIC
     Qt5::Core
-    Qt5::Sql
     Qt5::Gui
     KF5::I18n
     KF5::CoreAddons
@@ -218,7 +193,6 @@ install(TARGETS MauiKit DESTINATION
 install(FILES
     ${mauikit_HDRS}
     ${mauikit_PLATFORM_HDRS}
-    ${accounts_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core
     COMPONENT Devel)

@@ -32,10 +32,6 @@
 #include "mauimodel.h"
 #include "pathlist.h"
 
-#ifdef COMPONENT_ACCOUNTS
-#include "mauiaccounts.h"
-#endif
-
 #ifdef Q_OS_ANDROID
 #include "platforms/android/mauiandroid.h"
 #elif defined Q_OS_LINUX
@@ -206,11 +202,6 @@ void MauiKit::registerTypes(const char *uri)
 
 
     /** MAUI APPLICATION SPECIFIC PROPS **/
-#ifdef COMPONENT_ACCOUNTS
-    qmlRegisterAnonymousType<MauiAccounts>(uri, 1);
-    qmlRegisterType(componentUrl(QStringLiteral("SyncDialog.qml")), uri, 1, 0, "SyncDialog"); // to be rename to accountsDialog
-#endif
-
     /** HELPERS **/
     qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
     qmlRegisterSingletonType<Handy>(uri, 1, 0, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {

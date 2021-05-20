@@ -21,6 +21,9 @@ Item
     default property alias contentData: _menu.contentData
     visible : _menu.visible
 
+    property alias count : _menu.count
+    property alias menu :_menu
+    
     property bool responsive: Kirigami.Settings.hasTransientTouchInput
 
     signal opened()
@@ -54,7 +57,6 @@ Item
         onOpened: control.opened()
         onClosed: control.closed()
 
-
         contentItem: Maui.ListBrowser
         {
             id: _listView
@@ -73,34 +75,6 @@ Item
             spacing: _menu.spacing
             currentIndex: _menu.currentIndex || 0
         }
-
-//        enter: Transition
-//        {
-//            enabled: control.responsive
-
-//            NumberAnimation
-//            {
-//                property: control.responsive ? "y" : ""
-//                from: window().height
-//                to: window().height - _menu.height
-//                easing.type: Easing.InOutQuad
-//                duration: Kirigami.Units.shortDuration
-//            }
-//        }
-
-//        exit: Transition
-//        {
-//            enabled: control.responsive
-
-//            NumberAnimation
-//            {
-//                property: control.responsive ? "y" : ""
-//                from: _menu.y
-//                to: window().height
-//                easing.type: Easing.InOutQuad
-//                duration: Kirigami.Units.shortDuration
-//            }
-//        }
 
         background: Rectangle
         {

@@ -6,6 +6,9 @@ import org.mauikit.controls 1.2 as Maui
 
 MouseArea {
     id: control
+
+    Kirigami.Theme.inherit: false
+    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
     
     implicitHeight: Maui.Style.iconSizes.medium
     implicitWidth: implicitHeight

@@ -253,23 +253,9 @@ Window
 
     /*!
       A list of actions to be added to the application main menu.
-      The actions are listed under the application accounts, if used, and above the default actions menu entries: About and Quit.
+      The actions are listed if used, and above the default actions menu entries: About and Quit.
     */
     property list<Action> mainMenu
-
-    /*!
-      \qmlproperty AccountsDialog ApplicationWindow::accounts
-
-      The accounts dialog, with access to the current accounts listed.
-      This is only avaliable if the app makes usage of online accounts.
-    */
-    property alias accounts: _accountsDialogLoader.item
-
-    /*!
-      The current account selected.
-      Only avaliable if the app makes usage of online accounts.
-    */
-    property var currentAccount: Maui.App.handleAccounts ? Maui.App.accounts.currentAccount : ({})
 
     /*!
       \qmlproperty Component ApplicationWindow::background
@@ -324,44 +310,19 @@ Window
         headBar.farRightContent: Maui.WindowControls
         {
             side: Qt.RightEdge
-        }
-        
+        }        
         
         headBar.farLeftContent:  Maui.WindowControls
         {
             side: Qt.LeftEdge
-        }
-        
+        }        
 
         headBar.leftContent: Maui.ToolButtonMenu
         {
             id: menuBtn
             icon.name: "application-menu"
-            //            checked: _mainMenu.visible
-            focusPolicy: Qt.NoFocus
-
-            //            onClicked:
-            //            {
-            //                _mainMenu.popup(parent, 0 , root.altHeader ? 0 - _mainMenu.implicitHeight - Maui.Style.space.medium  : root.headBar.height)
-            //                menuButtonClicked()
-            //            }
-
-            Loader
-            {
-                id: _accountsMenuLoader
-                
-                asynchronous: true
-                visible: active
-                active: Maui.App.handleAccounts
-                
-                width: parent.width - (Maui.Style.space.medium*2)
-                
-                anchors.horizontalCenter: parent.horizontalCenter
-                
-                sourceComponent: _accountsComponent
-            }
-
-            MenuSeparator {visible: _accountsMenuLoader.active}
+            //text: menuBtn.menu.count
+            visible : menu.count > 2
 
             Repeater
             {
@@ -383,12 +344,6 @@ Window
                     dialogLoader.sourceComponent = _aboutDialogComponent
                     dialog.open()
                 }
-            }
-
-            MenuItem
-            {
-                text: i18n("Quit")
-                onTriggered: root.close()
             }
         }
 
@@ -514,85 +469,14 @@ Window
 
         color: Qt.rgba( root.Kirigami.Theme.backgroundColor.r,  root.Kirigami.Theme.backgroundColor.g,  root.Kirigami.Theme.backgroundColor.b, 0.7)
         Behavior on opacity { NumberAnimation { duration: 150 } }
-    }
-
-    Component
-    {
-        id: _accountsComponent
-
-        Item
-        {
-            height: _accountLayout.implicitHeight + Maui.Style.space.medium
-
-            ColumnLayout
-            {
-                id: _accountLayout
-                anchors.fill: parent
-                spacing: Maui.Style.space.medium
-
-                Repeater
-                {
-                    id: _accountsListing
-
-                    model: Maui.BaseModel
-                    {
-                        list: Maui.App.accounts
-                    }
-
-                    delegate: Maui.ListBrowserDelegate
-                    {
-                        Layout.fillWidth: true
-                        Kirigami.Theme.backgroundColor: "transparent"
-
-                        isCurrentItem: Maui.App.accounts.currentAccountIndex === index
-                        iconSource: "amarok_artist"
-                        iconSizeHint: Maui.Style.iconSizes.medium
-                        label1.text: model.user
-                        label2.text: model.server
-                        width: _accountsListing.width
-                        height: Maui.Style.rowHeight * 1.2
-                        onClicked: Maui.App.accounts.currentAccountIndex = index
-                    }
-
-                    Component.onCompleted:
-                    {
-                        if(_accountsListing.count > 0)
-                            Maui.App.accounts.currentAccountIndex = 0
-                    }
-                }
-
-                Button
-                {
-                    Layout.preferredHeight: implicitHeight
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.fillWidth: true
-                    text: i18n("Accounts")
-                    icon.name: "list-add-user"
-                    onClicked:
-                    {
-                        if(root.accounts)
-                            accounts.open()
-
-                        menuBtn.menu.close()
-                    }
-                }
-            }
-        }
-    }
-
-
+    }   
+    
     Component
     {
         id: _aboutDialogComponent
         Private.AboutDialog {}
     }
-
-    Loader
-    {
-        id: _accountsDialogLoader
-        active: Maui.App.handleAccounts
-        source: "private/AccountsHelper.qml"
-    }
+    
 
     Component
     {

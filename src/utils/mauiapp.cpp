@@ -23,10 +23,6 @@
 
 #include <QStandardPaths>
 
-#ifdef COMPONENT_ACCOUNTS
-#include "mauiaccounts.h"
-#endif
-
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 #include <KConfig>
 #include <KConfigGroup>
@@ -47,11 +43,6 @@ MauiApp *MauiApp::m_instance = nullptr;
 
 MauiApp::MauiApp()
     : QObject(nullptr)
-#ifdef COMPONENT_ACCOUNTS
-    , m_accounts(MauiAccounts::instance())
-#else
-    , m_accounts(nullptr)
-#endif
 {
     this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
 
@@ -111,29 +102,6 @@ void MauiApp::setDonationPage(const QString &value)
     m_donationPage = value;
     emit this->donationPageChanged();
 }
-
-bool MauiApp::getHandleAccounts() const
-{
-    return this->handleAccounts;
-}
-
-void MauiApp::setHandleAccounts(const bool &value)
-{
-#ifdef COMPONENT_ACCOUNTS
-    if (this->handleAccounts == value)
-        return;
-
-    this->handleAccounts = value;
-    emit this->handleAccountsChanged();
-#endif
-}
-
-#ifdef COMPONENT_ACCOUNTS
-MauiAccounts *MauiApp::getAccounts() const
-{
-    return this->m_accounts;
-}
-#endif
 
 void MauiApp::setDefaultMauiStyle()
 {

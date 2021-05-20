@@ -12,7 +12,6 @@
         <file alias="Page.qml">controls/Page.qml</file>
         <file alias="private/PathBarDelegate.qml">controls/private/PathBarDelegate.qml</file>
         <file alias="private/EdgeShadow.qml">controls/private/EdgeShadow.qml</file>
-        <file alias="private/AccountsHelper.qml">controls/private/AccountsHelper.qml</file>
         <file alias="private/BasicToolButton.qml">controls/private/BasicToolButton.qml</file>
         <file alias="private/CheckBoxItem.qml">controls/private/CheckBoxItem.qml</file>
         <file alias="Holder.qml">controls/Holder.qml</file>
@@ -33,7 +32,6 @@
         <file alias="TextField.qml">controls/TextField.qml</file>
         <file alias="Badge.qml">controls/Badge.qml</file>
         <file alias="GridView.qml">controls/GridView.qml</file>
-        <file alias="SyncDialog.qml">controls/SyncDialog.qml</file>
         <file alias="Terminal.qml">controls/Terminal.qml</file>
         <file alias="TabBar.qml">controls/TabBar.qml</file>
         <file alias="TabButton.qml">controls/TabButton.qml</file>

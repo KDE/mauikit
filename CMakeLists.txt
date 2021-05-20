@@ -18,7 +18,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH}
     ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 #DEFAULT COMPONENTS DEFINITIONS
-option(COMPONENT_ACCOUNTS "Build accounts component" ON)
 option(COMPONENT_TERMINAL "Build terminal component" ON)
 
 include(GenerateExportHeader)
@@ -34,8 +33,7 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMAddQch)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
-find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml 
-    Sql Core Quick Gui Svg QuickControls2)
+find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Quick Gui Svg QuickControls2)
     
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)

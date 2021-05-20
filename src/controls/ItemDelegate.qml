@@ -167,7 +167,7 @@ Item
         MouseArea
         {
             id: _mouseArea
-            //        enabled: !Kirigami.Settings.isMobile
+
             anchors.fill: parent
             acceptedButtons:  Qt.RightButton | Qt.LeftButton
             property bool pressAndHoldIgnored : false
