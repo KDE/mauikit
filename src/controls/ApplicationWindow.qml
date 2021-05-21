@@ -321,8 +321,8 @@ Window
         {
             id: menuBtn
             icon.name: "application-menu"
-            //text: menuBtn.menu.count
-            visible : menu.count > 2
+//            text: root.mainMenu.length
+            visible : root.mainMenu.length
 
             Repeater
             {
