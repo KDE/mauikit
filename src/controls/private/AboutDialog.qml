@@ -284,8 +284,8 @@ Maui.Dialog
             headerSizeHint: iconSizeHint + Maui.Style.space.medium
 
             spacing: Maui.Style.space.medium
-            label1.text: "Powered by"
-            label2.text: "MauiKit Framework " + Maui.App.mauikitVersion
+            label1.text: i18n("Powered by")
+            label2.text: "MauiKit Frameworks " + Maui.App.mauikitVersion
             Connections
             {
                 target: _poweredBy.label2
