@@ -224,6 +224,8 @@ Item
         Item
         {
             id: _iconContainer
+            implicitHeight: iconSizeHint
+
             visible: (control.width > Kirigami.Units.gridUnit * 10) && (iconSource.length > 0 || imageSource.length > 0)
 
             Layout.alignment: Qt.AlignCenter
@@ -232,7 +234,7 @@ Item
             Layout.fillWidth: !control.labelsVisible
 
             Layout.preferredWidth: Math.min(height, control.headerSizeHint)
-            Layout.preferredHeight: Math.max(_leftLabels.implicitHeight + _rightLabels.implicitHeight + control.topMargin + control.bottomMargin, control.headerSizeHint)
+            Layout.preferredHeight: Math.max(control.height, control.headerSizeHint)
 
             Kirigami.Icon
             {

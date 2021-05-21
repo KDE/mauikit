@@ -22,12 +22,13 @@ Row
     Repeater
     {
         model: control.colors
+
         MouseArea
         {
             readonly property bool checked : control.currentColor === modelData
             implicitHeight: Maui.Style.iconSizes.medium
             implicitWidth: implicitHeight
-            
+
             onClicked: control.colorPicked(modelData)
             
             Rectangle
@@ -35,6 +36,7 @@ Row
                 anchors.fill: parent
                 radius: height/2
                 color: modelData
+                border.color: Qt.darker(modelData, 2)
                 
                 Kirigami.Icon
                 {
