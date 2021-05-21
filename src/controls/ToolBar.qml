@@ -199,11 +199,27 @@ ToolBar
             height: control.implicitHeight
             width: control.width
             
+//              Label{
+//                  anchors.left: parent.left
+//                  z: parent.z + 9999
+//                  color: "orange"
+//                  text: farLeftRowContent.implicitWidth + " / " + leftRowContent.implicitWidth + " / " + _scrollView.width
+//              }
+
 //             Label{
+//                 anchors.centerIn: parent
+
 //                 z: parent.z + 9999
 //                 color: "orange"
-//                 text: farLeftRowContent.implicitWidth + " / " + farRightRowContent.implicitWidth + " / " + _scrollView.width
+//                 text: _helper1.width + " / " + middleRowContent.implicitWidth + " / " + _helper2.width
 //             }
+
+             //Label{
+                 //anchors.right: parent.right
+                 //z: parent.z + 9999
+                 //color: "orange"
+                 //text: farRightRowContent.implicitWidth + " / " + rightRowContent.implicitWidth  + " / " + control.width
+             //}
              states: [State
             {
                 when: control.position === ToolBar.Header
@@ -251,8 +267,8 @@ ToolBar
                     visible: farLeftRowContent.visibleChildren.length && (leftRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
                     implicitHeight: Maui.Style.iconSizes.tiny
                     Layout.alignment: Qt.AlignCenter
-                }
-                
+                }        
+                  
                 ScrollView
                 {
                     id: _scrollView
@@ -261,7 +277,7 @@ ToolBar
                     
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    
+
                     contentWidth: mainFlickable.contentWidth
                     contentHeight: height  
                     
@@ -271,8 +287,6 @@ ToolBar
                     Flickable
                     {
                         id: mainFlickable
-                        
-                        anchors.fill: parent
                         
                         flickableDirection: Flickable.HorizontalFlick
                         interactive: !fits && Maui.Handy.isTouch
@@ -286,59 +300,65 @@ ToolBar
                         RowLayout
                         {
                             id: layout
-                            width: mainFlickable.width
-                            height: mainFlickable.height
+                           
+                           width: mainFlickable.width
+                           height: mainFlickable.height
                             spacing: control.spacing
-                            
+
                             Row
                             {
                                 id: leftRowContent
                                 spacing: control.spacing
-                                Layout.fillWidth: true
+//                                Layout.fillWidth: true
                                 Layout.preferredWidth: implicitWidth
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
                                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                             }
+
                             
-                            
-                            Item //helper to force center middle content
-                            {
-                                visible: control.forceCenterMiddleContent
-                                Layout.minimumWidth: 0
-                                Layout.fillWidth: visible
-                                Layout.maximumWidth: visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
-                            }
-                            
+                           Item //helper to force center middle content
+                           {
+                               id: _helper1
+//                               visible: control.forceCenterMiddleContent
+                               Layout.minimumWidth: 0
+                               Layout.fillWidth: visible
+                               Layout.fillHeight: true
+//                               Layout.preferredWidth: visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
+                           }
+
                             RowLayout
                             {
                                 id: middleRowContent
-                                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                                Layout.fillHeight: true
+                               Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                 Layout.fillWidth: true
+                                Layout.fillHeight: true
+//                                 Layout.preferredWidth: implicitWidth
+//                                 Layout.maximumWidth: implicitWidth
 //                                 Layout.minimumWidth: implicitWidth
-                                spacing: visibleChildren.length > 1 ? control.spacing : 0
+                                spacing: control.spacing
                             }
                             
-                            Item //helper to force center middle content
-                            {
-                                visible: control.forceCenterMiddleContent
-                                Layout.minimumWidth: 0
-                                Layout.fillWidth: visible
-                                Layout.maximumWidth: visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
-                            }
+                           Item //helper to force center middle content
+                           {
+                               id: _helper2
+
+                               Layout.fillWidth: visible
+                               Layout.fillHeight: true
+                           }
                             
                             Row
                             {
                                 id: rightRowContent
                                 spacing: control.spacing
-                                Layout.fillWidth: true
+//                                Layout.fillWidth: true
                                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                                 Layout.preferredWidth: implicitWidth
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
                             }                                
                         }
+                    
                     }
                 }
                 
