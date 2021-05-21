@@ -41,10 +41,10 @@ ToolButton
     {
         if(_menu.visible)
         {
-            _menu.close()
+            close()
         }else
         {
-            _menu.open(0, height + Maui.Style.space.medium)
+            open()
         }
     }
 
@@ -53,5 +53,14 @@ ToolButton
         id: _menu
     }
     
-    //Component.onCompleted: control.background.showMenuArrow = true    
+    function open()
+    {
+        _menu.open(0, height + Maui.Style.space.medium)
+        _menu.forceActiveFocus()
+    }
+
+    function close()
+    {
+        _menu.close()
+    }
 }
