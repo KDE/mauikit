@@ -7,18 +7,21 @@ include_directories(
 
     ${CMAKE_CURRENT_SOURCE_DIR}/utils/model_template
     ${CMAKE_CURRENT_BINARY_DIR}/utils/model_template
-    
+
     ${CMAKE_CURRENT_SOURCE_DIR}/controls/libs
     ${CMAKE_CURRENT_BINARY_DIR}/controls/libs
 
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms
-    
+
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux
     ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux
 
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
     ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
+    ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
     )
 
 set(mauikit_SRCS
@@ -68,7 +71,7 @@ endif()
 #options - for the appimage
 option(IS_APPIMAGE_PACKAGE "If set to true then the icons and styled is packaged as well" OFF)
 
-if(ANDROID OR WIN32 OR IS_APPIMAGE_PACKAGE)
+if(ANDROID OR WIN32 OR IS_APPIMAGE_PACKAGE OR APPLE)
     if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme/.git)
         find_package(Git REQUIRED)
         execute_process(COMMAND ${GIT_EXECUTABLE} clone --depth 1 https://github.com/Nitrux/luv-icon-theme.git ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme)
@@ -91,7 +94,7 @@ if (ANDROID)
         )
 
     kde_enable_exceptions(MauiKit PRIVATE)
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
 
     set(mauikit_PLATFORM_SRCS
         platforms/linux/mauilinux.cpp
@@ -100,6 +103,16 @@ elseif(UNIX)
     set(mauikit_PLATFORM_HDRS
         platforms/linux/mauilinux.h
         )
+elseif(APPLE)
+#    set(CMAKE_CXX_FLAGS "-x objective-c++")
+
+#    set(mauikit_PLATFORM_SRCS
+#        platforms/macos/mauimacos.cpp
+#        )
+
+#    set(mauikit_PLATFORM_HDRS
+#        platforms/macos/mauimacos.h
+#        )
 elseif(WIN32)
     set(mauikit_PLATFORM_SRCS
         platforms/windows/mauiwindows.cpp
@@ -127,8 +140,10 @@ if(ANDROID)
     target_include_directories(MauiKit PRIVATE platforms/android)
 elseif(WIN32)
     target_include_directories(MauiKit PRIVATE platforms/windows)
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
     target_include_directories(MauiKit PRIVATE platforms/linux)
+elseif(APPLE)
+    target_include_directories(MauiKit PRIVATE platforms/macos)
 endif()
 
 if(ANDROID)
@@ -144,8 +159,8 @@ if(ANDROID)
         install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
     endif()
 elseif(UNIX AND NOT ANDROID)
-    target_link_libraries(MauiKit 
-    PUBLIC 
+    target_link_libraries(MauiKit
+    PUBLIC
     KF5::ConfigCore
  )
 endif()

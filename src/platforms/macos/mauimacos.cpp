@@ -1,9 +1,5 @@
 #include "mauimacos.h"
 
-#include <Cocoa/Cocoa.h>
-#import <CoreFoundation/CoreFoundation.h>
-#import <ApplicationServices/ApplicationServices.h>
-
 #include <QUrl>
 
 MAUIMacOS::MAUIMacOS(QObject *parent) : AbstractPlatform(parent)
@@ -34,28 +30,31 @@ void MAUIMacOS::removeTitlebarFromWindow(long winId)
 
 void MAUIMacOS::runApp(const QString &app, const QList<QUrl> &files)
 {
-    CFURLRef appUrl = QUrl::fromLocalFile(app).toCFURL();
+    Q_UNUSED(app)
+    Q_UNUSED(files)
 
-    CFMutableArrayRef cfaFiles =
-        CFArrayCreateMutable(kCFAllocatorDefault,
-                             files.count(),
-                             &kCFTypeArrayCallBacks);
-    for (const QUrl &url: files) {
-        CFURLRef u = url.toCFURL();
-        CFArrayAppendValue(cfaFiles, u);
-        CFRelease(u);
-    }
+//    CFURLRef appUrl = QUrl::fromLocalFile(app).toCFURL();
 
-    LSLaunchURLSpec inspec;
-    inspec.appURL = appUrl;
-    inspec.itemURLs = cfaFiles;
-    inspec.asyncRefCon = NULL;
-    inspec.launchFlags = kLSLaunchDefaults + kLSLaunchAndDisplayErrors;
-    inspec.passThruParams = NULL;
+//    CFMutableArrayRef cfaFiles =
+//        CFArrayCreateMutable(kCFAllocatorDefault,
+//                             files.count(),
+//                             &kCFTypeArrayCallBacks);
+//    for (const QUrl &url: files) {
+//        CFURLRef u = url.toCFURL();
+//        CFArrayAppendValue(cfaFiles, u);
+//        CFRelease(u);
+//    }
 
-    OSStatus ret;
-    ret = LSOpenFromURLSpec(&inspec, NULL);
-    CFRelease(appUrl);
+//    LSLaunchURLSpec inspec;
+//    inspec.appURL = appUrl;
+//    inspec.itemURLs = cfaFiles;
+//    inspec.asyncRefCon = NULL;
+//    inspec.launchFlags = kLSLaunchDefaults + kLSLaunchAndDisplayErrors;
+//    inspec.passThruParams = NULL;
+
+//    OSStatus ret;
+//    ret = LSOpenFromURLSpec(&inspec, NULL);
+//    CFRelease(appUrl);
 }
 
 void MAUIMacOS::shareFiles(const QList<QUrl> &urls)

@@ -40,13 +40,8 @@
 
 #include "platform.h"
 
-#if defined Q_OS_MACOS
-#include <KF5/KI18n/KLocalizedContext>
-#include <KF5/KI18n/KLocalizedString>
-#else
 #include <KI18n/KLocalizedContext>
 #include <KI18n/KLocalizedString>
-#endif
 
 #include <QQmlContext>
 
@@ -131,7 +126,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/AlternateListItem.qml")), uri, 1, 2, "AlternateListItem");
     qmlRegisterType(componentUrl(QStringLiteral("labs/Separator.qml")), uri, 1, 2, "Separator");
     qmlRegisterType(componentUrl(QStringLiteral("private/BasicToolButton.qml")), uri, 1, 2, "BasicToolButton");
-    
+
     /** 1.3 **/
     qmlRegisterType(componentUrl(QStringLiteral("labs/GalleryRollItem.qml")), uri, 1, 3, "GalleryRollItem");
     qmlRegisterType(componentUrl(QStringLiteral("labs/CollageItem.qml")), uri, 1, 3, "CollageItem");
@@ -146,7 +141,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/TabView.qml")), uri, 1, 3, "TabView");
     qmlRegisterType(componentUrl(QStringLiteral("CloseButton.qml")), uri, 1, 3, "CloseButton");
     qmlRegisterType(componentUrl(QStringLiteral("labs/ColorsRow.qml")), uri, 1, 3, "ColorsRow");
-    
+
     /// NON UI CONTROLS
     qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
     qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
@@ -168,14 +163,14 @@ void MauiKit::registerTypes(const char *uri)
 #elif defined Q_OS_ANDROID
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_LINUX && !defined Q_OS_ANDROID
-    
+
     #if defined Q_PROCESSOR_ARM
-    qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");    
+    qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #else
     qmlRegisterType(componentUrl(QStringLiteral("labs/CSDControls.qml")), uri, 1, 1, "CSDControls");
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
 #endif
-    
+
 #endif
 
     /** PLATFORMS SPECIFIC CONTROLS **/
@@ -194,6 +189,8 @@ void MauiKit::registerTypes(const char *uri)
 
 #elif defined Q_OS_WIN32
     // here window platform integration interfaces
+#elif defined Q_OS_MACOS
+
 #endif
 
     /** DATA MODELING TEMPLATED INTERFACES **/
