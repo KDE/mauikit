@@ -42,7 +42,7 @@ flickable gestures.
 SwipeView
 {
     id: control
-//     interactive: Kirigami.Settings.hasTransientTouchInput
+    //     interactive: Kirigami.Settings.hasTransientTouchInput
     interactive: false
     clip: true
     focus: true
@@ -62,29 +62,47 @@ SwipeView
     /*!
       Access to the view port component where the app view buttons is added.
     */
-    property QtObject actionGroup : Private.ActionGroup
-    {
-        id: _actionGroup
-        currentIndex : control.currentIndex
-        strech: false
-        onCurrentIndexChanged:
-        {
-            control.currentIndex = currentIndex
-            _actionGroup.currentIndex = control.currentIndex
-        }
 
-        Component.onCompleted:
+    Component
+    {
+        id: _viewPortComponent
+        Private.ActionGroup
         {
-            control.toolbar.middleContent.push(_actionGroup)
+            id: _actionGroup
+            currentIndex : control.currentIndex
+
+            Binding on currentIndex {
+                value: control.currentIndex
+                restoreMode: Binding.RestoreValue
+            }
+
+            onCurrentIndexChanged:
+            {
+                control.currentIndex = currentIndex
+                //                _actionGroup.currentIndex = control.currentIndex
+            }
+
+            Component.onCompleted:
+            {
+                for(var i in control.contentChildren)
+                {
+                    const obj = control.contentChildren[i]
+
+                    if(obj.Maui.AppView.title || obj.Maui.AppView.iconName)
+                    {
+                        if(_actionGroup.items.length < control.maxViews)
+                        {
+                            _actionGroup.items.push(obj)
+                        }else
+                        {
+                            _actionGroup.hiddenItems.push(obj)
+                        }
+                    }
+                }
+            }
         }
     }
 
-    currentIndex: _actionGroup.currentIndex
-    onCurrentIndexChanged:
-    {
-        _actionGroup.currentIndex = currentIndex
-        control.currentIndex = _actionGroup.currentIndex
-    }
 
     onCurrentItemChanged:
     {
@@ -134,40 +152,6 @@ SwipeView
             _listView.lastPos = _listView.contentX
         }
 
-//        Binding on contentX
-//        {
-//            when: overviewHandler.active
-//            delayed: true
-//            value: _listView.lastPos + ((overviewHandler.centroid.position.x - overviewHandler.centroid.pressPosition.x) * -1)
-//            restoreMode: Binding.RestoreBinding
-//        }
-
-        //Item
-        //{
-            //enabled: Maui.Handy.isTouch
-            //parent: window().pageContent
-            //z: parent.z + 999
-            //anchors.bottom: parent.bottom
-            //height: 32
-            //anchors.left: parent.left
-            //anchors.right: parent.right
-
-            //DragHandler
-            //{
-                //id: overviewHandler
-                //target: null
-                //onActiveChanged:
-                //{
-                    //if(!active)
-                    //{
-                        //_listView.contentX += (overviewHandler.centroid.position.x - overviewHandler.centroid.pressPosition.x) * -1
-                        //_listView.returnToBounds()
-                        //_listView.currentIndex = _listView.indexAt(_listView.contentX, 0)
-                    //}
-                //}
-            //}
-        //}
-
     }
 
     Keys.enabled: true
@@ -208,21 +192,8 @@ SwipeView
 
     Component.onCompleted:
     {
-        for(var i in control.contentChildren)
-        {
-            const obj = control.contentChildren[i]
-
-            if(obj.Maui.AppView.title || obj.Maui.AppView.iconName)
-            {
-                if(control.actionGroup.items.length < control.maxViews)
-                {
-                    control.actionGroup.items.push(obj)
-                }else
-                {
-                    control.actionGroup.hiddenItems.push(obj)
-                }
-            }
-        }
+        var object = _viewPortComponent.createObject(control.toolbar.middleContent)
+        control.toolbar.middleContent.push(object)
     }
 
     property QtObject history : QtObject

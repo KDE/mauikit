@@ -27,8 +27,7 @@ import "."
 Item
 {
     id: control
-    Layout.fillHeight: true
-    Layout.fillWidth: strech
+Layout.alignment: Qt.AlignCenter
     
     implicitWidth: _layout.implicitWidth
     implicitHeight: _layout.implicitHeight
