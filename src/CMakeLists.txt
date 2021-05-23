@@ -26,6 +26,7 @@ include_directories(
 
 set(mauikit_SRCS
     mauikit.cpp
+    controls/libs/style.cpp
     utils/appsettings.cpp
     utils/fmh.cpp
     utils/mauiapp.cpp
@@ -49,6 +50,7 @@ set(mauikit_HDRS
     utils/model_template/mauimodel.h
     controls/libs/appview.h
     controls/libs/tabview.h
+    controls/libs/style.h
     platforms/abstractplatform.h
     platforms/platform.h
     )
