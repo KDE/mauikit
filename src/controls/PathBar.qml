@@ -203,11 +203,10 @@ Rectangle
                     id: _listView
                     anchors.fill: parent
 
-                    property int pathArrowWidth: 8
                     orientation: ListView.Horizontal
                     clip: true
                     spacing: 0
-                    currentIndex: _pathModel.count - 1
+                    currentIndex: _listView.count - 1
                     focus: true
                     interactive: Maui.Handy.isTouch
                     highlightFollowsCurrentItem: true
@@ -220,11 +219,10 @@ Rectangle
                     delegate: Private.PathBarDelegate
                     {
                         id: delegate
-                        //                         borderColor: ListView.isCurrentItem ?  control.Kirigami.Theme.highlightColor :  control.border.color
+
                         color: ListView.isCurrentItem || hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.15) : "transparent"
-                        //                         smooth: true
-                        //                         arrowWidth: _listView.pathArrowWidth
-                        height: _listView.height
+
+                        height: ListView.view.height
                         width: Math.max(Maui.Style.iconSizes.medium * 2, implicitWidth)
 
                         Kirigami.Separator

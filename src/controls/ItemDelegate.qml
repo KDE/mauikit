@@ -234,10 +234,11 @@ Item
 
             onPressAndHold :
             {
+                xAnim.running = true
+
                 if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
                 {
                     drag.target = _mouseArea
-                    xAnim.running = true
                     control.grabToImage(function(result)
                     {
                         control.Drag.imageSource = result.url

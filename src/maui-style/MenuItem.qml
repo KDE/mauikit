@@ -48,6 +48,8 @@ T.MenuItem
 {
     id: control
 
+    opacity: control.enabled ? 1 : 0.5
+
     hoverEnabled: !Kirigami.Settings.isMobile
 
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
@@ -94,7 +96,6 @@ T.MenuItem
         leftPadding: !control.mirrored ? indicatorPadding + Maui.Style.space.medium : arrowPadding
         rightPadding: control.mirrored ? indicatorPadding : arrowPadding + Maui.Style.space.medium
 
-        opacity: control.enabled ? 1 : 0.5
         spacing: control.spacing
 
         mirrored: control.mirrored
