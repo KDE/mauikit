@@ -209,7 +209,7 @@ Maui.ItemDelegate
             iconComponent: Maui.IconItem
             {
                 radius: Maui.Style.radiusV
-                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                color: control.Kirigami.Theme.backgroundColor
 
                 iconSource: control.iconSource
                 imageSource: _template.imageSource
@@ -223,6 +223,5 @@ Maui.ItemDelegate
                 maskRadius: _template.maskRadius
             }
         }
-
     }
 }
