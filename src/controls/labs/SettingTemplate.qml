@@ -31,10 +31,10 @@ import org.kde.kirigami 2.7 as Kirigami
 Maui.FlexListItem
 {
     id: control
-    padding: Maui.Style.space.big * 1.2
+    padding: Math.floor(Maui.Style.space.medium * 1.2)
     Layout.fillWidth: true
     
-    label2.opacity: 0.5
+//    label2.opacity: 0.5
     
     background: Rectangle
     {

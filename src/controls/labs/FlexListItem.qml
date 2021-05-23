@@ -89,7 +89,7 @@ ItemDelegate
 
     property alias columnSpacing: _layout.columnSpacing
 
-    implicitHeight: _layout.implicitHeight + padding
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
     background: Item {}
 
@@ -97,6 +97,7 @@ ItemDelegate
     {
         id: _layout
         anchors.fill: parent
+        anchors.margins: control.padding
         rowSpacing: 0
         columnSpacing: 0
         rows: 2
