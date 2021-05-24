@@ -39,7 +39,7 @@ Platform::Platform(QObject *parent)
 {
     connect(m_platform, &AbstractPlatform::shareFilesRequest, this, &Platform::shareFilesRequest);
 
-    connect(qApp, &QCoreApplication::aboutToQuit, [this]()
+    connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         qDebug() << "Lets remove MauiApp singleton instance";
         delete m_instance;

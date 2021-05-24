@@ -53,7 +53,7 @@ MauiApp::MauiApp()
     });
 #endif
 
-    connect(qApp, &QCoreApplication::aboutToQuit, [this]()
+    connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         qDebug() << "Lets remove MauiApp singleton instance";
         delete m_instance;
