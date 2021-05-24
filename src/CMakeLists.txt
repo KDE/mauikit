@@ -31,7 +31,6 @@ set(mauikit_SRCS
     utils/fmh.cpp
     utils/mauiapp.cpp
     utils/handy.cpp
-    utils/models/pathlist.cpp
     utils/model_template/mauilist.cpp
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
@@ -44,7 +43,6 @@ set(mauikit_HDRS
     utils/fmh.h
     utils/utils.h
     utils/handy.h
-    utils/models/pathlist.h
     utils/mauiapp.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h

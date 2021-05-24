@@ -10,7 +10,6 @@
         <file alias="labs/ShareDialogLinux.qml">controls/labs/ShareDialogLinux.qml</file>
         <file alias="PieButton.qml">controls/PieButton.qml</file>
         <file alias="Page.qml">controls/Page.qml</file>
-        <file alias="private/PathBarDelegate.qml">controls/private/PathBarDelegate.qml</file>
         <file alias="private/EdgeShadow.qml">controls/private/EdgeShadow.qml</file>
         <file alias="private/BasicToolButton.qml">controls/private/BasicToolButton.qml</file>
         <file alias="private/CheckBoxItem.qml">controls/private/CheckBoxItem.qml</file>
@@ -25,7 +24,6 @@
         <file alias="LabelDelegate.qml">controls/LabelDelegate.qml</file>
         <file alias="NewDialog.qml">controls/NewDialog.qml</file>
         <file alias="ListBrowser.qml">controls/ListBrowser.qml</file>
-        <file alias="PathBar.qml">controls/PathBar.qml</file>
         <file alias="Dialog.qml">controls/Dialog.qml</file>
         <file alias="private/AboutDialog.qml">controls/private/AboutDialog.qml</file>
         <file alias="Popup.qml">controls/Popup.qml</file>

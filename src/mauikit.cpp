@@ -30,7 +30,6 @@
 #include "mauiapp.h"
 #include "mauilist.h"
 #include "mauimodel.h"
-#include "pathlist.h"
 
 #ifdef Q_OS_ANDROID
 #include "platforms/android/mauiandroid.h"
@@ -97,9 +96,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("GridItemTemplate.qml")), uri, 1, 0, "GridItemTemplate");
 
     qmlRegisterType(componentUrl(QStringLiteral("FloatingButton.qml")), uri, 1, 0, "FloatingButton");
-
-    qmlRegisterType(componentUrl(QStringLiteral("PathBar.qml")), uri, 1, 0, "PathBar");
-    qmlRegisterType<PathList>(uri, 1, 0, "PathList");
 
     /** Shapes **/
     qmlRegisterType(componentUrl(QStringLiteral("private/shapes/X.qml")), uri, 1, 0, "X");
