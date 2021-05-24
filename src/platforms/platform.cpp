@@ -12,6 +12,10 @@
 #include "mauilinux.h"
 #endif
 
+#include <QCoreApplication>
+
+Platform *Platform::m_instance = nullptr;
+
 Platform *Platform::qmlAttachedProperties(QObject *object)
 {
     Q_UNUSED(object)
@@ -34,6 +38,14 @@ Platform::Platform(QObject *parent)
 #endif
 {
     connect(m_platform, &AbstractPlatform::shareFilesRequest, this, &Platform::shareFilesRequest);
+
+    connect(qApp, &QCoreApplication::aboutToQuit, [this]()
+    {
+        qDebug() << "Lets remove MauiApp singleton instance";
+        delete m_instance;
+        m_instance = nullptr;
+    });
+
 }
 
 void Platform::shareFiles(const QList<QUrl> &urls)

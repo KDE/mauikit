@@ -53,7 +53,12 @@ MauiApp::MauiApp()
     });
 #endif
 
-    connect(qApp, &QCoreApplication::aboutToQuit, this, &MauiApp::deleteLater);
+    connect(qApp, &QCoreApplication::aboutToQuit, [this]()
+    {
+        qDebug() << "Lets remove MauiApp singleton instance";
+        delete m_instance;
+        m_instance = nullptr;
+    });
 
     getWindowControlsSettings();
 
@@ -67,11 +72,6 @@ MauiApp::MauiApp()
 QString MauiApp::getMauikitVersion()
 {
     return MAUIKIT_VERSION_STRING;
-}
-
-QString MauiApp::getQtVersion()
-{
-    return QT_VERSION_STR;
 }
 
 QString MauiApp::getIconName() const

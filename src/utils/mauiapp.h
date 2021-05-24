@@ -34,8 +34,6 @@
 #include <KCoreAddons/KAboutData>
 #endif
 
-class MauiAccounts;
-
 /**
  * @brief The MauiApp class
  * The MauiApp is a global instance and is declared to QML as an attached property, so it can be used widely by importing the org.kde.maui namespace
@@ -56,7 +54,6 @@ class MAUIKIT_EXPORT MauiApp : public QObject
     Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
 
     Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
-    Q_PROPERTY(QString qtVersion READ getQtVersion CONSTANT FINAL)
 
     // CSD support
     Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
@@ -87,14 +84,7 @@ public:
      */
     static QString getMauikitVersion();
 
-    /**
-     * @brief getQtVersion
-     * Qt string version
-     * @return
-     */
-    static QString getQtVersion();
-
-    /**
+      /**
      * @brief getIconName
      * Application icon name as a URL to the image asset
      * @return

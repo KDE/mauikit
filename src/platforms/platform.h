@@ -15,8 +15,11 @@ public:
     static Platform *qmlAttachedProperties(QObject *object);
     static Platform *instance()
     {
-        static Platform platform;
-        return &platform;
+        if (m_instance)
+            return m_instance;
+
+        m_instance = new Platform;
+        return m_instance;
     }
 
     Platform(const Platform &) = delete;
@@ -32,6 +35,8 @@ public slots:
     bool hasMouse() override final;
 
 private:
+    static Platform *m_instance;
+
     explicit Platform(QObject *parent = nullptr);
     AbstractPlatform *m_platform;
 };

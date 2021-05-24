@@ -292,12 +292,12 @@ Item
                 anchors.fill: parent
                 propagateComposedEvents: true
                 //             preventStealing: true
-                //acceptedButtons:  Qt.RightButton | Qt.LeftButton
+                acceptedButtons:  Qt.RightButton | Qt.LeftButton
 
                 onClicked:
                 {
                     control.areaClicked(mouse)
-                    control.forceActiveFocus()
+//                    control.forceActiveFocus()
 
                     if(mouse.button === Qt.RightButton)
                     {
@@ -422,16 +422,6 @@ Item
             }
         }
     }
-
-//    MouseArea
-//    {
-//        height: parent.height
-//        width: control.width * 0.25
-//        propagateComposedEvents: false
-//        preventStealing: true
-//        enabled: _hoverHandler.enabled && Kirigami.Settings.hasTransientTouchInput
-//    }
-
 }
 
 
