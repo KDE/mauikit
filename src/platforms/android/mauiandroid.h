@@ -54,11 +54,6 @@ private:
     void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject &data);
 
 public slots:
-    /**
-     * @brief getAccounts
-     * @return
-     */
-    static QString getAccounts();
 
     /**
      * @brief statusbarColor

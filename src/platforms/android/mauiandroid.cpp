@@ -56,13 +56,6 @@ MAUIAndroid::MAUIAndroid(QObject *parent)
 {
 }
 
-QString MAUIAndroid::getAccounts()
-{
-    QAndroidJniObject str = QAndroidJniObject::callStaticObjectMethod("com/kde/maui/tools/Union", "getAccounts", "(Landroid/content/Context;)Ljava/lang/String;", QtAndroid::androidActivity().object<jobject>());
-
-    return str.toString();
-}
-
 static QAndroidJniObject getAndroidWindow()
 {
     QAndroidJniObject window = QtAndroid::androidActivity().callObjectMethod("getWindow", "()Landroid/view/Window;");
