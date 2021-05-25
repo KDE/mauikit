@@ -165,7 +165,7 @@ Container
                 {
                     id: _tabButton
                     implicitHeight: tabsBar.implicitHeight
-                    implicitWidth: Math.max(parent.width / _repeater.count, 160)
+                    implicitWidth: Math.max(parent.width / _repeater.count, 200)
                     checked: index === control.currentIndex
                     text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
                     

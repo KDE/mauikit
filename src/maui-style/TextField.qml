@@ -41,14 +41,7 @@ T.TextField
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
     padding: 6
-/*
-    color: controlRoot.enabled ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
-    selectionColor: Kirigami.Theme.highlightColor
-    selectedTextColor: Kirigami.Theme.highlightedTextColor
-    verticalAlignment: TextInput.AlignVCenter*/
-    //Text.NativeRendering is broken on non integer pixel ratios
-//    renderType: Window.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
-    
+
     color: Kirigami.Theme.textColor
     selectionColor: Kirigami.Theme.highlightColor
     selectedTextColor: Kirigami.Theme.highlightedTextColor

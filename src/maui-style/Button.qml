@@ -28,18 +28,19 @@ import QtQuick.Controls.impl 2.12
 T.Button
 {
     id: control
+    opacity: control.enabled ? 1 : 0.5
+
     implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) + Maui.Style.space.big
     implicitHeight: background.implicitHeight
     hoverEnabled: true
 
     Kirigami.Theme.colorSet: Kirigami.Theme.Button
-//    Kirigami.Theme.inherit: !background || !background.visible
 
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
 
-    icon.color:  !control.enabled ? control.Kirigami.Theme.disabledTextColor :
-                                    control.highlighted || control.down || control.hovered ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+    icon.color: control.highlighted || control.down || control.hovered ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+
     spacing: Maui.Style.space.small
 
     contentItem: IconLabel

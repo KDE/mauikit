@@ -66,8 +66,7 @@ T.MenuItem
     icon.width: Kirigami.Settings.isMobile ?  Maui.Style.iconSizes.medium : Maui.Style.iconSizes.small
     icon.height: Kirigami.Settings.isMobile ?  Maui.Style.iconSizes.medium : Maui.Style.iconSizes.small
 
-    icon.color: control.enabled ? (control.checked || control.down ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor) :
-                                 control.Kirigami.Theme.disabledTextColor
+    icon.color: control.checked || control.down ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
 
     indicator: CheckIndicator
     {
@@ -123,18 +122,10 @@ T.MenuItem
             rightMargin: Maui.Style.space.small
         }
 
-        Behavior on color
-        {
-            ColorAnimation
-            {
-                duration: Kirigami.Units.shortDuration
-            }
-        }
-
         readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
 
-        color: control.pressed || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)
+        color: control.enabled ? (control.pressed || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)) : "transparent"
 
-        border.color: control.checked || control.down ? control.Kirigami.Theme.highlightColor : "transparent"
+        border.color: control.enabled ? (control.checked || control.down ? control.Kirigami.Theme.highlightColor : "transparent") : m_color
     }
 }

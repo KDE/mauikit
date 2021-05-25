@@ -42,6 +42,7 @@ import org.mauikit.controls 1.2 as Maui
 
 T.SpinBox {
     id: control
+    opacity: control.enabled ? 1 : 0.5
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentItem.implicitWidth +
@@ -104,7 +105,7 @@ T.SpinBox {
             y: (parent.height - height) / 2
             width: Maui.Style.iconSizes.small
             height: width
-            color: enabled ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+            color: Kirigami.Theme.textColor
         }
         
         Kirigami.Separator
@@ -126,7 +127,7 @@ T.SpinBox {
             y: (parent.height - height) / 2
             width: Maui.Style.iconSizes.small
             height: width
-            color: enabled ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+            color: Kirigami.Theme.textColor
         }
         
         Kirigami.Separator

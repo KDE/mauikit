@@ -57,6 +57,9 @@ T.TextArea {
 
     Label {
         id: placeholder
+
+        opacity: 0.5
+
         x: control.leftPadding
         y: control.topPadding
         width: control.width - (control.leftPadding + control.rightPadding)
@@ -64,7 +67,7 @@ T.TextArea {
 
         text: control.placeholderText
         font: control.font
-        color: Kirigami.Theme.disabledTextColor
+        color: Kirigami.Theme.textColor
         horizontalAlignment: control.horizontalAlignment
         verticalAlignment: control.verticalAlignment
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)

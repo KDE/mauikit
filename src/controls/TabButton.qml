@@ -19,7 +19,7 @@ import org.mauikit.controls 1.3 as Maui
 TabButton
 {
     id: control
-    implicitWidth: 150
+    implicitWidth: 200
     
 
     property alias content: _content.data
