@@ -204,16 +204,18 @@ Maui.Page
             initialWorkingDirectory: "$HOME"
             onFinished: Qt.quit()
 
-            			onMatchFound:
-            			{
-            				console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
-            			}
-            			onNoMatchFound:
-            			{
-            				console.log("not found");
-            			}
-            			
+            /* Disable search until implemented correctly
+             
+            onMatchFound:
+            {
+              console.log("found at: %1 %2 %3 %4".arg(startColumn).arg(startLine).arg(endColumn).arg(endLine));
+            }
+            onNoMatchFound:
+            {
+              console.log("not found");
+            }
             
+            */
         }
 
         MouseArea
