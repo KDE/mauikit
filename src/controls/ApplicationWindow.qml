@@ -491,6 +491,7 @@ Window
             property alias title : _notifyTemplate.label1
             property alias body: _notifyTemplate.label2
             property alias timeInterval : _notifyTimer.interval
+            
             persistent: false
             verticalAlignment: Qt.AlignTop
             defaultButtons: _notify.cb !== null
@@ -508,6 +509,7 @@ Window
             page.margins: Maui.Style.space.big
             footBar.background: null
             widthHint: 0.8
+            maxWidth: 400
 
             Timer
             {
@@ -538,7 +540,8 @@ Window
                 {
                     id: _notifyTemplate
                     spacing: Maui.Style.space.big
-                    anchors.fill: parent
+                    width: parent.width
+                    anchors.centerIn: parent
 
                     iconSizeHint: Maui.Style.iconSizes.big
                     headerSizeHint: iconSizeHint + Maui.Style.space.big
