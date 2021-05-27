@@ -101,7 +101,7 @@ Rectangle
 
         source: control.imageSource
 
-        cache: true
+        cache: false
         asynchronous: true
         smooth: true
 

@@ -153,7 +153,7 @@ Maui.ItemDelegate
     {
         id: _emblem
         visible: control.checkable || control.checked
-        height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.2)
+        height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.1)
         width: height
         anchors.top: parent.top
         anchors.left: parent.left
