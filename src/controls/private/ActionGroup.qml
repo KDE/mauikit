@@ -27,7 +27,6 @@ import "."
 Item
 {
     id: control
-Layout.alignment: Qt.AlignCenter
     
     implicitWidth: _layout.implicitWidth
     implicitHeight: _layout.implicitHeight
@@ -46,12 +45,7 @@ Layout.alignment: Qt.AlignCenter
      * 
      */
     property int currentIndex : 0
-    
-    /**
-     * 
-     */
-    property bool strech: false
-    
+ 
     /**
      * 
      */
@@ -75,7 +69,8 @@ Layout.alignment: Qt.AlignCenter
     property Component delegate : BasicToolButton
     {
         Layout.alignment: Qt.AlignVCenter
-        Layout.fillWidth: control.strech
+        Layout.preferredWidth: visible ? implicitWidth : 0
+
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
@@ -108,9 +103,7 @@ Layout.alignment: Qt.AlignCenter
     RowLayout
     {
         id: _layout
-        height: parent.height
-        width: control.strech ? parent.width : undefined
-        // 		width: Math.min(implicitWidth, parent.width)
+        anchors.fill: parent
         spacing: Maui.Style.space.big
         
         Repeater
@@ -124,7 +117,6 @@ Layout.alignment: Qt.AlignCenter
             readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
             
             visible: obj && obj.visible
-            Layout.fillWidth: control.strech
             Layout.preferredWidth: visible ? implicitWidth : 0
             checked: visible
             autoExclusive: true

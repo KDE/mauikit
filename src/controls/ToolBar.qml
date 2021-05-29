@@ -26,7 +26,7 @@ import org.mauikit.controls 1.2 as Maui
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-import "private"
+import "private" as Private
 
 /**
  * ToolBar
@@ -49,7 +49,7 @@ ToolBar
     /**
      * content : RowLayout.data
      */
-    default property alias content : leftRowContent.data
+    default property alias content : leftRowContent.content
         
         /**
          * preferredHeight : int
@@ -64,7 +64,7 @@ ToolBar
         /**
          * leftContent : RowLayout.data
          */
-        property alias leftContent : leftRowContent.data
+        property alias leftContent : leftRowContent.content
         
         /**
          * middleContent : RowLayout.data
@@ -74,17 +74,17 @@ ToolBar
         /**
          * rightContent : RowLayout.data
          */
-        property alias rightContent : rightRowContent.data
+        property alias rightContent : rightRowContent.content
         
         /**
          * farLeftContent : RowLayout.data
          */
-        property alias farLeftContent : farLeftRowContent.data
+        property alias farLeftContent : farLeftRowContent.content
         
         /**
          * farRightContent : RowLayout.data
          */
-        property alias farRightContent : farRightRowContent.data
+        property alias farRightContent : farRightRowContent.content
         
         /**
          * middleLayout : RowLayout
@@ -135,8 +135,8 @@ ToolBar
          * visibleCount: int
          */
         readonly property int visibleCount : leftRowContent.visibleChildren.length + middleRowContent.visibleChildren.length  + rightRowContent.visibleChildren.length + farLeftRowContent.visibleChildren.length  + farRightRowContent.visibleChildren.length
-                
-        EdgeShadow
+        
+        Private.EdgeShadow
         {
             width: Maui.Style.iconSizes.medium
             height: parent.height
@@ -152,7 +152,7 @@ ToolBar
             }
         }
         
-        EdgeShadow
+        Private.EdgeShadow
         {
             width: Maui.Style.iconSizes.medium
             height: parent.height
@@ -199,31 +199,31 @@ ToolBar
             height: control.implicitHeight
             width: control.width
             
-//              Label{
-//                  anchors.left: parent.left
-//                  z: parent.z + 9999
-//                  color: "orange"
-//                  text: farLeftRowContent.implicitWidth + " / " + leftRowContent.implicitWidth + " / " + _scrollView.width
-//              }
-
-//             Label{
-//                 anchors.centerIn: parent
-
-//                 z: parent.z + 9999
-//                 color: "orange"
-//                 text: _helper1.width + " / " + middleRowContent.implicitWidth + " / " + _helper2.width
-//             }
-
-             //Label{
-                 //anchors.right: parent.right
-                 //z: parent.z + 9999
-                 //color: "orange"
-                 //text: farRightRowContent.implicitWidth + " / " + rightRowContent.implicitWidth  + " / " + control.width
-             //}
-             states: [State
+            //              Label{
+            //                  anchors.left: parent.left
+            //                  z: parent.z + 9999
+            //                  color: "orange"
+            //                  text: farLeftRowContent.implicitWidth + " / " + leftRowContent.implicitWidth + " / " + _scrollView.width
+            //              }
+            
+            //             Label{
+            //                 anchors.centerIn: parent
+            
+            //                 z: parent.z + 9999
+            //                 color: "orange"
+            //                 text: _helper1.width + " / " + middleRowContent.implicitWidth + " / " + _helper2.width
+            //             }
+            
+            //Label{
+            //anchors.right: parent.right
+            //z: parent.z + 9999
+            //color: "orange"
+            //text: farRightRowContent.implicitWidth + " / " + rightRowContent.implicitWidth  + " / " + control.width
+            //}
+            states: [State
             {
                 when: control.position === ToolBar.Header
-
+                
                 AnchorChanges
                 {
                     target: _container
@@ -231,11 +231,11 @@ ToolBar
                     anchors.bottom: parent.bottom
                 }
             },
-
+            
             State
             {
                 when: control.position === ToolBar.Footer
-
+                
                 AnchorChanges
                 {
                     target: _container
@@ -243,41 +243,40 @@ ToolBar
                     anchors.bottom: undefined
                 }
             }
-        ]
-
+            ]
+            
             RowLayout
-            {            
-                spacing: control.spacing
+            {
                 anchors.fill: parent
                 anchors.leftMargin: control.margins
-                anchors.rightMargin: control.margins
+                anchors.rightMargin: control.margins   
                 
-                Row
+                spacing: control.spacing
+                
+                Private.ToolBarSection
                 {
                     id: farLeftRowContent
-                    Layout.preferredWidth: implicitWidth
+                    Layout.fillHeight: true
                     Layout.maximumWidth: implicitWidth
                     Layout.minimumWidth: implicitWidth
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     spacing: control.spacing
-                }   
+                } 
                 
-                ToolSeparator
+               /* ToolSeparator
                 {
                     visible: farLeftRowContent.visibleChildren.length && (leftRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
                     implicitHeight: Maui.Style.iconSizes.tiny
-                    Layout.alignment: Qt.AlignCenter
-                }        
-                  
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                }  */                
+                
                 ScrollView
                 {
                     id: _scrollView
                     readonly property bool fits : mainFlickable.contentWidth < width
                     onFitsChanged: mainFlickable.returnToBounds()
                     
-                    Layout.fillWidth: true
                     Layout.fillHeight: true
-
+                    Layout.fillWidth: true
                     contentWidth: mainFlickable.contentWidth
                     contentHeight: height  
                     
@@ -290,95 +289,105 @@ ToolBar
                         
                         flickableDirection: Flickable.HorizontalFlick
                         interactive: !fits && Maui.Handy.isTouch
-                        contentWidth: layout.implicitWidth
+                        contentWidth: layout.implicitWidth - (_h1.mwidth + _h2.mwidth)
                         
                         boundsBehavior: Flickable.StopAtBounds
                         boundsMovement :Flickable.StopAtBounds
-
+                        
                         clip: true
                         
                         RowLayout
                         {
                             id: layout
-                           
-                           width: mainFlickable.width
-                           height: mainFlickable.height
+                            
+                            width: mainFlickable.width
+                            height: mainFlickable.height
                             spacing: control.spacing
-
-                            Row
+                            
+                            Private.ToolBarSection
                             {
                                 id: leftRowContent
-                                spacing: control.spacing
-//                                Layout.fillWidth: true
-                                Layout.preferredWidth: implicitWidth
+                                
+                                Layout.fillHeight: true
+                                
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
-                                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                                Layout.preferredWidth: implicitWidth
+                                //                               
+                                spacing: control.spacing    
+                            }
+                            
+                             
+                            Item //helper to force center middle content
+                            {
+                                id: _h1
+                                visible: middleRowContent.visibleChildren.length
+                                readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) :0
+                                Layout.minimumWidth: 0
+                                Layout.preferredWidth: mwidth
+                                Layout.maximumWidth: mwidth
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
                             }
 
                             
-                           Item //helper to force center middle content
-                           {
-                               id: _helper1
-//                               visible: control.forceCenterMiddleContent
-                               Layout.minimumWidth: 0
-                               Layout.fillWidth: visible
-                               Layout.fillHeight: true
-//                               Layout.preferredWidth: visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
-                           }
-
-                            RowLayout
+                            Private.ToolBarSection
                             {
-                                id: middleRowContent
-                               Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-//                                 Layout.preferredWidth: implicitWidth
-//                                 Layout.maximumWidth: implicitWidth
-//                                 Layout.minimumWidth: implicitWidth
-                                spacing: control.spacing
-                            }
-                            
-                           Item //helper to force center middle content
-                           {
-                               id: _helper2
+                                Layout.minimumWidth: implicitWidth
 
-                               Layout.fillWidth: visible
-                               Layout.fillHeight: true
-                           }
+                                RowLayout
+                                {
+                                    id: middleRowContent
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    Layout.minimumWidth: implicitWidth
+                                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                                    spacing: control.spacing                                    
+                                }                                
+                            }    
                             
-                            Row
+                             Item //helper to force center middle content
+                            {
+                                id: _h2
+                                visible: middleRowContent.visibleChildren.length
+                                readonly property int mwidth : visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
+                                Layout.minimumWidth: 0
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: mwidth
+                                Layout.maximumWidth: mwidth
+                            }                            
+                            
+                            Private.ToolBarSection
                             {
                                 id: rightRowContent
-                                spacing: control.spacing
-//                                Layout.fillWidth: true
-                                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                                Layout.preferredWidth: implicitWidth
+                                Layout.fillHeight: true
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
-                            }                                
-                        }
-                    
+                                
+                                spacing: control.spacing                                
+                            }                            
+                        }                        
                     }
-                }
+                }   
                 
+                //ToolSeparator
+                //{
+                    //visible: farRightRowContent.visibleChildren.length && (rightRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
+                    //implicitHeight: Maui.Style.iconSizes.tiny
+                    //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                //}
                 
-                ToolSeparator
-                {
-                    visible: farRightRowContent.visibleChildren.length && (rightRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
-                    implicitHeight: Maui.Style.iconSizes.tiny
-                    Layout.alignment: Qt.AlignCenter
-                }
-                
-                Row
+                Private.ToolBarSection
                 {
                     id: farRightRowContent
-                    spacing: control.spacing
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                    Layout.preferredWidth: implicitWidth
+                    Layout.fillHeight: true
                     Layout.maximumWidth: implicitWidth
-                    Layout.minimumWidth: implicitWidth
-                }
-            }            
+                    Layout.minimumWidth: implicitWidth          
+                    spacing: control.spacing                    
+                }                  
+            }          
         }        
 }
