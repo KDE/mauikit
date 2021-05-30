@@ -124,7 +124,7 @@ ToolBar
         /**
          * margins : int
          */
-        property int margins: Maui.Style.space.medium
+        property int margins: control.spacing
         
         /**
          * count : int
@@ -277,6 +277,7 @@ ToolBar
                     
                     Layout.fillHeight: true
                     Layout.fillWidth: true
+                    
                     contentWidth: mainFlickable.contentWidth
                     contentHeight: height  
                     
@@ -302,6 +303,7 @@ ToolBar
                             
                             width: mainFlickable.width
                             height: mainFlickable.height
+                            
                             spacing: control.spacing
                             
                             Private.ToolBarSection
