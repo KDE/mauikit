@@ -323,7 +323,7 @@ ToolBar
                             Item //helper to force center middle content
                             {
                                 id: _h1
-                                visible: middleRowContent.visibleChildren.length
+                                visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
                                 readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) :0
                                 Layout.minimumWidth: 0
                                 Layout.preferredWidth: mwidth
@@ -353,7 +353,7 @@ ToolBar
                              Item //helper to force center middle content
                             {
                                 id: _h2
-                                visible: middleRowContent.visibleChildren.length
+                                visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
                                 readonly property int mwidth : visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
                                 Layout.minimumWidth: 0
                                 Layout.fillHeight: true
