@@ -51,6 +51,12 @@ Rectangle
     property int iconSizeHint : Maui.Style.iconSizes.big
     
     /**
+     * iconSizeHint : int
+     */
+    property int imageSizeHint : -1
+    
+    
+    /**
      * imageSource : string
      */
     property string imageSource
@@ -86,8 +92,8 @@ Rectangle
     {
         id: img
 
-        width: parent.width
-        height: parent.height
+        width:  imageSizeHint >=0  ? imageSizeHint : parent.width
+        height:  imageSizeHint >= 0 ? width : parent.height
 
         anchors.centerIn: parent
 

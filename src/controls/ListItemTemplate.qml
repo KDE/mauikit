@@ -121,6 +121,7 @@ Item
       * iconSizeHint : int
       */
     property int iconSizeHint : Maui.Style.iconSizes.big
+    property int imageSizeHint : -1
     
     property int headerSizeHint : height
 
@@ -202,7 +203,8 @@ Item
             hovered: control.hovered
 
             iconSizeHint: control.iconSizeHint
-
+            imageSizeHint: control.imageSizeHint
+            
             fillMode: control.fillMode
             maskRadius: control.maskRadius
         }
@@ -219,7 +221,6 @@ Item
         anchors.bottomMargin: control.bottomMargin
 
         spacing: Maui.Style.space.small
-
 
         Item
         {

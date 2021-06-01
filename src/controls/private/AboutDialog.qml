@@ -152,11 +152,12 @@ Maui.Dialog
             width: parent.width
             anchors.centerIn: parent
 
-            imageSource: Maui.App.iconName
+            iconSource: Maui.App.iconName
 
             fillMode: Image.PreserveAspectFit
-            iconSizeHint: Math.min(Maui.Style.iconSizes.huge, parent.width)
-            headerSizeHint: iconSizeHint + Maui.Style.space.medium
+            iconSizeHint: Maui.Style.iconSizes.huge
+            imageSizeHint: iconSizeHint
+            headerSizeHint: iconSizeHint + Maui.Style.space.huge
             
             spacing: Maui.Style.space.big
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere

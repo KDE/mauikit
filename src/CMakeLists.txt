@@ -81,7 +81,7 @@ if(ANDROID OR WIN32 OR IS_APPIMAGE_PACKAGE OR APPLE)
 endif()
 
 if (ANDROID)
-   add_subdirectory(platforms/android)
+#   add_subdirectory(platforms/android)
 
     set(mauikit_PLATFORM_SRCS
         platforms/android/mauiandroid.cpp
