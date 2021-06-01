@@ -192,8 +192,11 @@ SwipeView
 
     Component.onCompleted:
     {
-        var object = _viewPortComponent.createObject(control.toolbar.middleContent)
-        control.toolbar.middleContent.push(object)
+        if(control.toolbar)
+        {
+            var object = _viewPortComponent.createObject(control.toolbar.middleContent)
+            control.toolbar.middleContent.push(object)
+        }
     }
 
     property QtObject history : QtObject
