@@ -136,11 +136,12 @@ Maui.Page
             action: _pasteAction
         }
 
-
         MenuItem
         {
             action: _findAction
         }
+        
+        onClosed: control.forceActiveFocus()
     }
 
 
@@ -441,4 +442,9 @@ enabled: true
     }
 
     Component.onCompleted: control.forceActiveFocus();
+    
+    function forceActiveFocus()
+    {
+        kterminal.forceActiveFocus()
+    }
 }

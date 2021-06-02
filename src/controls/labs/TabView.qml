@@ -185,11 +185,32 @@ Container
                         control.closeTabClicked(index)
                     }
                     
+                    Timer
+                    {
+                        id: _dropAreaTimer
+                        interval: 250 
+                        onTriggered:
+                        {
+                            if(_dropArea.containsDrag)
+                            {
+                                control.currentIndex = index
+                            }
+                        }
+                    }
+                    
                     DropArea
                     {
                         id: _dropArea
                         anchors.fill: parent
-                        onEntered: control.currentIndex = index
+                        onEntered: 
+                        {
+                            _dropAreaTimer.restart()
+                        }
+                        
+                        onExited:
+                        {
+                            _dropAreaTimer.stop()
+                        }
                     }
                     
                     Maui.Separator
