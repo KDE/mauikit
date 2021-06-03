@@ -81,6 +81,8 @@
         <file alias="TabView">controls/labs/TabView.qml</file>
         <file alias="CloseButton">controls/CloseButton.qml</file>
         <file alias="BrowserDelegate">controls/BrowserDelegate.qml</file>
+        <file alias="SplitView.qml">controls/SplitView.qml</file>
+        <file alias="SplitViewItem.qml">controls/SplitViewItem.qml</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
