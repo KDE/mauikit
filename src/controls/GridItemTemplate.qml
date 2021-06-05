@@ -191,7 +191,7 @@ Item
                 height: parent.height
 
                 elide: Qt.ElideRight
-                wrapMode: Text.Wrap
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
             }
 
