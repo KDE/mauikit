@@ -145,8 +145,13 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
 
     qmlRegisterType<SettingSection>(uri, 1, 2, "SettingSection");
-    //     qmlRegisterSingletonInstance<Platform>(uri, 1, 2, "Platform", Platform::instance());
-    qmlRegisterSingletonInstance<Platform>(uri, 1, 2, "Platform", Platform::instance());
+//     qmlRegisterSingletonInstance<Platform>(uri, 1, 2, "Platform", Platform::instance());
+    qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(scriptEngine)
+        auto platform = Platform::instance();
+        engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
+        return platform;
+    });
 
     /** Experimental **/
 #ifdef Q_OS_WIN32

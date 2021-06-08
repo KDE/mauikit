@@ -10,7 +10,7 @@ import org.mauikit.controls 1.2 as Maui
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.ItemDelegate
+Maui.GridBrowserDelegate
 {
     id: control
     
@@ -18,12 +18,7 @@ Maui.ItemDelegate
      * images : function
      */
     property var images : []
-    
-    /**
-     * template : function
-     */
-    property alias template : _template
-    
+        
     /**
      * margins :
      */
@@ -44,23 +39,17 @@ Maui.ItemDelegate
      */
     property var cb 
     
-    background: Item {}
+    //background: null
     
-    ColumnLayout
-    {
-        anchors.fill: parent
-        anchors.margins: control.margins
-        spacing: Maui.Style.space.small
-        
-        Item
+  
+        template.iconComponent: Item
         {
             id: _collageLayout
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            
+          
             Item
             {
                 anchors.fill: parent
+                anchors.margins: Maui.Style.space.tiny
                 
                 Rectangle
                 {
@@ -93,10 +82,10 @@ Maui.ItemDelegate
                             Image
                             {
                                 anchors.fill: parent
-                                sourceSize.width: _repeater.count === 4 ? 100 : 200
-                                sourceSize.height: _repeater.count === 4 ? 100 : 200
+                                sourceSize.width: width
+                                sourceSize.height: height
                                 asynchronous: true
-                                smooth: false
+                                smooth: true
                                 source: control.cb ? control.cb(modelData) : modelData
                                 fillMode: Image.PreserveAspectCrop
                             }
@@ -107,7 +96,6 @@ Maui.ItemDelegate
                 layer.enabled: true
                 layer.effect: OpacityMask
                 {
-                    cached: true
                     maskSource: Item
                     {
                         width: _collageLayout.width
@@ -122,63 +110,25 @@ Maui.ItemDelegate
                 }
             }
             
-            Rectangle
-            {
-                anchors.fill: parent
+            //Rectangle
+            //{
+                //anchors.fill: parent
                 
-                color: "transparent"
-                radius: Maui.Style.radiusV
-                border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
-                opacity: 0.6
+                //color: "transparent"
+                //radius: Maui.Style.radiusV
+                //border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
+                //opacity: 0.6
                 
-                Rectangle
-                {
-                    anchors.fill: parent
-                    color: "transparent"
-                    radius: parent.radius - 0.5
-                    border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                    opacity: 0.8
-                    anchors.margins: 1
-                }
-            }
+                //Rectangle
+                //{
+                    //anchors.fill: parent
+                    //color: "transparent"
+                    //radius: parent.radius - 0.5
+                    //border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                    //opacity: 0.8
+                    //anchors.margins: 1
+                //}
+            //}
         }
-        
-        Item
-        {
-            Layout.fillWidth: true
-            Layout.preferredHeight: Math.min( _template.implicitHeight + Maui.Style.space.big, Maui.Style.rowHeight * 2)
-            
-            Rectangle
-            {
-                width: parent.width
-                height: parent.height
-                anchors.centerIn: parent
-                Behavior on color
-                {
-                    ColorAnimation
-                    {
-                        duration: Kirigami.Units.longDuration
-                    }
-                }
-                
-                color: control.isCurrentItem || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : control.Kirigami.Theme.backgroundColor
-                
-                radius: Maui.Style.radiusV
-                border.color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : "transparent"
-            }
-            
-            
-            Maui.ListItemTemplate
-            {
-                id: _template
-                isCurrentItem: control.isCurrentItem
-                width: parent.width
-                height: Math.min(parent.height, implicitHeight)
-                anchors.centerIn: parent
-                label1.wrapMode: Text.WordWrap
-                rightLabels.visible: control.width >= 200
-                iconSizeHint: Maui.Style.iconSizes.small
-            }
-        }
-    }
+    
 }

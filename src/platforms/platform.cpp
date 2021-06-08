@@ -45,7 +45,6 @@ Platform::Platform(QObject *parent)
         delete m_instance;
         m_instance = nullptr;
     });
-
 }
 
 void Platform::shareFiles(const QList<QUrl> &urls)

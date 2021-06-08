@@ -110,7 +110,7 @@ Maui.ItemDelegate
                 orientation: Qt.Horizontal
                 snapMode: ListView.SnapOneItem
                 clip: true
-
+                
                 model: control.images
 
                 function cycleSlideForward()
@@ -147,10 +147,10 @@ Maui.ItemDelegate
                     Image
                     {
                         anchors.fill: parent
-                        sourceSize.width: 500
-                        sourceSize.height: 500
+                        sourceSize.width: control.width * 1.2
+                        sourceSize.height: control.height * 1.2
                         asynchronous: true
-                        smooth: false
+                        smooth: true
                         cache: control.cache
                         source: control.cb ? control.cb(modelData) : modelData
                         fillMode: Image.PreserveAspectCrop
@@ -204,6 +204,7 @@ Maui.ItemDelegate
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 anchors.margins: Maui.Style.space.medium
+                anchors.bottomMargin: Maui.Style.space.big
                 //            color: Kirigami.Theme.textColor
                 label1.font.bold: true
                 label1.font.weight: Font.Bold
@@ -236,23 +237,23 @@ Maui.ItemDelegate
             }
         }
 
-        Rectangle
-        {
-            Kirigami.Theme.inherit: false
-            anchors.fill: parent
-            color: "transparent"
-            radius: Maui.Style.radiusV
-            border.color: control.isCurrentItem || control.hovered ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.2)
+        //Rectangle
+        //{
+            //Kirigami.Theme.inherit: false
+            //anchors.fill: parent
+            //color: "transparent"
+            //radius: Maui.Style.radiusV
+            //border.color: control.isCurrentItem || control.hovered ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.2)
 
-            Rectangle
-            {
-                anchors.fill: parent
-                color: "transparent"
-                radius: parent.radius - 0.5
-                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                opacity: 0.2
-                anchors.margins: 1
-            }
-        }
+            //Rectangle
+            //{
+                //anchors.fill: parent
+                //color: "transparent"
+                //radius: parent.radius - 0.5
+                //border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                //opacity: 0.2
+                //anchors.margins: 1
+            //}
+        //}
     }
 }
