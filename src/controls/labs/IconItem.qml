@@ -93,7 +93,7 @@ Rectangle
         id: img
 
         width:  imageSizeHint >=0  ? imageSizeHint : parent.width
-        height:  imageSizeHint >= 0 ? width : parent.height
+        height:  imageSizeHint >= 0 ? imageSizeHint : parent.height
 
         anchors.centerIn: parent
 

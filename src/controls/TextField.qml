@@ -173,10 +173,9 @@ TextField
         }
     }
 
-    Menu
+    Maui.ContextualMenu
     {
         id: entryMenu
-        z: control.z +1
 
         MenuItem
         {

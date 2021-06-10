@@ -113,6 +113,8 @@ ItemDelegate
             Layout.rowSpan: control.wide ? 2 : 1
             iconSizeHint: Maui.Style.iconSizes.medium
             label2.wrapMode: Text.WordWrap
+            label1.font.weight: Font.Bold
+            label1.font.bold: true
         }
 
         RowLayout

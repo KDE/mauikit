@@ -218,7 +218,8 @@ Maui.ItemDelegate
                 hovered: _template.hovered
 
                 iconSizeHint: _template.iconSizeHint
-
+                imageSizeHint: _template.imageSizeHint
+                
                 fillMode: _template.fillMode
                 maskRadius: _template.maskRadius
             }

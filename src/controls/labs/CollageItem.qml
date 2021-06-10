@@ -49,7 +49,7 @@ Maui.GridBrowserDelegate
             Item
             {
                 anchors.fill: parent
-                anchors.margins: Maui.Style.space.tiny
+                anchors.margins: 2
                 
                 Rectangle
                 {

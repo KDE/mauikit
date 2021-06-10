@@ -83,7 +83,7 @@ Maui.AlternateListItem
                 anchors.centerIn: parent
             }
 
-            layer.enabled: true
+            layer.enabled: false
             layer.effect: OpacityMask
             {
                 maskSource: Item
