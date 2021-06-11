@@ -37,186 +37,224 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-
+    
     /**
-      * content : data
-      */
-    default property alias content: _layout.data
-
-    /**
-      * text1 : string
-      */
-    property alias text1 : _label1.text
-
-    /**
-      * label1 : Label
-      */
-    property alias label1 : _label1
-
-    /**
-      * iconItem : Item
-      */
-    property alias iconItem : _iconLoader.item
-
-    /**
-      * iconVisible : bool
-      */
-    property alias iconVisible : _iconLoader.visible
-
-    /**
-     * labelSizeHint : int
+     * content : data
      */
-    property int labelSizeHint : height * 0.4
-
-    /**
-      * iconSizeHint : int
-      */
-    property int iconSizeHint : Maui.Style.iconSizes.big
-
-    /**
-      * imageSource : string
-      */
-    property string imageSource
-
-    /**
-      * iconSource : string
-      */
-    property string iconSource
-
-    /**
-      * isCurrentItem : bool
-      */
-    property bool isCurrentItem: false
-
-    /**
-      * labelsVisible : bool
-      */
-    property bool labelsVisible: true
-
-    /**
-      * fillMode : Image.fillMode
-      */
-    property int fillMode : Image.PreserveAspectCrop
-
-    /**
-      * maskRadius : int
-      */
-    property int maskRadius: Maui.Style.radiusV
-
-    /**
-      * hovered : bool
-      */
-    property bool hovered: false
-
-    /**
-      * iconComponent : Component
-      */
-    property Component iconComponent :  _iconLoader.visible ? _iconComponent : null
-
-    Component
-    {
-        id: _iconComponent
-
-        Maui.IconItem
+    default property alias content: _layout.data
+        
+        /**
+         * text1 : string
+         */
+        property alias text1 : _label1.text
+        
+        /**
+         * label1 : Label
+         */
+        property alias label1 : _label1
+        
+        /**
+         * label1 : Label
+         */
+        property alias label2 : _label2
+        
+        /**
+         * iconItem : Item
+         */
+        property alias iconItem : _iconLoader.item
+        
+        /**
+         * iconVisible : bool
+         */
+        property alias iconVisible : _iconLoader.visible
+        
+        /**
+         * labelSizeHint : int
+         */
+        property int labelSizeHint : height * 0.4
+        
+        /**
+         * iconSizeHint : int
+         */
+        property int iconSizeHint : Maui.Style.iconSizes.big
+        
+        /**
+         * imageSource : string
+         */
+        property string imageSource
+        
+        /**
+         * iconSource : string
+         */
+        property string iconSource
+        
+        /**
+         * isCurrentItem : bool
+         */
+        property bool isCurrentItem: false
+        
+        /**
+         * labelsVisible : bool
+         */
+        property bool labelsVisible: true
+        
+        /**
+         * fillMode : Image.fillMode
+         */
+        property int fillMode : Image.PreserveAspectCrop
+        
+        /**
+         * maskRadius : int
+         */
+        property int maskRadius: Maui.Style.radiusV
+        
+        /**
+         * hovered : bool
+         */
+        property bool hovered: false
+        
+        /**
+         * iconComponent : Component
+         */
+        property Component iconComponent :  _iconLoader.visible ? _iconComponent : null
+        
+        Component
         {
-            iconSource: control.iconSource
-            imageSource: control.imageSource
-
-            highlighted: control.isCurrentItem
-            hovered: control.hovered
-
-            iconSizeHint: control.iconSizeHint
-
-            fillMode: control.fillMode
-            maskRadius: control.maskRadius
-        }
-    }
-
-    ColumnLayout
-    {
-        id: _layout
-        anchors.fill: parent
-        spacing: 0
-
-        Loader
-        {
-            id: _iconLoader
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.margins: 1
-
-            asynchronous: true
-            sourceComponent: control.iconComponent
-
-            Kirigami.Icon
+            id: _iconComponent
+            
+            Maui.IconItem
             {
-                visible: _iconLoader.status !== Loader.Ready
-                anchors.centerIn: parent
-                height: Maui.Style.iconSizes.small
-                width: height
-                source:  control.iconSource || "folder-images"
-                isMask: true
-                color: Kirigami.Theme.textColor
-                opacity: 0.5
+                iconSource: control.iconSource
+                imageSource: control.imageSource
+                
+                highlighted: control.isCurrentItem
+                hovered: control.hovered
+                
+                iconSizeHint: control.iconSizeHint
+                
+                fillMode: control.fillMode
+                maskRadius: control.maskRadius
             }
         }
-
-        Kirigami.ShadowedRectangle
+        
+        ColumnLayout
         {
-            visible: control.labelsVisible && _label1.text
-
-            Layout.preferredHeight: Maui.Style.iconSizes.big
-            Layout.margins: 2
-
-            Layout.fillWidth: true
-            Layout.maximumHeight: Math.min(48, control.labelSizeHint)
-            Layout.minimumHeight: Math.min(_label1.implicitHeight, 48)
-            color: Kirigami.Theme.backgroundColor
-
-            corners
+            id: _layout
+            anchors.fill: parent
+            spacing: 0
+            
+            Loader
             {
-                topLeftRadius: 0
-                topRightRadius: 0
-                bottomLeftRadius: Maui.Style.radiusV
-                bottomRightRadius: Maui.Style.radiusV
+                id: _iconLoader
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.margins: 1
+                
+                asynchronous: true
+                sourceComponent: control.iconComponent
+                
+                Kirigami.Icon
+                {
+                    visible: _iconLoader.status !== Loader.Ready
+                    anchors.centerIn: parent
+                    height: Maui.Style.iconSizes.small
+                    width: height
+                    source:  control.iconSource || "folder-images"
+                    isMask: true
+                    color: Kirigami.Theme.textColor
+                    opacity: 0.5
+                }
             }
-
-            Label
+            
+            Kirigami.ShadowedRectangle
             {
-                id: _label1
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-
-                width: parent.width
-                height: parent.height
-
-                elide: Qt.ElideRight
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                visible: control.labelsVisible &&( _label1.text || _label2.text)
+                
+                Layout.preferredHeight: Maui.Style.iconSizes.big
+                Layout.margins: 2
+                
+                Layout.fillWidth: true
+                Layout.maximumHeight: Math.min(64, control.labelSizeHint) + Maui.Style.space.small
+                Layout.minimumHeight: Math.min(_labels.implicitHeight, 64)+ Maui.Style.space.small
+                color: Kirigami.Theme.backgroundColor
+                
+                corners
+                {
+                    topLeftRadius: 0
+                    topRightRadius: 0
+                    bottomLeftRadius: Maui.Style.radiusV
+                    bottomRightRadius: Maui.Style.radiusV
+                }
+                
+                ColumnLayout
+                {
+                    id: _labels
+                   anchors.fill: parent
+                   anchors.margins: Maui.Style.space.tiny
+                    spacing: 0
+                    clip: true
+                    
+                    Label
+                    {
+                        id: _label1
+                        visible: text && text.length
+                        
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignCenter
+                        //                 height: parent.height
+                        
+                        elide: Qt.ElideRight
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                    }
+                    
+                    Label
+                    {
+                        id: _label2
+                        visible: text && text.length
+                        
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignCenter
+                        
+                        elide: Qt.ElideRight
+                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                        opacity: control.isCurrentItem ? 0.8 : 0.6
+                        
+                    }
+                }
+                
+                Rectangle
+                {
+                    visible: (control.hovered ) && _label1.implicitHeight > _label1.height
+                    height: Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium
+                    width: parent.width
+                    color: Kirigami.Theme.backgroundColor
+                    anchors.bottom: parent.bottom
+                    radius: Maui.Style.radiusV
+                    clip: true
+                    
+                    Label
+                    {
+                        id: _label2D
+                        horizontalAlignment: Qt.AlignHCenter
+                        verticalAlignment: Qt.AlignVCenter
+                        text: _label1.text
+                        width: parent.width
+                        height: implicitHeight
+                        elide: Qt.ElideRight
+                        wrapMode: Text.Wrap
+                        font: _label1.font
+                        color: _label1.color
+                    }
+                }
             }
-
-//            Rectangle
-//            {
-//                visible: (control.hovered ) && _label1.implicitHeight > _label1.height
-//                height: Math.min(_label2.implicitHeight, control.height)
-//                width: parent.width
-//                color: Kirigami.Theme.backgroundColor
-//                anchors.bottom: parent.bottom
-//                radius: Maui.Style.radiusV
-
-//                Label
-//                {
-//                    id: _label2
-//                    horizontalAlignment: Qt.AlignHCenter
-//                    verticalAlignment: Qt.AlignVCenter
-//                    text: _label1.text
-//                    width: parent.width
-//                    height: implicitHeight
-//                    elide: Qt.ElideRight
-//                    wrapMode: Text.Wrap
-//                    color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-//                }
-//            }
         }
-    }
 }

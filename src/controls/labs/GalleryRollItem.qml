@@ -9,59 +9,22 @@ import QtGraphicalEffects 1.0
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.ItemDelegate
+Maui.GridBrowserDelegate
 {
     id: control
-
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.backgroundColor: "#333"
-    Kirigami.Theme.textColor: "#fafafa"
 
     /**
      * cached
      */
     property bool cache : true
 
-    /**
-     * template :
-     */
-    property alias template : _template
 
     /**
      * images :
      */
     property var images : []
-
-    /**
-     * label1 :
-     */
-    property alias label1 : _template.label1
-
-    /**
-     * label2 :
-     */
-    property alias label2 : _template.label2
-
-    /**
-     * label3 :
-     */
-    property alias label3 : _template.label3
-
-    /**
-     * label4 :
-     */
-    property alias label4 : _template.label4
-
-    /**
-     * iconSource :
-     */
-    property alias iconSource : _template.iconSource
-
-    /**
-     * iconSizeHint :
-     */
-    property alias iconSizeHint: _template.iconSizeHint
-
+   
+   
     /**
      * margins :
      */
@@ -73,22 +36,24 @@ Maui.ItemDelegate
     property var cb
 
 
-    Component.onCompleted: _featuredTimer.start()
 
-    background: Item {}
 
-    Item
+   template.iconComponent:  Item
     {
         id: _cover
-        anchors.fill: parent
-        anchors.margins: control.margins
-
+        
+        function randomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
         Rectangle
         {
             anchors.fill: parent
             color: Kirigami.Theme.backgroundColor
             radius: Maui.Style.radiusV
 
+            Component.onCompleted: _featuredTimer.start()
+            
             HoverHandler
             {
                 id: _hoverHandler
@@ -97,7 +62,7 @@ Maui.ItemDelegate
             Timer
             {
                 id: _featuredTimer
-                interval: 6000
+                interval: randomInteger(6000, 8000)
                 repeat: true
                 onTriggered: _featuredRoll.cycleSlideForward()
             }
@@ -165,59 +130,6 @@ Maui.ItemDelegate
                         }
                     }
                 }
-                
-                OpacityMask
-                {
-                    source: mask
-                    maskSource: _featuredRoll
-                }
-                
-                LinearGradient 
-                {
-                    id: mask
-                    anchors.fill: parent
-                    gradient: Gradient 
-                    {
-                        GradientStop { position: 0.2; color: "transparent"}
-                        GradientStop { position: 0.9; color: control.Kirigami.Theme.backgroundColor}
-                    }                    
-                }
-            }
-
-            LinearGradient
-            {
-                anchors.fill: parent
-                start: Qt.point(0, parent.height* 0.6)
-                end: Qt.point(0, parent.height)
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 0.9; color: control.Kirigami.Theme.backgroundColor }
-                }
-            }
-
-            Maui.ListItemTemplate
-            {
-                id: _template
-                isCurrentItem: control.isCurrentItem
-                hovered: control.hovered
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
-                anchors.margins: Maui.Style.space.medium
-                anchors.bottomMargin: Maui.Style.space.big
-                //            color: Kirigami.Theme.textColor
-                label1.font.bold: true
-                label1.font.weight: Font.Bold
-                label1.font.pointSize: Maui.Style.fontSizes.enormous
-                label2.font.pointSize: Maui.Style.fontSizes.big
-                label3.font.pointSize: Maui.Style.fontSizes.enormous
-                label4.font.pointSize: Maui.Style.fontSizes.small
-                label3.font.bold: true
-                label3.font.weight: Font.Bold
-
-                //                label1.wrapMode: Text.WordWrap
-                //                label1.elide: Text.ElideRight
-                //            horizontalAlignment: Qt.AlignHCenter
             }
 
             layer.enabled: true

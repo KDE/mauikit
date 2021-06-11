@@ -112,6 +112,36 @@ Item
                 edge: Qt.TopEdge
             }
         }
+        
+//        enter: Transition
+//        {
+//            enabled: control.responsive
+
+//            NumberAnimation
+//            {
+//                property: control.responsive ? "y" : ""
+//                from: window().height
+//                to: window().height - _menu.height
+//                easing.type: Easing.InOutQuad
+//                duration: Kirigami.Units.shortDuration
+//            }
+//        }
+
+//        exit: Transition
+//        {
+//            enabled: control.responsive
+
+//            NumberAnimation
+//            {
+//                property: control.responsive ? "y" : ""
+//                from: _menu.y
+//                to: window().height
+//                easing.type: Easing.InOutQuad
+//                duration: Kirigami.Units.shortDuration
+//            }
+//        }
+
+
 
     }
 

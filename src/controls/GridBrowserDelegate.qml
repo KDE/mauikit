@@ -57,6 +57,12 @@ Maui.ItemDelegate
     property alias label1 : _template.label1
     
     /**
+     * label2 : Label
+     */
+    property alias label2 : _template.label2
+    
+    
+    /**
      * iconItem : Item
      */
     property alias iconItem : _template.iconItem
