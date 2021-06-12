@@ -224,7 +224,7 @@ Item
                         Layout.alignment: Qt.AlignCenter
                         
                         elide: Qt.ElideRight
-                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        wrapMode: Text.NoWrap
                         color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
                         opacity: control.isCurrentItem ? 0.8 : 0.6
                         

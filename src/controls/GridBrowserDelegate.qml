@@ -97,6 +97,8 @@ Maui.ItemDelegate
      */
     property alias checked : _emblem.checked
     
+    property alias fillMode : _template.fillMode
+    
     /**
      * checkable : bool
      */

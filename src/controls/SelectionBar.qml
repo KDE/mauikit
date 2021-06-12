@@ -261,8 +261,7 @@ Item
                     duration: Kirigami.Units.shortDuration
                     easing.type: Easing.InOutQuad
                 }
-            }
-            
+            }            
             
             Maui.ListBrowser
             {
@@ -368,6 +367,7 @@ Item
                 {
                     id: _counter
                     Layout.fillHeight: true
+                    Layout.margins: Maui.Style.space.medium
                     implicitWidth: height
                     text: selectionList.count
                     radius: Maui.Style.radiusV

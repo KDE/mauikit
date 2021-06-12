@@ -109,7 +109,7 @@ Maui.GridBrowserDelegate
                         smooth: true
                         cache: control.cache
                         source: control.cb ? control.cb(modelData) : modelData
-                        fillMode: Image.PreserveAspectCrop
+                        fillMode: control.fillMode
                     }
 
                     Behavior on height

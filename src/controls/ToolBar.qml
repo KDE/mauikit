@@ -59,7 +59,7 @@ ToolBar
         /**
          * forceCenterMiddleContent : bool
          */
-        property bool forceCenterMiddleContent : false
+        property bool forceCenterMiddleContent : true
         
         /**
          * leftContent : RowLayout.data
