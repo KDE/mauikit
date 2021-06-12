@@ -362,15 +362,19 @@ Container
                     
                     delegate: Item
                     {
-                        height: _overviewGrid.cellHeight
-                        width: _overviewGrid.cellWidth
+                        height: GridView.view.cellHeight
+                        width: GridView.view.cellWidth
                         
-                        property bool isCurrentItem : GridView.isCurrentItem
                         
-                        Maui.ItemDelegate
-                        {
-                            anchors.fill: parent
-                            anchors.margins: Maui.Style.space.small
+                        Maui.GridBrowserDelegate
+                        {                            
+                            anchors.centerIn: parent
+                            width: _overviewGrid.itemSize - Maui.Style.space.small
+                            height: _overviewGrid.itemHeight  - Maui.Style.space.small
+                            
+                            isCurrentItem : parent.GridView.isCurrentItem
+                            label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                            iconSource: "tab-new"
                             
                             onRightClicked:
                             {
@@ -391,10 +395,8 @@ Container
                                 _overViewMenu.open()
                             }
                             
-                            background: null
-                            Rectangle
+                            template.iconComponent: Rectangle
                             {
-                                anchors.fill: parent
                                 color: Kirigami.Theme.backgroundColor
                                 radius: Maui.Style.radiusV
                                 
@@ -422,59 +424,7 @@ Container
                                             }
                                         }
                                     }
-                                }
-                                
-                                Rectangle
-                                {
-                                    height: _overviewCardTitle.implicitHeight + Maui.Style.space.medium
-                                    anchors.bottom: parent.bottom
-                                    anchors.left: parent.left
-                                    anchors.right: parent.right
-                                    color: Kirigami.Theme.backgroundColor
-                                    clip: true
-                                    
-                                    Maui.Separator
-                                    {
-                                        edge: Qt.TopEdge
-                                        anchors.top: parent.top
-                                        anchors.left: parent.left
-                                        anchors.right: parent.right
-                                    }
-
-                                    Label
-                                    {
-                                        id: _overviewCardTitle
-                                        anchors.centerIn: parent
-                                        width: parent.width - Maui.Style.space.medium
-                                        elide: Text.ElideRight
-                                        wrapMode: Text.WrapAnywhere
-                                        horizontalAlignment: Qt.AlignHCenter
-                                        verticalAlignment: Qt.AlignVCenter
-                                        //                                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle || index
-                                        text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                                    }
-                                }
-                                
-                                Rectangle
-                                {
-                                    anchors.fill: parent
-                                    border.color: isCurrentItem ? Kirigami.Theme.highlightColor : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-                                    radius: parent.radius
-                                    
-                                    border.width: isCurrentItem ? 2 : 1
-                                    color: "transparent"
-                                    opacity: 0.8
-                                    
-                                    Rectangle
-                                    {
-                                        anchors.fill: parent
-                                        color: "transparent"
-                                        anchors.margins: 1
-                                        radius: parent.radius - 0.5
-                                        border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                                        opacity: 0.3
-                                    }
-                                }
+                                }                                
                             }
                         }
                     }
