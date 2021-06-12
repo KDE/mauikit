@@ -402,7 +402,7 @@ Container
                                 ShaderEffectSource
                                 {
                                     id: _effect
-                                    anchors.centerIn: parent
+                                   
                                     height: _overviewGrid.itemHeight
                                     width: _overviewGrid.itemSize
                                     
@@ -430,7 +430,7 @@ Container
                                 {
                                     anchors.fill: parent
                                     border.color: Kirigami.Theme.backgroundColor
-                                    border.width: 4
+                                    border.width: 2
                                     radius: Maui.Style.radiusV
                                     color: "transparent"
                                 }

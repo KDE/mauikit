@@ -35,7 +35,7 @@ Row
             {
                 anchors.fill: parent
                 radius: height/2
-                color: modelData
+                color: enabled ? modelData : "transparent"
                 border.color: Qt.darker(modelData, 2)
                 
                 Kirigami.Icon
