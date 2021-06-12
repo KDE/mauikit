@@ -364,8 +364,7 @@ Container
                     {
                         height: GridView.view.cellHeight
                         width: GridView.view.cellWidth
-                        
-                        
+                                                
                         Maui.GridBrowserDelegate
                         {                            
                             anchors.centerIn: parent
@@ -395,16 +394,17 @@ Container
                                 _overViewMenu.open()
                             }
                             
-                            template.iconComponent: Rectangle
+                            template.iconComponent: Item
                             {
-                                color: Kirigami.Theme.backgroundColor
-                                radius: Maui.Style.radiusV
+                                
+                                clip: true
                                 
                                 ShaderEffectSource
                                 {
                                     id: _effect
-                                    anchors.fill: parent
-                                    anchors.margins: 2
+                                    anchors.centerIn: parent
+                                    height: _overviewGrid.itemHeight
+                                    width: _overviewGrid.itemSize
                                     
                                     hideSource: visible
                                     live: true
@@ -424,7 +424,16 @@ Container
                                             }
                                         }
                                     }
-                                }                                
+                                } 
+                                
+                                Rectangle
+                                {
+                                    anchors.fill: parent
+                                    border.color: Kirigami.Theme.backgroundColor
+                                    border.width: 4
+                                    radius: Maui.Style.radiusV
+                                    color: "transparent"
+                                }
                             }
                         }
                     }
