@@ -71,7 +71,7 @@ Item
         /**
          * labelSizeHint : int
          */
-        property int labelSizeHint : height * 0.4
+        property alias labelSizeHint : _labelsContainer.labelSizeHint
         
         /**
          * iconSizeHint : int
@@ -168,14 +168,16 @@ Item
             
             Kirigami.ShadowedRectangle
             {
+                id: _labelsContainer
+                property int labelSizeHint: Math.min(64, _labels.implicitHeight)
                 visible: control.labelsVisible &&( _label1.text || _label2.text)
                 
-                Layout.preferredHeight: Maui.Style.iconSizes.big
+                Layout.preferredHeight: labelSizeHint
                 Layout.margins: 2
                 
                 Layout.fillWidth: true
-                Layout.maximumHeight: Math.min(64, control.labelSizeHint) + Maui.Style.space.small
-                Layout.minimumHeight: Math.min(_labels.implicitHeight, 64)+ Maui.Style.space.small
+                Layout.maximumHeight: control.height* 0.9
+                Layout.minimumHeight: labelSizeHint + Maui.Style.space.small
                 color: Kirigami.Theme.backgroundColor
                 
                 corners
@@ -189,10 +191,9 @@ Item
                 ColumnLayout
                 {
                     id: _labels
-                   anchors.fill: parent
-                   anchors.margins: Maui.Style.space.tiny
+                    anchors.fill: parent
+                    anchors.margins: Maui.Style.space.tiny
                     spacing: 0
-                    clip: true
                     
                     Label
                     {
@@ -205,7 +206,6 @@ Item
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         Layout.alignment: Qt.AlignCenter
-                        //                 height: parent.height
                         
                         elide: Qt.ElideRight
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere

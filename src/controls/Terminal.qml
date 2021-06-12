@@ -441,7 +441,7 @@ enabled: true
         }
     }
 
-    Component.onCompleted: control.forceActiveFocus();
+    //Component.onCompleted: control.forceActiveFocus();
     
     function forceActiveFocus()
     {

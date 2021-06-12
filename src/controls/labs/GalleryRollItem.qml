@@ -24,19 +24,10 @@ Maui.GridBrowserDelegate
      */
     property var images : []
    
-   
-    /**
-     * margins :
-     */
-    property int margins : isWide ? Maui.Style.space.medium : Maui.Style.space.tiny
-
     /**
      * cb : function
      */
     property var cb
-
-
-
 
    template.iconComponent:  Item
     {
@@ -148,24 +139,5 @@ Maui.GridBrowserDelegate
                 }
             }
         }
-
-        //Rectangle
-        //{
-            //Kirigami.Theme.inherit: false
-            //anchors.fill: parent
-            //color: "transparent"
-            //radius: Maui.Style.radiusV
-            //border.color: control.isCurrentItem || control.hovered ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.2)
-
-            //Rectangle
-            //{
-                //anchors.fill: parent
-                //color: "transparent"
-                //radius: parent.radius - 0.5
-                //border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-                //opacity: 0.2
-                //anchors.margins: 1
-            //}
-        //}
     }
 }
