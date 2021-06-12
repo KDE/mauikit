@@ -402,9 +402,12 @@ Container
                                 ShaderEffectSource
                                 {
                                     id: _effect
+                                    
+                                    x: 2
+                                    y: 2
                                    
-                                    height: _overviewGrid.itemHeight
-                                    width: _overviewGrid.itemSize
+                                    height: _overviewGrid.itemHeight - 2
+                                    width: _overviewGrid.itemSize - 2
                                     
                                     hideSource: visible
                                     live: true
