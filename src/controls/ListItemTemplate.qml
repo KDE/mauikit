@@ -314,7 +314,8 @@ Item
                 id: _label3
                 visible: text.length > 0
                 Layout.fillHeight: true
-                Layout.fillWidth: true
+                Layout.minimumWidth: implicitWidth
+                Layout.preferredWidth: implicitWidth
                 Layout.alignment: Qt.AlignRight
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label4.visible ? Qt.AlignBottom :  Qt.AlignVCenter
@@ -332,7 +333,8 @@ Item
                 id: _label4
                 visible: text.length > 0
                 Layout.fillHeight: true
-                Layout.fillWidth: true
+                Layout.minimumWidth: implicitWidth
+                Layout.preferredWidth: implicitWidth
                 Layout.alignment: Qt.AlignRight
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label3.visible ? Qt.AlignTop : Qt.AlignVCenter

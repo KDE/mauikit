@@ -42,7 +42,7 @@ ToolBar
 {
     id: control
     implicitHeight: preferredHeight
-    implicitWidth: mainFlickable.contentWidth
+    implicitWidth: _scrollView.contentWidth
     spacing: Maui.Style.space.small
     padding: 0
     
@@ -272,13 +272,13 @@ ToolBar
                 ScrollView
                 {
                     id: _scrollView
-                    readonly property bool fits : mainFlickable.contentWidth < width
+                    readonly property bool fits : contentWidth < width
                     onFitsChanged: mainFlickable.returnToBounds()
                     
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     
-                    contentWidth: mainFlickable.contentWidth
+                    contentWidth: layout.implicitWidth - (_h1.mwidth + _h2.mwidth)
                     contentHeight: height  
                     
                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
@@ -290,7 +290,6 @@ ToolBar
                         
                         flickableDirection: Flickable.HorizontalFlick
                         interactive: !fits && Maui.Handy.isTouch
-                        contentWidth: layout.implicitWidth - (_h1.mwidth + _h2.mwidth)
                         
                         boundsBehavior: Flickable.StopAtBounds
                         boundsMovement :Flickable.StopAtBounds

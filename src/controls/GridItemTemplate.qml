@@ -177,7 +177,7 @@ Item
                 
                 Layout.fillWidth: true
                 Layout.maximumHeight: control.height* 0.9
-                Layout.minimumHeight: labelSizeHint + Maui.Style.space.small
+                Layout.minimumHeight: labelSizeHint
                 color: Kirigami.Theme.backgroundColor
                 
                 corners
@@ -192,7 +192,8 @@ Item
                 {
                     id: _labels
                     anchors.fill: parent
-                    anchors.margins: Maui.Style.space.tiny
+                    anchors.leftMargin: Maui.Style.space.tiny
+                    anchors.rightMargin: Maui.Style.space.tiny
                     spacing: 0
                     
                     Label
@@ -221,6 +222,7 @@ Item
                         verticalAlignment: Qt.AlignVCenter
                         
                         Layout.fillWidth: true
+                        Layout.preferredHeight: implicitHeight
                         Layout.alignment: Qt.AlignCenter
                         
                         elide: Qt.ElideRight
@@ -234,7 +236,7 @@ Item
                 Rectangle
                 {
                     visible: (control.hovered ) && _label1.implicitHeight > _label1.height
-                    height: Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium
+                    height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
                     width: parent.width
                     color: Kirigami.Theme.backgroundColor
                     anchors.bottom: parent.bottom
