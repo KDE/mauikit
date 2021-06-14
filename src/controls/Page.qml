@@ -114,6 +114,9 @@ Pane
       By default this is set to InlineHeader unless it is a Mobile device, in which case it is PullBackHeader.
     */
     property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
+    
+    property int headerColorSet :  Kirigami.Theme.Window
+    
 
     /*!
       A title for the page.
@@ -409,7 +412,7 @@ Pane
         height: visible ? implicitHeight : 0
 
         Kirigami.Theme.inherit: false
-        Kirigami.Theme.colorSet: Maui.Handy.isWindows ? Kirigami.Theme.View : Kirigami.Theme.Window
+        Kirigami.Theme.colorSet: control.headerColorSet
 
         //             Label
         //             {

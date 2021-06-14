@@ -448,6 +448,8 @@ Container
     function closeTab(index)
     {
         control.removeItem(control.takeItem(index))
+        control.currentIndex = 0
+        control.currentItemChanged()
     }
     
     function addTab(component, properties)

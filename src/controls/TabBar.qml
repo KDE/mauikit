@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
-import "private"
+import "private" as Private
 
 /**
  * TabBar
@@ -20,32 +20,32 @@ import "private"
 TabBar
 {
     id: control
-
+    
     implicitWidth: _content.width
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: false
     clip: true
-
+    
     /**
-      * content : RowLayout.data
-      */
+     * content : RowLayout.data
+     */
     default property alias content : _content.data
-
+        
     /**
-      * showNewTabButton : bool
-      */
+     * showNewTabButton : bool
+     */
     property bool showNewTabButton : true
-
+    
     /**
-      * newTabClicked :
-      */
+     * newTabClicked :
+     */
     signal newTabClicked()
-
+    
     background: Rectangle
     {
         color: Kirigami.Theme.backgroundColor
-
+        
         Maui.Separator
         {
             color: parent.color
@@ -60,49 +60,89 @@ TabBar
             }
         }
     }
-
-    contentItem: RowLayout
-    {
-        spacing: 0
-
-        ScrollView
+    
+    contentItem: Item
+    {        
+        readonly property bool fits : _flickable.contentWidth <= width
+        
+        Private.EdgeShadow
         {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-
-            Flickable
+            width: Maui.Style.iconSizes.medium
+            height: parent.height
+            visible: !_flickable.atXEnd && !parent.fits 
+            opacity: 0.7
+            z: 999
+            edge: Qt.RightEdge
+            anchors
             {
-                id: _flickable
-                anchors.fill: parent
-                contentHeight: height
-                contentWidth: _content.implicitWidth
-                clip: true
-
-                Row
-                {
-                    id: _content
-                    width: _flickable.width
-                    height: _flickable.height
-                }
+                right: parent.right
+                top: parent.top
+                bottom: parent.bottom
             }
         }
-
-        MouseArea
+        
+        Private.EdgeShadow
         {
-            visible: control.showNewTabButton
-            hoverEnabled: true
-            onClicked: control.newTabClicked()
-            Layout.fillHeight: true
-            Layout.preferredWidth: visible ? height : 0
-
-            Maui.PlusSign
+            width: Maui.Style.iconSizes.medium
+            height: parent.height
+            visible: !_flickable.atXBeginning && !parent.fits 
+            opacity: 0.7
+            z: 999
+            edge: Qt.LeftEdge
+            anchors
             {
-                height: Maui.Style.iconSizes.tiny
-                width: height
-                anchors.centerIn: parent
-                color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+                left: parent.left
+                top: parent.top
+                bottom: parent.bottom
+            }
+        }
+        
+        RowLayout
+        {
+            anchors.fill: parent
+            spacing: 0
+            
+            ScrollView
+            {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                contentHeight: availableHeight
+                contentWidth: _content.implicitWidth
+                
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                
+                Flickable
+                {
+                    id: _flickable
+                    interactive: false
+                    clip: true
+                    
+                    Row
+                    {
+                        id: _content
+                        width: _flickable.width
+                        height: _flickable.height
+                    }
+                }
+            }
+            
+            MouseArea
+            {
+                visible: control.showNewTabButton
+                hoverEnabled: true
+                onClicked: control.newTabClicked()
+                Layout.fillHeight: true
+                Layout.preferredWidth: visible ? height : 0
+                
+                Maui.PlusSign
+                {
+                    height: Maui.Style.iconSizes.tiny
+                    width: height
+                    anchors.centerIn: parent
+                    color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+                }
             }
         }
     }

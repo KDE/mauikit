@@ -10,9 +10,9 @@ import org.kde.appletdecoration 0.1 as AppletDecoration
 // import org.kde.plasma.plasmoid 2.0
 
 /*!
-  \since org.mauikit.controls.labs 1.0
-  \inqmlmodule org.mauikit.controls.labs
-*/
+ *  \since org.mauikit.controls.labs 1.0
+ *  \inqmlmodule org.mauikit.controls.labs
+ */
 Loader
 {
     id: control
@@ -30,7 +30,7 @@ Loader
      */
     signal buttonClicked(var type)
     
-        
+    
     sourceComponent: Item 
     {
         implicitHeight: visible ? Maui.Style.iconSizes.medium : 0
@@ -39,145 +39,145 @@ Loader
         visible: control.model.length > 0
         
         Row
-    {
-        id: _row
-        height: parent.height
-        spacing: Maui.Style.space.medium
-        
-        Repeater
         {
-            model: control.model
-            delegate: pluginButton
-        }
-    }
-    
-    
-    Component
-    {
-        id: pluginButton
-        
-        AppletDecoration.Button
-        {
-            width: 22
-            height: 22
-            type:  mapControl(modelData)
-            anchors.verticalCenter: parent.verticalCenter
-            bridge: bridgeItem.bridge
-            sharedDecoration: sharedDecorationItem
-            scheme: plasmaThemeExtended.colors.schemeFile
+            id: _row
+            height: parent.height
+            spacing: Maui.Style.space.medium
             
-            //                 isOnAllDesktops: root.isLastActiveWindowPinned
-            isMaximized: root.visibility === Window.Maximized
-            //                 isKeepAbove: root.isLastActiveWindowKeepAbove
-            
-            //                 localX: x
-            //                 localY: y
-            isActive: root.active
-            onClicked: buttonClicked(type)            
-        }
-    }
-    
-    Component
-    {
-        id: auroraeButton
-        Item {}
-        //         AppletDecoration.AuroraeButton
-        //         {
-        //             width: 22
-        //             height: 22
-        //
-        //             isMaximized: Window.window.visibility === Window.Maximized
-        //             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
-        //
-        //             //                 localX: x
-        //             //                 localY: y
-        //             isActive: Window.window.active
-        //
-        //             onClicked: performActiveWindowAction(buttonType)
-        //
-        //             buttonType: mapControl(modelData)
-        //             auroraeTheme: auroraeThemeEngine
-        //
-        //         }
-    }
-    
-    AppletDecoration.WindowSystem
-    {
-        id: windowSystem
-    }
-    
-    AppletDecoration.PlasmaThemeExtended
-    {
-        id: plasmaThemeExtended
-        
-        readonly property bool isActive: true
-        
-        function triggerUpdate()
-        {
-            if (isActive)
+            Repeater
             {
-                //                             initButtons();
-                sharedDecorationItem.createDecoration();
+                model: control.model
+                delegate: pluginButton
             }
         }
         
-        onThemeChanged: triggerUpdate();
-        onColorsChanged: triggerUpdate();
-    }
-    
-    AppletDecoration.Bridge
-    {
-        id: bridgeItem
-        plugin: decorations.currentPlugin
-        theme: decorations.currentTheme
-    }
-    
-    AppletDecoration.Settings
-    {
-        id: settingsItem
-        bridge: bridgeItem.bridge
-        borderSizesIndex: 0 // Normal
-    }
-    
-    AppletDecoration.SharedDecoration
-    {
-        id: sharedDecorationItem
-        bridge: bridgeItem.bridge
-        settings: settingsItem
-    }
-    
-    AppletDecoration.DecorationsModel
-    {
-        id: decorations
-    }
-    
-    AppletDecoration.AuroraeTheme
-    {
-        id: auroraeThemeEngine
-        theme: isEnabled ? decorations.currentTheme : ""
         
-        readonly property bool isEnabled: decorations.isAurorae(decorations.currentPlugin, decorations.currentTheme);
-    }
-    
-    //     PlasmaTasksModel{id: windowInfo}
-    
-    function mapControl(key)
-    {
-        switch(key)
+        Component
         {
-            case "X": return  AppletDecoration.Types.Close;
-            case "I": return  AppletDecoration.Types.Minimize;
-            case "A": return  AppletDecoration.Types.Maximize;
-            case "F": return  AppletDecoration.Types.KeepAbove;
-            case "S": return  AppletDecoration.Types.OnAllDesktops;
-            default: return null;
+            id: pluginButton
+            
+            AppletDecoration.Button
+            {
+                width: 22
+                height: 22
+                type:  mapControl(modelData)
+                anchors.verticalCenter: parent.verticalCenter
+                bridge: bridgeItem.bridge
+                sharedDecoration: sharedDecorationItem
+                scheme: plasmaThemeExtended.colors.schemeFile
+                
+                //                 isOnAllDesktops: root.isLastActiveWindowPinned
+                isMaximized: root.visibility === Window.Maximized
+                //                 isKeepAbove: root.isLastActiveWindowKeepAbove
+                
+                //                 localX: x
+                //                 localY: y
+                isActive: root.active
+                onClicked: buttonClicked(type)            
+            }
         }
+        
+        Component
+        {
+            id: auroraeButton
+            Item {}
+            //         AppletDecoration.AuroraeButton
+            //         {
+            //             width: 22
+            //             height: 22
+            //
+            //             isMaximized: Window.window.visibility === Window.Maximized
+            //             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
+            //
+            //             //                 localX: x
+            //             //                 localY: y
+            //             isActive: Window.window.active
+            //
+            //             onClicked: performActiveWindowAction(buttonType)
+            //
+            //             buttonType: mapControl(modelData)
+            //             auroraeTheme: auroraeThemeEngine
+            //
+            //         }
+        }
+        
+        AppletDecoration.WindowSystem
+        {
+            id: windowSystem
+        }
+        
+        AppletDecoration.PlasmaThemeExtended
+        {
+            id: plasmaThemeExtended
+            
+            readonly property bool isActive: true
+            
+            function triggerUpdate()
+            {
+                if (isActive)
+                {
+                    //                             initButtons();
+                    sharedDecorationItem.createDecoration();
+                }
+            }
+            
+            onThemeChanged: triggerUpdate();
+            onColorsChanged: triggerUpdate();
+        }
+        
+        AppletDecoration.Bridge
+        {
+            id: bridgeItem
+            plugin: decorations.currentPlugin
+            theme: decorations.currentTheme
+        }
+        
+        AppletDecoration.Settings
+        {
+            id: settingsItem
+            bridge: bridgeItem.bridge
+            borderSizesIndex: 0 // Normal
+        }
+        
+        AppletDecoration.SharedDecoration
+        {
+            id: sharedDecorationItem
+            bridge: bridgeItem.bridge
+            settings: settingsItem
+        }
+        
+        AppletDecoration.DecorationsModel
+        {
+            id: decorations
+        }
+        
+        AppletDecoration.AuroraeTheme
+        {
+            id: auroraeThemeEngine
+            theme: isEnabled ? decorations.currentTheme : ""
+            
+            readonly property bool isEnabled: decorations.isAurorae(decorations.currentPlugin, decorations.currentTheme);
+        }
+        
+        //     PlasmaTasksModel{id: windowInfo}
+        
+        function mapControl(key)
+        {
+            switch(key)
+            {
+                case "X": return  AppletDecoration.Types.Close;
+                case "I": return  AppletDecoration.Types.Minimize;
+                case "A": return  AppletDecoration.Types.Maximize;
+                case "F": return  AppletDecoration.Types.KeepAbove;
+                case "S": return  AppletDecoration.Types.OnAllDesktops;
+                default: return null;
+            }
+        }
+        
+        
     }
     
     
-    }
     
-   
-
-
+    
 }

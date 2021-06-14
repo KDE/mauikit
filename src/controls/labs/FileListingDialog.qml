@@ -170,7 +170,7 @@ Maui.Dialog
         implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)
         model: urls
         spacing: Maui.Style.space.small
-        margins: 0
+        padding: 0
         verticalScrollBarPolicy: ScrollBar.AlwaysOff
         
         delegate: control.listDelegate

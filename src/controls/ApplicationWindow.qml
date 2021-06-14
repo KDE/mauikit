@@ -305,17 +305,20 @@ Window
         id: _page
         anchors.fill: parent
         Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
-        headerBackground.color: Maui.App.enableCSD ? Qt.darker(Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
+       
+       headerColorSet: Kirigami.Theme.Header
+       
+        headerBackground.color: Maui.App.enableCSD ? Qt.darker(headBar.Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
         
-        headBar.farRightContent: Maui.WindowControls
-        {
-            side: Qt.RightEdge
-        }        
+//        headBar.farRightContent: Maui.WindowControls
+//        {
+//            side: Qt.RightEdge
+//        }
         
-        headBar.farLeftContent:  Maui.WindowControls
-        {
-            side: Qt.LeftEdge
-        }
+//        headBar.farLeftContent:  Maui.WindowControls
+//        {
+//            side: Qt.LeftEdge
+//        }
 
         headBar.leftContent: Maui.ToolButtonMenu
         {

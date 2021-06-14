@@ -41,10 +41,10 @@ Item
         
     //color scheme
     Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+    Kirigami.Theme.inherit: false    
     
-    implicitHeight: contentHeight + topMargin + bottomMargin
-    implicitWidth: contentWidth + leftMargin + rightMargin
+    implicitHeight: contentHeight + topPadding + bottomPadding
+    implicitWidth: contentWidth + leftPadding + rightPadding    
 
     /**
       * itemSize : int
@@ -117,29 +117,29 @@ Item
     property alias contentWidth : controlView.contentWidth
 
     /**
-      * topMargin : int
+     * topPadding : int
       */
-    property int topMargin: margins
+    property alias topPadding: _scrollView.topPadding
 
     /**
-      * bottomMargin : int
+     * bottomPadding : int
       */
-    property int bottomMargin: margins
+    property alias bottomPadding: _scrollView.bottomPadding
 
     /**
-      * rightMargin : int
+     * rightPadding : int
       */
-    property int rightMargin: margins
+    property alias rightPadding: _scrollView.rightPadding
 
     /**
-      * leftMargin : int
+     * leftPadding : int
       */
-    property int leftMargin: margins
+    property alias leftPadding: _scrollView.leftPadding
 
     /**
-      * margins : int
+      * padding : int
       */
-    property int margins: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
+    property alias padding: _scrollView.padding
 
     /**
       * holder : Holder
@@ -202,28 +202,35 @@ Item
         if(adaptContent)
             control.adaptGrid()
     }
-
+    
+    QtObject {
+        id: internal
+        
+        readonly property real verticalScrollBarWidth: _scrollView.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.vertical.width : 0
+        readonly property real horizontalScrollBarHeight: _scrollView.ScrollBar.horizontal.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.horizontal.height : 0
+    }
+    
     ScrollView
     {
+        id: _scrollView
         anchors.fill: parent   
         
-//         contentWidth: availableWidth - control.leftMargin - control.rightMargin
+        padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
+        rightPadding: padding + internal.verticalScrollBarWidth
+        leftPadding: padding 
+        topPadding: padding
+        bottomPadding: padding
+        horizontalPadding: padding
+        verticalPadding: padding
         
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AsNeeded
-
+        
+     
         GridView
         {
             id: controlView
-            
-            anchors.fill: parent
-            anchors.rightMargin: Kirigami.Settings.hasTransientTouchInput ? control.rightMargin: parent.ScrollBar.vertical.visible ? parent.ScrollBar.vertical.width + control.rightMargin : control.rightMargin
-            anchors.bottomMargin: Kirigami.Settings.hasTransientTouchInput ? control.bottomMargin : parent.ScrollBar.horizontal.visible ? parent.ScrollBar.horizontal.height + control.bottomMargin : control.bottomMargin
-            
-            anchors.leftMargin: control.leftMargin
-            anchors.topMargin: control.topMargin
-            anchors.margins: control.margins
-            
+ 
             /**
              * itemSize : int
              */

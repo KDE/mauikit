@@ -56,7 +56,7 @@ Item
 
         onOpened: control.opened()
         onClosed: control.closed()
-
+        
         contentItem: Maui.ListBrowser
         {
             id: _listView
@@ -70,9 +70,9 @@ Item
             }
 
             implicitHeight: contentHeight
-            margins: _menu.margins
             model: _menu.contentModel
             spacing: _menu.spacing
+            padding: _menu.margins
             currentIndex: _menu.currentIndex || 0
         }
 

@@ -70,12 +70,12 @@ Item
     {
         Layout.alignment: Qt.AlignVCenter
         Layout.preferredWidth: visible ? implicitWidth : 0
-
+       
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
-        Kirigami.Theme.backgroundColor: modelData.Kirigami.Theme.backgroundColor
-        Kirigami.Theme.highlightColor: modelData.Kirigami.Theme.highlightColor
+        //Kirigami.Theme.backgroundColor: modelData.Kirigami.Theme.backgroundColor
+        //Kirigami.Theme.highlightColor: modelData.Kirigami.Theme.highlightColor
         icon.name: modelData.Maui.AppView.iconName
         text: modelData.Maui.AppView.title
         flat: display === ToolButton.IconOnly
@@ -102,8 +102,7 @@ Item
     
     RowLayout
     {
-        id: _layout
-        anchors.fill: parent
+        id: _layout       
         spacing: Maui.Style.space.big
         
         Repeater
@@ -123,7 +122,7 @@ Item
             icon.name: obj ? obj.Maui.AppView.iconName : ""
             icon.width: Maui.Style.iconSizes.medium
             icon.height: Maui.Style.iconSizes.medium
-            flat: true
+            flat: display === ToolButton.IconOnly
             
             display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
             

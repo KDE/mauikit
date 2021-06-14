@@ -60,7 +60,7 @@ AbstractButton
 
     hoverEnabled: !Kirigami.Settings.isMobile
     implicitHeight: _layoutButton.implicitHeight
-    implicitWidth: Math.floor(_layoutButton.implicitWidth + (Maui.Style.space.medium * 1.5 ))
+    implicitWidth: Math.floor(_layoutButton.implicitWidth + (Maui.Style.space.big ))
 
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
@@ -89,7 +89,6 @@ AbstractButton
     {
         id: _layoutButton
         anchors.centerIn: parent
-
         rowSpacing: 0
         columnSpacing: 0
 
@@ -97,7 +96,7 @@ AbstractButton
         {
             implicitWidth: visible ? _icon.width + Maui.Style.space.medium : 0
             implicitHeight: Math.floor( _icon.height + (Maui.Style.space.medium))
-
+           
             Layout.column: 0
             Layout.row: 0
             Layout.alignment: Qt.AlignCenter
@@ -128,7 +127,7 @@ AbstractButton
             opacity: visible ? ( enabled ? 1 : 0.5) : 0
             horizontalAlignment: Qt.AlignHCenter
             Layout.fillWidth: visible
-            Layout.preferredWidth: visible ? implicitWidth + Maui.Style.space.medium : 0
+            Layout.preferredWidth: visible ? implicitWidth : 0
             color: control.down || control.pressed || control.checked || control.hovered ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
 
             font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium
