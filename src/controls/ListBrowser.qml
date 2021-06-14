@@ -37,8 +37,8 @@ Item
 {
     id: control
 
-    implicitHeight: contentHeight + margins*2
-    implicitWidth: contentWidth + margins*2
+    implicitHeight: contentHeight + topMargin + bottomMargin
+    implicitWidth: contentWidth + leftMargin + rightMargin
     
     //color scheme
     Kirigami.Theme.colorSet: Kirigami.Theme.View
@@ -211,6 +211,7 @@ Item
     {
         id: _scrollView
         anchors.fill: parent
+        
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
 

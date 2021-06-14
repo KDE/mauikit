@@ -43,23 +43,23 @@ Item
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: false
     
-    implicitHeight: contentHeight + margins*2
-    implicitWidth: contentWidth + margins*2
+    implicitHeight: contentHeight + topMargin + bottomMargin
+    implicitWidth: contentWidth + leftMargin + rightMargin
 
     /**
       * itemSize : int
       */
-    property int itemSize: 0
+    property alias itemSize: controlView.itemSize
 
     /**
       * itemWidth : int
       */
-    property int itemWidth : itemSize
+    property alias itemWidth : controlView.itemWidth
 
     /**
       * itemHeight : int
       */
-    property int itemHeight : itemSize
+    property alias itemHeight : controlView.itemHeight
 
     /**
       * cellWidth : int
@@ -205,15 +205,41 @@ Item
 
     ScrollView
     {
-        anchors.fill: parent
-
+        anchors.fill: parent   
+        
+//         contentWidth: availableWidth - control.leftMargin - control.rightMargin
+        
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
         GridView
         {
             id: controlView
-
+            
+            anchors.fill: parent
+            anchors.rightMargin: Kirigami.Settings.hasTransientTouchInput ? control.rightMargin: parent.ScrollBar.vertical.visible ? parent.ScrollBar.vertical.width + control.rightMargin : control.rightMargin
+            anchors.bottomMargin: Kirigami.Settings.hasTransientTouchInput ? control.bottomMargin : parent.ScrollBar.horizontal.visible ? parent.ScrollBar.horizontal.height + control.bottomMargin : control.bottomMargin
+            
+            anchors.leftMargin: control.leftMargin
+            anchors.topMargin: control.topMargin
+            anchors.margins: control.margins
+            
+            /**
+             * itemSize : int
+             */
+            property int itemSize: 0
+            
+            /**
+             * itemWidth : int
+             */
+            property int itemWidth : itemSize
+            
+            /**
+             * itemHeight : int
+             */
+            property int itemHeight : itemSize
+            
+            
             readonly property alias position : _hoverHandler.point.position
             property bool firstSelectionPress
            readonly property bool verticalSelection :  ( Math.round(position.y) < Math.abs(  Math.round(_hoverHandler.point.pressPosition.y) - 10) ||  Math.round(position.y) > Math.abs(  Math.round(_hoverHandler.point.pressPosition.y) + 10)) && control.selectionMode && _hoverHandler.hovered

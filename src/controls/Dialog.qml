@@ -250,14 +250,16 @@ Maui.Popup
                 id: _scrollView
                 anchors.fill: parent
                 visible: _stack.children.length === 0
-
+                
+                contentWidth: availableWidth
+                contentHeight: _pageContent.implicitHeight
+                
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
 
                 Flickable
                 {
                     id: _flickable
-                    contentHeight: _pageContent.implicitHeight
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
                     
