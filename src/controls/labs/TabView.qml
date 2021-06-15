@@ -21,12 +21,12 @@ Container
     
     signal newTabClicked()
     signal closeTabClicked(int index)
- 
+
     Keys.enabled: true
     Keys.onPressed:
     {
         if((event.key === Qt.Key_H) && (event.modifiers & Qt.ControlModifier))
-        {          
+        {
             control.findTab()
         }
     }
@@ -35,55 +35,55 @@ Container
     {
         id: _quickSearch
         defaultButtons: false
-            persistent: false
-            headBar.visible: true
-            
-            function find(query)
+        persistent: false
+        headBar.visible: true
+
+        function find(query)
+        {
+            for(var i = 0; i < control.count; i ++)
             {
-                for(var i = 0; i < control.count; i ++)
+                var obj = control.contentModel.get(i)
+                if(obj.Maui.TabViewInfo.tabTitle)
                 {
-                    var obj = control.contentModel.get(i)
-                    if(obj.Maui.TabViewInfo.tabTitle)
+                    console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
+
+                    if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
                     {
-                        console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
-                        
-                        if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
-                        {
-                            return i
-                        }
+                        return i
                     }
                 }
-                
-                return -1
             }
-            
-            Timer
+
+            return -1
+        }
+
+        Timer
+        {
+            id: _typingTimer
+            interval: 250
+            onTriggered:
             {
-                id: _typingTimer        
-                interval: 250        
-                onTriggered:
+                var index = _quickSearch.find(_quickSearchField.text)
+                if(index > -1)
                 {
-                    var index = _quickSearch.find(_quickSearchField.text)
-                    if(index > -1)
-                    {                                    
-                        _filterTabsList.currentIndex = index
-                    }  
+                    _filterTabsList.currentIndex = index
                 }
             }
-      
+        }
+
         headBar.middleContent: Maui.TextField
         {
             id: _quickSearchField
             Layout.fillWidth: true
             Layout.maximumWidth: 500
             
-            onTextChanged: _typingTimer.restart()   
+            onTextChanged: _typingTimer.restart()
             
-            onAccepted: 
+            onAccepted:
             {
                 control.currentIndex = _filterTabsList.currentIndex
                 _quickSearch.close()
-                control.currentItem.forceActiveFocus()                  
+                control.currentItem.forceActiveFocus()
             }
             
             Keys.enabled: true
@@ -106,7 +106,7 @@ Container
         {
             id: _filterTabsList
             Layout.fillWidth: true
-            Layout.fillHeight: true  
+            Layout.fillHeight: true
             currentIndex: control.currentIndex
             
             model: control.count
@@ -134,7 +134,7 @@ Container
         Maui.TabBar
         {
             id: tabsBar
-            visible: control.count > 1 && !mobile 
+            visible: control.count > 1 && !mobile
             Layout.fillWidth: true
             
             position: TabBar.Header
@@ -177,7 +177,7 @@ Container
                     onClicked:
                     {
                         control.currentIndex = index
-                        control.currentItem.forceActiveFocus()   
+                        control.currentItem.forceActiveFocus()
                     }
                     
                     onCloseClicked:
@@ -188,7 +188,7 @@ Container
                     Timer
                     {
                         id: _dropAreaTimer
-                        interval: 250 
+                        interval: 250
                         onTriggered:
                         {
                             if(_dropArea.containsDrag)
@@ -202,7 +202,7 @@ Container
                     {
                         id: _dropArea
                         anchors.fill: parent
-                        onEntered: 
+                        onEntered:
                         {
                             _dropAreaTimer.restart()
                         }
@@ -364,9 +364,9 @@ Container
                     {
                         height: GridView.view.cellHeight
                         width: GridView.view.cellWidth
-                                                
+
                         Maui.GridBrowserDelegate
-                        {                            
+                        {
                             anchors.centerIn: parent
                             width: _overviewGrid.itemSize - Maui.Style.space.small
                             height: _overviewGrid.itemHeight  - Maui.Style.space.small
@@ -385,7 +385,7 @@ Container
                             {
                                 control.currentIndex = index
                                 _tabsOverview.checked = false
-                                control.currentItem.forceActiveFocus()   
+                                control.currentItem.forceActiveFocus()
                             }
 
                             onPressAndHold:
@@ -405,7 +405,7 @@ Container
                                     
                                     x: 2
                                     y: 2
-                                   
+
                                     height: _overviewGrid.itemHeight - 4
                                     width: _overviewGrid.itemSize - 4
                                     
@@ -420,6 +420,7 @@ Container
                                         {
                                             width: control.width
                                             height: control.height
+
                                             Rectangle
                                             {
                                                 anchors.fill: parent
@@ -427,7 +428,7 @@ Container
                                             }
                                         }
                                     }
-                                } 
+                                }
                                 
                                 Rectangle
                                 {
@@ -447,23 +448,16 @@ Container
     
     function closeTab(index)
     {
-        console.log("closing tab index", index, control.currentIndex)
-
         control.removeItem(control.takeItem(index))
-        console.log("closing tab index", index, control.currentIndex)
-                
-
         control.currentItemChanged()
         control.currentItem.forceActiveFocus()
-                        console.log("closing tab index", index, control.currentIndex)
-
     }
     
     function addTab(component, properties)
-    {       
-        const object = component.createObject(control.contentModel, properties);        
-           
-        control.addItem(object)        
+    {
+        const object = component.createObject(control.contentModel, properties);
+
+        control.addItem(object)
         control.currentIndex = Math.max(control.count -1, 0)
         object.forceActiveFocus()
         
@@ -474,8 +468,8 @@ Container
     {
         if(control.count > 1)
         {
-        _quickSearch.open()
-        _quickSearchField.forceActiveFocus()
+            _quickSearch.open()
+            _quickSearchField.forceActiveFocus()
         }
     }
 }

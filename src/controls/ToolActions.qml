@@ -23,7 +23,7 @@ import "private" as Private
 Rectangle
 {
     id: control
-    implicitWidth: _loader.item.implicitWidth + 4
+    implicitWidth: _loader.item.implicitWidth 
     implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
     opacity: enabled ? 1 : 0.5
     
@@ -92,12 +92,10 @@ Rectangle
      * defaultIconName : string
      */
     property string defaultIconName: "application-menu"
+    border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
     
-    //     border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
     radius: Maui.Style.radiusV
-    readonly property color m_color : Qt.tint(root.Kirigami.Theme.textColor, Qt.rgba(root.Kirigami.Theme.backgroundColor.r, root.Kirigami.Theme.backgroundColor.g, root.Kirigami.Theme.backgroundColor.b, 0.6))
-    
-    color: !control.enabled || control.flat ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)
+    color: !control.enabled || control.flat ? "transparent" : Kirigami.Theme.backgroundColor
     
     Component.onCompleted:
     {
@@ -127,10 +125,26 @@ Rectangle
     {
         id: _loader
         anchors.centerIn: parent
-        height: parent.height-4
+        height: parent.height
         asynchronous: true
         sourceComponent: control.expanded ? _rowComponent : _menuComponent
     } 
+    
+    layer.enabled: !control.flat
+    layer.effect: OpacityMask
+    {
+        maskSource: Item
+        {
+            width: Math.floor(control.width)
+            height: Math.floor(control.height)
+            
+            Rectangle
+            {
+                anchors.fill: parent
+                radius: control.radius
+            }
+        }
+    }
     
     Component
     {
@@ -139,7 +153,7 @@ Rectangle
         Row
         {
             id: _row
-            spacing: 2
+            spacing: 0
             
             Behavior on width
             {
@@ -147,22 +161,6 @@ Rectangle
                 {
                     duration: Kirigami.Units.longDuration
                     easing.type: Easing.InOutQuad
-                }
-            }
-            
-            layer.enabled: !control.flat
-            layer.effect: OpacityMask
-            {
-                maskSource: Item
-                {
-                    width: Math.floor(_row.width)
-                    height: Math.floor(_row.height)
-                    
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        radius: control.radius
-                    }
                 }
             }
             
@@ -206,16 +204,16 @@ Rectangle
                             control.currentIndex = index
                     }
                     
-                    //Kirigami.Separator
-                    //{
-                    //color: control.border.color
-                    //anchors.top: parent.top
-                    //anchors.bottom: parent.bottom
-                    //anchors.right: parent.right
-                    //visible: index < _repeater.count-1 && !control.flat
-                    //anchors.topMargin:1
-                    //anchors.bottomMargin: 1
-                    //}
+                    Kirigami.Separator
+                    {
+                    color: control.border.color
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    visible: index < _repeater.count-1 && !control.flat
+                    anchors.topMargin:1
+                    anchors.bottomMargin: 1
+                    }
                 }
             }
         }
@@ -354,17 +352,7 @@ Rectangle
                     property var m_item : buttonAction()
                     property Action m_action : m_item.action
                     
-                    onClicked: triggerAction()
-                    
-                    //                     checkable: control.checkable
-                    //                     checked: m_action.checked
-                    
-                    //Binding on checked
-                    //{
-                    //when: control.canCyclic
-                    //value: _defaultButtonIcon.m_action.checked
-                    //restoreMode: Binding.RestoreBindingOrValue
-                    //}
+                    onClicked: triggerAction()                    
                     
                     icon.width:  Maui.Style.iconSizes.small
                     icon.height: Maui.Style.iconSizes.small
@@ -403,5 +391,14 @@ Rectangle
                 }
             }
         }
+    }
+    
+    Rectangle
+    {
+        anchors.fill: parent
+        radius: parent.radius
+        color: "transparent"
+        border.color: control.border.color
+        
     }
 }
