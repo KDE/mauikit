@@ -23,7 +23,7 @@ import "private" as Private
 Rectangle
 {
     id: control
-    implicitWidth: _container.implicitWidth
+    implicitWidth: _loader.item.implicitWidth + 4
     implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
     opacity: enabled ? 1 : 0.5
     
@@ -93,11 +93,11 @@ Rectangle
      */
     property string defaultIconName: "application-menu"
     
-    border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+    //     border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
     radius: Maui.Style.radiusV
-    color: !control.enabled || control.flat ? "transparent" : Kirigami.Theme.backgroundColor
-    //    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    //    Kirigami.Theme.inherit: false
+    readonly property color m_color : Qt.tint(root.Kirigami.Theme.textColor, Qt.rgba(root.Kirigami.Theme.backgroundColor.r, root.Kirigami.Theme.backgroundColor.g, root.Kirigami.Theme.backgroundColor.b, 0.6))
+    
+    color: !control.enabled || control.flat ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)
     
     Component.onCompleted:
     {
@@ -121,36 +121,16 @@ Rectangle
             
             control.actions[i].checked = false
         }
-    }
-    
-    Row
-    {
-        id: _container
-        anchors.fill: parent
-        Loader
-        {
-            id: _loader
-            asynchronous: true
-            height: parent.height
-            sourceComponent: control.expanded ? _rowComponent : _menuComponent
-        } 
-        
-        layer.enabled: !control.flat
-        layer.effect: OpacityMask
-        {
-            maskSource: Item
-            {
-                width: Math.floor(_container.width)
-                height: Math.floor(_container.height)
-                
-                Rectangle
-                {
-                    anchors.fill: parent
-                    radius: control.radius
-                }
-            }
-        }
     }    
+    
+    Loader
+    {
+        id: _loader
+        anchors.centerIn: parent
+        height: parent.height-4
+        asynchronous: true
+        sourceComponent: control.expanded ? _rowComponent : _menuComponent
+    } 
     
     Component
     {
@@ -159,14 +139,30 @@ Rectangle
         Row
         {
             id: _row
-            spacing: 0
-                        
+            spacing: 2
+            
             Behavior on width
             {
                 NumberAnimation
                 {
                     duration: Kirigami.Units.longDuration
                     easing.type: Easing.InOutQuad
+                }
+            }
+            
+            layer.enabled: !control.flat
+            layer.effect: OpacityMask
+            {
+                maskSource: Item
+                {
+                    width: Math.floor(_row.width)
+                    height: Math.floor(_row.height)
+                    
+                    Rectangle
+                    {
+                        anchors.fill: parent
+                        radius: control.radius
+                    }
                 }
             }
             
@@ -178,9 +174,13 @@ Rectangle
                 Private.BasicToolButton
                 {
                     id: _buttonMouseArea
+                    
                     action : modelData
                     checkable: control.checkable
+                    
                     rec.radius: 0
+                    rec.color: Kirigami.Theme.backgroundColor
+                    rec.border.color: "transparent"
                     
                     Binding on checked
                     {
@@ -188,10 +188,10 @@ Rectangle
                         value: control.currentIndex === index
                     }
                     autoExclusive: control.autoExclusive
-
+                    
                     height: parent.height
                     width : implicitWidth + Maui.Style.space.medium
-
+                    
                     enabled: action.enabled                    
                     
                     display: control.autoExclusive ? (checked && control.enabled ? control.display : ToolButton.IconOnly) : control.display
@@ -200,24 +200,22 @@ Rectangle
                     icon.width:  action.icon.width ?  action.icon.width : Maui.Style.iconSizes.small
                     icon.height:  action.icon.height ?  action.icon.height : Maui.Style.iconSizes.small
                     
-                    rec.border.color: "transparent"
-                    
                     onClicked:
                     {
                         if(autoExclusive)
                             control.currentIndex = index
                     }
                     
-                    Kirigami.Separator
-                    {
-                        color: control.border.color
-                        anchors.top: parent.top
-                        anchors.bottom: parent.bottom
-                        anchors.right: parent.right
-                        visible: index < _repeater.count-1 && !control.flat
-                        anchors.topMargin:1
-                        anchors.bottomMargin: 1
-                    }
+                    //Kirigami.Separator
+                    //{
+                    //color: control.border.color
+                    //anchors.top: parent.top
+                    //anchors.bottom: parent.bottom
+                    //anchors.right: parent.right
+                    //visible: index < _repeater.count-1 && !control.flat
+                    //anchors.topMargin:1
+                    //anchors.bottomMargin: 1
+                    //}
                 }
             }
         }
@@ -233,7 +231,7 @@ Rectangle
             hoverEnabled: true
             width: implicitWidth
             implicitWidth: _defaultButtonLayout.implicitWidth
-                        
+            
             function triggerAction()
             {
                 if(control.canCyclic)
@@ -358,14 +356,14 @@ Rectangle
                     
                     onClicked: triggerAction()
                     
-//                     checkable: control.checkable
-//                     checked: m_action.checked
-                                        
+                    //                     checkable: control.checkable
+                    //                     checked: m_action.checked
+                    
                     //Binding on checked
                     //{
-                        //when: control.canCyclic
-                        //value: _defaultButtonIcon.m_action.checked
-                        //restoreMode: Binding.RestoreBindingOrValue
+                    //when: control.canCyclic
+                    //value: _defaultButtonIcon.m_action.checked
+                    //restoreMode: Binding.RestoreBindingOrValue
                     //}
                     
                     icon.width:  Maui.Style.iconSizes.small

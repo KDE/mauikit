@@ -24,8 +24,7 @@ Item
     readonly property int splitIndex : ObjectModel.index
 
     property int minimumWidth : 200
-    property int minimumHeight : 300
-
+    property int minimumHeight : 100
 
     SplitView.fillHeight: true
     SplitView.fillWidth: true

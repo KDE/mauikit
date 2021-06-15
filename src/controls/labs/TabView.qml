@@ -447,9 +447,16 @@ Container
     
     function closeTab(index)
     {
+        console.log("closing tab index", index, control.currentIndex)
+
         control.removeItem(control.takeItem(index))
-        control.currentIndex = 0
+        console.log("closing tab index", index, control.currentIndex)
+                
+
         control.currentItemChanged()
+        control.currentItem.forceActiveFocus()
+                        console.log("closing tab index", index, control.currentIndex)
+
     }
     
     function addTab(component, properties)
