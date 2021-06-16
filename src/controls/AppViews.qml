@@ -194,8 +194,8 @@ SwipeView
     {
         if(control.toolbar)
         {
-            var object = _viewPortComponent.createObject(control.toolbar.leftContent)
-            control.toolbar.leftContent.push(object)
+            var object = _viewPortComponent.createObject(control.toolbar.middleContent)
+            control.toolbar.middleContent.push(object)
         }
     }
 

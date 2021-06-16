@@ -58,7 +58,8 @@ Maui.Dialog
     onAccepted:  control.openWith()
 
     page.title: i18n("Share with")
-    headBar.visible: true
+    page.showTitle: false
+//     headBar.visible: true
 
     headBar.leftContent: ToolButton
     {

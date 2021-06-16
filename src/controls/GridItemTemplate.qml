@@ -20,6 +20,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.15
+import QtGraphicalEffects 1.0
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -148,7 +149,7 @@ Item
                 id: _iconLoader
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.margins: 1
+                Layout.margins: 2
                 
                 asynchronous: true
                 sourceComponent: control.iconComponent
@@ -163,13 +164,13 @@ Item
                     isMask: true
                     color: Kirigami.Theme.textColor
                     opacity: 0.5
-                }
+                }      
             }
             
             Kirigami.ShadowedRectangle
             {
                 id: _labelsContainer
-                property int labelSizeHint: Math.min(64, _labels.implicitHeight)
+                property int labelSizeHint: Math.min(64, _labels.implicitHeight) 
                 visible: control.labelsVisible &&( _label1.text || _label2.text)
                 
                 Layout.preferredHeight: labelSizeHint
@@ -177,7 +178,7 @@ Item
                 
                 Layout.fillWidth: true
                 Layout.maximumHeight: control.height* 0.9
-                Layout.minimumHeight: labelSizeHint + Maui.Style.space.medium
+                Layout.minimumHeight: labelSizeHint + Maui.Style.space.small
                 color: Kirigami.Theme.backgroundColor
                 
                 corners

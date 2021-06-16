@@ -30,6 +30,7 @@ Item
     implicitWidth: _layout.implicitWidth
     implicitHeight: _layout.implicitHeight
     
+    Layout.fillWidth: !root.isWide
     /**
      * 
      */
@@ -67,9 +68,9 @@ Item
     
     property Component delegate : BasicToolButton
     {
-        Layout.alignment: Qt.AlignVCenter
-        Layout.preferredWidth: visible ? implicitWidth : 0
-       
+        Layout.alignment: Qt.AlignCenter
+//         Layout.preferredWidth: visible ? implicitWidth : 0
+       //Layout.fillWidth: true
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
@@ -101,8 +102,9 @@ Item
     
     RowLayout
     {
-        id: _layout       
-        spacing: Maui.Style.space.big
+        id: _layout     
+        anchors.fill: parent
+        spacing: Maui.Style.space.medium
         
         Repeater
         {
@@ -112,10 +114,11 @@ Item
         
         BasicToolButton
         {
+                    Layout.alignment: Qt.AlignCenter
+
             readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
             
             visible: obj && obj.visible
-            Layout.preferredWidth: visible ? implicitWidth : 0
             checked: visible
             autoExclusive: true
             icon.name: obj ? obj.Maui.AppView.iconName : ""
@@ -138,7 +141,8 @@ Item
             
             visible: control.hiddenItems.length > 0
             
-            Layout.alignment: Qt.AlignVCenter
+            Layout.alignment: Qt.AlignCenter
+//             Layout.fillWidth: true
             display: checked ? ToolButton.TextBesideIcon : ToolButton.IconOnly
             
 //             menu.closePolicy: Popup.CloseOnReleaseOutsideParent

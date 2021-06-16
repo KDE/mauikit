@@ -132,6 +132,8 @@ Maui.ItemDelegate
       * template : ListItemTemplate
       */
     property alias template : _template
+    
+    property alias maskRadius : _template.maskRadius
 
     /**
       * contentDropped :

@@ -1,7 +1,9 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-import org.kde.kirigami 2.9 as Kirigami
+
+import org.kde.kirigami 2.14 as Kirigami
+
 import org.mauikit.controls 1.2 as Maui
 import QtGraphicalEffects 1.0
 
@@ -123,21 +125,27 @@ Maui.GridBrowserDelegate
                 }
             }
 
-            layer.enabled: true
-            layer.effect: OpacityMask
+           layer.enabled: control.maskRadius
+        layer.effect: OpacityMask
+        {
+            maskSource: Item
             {
-                maskSource: Item
-                {
-                    width: _cover.width
-                    height: _cover.height
+                width: _cover.width
+                height: _cover.height
 
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        radius: Maui.Style.radiusV
-                    }
+                Kirigami.ShadowedRectangle
+                {
+                    anchors.fill: parent
+                      corners
+                {
+                    topLeftRadius: control.maskRadius
+                    topRightRadius: control.maskRadius
+                    bottomLeftRadius: control.labelsVisible ? 0 : control.maskRadius
+                    bottomRightRadius:  control.labelsVisible ? 0 : control.maskRadius
+                }
                 }
             }
+        }
         }
     }
 }

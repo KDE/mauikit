@@ -90,7 +90,9 @@ Maui.ItemDelegate
     /**
      * showLabel : bool
      */
-    property alias showLabel : _template.labelsVisible
+    //property alias showLabel : _template.labelsVisible
+    
+    property alias labelsVisible : _template.labelsVisible
     
     /**
      * checked : bool
@@ -98,6 +100,8 @@ Maui.ItemDelegate
     property alias checked : _emblem.checked
     
     property alias fillMode : _template.fillMode
+    
+    property alias maskRadius : _template.maskRadius
     
     /**
      * checkable : bool
