@@ -39,7 +39,7 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
-
+    radius: maskRadius
     implicitHeight: label4.visible || label2.visible ? Maui.Style.rowHeight + (Maui.Style.space.medium * 1.5) : Maui.Style.rowHeight
     isCurrentItem : ListView.isCurrentItem || checked
 

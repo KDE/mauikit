@@ -124,8 +124,7 @@ Rectangle
     Loader
     {
         id: _loader
-        anchors.centerIn: parent
-        height: parent.height
+       anchors.fill: parent
         asynchronous: true
         sourceComponent: control.expanded ? _rowComponent : _menuComponent
     } 
@@ -177,7 +176,7 @@ Rectangle
                     checkable: control.checkable
                     
                     rec.radius: 0
-                    rec.color: Kirigami.Theme.backgroundColor
+                    //rec.color: Kirigami.Theme.backgroundColor
                     rec.border.color: "transparent"
                     
                     Binding on checked
@@ -393,12 +392,12 @@ Rectangle
         }
     }
     
-    Rectangle
-    {
-        anchors.fill: parent
-        radius: parent.radius
-        color: "transparent"
-        border.color: control.border.color
+    //Rectangle
+    //{
+        //anchors.fill: parent
+        //radius: parent.radius
+        //color: "transparent"
+        //border.color: control.border.color
         
-    }
+    //}
 }

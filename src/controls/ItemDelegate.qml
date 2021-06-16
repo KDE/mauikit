@@ -106,6 +106,8 @@ Item
       * highlighted :
       */
     property bool highlighted: control.isCurrentItem
+    
+    property int radius:  Maui.Style.radiusV
 
     /**
       * pressed :
@@ -263,7 +265,7 @@ Item
             }
             color: control.isCurrentItem || control.hovered || _mouseArea.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
 
-            radius: Maui.Style.radiusV
+            radius: control.radius
         }
     }
 }
