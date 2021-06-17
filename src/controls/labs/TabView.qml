@@ -19,6 +19,8 @@ Container
 
     readonly property bool overviewMode : _tabsOverview.checked
     
+    property bool tabBarVisible : true
+    
     signal newTabClicked()
     signal closeTabClicked(int index)
 
@@ -134,7 +136,7 @@ Container
         Maui.TabBar
         {
             id: tabsBar
-            visible: control.count > 1 && !mobile
+            visible: control.count > 1 && !control.mobile && control.tabBarVisible
             Layout.fillWidth: true
             
             position: TabBar.Header
@@ -231,8 +233,9 @@ Container
         Maui.TabBar
         {
             Layout.fillWidth: true
-
-            visible: control.count > 1 && mobile && !control.overviewMode
+            Kirigami.Theme.colorSet: Kirigami.Theme.Header
+            Kirigami.Theme.inherit: false
+            visible: control.count > 1 && control.mobile && !control.overviewMode && control.tabBarVisible
             showNewTabButton: false
             position: ToolBar.Header
 
@@ -266,7 +269,7 @@ Container
                 text: control.currentItem.Maui.TabViewInfo.tabTitle
                 checked: true
                 centerLabel: false
-                onClicked: _tabsOverview.toggle()
+                onClicked: openOverview()
                 onCloseClicked:
                 {
                     control.closeTabClicked(control.currentIndex)
@@ -471,5 +474,10 @@ Container
             _quickSearch.open()
             _quickSearchField.forceActiveFocus()
         }
+    }
+    
+    function openOverview()
+    {
+        _tabsOverview.toggle()
     }
 }
