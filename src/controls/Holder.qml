@@ -115,16 +115,7 @@ Item
         }
     }
 
-    MouseArea
-    {
-        id: _mouseArea
-        anchors.fill: _layout
-        enabled: control.enabled
-        onClicked: actionTriggered()
-        propagateComposedEvents: true
-        hoverEnabled: true
-    }
-
+    
     Column
     {
         id: _layout
@@ -153,7 +144,7 @@ Item
             textFormat: Text.RichText
             horizontalAlignment: Qt.AlignHCenter
             elide: Text.ElideRight
-            color: _mouseArea.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+            color: Kirigami.Theme.textColor
             wrapMode: Text.Wrap
         }
         
