@@ -235,8 +235,7 @@ Item
             id: _listView
             
             property alias position : _hoverHandler.point.position
-            property var selectedIndexes : []
-            
+            property var selectedIndexes : []            
             
             focus: true
             clip: true

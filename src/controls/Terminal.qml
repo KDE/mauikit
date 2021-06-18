@@ -424,7 +424,7 @@ enabled: true
         Component.onCompleted:
         {
             ksession.startShellProgram();
-            forceActiveFocus()
+            //forceActiveFocus()
         }
     }
 

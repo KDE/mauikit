@@ -29,30 +29,37 @@ SplitView
         id: _horizontalHandleComponent
         Rectangle
         {
-            implicitWidth: Maui.Handy.isTouch ? 10 : 6
-            implicitHeight: Maui.Handy.isTouch ? 10 : 6
-
-            color: SplitHandle.pressed ? Kirigami.Theme.highlightColor
-                                       : (SplitHandle.hovered ? Qt.lighter(Kirigami.Theme.backgroundColor, 1.1) : Kirigami.Theme.backgroundColor)
+            implicitWidth: Maui.Handy.isTouch ? 20 : 10
+            implicitHeight: Maui.Handy.isTouch ? 20 : 10
+            
+            color: Kirigami.Theme.backgroundColor
 
             Rectangle
             {
+                property int length: pressed ? 80 : 48
+                
+                Behavior on length {
+                    NumberAnimation {
+                        duration: 100
+                    }
+                }
+                
+                
                 anchors.centerIn: parent
-                height: parent.height
-                width: 48
-                color: _splitSeparator1.color
+                height: parent.height 
+                width: length
+                opacity: 0.4
+                color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
 
             Kirigami.Separator
             {
-                id: _splitSeparator1
                 anchors.top: parent.top
                 width: parent.width
             }
 
             Kirigami.Separator
             {
-                id: _splitSeparator2
                 anchors.top: parent.bottom
                 width: parent.width
             }
@@ -65,31 +72,35 @@ SplitView
 
         Rectangle
         {
-            implicitWidth: Maui.Handy.isTouch ? 10 : 6
-            implicitHeight: Maui.Handy.isTouch ? 10 : 6
+            implicitWidth: Maui.Handy.isTouch ? 20 : 10
+            implicitHeight: Maui.Handy.isTouch ? 20 : 10
 
-            color: SplitHandle.pressed ? Kirigami.Theme.highlightColor
-                                       : (SplitHandle.hovered ? Qt.lighter(Kirigami.Theme.backgroundColor, 1.1) : Kirigami.Theme.backgroundColor)
+            color:  Kirigami.Theme.backgroundColor
 
             Rectangle
             {
+                property int length: pressed ? 80 : 48
+                
+                Behavior on length {
+                    NumberAnimation {
+                        duration: 100
+                    }
+                }                
+                opacity: 0.4
                 anchors.centerIn: parent
-                height: 48
-                width: parent.width
-                color: _splitSeparator1.color
+                height: length
+                width: parent.width 
+                color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
 
             Kirigami.Separator
             {
-                id: _splitSeparator1
                 anchors.left: parent.left
                 height: parent.height
-
             }
 
             Kirigami.Separator
             {
-                id: _splitSeparator2
                 anchors.right: parent.right
                 height: parent.height
             }
@@ -100,6 +111,7 @@ SplitView
     handle: Loader
     {
         //        asynchronous: true
+        property bool pressed: SplitHandle.pressed
         sourceComponent: control.orientation === Qt.Horizontal ? _verticalHandleComponent : _horizontalHandleComponent
     }
 

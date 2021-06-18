@@ -136,6 +136,9 @@ ToolBar
          */
         readonly property int visibleCount : leftRowContent.visibleChildren.length + middleRowContent.visibleChildren.length  + rightRowContent.visibleChildren.length + farLeftRowContent.visibleChildren.length  + farRightRowContent.visibleChildren.length
         
+        
+        property alias draggable : _dragHandler.enabled
+        
         Private.EdgeShadow
         {
             width: Maui.Style.iconSizes.medium
@@ -180,6 +183,7 @@ ToolBar
             
             DragHandler
             {
+                id: _dragHandler
                 acceptedDevices: PointerDevice.GenericPointer
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { root.startSystemMove(); }

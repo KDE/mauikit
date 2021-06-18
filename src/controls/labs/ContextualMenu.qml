@@ -113,36 +113,30 @@ Item
             }
         }
         
-//        enter: Transition
-//        {
-//            enabled: control.responsive
+        //enter: Transition
+        //{
+            //enabled: control.responsive
+            
+            //YAnimator {
+                //from: window().height
+                //to: window().height - _menu.height
+                //duration: Kirigami.Units.shortDuration
+                //easing.type: Easing.OutCubic
+            //}           
+        //}
+        
+       //exit: Transition
+       //{
+           //enabled: control.responsive
 
-//            NumberAnimation
-//            {
-//                property: control.responsive ? "y" : ""
-//                from: window().height
-//                to: window().height - _menu.height
-//                easing.type: Easing.InOutQuad
-//                duration: Kirigami.Units.shortDuration
-//            }
-//        }
-
-//        exit: Transition
-//        {
-//            enabled: control.responsive
-
-//            NumberAnimation
-//            {
-//                property: control.responsive ? "y" : ""
-//                from: _menu.y
-//                to: window().height
-//                easing.type: Easing.InOutQuad
-//                duration: Kirigami.Units.shortDuration
-//            }
-//        }
-
-
-
+           //YAnimator {
+               //from: _menu.y
+               //to: window().height
+               //duration: Kirigami.Units.shortDuration
+               
+               //easing.type: Easing.OutCubic
+           //}
+       //}
     }
 
     function open(x, y, parent)
