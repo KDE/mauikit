@@ -92,7 +92,6 @@ Maui.Page
       */
     signal clicked()
 
-    Keys.enabled: true
 
     //Actions
     Action
@@ -101,7 +100,7 @@ Maui.Page
         text: i18n("Copy")
         icon.name: "edit-copy"
         onTriggered:  kterminal.copyClipboard();
-        shortcut: "Ctrl+Shift+C"
+        //shortcut: "Ctrl+Shift+C"
     }
 
     Action
@@ -110,7 +109,7 @@ Maui.Page
         text: i18n("Paste")
         icon.name: "edit-paste"
         onTriggered: kterminal.pasteClipboard()
-        shortcut: "Ctrl+Shift+V"
+//         shortcut: "Ctrl+Shift+V"
     }
 
     Action
@@ -118,7 +117,7 @@ Maui.Page
         id: _findAction
         text: i18n("Find")
         icon.name: "edit-find"
-        shortcut: "Ctrl+Shift+F"
+//         shortcut: "Ctrl+Shift+F"
         onTriggered: footBar.visible = !footBar.visible
     }
 
@@ -171,16 +170,26 @@ Maui.Page
         horizontalAlignment: Qt.Left
         onAccepted: ksession.search(text)
     }
+    
+    Keys.enabled: true
+    onKeyPressed:
+    {
+        if ((event.key == Qt.Key_V) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
+        {
+            _pasteAction.trigger()
+        }
+        
+        if ((event.key == Qt.Key_C) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
+        {
+            _copyAction.trigger()
+        }
+        
+        if ((event.key == Qt.Key_F) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
+        {
+            control.footBar.visible = !control.footBar.visible
+        }
+    }
 
-// 			Keys.enabled: true
-// 			Keys.onPressed:
-// 			{
-// 				console.log("key poress", event.key)
-// 				if((event.key == Qt.Key_V) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
-// 				{
-// 					kterminal.pasteClipboard()
-// 				}
-// 			}
 
     QMLTermWidget
     {
