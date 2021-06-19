@@ -304,8 +304,8 @@ ToolBar
                         {
                             id: layout
                             
-                            width: mainFlickable.width
-                            height: mainFlickable.height
+                            width: _scrollView.width
+                            height: _scrollView.height
                             
                             spacing: control.spacing
                             

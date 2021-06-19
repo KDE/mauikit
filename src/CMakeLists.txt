@@ -168,16 +168,12 @@ endif()
 target_link_libraries(MauiKit
     PUBLIC
     Qt5::Core
-    Qt5::Gui
     KF5::I18n
     KF5::CoreAddons
 
     PRIVATE
     Qt5::Qml
-    Qt5::Quick
-    Qt5::QuickControls2
-    Qt5::Svg
-
+    Qt5::Widgets
     )
 
 if(IS_APPIMAGE_PACKAGE)
