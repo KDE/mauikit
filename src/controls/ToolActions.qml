@@ -20,7 +20,7 @@ import "private" as Private
  *
  *
  */
-Rectangle
+Item
 {
     id: control
     implicitWidth: _loader.item.implicitWidth 
@@ -92,10 +92,10 @@ Rectangle
      * defaultIconName : string
      */
     property string defaultIconName: "application-menu"
-    border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+//     border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
     
-    radius: Maui.Style.radiusV
-    color: !control.enabled || control.flat ? "transparent" : Kirigami.Theme.backgroundColor
+    //radius: Maui.Style.radiusV
+    //color: !control.enabled || control.flat ? "transparent" : Kirigami.Theme.backgroundColor
     
     Component.onCompleted:
     {
@@ -140,7 +140,7 @@ Rectangle
             Rectangle
             {
                 anchors.fill: parent
-                radius: control.radius
+                radius: Maui.Style.radiusV
             }
         }
     }
@@ -152,7 +152,7 @@ Rectangle
         Row
         {
             id: _row
-            spacing: 0
+            spacing: 2
             
             Behavior on width
             {
@@ -174,9 +174,10 @@ Rectangle
                     
                     action : modelData
                     checkable: control.checkable
+                    rec.opacity:  hovered || checked || down ? 0.4 : 1
                     
                     rec.radius: 0
-                    //rec.color: Kirigami.Theme.backgroundColor
+                    rec.color: hovered || checked || down ? Kirigami.Theme.highlightColor  : Qt.lighter(Kirigami.Theme.backgroundColor)
                     rec.border.color: "transparent"
                     
                     Binding on checked
@@ -185,7 +186,6 @@ Rectangle
                         value: control.currentIndex === index
                     }
                     autoExclusive: control.autoExclusive
-                    
                     height: parent.height
                     width : implicitWidth + Maui.Style.space.medium
                     
@@ -201,17 +201,6 @@ Rectangle
                     {
                         if(autoExclusive)
                             control.currentIndex = index
-                    }
-                    
-                    Kirigami.Separator
-                    {
-                    color: control.border.color
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                    visible: index < _repeater.count-1 && !control.flat
-                    anchors.topMargin:1
-                    anchors.bottomMargin: 1
                     }
                 }
             }
@@ -329,19 +318,19 @@ Rectangle
                 }
             }
             
-            Rectangle
+          /*  Rectangle
             {
                 anchors.fill: parent
                 color: control.currentAction ? (control.currentAction.enabled && (_defaultButtonMouseArea.containsMouse || _defaultButtonMouseArea.containsPress) ? Kirigami.Theme.highlightColor : "transparent") : "transparent"
                 opacity: 0.15
-                radius: control.radius
-            }                    
+                radius: Maui.Style.radiusV
+            }  */                  
             
             RowLayout
             {
                 id: _defaultButtonLayout
                 height: parent.height
-                spacing: 0                
+                spacing: 2
                 
                 Private.BasicToolButton
                 {
@@ -364,20 +353,29 @@ Rectangle
                     text: m_action ?  m_action.text : ""
                     
                     display: control.display  
+                    
+                    rec.opacity:  hovered || checked || down ? 0.4 : 1
+                    
+                    rec.radius: 0
+                    rec.color: hovered || checked || down ? Kirigami.Theme.highlightColor  : Qt.lighter(Kirigami.Theme.backgroundColor)
+                    rec.border.color: "transparent"
                 }
                 
-                Kirigami.Separator
-                {
-                    visible: !control.canCyclic && !control.flat
-                    color: control.border.color
-                    Layout.fillHeight: true
-                }
+                //Kirigami.Separator
+                //{
+                    //visible: !control.canCyclic && !control.flat
+                    //color: control.border.color
+                    //Layout.fillHeight: true
+                //}
                 
-                Item
+                Rectangle
                 {
                     visible: !control.canCyclic
                     Layout.fillHeight: true
                     Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
+                    
+                    radius: 0
+                    color: Qt.lighter(Kirigami.Theme.backgroundColor)
                     
                     Maui.Triangle
                     {
