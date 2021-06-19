@@ -175,7 +175,7 @@ Item
                     action : modelData
                     checkable: control.checkable
                     rec.opacity:  hovered || checked || down ? 0.4 : 1
-                    
+                    color: Kirigami.Theme.textColor
                     rec.radius: 0
                     rec.color: hovered || checked || down ? Kirigami.Theme.highlightColor  : Qt.lighter(Kirigami.Theme.backgroundColor)
                     rec.border.color: "transparent"
