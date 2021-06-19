@@ -312,6 +312,7 @@ enabled: true
         
         onTouchClick:
         {
+            kterminal.forceActiveFocus()
             kterminal.simulateKeyPress(Qt.Key_Tab, Qt.NoModifier, true, 0, "");
             control.clicked()
         }
