@@ -29,8 +29,8 @@ SplitView
         id: _horizontalHandleComponent
         Rectangle
         {
-            implicitWidth: Maui.Handy.isTouch ? 20 : 10
-            implicitHeight: Maui.Handy.isTouch ? 20 : 10
+            implicitWidth: Maui.Handy.isTouch ? 20 : 12
+            implicitHeight: Maui.Handy.isTouch ? 20 : 12
             
             color: Kirigami.Theme.backgroundColor
 
@@ -42,13 +42,21 @@ SplitView
                     NumberAnimation {
                         duration: 100
                     }
-                }
-                
-                
+                }                
+                      
+                      Behavior on opacity {
+                          NumberAnimation {
+                              duration: 100
+                          }
+                      }  
+                      
+                      opacity: pressed ? 1 : 0.4
+                      
                 anchors.centerIn: parent
-                height: parent.height 
+                height: 8
                 width: length
-                opacity: 0.4
+                radius: height
+               
                 color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
 
@@ -72,8 +80,8 @@ SplitView
 
         Rectangle
         {
-            implicitWidth: Maui.Handy.isTouch ? 20 : 10
-            implicitHeight: Maui.Handy.isTouch ? 20 : 10
+            implicitWidth: Maui.Handy.isTouch ? 20 : 12
+            implicitHeight: Maui.Handy.isTouch ? 20 : 12
 
             color:  Kirigami.Theme.backgroundColor
 
@@ -85,11 +93,19 @@ SplitView
                     NumberAnimation {
                         duration: 100
                     }
-                }                
-                opacity: 0.4
+                }    
+                
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 100
+                    }
+                }  
+                
+                opacity: pressed ? 1 : 0.4
                 anchors.centerIn: parent
                 height: length
-                width: parent.width 
+                width: 8
+                radius: width
                 color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
 
