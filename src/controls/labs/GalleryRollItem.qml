@@ -42,8 +42,7 @@ Maui.GridBrowserDelegate
         Rectangle
         {
             anchors.fill: parent
-            color: Kirigami.Theme.backgroundColor
-            radius: Maui.Style.radiusV
+            color: "#333"
 
             Component.onCompleted: _featuredTimer.start()
             

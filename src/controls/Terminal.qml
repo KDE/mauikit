@@ -187,7 +187,7 @@ Maui.Page
         if ((event.key == Qt.Key_F) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
         {
             control.footBar.visible = !control.footBar.visible
-        }
+        }        
     }
 
 
