@@ -173,9 +173,9 @@ Item
                     id: _buttonMouseArea
                     
                     action : modelData
-                    checkable: control.checkable
+                    checkable: control.checkable && action.checkable
                     rec.radius: 0
-                    rec.color: hovered || checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15)  : Qt.lighter(Kirigami.Theme.backgroundColor)
+                    rec.color: (hovered || checked || down) && checkable ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15)  : Qt.lighter(Kirigami.Theme.backgroundColor)
                     rec.border.color: "transparent"
                     
                     Binding on checked
@@ -352,6 +352,7 @@ Item
                     
                     display: control.display  
                     
+                   checkable: control.checkable && action.checkable
                     
                     rec.radius: 0
                     rec.color: hovered || checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15)  : Qt.lighter(Kirigami.Theme.backgroundColor)

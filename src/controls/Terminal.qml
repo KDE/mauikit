@@ -169,28 +169,8 @@ Maui.Page
         placeholderText: i18n("Find...")
         horizontalAlignment: Qt.Left
         onAccepted: ksession.search(text)
-    }
-    
-    Keys.enabled: true
-    onKeyPressed:
-    {
-        if ((event.key == Qt.Key_V) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
-        {
-            _pasteAction.trigger()
-        }
-        
-        if ((event.key == Qt.Key_C) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
-        {
-            _copyAction.trigger()
-        }
-        
-        if ((event.key == Qt.Key_F) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
-        {
-            control.footBar.visible = !control.footBar.visible
-        }        
-    }
-
-
+    }    
+  
     QMLTermWidget
     {
         id: kterminal
@@ -206,7 +186,24 @@ Maui.Page
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
 
         Keys.enabled: true
-        Keys.onPressed: control.keyPressed(event)
+        Keys.onPressed: 
+        {
+            if ((event.key == Qt.Key_V) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
+            {
+                _pasteAction.trigger()
+            }
+            
+            if ((event.key == Qt.Key_C) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
+            {
+                _copyAction.trigger()
+            }
+            
+            if ((event.key == Qt.Key_F) && (event.modifiers & Qt.ControlModifier) && (event.modifiers & Qt.ShiftModifier))
+            {
+                control.footBar.visible = !control.footBar.visible
+            }    
+            control.keyPressed(event)
+        }
 
         session: QMLTermSession
         {

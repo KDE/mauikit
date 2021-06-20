@@ -43,13 +43,13 @@ QtObject
     /**
       * rowHeight : int
       */
-    readonly property int rowHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
+    readonly property int rowHeight: 32
 
 
     /**
       * rowHeightAlt : int
       */
-    readonly property int rowHeightAlt: Math.round(rowHeight * 0.8)
+    readonly property int rowHeightAlt: 28
 
     /**
       * contentMargins : int
@@ -59,12 +59,12 @@ QtObject
     /**
       * toolBarHeight : int
       */
-    readonly property int toolBarHeight: Math.round(iconSizes.medium * 2)
+    readonly property int toolBarHeight: 48 
 
     /**
       * toolBarHeightAlt : int
       */
-    readonly property int toolBarHeightAlt: Math.round(toolBarHeight * 0.9)
+    readonly property int toolBarHeightAlt: 40
 
     /**
       * defaultFontSize : int
@@ -74,7 +74,7 @@ QtObject
     /**
       * fontSizes : var
       */
-    property QtObject fontSizes : QtObject {
+    readonly property QtObject fontSizes : QtObject {
         property int tiny: Math.round(defaultFontSize * 0.7)
         property int small: Math.round(defaultFontSize * 0.8)
         property int medium: defaultFontSize
@@ -87,7 +87,7 @@ QtObject
     /**
       * space : var
       */
-    property QtObject space: QtObject {
+    readonly property QtObject space: QtObject {
         property int tiny: Kirigami.Units.smallSpacing
         property int small: Kirigami.Units.smallSpacing*2
         property int medium: Kirigami.Units.largeSpacing
@@ -100,7 +100,7 @@ QtObject
     /**
       * iconSizes : QtObject
       */    
-    property QtObject iconSizes: QtObject {
+    readonly property QtObject iconSizes: QtObject {
         property int tiny : 8
         property int small: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(16 * Kirigami.Units.devicePixelRatio))
         property int medium: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(22 * Kirigami.Units.devicePixelRatio))
@@ -109,18 +109,4 @@ QtObject
         property int huge: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(64 * Kirigami.Units.devicePixelRatio))
         property int enormous: Math.floor(128 * Kirigami.Units.devicePixelRatio)
     }
-
-    /**
-      *
-      */
-    function mapToIconSizes(size)
-    {
-        const values = Object.values(iconSizes);
-
-        var closest = values.reduce(function(prev, curr) {
-            return (Math.abs(curr - size) < Math.abs(prev - size) ? curr : prev);
-        });
-        console.log(size, closest, values)
-        return closest;
-    }  
 }
