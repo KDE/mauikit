@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.10
 
 import QtGraphicalEffects 1.0
 
-import org.kde.kirigami 2.13 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 Container
@@ -406,8 +406,7 @@ Container
                                 {
                                     id: _effect
                                     
-                                    x: 2
-                                    y: 2
+                                    anchors.centerIn: parent
 
                                     height: _overviewGrid.itemHeight - 4
                                     width: _overviewGrid.itemSize - 4
@@ -416,31 +415,25 @@ Container
                                     live: true
                                     textureSize: Qt.size(width,height)
                                     sourceItem: control.contentModel.get(index)
-                                    layer.enabled: true
-                                    layer.effect: OpacityMask
-                                    {
-                                        maskSource: Item
-                                        {
-                                            width: control.width
-                                            height: control.height
-
-                                            Rectangle
-                                            {
-                                                anchors.fill: parent
-                                                radius: Maui.Style.radiusV
-                                            }
-                                        }
-                                    }
+                                   
                                 }
                                 
-                                Rectangle
-                                {
-                                    anchors.fill: parent
-                                    border.color: Kirigami.Theme.backgroundColor
+                                Kirigami.ShadowedRectangle
+                                            {
+                                                anchors.fill: parent
+                                                corners
+                                                {
+                                                    topLeftRadius: Maui.Style.radiusV
+                                                    topRightRadius: Maui.Style.radiusV
+                                                    bottomLeftRadius: 0
+                                                    bottomRightRadius:  0
+                                                }
+                                                  border.color: Kirigami.Theme.backgroundColor
                                     border.width: 2
-                                    radius: Maui.Style.radiusV
                                     color: "transparent"
-                                }
+                                            }
+                                
+                                
                             }
                         }
                     }

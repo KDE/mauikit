@@ -246,7 +246,7 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement :Flickable.StopAtBounds
             
-            interactive: Kirigami.Settings.hasTransientTouchInput && (control.selectionMode ? _listView.position.x > 84 : true)
+            interactive: Kirigami.Settings.hasTransientTouchInput /*&& (control.selectionMode ? _listView.position.x > 84 : true)*/
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
@@ -272,7 +272,8 @@ Item
             {
                 id: _hoverHandler
                 margin: Maui.Style.space.big
-                enabled: control.enableLassoSelection && control.selectionMode && !_listView.draggingVertically
+//                 enabled: control.enableLassoSelection && control.selectionMode && !_listView.draggingVertically
+                enabled: false
                 acceptedDevices: PointerDevice.TouchScreen
                 acceptedPointerTypes : PointerDevice.Finger
                 grabPermissions : PointerHandler.CanTakeOverFromAnything
