@@ -31,6 +31,7 @@ TabButton
          * closeClicked :
          */
     signal closeClicked()
+    signal rightClicked(var mouse)
 
     Kirigami.Separator
     {
@@ -89,6 +90,20 @@ TabButton
             Layout.fillHeight: true
             implicitWidth: height
             visible: _closeButton.visible && control.centerLabel
+        }
+    }
+    
+    MouseArea
+    {
+        anchors.fill: parent
+        acceptedButtons:  Qt.RightButton
+        
+        onClicked:
+        {
+            if(mouse.button === Qt.RightButton)
+            {
+                control.rightClicked(mouse)
+            }          
         }
     }
 }

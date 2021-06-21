@@ -397,36 +397,33 @@ enabled: true
         }
     }
 
-
-        QMLTermScrollbar
-        {
-            id: kterminalScrollbar
-            terminal: kterminal
-            anchors.margins: width * 0.5
-            width: terminal.fontMetrics.width * 0.75
-            Rectangle
-            {
-                anchors.fill: parent
-                anchors.topMargin: 1
-                anchors.bottomMargin: 1
-                color: "white"
-                radius: width * 0.25
-                opacity: 0.7
-            }
+    ScrollBar 
+    {
+        id: _scrollbar
+        Kirigami.Theme.colorSet: Kirigami.Theme.Complementary // text color of terminal is also complementary
+        Kirigami.Theme.inherit: false
+        anchors {
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
         }
-        //        function handleFontChange(fontSource, pixelSize, lineSpacing, screenScaling, fontWidth){
-        //            fontLoader.source = fontSource;
-
-        //            kterminal.antialiasText = !appSettings.lowResolutionFont;
-        //            font.pixelSize = pixelSize;
-        //            font.family = fontLoader.name;
-
-        //            terminalContainer.fontWidth = fontWidth;
-        //            terminalContainer.screenScaling = screenScaling;
-        //            scaleTexture = Math.max(1.0, Math.floor(screenScaling * appSettings.windowScaling));
-
-        //            kterminal.lineSpacing = lineSpacing;
-        //        }
+        active: hovered || pressed
+        visible: true
+        orientation: Qt.Vertical
+        size: (kterminal.lines / (kterminal.lines + kterminal.scrollbarMaximum - kterminal.scrollbarMinimum))
+        position: kterminal.scrollbarCurrentValue / (kterminal.lines + kterminal.scrollbarMaximum)
+        interactive: false
+        property double oldPos
+        
+//         onPositionChanged: {
+//             var yPos =  (2* position * kterminal.scrollbarMaximum ) * (position > oldPos ? -1 : 1)
+//             console.log("Position changed", position, yPos, kterminal.scrollbarMaximum, kterminal.scrollbarCurrentValue)
+//             kterminal.simulateWheel(0, 0, 0, 0, Qt.point(0,yPos))
+//             oldPos = position
+//             
+//         }   
+    }  
+   
 
         Component.onCompleted:
         {

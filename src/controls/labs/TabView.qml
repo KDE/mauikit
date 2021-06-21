@@ -31,8 +31,51 @@ Container
         {
             control.findTab()
         }
+    }  
+
+    property QtObject menu :   Maui.ContextualMenu
+    {
+        id: _menu
+        parent: control
+        property int index //tabindex
+        
+        MenuItem
+        {
+            text: i18n("Open")
+            onTriggered:
+            {
+                control.currentIndex = _menu.index
+                _tabsOverview.checked = false
+            }
+        }
+        
+        MenuItem
+        {
+            text: i18n("Close")
+            onTriggered:
+            {
+                control.closeTabClicked(_menu.index)
+            }
+        }
+        
+        MenuItem
+        {
+            text: i18n("Close Other")
+            onTriggered:
+            {
+                control.closeTabClicked(_menu.index)
+            }
+        }
+        
+        MenuItem
+        {
+            text: i18n("Close All")
+            onTriggered:
+            {
+                control.closeTabClicked(_menu.index)
+            }
+        }
     }
-    
     Maui.Dialog
     {
         id: _quickSearch
@@ -182,6 +225,12 @@ Container
                         control.currentItem.forceActiveFocus()
                     }
                     
+                    onRightClicked:
+                    {
+                        _menu.index = index
+                        _menu.open()
+                    }
+                    
                     onCloseClicked:
                     {
                         control.closeTabClicked(index)
@@ -239,28 +288,6 @@ Container
             showNewTabButton: false
             position: ToolBar.Header
 
-            Maui.ContextualMenu
-            {
-                id: _overViewMenu
-
-                MenuItem
-                {
-                    text: i18n("Open")
-                    onTriggered:
-                    {
-                        _tabsOverview.checked = false
-                    }
-                }
-
-                MenuItem
-                {
-                    text: i18n("Close")
-                    onTriggered:
-                    {
-                        control.closeTabClicked(control.currentIndex)
-                    }
-                }
-            }
             
             Maui.TabButton
             {
@@ -381,7 +408,8 @@ Container
                             onRightClicked:
                             {
                                 control.currentIndex = index
-                                _overViewMenu.open()
+                                _menu.index = control.currentIndex
+                                _menu.open()
                             }
 
                             onClicked:
@@ -394,7 +422,8 @@ Container
                             onPressAndHold:
                             {
                                 control.currentIndex = index
-                                _overViewMenu.open()
+                                _menu.index = control.currentIndex
+                                _menu.open()                                
                             }
                             
                             template.iconComponent: Item
