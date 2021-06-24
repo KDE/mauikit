@@ -19,7 +19,7 @@ T.Menu
 {
     id: control
     
-    property bool responsive: true
+    property bool responsive: Kirigami.Settings.hasTransientTouchInput
     
     
     parent: control.responsive ?  window() : undefined

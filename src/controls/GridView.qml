@@ -222,7 +222,7 @@ Item
         bottomPadding: padding
         horizontalPadding: padding
         verticalPadding: padding
-        
+        clip: control.clip
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AsNeeded        
      
@@ -259,8 +259,8 @@ Item
             }
 
             flow: GridView.FlowLeftToRight
-            clip: true
-            focus: true
+            clip: control.clip
+            focus: control.focus
 
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight

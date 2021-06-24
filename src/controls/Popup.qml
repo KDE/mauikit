@@ -77,8 +77,6 @@ Popup
     margins: filling ? 0 : 1
     padding: filling ? 0 : 1
 
-    clip: true
-
     topPadding: control.padding
     bottomPadding: control.padding
     leftPadding: control.padding

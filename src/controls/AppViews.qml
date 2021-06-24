@@ -44,7 +44,6 @@ SwipeView
     id: control
     //     interactive: Kirigami.Settings.hasTransientTouchInput
     interactive: false
-    clip: true
     focus: true
 
     /*!
@@ -132,7 +131,7 @@ SwipeView
         orientation: control.orientation
         snapMode: ListView.SnapOneItem
         boundsBehavior: Flickable.StopAtBounds
-
+        clip: control.clip
         preferredHighlightBegin: 0
         preferredHighlightEnd: width
 

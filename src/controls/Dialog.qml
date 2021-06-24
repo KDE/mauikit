@@ -217,6 +217,7 @@ Maui.Popup
         Maui.Page
         {
             id: _page
+            clip: control.clip
             Layout.fillWidth: true
             Layout.fillHeight: true
             implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footer.height + (_page.margins*2) + _page.header.height + Maui.Style.space.big
@@ -250,7 +251,7 @@ Maui.Popup
                 id: _scrollView
                 anchors.fill: parent
                 visible: _stack.children.length === 0
-                
+                clip: control.clip
                 contentWidth: availableWidth
                 contentHeight: _pageContent.implicitHeight
                 
@@ -263,8 +264,6 @@ Maui.Popup
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
                     
-                    clip: true
-
                     ColumnLayout
                     {
                         id: _pageContent

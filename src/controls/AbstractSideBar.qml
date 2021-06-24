@@ -37,7 +37,8 @@ Drawer
 {
     id: control
     edge: Qt.LeftEdge
-
+    clip: true
+    
     implicitWidth: Math.min(preferredWidth, window().width)
     width: implicitWidth
 
@@ -97,13 +98,12 @@ Drawer
 
     signal contentDropped(var drop)
     
-    Binding on position
+    Binding on z
     {
-        when: !control.enabled
-        value: 0
+        value: root.window().z
         restoreMode: Binding.RestoreBindingOrValue
     }
-
+    
     onCollapsedChanged:
     {
         if(collapsed || !control.enabled)

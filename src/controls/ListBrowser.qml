@@ -219,7 +219,8 @@ Item
     {
         id: _scrollView
         anchors.fill: parent
-       
+        clip: control.clip
+        
        padding: control.enableLassoSelection ?  Maui.Style.space.medium : Maui.Style.space.small
         horizontalPadding: padding
         verticalPadding: padding
@@ -238,8 +239,8 @@ Item
             property alias position : _hoverHandler.point.position
             property var selectedIndexes : []            
             
-            focus: true
-            clip: true
+            focus: control.focus
+            clip: control.clip
             
             spacing: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
             snapMode: ListView.NoSnap

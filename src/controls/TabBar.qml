@@ -25,7 +25,6 @@ TabBar
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: false
-    clip: true
     
     /**
      * content : RowLayout.data
@@ -117,7 +116,6 @@ TabBar
                 {
                     id: _flickable
                     interactive: false
-                    clip: true
                     
                     Row
                     {

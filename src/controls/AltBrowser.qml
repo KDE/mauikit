@@ -23,6 +23,10 @@ Maui.Page
 {
     id: control    
     
+    Keys.enabled : true
+    Keys.forwardTo : currentView
+    focus: true
+    
     //color scheme
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: false
@@ -111,9 +115,6 @@ Maui.Page
 
     flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
     
-    Keys.enabled : true
-    Keys.forwardTo : currentView
-    focus: true
     
     Maui.Holder
     {
@@ -132,6 +133,7 @@ Maui.Page
         enableLassoSelection: control.enableLassoSelection
         selectionMode: control.selectionMode
         adaptContent: true
+        clip: control.clip
     }
 
     Maui.ListBrowser
@@ -144,5 +146,6 @@ Maui.Page
         delegate: control.listDelegate
         enableLassoSelection: control.enableLassoSelection
         selectionMode: control.selectionMode
+        clip: control.clip
     }
 }

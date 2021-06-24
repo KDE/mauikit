@@ -46,7 +46,7 @@ Pane
 {
     id: control
     focus: true
-    clip: true
+//     clip: true
     padding: 0
     leftPadding: control.padding
     rightPadding: control.padding
@@ -483,8 +483,8 @@ Pane
             FastBlur
             {
                 anchors.fill: parent
-                visible: control.floatingHeader && !altHeader
-                opacity: 0.25
+                visible: (control.floatingHeader || !control.clip) && !altHeader
+                opacity: 0.2
                 cached: false
                 radius: 64
                 transparentBorder: false
@@ -494,7 +494,7 @@ Pane
                     recursive: false
                     textureSize: Qt.size(headBar.width * 0.2, headBar.height * 0.2)
                     sourceItem: _content
-                    sourceRect: Qt.rect(0, 0-control.topMargin, headBar.width, headBar.height)
+                    sourceRect: Qt.rect(0, control.floatingHeader ? 0 -control.topMargin : 0- headBar.height, headBar.width, headBar.height)
                 }
 
             }

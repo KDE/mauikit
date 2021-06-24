@@ -11,7 +11,6 @@ Container
 {
     id: control
     
-    clip: true
     spacing: 0
     
     property alias holder : _holder
