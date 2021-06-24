@@ -110,7 +110,11 @@ Maui.Page
     readonly property alias listView : _listView
 
     flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
-
+    
+    Keys.enabled : true
+    Keys.forwardTo : currentView
+    focus: true
+    
     Maui.Holder
     {
         id: _holder

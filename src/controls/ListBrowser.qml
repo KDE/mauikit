@@ -298,7 +298,7 @@ Item
             {
                 id: _mouseArea
                 z: -1
-                //                 enabled: !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid
+                enabled: !Kirigami.Settings.hasTransientTouchInput && !Kirigami.Settings.isMobile
                 anchors.fill: parent
                 propagateComposedEvents: true
                 //             preventStealing: true
@@ -307,7 +307,7 @@ Item
                 onClicked:
                 {
                     control.areaClicked(mouse)
-                    //                    control.forceActiveFocus()
+                    control.forceActiveFocus()
                     
                     if(mouse.button === Qt.RightButton)
                     {
