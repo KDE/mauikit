@@ -535,7 +535,7 @@ Pane
         {
             id: _footerBackground
             color: _footBar.Kirigami.Theme.backgroundColor
-
+//opacity: 0.2
             Maui.Separator
             {
                 edge: Qt.TopEdge
@@ -548,7 +548,7 @@ Pane
             FastBlur
             {
                 anchors.fill: parent
-                visible: control.floatingFooter
+//                 visible: control.floatingFooter || !control.clip
                 opacity: 0.25
                 transparentBorder: false
                 source: ShaderEffectSource
@@ -557,7 +557,7 @@ Pane
                     recursive: false
                     textureSize: Qt.size(footBar.width * 0.2, footBar.height * 0.2)
                     sourceItem: _content
-                    sourceRect: Qt.rect(0, control.height - (footBar.height), footBar.width, footBar.height)
+                    sourceRect: Qt.rect(0, control.floatingFooter ? control.height+ footBar.height : _content.height+ footBar.height, footBar.width, footBar.height)
                 }
                 radius: 64
             }

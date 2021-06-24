@@ -251,7 +251,9 @@ Maui.Popup
                 id: _scrollView
                 anchors.fill: parent
                 visible: _stack.children.length === 0
+                
                 clip: control.clip
+                
                 contentWidth: availableWidth
                 contentHeight: _pageContent.implicitHeight
                 
