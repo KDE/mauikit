@@ -79,11 +79,11 @@ TextField
 
     wrapMode: TextInput.NoWrap
 
-    onPressAndHold: !Kirigami.Settings.isMobile ? entryMenu.popup() : undefined
+    onPressAndHold: !Kirigami.Settings.isMobile ? entryMenu.show() : undefined
     onPressed:
     {
         if(!Kirigami.Settings.isMobile && event.button === Qt.RightButton)
-            entryMenu.popup()
+            entryMenu.show()
     }
 
     Keys.onBackPressed:
