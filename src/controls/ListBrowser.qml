@@ -36,13 +36,14 @@ import org.kde.kirigami 2.9 as Kirigami
 Item
 {
     id: control
-    
-    implicitHeight: contentHeight + topPadding + bottomPadding
-    implicitWidth: contentWidth + leftPadding + rightPadding
+    focus: true
     
     //color scheme
     Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+    Kirigami.Theme.inherit: false    
+    
+    implicitHeight: contentHeight + topPadding + bottomPadding
+    implicitWidth: contentWidth + leftPadding + rightPadding    
     
     /**
      * model : var
@@ -202,7 +203,7 @@ Item
     /**
      * keyPress :
      */
-    signal keyPress(var event)
+    signal keyPress(var event)    
     
     Keys.enabled : true
     Keys.forwardTo : _listView

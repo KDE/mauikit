@@ -242,7 +242,7 @@ Maui.Page
             {
                 if((!kterminal.terminalUsesMouse || mouse.modifiers & Qt.ShiftModifier) && mouse.button == Qt.RightButton)
                 {
-                    terminalMenu.open();
+                    terminalMenu.show();
                 } else
                 {
                     var coord = correctDistortion(mouse.x, mouse.y);
@@ -266,7 +266,7 @@ Maui.Page
             {
                 if(mouse.button === Qt.RightButton)
                 {
-                    terminalMenu.open()
+                    terminalMenu.show()
                     
                 } else if(mouse.button === Qt.LeftButton)
                 {                    
@@ -279,7 +279,7 @@ Maui.Page
             onPressAndHold:
             {
                 if(Maui.Handy.isTouch)
-                    terminalMenu.open()
+                    terminalMenu.show()
             }
         }
         
@@ -393,7 +393,7 @@ enabled: true
             // Force the hiddenButton in the event position.
             //hiddenButton.x = x;
             //hiddenButton.y = y;
-            terminalMenu.open()
+            terminalMenu.show()
         }
     }
 

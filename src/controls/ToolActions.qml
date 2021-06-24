@@ -235,7 +235,7 @@ Item
                 
                 if(!_menu.visible)
                 {
-                    _menu.open(0, control.height, control)
+                    _menu.show(0, control.height, control)
                     
                 }else
                 {

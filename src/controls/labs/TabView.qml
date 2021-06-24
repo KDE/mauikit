@@ -33,7 +33,7 @@ Container
         }
     }  
 
-    property QtObject menu :   Maui.ContextualMenu
+    Maui.ContextualMenu
     {
         id: _menu
         parent: control
@@ -76,6 +76,7 @@ Container
             }
         }
     }
+    
     Maui.Dialog
     {
         id: _quickSearch
@@ -228,7 +229,7 @@ Container
                     onRightClicked:
                     {
                         _menu.index = index
-                        _menu.open()
+                        _menu.show()
                     }
                     
                     onCloseClicked:
@@ -409,7 +410,7 @@ Container
                             {
                                 control.currentIndex = index
                                 _menu.index = control.currentIndex
-                                _menu.open()
+                                _menu.show()
                             }
 
                             onClicked:
@@ -423,7 +424,7 @@ Container
                             {
                                 control.currentIndex = index
                                 _menu.index = control.currentIndex
-                                _menu.open()                                
+                                _menu.show()                                
                             }
                             
                             template.iconComponent: Item

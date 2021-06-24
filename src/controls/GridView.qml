@@ -224,8 +224,7 @@ Item
         verticalPadding: padding
         
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-        ScrollBar.vertical.policy: ScrollBar.AsNeeded
-        
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded        
      
         GridView
         {

@@ -31,7 +31,7 @@ ToolButton
       Alias to the actual menu component holding the menu entries.
       This can be modified for fine tuning the menu position or look.
     */
-    property alias menu : _menu.menu
+    property alias menu : _menu
     
     focusPolicy: Qt.NoFocus
     checked: _menu.visible
@@ -55,7 +55,7 @@ ToolButton
     
     function open()
     {
-        _menu.open(0, height + Maui.Style.space.medium)
+        _menu.show(0, height + Maui.Style.space.medium)
         _menu.forceActiveFocus()
     }
 
