@@ -54,10 +54,10 @@ Maui.GridBrowserDelegate
         GridLayout
         {
             anchors.fill: parent
-            columns: 2
+            columns: 3
             rows: 2
-            columnSpacing: 2
-            rowSpacing: 2
+            columnSpacing: 4
+            rowSpacing: 4
             
             Repeater
             {
@@ -69,6 +69,10 @@ Maui.GridBrowserDelegate
                 {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
+                    Layout.maximumHeight: index === 0 ? control.height : control.height * 0.3
+//                     Layout.minimumHeight: index === 0 ? control.height * 0.6 : control.height * 0.2
+                    Layout.columnSpan: index === 0 ? 3 : 1
+                    Layout.rowSpan: index === 0 ? 2 : 1
                     color: Qt.rgba(0,0,0,0.3)
                     
                     Image
