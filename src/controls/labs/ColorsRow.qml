@@ -26,7 +26,7 @@ Row
         MouseArea
         {
             readonly property bool checked : control.currentColor === modelData
-            implicitHeight: Kirigami.Settings.isMobile ? Maui.Style.iconSizes.big : Maui.Style.iconSizes.medium
+            implicitHeight: Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
             implicitWidth: implicitHeight
 
             onClicked: control.colorPicked(modelData)
