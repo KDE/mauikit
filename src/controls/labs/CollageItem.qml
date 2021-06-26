@@ -56,8 +56,8 @@ Maui.GridBrowserDelegate
             anchors.fill: parent
             columns: 3
             rows: 2
-            columnSpacing: 4
-            rowSpacing: 4
+            columnSpacing: 2
+            rowSpacing: 2
             
             Repeater
             {
