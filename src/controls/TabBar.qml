@@ -45,10 +45,10 @@ TabBar
     {
         color: Kirigami.Theme.backgroundColor
         
-        Maui.Separator
+        Kirigami.Separator
         {
-            color: parent.color
-            edge: control.position === TabBar.Footer ?  Qt.TopEdge : Qt.BottomEdge
+            //color: parent.color
+            //edge: control.position === TabBar.Footer ?  Qt.TopEdge : Qt.BottomEdge
             
             anchors
             {

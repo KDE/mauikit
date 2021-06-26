@@ -39,10 +39,6 @@ Item
     id: control
     focus: true
         
-    //color scheme
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false    
-    
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
 

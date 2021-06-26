@@ -21,13 +21,10 @@ import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-//import QtGraphicalEffects 1.0
+import QtGraphicalEffects 1.0
 
 import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.7 as Kirigami
-
-//import QtQuick.Controls.Material 2.12
-//import QtQuick.Controls.Material.impl 2.12
 
 /*!
 \since org.mauikit.controls 1.0
@@ -471,33 +468,33 @@ Pane
             id: _headerBackground
             color: _headBar.Kirigami.Theme.backgroundColor
 
-            Maui.Separator
+            Kirigami.Separator
             {
                 id: _border
-                edge: Qt.BottomEdge
-                color: parent.color
+//                 edge: Qt.BottomEdge
+//                 color: parent.color
                 anchors.left: parent.left
                 anchors.right: parent.right
             }
 
-//             FastBlur
-//             {
-//                 anchors.fill: parent
-//                 visible: (control.floatingHeader || !control.clip) && !altHeader
-//                 opacity: 0.2
-//                 cached: false
-//                 radius: 64
-//                 transparentBorder: false
-//                 source: ShaderEffectSource
-//                 {
-//                     samples : 2
-//                     recursive: false
-//                     textureSize: Qt.size(headBar.width * 0.2, headBar.height * 0.2)
-//                     sourceItem: _content
-//                     sourceRect: Qt.rect(0, control.floatingHeader ? 0 -control.topMargin : 0- headBar.height, headBar.width, headBar.height)
-//                 }
-// 
-//             }
+            FastBlur
+            {
+                anchors.fill: parent
+                visible: (control.floatingHeader || !control.clip) && !altHeader
+                opacity: 0.3
+                cached: false
+                radius: 64
+                transparentBorder: false
+                source: ShaderEffectSource
+                {
+                    samples : 2
+                    recursive: false
+                    textureSize: Qt.size(headBar.width * 0.2, headBar.height * 0.2)
+                    sourceItem: _content
+                    sourceRect: Qt.rect(0, control.floatingHeader ? 0 -control.topMargin : 0- headBar.height, headBar.width, headBar.height)
+                }
+
+            }
         }
     }
 
@@ -535,32 +532,32 @@ Pane
         {
             id: _footerBackground
             color: _footBar.Kirigami.Theme.backgroundColor
-//opacity: 0.2
-            Maui.Separator
+
+            Kirigami.Separator
             {
-                edge: Qt.TopEdge
-                color: parent.color
+                //edge: Qt.TopEdge
+                //color: parent.color
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
             }
 
-            //FastBlur
-            //{
-                //anchors.fill: parent
-////                 visible: control.floatingFooter || !control.clip
-                //opacity: 0.25
-                //transparentBorder: false
-                //source: ShaderEffectSource
-                //{
-                    //samples : 2
-                    //recursive: false
-                    //textureSize: Qt.size(footBar.width * 0.2, footBar.height * 0.2)
-                    //sourceItem: _content
-                    //sourceRect: Qt.rect(0, control.floatingFooter ? control.height+ footBar.height : _content.height+ footBar.height, footBar.width, footBar.height)
-                //}
-                //radius: 64
-            //}
+            FastBlur
+            {
+                anchors.fill: parent
+                visible: (control.floatingFooter || !control.clip)
+                opacity: 0.25
+                transparentBorder: false
+                source: ShaderEffectSource
+                {
+                    samples : 2
+                    recursive: false
+                    textureSize: Qt.size(footBar.width * 0.2, footBar.height * 0.2)
+                    sourceItem: _content
+                    sourceRect: Qt.rect(0, control.floatingFooter ? control.height+ footBar.height : _content.height+ footBar.height, footBar.width, footBar.height)
+                }
+                radius: 64
+            }
         }
     }
 

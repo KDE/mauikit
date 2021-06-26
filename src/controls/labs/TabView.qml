@@ -264,9 +264,9 @@ Container
                         }
                     }
                     
-                    Maui.Separator
+                    Kirigami.Separator
                     {
-                        edge: Qt.RightEdge
+                        //edge: Qt.RightEdge
                         visible: index < control.count
                         anchors
                         {

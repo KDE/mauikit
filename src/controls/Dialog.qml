@@ -224,7 +224,7 @@ Maui.Popup
             headerPositioning: ListView.InlineHeader
             padding: 0
             headBar.visible: control.persistent
-            headerBackground.color: "transparent"
+//             headerBackground.color: "transparent"
             headBar.farLeftContent: [Maui.CloseButton
                 {
                     visible: control.persistent && !control.filling && closeButtonVisible
@@ -330,11 +330,11 @@ Maui.Popup
             }
         }
 
-        Maui.Separator
+        Kirigami.Separator
         {
             Layout.fillWidth: true
             visible: _defaultButtonsLayout.visible
-            edge: Qt.TopEdge
+//             edge: Qt.TopEdge
         }
 
         RowLayout
@@ -373,9 +373,9 @@ Maui.Popup
                 
                 onClicked: rejected()
                 
-                Maui.Separator
+                Kirigami.Separator
                 {
-                    edge: Qt.RightEdge
+                    //edge: Qt.RightEdge
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
@@ -407,9 +407,9 @@ Maui.Popup
 
                 onClicked: accepted()
 
-                Maui.Separator
+                Kirigami.Separator
                 {
-                    edge: Qt.RightEdge
+                    //edge: Qt.RightEdge
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
@@ -442,9 +442,9 @@ Maui.Popup
                         verticalAlignment: Qt.AlignVCenter
                     }
 
-                    Maui.Separator
+                    Kirigami.Separator
                     {
-                        edge: Qt.RightEdge
+                        //edge: Qt.RightEdge
                         anchors.top: parent.top
                         anchors.bottom: parent.bottom
                         anchors.right: parent.right

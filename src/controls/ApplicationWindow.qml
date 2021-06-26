@@ -307,7 +307,7 @@ Window
         Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
         
         headerColorSet: altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header        
-        headerBackground.color: Maui.App.enableCSD ? Qt.darker(headBar.Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
+//         headerBackground.color: Maui.App.enableCSD ? Qt.darker(headBar.Kirigami.Theme.backgroundColor, 1.1) : headBar.Kirigami.Theme.backgroundColor
         
         //        headBar.farRightContent: Maui.WindowControls
         //        {

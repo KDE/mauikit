@@ -142,18 +142,17 @@ Drawer
     Item
     {
         id: _content
-        anchors.fill: parent
-
-        Maui.Separator
-        {
-            z: 9999
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            edge: Qt.RightEdge
-        }
+        anchors.fill: parent       
     }
 
+    Kirigami.Separator
+    {
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        //             edge: Qt.RightEdge
+    }
+    
     Component.onCompleted:
     {
         if(control.visible)
