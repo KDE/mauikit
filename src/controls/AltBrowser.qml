@@ -27,10 +27,6 @@ Maui.Page
     Keys.forwardTo : currentView
     focus: true
     
-    //color scheme
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
-
     /*!
       The current view being used, the GridView or the ListBrowser.
       To access the precise view use the aliases for the GridView or ListView.

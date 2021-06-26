@@ -21,7 +21,7 @@ import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 
 import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.7 as Kirigami
@@ -477,24 +477,23 @@ Pane
                 anchors.right: parent.right
             }
 
-            FastBlur
-            {
-                anchors.fill: parent
-                visible: (control.floatingHeader || !control.clip) && !altHeader
-                opacity: 0.3
-                cached: false
-                radius: 64
-                transparentBorder: false
-                source: ShaderEffectSource
-                {
-                    samples : 2
-                    recursive: false
-                    textureSize: Qt.size(headBar.width * 0.2, headBar.height * 0.2)
-                    sourceItem: _content
-                    sourceRect: Qt.rect(0, control.floatingHeader ? 0 -control.topMargin : 0- headBar.height, headBar.width, headBar.height)
-                }
-
-            }
+            //FastBlur
+            //{
+                //anchors.fill: parent
+                //visible: (control.floatingHeader || !control.clip) && !altHeader
+                //opacity: 0.3
+                //cached: false
+                //radius: 64
+                //transparentBorder: false
+                //source: ShaderEffectSource
+                //{
+                    //samples : 2
+                    //recursive: false
+                    //textureSize: Qt.size(headBar.width * 0.2, headBar.height * 0.2)
+                    //sourceItem: _content
+                    //sourceRect: Qt.rect(0, control.floatingHeader ? 0 -control.topMargin : 0- headBar.height, headBar.width, headBar.height)
+                //}
+            //}
         }
     }
 
@@ -542,22 +541,22 @@ Pane
                 anchors.right: parent.right
             }
 
-            FastBlur
-            {
-                anchors.fill: parent
-                visible: (control.floatingFooter || !control.clip)
-                opacity: 0.25
-                transparentBorder: false
-                source: ShaderEffectSource
-                {
-                    samples : 2
-                    recursive: false
-                    textureSize: Qt.size(footBar.width * 0.2, footBar.height * 0.2)
-                    sourceItem: _content
-                    sourceRect: Qt.rect(0, control.floatingFooter ? control.height+ footBar.height : _content.height+ footBar.height, footBar.width, footBar.height)
-                }
-                radius: 64
-            }
+//             FastBlur
+//             {
+//                 anchors.fill: parent
+//                 visible: (control.floatingFooter || !control.clip)
+//                 opacity: 0.25
+//                 transparentBorder: false
+//                 source: ShaderEffectSource
+//                 {
+//                     samples : 2
+//                     recursive: false
+//                     textureSize: Qt.size(footBar.width * 0.2, footBar.height * 0.2)
+//                     sourceItem: _content
+//                     sourceRect: Qt.rect(0, control.floatingFooter ? control.height+ footBar.height : _content.height+ footBar.height, footBar.width, footBar.height)
+//                 }
+//                 radius: 64
+//             }
         }
     }
 

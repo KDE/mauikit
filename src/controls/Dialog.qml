@@ -224,6 +224,8 @@ Maui.Popup
             headerPositioning: ListView.InlineHeader
             padding: 0
             headBar.visible: control.persistent
+            headerColorSet: Kirigami.Theme.Header        
+
 //             headerBackground.color: "transparent"
             headBar.farLeftContent: [Maui.CloseButton
                 {
