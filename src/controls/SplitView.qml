@@ -27,12 +27,13 @@ SplitView
     Component
     {
         id: _horizontalHandleComponent
-        Rectangle
+        
+        Item
         {
             implicitWidth: Maui.Handy.isTouch ? 20 : 12
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
             
-            color: Kirigami.Theme.backgroundColor
+            //color: control.Kirigami.Theme.backgroundColor
 
             Rectangle
             {
@@ -60,17 +61,17 @@ SplitView
                 color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
 
-            Kirigami.Separator
-            {
-                anchors.top: parent.top
-                width: parent.width
-            }
+            //Kirigami.Separator
+            //{
+                //anchors.top: parent.top
+                //width: parent.width
+            //}
 
-            Kirigami.Separator
-            {
-                anchors.top: parent.bottom
-                width: parent.width
-            }
+            //Kirigami.Separator
+            //{
+                //anchors.top: parent.bottom
+                //width: parent.width
+            //}
         }
     }
 
@@ -78,12 +79,12 @@ SplitView
     {
         id: _verticalHandleComponent
 
-        Rectangle
+        Item
         {
             implicitWidth: Maui.Handy.isTouch ? 20 : 12
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
 
-            color:  Kirigami.Theme.backgroundColor
+            //color:  control.Kirigami.Theme.backgroundColor
 
             Rectangle
             {
@@ -109,17 +110,17 @@ SplitView
                 color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
 
-            Kirigami.Separator
-            {
-                anchors.left: parent.left
-                height: parent.height
-            }
+            //Kirigami.Separator
+            //{
+                //anchors.left: parent.left
+                //height: parent.height
+            //}
 
-            Kirigami.Separator
-            {
-                anchors.right: parent.right
-                height: parent.height
-            }
+            //Kirigami.Separator
+            //{
+                //anchors.right: parent.right
+                //height: parent.height
+            //}
         }
     }
 
