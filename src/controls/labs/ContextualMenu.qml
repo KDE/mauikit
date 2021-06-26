@@ -46,6 +46,7 @@ T.Menu
     contentItem: Maui.ListBrowser
     {
         id: _listView
+        clip: true
         
         implicitWidth: {
             var maxWidth = 0;
