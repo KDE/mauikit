@@ -83,6 +83,7 @@
         <file alias="BrowserDelegate">controls/BrowserDelegate.qml</file>
         <file alias="SplitView.qml">controls/SplitView.qml</file>
         <file alias="SplitViewItem.qml">controls/SplitViewItem.qml</file>
+        <file alias="ProgressIndicator.qml">controls/ProgressIndicator.qml</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

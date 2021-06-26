@@ -18,7 +18,6 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 import QtGraphicalEffects 1.0
 
@@ -73,7 +72,7 @@ Rectangle
     /**
      * maskRadius : int
      */
-    property int maskRadius: Maui.Style.radiusV
+    property alias maskRadius: control.radius
 
     Kirigami.Icon
     {
@@ -111,7 +110,7 @@ Rectangle
         asynchronous: true
         smooth: true
 
-        layer.enabled: control.maskRadius
+        layer.enabled: control.radius
         layer.effect: OpacityMask
         {
             maskSource: Item
@@ -124,21 +123,9 @@ Rectangle
                     anchors.centerIn: parent
                     width: Math.min(parent.width, img.paintedWidth)
                     height: Math.min(parent.height, img.paintedHeight)
-                    radius: control.maskRadius
+                    radius: control.radius
                 }
             }
         }
     }
-
-    //        ColorOverlay
-    //        {
-    //            anchors.fill: parent
-
-    //            visible: control.hovered || control.checked ||control.highlighted
-    //            opacity: 0.3
-
-    //            source: parent
-    //            color: control.hovered || control.highlighted  ? control.Kirigami.Theme.highlightColor : "#000"
-    //        }
-
 }
