@@ -299,7 +299,6 @@ Item
             {
                 id: _mouseArea
                 z: -1
-                enabled: !Kirigami.Settings.hasTransientTouchInput && !Kirigami.Settings.isMobile
                 anchors.fill: parent
                 propagateComposedEvents: true
                 //             preventStealing: true
