@@ -31,7 +31,7 @@ class MauiList;
 /**
  * @brief The MauiModel class
  * The MauiModel is a template model to use with a MauiList, it aims to be a generic and simple data model to quickly model string based models using the FMH::MODEL_LIST and FMH::MODEL_KEY types.
- *
+ * The idea is that the sorting and filtering is independent to the data list aka MauiList. Now to get the right items keep in mind: MauiList::get() gets the item at the original list index, while MauiModel::get() will get the item at the model, if it is filtered or sorted, then thats the item you get. If you want to get a item from the source list and the model has been filtered or sorted you will need to use the MauiModel::mappedToSource() to map the index to the right index from the source list. Now, if you have a index from the source list and the model has been filtered or ordered you will use MauiModel::mappedFromSource() to get the right index from the model.
  * This type is exposed to QML to quickly create a modle that can be filtered, sorted and has another usefull functionalities.
  */
 class MAUIKIT_EXPORT MauiModel : public QSortFilterProxyModel

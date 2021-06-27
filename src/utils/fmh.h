@@ -203,7 +203,9 @@ enum MODEL_KEY : int {
     URI,
     DEVICE,
     LASTSYNC,
-    UDI
+    UDI,
+    LATITUDE,
+    LONGITUDE
 };
 
 static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
@@ -350,7 +352,9 @@ static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
                                                      {MODEL_KEY::URI, "uri"},
                                                      {MODEL_KEY::DEVICE, "device"},
                                                      {MODEL_KEY::UDI, "udi"},
-                                                     {MODEL_KEY::LASTSYNC, "lastsync"}};
+                                                     {MODEL_KEY::LASTSYNC, "lastsync"},
+                                                     {MODEL_KEY::LATITUDE, "latitude"},
+                                                     {MODEL_KEY::LONGITUDE, "lastsync"}};
 
 static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::ICON], MODEL_KEY::ICON},
                                                          {MODEL_NAME[MODEL_KEY::LABEL], MODEL_KEY::LABEL},
@@ -499,7 +503,9 @@ static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::
                                                          {MODEL_NAME[MODEL_KEY::URI], MODEL_KEY::URI},
                                                          {MODEL_NAME[MODEL_KEY::DEVICE], MODEL_KEY::DEVICE},
                                                          {MODEL_NAME[MODEL_KEY::UDI], MODEL_KEY::UDI},
-                                                         {MODEL_NAME[MODEL_KEY::LASTSYNC], MODEL_KEY::LASTSYNC}};
+                                                         {MODEL_NAME[MODEL_KEY::LASTSYNC], MODEL_KEY::LASTSYNC},
+                                                         {MODEL_NAME[MODEL_KEY::LATITUDE], MODEL_KEY::LATITUDE},
+                                                         {MODEL_NAME[MODEL_KEY::LONGITUDE], MODEL_KEY::LONGITUDE}};
 /**
  * @brief MODEL
  */

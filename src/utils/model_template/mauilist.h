@@ -30,7 +30,6 @@
  */
 #include <QObject>
 
-class MauiModel;
 class MAUIKIT_EXPORT MauiList : public QObject, public QQmlParserStatus {
     Q_INTERFACES(QQmlParserStatus)
 
@@ -52,17 +51,13 @@ public:
 
     /**
      * @brief getItems
-     * Get all the items in the list model. If the model has been filtered or sorted those are the items that are returned
+     * Get all the items in the list. If this list is used in a MauiModel to get the filtered or sorted items you chould use MauiModel::getItems instead
      * @param index
      * @return
      */
     FMH::MODEL_LIST getItems() const;
 
-    const MauiModel *m_model; // becarefull this is owned by qml engine, this is only supossed to be a viewer
-
 public slots:
-    int mappedIndex(const int &index) const;
-    int mappedIndexFromSource(const int &index) const;
     QVariantMap get(const int &index) const;
 
 protected:
