@@ -22,7 +22,9 @@ one could use the viewType property binded to a size condition.
 Maui.Page
 {
     id: control    
-    
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Kirigami.Theme.inherit: false
+
     Keys.enabled : true
     Keys.forwardTo : currentView
     focus: true

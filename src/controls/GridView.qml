@@ -38,7 +38,7 @@ Item
 {
     id: control
     focus: true
-        
+
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
 
@@ -210,7 +210,7 @@ Item
     {
         id: _scrollView
         anchors.fill: parent   
-        
+
         padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
         rightPadding: padding + internal.verticalScrollBarWidth
         leftPadding: padding 

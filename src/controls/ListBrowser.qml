@@ -38,7 +38,6 @@ Item
     id: control
     focus: true
     
-       
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
     
