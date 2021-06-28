@@ -39,7 +39,7 @@ class MAUIKIT_EXPORT MauiModel : public QSortFilterProxyModel
     Q_OBJECT
     Q_PROPERTY(MauiList *list READ getList WRITE setList NOTIFY listChanged)
     Q_PROPERTY(QString filter READ getFilter WRITE setFilter NOTIFY filterChanged)
-    Q_PROPERTY(QString filter READ getFilterRoleName WRITE setFilterRoleName NOTIFY filterRoleNameChanged)
+    Q_PROPERTY(QString filterRole READ getFilterRoleName WRITE setFilterRoleName NOTIFY filterRoleNameChanged)
     Q_PROPERTY(Qt::SortOrder sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
     Q_PROPERTY(QString sort READ getSort WRITE setSort NOTIFY sortChanged)
 
@@ -90,6 +90,7 @@ private:
     class PrivateAbstractListModel;
     PrivateAbstractListModel *m_model;
     QString m_filter;
+    QString m_filterRoleName;
     Qt::SortOrder m_sortOrder;
     QString m_sort;
 

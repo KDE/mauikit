@@ -114,12 +114,12 @@ int MauiModel::mappedToSource(const int &index) const
 
 void MauiModel::setFilterRoleName(QString filter)
 {
-    if (m_filter == filter)
+    if (m_filterRoleName == filter)
         return;
 
-    m_filter = filter;
-    emit filterRoleNameChanged(m_filter);
-    this->setFilterRole(FMH::MODEL_NAME_KEY[filter]);
+    m_filterRoleName = filter;
+    emit filterRoleNameChanged(m_filterRoleName);
+    this->setFilterRole(FMH::MODEL_NAME_KEY[m_filterRoleName]);
 }
 
 bool MauiModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
