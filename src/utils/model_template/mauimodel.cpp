@@ -29,18 +29,6 @@ MauiModel::MauiModel(QObject *parent)
     this->setDynamicSortFilter(true);
 }
 
-void MauiModel::setFilterString(const QString &string)
-{
-    this->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    this->setFilterFixedString(string);
-    //     this->setFilterRegExp(QRegExp(string, Qt::CaseInsensitive));
-}
-
-void MauiModel::setSortOrder(const int &sortOrder)
-{
-    this->sort(0, static_cast<Qt::SortOrder>(sortOrder));
-}
-
 QVariantMap MauiModel::get(const int &index) const
 {
     QVariantMap res;
@@ -76,6 +64,11 @@ void MauiModel::setFilter(const QString &filter)
 const QString MauiModel::getFilter() const
 {
     return this->m_filter;
+}
+
+QString MauiModel::getFilterRoleName() const
+{
+    return m_filter;
 }
 
 void MauiModel::setSortOrder(const Qt::SortOrder &sortOrder)
@@ -117,6 +110,16 @@ int MauiModel::mappedFromSource(const int &index) const
 int MauiModel::mappedToSource(const int &index) const
 {
     return this->mapToSource(this->index(index, 0)).row();
+}
+
+void MauiModel::setFilterRoleName(QString filter)
+{
+    if (m_filter == filter)
+        return;
+
+    m_filter = filter;
+    emit filterRoleNameChanged(m_filter);
+    this->setFilterRole(FMH::MODEL_NAME_KEY[filter]);
 }
 
 bool MauiModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
