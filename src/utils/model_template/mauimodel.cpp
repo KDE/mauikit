@@ -18,7 +18,7 @@
 
 #include "mauimodel.h"
 #include "mauilist.h"
-
+#include <QDebug>
 #include <QDateTime>
 
 MauiModel::MauiModel(QObject *parent)
@@ -164,7 +164,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::preItemAppendedAt,
             this,
-            [=](int index) {
+            [this](int index) {
                 beginInsertRows(QModelIndex(), index, index);
             },
             Qt::DirectConnection);
@@ -173,7 +173,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::preItemAppended,
             this,
-            [=]() {
+            [this]() {
                 const int index = this->list->items().size();
                 beginInsertRows(QModelIndex(), index, index);
             },
@@ -183,7 +183,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::preItemsAppended,
             this,
-            [=](uint count) {
+            [this](uint count) {
                 const int index = this->list->items().size();
                 beginInsertRows(QModelIndex(), index, index + count - 1);
             },
@@ -193,7 +193,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::postItemAppended,
             this,
-            [=]() {
+            [this]() {
                 endInsertRows();
             },
             Qt::DirectConnection);
@@ -202,7 +202,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::preItemRemoved,
             this,
-            [=](int index) {
+            [this](int index) {
                 beginRemoveRows(QModelIndex(), index, index);
             },
             Qt::DirectConnection);
@@ -211,7 +211,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::postItemRemoved,
             this,
-            [=]() {
+            [this]() {
                 endRemoveRows();
             },
             Qt::DirectConnection);
@@ -220,8 +220,8 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::updateModel,
             this,
-            [=](int index, QVector<int> roles) {
-                emit this->dataChanged(this->index(index), this->index(index), roles);
+            [this](int index, QVector<int> roles) {
+                emit this->dataChanged(this->m_model->index(index, 0), this->m_model->index(index, 0), roles);
             },
             Qt::DirectConnection);
 
@@ -229,7 +229,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::preListChanged,
             this,
-            [=]() {
+            [this]() {
                 beginResetModel();
             },
             Qt::DirectConnection);
@@ -238,7 +238,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             this->list,
             &MauiList::postListChanged,
             this,
-            [=]() {
+            [this]() {
                 endResetModel();
             },
             Qt::DirectConnection);
