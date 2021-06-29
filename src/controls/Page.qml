@@ -764,52 +764,47 @@ Pane
     //    }
     //}
 
-    MouseArea
+    MultiPointTouchArea
     {
         id: _touchMouse
-        parent: _content
-        anchors.fill:  parent
-        propagateComposedEvents: true
-        drag.filterChildren: true
+        
+        maximumTouchPoints: 2
+        minimumTouchPoint: 2
+        
+        mouseEnabled: false
+        anchors.fill: parent
         z: _content.z +1
-        visible: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
+        
+        enabled: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
 
-        Timer {
-            id: doubleClickTimer
-            interval: 900
-            onTriggered:
-            {
-                if(control.autoHideHeader){
-                    if(header.height !== 0)
-                    {
-                        _autoHideHeaderTimer.start()
-                        _revealHeaderTimer.stop()
 
-                    }else
-                    {
-                        _autoHideHeaderTimer.stop()
-                        _revealHeaderTimer.start()
-                    }
-                }
-
-                if(control.autoHideFooter)
+        onReleased:
+        {
+            if(control.autoHideHeader){
+                if(header.height !== 0)
                 {
-                    if(footer.height !== 0)
-                    {
-                        _autoHideFooterTimer.start()
-
-                    }else
-                    {
-                        pullDownFooter()
-                        _autoHideFooterTimer.stop()
-                    }
+                    _autoHideHeaderTimer.start()
+                    _revealHeaderTimer.stop()
+                    
+                }else
+                {
+                    _autoHideHeaderTimer.stop()
+                    _revealHeaderTimer.start()
                 }
             }
-        }
-
-        onPressed: {
-            doubleClickTimer.restart();
-            mouse.accepted = false
+            
+            if(control.autoHideFooter)
+            {
+                if(footer.height !== 0)
+                {
+                    _autoHideFooterTimer.start()
+                    
+                }else
+                {
+                    pullDownFooter()
+                    _autoHideFooterTimer.stop()
+                }
+            }
         }
     }
 
