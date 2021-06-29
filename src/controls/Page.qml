@@ -764,47 +764,52 @@ Pane
     //    }
     //}
 
-    MultiPointTouchArea
+    MouseArea
     {
         id: _touchMouse
-        
-        maximumTouchPoints: 2
-        minimumTouchPoint: 2
-        
-        mouseEnabled: false
-        anchors.fill: parent
+        parent: _content
+        anchors.fill:  parent
+        propagateComposedEvents: true
+        drag.filterChildren: true
         z: _content.z +1
-        
-        enabled: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
+        visible: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
 
-
-        onReleased:
-        {
-            if(control.autoHideHeader){
-                if(header.height !== 0)
-                {
-                    _autoHideHeaderTimer.start()
-                    _revealHeaderTimer.stop()
-                    
-                }else
-                {
-                    _autoHideHeaderTimer.stop()
-                    _revealHeaderTimer.start()
-                }
-            }
-            
-            if(control.autoHideFooter)
+        Timer {
+            id: doubleClickTimer
+            interval: 900
+            onTriggered:
             {
-                if(footer.height !== 0)
+                if(control.autoHideHeader){
+                    if(header.height !== 0)
+                    {
+                        _autoHideHeaderTimer.start()
+                        _revealHeaderTimer.stop()
+
+                    }else
+                    {
+                        _autoHideHeaderTimer.stop()
+                        _revealHeaderTimer.start()
+                    }
+                }
+
+                if(control.autoHideFooter)
                 {
-                    _autoHideFooterTimer.start()
-                    
-                }else
-                {
-                    pullDownFooter()
-                    _autoHideFooterTimer.stop()
+                    if(footer.height !== 0)
+                    {
+                        _autoHideFooterTimer.start()
+
+                    }else
+                    {
+                        pullDownFooter()
+                        _autoHideFooterTimer.stop()
+                    }
                 }
             }
+        }
+
+        onPressed: {
+            doubleClickTimer.restart();
+            mouse.accepted = false
         }
     }
 
