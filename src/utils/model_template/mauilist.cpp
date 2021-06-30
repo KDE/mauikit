@@ -17,6 +17,7 @@
  */
 
 #include "mauilist.h"
+#include <QDebug>
 
 MauiList::MauiList(QObject *parent)
     : QObject(parent)
@@ -25,21 +26,21 @@ MauiList::MauiList(QObject *parent)
 
 int MauiList::getCount() const
 {
-    return this->items().count();
+    return this->items().count(); 
 }
 
 QVariantMap MauiList::get(const int &index) const
-{
-    if (index >= 0 && this->items().size() > 0 && index < this->items().size()) {
-        return FMH::toMap(this->items()[index]);
-    }
-
-    return QVariantMap();
+{    
+    return FMH::toMap(this->getItem(index));    
 }
 
-FMH::MODEL_LIST MauiList::getItems() const
+FMH::MODEL MauiList::getItem(const int &index) const
 {
-    return this->items();
+    if (index >= 0 && this->getCount() > 0 && index < this->getCount()) {
+        return this->items()[index];
+    }
+    
+    return FMH::MODEL();
 }
 
 bool MauiList::exists(const FMH::MODEL_KEY &key, const QString &value) const

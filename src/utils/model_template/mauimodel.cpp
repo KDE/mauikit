@@ -25,8 +25,7 @@ MauiModel::MauiModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_model(new PrivateAbstractListModel(this))
 {
-    this->setSourceModel(this->m_model);
-    this->setDynamicSortFilter(true);
+   
 }
 
 QVariantMap MauiModel::get(const int &index) const
@@ -175,7 +174,7 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             &MauiList::preItemAppended,
             this,
             [this]() {
-                const int index = m_model->getList()->items().size();
+                const int index = m_model->getList()->getCount();
                 beginInsertRows(QModelIndex(), index, index);
             },
             Qt::DirectConnection);
@@ -185,7 +184,7 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             &MauiList::preItemsAppended,
             this,
             [this](uint count) {
-                const int index = m_model->getList()->items().size();
+                const int index = m_model->getList()->getCount();
                 beginInsertRows(QModelIndex(), index, index + count - 1);
             },
             Qt::DirectConnection);
@@ -256,6 +255,9 @@ void MauiModel::setList(MauiList *value)
         this->m_list = value;
         this->m_model->setUpList();
         emit this->listChanged();
+        
+        this->setSourceModel(this->m_model);
+        this->setDynamicSortFilter(true);
     }
 }
 
@@ -292,7 +294,7 @@ int MauiModel::PrivateAbstractListModel::rowCount(const QModelIndex &parent) con
     {        
         return 0;
     }    
-    
+        
     return m_model->getList()->getCount();
 }
     
@@ -302,7 +304,7 @@ QVariant MauiModel::PrivateAbstractListModel::data(const QModelIndex &index, int
     if (!index.isValid() || !m_model->getList())
         return QVariant();
 
-    auto value = m_model->getList()->items().at(index.row())[static_cast<FMH::MODEL_KEY>(role)];
+    auto value = m_model->getList()->getItem(index.row()).value(static_cast<FMH::MODEL_KEY>(role));
 
     if (role == FMH::MODEL_KEY::ADDDATE || role == FMH::MODEL_KEY::DATE || role == FMH::MODEL_KEY::MODIFIED || role == FMH::MODEL_KEY::RELEASEDATE) {
         const auto date = QDateTime::fromString(value, Qt::TextDate);

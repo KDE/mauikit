@@ -43,23 +43,18 @@ public:
     explicit MauiList(QObject *parent = nullptr);
 
     virtual const FMH::MODEL_LIST &items() const = 0;
+    
     virtual void classBegin() override {}
     virtual void componentComplete() override  {}
     virtual void modelHooked() {}
 
     int getCount() const;
 
-    /**
-     * @brief getItems
-     * Get all the items in the list. If this list is used in a MauiModel to get the filtered or sorted items you chould use MauiModel::getItems instead
-     * @param index
-     * @return
-     */
-    FMH::MODEL_LIST getItems() const;
-
+   FMH::MODEL getItem(const int &index) const;
+   
 public slots:
     QVariantMap get(const int &index) const;
-
+    
 protected:
     bool exists(const FMH::MODEL_KEY &key, const QString &value) const;
     int indexOf(const FMH::MODEL_KEY &key, const QString &value) const;
