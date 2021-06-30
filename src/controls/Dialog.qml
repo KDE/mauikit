@@ -41,7 +41,19 @@ Layout.fillheight layout.fillWidth, etc.
 Maui.Popup
 {
     id: control
-
+    clip: true
+    
+    closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    
+    maxWidth: 300
+    maxHeight: implicitHeight
+    implicitHeight: _layout.implicitHeight
+    
+    hint: 0.9
+    heightHint: 0.9
+    
+    filling: persistent && mWidth === control.parent.width
+    
     /*!
       \qmlproperty list<Item> ApplicationWindow::scrollable
 
@@ -196,17 +208,6 @@ Maui.Popup
       * Triggered when the rejected button is clicked.
     */
     signal rejected()
-
-    closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
-    maxWidth: 300
-    maxHeight: implicitHeight
-    implicitHeight: _layout.implicitHeight
-
-    hint: 0.9
-    heightHint: 0.9
-
-    filling: persistent && mWidth === control.parent.width
 
     ColumnLayout
     {

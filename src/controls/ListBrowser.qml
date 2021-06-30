@@ -37,6 +37,7 @@ Item
 {
     id: control
     focus: false
+    clip: true
     
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
@@ -203,7 +204,7 @@ Item
     
     Keys.enabled : true
     Keys.forwardTo : _listView
-        
+    
     QtObject {
         id: internal
         
@@ -216,8 +217,9 @@ Item
         id: _scrollView
         anchors.fill: parent
         clip: control.clip
+        
         focus: true
-       padding: control.enableLassoSelection ?  Maui.Style.space.medium : Maui.Style.space.small
+        padding: control.enableLassoSelection ?  Maui.Style.space.medium : Maui.Style.space.small
         horizontalPadding: padding
         verticalPadding: padding
         rightPadding: padding + internal.verticalScrollBarWidth
@@ -270,7 +272,7 @@ Item
             {
                 id: _hoverHandler
                 margin: Maui.Style.space.big
-//                 enabled: control.enableLassoSelection && control.selectionMode && !_listView.draggingVertically
+                //                 enabled: control.enableLassoSelection && control.selectionMode && !_listView.draggingVertically
                 enabled: false
                 acceptedDevices: PointerDevice.TouchScreen
                 acceptedPointerTypes : PointerDevice.Finger

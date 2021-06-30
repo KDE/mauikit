@@ -38,7 +38,8 @@ Item
 {
     id: control
     focus: false
-
+    clip: true
+    
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
 

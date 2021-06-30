@@ -102,6 +102,11 @@ QString MauiModel::getSort() const
     return this->m_sort;
 }
 
+int MauiModel::count() const
+{
+    return this->rowCount();
+}
+
 int MauiModel::mappedFromSource(const int &index) const
 {
     return this->mapFromSource(this->m_model->index(index, 0)).row();
@@ -145,26 +150,19 @@ bool MauiModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent)
 
 MauiList *MauiModel::getList() const
 {
-    return this->m_model->getList();
+    return this->m_list;
 }
 
-MauiList *MauiModel::PrivateAbstractListModel::getList() const
-{
-    return this->list;
-}
-
-void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
+void MauiModel::PrivateAbstractListModel::setUpList()
 {
     beginResetModel();
 
-    if (this->list)
-        this->list->disconnect(this);
+    if (m_model->getList())
+        m_model->getList()->disconnect(this);
 
-    this->list = value;
-
-    if (this->list) {
+    if (m_model->getList()) {
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::preItemAppendedAt,
             this,
             [this](int index) {
@@ -173,27 +171,27 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::preItemAppended,
             this,
             [this]() {
-                const int index = this->list->items().size();
+                const int index = m_model->getList()->items().size();
                 beginInsertRows(QModelIndex(), index, index);
             },
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::preItemsAppended,
             this,
             [this](uint count) {
-                const int index = this->list->items().size();
+                const int index = m_model->getList()->items().size();
                 beginInsertRows(QModelIndex(), index, index + count - 1);
             },
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::postItemAppended,
             this,
             [this]() {
@@ -202,7 +200,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::preItemRemoved,
             this,
             [this](int index) {
@@ -211,7 +209,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::postItemRemoved,
             this,
             [this]() {
@@ -220,7 +218,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::updateModel,
             this,
             [this](int index, QVector<int> roles) {
@@ -229,7 +227,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::preListChanged,
             this,
             [this]() {
@@ -238,7 +236,7 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
             Qt::DirectConnection);
 
         connect(
-            this->list,
+            m_model->getList(),
             &MauiList::postListChanged,
             this,
             [this]() {
@@ -252,15 +250,17 @@ void MauiModel::PrivateAbstractListModel::setList(MauiList *value)
 
 void MauiModel::setList(MauiList *value)
 {
-    value->modelHooked();
-    this->m_model->setList(value);
-//     this->getList()->m_model = this;
-    emit this->listChanged();
+    if(value && value != this->m_list)
+    {
+        value->modelHooked();
+        this->m_list = value;
+        this->m_model->setUpList();
+        emit this->listChanged();
+    }
 }
 
 MauiModel::PrivateAbstractListModel::PrivateAbstractListModel(MauiModel *model)
     : QAbstractListModel(model)
-    , list(nullptr)
     , m_model(model)
 {
     connect(
@@ -268,8 +268,8 @@ MauiModel::PrivateAbstractListModel::PrivateAbstractListModel(MauiModel *model)
         &QAbstractListModel::rowsInserted,
         this,
         [this](QModelIndex, int, int) {
-            if (this->list) {
-                emit this->list->countChanged();
+            if (m_model->getList()) {
+                emit this->m_model->countChanged();
             }
         },
         Qt::DirectConnection);
@@ -279,8 +279,8 @@ MauiModel::PrivateAbstractListModel::PrivateAbstractListModel(MauiModel *model)
         &QAbstractListModel::rowsRemoved,
         this,
         [this](QModelIndex, int, int) {
-            if (this->list) {
-                emit this->list->countChanged();
+            if (m_model->getList()) {
+                emit this->m_model->countChanged();
             }
         },
         Qt::DirectConnection);
@@ -288,18 +288,21 @@ MauiModel::PrivateAbstractListModel::PrivateAbstractListModel(MauiModel *model)
 
 int MauiModel::PrivateAbstractListModel::rowCount(const QModelIndex &parent) const
 {
-    if (parent.isValid() || !list)
+    if (parent.isValid() || !m_model->getList())
+    {        
         return 0;
-
-    return list->items().size();
+    }    
+    
+    return m_model->getList()->getCount();
 }
+    
 
 QVariant MauiModel::PrivateAbstractListModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || !list)
+    if (!index.isValid() || !m_model->getList())
         return QVariant();
 
-    auto value = list->items().at(index.row())[static_cast<FMH::MODEL_KEY>(role)];
+    auto value = m_model->getList()->items().at(index.row())[static_cast<FMH::MODEL_KEY>(role)];
 
     if (role == FMH::MODEL_KEY::ADDDATE || role == FMH::MODEL_KEY::DATE || role == FMH::MODEL_KEY::MODIFIED || role == FMH::MODEL_KEY::RELEASEDATE) {
         const auto date = QDateTime::fromString(value, Qt::TextDate);

@@ -28,6 +28,7 @@ Maui.Page
     Keys.enabled : true
     Keys.forwardTo : currentView
     focus: false
+    clip: true
     
     /*!
       The current view being used, the GridView or the ListBrowser.
@@ -110,6 +111,8 @@ Maui.Page
       The ListBrowser used as the list view alternative.
     */
     readonly property alias listView : _listView
+    
+    readonly property int count : currentView.count
 
     flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
     
