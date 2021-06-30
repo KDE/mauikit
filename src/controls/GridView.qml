@@ -37,7 +37,7 @@ import QtGraphicalEffects 1.0
 Item
 {
     id: control
-    focus: true
+    focus: false
 
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
@@ -210,7 +210,8 @@ Item
     {
         id: _scrollView
         anchors.fill: parent   
-
+        focus: true
+        
         padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
         rightPadding: padding + internal.verticalScrollBarWidth
         leftPadding: padding 
@@ -225,7 +226,7 @@ Item
         GridView
         {
             id: controlView
- 
+            focus: true
             /**
              * itemSize : int
              */
@@ -256,7 +257,6 @@ Item
 
             flow: GridView.FlowLeftToRight
             clip: control.clip
-            focus: control.focus
 
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight

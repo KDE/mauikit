@@ -27,7 +27,7 @@ Maui.Page
 
     Keys.enabled : true
     Keys.forwardTo : currentView
-    focus: true
+    focus: false
     
     /*!
       The current view being used, the GridView or the ListBrowser.

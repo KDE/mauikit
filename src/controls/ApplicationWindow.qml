@@ -255,7 +255,7 @@ Window
       A list of actions to be added to the application main menu.
       The actions are listed if used, and above the default actions menu entries: About and Quit.
     */
-    property list<Action> mainMenu
+    property alias mainMenu : menuBtn.content
 
     /*!
       \qmlproperty Component ApplicationWindow::background
@@ -323,30 +323,7 @@ Window
         {
             id: menuBtn
             icon.name: "application-menu"
-//            text: root.mainMenu.length
-            visible : root.mainMenu.length
-
-            Repeater
-            {
-                model: root.mainMenu
-                MenuItem
-                {
-                    action: modelData
-                }
-            }
-
-            MenuSeparator{visible: root.mainMenu.length}
-
-            MenuItem
-            {
-                text: i18n("About")
-                icon.name: "documentinfo"
-                onTriggered:
-                {
-                    dialogLoader.sourceComponent = _aboutDialogComponent
-                    dialog.open()
-                }
-            }
+            visible : menuBtn.menu.count  > 0          
         }
 
         Item
@@ -646,5 +623,11 @@ Window
     function window()
     {
         return _page;
+    }
+    
+    function about()
+    {
+        dialogLoader.sourceComponent = _aboutDialogComponent
+        dialog.open()
     }
 }

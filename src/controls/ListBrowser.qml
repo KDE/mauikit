@@ -36,7 +36,7 @@ import org.kde.kirigami 2.9 as Kirigami
 Item
 {
     id: control
-    focus: true
+    focus: false
     
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
@@ -216,7 +216,7 @@ Item
         id: _scrollView
         anchors.fill: parent
         clip: control.clip
-        
+        focus: true
        padding: control.enableLassoSelection ?  Maui.Style.space.medium : Maui.Style.space.small
         horizontalPadding: padding
         verticalPadding: padding
@@ -231,11 +231,11 @@ Item
         ListView
         {
             id: _listView
+            focus: true
             
             property alias position : _hoverHandler.point.position
             property var selectedIndexes : []            
             
-            focus: control.focus
             clip: control.clip
             
             spacing: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
