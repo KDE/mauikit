@@ -245,19 +245,6 @@ Window
     property alias dialog: dialogLoader.item
 
     /*!
-      \qmlproperty ToolButton ApplicationWindow::menuButton
-
-      The main application hamburguer menu. This property can be used to customize the button look and feel.
-    */
-    property alias menuButton : menuBtn
-
-    /*!
-      A list of actions to be added to the application main menu.
-      The actions are listed if used, and above the default actions menu entries: About and Quit.
-    */
-    property alias mainMenu : menuBtn.content
-
-    /*!
       \qmlproperty Component ApplicationWindow::background
 
       The application main page background.
@@ -319,12 +306,7 @@ Window
         //            side: Qt.LeftEdge
         //        }
         
-        headBar.leftContent: Maui.ToolButtonMenu
-        {
-            id: menuBtn
-            icon.name: "application-menu"
-            visible : menuBtn.menu.count  > 0          
-        }
+      
 
         Item
         {
