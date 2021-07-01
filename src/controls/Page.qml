@@ -68,22 +68,6 @@ Pane
     readonly property alias pageContent : _content
 
     /*!
-      \qmlproperty Rectangle Page::headerBackground
-
-      An alias to the background of the default header bar toolbar.
-      This can be modified to achive a different look and feel.
-    */
-    property alias headerBackground : _headerBackground
-
-    /*!
-      \qmlproperty Rectangle Page::footerBackground
-
-      An alias to the background of the default footer bar toolbar.
-      This can be modified to achive a different look and feel.
-    */
-    property alias footerBackground : _footerBackground
-
-    /*!
       \qmlproperty int Page::internalHeight
 
       The actual height of the page contents withouth the header or footer bars.
@@ -462,39 +446,6 @@ Pane
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
-
-        background: Rectangle
-        {
-            id: _headerBackground
-            color: _headBar.Kirigami.Theme.backgroundColor
-
-            Kirigami.Separator
-            {
-                id: _border
-//                 edge: Qt.BottomEdge
-//                 color: parent.color
-                anchors.left: parent.left
-                anchors.right: parent.right
-            }
-
-            //FastBlur
-            //{
-                //anchors.fill: parent
-                //visible: (control.floatingHeader || !control.clip) && !altHeader
-                //opacity: 0.3
-                //cached: false
-                //radius: 64
-                //transparentBorder: false
-                //source: ShaderEffectSource
-                //{
-                    //samples : 2
-                    //recursive: false
-                    //textureSize: Qt.size(headBar.width * 0.2, headBar.height * 0.2)
-                    //sourceItem: _content
-                    //sourceRect: Qt.rect(0, control.floatingHeader ? 0 -control.topMargin : 0- headBar.height, headBar.width, headBar.height)
-                //}
-            //}
-        }
     }
 
     //Label
@@ -526,38 +477,6 @@ Pane
                 easing.type: Easing.InOutQuad
             }
         }
-
-        background: Rectangle
-        {
-            id: _footerBackground
-            color: _footBar.Kirigami.Theme.backgroundColor
-
-            Kirigami.Separator
-            {
-                //edge: Qt.TopEdge
-                //color: parent.color
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-            }
-
-//             FastBlur
-//             {
-//                 anchors.fill: parent
-//                 visible: (control.floatingFooter || !control.clip)
-//                 opacity: 0.25
-//                 transparentBorder: false
-//                 source: ShaderEffectSource
-//                 {
-//                     samples : 2
-//                     recursive: false
-//                     textureSize: Qt.size(footBar.width * 0.2, footBar.height * 0.2)
-//                     sourceItem: _content
-//                     sourceRect: Qt.rect(0, control.floatingFooter ? control.height+ footBar.height : _content.height+ footBar.height, footBar.width, footBar.height)
-//                 }
-//                 radius: 64
-//             }
-        }
     }
 
     states: [  State
@@ -569,13 +488,6 @@ Pane
                 target: _headerContent
                 anchors.top: parent.top
                 anchors.bottom: undefined
-            }
-
-            AnchorChanges
-            {
-                target: _border
-                anchors.top: undefined
-                anchors.bottom: parent.bottom
             }
 
             PropertyChanges
@@ -595,14 +507,7 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
-
-            AnchorChanges
-            {
-                target: _border
-                anchors.top: parent.top
-                anchors.bottom: undefined
-            }
-
+            
             PropertyChanges
             {
                 target: header

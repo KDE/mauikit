@@ -227,7 +227,6 @@ Maui.Popup
             headBar.visible: control.persistent
             headerColorSet: Kirigami.Theme.Header        
 
-//             headerBackground.color: "transparent"
             headBar.farLeftContent: [Maui.CloseButton
                 {
                     visible: control.persistent && !control.filling && closeButtonVisible
