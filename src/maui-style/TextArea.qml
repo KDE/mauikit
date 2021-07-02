@@ -29,8 +29,7 @@ import org.kde.kirigami 2.5 as Kirigami
 T.TextArea {
     id: control
     palette: Kirigami.Theme.palette
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+
 
     implicitWidth: Math.max(contentWidth + leftPadding + rightPadding,
                             background ? background.implicitWidth : 0,
@@ -43,15 +42,15 @@ T.TextArea {
 
     color: Kirigami.Theme.textColor
     selectionColor: Kirigami.Theme.highlightColor
-    selectedTextColor: Kirigami.Theme.highlightedTextColor
+    selectedTextColor: Kirigami.Theme.textColor
     opacity: control.enabled ? 1 : 0.6
     wrapMode: Text.WordWrap
-    verticalAlignment: TextEdit.AlignTop
-    hoverEnabled: !Kirigami.Settings.tabletMode
+//    verticalAlignment: TextEdit.AlignTop
+//    hoverEnabled: !Kirigami.Settings.tabletMode
 
     // Work around Qt bug where NativeRendering breaks for non-integer scale factors
     // https://bugreports.qt.io/browse/QTBUG-67007
-    renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
+//    renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
 
     selectByMouse: !Kirigami.Settings.tabletMode
 
@@ -67,7 +66,7 @@ T.TextArea {
 
         text: control.placeholderText
         font: control.font
-        color: Kirigami.Theme.textColor
+        color: control.color
         horizontalAlignment: control.horizontalAlignment
         verticalAlignment: control.verticalAlignment
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
@@ -75,9 +74,9 @@ T.TextArea {
     }
 
     background: Rectangle {
-        y: parent.height - height - control.bottomPadding / 2
+//        y: parent.height - height - control.bottomPadding / 2
         implicitWidth: 120
-        height: control.activeFocus ? 2 : 1
+//        height: control.activeFocus ? 2 : 1
         color: control.Kirigami.Theme.backgroundColor
     }
 }

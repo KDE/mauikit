@@ -21,10 +21,9 @@ import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-//import QtGraphicalEffects 1.0
 
 import org.mauikit.controls 1.2 as Maui
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 
 /*!
 \since org.mauikit.controls 1.0
@@ -43,7 +42,7 @@ Pane
 {
     id: control
     focus: true
-//     clip: true
+    //     clip: true
     padding: 0
     leftPadding: control.padding
     rightPadding: control.padding
@@ -432,7 +431,6 @@ Pane
                     verticalAlignment :  Text.AlignVCenter
                 }
             }
-            
         }
 
         middleContent: Loader
@@ -445,6 +443,29 @@ Pane
             
             Layout.fillWidth: true
             Layout.fillHeight: true
+        }
+
+        background: Rectangle
+        {
+            implicitHeight: Maui.Style.toolBarHeight
+            color: _headBar.Kirigami.Theme.backgroundColor
+
+            Kirigami.Separator
+            {
+                id: _border
+                anchors.left: parent.left
+                anchors.right: parent.right                
+            }
+            
+            layer.enabled: Kirigami.Settings.isMobile
+            layer.effect: Kirigami.ShadowedRectangle
+            {
+                color: Kirigami.Theme.backgroundColor
+                shadow.xOffset: 0
+                shadow.yOffset: control.altHeader ? -2 : 2
+                shadow.color: Qt.rgba(0, 0, 0, 0.2)
+                shadow.size: 4
+            }
         }
     }
 
@@ -477,6 +498,29 @@ Pane
                 easing.type: Easing.InOutQuad
             }
         }
+
+        background: Rectangle
+        {
+            implicitHeight: Maui.Style.toolBarHeight
+            color: _footBar.Kirigami.Theme.backgroundColor
+            
+            Kirigami.Separator
+            {
+                anchors.left: parent.left
+                anchors.right: parent.right   
+                anchors.top: parent.top
+            }
+
+            layer.enabled: true
+            layer.effect: Kirigami.ShadowedRectangle
+            {
+                color: Kirigami.Theme.backgroundColor
+                shadow.xOffset: 0
+                shadow.yOffset: -2
+                shadow.color: Qt.rgba(0, 0, 0, 0.2)
+                shadow.size: 4
+            }
+        }
     }
 
     states: [  State
@@ -489,6 +533,13 @@ Pane
                 anchors.top: parent.top
                 anchors.bottom: undefined
             }
+            
+            AnchorChanges
+            {
+                target: _border
+                anchors.top: undefined
+                anchors.bottom: parent.bottom
+            }            
 
             PropertyChanges
             {
@@ -507,6 +558,13 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
+            
+            AnchorChanges
+            {
+                target: _border
+                anchors.top: parent.top
+                anchors.bottom: undefined
+            }            
             
             PropertyChanges
             {
