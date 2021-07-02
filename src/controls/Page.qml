@@ -456,6 +456,7 @@ Pane
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: 0.5
+                weight: Kirigami.Separator.Weight.Light
             }
             
 //             layer.enabled: false
@@ -511,6 +512,7 @@ Pane
                 anchors.right: parent.right   
                 anchors.top: parent.top
                 height: 0.5
+                weight: Kirigami.Separator.Weight.Light
             }
 
             //layer.enabled: true

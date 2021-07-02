@@ -21,7 +21,7 @@ import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
 
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 /*!
@@ -150,7 +150,7 @@ Drawer
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         width: 0.5
-        //             edge: Qt.RightEdge
+        weight: Kirigami.Separator.Weight.Light
     }
     
     Component.onCompleted:
