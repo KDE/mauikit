@@ -99,6 +99,5 @@ Maui.AlternateListItem
                 }
             }
         }
-
     }
 }
