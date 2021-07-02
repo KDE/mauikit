@@ -454,18 +454,19 @@ Pane
             {
                 id: _border
                 anchors.left: parent.left
-                anchors.right: parent.right                
+                anchors.right: parent.right
+                height: 0.5
             }
             
-            layer.enabled: Kirigami.Settings.isMobile
-            layer.effect: Kirigami.ShadowedRectangle
-            {
-                color: Kirigami.Theme.backgroundColor
-                shadow.xOffset: 0
-                shadow.yOffset: control.altHeader ? -2 : 2
-                shadow.color: Qt.rgba(0, 0, 0, 0.2)
-                shadow.size: 4
-            }
+//             layer.enabled: false
+//             layer.effect: Kirigami.ShadowedRectangle
+//             {
+//                 color: Kirigami.Theme.backgroundColor
+//                 shadow.xOffset: 0
+//                 shadow.yOffset: control.altHeader ? -2 : 2
+//                 shadow.color: Qt.rgba(0, 0, 0, 0.2)
+//                 shadow.size: 4
+//             }
         }
     }
 
@@ -509,17 +510,18 @@ Pane
                 anchors.left: parent.left
                 anchors.right: parent.right   
                 anchors.top: parent.top
+                height: 0.5
             }
 
-            layer.enabled: true
-            layer.effect: Kirigami.ShadowedRectangle
-            {
-                color: Kirigami.Theme.backgroundColor
-                shadow.xOffset: 0
-                shadow.yOffset: -2
-                shadow.color: Qt.rgba(0, 0, 0, 0.2)
-                shadow.size: 4
-            }
+            //layer.enabled: true
+            //layer.effect: Kirigami.ShadowedRectangle
+            //{
+                //color: Kirigami.Theme.backgroundColor
+                //shadow.xOffset: 0
+                //shadow.yOffset: -2
+                //shadow.color: Qt.rgba(0, 0, 0, 0.2)
+                //shadow.size: 4
+            //}
         }
     }
 

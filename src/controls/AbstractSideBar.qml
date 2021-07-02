@@ -149,6 +149,7 @@ Drawer
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right
+        width: 0.5
         //             edge: Qt.RightEdge
     }
     
