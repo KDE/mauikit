@@ -125,6 +125,8 @@ endif()
 
 add_library(MauiKit
 
+    SHARED
+
     ${mauikit_HDRS}
     ${mauikit_SRCS}
 
