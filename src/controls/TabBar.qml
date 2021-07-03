@@ -47,9 +47,9 @@ TabBar
         
         Kirigami.Separator
         {
-            //color: parent.color
-            //edge: control.position === TabBar.Footer ?  Qt.TopEdge : Qt.BottomEdge
-            
+            height: 0.5
+            weight: Kirigami.Separator.Weight.Light
+
             anchors
             {
                 left: parent.left

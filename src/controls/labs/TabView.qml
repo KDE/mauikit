@@ -266,7 +266,9 @@ Container
                     
                     Kirigami.Separator
                     {
-                        //edge: Qt.RightEdge
+
+                        height: 0.5
+                        weight: Kirigami.Separator.Weight.Light
                         visible: index < control.count
                         anchors
                         {
