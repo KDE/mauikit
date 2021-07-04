@@ -40,7 +40,7 @@ Popup
     id: control
     
     parent: ApplicationWindow.overlay
-
+    
     width: filling ? parent.width : mWidth
     height: filling ? parent.height : mHeight
     
@@ -65,23 +65,23 @@ Popup
             easing.type: Easing.InOutQuad
         }
     }
-
+    
     readonly property int mWidth:  Math.round(Math.min(control.parent.width * widthHint, maxWidth))
     readonly property int mHeight: Math.round(Math.min(control.parent.height * heightHint, maxHeight))
-
+    
     x: filling ? 0 : Math.round( parent.width / 2 - width / 2 )
     y: filling ? 0 : Math.round( positionY() )
-
+    
     modal: !filling
-
+    
     margins: filling ? 0 : 1
     padding: filling ? 0 : 1
-
+    
     topPadding: control.padding
     bottomPadding: control.padding
     leftPadding: control.padding
     rightPadding: control.padding
-
+    
     rightMargin: control.margins
     leftMargin: control.margins
     topMargin: control.margins
@@ -89,104 +89,104 @@ Popup
     
     property bool filling : false
     /**
-      * content : Item.data
-      */
+     * content : Item.data
+     */
     default property alias content : _content.data
-
-    /**
-      * maxWidth : int
-      */
-    property int maxWidth : 700
-
-    /**
-      * maxHeight : int
-      */
-    property int maxHeight : 400
-
-    /**
-      * hint : double
-      */
-    property double hint : 0.9
-
-    /**
-      * heightHint : double
-      */
-    property double heightHint : hint
-
-    /**
-      * widthHint : double
-      */
-    property double widthHint : hint
-
-    /**
-      * verticalAlignment : int
-      */
-    property int verticalAlignment : Qt.AlignVCenter
-
-    contentItem: Item
-    {
-        id: _content
-
-        layer.enabled: true
-        layer.effect: OpacityMask
+        
+        /**
+         * maxWidth : int
+         */
+        property int maxWidth : 700
+        
+        /**
+         * maxHeight : int
+         */
+        property int maxHeight : 400
+        
+        /**
+         * hint : double
+         */
+        property double hint : 0.9
+        
+        /**
+         * heightHint : double
+         */
+        property double heightHint : hint
+        
+        /**
+         * widthHint : double
+         */
+        property double widthHint : hint
+        
+        /**
+         * verticalAlignment : int
+         */
+        property int verticalAlignment : Qt.AlignVCenter
+        
+        contentItem: null
+        
+        Item
         {
-            cached: true
-            maskSource: Item
+            id: _content
+            anchors.fill: parent
+            layer.enabled: true
+            layer.effect: OpacityMask
             {
-                width: _content.width
-                height: _content.height
-
-                Rectangle
+                cached: true
+                maskSource: Item
                 {
-                    anchors.fill: parent
-                    radius: control.background.radius
+                    width: _content.width
+                    height: _content.height
+                    
+                    Rectangle
+                    {
+                        anchors.fill: parent
+                        radius: control.background.radius
+                    }
                 }
             }
         }
-    }
-    
-    Rectangle
-    {
-        visible: !control.filling
-        anchors.fill: parent
-        color: "transparent"
-        radius: Maui.Style.radiusV - 0.5
-        border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-        opacity: 0.6
-    }
-
-   
-    background: Rectangle
-    {
-        id: _bg
-        color: Kirigami.Theme.backgroundColor
-        readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-        border.color: control.filling ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
-        radius: control.filling ? 0 : Maui.Style.radiusV
         
+        Rectangle
+        {
+            visible: !control.filling
+            anchors.fill: parent
+            color: "transparent"
+            radius: Maui.Style.radiusV - 0.5
+            border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+            opacity: 0.7
+        }
         
-    }
-
-    /**
-      *
-      */
-    function positionY()
-    {
-        if(verticalAlignment === Qt.AlignVCenter)
+        background: Rectangle
         {
-            return parent.height / 2 - height / 2
+            color: Kirigami.Theme.backgroundColor            
+            readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+            
+            border.color: control.filling ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
+            
+            radius: control.filling ? 0 : Maui.Style.radiusV
         }
-        else if(verticalAlignment === Qt.AlignTop)
+        
+        /**
+         * 
+         */
+        function positionY()
         {
-            return (height + Maui.Style.space.huge)
+            if(verticalAlignment === Qt.AlignVCenter)
+            {
+                return parent.height / 2 - height / 2
+            }
+            else if(verticalAlignment === Qt.AlignTop)
+            {
+                return (height + Maui.Style.space.huge)
+            }
+            else if(verticalAlignment === Qt.AlignBottom)
+            {
+                return (parent.height) - (height + Maui.Style.space.huge)
+                
+            }else
+            {
+                return parent.height / 2 - height / 2
+            }
         }
-        else if(verticalAlignment === Qt.AlignBottom)
-        {
-            return (parent.height) - (height + Maui.Style.space.huge)
-
-        }else
-        {
-            return parent.height / 2 - height / 2
-        }
-    }
 }

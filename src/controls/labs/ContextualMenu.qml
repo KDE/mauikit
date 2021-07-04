@@ -37,7 +37,7 @@ T.Menu
     bottomPadding: Maui.Style.space.medium
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-        
+    
     contentItem: Maui.ListBrowser
     {
         id: _listView
@@ -64,27 +64,51 @@ T.Menu
         implicitWidth: Kirigami.Units.gridUnit * 8
         color: control.Kirigami.Theme.backgroundColor
         radius: Maui.Style.radiusV
-
-        layer.enabled: true
-        layer.effect: Kirigami.ShadowedRectangle
-        {
-            color: Kirigami.Theme.backgroundColor
-            shadow.xOffset: 0
-            shadow.yOffset: 0
-            shadow.color: Qt.rgba(0, 0, 0, 0.3)
-            shadow.size: 8
-            
-            corners
+        
+        readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+        border.color: control.responsive ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
+        
+         Rectangle
             {
-                topLeftRadius: _bg.radius
-                topRightRadius: _bg.radius
-                bottomLeftRadius: _bg.radius
-                bottomRightRadius: _bg.radius
+                anchors.fill: parent
+                anchors.margins: 1
+                color: "transparent"
+                radius: parent.radius - 0.5
+                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                opacity: 0.7
             }
+            
+             Kirigami.Separator
+        {
+            visible: control.responsive
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+               height: 0.5
+                weight: Kirigami.Separator.Weight.Light
         }
+
+
+//         layer.enabled: true
+//         layer.effect: Kirigami.ShadowedRectangle
+//         {
+//             color: Kirigami.Theme.backgroundColor
+//             shadow.xOffset: 0
+//             shadow.yOffset: 0
+//             shadow.color: Qt.rgba(0, 0, 0, 0.3)
+//             shadow.size: 8
+//             
+//             corners
+//             {
+//                 topLeftRadius: _bg.radius
+//                 topRightRadius: _bg.radius
+//                 bottomLeftRadius: _bg.radius
+//                 bottomRightRadius: _bg.radius
+//             }
+//         }
     }
-
-
+    
+    
     
     //enter: Transition
     //{
