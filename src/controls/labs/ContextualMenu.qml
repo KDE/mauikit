@@ -7,7 +7,7 @@ import QtQuick.Controls 2.15
 
 import QtQuick.Templates 2.15 as T
 
-import org.kde.kirigami 2.13 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 T.Menu
@@ -63,14 +63,14 @@ T.Menu
         id: _bg
         implicitWidth: Kirigami.Units.gridUnit * 8
         color: control.Kirigami.Theme.backgroundColor
-        radius: Maui.Style.radiusV
+        radius: control.responsive ? 0 : Maui.Style.radiusV
         
         readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
         border.color: control.responsive ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
         
         Rectangle
         {
-            visible: control.responsive
+            visible: !control.responsive
             anchors.fill: parent
             anchors.margins: 1
             color: "transparent"
