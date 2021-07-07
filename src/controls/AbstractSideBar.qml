@@ -59,6 +59,9 @@ Drawer
 
     contentItem: null
 
+    padding: 0
+    leftPadding: 0
+    rightPadding: 0
     background: Rectangle
     {
         color: Kirigami.Theme.backgroundColor
