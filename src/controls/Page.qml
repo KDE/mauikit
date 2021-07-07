@@ -42,8 +42,8 @@ Pane
 {
     id: control
     focus: true
-    //     clip: true
     padding: 0
+    
     leftPadding: control.padding
     rightPadding: control.padding
     topPadding: control.padding
@@ -95,8 +95,7 @@ Pane
     */
     property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
     
-    property int headerColorSet :  Kirigami.Theme.Window
-    
+    property int headerColorSet : altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header         
 
     /*!
       A title for the page.
@@ -131,7 +130,6 @@ Pane
       Layout.fillWidth can be set, but an implicit or preferredHeight must be given.
       */
     property alias footerColumn : _footerContent.data
-
 
     /*!
       \qmlproperty list<Object> Page::headerColumn
@@ -248,25 +246,8 @@ Pane
 
     onFlickableChanged:
     {
-        //             if(flickable)
-        //             {
-        //                 flickable.bottomMargin = Qt.binding(function() { return control.floatingFooter && control.footerPositioning === ListView.InlineFooter ? _footerContent.implicitHeight : 0 })
-        //
-        //                          flickable.topMargin = Qt.binding(function() { return control.floatingHeader && this.atYBeginning && control.header.visible && control.headerPositioning === ListView.InlineHeader && !control.altHeader ? _headerContent.height: 0 })
-        //             }
-
         returnToBounds()
     }
-
-    //Binding
-    //{
-    //when: control.flickable
-    //target: control.flickable
-    //property: "topMargin"
-    //delayed: true
-    //value: control.floatingHeader && control.headerPositioning === ListView.InlineHeader && !control.altHeader ? _headerContent.implicitHeight: 0
-    //restoreMode: Binding.RestoreBindingOrValue
-    //}
 
     Binding
     {
@@ -710,27 +691,6 @@ Pane
         }
     }
 
-    //TapHandler
-    //{
-    ////    enabled: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
-    //    target: _content
-    //    onTapped:
-    //    {
-    //        if(control.autoHideHeader){
-    //            if(header.height !== 0)
-    //            {
-    //                _autoHideHeaderTimer.start()
-    //                _revealHeaderTimer.stop()
-
-    //            }else
-    //            {
-    //                _autoHideHeaderTimer.stop()
-    //                _revealHeaderTimer.start()
-    //            }
-    //        }
-    //    }
-    //}
-
     MouseArea
     {
         id: _touchMouse
@@ -746,7 +706,8 @@ Pane
             interval: 900
             onTriggered:
             {
-                if(control.autoHideHeader){
+                if(control.autoHideHeader)
+                {
                     if(header.height !== 0)
                     {
                         _autoHideHeaderTimer.start()
@@ -774,7 +735,8 @@ Pane
             }
         }
 
-        onPressed: {
+        onPressed: 
+        {
             doubleClickTimer.restart();
             mouse.accepted = false
         }
