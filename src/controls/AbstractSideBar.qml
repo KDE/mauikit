@@ -36,7 +36,9 @@ Drawer
 {
     id: control
     edge: Qt.LeftEdge
-//     clip: true
+    
+    position: 1
+    visible: true    
     
     implicitWidth: Math.min(preferredWidth, window().width)
     width: implicitWidth

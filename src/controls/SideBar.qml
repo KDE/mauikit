@@ -39,9 +39,6 @@ Maui.AbstractSideBar
 {
     id: control
 
-    position: 1
-    visible: true
-
     /**
       * content : ColumnLayout.data
       */
