@@ -36,7 +36,7 @@ import org.kde.kirigami 2.9 as Kirigami
 Item
 {
     id: control
-    focus: false
+    focus: true
     clip: true
     
     implicitHeight: contentHeight + topPadding + bottomPadding

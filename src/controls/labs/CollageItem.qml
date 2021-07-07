@@ -70,7 +70,7 @@ Maui.GridBrowserDelegate
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     Layout.maximumHeight: index === 0 ? control.height : control.height * 0.3
-//                     Layout.minimumHeight: index === 0 ? control.height * 0.6 : control.height * 0.2
+                    //                     Layout.minimumHeight: index === 0 ? control.height * 0.6 : control.height * 0.2
                     Layout.columnSpan: index === 0 ? 3 : 1
                     Layout.rowSpan: index === 0 ? 2 : 1
                     color: Qt.rgba(0,0,0,0.3)
@@ -78,8 +78,9 @@ Maui.GridBrowserDelegate
                     Image
                     {
                         anchors.fill: parent
-                        sourceSize.width: width
-                        sourceSize.height: height
+                        sourceSize.width:  (control.imageWidth > -1 ? control.imageWidth : width)
+                        sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : height)
+                        
                         asynchronous: true
                         smooth: true
                         source: control.cb ? control.cb(modelData) : modelData

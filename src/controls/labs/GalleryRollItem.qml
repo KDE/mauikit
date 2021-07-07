@@ -30,6 +30,7 @@ Maui.GridBrowserDelegate
      * cb : function
      */
     property var cb
+    
 
    template.iconComponent:  Item
     {
@@ -104,8 +105,8 @@ Maui.GridBrowserDelegate
                     Image
                     {
                         anchors.fill: parent
-                        sourceSize.width: control.width * 1.2
-                        sourceSize.height: control.height * 1.2
+                        sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : control.width) * 1.5
+                        sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : control.height)  * 1.5
                         asynchronous: true
                         smooth: true
                         cache: control.cache

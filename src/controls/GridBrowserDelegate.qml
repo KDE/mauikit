@@ -38,7 +38,7 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
-    
+    focus: false
     isCurrentItem : GridView.isCurrentItem || checked
     
     radius: maskRadius
@@ -113,6 +113,9 @@ Maui.ItemDelegate
      * dropArea : DropArea
      */
     property alias dropArea : _dropArea
+    
+       property alias imageWidth : _template.imageWidth
+    property alias imageHeight : _template.imageHeight
     
     /**
      * contentDropped :

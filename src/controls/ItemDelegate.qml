@@ -36,7 +36,7 @@ import org.mauikit.controls 1.2 as Maui
 Item
 {
     id: control
-
+    focus: false
     /**
       * content :
       */
@@ -55,7 +55,7 @@ Item
     /**
       * isCurrentItem :
       */
-    property bool isCurrentItem :  false
+    property alias isCurrentItem :  control.highlighted
 
       /**
       * padding :

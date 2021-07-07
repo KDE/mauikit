@@ -102,14 +102,13 @@ SwipeView
         }
     }
 
-
     onCurrentItemChanged:
     {
         currentItem.forceActiveFocus()
         _listView.positionViewAtIndex(control.currentIndex , ListView.SnapPosition)
         history.push(control.currentIndex)
     }
-
+    
     Keys.onBackPressed:
     {
         control.goBack()
@@ -154,6 +153,7 @@ SwipeView
     }
 
     Keys.enabled: true
+//     Keys.forwardTo:_listView
     Keys.onPressed:
     {
         if((event.key == Qt.Key_1) && (event.modifiers & Qt.ControlModifier))

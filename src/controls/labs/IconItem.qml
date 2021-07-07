@@ -73,6 +73,9 @@ Rectangle
      * maskRadius : int
      */
     property alias maskRadius: control.radius
+    
+    property int imageWidth : -1
+    property int imageHeight : -1
 
     Kirigami.Icon
     {
@@ -96,8 +99,8 @@ Rectangle
 
         anchors.centerIn: parent
 
-        sourceSize.width: width
-        sourceSize.height: height
+        sourceSize.width:  (control.imageWidth > -1 ? control.imageWidth : width)
+        sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : height)
 
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter

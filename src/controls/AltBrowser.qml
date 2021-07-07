@@ -25,9 +25,7 @@ Maui.Page
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: false
 
-    Keys.enabled : true
-    Keys.forwardTo : currentView
-    focus: false
+    focus: true
     clip: true
     
     /*!
@@ -115,8 +113,7 @@ Maui.Page
     readonly property int count : currentView.count
 
     flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
-    
-    
+        
     Maui.Holder
     {
         id: _holder
@@ -126,6 +123,7 @@ Maui.Page
     Maui.GridView
     {
         id: _gridView
+        focus: control.focus
         anchors.fill: parent
         visible: control.viewType === AltBrowser.ViewType.Grid
         currentIndex: control.currentIndex
@@ -140,6 +138,7 @@ Maui.Page
     Maui.ListBrowser
     {
         anchors.fill: parent
+        focus: control.focus
         id: _listView
         visible: control.viewType === AltBrowser.ViewType.List
         currentIndex: control.currentIndex

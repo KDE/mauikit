@@ -37,7 +37,7 @@ import QtGraphicalEffects 1.0
 Item
 {
     id: control
-    focus: false
+    focus: true
     clip: true
     
     implicitHeight: contentHeight + topPadding + bottomPadding

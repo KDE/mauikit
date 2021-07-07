@@ -38,7 +38,7 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-    
+    focus: false
     /**
      * content : data
      */
@@ -114,6 +114,10 @@ Item
          */
         property bool hovered: false
         
+        property int imageWidth : -1
+        
+        property int imageHeight: -1
+        
         /**
          * iconComponent : Component
          */
@@ -135,6 +139,9 @@ Item
                 
                 fillMode: control.fillMode
                 maskRadius: control.maskRadius
+                
+                imageWidth: control.imageWidth
+                imageHeight: control.imageHeight
             }
         }
         
