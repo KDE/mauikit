@@ -124,7 +124,7 @@ Maui.AbstractSideBar
             Layout.fillWidth: true
             topPadding: 0
             bottomPadding: 0
-            //verticalScrollBarPolicy: ScrollBar.AlwaysOff
+            verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
             delegate: control.delegate
 

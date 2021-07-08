@@ -24,7 +24,7 @@ Item
 {
     id: control
     implicitWidth: _loader.item.implicitWidth 
-    implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
+    implicitHeight: Maui.Style.rowHeight
     opacity: enabled ? 1 : 0.5
     
     Kirigami.Theme.colorSet: Kirigami.Theme.View
