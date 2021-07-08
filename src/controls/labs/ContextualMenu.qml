@@ -89,24 +89,23 @@ T.Menu
             weight: Kirigami.Separator.Weight.Light
         }
 
+        layer.enabled: control.responsive
+        layer.effect: Kirigami.ShadowedRectangle
+        {
+            color: Kirigami.Theme.backgroundColor
+            shadow.xOffset: 0
+            shadow.yOffset: -2
+            shadow.color: Qt.rgba(0, 0, 0, 0.3)
+            shadow.size: 8
 
-        //         layer.enabled: true
-        //         layer.effect: Kirigami.ShadowedRectangle
-        //         {
-        //             color: Kirigami.Theme.backgroundColor
-        //             shadow.xOffset: 0
-        //             shadow.yOffset: 0
-        //             shadow.color: Qt.rgba(0, 0, 0, 0.3)
-        //             shadow.size: 8
-        //
-        //             corners
-        //             {
-        //                 topLeftRadius: _bg.radius
-        //                 topRightRadius: _bg.radius
-        //                 bottomLeftRadius: _bg.radius
-        //                 bottomRightRadius: _bg.radius
-        //             }
-        //         }
+            corners
+            {
+                topLeftRadius: _bg.radius
+                topRightRadius: _bg.radius
+                bottomLeftRadius: _bg.radius
+                bottomRightRadius: _bg.radius
+            }
+        }
     }
     
     
