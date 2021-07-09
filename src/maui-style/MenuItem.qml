@@ -63,8 +63,8 @@ T.MenuItem
 
     spacing: Kirigami.Settings.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
 
-    icon.width: Kirigami.Settings.isMobile ?  Maui.Style.iconSizes.medium : Maui.Style.iconSizes.small
-    icon.height: Kirigami.Settings.isMobile ?  Maui.Style.iconSizes.medium : Maui.Style.iconSizes.small
+    icon.width: Maui.Style.iconSizes.small
+    icon.height: Maui.Style.iconSizes.small
 
     icon.color: control.checked || control.down ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
 
