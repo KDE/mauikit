@@ -120,6 +120,8 @@ TextField
     {
         id: _actionsLayout
         z: parent.z + 1
+        spacing: Maui.Style.space.medium
+        
         anchors.right: control.right
         anchors.verticalCenter: parent.verticalCenter
 
@@ -151,9 +153,13 @@ TextField
         {
             id: clearButton
             flat: true
+                            focusPolicy: Qt.NoFocus
+
             visible: control.text.length
             icon.name: "edit-clear"
             icon.color: control.color
+             icon.height: Maui.Style.iconSizes.small
+                icon.width: icon.height
             onClicked:
             {
                 control.clear()
@@ -168,7 +174,10 @@ TextField
             Maui.BasicToolButton
             {
                 flat: true
+                focusPolicy: Qt.NoFocus
                 action: modelData
+                icon.height: Maui.Style.iconSizes.small
+                icon.width: icon.height
             }
         }
     }
