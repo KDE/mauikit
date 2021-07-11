@@ -166,7 +166,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this](int index) {
                 beginInsertRows(QModelIndex(), index, index);
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -175,7 +176,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             [this]() {
                 const int index = m_model->getList()->getCount();
                 beginInsertRows(QModelIndex(), index, index);
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -184,7 +186,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             [this](uint count) {
                 const int index = m_model->getList()->getCount();
                 beginInsertRows(QModelIndex(), index, index + count - 1);
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -192,7 +195,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this]() {
                 endInsertRows();
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -200,7 +204,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this](int index) {
                 beginRemoveRows(QModelIndex(), index, index);
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -208,7 +213,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this]() {
                 endRemoveRows();
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -216,7 +222,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this](int index, QVector<int> roles) {
                 emit this->dataChanged(this->m_model->index(index, 0), this->m_model->index(index, 0), roles);
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -224,7 +231,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this]() {
                 beginResetModel();
-            });
+            },
+            Qt::DirectConnection);
 
         connect(
             m_model->getList(),
@@ -232,7 +240,8 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             this,
             [this]() {
                 endResetModel();
-            });
+            },
+            Qt::DirectConnection);
     }
 
     endResetModel();
