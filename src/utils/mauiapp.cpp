@@ -168,16 +168,22 @@ void CSDControls::setEnableCSD(const bool &value)
   return;
 #else
 
-  if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
+  if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
+    {
       if (QByteArrayList {"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
+        {
+          m_enableCSD = false;
+          return;
+        }
+    }else
+    {
+
+      if (m_enableCSD == value)
         return;
+
+      m_enableCSD = value;
     }
 
-  if (m_enableCSD == value)
-    return;
-
-  m_enableCSD = value;
-  // 	UTIL::saveSettings("CSD", m_enableCSD, "GLOBAL");
   emit enableCSDChanged();
 
   if (m_enableCSD) {

@@ -45,105 +45,105 @@ ToolBar
     implicitWidth: _scrollView.contentWidth
     spacing: Maui.Style.space.small
     padding: 0
-    
+
     /**
      * content : RowLayout.data
      */
     default property alias content : leftRowContent.content
-        
+
         /**
          * preferredHeight : int
          */
         property int preferredHeight: Math.max(Maui.Style.toolBarHeight, layout.implicitHeight)
-        
+
         /**
          * forceCenterMiddleContent : bool
          */
         property bool forceCenterMiddleContent : true
-        
+
         /**
          * leftContent : RowLayout.data
          */
         property alias leftContent : leftRowContent.content
-        
+
         /**
          * middleContent : RowLayout.data
          */
         property alias middleContent : middleRowContent.data
-        
+
         /**
          * rightContent : RowLayout.data
          */
         property alias rightContent : rightRowContent.content
-        
+
         /**
          * farLeftContent : RowLayout.data
          */
         property alias farLeftContent : farLeftRowContent.content
-        
+
         /**
          * farRightContent : RowLayout.data
          */
         property alias farRightContent : farRightRowContent.content
-        
+
         /**
          * middleLayout : RowLayout
          */
         property alias middleLayout : middleRowContent
-        
+
         /**
          * leftLayout : RowLayout
          */
         property alias leftLayout : leftRowContent
-        
+
         /**
          * rightLayout : RowLayout
          */
         property alias rightLayout : rightRowContent
-        
+
         /**
          * farRightLayout : RowLayout
          */
         property alias farRightLayout : farRightRowContent
-        
+
         /**
          * rightLayout : RowLayout
          */
         property alias farLeftLayout : farLeftRowContent
-        
+
         /**
          * layout : RowLayout
          */
         property alias layout : layout
-        
+
         /**
          * fits : bool
          */
         readonly property alias fits : _scrollView.fits
-        
+
         /**
          * margins : int
          */
         property int margins: control.spacing
-        
+
         /**
          * count : int
          */
         readonly property int count : leftContent.length + middleContent.length + rightContent.length + farLeftContent.length + farRightContent.length
-        
+
         /**
          * visibleCount: int
          */
         readonly property int visibleCount : leftRowContent.visibleChildren.length + middleRowContent.visibleChildren.length  + rightRowContent.visibleChildren.length + farLeftRowContent.visibleChildren.length  + farRightRowContent.visibleChildren.length
-        
-        
+
+
         property alias draggable : _dragHandler.enabled
-        
+
         Private.EdgeShadow
         {
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            visible: !mainFlickable.atXEnd && !control.fits 
+            visible: !mainFlickable.atXEnd && !control.fits
             opacity: 0.7
             z: 999
             edge: Qt.RightEdge
@@ -154,12 +154,12 @@ ToolBar
                 bottom: parent.bottom
             }
         }
-        
+
         Private.EdgeShadow
         {
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            visible: !mainFlickable.atXBeginning && !control.fits 
+            visible: !mainFlickable.atXBeginning && !control.fits
             opacity: 0.7
             z: 999
             edge: Qt.LeftEdge
@@ -170,17 +170,17 @@ ToolBar
                 bottom: parent.bottom
             }
         }
-        
+
         Kirigami.WheelHandler
         {
             id: wheelHandler
             target: mainFlickable
         }
-        
+
         Item
         {
             anchors.fill: parent
-            
+
             DragHandler
             {
                 id: _dragHandler
@@ -188,36 +188,29 @@ ToolBar
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { root.startSystemMove(); }
             }
-            //
-            /*  TapHandler
-             *            {
-             *                grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-             *                onTapped: if (tapCount === 2) root.toggleMaximized()
-             *                gesturePolicy: TapHandler.DragThreshold
-        } */
         }
-        
+
         Item
         {
             id: _container
             height: control.implicitHeight
             width: control.width
-            
+
             //              Label{
             //                  anchors.left: parent.left
             //                  z: parent.z + 9999
             //                  color: "orange"
             //                  text: farLeftRowContent.implicitWidth + " / " + leftRowContent.implicitWidth + " / " + _scrollView.width
             //              }
-            
+
             //             Label{
             //                 anchors.centerIn: parent
-            
+
             //                 z: parent.z + 9999
             //                 color: "orange"
             //                 text: _helper1.width + " / " + middleRowContent.implicitWidth + " / " + _helper2.width
             //             }
-            
+
             //Label{
             //anchors.right: parent.right
             //z: parent.z + 9999
@@ -227,7 +220,7 @@ ToolBar
             states: [State
             {
                 when: control.position === ToolBar.Header
-                
+
                 AnchorChanges
                 {
                     target: _container
@@ -235,11 +228,11 @@ ToolBar
                     anchors.bottom: parent.bottom
                 }
             },
-            
+
             State
             {
                 when: control.position === ToolBar.Footer
-                
+
                 AnchorChanges
                 {
                     target: _container
@@ -248,15 +241,15 @@ ToolBar
                 }
             }
             ]
-            
+
             RowLayout
             {
                 anchors.fill: parent
                 anchors.leftMargin: control.margins
-                anchors.rightMargin: control.margins   
-                
+                anchors.rightMargin: control.margins
+
                 spacing: control.spacing
-                
+
                 Private.ToolBarSection
                 {
                     id: farLeftRowContent
@@ -264,65 +257,65 @@ ToolBar
                     Layout.maximumWidth: implicitWidth
                     Layout.minimumWidth: implicitWidth
                     spacing: control.spacing
-                } 
-                
+                }
+
                /* ToolSeparator
                 {
                     visible: farLeftRowContent.visibleChildren.length && (leftRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
                     implicitHeight: Maui.Style.iconSizes.tiny
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }  */                
-                
+                }  */
+
                 ScrollView
                 {
                     id: _scrollView
                     readonly property bool fits : contentWidth < width
                     onFitsChanged: mainFlickable.returnToBounds()
-                    
+
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    
+
                     contentWidth: layout.implicitWidth - (_h1.mwidth + _h2.mwidth)
-                    contentHeight: availableHeight  
-                    
+                    contentHeight: availableHeight
+
                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                     ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-                    
+
                     Flickable
                     {
                         id: mainFlickable
-                        
+
                         flickableDirection: Flickable.HorizontalFlick
                         interactive: !fits && Maui.Handy.isTouch
-                        
+
                         boundsBehavior: Flickable.StopAtBounds
                         boundsMovement :Flickable.StopAtBounds
-                        
+
                         clip: true
-                        
+
                         RowLayout
                         {
                             id: layout
-                            
+
                             width: _scrollView.width
                             height: _scrollView.height
-                            
+
                             spacing: control.spacing
-                            
+
                             Private.ToolBarSection
                             {
                                 id: leftRowContent
-                                
+
                                 Layout.fillHeight: true
-                                
+
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
                                 Layout.preferredWidth: implicitWidth
-                                //                               
-                                spacing: control.spacing    
+                                //
+                                spacing: control.spacing
                             }
-                            
-                             
+
+
                             Item //helper to force center middle content
                             {
                                 id: _h1
@@ -335,7 +328,7 @@ ToolBar
                                 Layout.fillWidth: true
                             }
 
-                            
+
                             Private.ToolBarSection
                             {
                                 Layout.fillWidth: true
@@ -349,10 +342,10 @@ ToolBar
                                     Layout.fillHeight: true
                                     Layout.minimumWidth: implicitWidth
                                     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                                    spacing: control.spacing                                    
-                                }                                
-                            }    
-                            
+                                    spacing: control.spacing
+                                }
+                            }
+
                              Item //helper to force center middle content
                             {
                                 id: _h2
@@ -363,36 +356,36 @@ ToolBar
                                 Layout.fillWidth: true
                                 Layout.preferredWidth: mwidth
                                 Layout.maximumWidth: mwidth
-                            }                            
-                            
+                            }
+
                             Private.ToolBarSection
                             {
                                 id: rightRowContent
                                 Layout.fillHeight: true
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
-                                
-                                spacing: control.spacing                                
-                            }                            
-                        }                        
+
+                                spacing: control.spacing
+                            }
+                        }
                     }
-                }   
-                
+                }
+
                 //ToolSeparator
                 //{
                     //visible: farRightRowContent.visibleChildren.length && (rightRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
                     //implicitHeight: Maui.Style.iconSizes.tiny
                     //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 //}
-                
+
                 Private.ToolBarSection
                 {
                     id: farRightRowContent
                     Layout.fillHeight: true
                     Layout.maximumWidth: implicitWidth
-                    Layout.minimumWidth: implicitWidth          
-                    spacing: control.spacing                    
-                }                  
-            }          
-        }        
+                    Layout.minimumWidth: implicitWidth
+                    spacing: control.spacing
+                }
+            }
+        }
 }

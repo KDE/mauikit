@@ -37,6 +37,8 @@ Maui.Dialog
     page.margins: Maui.Style.space.big
     spacing: Maui.Style.space.medium
     
+    onOpened: textEntry.selectAll()
+    
     function done()
     {
         finished(textEntry.text)

@@ -22,7 +22,7 @@ import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.14 as Kirigami
 
 /*!
@@ -43,7 +43,7 @@ Pane
     id: control
     focus: true
     padding: 0
-    
+
     leftPadding: control.padding
     rightPadding: control.padding
     topPadding: control.padding
@@ -94,8 +94,8 @@ Pane
       By default this is set to InlineHeader unless it is a Mobile device, in which case it is PullBackHeader.
     */
     property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
-    
-    property int headerColorSet : altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header         
+
+    property int headerColorSet : altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header
 
     /*!
       A title for the page.
@@ -221,6 +221,8 @@ Pane
       to hint about the content under it.
       */
     property bool floatingFooter: false
+
+    property bool showCSDControls : false
 
     /*!
       The page has requested to go back by a gesture or keyboard shortcut
@@ -396,7 +398,7 @@ Pane
         Component
         {
             id: _titleComponent
-            
+
             Item
             {
                 Label
@@ -421,7 +423,7 @@ Pane
             sourceComponent: _titleComponent
 
             asynchronous: true
-            
+
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
@@ -439,7 +441,7 @@ Pane
                 height: 0.5
                 weight: Kirigami.Separator.Weight.Light
             }
-            
+
 //             layer.enabled: false
 //             layer.effect: Kirigami.ShadowedRectangle
 //             {
@@ -486,11 +488,11 @@ Pane
         {
             implicitHeight: Maui.Style.toolBarHeight
             color: _footBar.Kirigami.Theme.backgroundColor
-            
+
             Kirigami.Separator
             {
                 anchors.left: parent.left
-                anchors.right: parent.right   
+                anchors.right: parent.right
                 anchors.top: parent.top
                 height: 0.5
                 weight: Kirigami.Separator.Weight.Light
@@ -518,13 +520,13 @@ Pane
                 anchors.top: parent.top
                 anchors.bottom: undefined
             }
-            
+
             AnchorChanges
             {
                 target: _border
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
-            }            
+            }
 
             PropertyChanges
             {
@@ -543,14 +545,14 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
-            
+
             AnchorChanges
             {
                 target: _border
                 anchors.top: parent.top
                 anchors.bottom: undefined
-            }            
-            
+            }
+
             PropertyChanges
             {
                 target: header
@@ -735,7 +737,7 @@ Pane
             }
         }
 
-        onPressed: 
+        onPressed:
         {
             doubleClickTimer.restart();
             mouse.accepted = false
@@ -836,6 +838,16 @@ Pane
         onActivated: control.goBackTriggered();
     }
 
+
+    Component
+    {
+        id: _csdRightControlsComponent
+        Maui.WindowControls
+        {
+            side: Qt.RightEdge
+        }
+    }
+
     Component.onCompleted :
     {
         if(footer)
@@ -846,6 +858,12 @@ Pane
         if(header)
         {
             _headerContent.data.push(header)
+        }
+
+        if(Maui.App.controls.enableCSD && Maui.Handy.isLinux && control.showCSDControls)
+        {
+            var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
+            control.headBar.farRightContent.push(obj)
         }
     }
 
