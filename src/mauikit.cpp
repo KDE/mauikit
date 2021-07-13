@@ -199,6 +199,8 @@ void MauiKit::registerTypes(const char *uri)
 
     /** MAUI APPLICATION SPECIFIC PROPS **/
     /** HELPERS **/
+    qmlRegisterAnonymousType<CSDControls>(uri, 1);
+    qmlRegisterType<CSDButton>(uri, 1, 3, "CSDButton");
     qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
     qmlRegisterSingletonType<Handy>(uri, 1, 0, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)

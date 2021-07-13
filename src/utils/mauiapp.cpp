@@ -20,6 +20,7 @@
 #include "fmh.h"
 #include "handy.h"
 #include "utils.h"
+#include <QDir>
 
 #include <QStandardPaths>
 
@@ -42,140 +43,342 @@ static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::C
 MauiApp *MauiApp::m_instance = nullptr;
 
 MauiApp::MauiApp()
-    : QObject(nullptr)
+  : QObject(nullptr)
+  , m_controls(new CSDControls(this))
 {
-    this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
-
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
-    auto configWatcher = new QFileSystemWatcher({CONF_FILE.toLocalFile()}, this);
-    connect(configWatcher, &QFileSystemWatcher::fileChanged, [&](QString) {
-        getWindowControlsSettings();
+  connect(qApp, &QCoreApplication::aboutToQuit, []()
+  {
+      qDebug() << "Lets remove MauiApp singleton instance";
+      delete m_instance;
+      m_instance = nullptr;
     });
-#endif
-
-    connect(qApp, &QCoreApplication::aboutToQuit, []()
-    {
-        qDebug() << "Lets remove MauiApp singleton instance";
-        delete m_instance;
-        m_instance = nullptr;
-    });
-
-    getWindowControlsSettings();
 
 #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
-    setDefaultMauiStyle();
+  setDefaultMauiStyle();
 #endif
 
-//    qputenv("QT_QUICK_CONTROLS_CONF",  "://qtquickcontrols2.conf");
+  //    qputenv("QT_QUICK_CONTROLS_CONF",  "://qtquickcontrols2.conf");
 }
 
 QString MauiApp::getMauikitVersion()
 {
-    return MAUIKIT_VERSION_STRING;
+  return MAUIKIT_VERSION_STRING;
 }
 
 QString MauiApp::getIconName() const
 {
-    qDebug() << "REQUESTING ICONNAME" << m_iconName << this;
-    return m_iconName;
+  qDebug() << "REQUESTING ICONNAME" << m_iconName << this;
+  return m_iconName;
 }
 
 void MauiApp::setIconName(const QString &value)
 {
-    if (m_iconName == value)
-        return;
+  if (m_iconName == value)
+    return;
 
-    m_iconName = value;
-    emit this->iconNameChanged();
+  m_iconName = value;
+  emit this->iconNameChanged();
 }
 
 QString MauiApp::getDonationPage() const
 {
-    return m_donationPage;
+  return m_donationPage;
 }
 
 void MauiApp::setDonationPage(const QString &value)
 {
-    if (m_donationPage == value)
-        return;
+  if (m_donationPage == value)
+    return;
 
-    m_donationPage = value;
-    emit this->donationPageChanged();
+  m_donationPage = value;
+  emit this->donationPageChanged();
 }
 
 void MauiApp::setDefaultMauiStyle()
 {
 #if defined QICON_H && defined QQUICKSTYLE_H
-    QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
-    QIcon::setThemeName("Luv");
-    QQuickStyle::setStyle("maui-style");
+  QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
+  QIcon::setThemeName("Luv");
+  QQuickStyle::setStyle("maui-style");
 #endif
 }
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 {
-    Q_UNUSED(object)
-    return MauiApp::instance();
+  Q_UNUSED(object)
+  return MauiApp::instance();
 }
 
 void MauiApp::notify(const QString &icon, const QString &title, const QString &body, const QJSValue &callback, const int &timeout, const QString &buttonText)
 {
-    emit this->sendNotification(icon, title, body, callback, timeout, buttonText);
+  emit this->sendNotification(icon, title, body, callback, timeout, buttonText);
 }
 
-bool MauiApp::enableCSD() const
+CSDControls::CSDControls(QObject *parent) : QObject (parent)
 {
-    return m_enableCSD;
-}
+  this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
 
-void MauiApp::setEnableCSD(const bool &value)
-{
-#if defined Q_OS_ANDROID || defined Q_OS_IOS // ignore csd for those
-    Q_UNUSED(value)
-    return;
-#else
-
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
-        if (QByteArrayList {"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
-            return;
-    }
-
-    if (m_enableCSD == value)
-        return;
-
-    m_enableCSD = value;
-    // 	UTIL::saveSettings("CSD", m_enableCSD, "GLOBAL");
-    emit enableCSDChanged();
-
-    if (m_enableCSD) {
-        getWindowControlsSettings();
-    }
+#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+  auto configWatcher = new QFileSystemWatcher({CONF_FILE.toLocalFile()}, this);
+  connect(configWatcher, &QFileSystemWatcher::fileChanged, [this](QString) {
+    this->getWindowControlsSettings();
+  });
 #endif
+
+  this->getWindowControlsSettings();
 }
 
-void MauiApp::getWindowControlsSettings()
+
+void CSDControls::getWindowControlsSettings()
 {
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 
-    auto kconf = KSharedConfig::openConfig("kwinrc");
-    const auto group = kconf->group("org.kde.kdecoration2");
+  auto kconf = KSharedConfig::openConfig("kwinrc");
+  const auto group = kconf->group("org.kde.kdecoration2");
 
-    if (group.hasKey("ButtonsOnLeft")) {
-        m_leftWindowControls = group.readEntry("ButtonsOnLeft", "").split("", Qt::SkipEmptyParts);
-        emit this->leftWindowControlsChanged();
+  if (group.hasKey("ButtonsOnLeft")) {
+      m_leftWindowControls = group.readEntry("ButtonsOnLeft", "").split("", Qt::SkipEmptyParts);
+      emit this->leftWindowControlsChanged();
     }
 
-    if (group.hasKey("ButtonsOnRight")) {
-        m_rightWindowControls = group.readEntry("ButtonsOnRight", "").split("", Qt::SkipEmptyParts);
-        emit this->rightWindowControlsChanged();
+  if (group.hasKey("ButtonsOnRight")) {
+      m_rightWindowControls = group.readEntry("ButtonsOnRight", "").split("", Qt::SkipEmptyParts);
+      emit this->rightWindowControlsChanged();
     }
 
 #elif defined Q_OS_MACOS || defined Q_OS_ANDROID
-    m_leftWindowControls = QStringList {"X", "I", "A"};
-    emit this->leftWindowControlsChanged();
+  m_leftWindowControls = QStringList {"X", "I", "A"};
+  emit this->leftWindowControlsChanged();
 
 #elif defined Q_OS_WIN32
-    m_rightWindowControls = QStringList {"I", "A", "X"};
-    emit this->rightWindowControlsChanged();
+  m_rightWindowControls = QStringList {"I", "A", "X"};
+  emit this->rightWindowControlsChanged();
 #endif
+}
+
+bool CSDControls::enableCSD() const
+{
+  return m_enableCSD;
+}
+
+void CSDControls::setEnableCSD(const bool &value)
+{
+#if defined Q_OS_ANDROID || defined Q_OS_IOS // ignore csd for those
+  Q_UNUSED(value)
+  return;
+#else
+
+  if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
+      if (QByteArrayList {"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
+        return;
+    }
+
+  if (m_enableCSD == value)
+    return;
+
+  m_enableCSD = value;
+  // 	UTIL::saveSettings("CSD", m_enableCSD, "GLOBAL");
+  emit enableCSDChanged();
+
+  if (m_enableCSD) {
+      getWindowControlsSettings();
+    }
+#endif
+}
+
+CSDButton::CSDButton(QObject *parent): QObject(parent)
+{
+  connect(this, &CSDButton::typeChanged, this, &CSDButton::setSources);
+  connect(this, &CSDButton::stateChanged, this, &CSDButton::requestCurrentSource);
+}
+
+QUrl CSDButton::source() const
+{
+  return m_source;
+}
+
+void CSDButton::setSources()
+{
+  qDebug( )<< "Looking for CSD CONTROLS STYLE BUTTONS" << m_type;
+  auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, "org.mauikit.controls/csd/Nitrux/config.conf");
+  qDebug( )<< "Looking for CSD CONTROLS STYLE BUTTONS" << confFile;
+  QFileInfo file(confFile);
+  if(file.exists ())
+    {
+      m_dir = QUrl::fromLocalFile (file.dir ().absolutePath ());
+      QSettings conf (confFile, QSettings::IniFormat);
+      m_sources.insert (CSDButtonState::Normal, extractStateValue (conf, CSDButtonState::Normal));
+      m_sources.insert (CSDButtonState::Hover, extractStateValue (conf, CSDButtonState::Hover));
+      m_sources.insert (CSDButtonState::Pressed, extractStateValue (conf, CSDButtonState::Pressed));
+      m_sources.insert (CSDButtonState::Backdrop, extractStateValue (conf, CSDButtonState::Backdrop));
+      m_sources.insert (CSDButtonState::Disabled, extractStateValue (conf, CSDButtonState::Disabled));
+    }
+
+  this->requestCurrentSource ();
+}
+
+CSDButton::CSDButtonState CSDButton::state() const
+{
+  return m_state;
+}
+
+QUrl CSDButton::extractStateValue(QSettings &settings, const CSDButton::CSDButtonState &state)
+{
+  QUrl res;
+
+  settings.beginGroup (mapButtonType (m_type));
+  res =  m_dir.toString ()+"/"+settings.value (mapButtonState (state)).toString ();
+  settings.endGroup ();
+
+  qDebug() << "CSD Buttons is" << m_type << mapButtonType (m_type) << mapButtonState (state) << settings.value (mapButtonState (state));
+
+  if(QFile::exists (res.toLocalFile ()))
+    {
+      qDebug() << "CSD Buttons is" << res;
+      return res;
+    }else
+    {
+      return QUrl("dialog-close"); //put here a fallback button
+    }
+}
+
+void CSDButton::requestCurrentSource()
+{
+  this->m_source = this->m_sources.value (this->m_state);
+  emit this->sourceChanged ();
+}
+
+QString CSDButton::mapButtonType(const CSDButtonType &type)
+{
+  switch(type)
+    {
+    case Close: return "Close";
+    case Maximize: return "Maximize";
+    case Minimize: return "Minimize";
+    case Restore: return "Restore";
+    case Fullscreen: return "Fullscreen";
+    default: return "";
+    }
+}
+
+QString CSDButton::mapButtonState(const CSDButtonState &type)
+{
+  switch(type)
+    {
+    case Normal: return "Normal";
+    case Hover: return "Hover";
+    case Pressed: return "Pressed";
+    case Backdrop: return "Backdrop";
+    case Disabled: return "Disabled";
+    default: return "";
+    }
+}
+
+void CSDButton::setState(const CSDButtonState &newState)
+{
+  if (m_state == newState)
+    return;
+  m_state = newState;
+  emit stateChanged();
+}
+
+CSDControls *MauiApp::controls() const
+{
+  return m_controls;
+}
+
+CSDButton::CSDButtonType CSDButton::type() const
+{
+  return m_type;
+}
+
+void CSDButton::setType(CSDButtonType newType)
+{
+  if (m_type == newType)
+    return;
+
+  m_type = newType;
+  emit typeChanged();
+}
+
+bool CSDButton::isHovered() const
+{
+  return m_isHovered;
+}
+
+void CSDButton::setIsHovered(bool newIsHovered)
+{
+  if (m_isHovered == newIsHovered)
+    return;
+  m_isHovered = newIsHovered;
+  if(m_isHovered)
+    {
+      this->setState (CSDButtonState::Hover);
+    }else
+    {
+      this->setState (CSDButtonState::Normal);
+    }
+  emit isHoveredChanged();
+}
+
+bool CSDButton::isMaximized() const
+{
+  return m_isMaximized;
+}
+
+void CSDButton::setIsMaximized(bool newIsMaximized)
+{
+  if (m_isMaximized == newIsMaximized)
+    return;
+  m_isMaximized = newIsMaximized;
+  if(m_type == CSDButtonType::Maximize && m_isMaximized)
+    {
+      this->setType (CSDButtonType::Restore);
+    }else if(m_type == CSDButtonType::Restore && !m_isMaximized)
+    {
+      this->setType (CSDButtonType::Maximize);
+    }
+  emit isMaximizedChanged();
+}
+
+bool CSDButton::isPressed() const
+{
+  return m_isPressed;
+}
+
+void CSDButton::setIsPressed(bool newIsPressed)
+{
+  if (m_isPressed == newIsPressed)
+    return;
+  m_isPressed = newIsPressed;
+  if(m_isPressed)
+    {
+      this->setState (CSDButtonState::Pressed);
+    }else
+    {
+      this->setState (CSDButtonState::Normal);
+    }
+  emit isPressedChanged();
+}
+
+bool CSDButton::isFocused() const
+{
+  return m_isFocused;
+}
+
+void CSDButton::setIsFocused(bool newIsFocused)
+{
+  if (m_isFocused == newIsFocused)
+    return;
+  m_isFocused = newIsFocused;
+
+  if(m_isFocused)
+    {
+      this->setState (CSDButtonState::Normal);
+    }
+  else
+    {
+      this->setState (CSDButtonState::Backdrop);
+    }
+  emit isFocusedChanged();
 }

@@ -1,17 +1,14 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.3
-
-import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 import QtQuick.Window 2.3
-import org.mauikit.controls 1.1 as MauiLab
-import org.kde.appletdecoration 0.1 as AppletDecoration
+
+import org.mauikit.controls 1.3 as Maui
 
 /*!
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-MauiLab.CSDControls
+Maui.CSDControls
 {
     id: control
     onButtonClicked: performActiveWindowAction(type)
@@ -21,16 +18,12 @@ MauiLab.CSDControls
       */
     function performActiveWindowAction(type)
     {
-        if (type === AppletDecoration.Types.Close) {
+        if (type === Maui.CSDButton.Close) {
             root.close()
-        } else if (type === AppletDecoration.Types.Maximize) {
+        } else if (type === Maui.CSDButton.Maximize || type === Maui.CSDButton.Restore) {
             root.toggleMaximized()
-        } else if (type ===  AppletDecoration.Types.Minimize) {
+        } else if (type ===  Maui.CSDButton.Minimize) {
             root.showMinimized()
-        } else if (type === AppletDecoration.Types.TogglePinToAllDesktops) {
-            windowInfo.togglePinToAllDesktops();
-        } else if (type === AppletDecoration.Types.ToggleKeepAbove){
-            windowInfo.toggleKeepAbove();
         }
     }
 }

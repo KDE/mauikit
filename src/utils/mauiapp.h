@@ -46,125 +46,224 @@
  * }
  */
 
-class MAUIKIT_EXPORT MauiApp : public QObject
+class CSDButton : public QObject
 {
-    Q_OBJECT
-    Q_PROPERTY(KAboutData about READ getAbout CONSTANT FINAL)
-    Q_PROPERTY(QString iconName READ getIconName WRITE setIconName NOTIFY iconNameChanged)
-    Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
-
-    Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
-
-    // CSD support
-    Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
-    Q_PROPERTY(QStringList leftWindowControls MEMBER m_leftWindowControls NOTIFY leftWindowControlsChanged FINAL)
-    Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls NOTIFY rightWindowControlsChanged FINAL)
+  Q_OBJECT
+  Q_PROPERTY(bool isHovered READ isHovered WRITE setIsHovered NOTIFY isHoveredChanged)
+  Q_PROPERTY(bool isMaximized READ isMaximized WRITE setIsMaximized NOTIFY isMaximizedChanged)
+  Q_PROPERTY(bool isPressed READ isPressed WRITE setIsPressed NOTIFY isPressedChanged)
+  Q_PROPERTY(bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
+  Q_PROPERTY(CSDButtonType type READ type WRITE setType NOTIFY typeChanged)
+  Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
 
 public:
-    static MauiApp *qmlAttachedProperties(QObject *object);
+  enum CSDButtonState
+  {
+    Normal,
+    Hover,
+    Pressed,
+    Backdrop,
+    Disabled
+  }; Q_ENUM(CSDButtonState)
 
-    static MauiApp *instance()
-    {
-        if (m_instance)
-            return m_instance;
+  enum CSDButtonType
+  {
+    Close,
+        Minimize,
+        Maximize,
+        Restore,
+        Fullscreen,
+        None
+  };Q_ENUM(CSDButtonType)
 
-        m_instance = new MauiApp;
-        return m_instance;
-    }
+  typedef  QHash<CSDButtonState, QUrl> CSDButtonSources;
 
-    MauiApp(const MauiApp &) = delete;
-    MauiApp &operator=(const MauiApp &) = delete;
-    MauiApp(MauiApp &&) = delete;
-    MauiApp &operator=(MauiApp &&) = delete;
+  explicit CSDButton(QObject *parent =nullptr);
 
-    /**
-     * @brief getMauikitVersion
-     * MauiKit string version
-     * @return
-     */
-    static QString getMauikitVersion();
+  CSDButtonState state() const;
+  void setState(const CSDButtonState &state);
+  QUrl source() const;
 
-      /**
-     * @brief getIconName
-     * Application icon name as a URL to the image asset
-     * @return
-     */
-    QString getIconName() const;
+  bool isHovered() const;
+  void setIsHovered(bool newIsHovered);
 
-    /**
-     * @brief setIconName
-     * Set URL to the image asset to be set as the application icon
-     * @param value
-     */
-    void setIconName(const QString &value);
+  bool isMaximized() const;
+  void setIsMaximized(bool newIsMaximized);
 
-    /**
-     * @brief getDonationPage
-     * Application donation web page link
-     * @return
-     */
-    QString getDonationPage() const;
+  bool isPressed() const;
+  void setIsPressed(bool newIsPressed);
 
-    /**
-     * @brief setDonationPage
-     * Set application web page link
-     * @param value
-     */
-    void setDonationPage(const QString &value);
+  bool isFocused() const;
+  void setIsFocused(bool newIsFocused);
 
-    /**
-     * @brief getCredits
-     * Returns a model of the credits represented as a QVariantList, some of the fields used are: name, email, year.
-     * @return
-     */
-    KAboutData getAbout() const
-    {
-        return KAboutData::applicationData();
-    }
+  CSDButton::CSDButtonType type() const;
+  void setType(CSDButton::CSDButtonType newType);
 
-    /**
+private:
+  CSDButtonType m_type = CSDButtonType::None;
+  QUrl m_source;
+  QUrl m_dir;
+  CSDButtonState m_state = CSDButtonState::Normal;
+
+  CSDButtonSources m_sources; //the state and the source associated
+
+  bool m_isHovered;
+
+  bool m_isMaximized;
+
+  bool m_isPressed;
+
+  bool m_isFocused;
+
+  QString mapButtonType(const CSDButtonType &type);
+  QString mapButtonState(const CSDButtonState &type);
+  QUrl extractStateValue(QSettings &settings, const CSDButton::CSDButtonState &state);
+  void setSources();
+  void requestCurrentSource();
+
+
+signals:
+  void stateChanged();
+  void sourceChanged();
+  void isHoveredChanged();
+  void isMaximizedChanged();
+  void isPressedChanged();
+  void isFocusedChanged();
+  void typeChanged();
+};
+
+class CSDControls : public QObject
+{
+  Q_OBJECT
+
+  Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
+  Q_PROPERTY(QStringList leftWindowControls MEMBER m_leftWindowControls NOTIFY leftWindowControlsChanged FINAL)
+  Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls NOTIFY rightWindowControlsChanged FINAL)
+
+
+public:
+  typedef QHash<CSDButton::CSDButtonType, CSDButton*> CSDButtons;
+
+  explicit CSDControls(QObject *parent =nullptr);
+
+  /**
      * @brief enableCSD
      * If the apps supports CSD (client side decorations) the window controls are drawn within the app main header, following the system buttons order, and allows to drag to move windows and resizing.
      * @return
      * If the application has been marked manually to use CSD or if in the mauiproject.conf file the CSD field has been set
      */
-    bool enableCSD() const;
+  bool enableCSD() const;
 
-    /**
+  /**
      * @brief setEnableCSD
      * Manually enable CSD for this single application ignoreing the system wide mauiproject.conf CSD field value
      * @param value
      */
-    void setEnableCSD(const bool &value);
-
-    static void setDefaultMauiStyle();
+  void setEnableCSD(const bool &value);
 
 private:
-    static MauiApp *m_instance;
-    MauiApp();
+  bool m_enableCSD = false;
+  QStringList m_leftWindowControls;
+  QStringList m_rightWindowControls;
 
-    QString m_iconName;
-    QString m_donationPage;
-
-    // CSD support
-    bool m_enableCSD = false;
-    QStringList m_leftWindowControls;
-    QStringList m_rightWindowControls;
-
-    void getWindowControlsSettings();
+  void getWindowControlsSettings();
 
 signals:
-    void iconNameChanged();
-    void donationPageChanged();
-    void sendNotification(QString iconName, QString title, QString body, QJSValue callback, int timeout, QString buttonText);
+  void leftWindowControlsChanged();
+  void rightWindowControlsChanged();
+  void enableCSDChanged();
 
-    // CSD support
-    void enableCSDChanged();
-    void leftWindowControlsChanged();
-    void rightWindowControlsChanged();
+};
+
+class MAUIKIT_EXPORT MauiApp : public QObject
+{
+  Q_OBJECT
+  Q_PROPERTY(KAboutData about READ getAbout CONSTANT FINAL)
+  Q_PROPERTY(QString iconName READ getIconName WRITE setIconName NOTIFY iconNameChanged)
+  Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
+  Q_PROPERTY(CSDControls * controls READ controls CONSTANT FINAL)
+  Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
+
+public:
+  static MauiApp *qmlAttachedProperties(QObject *object);
+
+  static MauiApp *instance()
+  {
+    if (m_instance)
+      return m_instance;
+
+    m_instance = new MauiApp;
+    return m_instance;
+  }
+
+  MauiApp(const MauiApp &) = delete;
+  MauiApp &operator=(const MauiApp &) = delete;
+  MauiApp(MauiApp &&) = delete;
+  MauiApp &operator=(MauiApp &&) = delete;
+
+  /**
+     * @brief getMauikitVersion
+     * MauiKit string version
+     * @return
+     */
+  static QString getMauikitVersion();
+
+  /**
+     * @brief getIconName
+     * Application icon name as a URL to the image asset
+     * @return
+     */
+  QString getIconName() const;
+
+  /**
+     * @brief setIconName
+     * Set URL to the image asset to be set as the application icon
+     * @param value
+     */
+  void setIconName(const QString &value);
+
+  /**
+     * @brief getDonationPage
+     * Application donation web page link
+     * @return
+     */
+  QString getDonationPage() const;
+
+  /**
+     * @brief setDonationPage
+     * Set application web page link
+     * @param value
+     */
+  void setDonationPage(const QString &value);
+
+  /**
+     * @brief getCredits
+     * Returns a model of the credits represented as a QVariantList, some of the fields used are: name, email, year.
+     * @return
+     */
+  KAboutData getAbout() const
+  {
+    return KAboutData::applicationData();
+  }
+
+  static void setDefaultMauiStyle();
+
+  CSDControls *controls() const;
+
+private:
+  static MauiApp *m_instance;
+  MauiApp();
+  CSDControls * m_controls;
+  QString m_iconName;
+  QString m_donationPage;
+
+signals:
+  void iconNameChanged();
+  void donationPageChanged();
+  void sendNotification(QString iconName, QString title, QString body, QJSValue callback, int timeout, QString buttonText);
 
 public slots:
-    void notify(const QString &icon = "emblem-warning", const QString &title = "Oops", const QString &body = "Something needs your attention", const QJSValue &callback = {}, const int &timeout = 2500, const QString &buttonText = "Ok");
+  void notify(const QString &icon = "emblem-warning", const QString &title = "Oops", const QString &body = "Something needs your attention", const QJSValue &callback = {}, const int &timeout = 2500, const QString &buttonText = "Ok");
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)

@@ -215,4 +215,4 @@ install(FILES
 install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
 
 ##INSTALL THE DECO FOR CSD
-#install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/maui)
+install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/org.mauikit.controls)

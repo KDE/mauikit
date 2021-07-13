@@ -61,7 +61,7 @@ Window
     width: Screen.desktopAvailableWidth * (Kirigami.Settings.isMobile ? 1 : 0.4)
     height: Screen.desktopAvailableHeight * (Kirigami.Settings.isMobile ? 1 : 0.4)
     color: "transparent"
-    flags: Maui.App.enableCSD ? Qt.FramelessWindowHint : Qt.Window
+    flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
 
     /***************************************************/
     /********************* COLORS *********************/
@@ -311,10 +311,10 @@ Window
         {
             id: _pageBackground
             color: Kirigami.Theme.backgroundColor
-            radius: root.visibility === Window.Maximized || !Maui.App.enableCSD ? 0 :Maui.Style.radiusV
+            radius: root.visibility === Window.Maximized || !Maui.App.controls.enableCSD ? 0 :Maui.Style.radiusV
         }
 
-        layer.enabled: Maui.App.enableCSD
+        layer.enabled: Maui.App.controls.enableCSD
         layer.effect: OpacityMask
         {
             maskSource: Item
@@ -333,7 +333,7 @@ Window
 
     Rectangle
     {
-        visible: Maui.App.enableCSD
+        visible: Maui.App.controls.enableCSD
         z: ApplicationWindow.overlay.z + 9999
         anchors.fill: parent
         radius: _pageBackground.radius - 0.5
@@ -354,7 +354,7 @@ Window
 
     MouseArea
     {
-        visible: Maui.App.enableCSD
+        visible: Maui.App.controls.enableCSD
         height: 16
         width: height
         anchors.bottom: parent.bottom
@@ -378,7 +378,7 @@ Window
 
     MouseArea
     {
-        visible: Maui.App.enableCSD
+        visible: Maui.App.controls.enableCSD
         height: 16
         width: height
         anchors.bottom: parent.bottom
@@ -415,14 +415,14 @@ Window
 
         color: Qt.rgba( root.Kirigami.Theme.backgroundColor.r,  root.Kirigami.Theme.backgroundColor.g,  root.Kirigami.Theme.backgroundColor.b, 0.7)
         Behavior on opacity { NumberAnimation { duration: 150 } }
-    }   
-    
+    }
+
     Component
     {
         id: _aboutDialogComponent
         Private.AboutDialog {}
     }
-    
+
 
     Component
     {
@@ -437,7 +437,7 @@ Window
             property alias title : _notifyTemplate.label1
             property alias body: _notifyTemplate.label2
             property alias timeInterval : _notifyTimer.interval
-            
+
             persistent: false
             verticalAlignment: Qt.AlignTop
             defaultButtons: _notify.cb !== null
@@ -591,7 +591,7 @@ Window
     {
         return _page;
     }
-    
+
     function about()
     {
         dialogLoader.sourceComponent = _aboutDialogComponent

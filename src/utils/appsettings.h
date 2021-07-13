@@ -65,7 +65,7 @@ public:
      */
     static AppSettings &global()
     {
-        static AppSettings settings("mauiproject");
+        static AppSettings settings("mauiproject", "org.kde.maui");
         return settings;
     }
 
