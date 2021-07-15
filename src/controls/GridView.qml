@@ -317,6 +317,7 @@ Item
             Maui.Holder
             {
                 id: _holder
+                visible: false
                 anchors.fill : parent
             }
 

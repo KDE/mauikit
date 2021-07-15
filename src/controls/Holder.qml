@@ -36,8 +36,7 @@ import org.mauikit.controls 1.2 as Maui
 Item
 {
     id: control
-    anchors.fill: parent
-    visible: false
+    
     
     default property list<Action> actions
     
@@ -49,19 +48,14 @@ Item
     property string emoji
 
     /**
-      * message : string
-      */
-    property string message
-
-    /**
       * title : string
       */
-    property string title
+    property alias title : _label1.text
 
     /**
       * body : string
       */
-    property string body
+    property alias body : _label2.text
 
     /**
       * isMask : bool
@@ -82,7 +76,10 @@ Item
       * enabled : bool
       */
     property bool enabled: true
-
+    
+    property alias label1 : _label1
+    property alias label2 : _label2
+    
     /**
       * actionTriggered :
       */
@@ -98,9 +95,9 @@ Item
 
             width: Math.min(parent.width, emojiSize)
             height: width
-            color: textHolder.color
+            color: _label1.color
             isMask: control.isMask
-            opacity: textHolder.opacity
+            opacity: isMask ? _label1.opacity : 1
             source: emoji
         }
     }
@@ -125,7 +122,7 @@ Item
         Loader
         {
             id: loader
-            visible: control.height > (textHolder.implicitHeight + emojiSize)
+            visible: control.height > (_label1.implicitHeight + _label2.implicitHeight + emojiSize)
             height: control.emoji && visible ? emojiSize : 0
             width: height
             asynchronous: true
@@ -133,19 +130,44 @@ Item
             sourceComponent: control.emoji ? (isGif ? animComponent : imgComponent) : null
         }
 
+        Item
+        {
+            width: height
+            height: Maui.Style.space.medium
+        }
         Label
         {
-            id: textHolder
+            id: _label1
             width: Math.min(control.width * 0.7, implicitWidth)
-            opacity: 0.5
-            text: message ? qsTr(message) : "<h3>"+title+"</h3><p>"+body+"</p>"
-            padding: Maui.Style.space.medium
+            opacity: 0.7
+            anchors.horizontalCenter: parent.horizontalCenter
+            
+            font.pointSize: Maui.Style.fontSizes.huge            
             font.bold: true
-            textFormat: Text.RichText
+            font.weight: Font.Bold
             horizontalAlignment: Qt.AlignHCenter
             elide: Text.ElideRight
             color: Kirigami.Theme.textColor
             wrapMode: Text.Wrap
+        }
+        
+        Label
+        {
+            id: _label2
+            width: Math.min(control.width * 0.7, implicitWidth)
+            anchors.horizontalCenter: parent.horizontalCenter
+            
+            opacity: 0.5
+            horizontalAlignment: Qt.AlignHCenter
+            elide: Text.ElideRight
+            color: Kirigami.Theme.textColor
+            wrapMode: Text.Wrap
+        }
+        
+        Item
+        {
+            width: height
+            height: Maui.Style.space.big
         }
         
         Repeater

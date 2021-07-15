@@ -360,6 +360,7 @@ Container
             Maui.Holder
             {
                 id: _holder
+                anchors.fill: parent
                 visible: !control.count
                 emojiSize: Maui.Style.iconSizes.huge
                 isMask: true
