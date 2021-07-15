@@ -21,13 +21,13 @@ one could use the viewType property binded to a size condition.
 */
 Maui.Page
 {
-    id: control    
+    id: control
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: false
 
     focus: true
     clip: true
-    
+
     /*!
       The current view being used, the GridView or the ListBrowser.
       To access the precise view use the aliases for the GridView or ListView.
@@ -109,15 +109,16 @@ Maui.Page
       The ListBrowser used as the list view alternative.
     */
     readonly property alias listView : _listView
-    
+
     readonly property int count : currentView.count
 
     flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
-        
+
     Maui.Holder
     {
         id: _holder
         anchors.fill: parent
+        visible: false
     }
 
     Maui.GridView

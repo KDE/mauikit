@@ -10,16 +10,16 @@ import org.mauikit.controls 1.3 as Maui
 Container
 {
     id: control
-    
+
     spacing: 0
-    
+
     property alias holder : _holder
     property bool mobile : Kirigami.Settings.isMobile
 
     readonly property bool overviewMode : _tabsOverview.checked
-    
+
     property bool tabBarVisible : true
-    
+
     signal newTabClicked()
     signal closeTabClicked(int index)
 
@@ -30,14 +30,14 @@ Container
         {
             control.findTab()
         }
-    }  
+    }
 
     Maui.ContextualMenu
     {
         id: _menu
         parent: control
         property int index //tabindex
-        
+
         MenuItem
         {
             text: i18n("Open")
@@ -47,7 +47,7 @@ Container
                 _tabsOverview.checked = false
             }
         }
-        
+
         MenuItem
         {
             text: i18n("Close")
@@ -56,7 +56,7 @@ Container
                 control.closeTabClicked(_menu.index)
             }
         }
-        
+
         MenuItem
         {
             text: i18n("Close Other")
@@ -65,7 +65,7 @@ Container
                 control.closeTabClicked(_menu.index)
             }
         }
-        
+
         MenuItem
         {
             text: i18n("Close All")
@@ -75,7 +75,7 @@ Container
             }
         }
     }
-    
+
     Maui.Dialog
     {
         id: _quickSearch
@@ -121,47 +121,47 @@ Container
             id: _quickSearchField
             Layout.fillWidth: true
             Layout.maximumWidth: 500
-            
+
             onTextChanged: _typingTimer.restart()
-            
+
             onAccepted:
             {
                 control.currentIndex = _filterTabsList.currentIndex
                 _quickSearch.close()
                 control.currentItem.forceActiveFocus()
             }
-            
+
             Keys.enabled: true
-            
+
             Keys.onPressed:
             {
                 if((event.key === Qt.Key_Up))
                 {
                     _filterTabsList.flickable.decrementCurrentIndex()
                 }
-                
+
                 if((event.key === Qt.Key_Down))
                 {
                     _filterTabsList.flickable.incrementCurrentIndex()
                 }
             }
         }
-        
+
         stack: Maui.ListBrowser
         {
             id: _filterTabsList
             Layout.fillWidth: true
             Layout.fillHeight: true
             currentIndex: control.currentIndex
-            
+
             model: control.count
-            
+
             delegate: Maui.ListDelegate
             {
                 width: ListView.view.width
-                
+
                 label: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                
+
                 onClicked:
                 {
                     currentIndex =index
@@ -171,41 +171,41 @@ Container
             }
         }
     }
-    
+
     contentItem: ColumnLayout
     {
         spacing: 0
-        
+
         Maui.TabBar
         {
             id: tabsBar
             visible: control.count > 1 && !control.mobile && control.tabBarVisible
             Layout.fillWidth: true
-            
+
             position: TabBar.Header
-            
+
             currentIndex : control.currentIndex
-            
+
             onNewTabClicked: control.newTabClicked()
-            
+
             Keys.onPressed:
             {
                 if(event.key == Qt.Key_Return)
                 {
                     control.currentIndex = currentIndex
                 }
-                
+
                 if(event.key == Qt.Key_Down)
                 {
                     control.currentItem.forceActiveFocus()
                 }
             }
-            
+
             Repeater
             {
                 id: _repeater
                 model: control.count
-                
+
                 Maui.TabButton
                 {
                     id: _tabButton
@@ -213,29 +213,29 @@ Container
                     implicitWidth: Math.max(parent.width / _repeater.count, 200)
                     checked: index === control.currentIndex
                     text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                    
+
                     ToolTip.delay: 1000
                     ToolTip.timeout: 5000
                     ToolTip.visible: ( _tabButton.hovered )
                     ToolTip.text: control.contentModel.get(index).Maui.TabViewInfo.tabToolTipText
-                    
+
                     onClicked:
                     {
                         control.currentIndex = index
                         control.currentItem.forceActiveFocus()
                     }
-                    
+
                     onRightClicked:
                     {
                         _menu.index = index
                         _menu.show()
                     }
-                    
+
                     onCloseClicked:
                     {
                         control.closeTabClicked(index)
                     }
-                    
+
                     Timer
                     {
                         id: _dropAreaTimer
@@ -248,7 +248,7 @@ Container
                             }
                         }
                     }
-                    
+
                     DropArea
                     {
                         id: _dropArea
@@ -257,13 +257,13 @@ Container
                         {
                             _dropAreaTimer.restart()
                         }
-                        
+
                         onExited:
                         {
                             _dropAreaTimer.stop()
                         }
                     }
-                    
+
                     Kirigami.Separator
                     {
 
@@ -280,7 +280,7 @@ Container
                 }
             }
         }
-        
+
         Maui.TabBar
         {
             Layout.fillWidth: true
@@ -290,7 +290,7 @@ Container
             showNewTabButton: false
             position: ToolBar.Header
 
-            
+
             Maui.TabButton
             {
                 anchors.fill: parent
@@ -303,7 +303,7 @@ Container
                 {
                     control.closeTabClicked(control.currentIndex)
                 }
-                
+
                 content: Item
                 {
                     Layout.fillHeight: true
@@ -326,7 +326,7 @@ Container
                 }
             }
         }
-        
+
         ListView
         {
             Layout.fillWidth: true
@@ -343,56 +343,55 @@ Container
 
             preferredHighlightBegin: 0
             preferredHighlightEnd: width
-            
+
             highlightRangeMode: ListView.StrictlyEnforceRange
             highlightMoveDuration: 0
             highlightFollowsCurrentItem: true
             highlightResizeDuration: 0
             highlightMoveVelocity: -1
             highlightResizeVelocity: -1
-            
+
             maximumFlickVelocity: 4 * width
-            
+
             cacheBuffer: control.count * width
             keyNavigationEnabled : false
             keyNavigationWraps : false
-            
+
             Maui.Holder
             {
                 id: _holder
                 anchors.fill: parent
                 visible: !control.count
                 emojiSize: Maui.Style.iconSizes.huge
-                isMask: true
             }
-            
+
             Rectangle
             {
                 id: _overview
                 visible: control.overviewMode && control.mobile
-                
+
                 anchors.fill: parent
-                
+
                 Kirigami.Theme.colorSet: Kirigami.Theme.Window
                 Kirigami.Theme.inherit: false
-                
+
                 color: Kirigami.Theme.backgroundColor
-                
+
                 Maui.GridView
                 {
                     id: _overviewGrid
-                    
+
                     anchors.fill: parent
                     model: control.count
                     currentIndex: control.currentIndex
                     itemSize: width / 3
                     itemHeight:  (height / 3)
-                    
+
                     onAreaClicked:
                     {
                         _tabsOverview.checked = false
                     }
-                    
+
                     delegate: Item
                     {
                         height: GridView.view.cellHeight
@@ -403,11 +402,11 @@ Container
                             anchors.centerIn: parent
                             width: _overviewGrid.itemSize - Maui.Style.space.small
                             height: _overviewGrid.itemHeight  - Maui.Style.space.small
-                            
+
                             isCurrentItem : parent.GridView.isCurrentItem
                             label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
                             iconSource: "tab-new"
-                            
+
                             onRightClicked:
                             {
                                 control.currentIndex = index
@@ -426,30 +425,30 @@ Container
                             {
                                 control.currentIndex = index
                                 _menu.index = control.currentIndex
-                                _menu.show()                                
+                                _menu.show()
                             }
-                            
+
                             template.iconComponent: Item
                             {
-                                
+
                                 clip: true
-                                
+
                                 ShaderEffectSource
                                 {
                                     id: _effect
-                                    
+
                                     anchors.centerIn: parent
 
                                     height: _overviewGrid.itemHeight - 4
                                     width: _overviewGrid.itemSize - 4
-                                    
+
                                     hideSource: visible
                                     live: true
                                     textureSize: Qt.size(width,height)
                                     sourceItem: control.contentModel.get(index)
-                                   
+
                                 }
-                                
+
                                 Kirigami.ShadowedRectangle
                                             {
                                                 anchors.fill: parent
@@ -464,8 +463,8 @@ Container
                                     border.width: 2
                                     color: "transparent"
                                             }
-                                
-                                
+
+
                             }
                         }
                     }
@@ -473,14 +472,14 @@ Container
             }
         }
     }
-    
+
     function closeTab(index)
     {
         control.removeItem(control.takeItem(index))
         control.currentItemChanged()
         control.currentItem.forceActiveFocus()
     }
-    
+
     function addTab(component, properties)
     {
         const object = component.createObject(control.contentModel, properties);
@@ -488,10 +487,10 @@ Container
         control.addItem(object)
         control.currentIndex = Math.max(control.count -1, 0)
         object.forceActiveFocus()
-        
+
         return object
     }
-    
+
     function findTab()
     {
         if(control.count > 1)
@@ -500,7 +499,7 @@ Container
             _quickSearchField.forceActiveFocus()
         }
     }
-    
+
     function openOverview()
     {
         _tabsOverview.toggle()
