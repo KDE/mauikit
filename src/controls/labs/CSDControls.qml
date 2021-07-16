@@ -43,6 +43,12 @@ Loader
             height: parent.height
             spacing: Maui.Style.space.medium
 
+            ToolSeparator
+            {
+                height: 8
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            
             Repeater
             {
                 model: control.model

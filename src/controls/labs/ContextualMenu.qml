@@ -37,7 +37,7 @@ T.Menu
     bottomPadding: Maui.Style.space.medium
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-    
+    delegate: MenuItem { onImplicitWidthChanged: control.contentItem.contentItem.childrenChanged() }
     contentItem: Maui.ListBrowser
     {
         id: _listView
