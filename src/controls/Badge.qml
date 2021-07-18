@@ -76,12 +76,12 @@ Rectangle
     */
     property string text : ""
 
-    property font font :
-    {
-        weight: Font.Bold
-        bold: true
-        pointSize: Maui.Style.fontSizes.small
-    }
+    property font font
+
+        font.weight: Font.Bold
+        font.bold: true
+        font.pointSize: Maui.Style.fontSizes.small
+
 
     /**
       * clicked :
