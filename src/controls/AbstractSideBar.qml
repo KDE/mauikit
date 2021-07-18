@@ -56,7 +56,8 @@ Drawer
     modal: false
 
     opacity: _dropArea.containsDrag ? 0.5 : 1
-
+    clip: true
+    
     contentItem: null
 
     padding: 0
