@@ -76,6 +76,13 @@ Rectangle
     */
     property string text : ""
 
+    property font font :
+    {
+        weight: Font.Bold
+        bold: true
+        pointSize: Maui.Style.fontSizes.small
+    }
+
     /**
       * clicked :
       */
@@ -115,9 +122,7 @@ Rectangle
             height: parent.height
             width: parent.width
             text: control.text
-            font.weight: Font.Bold
-            font.bold: true
-            font.pointSize: Maui.Style.fontSizes.small
+            font: control.font
             color: Kirigami.Theme.textColor
             verticalAlignment: Qt.AlignVCenter
             horizontalAlignment: Qt.AlignHCenter

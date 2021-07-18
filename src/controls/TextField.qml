@@ -125,7 +125,7 @@ TextField
         anchors.right: control.right
         anchors.verticalCenter: parent.verticalCenter
 
-         Maui.BasicToolButton
+        Maui.BasicToolButton
         {
             property int previousEchoMode
             flat: true
@@ -153,13 +153,13 @@ TextField
         {
             id: clearButton
             flat: true
-                            focusPolicy: Qt.NoFocus
+            focusPolicy: Qt.NoFocus
 
             visible: control.text.length
             icon.name: "edit-clear"
             icon.color: control.color
-             icon.height: Maui.Style.iconSizes.small
-                icon.width: icon.height
+            icon.height: Maui.Style.iconSizes.small
+            icon.width: Maui.Style.iconSizes.small
             onClicked:
             {
                 control.clear()
@@ -177,7 +177,7 @@ TextField
                 focusPolicy: Qt.NoFocus
                 action: modelData
                 icon.height: Maui.Style.iconSizes.small
-                icon.width: icon.height
+                icon.width: Maui.Style.iconSizes.small
             }
         }
     }
@@ -241,7 +241,7 @@ TextField
             console.log(drop.text, drop.html)
             if (drop.hasText)
             {
-                  control.text += drop.text
+                control.text += drop.text
 
             }else if(drop.hasUrls)
             {

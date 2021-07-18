@@ -370,7 +370,7 @@ Item
                     implicitWidth: height
                     text: selectionList.count
                     radius: Maui.Style.radiusV
-                    
+                    font.pointSize: Maui.Style.fontSizes.big
                     Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
                     Kirigami.Theme.backgroundColor: _listContainer.showList ?
                     Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
@@ -380,12 +380,7 @@ Item
                     {
                         _listContainer.showList = !_listContainer.showList
                     }
-                    
-                    Component.onCompleted:
-                    {
-                        _counter.item.font.pointSize= Maui.Style.fontSizes.big
-                        
-                    }
+
                     
                     SequentialAnimation
                     {

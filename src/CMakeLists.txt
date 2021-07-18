@@ -175,6 +175,7 @@ target_link_libraries(MauiKit
 
     PRIVATE
     Qt5::Qml
+    Qt5::Svg
     Qt5::Widgets
     Qt5::QuickControls2
     )

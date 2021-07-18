@@ -97,8 +97,10 @@ void MauiApp::setDonationPage(const QString &value)
 void MauiApp::setDefaultMauiStyle()
 {
 #if defined QICON_H && defined QQUICKSTYLE_H
+    qDebug() << "trying to set icon theme" << "Luv"<< QFileInfo(":/icons/luv-icon-theme").exists() << QFileInfo(":/android_rcc_bundle/icons/luv-icon-theme").exists() <<  QFileInfo(":/android_rcc_bundle/qml/QtQuick/Controls.2/maui-style/icons/luv-icon-theme/Luv").exists();
   QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
   QIcon::setThemeName("Luv");
+  qDebug() << QIcon::themeSearchPaths() << QIcon::hasThemeIcon("sidebar-expand");
   QQuickStyle::setStyle("maui-style");
 #endif
 }
