@@ -138,15 +138,12 @@ Item
         {
             id: _menuButton
             icon.name: "list-add"
-            
+            icon.width: Maui.Style.iconSizes.medium
+            icon.height: Maui.Style.iconSizes.medium
             visible: control.hiddenItems.length > 0
             
             Layout.alignment: Qt.AlignCenter
-//             Layout.fillWidth: true
             display: checked ? ToolButton.TextBesideIcon : ToolButton.IconOnly
-            
-//             menu.closePolicy: Popup.CloseOnReleaseOutsideParent
-            
             
             Behavior on implicitWidth
             {
