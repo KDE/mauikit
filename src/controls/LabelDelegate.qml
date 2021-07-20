@@ -41,11 +41,11 @@ ItemDelegate
     Kirigami.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Kirigami.Theme.backgroundColor) : "transparent")
     implicitHeight: Maui.Style.rowHeight
 
-
+    highlighted:  ListView.isCurrentItem
     /**
       * isCurrentListItem : bool
       */
-    property bool isCurrentListItem : ListView.isCurrentItem
+    property alias isCurrentListItem : control.highlighted
 
     /**
       * isSection : bool
