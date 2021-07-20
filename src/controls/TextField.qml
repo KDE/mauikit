@@ -20,6 +20,8 @@
 import QtQuick 2.14
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
+import QtQuick.Templates 2.15 as T
+import QtQuick.Window 2.1
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -34,9 +36,20 @@ import org.mauikit.controls 1.3 as Maui
  *
  *
  */
-TextField
+T.TextField
 {
     id: control
+    palette: Kirigami.Theme.palette
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Kirigami.Theme.inherit: false
+
+
+    implicitWidth: Math.max(200,
+                            placeholderText ? placeholder.implicitWidth + leftPadding + rightPadding : 0)
+                            || contentWidth + leftPadding + rightPadding
+    implicitHeight: Math.max(contentHeight + topPadding + bottomPadding,
+                             background ? background.implicitHeight : 0,
+                             placeholder.implicitHeight + topPadding + bottomPadding)
 
     /**
       * menu : Menu
@@ -68,9 +81,17 @@ TextField
       */
     signal contentDropped(var drop)
 
-    //Layout.maximumWidth: 500
+
+
+       color: control.enabled ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+       selectionColor: Kirigami.Theme.highlightColor
+       selectedTextColor: Kirigami.Theme.highlightedTextColor
+       verticalAlignment: TextInput.AlignVCenter
+       hoverEnabled: !Kirigami.Settings.tabletMode
+       renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
 
     rightPadding: _actionsLayout.implicitWidth + Maui.Style.space.small
+    padding: 6
 
     selectByMouse: !Kirigami.Settings.isMobile
 
@@ -121,7 +142,7 @@ TextField
         id: _actionsLayout
         z: parent.z + 1
         spacing: Maui.Style.space.medium
-        
+
         anchors.right: control.right
         anchors.verticalCenter: parent.verticalCenter
 
@@ -166,11 +187,11 @@ TextField
                 cleared()
             }
         }
-        
+
         Repeater
         {
             model: control.actions
-            
+
             Maui.BasicToolButton
             {
                 flat: true
@@ -250,5 +271,35 @@ TextField
 
             control.contentDropped(drop)
         }
+    }
+
+    Text
+    {
+           id: placeholder
+           anchors.fill: parent
+           anchors.margins: Maui.Style.space.medium
+           // Work around Qt bug where NativeRendering breaks for non-integer scale factors
+           // https://bugreports.qt.io/browse/QTBUG-67007
+           renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
+
+           text: control.placeholderText
+           font: control.font
+           color: Kirigami.Theme.textColor
+           opacity: 0.5
+           horizontalAlignment: control.activeFocus ? control.horizontalAlignment : Qt.AlignHCenter
+           verticalAlignment:  Qt.AlignVCenter
+           visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
+           elide: Text.ElideRight
+       }
+
+    background: Rectangle
+    {
+        implicitWidth: 200
+        implicitHeight: Maui.Style.rowHeight
+
+        color: control.activeFocus ? Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)
+        border.color: control.activeFocus ? Kirigami.Theme.highlightColor : color
+
+        radius: Maui.Style.radiusV
     }
 }

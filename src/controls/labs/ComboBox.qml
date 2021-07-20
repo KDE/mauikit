@@ -123,9 +123,9 @@ T.ComboBox
 
         radius: Maui.Style.radiusV
 
-        color: control.editable ? control.Kirigami.Theme.backgroundColor : "transparent"
+        color: control.editable ? control.Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)
 
-        border.color:  control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+        border.color:  control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : color
 
         MouseArea
         {
