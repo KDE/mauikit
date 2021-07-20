@@ -35,9 +35,9 @@
 ****************************************************************************/
 
 import QtQuick 2.15
-import QtQuick.Window 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Controls.impl 2.12
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.2
+
 import QtQuick.Templates 2.12 as T
 
 import org.kde.kirigami 2.14 as Kirigami
@@ -49,7 +49,12 @@ T.ComboBox
 {
     id: control
 
-    property bool responsive: true
+    palette: Kirigami.Theme.palette
+       //NOTE: typeof necessary to not have warnings on Qt 5.7
+       Kirigami.Theme.colorSet: typeof(editable) != "undefined" && editable ? Kirigami.Theme.View : Kirigami.Theme.Button
+       Kirigami.Theme.inherit: false
+
+    property bool responsive: Kirigami.Settings.hasTransientTouchInput
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -57,10 +62,11 @@ T.ComboBox
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
 
-//    topInset: Maui.Style.space.small
-//    bottomInset: Maui.Style.space.small
+    //    topInset: Maui.Style.space.small
+    //    bottomInset: Maui.Style.space.small
 
-    spacing: Maui.Style.space.small
+    spacing: control.responsive ? Maui.Style.space.medium : (Maui.Handy.isTouch ? Maui.Style.space.small : 0)
+
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
 
@@ -71,6 +77,9 @@ T.ComboBox
         //        Material.foreground: control.currentIndex === index ? parent.Material.accent : parent.Material.foreground
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
+        Kirigami.Theme.colorSet: control.Kirigami.Theme.inherit ? control.Kirigami.Theme.colorSet : Kirigami.Theme.View
+        Kirigami.Theme.inherit: control.Kirigami.Theme.inherit
+
     }
 
     indicator: Kirigami.Icon
@@ -86,9 +95,8 @@ T.ComboBox
     contentItem: T.TextField
     {
         padding: Maui.Style.space.small
-        leftPadding: control.editable ? Maui.Style.space.medium : control.mirrored ? 0 : Maui.Style.space.medium
-        rightPadding: control.editable ? Maui.Style.space.medium : control.mirrored ? Maui.Style.space.medium : 0
-
+        leftPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? 0 : Maui.Style.space.medium) + control.leftPadding
+        rightPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? Maui.Style.space.medium : 0) + control.rightPadding
         text: control.editable ? control.editText : control.displayText
 
         enabled: control.editable
@@ -100,10 +108,11 @@ T.ComboBox
         selectByMouse: !Kirigami.Settings.tabletMode
 
         font: control.font
-        color: control.enabled ? control.Kirigami.Theme.textColor : control.Kirigami.Theme.highlightColor
+        color: control.Kirigami.Theme.textColor
         selectionColor:  control.Kirigami.Theme.highlightColor
         selectedTextColor: control.Kirigami.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
+        opacity: control.enabled ? 1 : 0.5
         //        cursorDelegate: CursorDelegate { }
     }
 
@@ -114,7 +123,7 @@ T.ComboBox
 
         radius: Maui.Style.radiusV
 
-        color: !control.editable ? control.Kirigami.Theme.backgroundColor : "transparent"
+        color: control.editable ? control.Kirigami.Theme.backgroundColor : "transparent"
 
         border.color:  control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
 
@@ -161,8 +170,7 @@ T.ComboBox
 
         transformOrigin: Item.Top
 
-        spacing: control.responsive ?  Maui.Style.space.medium : (Maui.Handy.isTouch ? Maui.Style.space.small : 0)
-
+        spacing: control.spacing
         modal: control.responsive
         margins: 0
 
@@ -182,8 +190,6 @@ T.ComboBox
             NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
         }
-
-
 
         contentItem: Maui.ListBrowser
         {
@@ -256,7 +262,5 @@ T.ComboBox
                 }
             }
         }
-
-
     }
 }
