@@ -358,6 +358,7 @@ Item
                 
                 rightContent: Maui.ToolButtonMenu
                 {
+                    icon.name: "overflow-menu"
                     visible: content.length > 0
                     content: control.hiddenActions
                 }  
