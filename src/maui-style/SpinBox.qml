@@ -36,11 +36,13 @@
 
 import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Window 2.1
 
 
-T.SpinBox {
+T.SpinBox
+{
     id: control
     opacity: control.enabled ? 1 : 0.5
 
@@ -53,20 +55,23 @@ T.SpinBox {
                              up.implicitIndicatorHeight,
                              down.implicitIndicatorHeight)
 
-    spacing: Maui.Style.space.tiny
+    spacing: Maui.Style.space.medium
+    editable: true
+
     topPadding: 0
     bottomPadding: 0
     leftPadding: (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
 
-    validator: IntValidator {
+    validator: IntValidator
+    {
         locale: control.locale.name
         bottom: Math.min(control.from, control.to)
         top: Math.max(control.from, control.to)
     }
 
-    contentItem: TextInput {
-        z: 2
+    contentItem: TextInput
+    {
         text: control.textFromValue(control.value, control.locale)
         opacity: control.enabled ? 1 : 0.3
 
@@ -80,61 +85,62 @@ T.SpinBox {
         readOnly: !control.editable
         validator: control.validator
         inputMethodHints: Qt.ImhFormattedNumbersOnly
+        renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
 
-        MouseArea {
+        MouseArea
+        {
             anchors.fill: parent
             onPressed: mouse.accepted = false;
-            onWheel: {
-                if (wheel.pixelDelta.y < 0 || wheel.angleDelta.y < 0) {
-                    control.decrease();
-                } else {
-                    control.increase();
+            onExited: wheelDelta = 0
+            onWheel:
+            {
+                wheelDelta += wheel.angleDelta.y;
+                // magic number 120 for common "one click"
+                // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                while (wheelDelta >= 120) {
+                    wheelDelta -= 120;
+                    controlRoot.increase();
+                    controlRoot.valueModified();
+                }
+                while (wheelDelta <= -120) {
+                    wheelDelta += 120;
+                    controlRoot.decrease();
+                    controlRoot.valueModified();
                 }
             }
+            cursorShape: Qt.IBeamCursor
         }
     }
 
-    up.indicator: Item {
+    up.indicator: Item
+    {
         x: control.mirrored ? 0 : parent.width - width
         height: parent.height
         width: height
 
-        Kirigami.Icon {
+        Kirigami.Icon
+        {
             source: "list-add"
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
+            anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
             color: Kirigami.Theme.textColor
         }
-        
-        Kirigami.Separator
-        {
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-        }
     }
 
-    down.indicator: Item {
+    down.indicator: Item
+    {
         x: control.mirrored ? parent.width - width : 0
         height: parent.height
         width: height
 
-        Kirigami.Icon {
+        Kirigami.Icon
+        {
             source: "list-remove"
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
+            anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
             color: Kirigami.Theme.textColor
-        }
-        
-        Kirigami.Separator
-        {
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
         }
     }
 
@@ -145,8 +151,6 @@ T.SpinBox {
 
         radius: Maui.Style.radiusV
 
-        color: !control.editable ? control.Kirigami.Theme.backgroundColor : "transparent"
-
-        border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+        color: Qt.lighter(Kirigami.Theme.backgroundColor)
     }
 }

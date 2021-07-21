@@ -28,7 +28,7 @@ T.Menu
     
     modal: control.responsive
     
-    spacing: control.responsive ? Maui.Style.space.medium : (Maui.Handy.isTouch ? Maui.Style.space.small : 0)
+    spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
     
     margins: 0
     

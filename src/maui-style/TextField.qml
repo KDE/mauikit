@@ -40,7 +40,7 @@ T.TextField
                              background ? background.implicitHeight : 0,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    padding: 6
+    padding: Maui.Style.space.medium
 
     color: Kirigami.Theme.textColor
     selectionColor: Kirigami.Theme.highlightColor
@@ -68,17 +68,16 @@ T.TextField
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
         elide: Text.ElideRight
 		wrapMode: Text.NoWrap
-	}	
+    }
 
 	background: Rectangle 
 	{        
-        implicitWidth: 120
-        implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
-        color: control.activeFocus ? Qt.lighter(Kirigami.Theme.backgroundColor, 1.4)
-        : (control.hovered ? Qt.lighter(Kirigami.Theme.backgroundColor, 1.3) : Kirigami.Theme.backgroundColor)
-        border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+        implicitWidth: 200
+        implicitHeight: Maui.Style.rowHeight
+
+        color: control.enabled ? (control.activeFocus ? Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)) : "transparent"
+        border.color: control.enabled ? (control.activeFocus ? Kirigami.Theme.highlightColor : color) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
 
         radius: Maui.Style.radiusV
-        border.width: 1
 	}
 }

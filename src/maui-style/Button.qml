@@ -59,11 +59,9 @@ T.Button
     {
         visible: !control.flat
         implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
-        implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
+        implicitHeight: Maui.Style.rowHeight
 
         color: control.down || control.pressed || control.checked || control.hovered ? Qt.rgba( control.Kirigami.Theme.highlightColor.r,  control.Kirigami.Theme.highlightColor.g,  control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.lighter(Kirigami.Theme.backgroundColor)
-
-        border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
 
         radius: Maui.Style.radiusV
     }

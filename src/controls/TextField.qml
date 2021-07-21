@@ -37,7 +37,8 @@ import org.mauikit.controls 1.3 as Maui
 TextField
 {
     id: control
-
+    focus: true
+    implicitHeight: Maui.Style.rowHeight
     /**
       * menu : Menu
       */
@@ -68,13 +69,11 @@ TextField
       */
     signal contentDropped(var drop)
 
-
     rightPadding: _actionsLayout.implicitWidth + Maui.Style.space.small
 
     selectByMouse: !Kirigami.Settings.isMobile
 
     persistentSelection: true
-    focus: true
 
     wrapMode: TextInput.NoWrap
 
@@ -249,16 +248,5 @@ TextField
 
             control.contentDropped(drop)
         }
-    }
-
-    background: Rectangle
-    {
-        implicitWidth: 200
-        implicitHeight: Maui.Style.rowHeight
-
-        color: control.activeFocus ? Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)
-        border.color: control.activeFocus ? Kirigami.Theme.highlightColor : color
-
-        radius: Maui.Style.radiusV
     }
 }
