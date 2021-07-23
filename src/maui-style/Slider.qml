@@ -25,7 +25,8 @@ import QtQuick.Templates 2.14 as T
 import org.kde.kirigami 2.8 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
-T.Slider {
+T.Slider
+{
     id: control
     Kirigami.Theme.colorSet: Kirigami.Theme.Button
 
@@ -48,8 +49,10 @@ T.Slider {
         border.color: control.Kirigami.Theme.highlightColor
 //        scale: control.pressed ? 1.5 : 1
 
-        Behavior on scale {
-            NumberAnimation {
+        Behavior on scale
+        {
+            NumberAnimation
+            {
                 duration: 250
             }
         }
