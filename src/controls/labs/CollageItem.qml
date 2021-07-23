@@ -98,16 +98,10 @@ Maui.GridBrowserDelegate
                 width: _collageLayout.width
                 height: _collageLayout.height
                 
-                Kirigami.ShadowedRectangle
+                Rectangle
                 {
                     anchors.fill: parent
-                    corners
-                    {
-                        topLeftRadius: control.maskRadius
-                        topRightRadius: control.maskRadius
-                        bottomLeftRadius: control.labelsVisible ? 0 : control.maskRadius
-                        bottomRightRadius:  control.labelsVisible ? 0 : control.maskRadius
-                    }
+                    radius: control.maskRadius
                 }
             }
         }

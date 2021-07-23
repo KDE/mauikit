@@ -124,28 +124,22 @@ Maui.GridBrowserDelegate
                     }
                 }
             }
-
-           layer.enabled: control.maskRadius
-        layer.effect: OpacityMask
-        {
-            maskSource: Item
+            
+            layer.enabled: control.maskRadius
+            layer.effect: OpacityMask
             {
-                width: _cover.width
-                height: _cover.height
-
-                Kirigami.ShadowedRectangle
+                maskSource: Item
                 {
-                    anchors.fill: parent
-                      corners
-                {
-                    topLeftRadius: control.maskRadius
-                    topRightRadius: control.maskRadius
-                    bottomLeftRadius: control.labelsVisible ? 0 : control.maskRadius
-                    bottomRightRadius:  control.labelsVisible ? 0 : control.maskRadius
-                }
+                    width: _cover.width
+                    height: _cover.height
+                    
+                    Rectangle
+                    {
+                        anchors.fill: parent
+                        radius: control.maskRadius
+                    }
                 }
             }
-        }
         }
     }
 }

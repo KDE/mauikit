@@ -109,4 +109,15 @@ QtObject
         property int huge: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(64 * Kirigami.Units.devicePixelRatio))
         property int enormous: Math.floor(128 * Kirigami.Units.devicePixelRatio)
     }
+    
+     function mapToIconSizes(size)
+    {
+        const values = Object.values(iconSizes);
+
+        var closest = values.reduce(function(prev, curr) {
+            return (Math.abs(curr - size) < Math.abs(prev - size) ? curr : prev);
+        });
+        console.log(size, closest)
+        return closest;
+    }  
 }

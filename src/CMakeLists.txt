@@ -162,7 +162,7 @@ if(ANDROID)
     endif()
 elseif(UNIX AND NOT ANDROID)
     target_link_libraries(MauiKit
-    PUBLIC
+    PRIVATE
     KF5::ConfigCore
  )
 endif()

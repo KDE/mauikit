@@ -65,9 +65,14 @@ Item
         property alias iconItem : _iconLoader.item
         
         /**
+         * iconItem : Item
+         */
+        property alias iconContainer : _iconContainer
+                
+        /**
          * iconVisible : bool
          */
-        property alias iconVisible : _iconLoader.visible
+        property alias iconVisible : _iconContainer.visible
         
         /**
          * labelSizeHint : int
@@ -151,50 +156,49 @@ Item
             anchors.fill: parent
             spacing: 0
             
-            Loader
+            Rectangle
             {
-                id: _iconLoader
+                id: _iconContainer
+                
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.margins: 2
+                Layout.margins: 4
                 
-                asynchronous: true
-                sourceComponent: control.iconComponent
+                radius: control.maskRadius
+                color: control.labelsVisible ? Kirigami.Theme.backgroundColor : "transparent"                   
                 
-                Kirigami.Icon
+                Loader
                 {
-                    visible: _iconLoader.status !== Loader.Ready
-                    anchors.centerIn: parent
-                    height: Maui.Style.iconSizes.small
-                    width: height
-                    source:  control.iconSource || "folder-images"
-                    isMask: true
-                    color: Kirigami.Theme.textColor
-                    opacity: 0.5
-                }      
+                    id: _iconLoader
+                    
+                    anchors.fill: parent
+                    asynchronous: true
+                    sourceComponent: control.iconComponent
+                    
+                    Kirigami.Icon
+                    {
+                        visible: _iconLoader.status !== Loader.Ready
+                        anchors.centerIn: parent
+                        height: Maui.Style.iconSizes.small
+                        width: height
+                        source:  control.iconSource || "folder-images"
+                        isMask: true
+                        color: Kirigami.Theme.textColor
+                        opacity: 0.5
+                    }      
+                }
             }
             
-            Kirigami.ShadowedRectangle
+            Item
             {
                 id: _labelsContainer
                 property int labelSizeHint: Math.min(64, _labels.implicitHeight) 
                 visible: control.labelsVisible &&( _label1.text || _label2.text)
                 
-                Layout.preferredHeight: labelSizeHint
-                Layout.margins: 2
-                
+                Layout.preferredHeight: labelSizeHint               
                 Layout.fillWidth: true
                 Layout.maximumHeight: control.height* 0.9
-                Layout.minimumHeight: labelSizeHint + Maui.Style.space.small
-                color: Kirigami.Theme.backgroundColor
-                
-                corners
-                {
-                    topLeftRadius: 0
-                    topRightRadius: 0
-                    bottomLeftRadius: Maui.Style.radiusV
-                    bottomRightRadius: Maui.Style.radiusV
-                }
+                Layout.minimumHeight: labelSizeHint + Maui.Style.space.small                
                 
                 ColumnLayout
                 {
