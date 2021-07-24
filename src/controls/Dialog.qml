@@ -213,7 +213,7 @@ Maui.Popup
     {
         id: _layout
         anchors.fill: parent
-        spacing: 0
+        spacing: 2
 
         Maui.Page
         {
@@ -227,6 +227,8 @@ Maui.Popup
             headBar.visible: control.persistent
             headerColorSet: Kirigami.Theme.Header        
             headBar.background: null
+                            background: null
+
             headBar.farLeftContent: [Maui.CloseButton
                 {
                     visible: control.persistent && !control.filling && closeButtonVisible
@@ -261,6 +263,8 @@ Maui.Popup
                 
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
+                
+                background: null
 
                 Flickable
                 {
@@ -332,17 +336,10 @@ Maui.Popup
             }
         }
 
-        Kirigami.Separator
-        {
-            Layout.fillWidth: true
-            visible: _defaultButtonsLayout.visible
-//             edge: Qt.TopEdge
-        }
-
         RowLayout
         {
             id: _defaultButtonsLayout
-            spacing: 0
+            spacing: 2
             Layout.fillWidth: true
             Layout.preferredHeight: visible ? Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25) : 0
             Layout.maximumHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
@@ -373,15 +370,7 @@ Maui.Popup
                     verticalAlignment: Qt.AlignVCenter
                 }
                 
-                onClicked: rejected()
-                
-                Kirigami.Separator
-                {
-                    //edge: Qt.RightEdge
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                }
+                onClicked: rejected()            
             }
 
             Button
@@ -408,14 +397,6 @@ Maui.Popup
                 }
 
                 onClicked: accepted()
-
-                Kirigami.Separator
-                {
-                    //edge: Qt.RightEdge
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.right: parent.right
-                }
             }
 
             Repeater
@@ -442,15 +423,6 @@ Maui.Popup
                         color:  _actionButton.hovered || _actionButton.down || _actionButton.pressed ?  "#fafafa" : Kirigami.Theme.textColor
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
-                    }
-
-                    Kirigami.Separator
-                    {
-                        //edge: Qt.RightEdge
-                        anchors.top: parent.top
-                        anchors.bottom: parent.bottom
-                        anchors.right: parent.right
-                        visible: index < control.actions.length-1
                     }
                 }
             }

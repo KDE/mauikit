@@ -187,7 +187,8 @@ Item
                     background: Kirigami.ShadowedRectangle
                     {
                         color: checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15) : Qt.lighter(Kirigami.Theme.backgroundColor)
-                        
+                        border.color: checked || down ? Kirigami.Theme.highlightColor : color
+                        border.width: 1
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0

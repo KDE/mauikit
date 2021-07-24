@@ -26,7 +26,7 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-        color: control.hovered ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : control.Kirigami.Theme.backgroundColor
+        color: control.hovered ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"
         opacity: control.hovered ? 0.5 : 1
 
         Kirigami.Separator
