@@ -161,10 +161,7 @@ if(ANDROID)
         install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
     endif()
 elseif(UNIX AND NOT ANDROID)
-    target_link_libraries(MauiKit
-    PRIVATE
-    KF5::ConfigCore
- )
+    target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
 endif()
 
 target_link_libraries(MauiKit

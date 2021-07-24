@@ -1,11 +1,9 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
-import QtQml.Models 2.3
 import QtQml 2.14
-import QtGraphicalEffects 1.0
 
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
@@ -92,7 +90,7 @@ Item
      * defaultIconName : string
      */
     property string defaultIconName: "application-menu"
-//     border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+    //     border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
     
     //radius: Maui.Style.radiusV
     //color: !control.enabled || control.flat ? "transparent" : Kirigami.Theme.backgroundColor
@@ -124,26 +122,10 @@ Item
     Loader
     {
         id: _loader
-       anchors.fill: parent
+        anchors.fill: parent
         asynchronous: true
         sourceComponent: control.expanded ? _rowComponent : _menuComponent
     } 
-    
-    layer.enabled: !control.flat
-    layer.effect: OpacityMask
-    {
-        maskSource: Item
-        {
-            width: Math.floor(control.width)
-            height: Math.floor(control.height)
-            
-            Rectangle
-            {
-                anchors.fill: parent
-                radius: Maui.Style.radiusV
-            }
-        }
-    }
     
     Component
     {
@@ -183,6 +165,7 @@ Item
                         when: autoExclusive
                         value: control.currentIndex === index
                     }
+                    
                     autoExclusive: control.autoExclusive
                     height: parent.height
                     width : implicitWidth + Maui.Style.space.medium
@@ -200,6 +183,19 @@ Item
                         if(autoExclusive)
                             control.currentIndex = index
                     }
+                    
+                    background: Kirigami.ShadowedRectangle
+                    {
+                        color: checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15) : Qt.lighter(Kirigami.Theme.backgroundColor)
+                        
+                        corners
+                        {
+                            topLeftRadius: index === 0 ? Maui.Style.radiusV : 0
+                            topRightRadius: index === _repeater.count - 1 ? Maui.Style.radiusV : 0
+                            bottomLeftRadius: index === 0 ? Maui.Style.radiusV : 0
+                            bottomRightRadius:  index === _repeater.count - 1 ? Maui.Style.radiusV : 0
+                        }
+                    }
                 }
             }
         }
@@ -213,7 +209,6 @@ Item
         {
             id: _defaultButtonMouseArea
             hoverEnabled: true
-            width: implicitWidth
             implicitWidth: _defaultButtonLayout.implicitWidth
             
             function triggerAction()
@@ -314,15 +309,7 @@ Item
                         }
                     }
                 }
-            }
-            
-          /*  Rectangle
-            {
-                anchors.fill: parent
-                color: control.currentAction ? (control.currentAction.enabled && (_defaultButtonMouseArea.containsMouse || _defaultButtonMouseArea.containsPress) ? Kirigami.Theme.highlightColor : "transparent") : "transparent"
-                opacity: 0.15
-                radius: Maui.Style.radiusV
-            }  */                  
+            }                
             
             RowLayout
             {
@@ -352,28 +339,37 @@ Item
                     
                     display: control.display  
                     
-                   checkable: control.checkable && action.checkable
+                    checkable: control.checkable && action.checkable
                     
-                    rec.radius: 0
-                    rec.color: hovered || checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15)  : Qt.lighter(Kirigami.Theme.backgroundColor)
-                    rec.border.color: "transparent"
+                    background: Kirigami.ShadowedRectangle
+                    {
+                        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+                        
+                        corners
+                        {
+                            topLeftRadius: Maui.Style.radiusV
+                            topRightRadius: 0
+                            bottomLeftRadius: Maui.Style.radiusV
+                            bottomRightRadius: 0
+                        }
+                    }
                 }
                 
-                //Kirigami.Separator
-                //{
-                    //visible: !control.canCyclic && !control.flat
-                    //color: control.border.color
-                    //Layout.fillHeight: true
-                //}
-                
-                Rectangle
+                Kirigami.ShadowedRectangle
                 {
                     visible: !control.canCyclic
                     Layout.fillHeight: true
                     Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
                     
-                    radius: 0
                     color: Qt.lighter(Kirigami.Theme.backgroundColor)
+                    
+                    corners
+                    {
+                        topLeftRadius: 0
+                        topRightRadius: Maui.Style.radiusV
+                        bottomLeftRadius: 0
+                        bottomRightRadius: Maui.Style.radiusV
+                    }
                     
                     Maui.Triangle
                     {
@@ -387,13 +383,4 @@ Item
             }
         }
     }
-    
-    //Rectangle
-    //{
-        //anchors.fill: parent
-        //radius: parent.radius
-        //color: "transparent"
-        //border.color: control.border.color
-        
-    //}
 }
