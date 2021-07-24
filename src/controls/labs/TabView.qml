@@ -449,22 +449,14 @@ Container
 
                                 }
 
-                                Kirigami.ShadowedRectangle
-                                            {
-                                                anchors.fill: parent
-                                                corners
-                                                {
-                                                    topLeftRadius: Maui.Style.radiusV
-                                                    topRightRadius: Maui.Style.radiusV
-                                                    bottomLeftRadius: 0
-                                                    bottomRightRadius:  0
-                                                }
-                                                  border.color: Kirigami.Theme.backgroundColor
+                                Rectangle
+                                {
+                                    anchors.fill: parent
+                                    radius: Maui.Style.radiusV
+                                    border.color: Kirigami.Theme.backgroundColor
                                     border.width: 2
                                     color: "transparent"
-                                            }
-
-
+                                }
                             }
                         }
                     }
