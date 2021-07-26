@@ -31,6 +31,7 @@ set(mauikit_SRCS
     utils/fmh.cpp
     utils/mauiapp.cpp
     utils/handy.cpp
+    utils/notify.cpp
     utils/model_template/mauilist.cpp
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
@@ -43,6 +44,7 @@ set(mauikit_HDRS
     utils/fmh.h
     utils/utils.h
     utils/handy.h
+    utils/notify.h
     utils/mauiapp.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
@@ -171,10 +173,12 @@ target_link_libraries(MauiKit
     KF5::CoreAddons
 
     PRIVATE
+    KF5::Notifications
     Qt5::Qml
     Qt5::Svg
     Qt5::Widgets
     Qt5::QuickControls2
+   Qt5::QuickPrivate Qt5::QuickTemplates2 Qt5::QuickTemplates2Private
     )
 
 if(IS_APPIMAGE_PACKAGE)

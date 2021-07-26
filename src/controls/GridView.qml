@@ -167,6 +167,8 @@ Item
       * pinchEnabled : bool
       */
     property alias pinchEnabled : _pinchArea.enabled
+    
+    property alias currentItem : controlView.currentItem
 
     /**
       * itemsSelected :

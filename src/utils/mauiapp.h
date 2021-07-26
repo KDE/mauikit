@@ -55,7 +55,7 @@ class CSDButton : public QObject
   Q_PROPERTY(bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
   Q_PROPERTY(CSDButtonType type READ type WRITE setType NOTIFY typeChanged)
   Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
-
+  
 public:
   enum CSDButtonState
   {
@@ -175,6 +175,7 @@ signals:
 
 };
 
+class Notify;
 class MAUIKIT_EXPORT MauiApp : public QObject
 {
   Q_OBJECT
@@ -249,7 +250,7 @@ public:
   static void setDefaultMauiStyle();
 
   CSDControls *controls() const;
-
+  
 private:
   static MauiApp *m_instance;
   MauiApp();
@@ -260,10 +261,6 @@ private:
 signals:
   void iconNameChanged();
   void donationPageChanged();
-  void sendNotification(QString iconName, QString title, QString body, QJSValue callback, int timeout, QString buttonText);
-
-public slots:
-  void notify(const QString &icon = "emblem-warning", const QString &title = "Oops", const QString &body = "Something needs your attention", const QJSValue &callback = {}, const int &timeout = 2500, const QString &buttonText = "Ok");
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)

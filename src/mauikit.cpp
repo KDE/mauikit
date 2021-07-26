@@ -19,17 +19,15 @@
 
 #include "mauikit.h"
 
-#include <QDebug>
-
 #include "appsettings.h"
-
 #include "appview.h"
-#include "tabview.h"
 
 #include "handy.h"
 #include "mauiapp.h"
 #include "mauilist.h"
 #include "mauimodel.h"
+#include "notify.h"
+#include "tabview.h"
 
 #ifdef Q_OS_ANDROID
 #include "platforms/android/mauiandroid.h"
@@ -42,6 +40,7 @@
 #include <KI18n/KLocalizedContext>
 #include <KI18n/KLocalizedString>
 
+#include <QDebug>
 #include <QQmlContext>
 
 QUrl MauiKit::componentUrl(const QString &fileName) const
@@ -202,6 +201,8 @@ void MauiKit::registerTypes(const char *uri)
     /** HELPERS **/
     qmlRegisterAnonymousType<CSDControls>(uri, 1);
     qmlRegisterType<CSDButton>(uri, 1, 3, "CSDButton");
+    qmlRegisterType<Notify>(uri, 1, 3, "Notify");
+
     qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
     qmlRegisterSingletonType<Handy>(uri, 1, 0, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)

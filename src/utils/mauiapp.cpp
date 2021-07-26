@@ -20,8 +20,8 @@
 #include "fmh.h"
 #include "handy.h"
 #include "utils.h"
-#include <QDir>
 
+#include <QDir>
 #include <QStandardPaths>
 
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
@@ -111,11 +111,6 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
   return MauiApp::instance();
 }
 
-void MauiApp::notify(const QString &icon, const QString &title, const QString &body, const QJSValue &callback, const int &timeout, const QString &buttonText)
-{
-  emit this->sendNotification(icon, title, body, callback, timeout, buttonText);
-}
-
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
 {
   this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
@@ -129,7 +124,6 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
 
   this->getWindowControlsSettings();
 }
-
 
 void CSDControls::getWindowControlsSettings()
 {
