@@ -23,13 +23,16 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
+
 import org.kde.kirigami 2.7 as Kirigami
-import org.mauikit.controls 1.0 as Maui
-import org.mauikit.controls 1.1 as MauiLab
+import org.mauikit.controls 1.3 as Maui
 
 AbstractButton
 {
     id: control
+    
+    Kirigami.Theme.inherit: false
+    Kirigami.Theme.colorSet: Kirigami.Theme.Button
     
     property bool flat : false
 

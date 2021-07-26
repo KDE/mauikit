@@ -65,12 +65,14 @@ T.MenuItem
 
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
-
-    icon.color: control.checked || control.down ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+    leftInset: Maui.Style.space.small
+    rightInset: Maui.Style.space.small
+    
+    icon.color: control.Kirigami.Theme.textColor
 
     indicator: CheckIndicator
     {
-        x: text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding  + Maui.Style.space.small) : control.leftPadding + (control.availableWidth - width) / 2
+        x: control.width - width - control.rightPadding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2
         visible: control.checkable
         control: control
@@ -84,6 +86,8 @@ T.MenuItem
         visible: control.subMenu
 //        mirror: control.mirrored
         color: control.icon.color
+        height: 10
+        width: 10
         source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/arrow-indicator.png"
     }
 
@@ -92,8 +96,8 @@ T.MenuItem
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
 
-        leftPadding: !control.mirrored ? indicatorPadding + Maui.Style.space.medium : arrowPadding
-        rightPadding: control.mirrored ? indicatorPadding : arrowPadding + Maui.Style.space.medium
+        leftPadding: arrowPadding + Maui.Style.space.medium
+        rightPadding: indicatorPadding + Maui.Style.space.medium
 
         spacing: control.spacing
 
@@ -114,18 +118,10 @@ T.MenuItem
         implicitHeight: control.visible ? (Kirigami.Settings.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) : 0
         radius: Maui.Style.radiusV
 
-        anchors
-        {
-            fill: parent
-
-            leftMargin: Maui.Style.space.small
-            rightMargin: Maui.Style.space.small
-        }
-
         readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
 
         color: control.enabled ? (control.pressed || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)) : "transparent"
 
-        border.color: control.enabled ? (control.checked || control.down ? control.Kirigami.Theme.highlightColor : "transparent") : m_color
+//         border.color: control.enabled ? (control.checked || control.down ? control.Kirigami.Theme.highlightColor : "transparent") : m_color
     }
 }

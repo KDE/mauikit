@@ -45,9 +45,9 @@ Rectangle
     implicitHeight: 18
     color: !control.enabled ? "transparent"
                             :(checked ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.4) : control.Kirigami.Theme.backgroundColor)
-    border.color: checked ? control.Kirigami.Theme.highlightColor: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
+//     border.color: checked ? control.Kirigami.Theme.highlightColor: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
 
-    border.width: control.checked ? 1 : 1
+//     border.width: control.checked ? 1 : 1
     radius: control.autoExclusive ? Math.min(height, width) : Maui.Style.radiusV
 
     property Item control
@@ -76,9 +76,9 @@ Rectangle
         visible: !control.autoExclusive
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
-        width: 14
+        width: 16
         height: 16
-        source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/check.png"
+        source: "qrc:/assets/checkmark.svg"
         color: control.checked ? Kirigami.Theme.highlightColor : "transparent"
 
         scale: checked ? 1 : 0

@@ -359,7 +359,7 @@ Maui.Popup
                 text: i18n("Cancel")
                 background: Rectangle
                 {
-                    color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? "#da4453" : Kirigami.Theme.backgroundColor
+                    color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? "#da4453" : Qt.lighter(Kirigami.Theme.backgroundColor)
                 }
 
                 contentItem: Label
@@ -385,7 +385,7 @@ Maui.Popup
                 visible: control.defaultButtons
                 background: Rectangle
                 {
-                    color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? "#26c6da" : Kirigami.Theme.backgroundColor
+                    color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? "#26c6da" : Qt.lighter(Kirigami.Theme.backgroundColor)
                 }
 
                 contentItem: Label
@@ -414,7 +414,7 @@ Maui.Popup
 
                     background: Rectangle
                     {
-                        color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? "#26c6da" : Kirigami.Theme.backgroundColor
+                        color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? "#26c6da" : Qt.lighter(Kirigami.Theme.backgroundColor)
                     }
 
                     contentItem: Label

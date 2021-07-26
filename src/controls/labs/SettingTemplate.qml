@@ -33,15 +33,12 @@ Maui.FlexListItem
     id: control
     padding: Math.floor(Maui.Style.space.medium * 1.2)
     Layout.fillWidth: true
-    
 //    label2.opacity: 0.5
-    
+        
     background: Rectangle
     {
-        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
-        
-        anchors.fill: parent
-
+        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))         
+        radius: Maui.Style.radiusV
         color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3) :  "transparent"
     }
     

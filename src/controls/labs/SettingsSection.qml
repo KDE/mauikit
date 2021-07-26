@@ -6,98 +6,69 @@ import org.mauikit.controls 1.3 as Maui
 import QtGraphicalEffects 1.0
 
 /*!
-  \since org.mauikit.controls.labs 1.0
-  \inqmlmodule org.mauikit.controls.labs
-*/
+ *  \since org.mauikit.controls.labs 1.0
+ *  \inqmlmodule org.mauikit.controls.labs
+ */
 Maui.AlternateListItem
 {
     id: control
-
+    
     /**
-     *
+     * 
      */
     default property alias content : _mainData.data
-
-    /**
-         *
+        
+        /**
+         * 
          */
-    property int index : -1
-
-    /**
-         *
+        property int index : -1
+        
+        /**
+         * 
          */
-    property string title
-
-    /**
-         *
+        property string title
+        
+        /**
+         * 
          */
-    property string description
-
-    /**
-         *
+        property string description
+        
+        /**
+         * 
          */
-    property alias template: _template
-
-    /**
-         *
+        property alias template: _template
+        
+        /**
+         * 
          */
-    property alias spacing: _mainData.spacing
-
-    Layout.fillWidth: true
-    implicitHeight: _layout.implicitHeight + (Maui.Style.space.big * 2)
-
-    ColumnLayout
-    {
-        id: _layout
-        anchors.fill: parent
-        anchors.margins: Maui.Style.space.big
-        spacing: Maui.Style.space.medium
-
-        Maui.SectionDropDown
+        property alias spacing: _mainData.spacing
+        
+        Layout.fillWidth: true
+        implicitHeight: _layout.implicitHeight + (Maui.Style.space.big * 2)
+        
+        ColumnLayout
         {
-            id: _template
-            Layout.fillWidth: true
-            label1.text: control.title
-            label2.text: control.description
-            checked: true
-        }
-
-        Rectangle
-        {
-            Layout.fillWidth: true
-//             Layout.margins: Maui.Style.space.medium
-
-            implicitHeight: _mainData.implicitHeight
-            visible: _template.checked
+            id: _layout
+            anchors.fill: parent
+            anchors.margins: Maui.Style.space.big
             
-            color: "transparent"
-
-            radius: Maui.Style.radiusV
- border.color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-
+            spacing: Maui.Style.space.medium
+            
+            Maui.SectionDropDown
+            {
+                id: _template
+                Layout.fillWidth: true
+                label1.text: control.title
+                label2.text: control.description
+                checked: true
+            }            
+            
             ColumnLayout
             {
                 id: _mainData
-                spacing: Maui.Style.space.tiny
-                width: parent.width
-                anchors.centerIn: parent
-            }
-
-            layer.enabled: false
-            layer.effect: OpacityMask
-            {
-                maskSource: Item
-                {
-                    width: Math.floor(_mainData.width)
-                    height: Math.floor(_mainData.height)
-
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        radius: Maui.Style.radiusV
-                    }
-                }
+                Layout.fillWidth: true
+               
+                visible: _template.checked                           
             }
         }
-    }
 }

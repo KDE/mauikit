@@ -81,6 +81,7 @@ Maui.Dialog
         {
             id: _iconItem
             anchors.fill: parent
+            clip: true
 
             Item
             {

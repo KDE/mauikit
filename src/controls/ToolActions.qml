@@ -151,15 +151,10 @@ Item
                 model: control.actions
                 
                 Private.BasicToolButton
-                {
-                    id: _buttonMouseArea
-                    
+                {                    
                     action : modelData
                     checkable: control.checkable && action.checkable
-                    rec.radius: 0
-                    rec.color: (hovered || checked || down) && checkable ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15)  : Qt.lighter(Kirigami.Theme.backgroundColor)
-                    rec.border.color: "transparent"
-                    
+                                       
                     Binding on checked
                     {
                         when: autoExclusive
@@ -187,8 +182,6 @@ Item
                     background: Kirigami.ShadowedRectangle
                     {
                         color: checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15) : Qt.lighter(Kirigami.Theme.backgroundColor)
-                        border.color: checked || down ? Kirigami.Theme.highlightColor : color
-                        border.width: 1
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0

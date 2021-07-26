@@ -95,7 +95,6 @@ T.ToolButton
         radius: Maui.Style.radiusV
 
         color: control.pressed || control.down || control.checked || control.highlighted || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
-        border.color: control.checked && !control.flat ? control.Kirigami.Theme.highlightColor : "transparent"
 
         Behavior on color
         {
