@@ -1,0 +1,124 @@
+/*
+ * <one line to give the program's name and a brief idea of what it does.>
+ * Copyright (C) 2021  <copyright holder> <email>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef NOTIFY_H
+#define NOTIFY_H
+
+#include <QObject>
+#include <QList>
+#include <QQmlListProperty>
+#include <QUrl>
+
+class QQuickAction;
+class KNotification;
+/**
+ * @todo write docs
+ */
+class Notify : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(QString componentName READ componentName WRITE setComponentName NOTIFY componentNameChanged)
+    Q_PROPERTY(QString eventId READ eventId WRITE setEventId REQUIRED)
+    Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
+    Q_PROPERTY(QString iconName READ iconName WRITE setIconName NOTIFY iconNameChanged)
+
+    Q_PROPERTY(QUrl imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
+    Q_PROPERTY(QQmlListProperty<QQuickAction> actions READ actions)
+    Q_PROPERTY(QQuickAction * defaultAction READ defaultAction WRITE setDefaultAction NOTIFY defaulActionChanged)
+    Q_PROPERTY(QList<QUrl> urls READ urls WRITE setUrls NOTIFY urlsChanged)
+
+public:
+    Notify(QObject * parent = nullptr);
+
+    QQmlListProperty<QQuickAction> actions();
+
+    void appendAction(QQuickAction*);
+    int actionsCount() const;
+    QQuickAction *action(int) const;
+    void clearActions();
+    void replaceAction(int, QQuickAction*);
+    void removeLastAction();
+
+    const QString &componentName() const;
+    void setComponentName(const QString &newComponentName);
+
+    const QString &eventId() const;
+    void setEventId(const QString &newEventId);
+
+    const QString &title() const;
+    void setTitle(const QString &newTitle);
+
+    const QString &message() const;
+    void setMessage(const QString &newMessage);
+
+    const QString &iconName() const;
+    void setIconName(const QString &newIconName);
+
+    const QUrl &imageSource() const;
+    void setImageSource(const QUrl &newImageSource);
+
+    QQuickAction *defaultAction() const;
+    void setDefaultAction(QQuickAction *newDefaultAction);
+
+    const QList<QUrl> &urls() const;
+    void setUrls(const QList<QUrl> &newUrls);
+
+private slots:
+    void actionActivated(int index);
+
+public slots:
+    void send();
+    void send(const QString &title, const QString &message, const QString &iconName);
+
+signals:
+    void componentNameChanged(QString);
+
+    void titleChanged(QString);
+
+    void messageChanged(QString);
+
+    void iconNameChanged(QString);
+
+    void imageSourceChanged(QUrl);
+
+    void defaulActionChanged();
+
+    void urlsChanged(QList<QUrl>);
+
+private:
+    static void appendAction(QQmlListProperty<QQuickAction>*, QQuickAction*);
+    static int actionsCount(QQmlListProperty<QQuickAction>*);
+    static QQuickAction* action(QQmlListProperty<QQuickAction>*, int);
+    static void clearActions(QQmlListProperty<QQuickAction>*);
+    static void replaceAction(QQmlListProperty<QQuickAction>*, int, QQuickAction*);
+    static void removeLastAction(QQmlListProperty<QQuickAction>*);
+
+    QList<QQuickAction*> m_actions;
+
+    QQuickAction * m_defaultAction;
+    QString m_eventId;
+    QString m_title;
+    QString m_message;
+    QString m_iconName;
+    QString m_componentName;
+    QUrl m_imageSource;
+    QList<QUrl> m_urls;
+};
+
+#endif // NOTIFY_H
