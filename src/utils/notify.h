@@ -84,7 +84,7 @@ private slots:
 
 public slots:
     void send();
-    void send(const QString &title, const QString &message, const QString &iconName);
+//    void send(const QString &title, const QString &message, const QString &iconName);
 
 signals:
     void componentNameChanged(QString);
