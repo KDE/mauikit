@@ -34,10 +34,11 @@ Maui.GridBrowserDelegate
     /**
      * cb : function
      */
-    property var cb 
+    property var cb       
     
-    //background: null
-    
+    label1.font.bold: true
+    label1.font.weight: Font.Bold
+    label1.font.pointSize: Maui.Style.fontSizes.big
     
     template.iconComponent: Item
     {
@@ -105,6 +106,25 @@ Maui.GridBrowserDelegate
                 }
             }
         }
+    }
+    
+    background: Kirigami.ShadowedRectangle
+    {
+        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+        property int radius : Maui.Style.radiusV
+        
+        corners
+        {
+            topLeftRadius: radius
+            topRightRadius: radius
+            bottomLeftRadius: radius
+            bottomRightRadius: radius
+        }
+        
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.size: 10
     }
     
 }

@@ -19,7 +19,7 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
+
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
@@ -38,11 +38,6 @@ import "private"
 Maui.AbstractSideBar
 {
     id: control
-
-    /**
-      * content : ColumnLayout.data
-      */
-    default property alias content : _content.data
 
     /**
       * model : var
@@ -65,11 +60,11 @@ Maui.AbstractSideBar
     property alias currentIndex: _listBrowser.currentIndex
 
     /**
-     * 
+     *
      */
     property alias listView : _listBrowser
 
-       /**
+    /**
       * delegate : Component
       */
     property Component delegate : Maui.ListDelegate
@@ -110,32 +105,23 @@ Maui.AbstractSideBar
       */
     signal itemRightClicked(int index)
 
-
-    ColumnLayout
+    Maui.ListBrowser
     {
-        id: _content
+        id: _listBrowser
         anchors.fill: parent
-        spacing: 0
+        topPadding: 0
+        bottomPadding: 0
+        verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
-        Maui.ListBrowser
+        delegate: control.delegate
+
+        onKeyPress:
         {
-            id: _listBrowser
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            topPadding: 0
-            bottomPadding: 0
-            verticalScrollBarPolicy: ScrollBar.AlwaysOff
-
-            delegate: control.delegate
-
-            onKeyPress:
+            if(event.key == Qt.Key_Return)
             {
-                if(event.key == Qt.Key_Return)
-                {
-                    control.itemClicked(control.currentIndex)
-                }
+                control.itemClicked(control.currentIndex)
             }
-        }       
+        }
     }
 }
 

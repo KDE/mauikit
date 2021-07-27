@@ -1,9 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.14 as Kirigami
-
 import org.mauikit.controls 1.2 as Maui
 import QtGraphicalEffects 1.0
 
@@ -31,6 +29,10 @@ Maui.GridBrowserDelegate
      */
     property var cb
     
+    
+    label1.font.bold: true
+    label1.font.weight: Font.Bold
+    label1.font.pointSize: Maui.Style.fontSizes.big
 
    template.iconComponent:  Item
     {
@@ -141,5 +143,24 @@ Maui.GridBrowserDelegate
                 }
             }
         }
+    }
+    
+    background: Kirigami.ShadowedRectangle
+    {
+        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+        property int radius : Maui.Style.radiusV
+        
+        corners
+        {
+            topLeftRadius: radius
+            topRightRadius: radius
+            bottomLeftRadius: radius
+            bottomRightRadius: radius
+        }
+        
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.size: 10
     }
 }
