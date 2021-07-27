@@ -430,7 +430,6 @@ Container
 
                             template.iconComponent: Item
                             {
-
                                 clip: true
 
                                 ShaderEffectSource
@@ -448,15 +447,25 @@ Container
                                     sourceItem: control.contentModel.get(index)
 
                                 }
+                            }
 
-                                Rectangle
+                            background: Kirigami.ShadowedRectangle
+                            {
+                                color: Qt.lighter(Kirigami.Theme.backgroundColor)
+                                property int radius : Maui.Style.radiusV
+
+                                corners
                                 {
-                                    anchors.fill: parent
-                                    radius: Maui.Style.radiusV
-                                    border.color: Kirigami.Theme.backgroundColor
-                                    border.width: 2
-                                    color: "transparent"
+                                    topLeftRadius: radius
+                                    topRightRadius: radius
+                                    bottomLeftRadius: radius
+                                    bottomRightRadius: radius
                                 }
+
+                                shadow.xOffset: 0
+                                shadow.yOffset: 0
+                                shadow.color: Qt.rgba(0, 0, 0, 0.3)
+                                shadow.size: 10
                             }
                         }
                     }
