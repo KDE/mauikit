@@ -1,8 +1,9 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 
 /*!
   \since org.mauikit.controls.labs 1.0
@@ -26,12 +27,27 @@ ItemDelegate
 
     signal close()
 
-    background: Rectangle
+    background: Kirigami.ShadowedRectangle
     {
         id: _background
-        radius: Maui.Style.radiusV
-        opacity: 0.5
-        color: Qt.darker(control.Kirigami.Theme.backgroundColor, 1.1)
+//         opacity: 0.5
+        
+        readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.95))
+        
+        color: control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.5)
+        
+        corners
+        {
+            topLeftRadius:  Maui.Style.radiusV
+            topRightRadius:  Maui.Style.radiusV
+            bottomLeftRadius: Maui.Style.radiusV
+            bottomRightRadius:  Maui.Style.radiusV
+        }
+        
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.size: 10
     }
 
     RowLayout

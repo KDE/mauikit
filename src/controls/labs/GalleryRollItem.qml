@@ -147,15 +147,16 @@ Maui.GridBrowserDelegate
     
     background: Kirigami.ShadowedRectangle
     {
-        color: Qt.lighter(Kirigami.Theme.backgroundColor)
-        property int radius : Maui.Style.radiusV
+        readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        
+        color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.5)       
         
         corners
         {
-            topLeftRadius: radius
-            topRightRadius: radius
-            bottomLeftRadius: radius
-            bottomRightRadius: radius
+            topLeftRadius: control.maskRadius
+            topRightRadius: control.maskRadius
+            bottomLeftRadius: control.maskRadius
+            bottomRightRadius: control.maskRadius
         }
         
         shadow.xOffset: 0
