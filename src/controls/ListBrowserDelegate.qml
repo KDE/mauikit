@@ -39,7 +39,9 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
-    radius: maskRadius
+    
+    radius: Maui.Style.radiusV
+
     implicitHeight: label4.visible || label2.visible ? Maui.Style.rowHeight + (Maui.Style.space.medium * 1.5) : Maui.Style.rowHeight
     isCurrentItem : ListView.isCurrentItem || checked
 
@@ -152,7 +154,7 @@ Maui.ItemDelegate
         
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
 
-        radius: Maui.Style.radiusV
+        radius: control.radius
 //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
     }
     
@@ -209,9 +211,6 @@ Maui.ItemDelegate
 
             iconComponent: Maui.IconItem
             {
-                radius: Maui.Style.radiusV
-                color: control.Kirigami.Theme.backgroundColor
-
                 iconSource: control.iconSource
                 imageSource: _template.imageSource
 

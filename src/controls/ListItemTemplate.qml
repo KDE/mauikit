@@ -158,7 +158,7 @@ Item
     /**
       * maskRadius : int
       */
-    property int maskRadius: Maui.Style.radiusV
+    property int maskRadius: 0
 
     /**
       * margins : int

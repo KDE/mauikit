@@ -28,11 +28,11 @@ import org.mauikit.controls 1.2 as Maui
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Rectangle
+Item
 {
     id: control
     
-    color: "transparent"
+//     color: "transparent"
     
     /**
      * iconSizeHint : int
@@ -72,7 +72,7 @@ Rectangle
     /**
      * maskRadius : int
      */
-    property alias maskRadius: control.radius
+    property int maskRadius: 0
     
     property int imageWidth : -1
     property int imageHeight : -1
@@ -113,7 +113,7 @@ Rectangle
         asynchronous: true
         smooth: true
 
-        layer.enabled: control.radius
+        layer.enabled: control.maskRadius
         layer.effect: OpacityMask
         {
             maskSource: Item
@@ -126,7 +126,7 @@ Rectangle
                     anchors.centerIn: parent
                     width: Math.min(parent.width, img.paintedWidth)
                     height: Math.min(parent.height, img.paintedHeight)
-                    radius: control.radius
+                    radius: control.maskRadius
                 }
             }
         }

@@ -67,12 +67,12 @@ Item
         /**
          * iconItem : Item
          */
-        property alias iconContainer : _iconContainer
-                
+        property alias iconContainer : _iconLoader
+        
         /**
          * iconVisible : bool
          */
-        property alias iconVisible : _iconContainer.visible
+        property alias iconVisible : _iconLoader.visible
         
         /**
          * labelSizeHint : int
@@ -112,7 +112,7 @@ Item
         /**
          * maskRadius : int
          */
-        property int maskRadius: Maui.Style.radiusV
+        property int maskRadius: 0
         
         /**
          * hovered : bool
@@ -156,38 +156,29 @@ Item
             anchors.fill: parent
             spacing: 0
             
-            Rectangle
+            Loader
             {
-                id: _iconContainer
+                id: _iconLoader
                 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.margins: 4
+                Layout.margins: 2  
                 
-                radius: control.maskRadius
-                color: control.labelsVisible ? Kirigami.Theme.backgroundColor : "transparent"                   
+                asynchronous: true
+                sourceComponent: control.iconComponent
                 
-                Loader
+                Kirigami.Icon
                 {
-                    id: _iconLoader
-                    
-                    anchors.fill: parent
-                    asynchronous: true
-                    sourceComponent: control.iconComponent
-                    
-                    Kirigami.Icon
-                    {
-                        visible: _iconLoader.status !== Loader.Ready
-                        anchors.centerIn: parent
-                        height: Maui.Style.iconSizes.small
-                        width: height
-                        source:  control.iconSource || "folder-images"
-                        isMask: true
-                        color: Kirigami.Theme.textColor
-                        opacity: 0.5
-                    }      
-                }
-            }
+                    visible: _iconLoader.status !== Loader.Ready
+                    anchors.centerIn: parent
+                    height: Maui.Style.iconSizes.small
+                    width: height
+                    source:  control.iconSource || "folder-images"
+                    isMask: true
+                    color: Kirigami.Theme.textColor
+                    opacity: 0.5
+                }      
+            }            
             
             Item
             {
