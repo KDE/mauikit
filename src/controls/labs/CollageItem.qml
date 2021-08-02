@@ -20,6 +20,8 @@ Maui.GridBrowserDelegate
      */
     property var images : []
     
+    maskRadius: radius
+    
     fillMode: Image.PreserveAspectCrop
     /**
      * randomHexColor : function
@@ -116,10 +118,10 @@ Maui.GridBrowserDelegate
         
         corners
         {
-            topLeftRadius: control.maskRadius
-            topRightRadius: control.maskRadius
-            bottomLeftRadius: control.maskRadius
-            bottomRightRadius: control.maskRadius
+            topLeftRadius: control.radius
+            topRightRadius: control.radius
+            bottomLeftRadius: control.radius
+            bottomRightRadius: control.radius
         }
         
         shadow.xOffset: 0

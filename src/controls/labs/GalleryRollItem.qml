@@ -29,10 +29,14 @@ Maui.GridBrowserDelegate
      */
     property var cb
     
+    property int orientation : Qt.Horizontal
+    
     
     label1.font.bold: true
     label1.font.weight: Font.Bold
     label1.font.pointSize: Maui.Style.fontSizes.big
+    
+    maskRadius: radius
 
    template.iconComponent:  Item
     {
@@ -67,7 +71,7 @@ Maui.GridBrowserDelegate
                 id: _featuredRoll
                 anchors.fill: parent
                 interactive: false
-                orientation: Qt.Horizontal
+                orientation: control.orientation
                 snapMode: ListView.SnapOneItem
                 clip: true
                 
@@ -153,10 +157,10 @@ Maui.GridBrowserDelegate
         
         corners
         {
-            topLeftRadius: control.maskRadius
-            topRightRadius: control.maskRadius
-            bottomLeftRadius: control.maskRadius
-            bottomRightRadius: control.maskRadius
+            topLeftRadius: control.radius
+            topRightRadius: control.radius
+            bottomLeftRadius: control.radius
+            bottomRightRadius: control.radius
         }
         
         shadow.xOffset: 0

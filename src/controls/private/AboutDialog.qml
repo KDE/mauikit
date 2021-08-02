@@ -87,17 +87,18 @@ Maui.Dialog
             {
                 id: _iconRec
                 anchors.fill: parent
-
+                
                 FastBlur
                 {
+                                    rotation: 45
+
                     id: fastBlur
-                    height: parent.height * 2
-                    width: parent.width * 2
+                    height: parent.height * 3
+                    width: parent.width * 4
                     anchors.centerIn: parent
                     source: _div1.iconItem
                     radius: 64
-                    transparentBorder: true
-                    cached: true
+                    transparentBorder: false
                 }
 
                 Rectangle
