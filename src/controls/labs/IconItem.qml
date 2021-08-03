@@ -76,12 +76,14 @@ Item
     
     property int imageWidth : -1
     property int imageHeight : -1
+    
+    property bool smooth: true
 
     Kirigami.Icon
     {
         id: icon
         visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
-
+        smooth: control.smooth
         anchors.centerIn: parent
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
@@ -111,7 +113,7 @@ Item
 
         cache: false
         asynchronous: true
-        smooth: true
+        smooth: control.smooth
 
         layer.enabled: control.maskRadius
         layer.effect: OpacityMask

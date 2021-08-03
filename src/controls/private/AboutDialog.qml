@@ -90,7 +90,7 @@ Maui.Dialog
                 
                 FastBlur
                 {
-                                    rotation: 45
+                    rotation: 45
 
                     id: fastBlur
                     height: parent.height * 3

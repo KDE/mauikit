@@ -230,14 +230,13 @@ Item
                         elide: Qt.ElideRight
                         wrapMode: Text.NoWrap
                         color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-                        opacity: control.isCurrentItem ? 0.8 : 0.6
-                        
+                        opacity: control.isCurrentItem ? 0.8 : 0.6                        
                     }
                 }
                 
                 Rectangle
                 {
-                    visible: (control.hovered ) && _label1.implicitHeight > _label1.height 
+                    visible: (control.hovered ) && _label1.implicitHeight > _label1.height && control.tooltipText.length === 0
                     height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
                     width: parent.width
                     color: Kirigami.Theme.backgroundColor
