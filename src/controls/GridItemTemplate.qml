@@ -236,7 +236,7 @@ Item
                 
                 Rectangle
                 {
-                    visible: (control.hovered ) && _label1.implicitHeight > _label1.height && control.tooltipText.length === 0
+                    visible: (control.hovered ) && _label1.implicitHeight > _label1.height 
                     height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
                     width: parent.width
                     color: Kirigami.Theme.backgroundColor

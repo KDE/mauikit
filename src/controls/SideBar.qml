@@ -70,6 +70,7 @@ Maui.AbstractSideBar
     property Component delegate : Maui.ListDelegate
     {
         id: itemDelegate
+        width: ListView.view.width
         iconSize: Maui.Style.iconSizes.small
         label: model.label
         iconName: model.icon +  (Qt.platform.os == "android" || Qt.platform.os == "osx" ? ("-sidebar") : "")
