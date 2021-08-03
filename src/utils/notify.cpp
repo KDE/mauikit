@@ -17,16 +17,36 @@
  */
 
 #include "notify.h"
-#include <QtQuickTemplates2/private/qquickaction_p.h>
 #include <KNotification>
 #include <QPixmap>
+#include <QDebug>
+
+NotifyAction::NotifyAction(QObject* parent) : QObject(parent)
+{
+}
+
+void NotifyAction::setText(const QString& text)
+{
+    if(text == m_text)
+    {
+        return;
+    }
+    
+    m_text = text;
+    emit textChanged();
+}
+
+QString NotifyAction::text() const
+{
+    return m_text;
+}
 
 Notify::Notify(QObject* parent) : QObject(parent)
 ,m_defaultAction(nullptr)
 {
 }
 
-QQmlListProperty<QQuickAction> Notify::actions()
+QQmlListProperty<NotifyAction> Notify::actions()
 {
   return {this, this,
       &Notify::appendAction,
@@ -38,7 +58,7 @@ QQmlListProperty<QQuickAction> Notify::actions()
     };
 }
 
-void Notify::appendAction(QQuickAction* action)
+void Notify::appendAction(NotifyAction* action)
 {
   m_actions.append(action);
 }
@@ -48,7 +68,7 @@ int Notify::actionsCount() const
   return m_actions.count();
 }
 
-QQuickAction * Notify::action(int index) const
+NotifyAction * Notify::action(int index) const
 {
   return m_actions.at(index);
 }
@@ -58,7 +78,7 @@ void Notify::clearActions()
   m_actions.clear();
 }
 
-void Notify::replaceAction(int index, QQuickAction* action)
+void Notify::replaceAction(int index, NotifyAction* action)
 {
   m_actions[index] = action;
 }
@@ -68,32 +88,32 @@ void Notify::removeLastAction()
   m_actions.removeLast();
 }
 
-void Notify::appendAction(QQmlListProperty<QQuickAction>* list, QQuickAction* action)
+void Notify::appendAction(QQmlListProperty<NotifyAction>* list, NotifyAction* action)
 {
   reinterpret_cast< Notify* >(list->data)->appendAction(action);
 }
 
-int Notify::actionsCount(QQmlListProperty<QQuickAction>* list)
+int Notify::actionsCount(QQmlListProperty<NotifyAction>* list)
 {
   return reinterpret_cast< Notify* >(list->data)->actionsCount();
 }
 
-QQuickAction * Notify::action(QQmlListProperty<QQuickAction>* list, int index)
+NotifyAction * Notify::action(QQmlListProperty<NotifyAction>* list, int index)
 {
   return reinterpret_cast< Notify* >(list->data)->action(index);
 }
 
-void Notify::clearActions(QQmlListProperty<QQuickAction>* list)
+void Notify::clearActions(QQmlListProperty<NotifyAction>* list)
 {
   reinterpret_cast< Notify* >(list->data)->clearActions();
 }
 
-void Notify::replaceAction(QQmlListProperty<QQuickAction>* list, int index, QQuickAction* action)
+void Notify::replaceAction(QQmlListProperty<NotifyAction>* list, int index, NotifyAction* action)
 {
   reinterpret_cast< Notify* >(list->data)->replaceAction(index, action);
 }
 
-void Notify::removeLastAction(QQmlListProperty<QQuickAction>* list)
+void Notify::removeLastAction(QQmlListProperty<NotifyAction>* list)
 {
   reinterpret_cast< Notify* >(list->data)->removeLastAction();
 }
@@ -141,7 +161,7 @@ void Notify::send()
   connect(notification, &KNotification::defaultActivated,[this]()
   {
       if(m_defaultAction)
-        m_defaultAction->trigger (this);
+       emit m_defaultAction->triggered ();
     });
 
   notification->sendEvent();
@@ -170,7 +190,7 @@ if(index == 0)
 
   if(index >= 1 && index-1 < m_actions.count ())
     {
-      m_actions.at (index-1)->trigger ();
+      emit m_actions.at (index-1)->triggered ();
     }
 }
 
@@ -236,12 +256,12 @@ void Notify::setImageSource(const QUrl &newImageSource)
   emit imageSourceChanged(m_imageSource);
 }
 
-QQuickAction *Notify::defaultAction() const
+NotifyAction *Notify::defaultAction() const
 {
   return m_defaultAction;
 }
 
-void Notify::setDefaultAction(QQuickAction *newDefaultAction)
+void Notify::setDefaultAction(NotifyAction *newDefaultAction)
 {
   if (m_defaultAction == newDefaultAction)
     return;

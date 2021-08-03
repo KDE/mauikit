@@ -24,7 +24,25 @@
 #include <QQmlListProperty>
 #include <QUrl>
 
-class QQuickAction;
+
+class NotifyAction : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
+    
+public:
+    NotifyAction(QObject *parent = nullptr);
+    void setText(const QString &text);
+    QString text() const;
+    
+private:
+    QString m_text;
+    
+signals:
+    void triggered();
+    void textChanged();
+};
+
 class KNotification;
 /**
  * @todo write docs
@@ -39,20 +57,20 @@ class Notify : public QObject
     Q_PROPERTY(QString iconName READ iconName WRITE setIconName NOTIFY iconNameChanged)
 
     Q_PROPERTY(QUrl imageSource READ imageSource WRITE setImageSource NOTIFY imageSourceChanged)
-    Q_PROPERTY(QQmlListProperty<QQuickAction> actions READ actions)
-    Q_PROPERTY(QQuickAction * defaultAction READ defaultAction WRITE setDefaultAction NOTIFY defaulActionChanged)
+    Q_PROPERTY(QQmlListProperty<NotifyAction> actions READ actions)
+    Q_PROPERTY(NotifyAction * defaultAction READ defaultAction WRITE setDefaultAction NOTIFY defaulActionChanged)
     Q_PROPERTY(QList<QUrl> urls READ urls WRITE setUrls NOTIFY urlsChanged)
 
 public:
     Notify(QObject * parent = nullptr);
 
-    QQmlListProperty<QQuickAction> actions();
+    QQmlListProperty<NotifyAction> actions();
 
-    void appendAction(QQuickAction*);
+    void appendAction(NotifyAction*);
     int actionsCount() const;
-    QQuickAction *action(int) const;
+    NotifyAction *action(int) const;
     void clearActions();
-    void replaceAction(int, QQuickAction*);
+    void replaceAction(int, NotifyAction*);
     void removeLastAction();
 
     const QString &componentName() const;
@@ -73,8 +91,8 @@ public:
     const QUrl &imageSource() const;
     void setImageSource(const QUrl &newImageSource);
 
-    QQuickAction *defaultAction() const;
-    void setDefaultAction(QQuickAction *newDefaultAction);
+    NotifyAction *defaultAction() const;
+    void setDefaultAction(NotifyAction *newDefaultAction);
 
     const QList<QUrl> &urls() const;
     void setUrls(const QList<QUrl> &newUrls);
@@ -102,16 +120,16 @@ signals:
     void urlsChanged(QList<QUrl>);
 
 private:
-    static void appendAction(QQmlListProperty<QQuickAction>*, QQuickAction*);
-    static int actionsCount(QQmlListProperty<QQuickAction>*);
-    static QQuickAction* action(QQmlListProperty<QQuickAction>*, int);
-    static void clearActions(QQmlListProperty<QQuickAction>*);
-    static void replaceAction(QQmlListProperty<QQuickAction>*, int, QQuickAction*);
-    static void removeLastAction(QQmlListProperty<QQuickAction>*);
+    static void appendAction(QQmlListProperty<NotifyAction>*, NotifyAction*);
+    static int actionsCount(QQmlListProperty<NotifyAction>*);
+    static NotifyAction* action(QQmlListProperty<NotifyAction>*, int);
+    static void clearActions(QQmlListProperty<NotifyAction>*);
+    static void replaceAction(QQmlListProperty<NotifyAction>*, int, NotifyAction*);
+    static void removeLastAction(QQmlListProperty<NotifyAction>*);
 
-    QList<QQuickAction*> m_actions;
+    QList<NotifyAction*> m_actions;
 
-    QQuickAction * m_defaultAction;
+    NotifyAction * m_defaultAction;
     QString m_eventId;
     QString m_title;
     QString m_message;

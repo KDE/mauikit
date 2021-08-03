@@ -178,7 +178,6 @@ target_link_libraries(MauiKit
     Qt5::Svg
     Qt5::Widgets
     Qt5::QuickControls2
-   Qt5::QuickPrivate Qt5::QuickTemplates2 Qt5::QuickTemplates2Private
     )
 
 if(IS_APPIMAGE_PACKAGE)
