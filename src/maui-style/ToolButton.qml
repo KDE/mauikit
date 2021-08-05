@@ -59,8 +59,8 @@ T.ToolButton
     topPadding: Maui.Style.space.tiny
     bottomPadding: Maui.Style.space.tiny
     
-    icon.width: Kirigami.Settings.isMobile ? Maui.Style.iconSizes.small : Maui.Style.iconSizes.medium
-    icon.height: Kirigami.Settings.isMobile ? Maui.Style.iconSizes.small : Maui.Style.iconSizes.medium
+    icon.width: Maui.Style.iconSizes.medium
+    icon.height: Maui.Style.iconSizes.medium
     
     icon.color: control.down || control.checked || control.highlighted || control.hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
     
@@ -89,6 +89,7 @@ T.ToolButton
 
     background: Rectangle
     {
+        visible: !control.flat
         implicitWidth: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
         implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
 

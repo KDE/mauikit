@@ -82,8 +82,8 @@ T.Slider
             width: control.horizontal ? control.position * parent.width : 8
             height: control.horizontal ? 8 : control.position * parent.height
             radius: 4
-            color: Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2)
-            border.color: control.Kirigami.Theme.highlightColor
+            color: Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.7)
+//            border.color: control.Kirigami.Theme.highlightColor
         }
     }
 }
