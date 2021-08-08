@@ -184,18 +184,19 @@ Item
             {
                 id: _labelsContainer
                 property int labelSizeHint: Math.min(64, _labels.implicitHeight) 
-                visible: control.labelsVisible &&( _label1.text || _label2.text)
+                visible: control.labelsVisible && ( _label1.text || _label2.text)
                 
                 Layout.preferredHeight: labelSizeHint               
                 Layout.fillWidth: true
                 Layout.maximumHeight: control.height* 0.9
-                Layout.minimumHeight: labelSizeHint + Maui.Style.space.small                
+                Layout.minimumHeight: labelSizeHint                
                 
                 ColumnLayout
                 {
                     id: _labels
                     anchors.fill: parent
-                    anchors.margins: Maui.Style.space.tiny
+                    anchors.leftMargin: Maui.Style.space.tiny
+                    anchors.rightMargin: Maui.Style.space.tiny
                     spacing: 0
                     
                     Label
@@ -218,13 +219,13 @@ Item
                     Label
                     {
                         id: _label2
-                        visible: text && text.length
+                        visible: text.length
                         
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
                         
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: implicitHeight
+                        Layout.fillWidth: visible
+                        Layout.preferredHeight: visible ? implicitHeight : 0
                         Layout.alignment: Qt.AlignCenter
                         
                         elide: Qt.ElideRight
@@ -234,31 +235,31 @@ Item
                     }
                 }
                 
-                Rectangle
-                {
-                    visible: (control.hovered ) && _label1.implicitHeight > _label1.height 
-                    height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
-                    width: parent.width
-                    color: Kirigami.Theme.backgroundColor
-                    anchors.bottom: parent.bottom
-                    radius: Maui.Style.radiusV
-                    clip: true
+                //Rectangle
+                //{
+                    //visible: (control.hovered ) && _label1.implicitHeight > _label1.height 
+                    //height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
+                    //width: parent.width
+                    //color: Kirigami.Theme.backgroundColor
+                    //anchors.bottom: parent.bottom
+                    //radius: Maui.Style.radiusV
+                    //clip: true
                     
-                    Label
-                    {
-                        id: _label2D
-                        horizontalAlignment: Qt.AlignHCenter
-                        verticalAlignment: Qt.AlignVCenter
-                        text: _label1.text
-                        width: parent.width
-                        height: implicitHeight
-                        anchors.centerIn: parent
-                        elide: Qt.ElideRight
-                        wrapMode: Text.Wrap
-                        font: _label1.font
-                        color: _label1.color
-                    }
-                }
+                    //Label
+                    //{
+                        //id: _label2D
+                        //horizontalAlignment: Qt.AlignHCenter
+                        //verticalAlignment: Qt.AlignVCenter
+                        //text: _label1.text
+                        //width: parent.width
+                        //height: implicitHeight
+                        //anchors.centerIn: parent
+                        //elide: Qt.ElideRight
+                        //wrapMode: Text.Wrap
+                        //font: _label1.font
+                        //color: _label1.color
+                    //}
+                //}
             }
         }
 }
