@@ -157,7 +157,7 @@ Item
             Repeater
             {
                 model: control.hiddenItems
-                
+
                 MenuItem
                 {
                     text: modelData.Maui.AppView.title
@@ -165,14 +165,14 @@ Item
                     autoExclusive: true
                     checkable: true
                     checked: control.currentIndex === control.items.length + index
-                    
+
                     onTriggered:
                     {
                         if(control.items.length + index === control.currentIndex)
                         {
                             return
                         }
-                        
+
                         control.currentIndex = control.items.length + index
                         control.clicked(control.currentIndex)
                     }

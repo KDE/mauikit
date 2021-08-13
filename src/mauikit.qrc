@@ -85,6 +85,7 @@
         <file alias="SplitViewItem.qml">controls/SplitViewItem.qml</file>
         <file alias="ProgressIndicator.qml">controls/ProgressIndicator.qml</file>
         <file alias="ComboBox.qml">controls/labs/ComboBox.qml</file>
+        <file alias="MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
