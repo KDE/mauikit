@@ -53,7 +53,7 @@ Item
         height: 20
         radius: height / 2
         y: parent.height / 2 - height / 2
-        border.color: control.enabled ? (control.checked ? m_color : color) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
+        border.color: control.enabled ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
         color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.2) : "transparent"
     }
 

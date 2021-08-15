@@ -342,40 +342,16 @@ Maui.Dialog
             spacing: Maui.Style.space.big
             anchors.centerIn: parent
 
-            RowLayout
+            Kirigami.Icon
             {
-                spacing: Maui.Style.space.big
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredHeight: Maui.Style.rowHeight
-
-                Kirigami.Icon
-                {
-                    source: "qrc:/assets/nitrux.svg"
-                    color: Kirigami.Theme.textColor
-                    isMask: true
-                    implicitHeight: Maui.Style.iconSizes.big
-                    implicitWidth: implicitHeight
-                }
-
-                Kirigami.Icon
-                {
-                    source: "qrc:/assets/mauikit.svg"
-                    color: Kirigami.Theme.textColor
-                    isMask: true
-                    implicitHeight: Maui.Style.iconSizes.big
-                    implicitWidth: implicitHeight
-                }
-
-                Kirigami.Icon
-                {
-                    source: "qrc:/assets/kde.svg"
-                    color: Kirigami.Theme.textColor
-                    isMask: true
-                    implicitHeight: Maui.Style.iconSizes.big
-                    implicitWidth: implicitHeight
-                }
-
+                source: "qrc:/assets/mauikit.svg"
+                color: Kirigami.Theme.textColor
+                isMask: true
+                implicitHeight: Maui.Style.iconSizes.big
+                implicitWidth: implicitHeight
             }
+
 
             Maui.ListItemTemplate
             {

@@ -137,7 +137,7 @@ Item
         Maui.ToolButtonMenu
         {
             id: _menuButton
-            icon.name: "list-add"
+            icon.name: "view-more-horizontal-symbolic"
             icon.width: Maui.Style.iconSizes.medium
             icon.height: Maui.Style.iconSizes.medium
             visible: control.hiddenItems.length > 0
