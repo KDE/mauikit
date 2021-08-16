@@ -29,15 +29,15 @@ Maui.ItemDelegate
         color: control.hovered ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"
         opacity: control.hovered ? 0.5 : 1
 
-        //Kirigami.Separator
-        //{
-            //id: _sep
-            //visible: !control.lastOne
-            //weight: Kirigami.Separator.Weight.Light
-            //height: 0.5
-            //anchors.left: parent.left
-            //anchors.right: parent.right
-            //anchors.bottom: parent.bottom
-        //}
+        Kirigami.Separator
+        {
+            id: _sep
+            visible: !control.lastOne
+            weight: Kirigami.Separator.Weight.Light
+            height: 0.5
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+        }
     }
 }
