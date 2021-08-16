@@ -188,6 +188,7 @@ Item
                 
                 Layout.preferredHeight: labelSizeHint               
                 Layout.fillWidth: true
+                Layout.margins: Maui.Style.space.medium
                 Layout.maximumHeight: control.height* 0.9
                 Layout.minimumHeight: labelSizeHint                
                 
@@ -195,8 +196,6 @@ Item
                 {
                     id: _labels
                     anchors.fill: parent
-                    anchors.leftMargin: Maui.Style.space.tiny
-                    anchors.rightMargin: Maui.Style.space.tiny
                     spacing: 0
                     
                     Label
@@ -225,7 +224,7 @@ Item
                         verticalAlignment: Qt.AlignVCenter
                         
                         Layout.fillWidth: visible
-                        Layout.preferredHeight: visible ? implicitHeight : 0
+                        Layout.fillHeight: true
                         Layout.alignment: Qt.AlignCenter
                         
                         elide: Qt.ElideRight

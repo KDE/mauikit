@@ -42,17 +42,25 @@ Maui.GridBrowserDelegate
     label1.font.weight: Font.Bold
     label1.font.pointSize: Maui.Style.fontSizes.big
     
-    template.iconComponent: Item
+    template.iconComponent: Kirigami.ShadowedRectangle
     {
-        id: _collageLayout
-        
-        Rectangle
+                id: _collageLayout
+
+            color: "#333"
+        corners
         {
-            anchors.fill: parent
-            radius: 8
-            color: randomHexColor()
-            visible: _repeater.count === 0
+            topLeftRadius: control.radius
+            topRightRadius: control.radius
+            bottomLeftRadius: control.radius
+            bottomRightRadius: control.radius
         }
+        
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.size: 10
+  
+               
         
         GridLayout
         {
@@ -91,9 +99,8 @@ Maui.GridBrowserDelegate
                     }
                 }
             }
-        }        
-        
-        layer.enabled: control.maskRadius
+            
+             layer.enabled: control.maskRadius
         layer.effect: OpacityMask
         {
             maskSource: Item
@@ -108,26 +115,18 @@ Maui.GridBrowserDelegate
                 }
             }
         }
+        }        
+        
+       
     }
     
-    background: Kirigami.ShadowedRectangle
+    background: Rectangle
     {
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.5)       
         
-        corners
-        {
-            topLeftRadius: control.radius
-            topRightRadius: control.radius
-            bottomLeftRadius: control.radius
-            bottomRightRadius: control.radius
-        }
-        
-        shadow.xOffset: 0
-        shadow.yOffset: 0
-        shadow.color: Qt.rgba(0, 0, 0, 0.3)
-        shadow.size: 10
+        radius: control.radius
     }
     
 }

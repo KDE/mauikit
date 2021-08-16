@@ -38,20 +38,30 @@ Maui.GridBrowserDelegate
     
     maskRadius: radius
 
-   template.iconComponent:  Item
+   template.iconComponent:  Kirigami.ShadowedRectangle
     {
-        id: _cover
+                id: _cover
+
+            color: "#333"
+            
+        corners
+        {
+            topLeftRadius: control.radius
+            topRightRadius: control.radius
+            bottomLeftRadius: control.radius
+            bottomRightRadius: control.radius
+        }
+        
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.size: 10
+    
         
         function randomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        
-        Rectangle
-        {
-            anchors.fill: parent
-            color: "#333"
-
-            Component.onCompleted: _featuredTimer.start()
+          Component.onCompleted: _featuredTimer.start()
             
             HoverHandler
             {
@@ -65,7 +75,7 @@ Maui.GridBrowserDelegate
                 repeat: true
                 onTriggered: _featuredRoll.cycleSlideForward()
             }
-
+          
             ListView
             {
                 id: _featuredRoll
@@ -129,8 +139,8 @@ Maui.GridBrowserDelegate
                         }
                     }
                 }
-            }
-            
+                
+                
             layer.enabled: control.maskRadius
             layer.effect: OpacityMask
             {
@@ -146,26 +156,17 @@ Maui.GridBrowserDelegate
                     }
                 }
             }
-        }
+            }
+            
+        
     }
     
-    background: Kirigami.ShadowedRectangle
+    background: Rectangle
     {
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.5)       
         
-        corners
-        {
-            topLeftRadius: control.radius
-            topRightRadius: control.radius
-            bottomLeftRadius: control.radius
-            bottomRightRadius: control.radius
-        }
-        
-        shadow.xOffset: 0
-        shadow.yOffset: 0
-        shadow.color: Qt.rgba(0, 0, 0, 0.3)
-        shadow.size: 10
+        radius: control.radius
     }
 }
