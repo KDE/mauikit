@@ -42,6 +42,14 @@ Item
         id:  _container
         anchors.fill: parent
     }
+    
+    Rectangle
+    {
+        anchors.fill: parent
+        visible:  control.SplitView.view.resizing 
+        color: Kirigami.Theme.backgroundColor
+        opacity: (control.minimumWidth) / control.width
+    }
 
     Rectangle
     {

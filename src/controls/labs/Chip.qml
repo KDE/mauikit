@@ -31,10 +31,8 @@ ItemDelegate
     {
         id: _background
 //         opacity: 0.5
-        
-        readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.95))
-        
-        color: control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.5)
+               
+        color: Qt.lighter(control.hovered || control.containsPress ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.backgroundColor)
         
         corners
         {
@@ -47,7 +45,7 @@ ItemDelegate
         shadow.xOffset: 0
         shadow.yOffset: 0
         shadow.color: Qt.rgba(0, 0, 0, 0.3)
-        shadow.size: 10
+        shadow.size: 5
     }
 
     RowLayout
@@ -75,7 +73,7 @@ ItemDelegate
                 anchors.centerIn: parent
                 implicitWidth: Maui.Style.iconSizes.small
                 implicitHeight: implicitWidth
-                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.4 : 0.7))
+                color: _label1.color
             }            
         }
     
@@ -84,7 +82,7 @@ ItemDelegate
             id: _label1
             Layout.fillHeight: true
             verticalAlignment: Qt.AlignVCenter
-            color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.4 : 0.7))
+            color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.2 : 0.4))
         }
 
         MouseArea
@@ -103,7 +101,7 @@ ItemDelegate
                 height: Maui.Style.iconSizes.tiny
                 width: height
                 anchors.centerIn: parent
-                color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.4 : 0.7))
+                color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : _label1.color
             }
         }
         

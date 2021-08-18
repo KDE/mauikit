@@ -140,7 +140,10 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("SplitView.qml")), uri, 1, 3, "SplitView");
     qmlRegisterType(componentUrl(QStringLiteral("SplitViewItem.qml")), uri, 1, 3, "SplitViewItem");
     qmlRegisterType(componentUrl(QStringLiteral("ProgressIndicator.qml")), uri, 1, 3, "ProgressIndicator");
+
+    //2.0
     qmlRegisterType(componentUrl(QStringLiteral("labs/MenuItemActionRow.qml")), uri, 1, 3, "MenuItemActionRow");
+    qmlRegisterType(componentUrl(QStringLiteral("labs/GalleryRollTemplate.qml")), uri, 1, 3, "GalleryRollTemplate");
 
     /** 2.0 **/
     qmlRegisterType(componentUrl(QStringLiteral("labs/RowMenuItems.qml")), uri, 2, 0, "RowMenuItems");
