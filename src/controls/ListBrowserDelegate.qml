@@ -167,10 +167,10 @@ Maui.ItemDelegate
         Rectangle
         {
             anchors.fill: parent
-            radius: Maui.Style.radiusV
-            color: control.Kirigami.Theme.highlightColor
+            radius: control.radius
             visible: parent.containsDrag
-            opacity: 0.3
+            color:  control.Kirigami.Theme.backgroundColor
+            border.color: control.Kirigami.Theme.highlightColor
         }
 
         onDropped:
@@ -205,24 +205,10 @@ Maui.ItemDelegate
             id: _template
             Layout.fillHeight: true
             Layout.fillWidth: true
+            
             isCurrentItem : control.isCurrentItem
             hovered: control.hovered
             leftMargin: iconVisible ? 0 : Maui.Style.space.medium
-
-            iconComponent: Maui.IconItem
-            {
-                iconSource: control.iconSource
-                imageSource: _template.imageSource
-
-                highlighted: _template.isCurrentItem
-                hovered: _template.hovered
-
-                iconSizeHint: _template.iconSizeHint
-                imageSizeHint: _template.imageSizeHint
-                
-                fillMode: _template.fillMode
-                maskRadius: _template.maskRadius
-            }
         }
     }
 }

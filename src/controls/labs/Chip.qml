@@ -27,25 +27,13 @@ ItemDelegate
 
     signal close()
 
-    background: Kirigami.ShadowedRectangle
+    background: Rectangle
     {
         id: _background
 //         opacity: 0.5
                
         color: Qt.lighter(control.hovered || control.containsPress ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.backgroundColor)
-        
-        corners
-        {
-            topLeftRadius:  Maui.Style.radiusV
-            topRightRadius:  Maui.Style.radiusV
-            bottomLeftRadius: Maui.Style.radiusV
-            bottomRightRadius:  Maui.Style.radiusV
-        }
-        
-        shadow.xOffset: 0
-        shadow.yOffset: 0
-        shadow.color: Qt.rgba(0, 0, 0, 0.3)
-        shadow.size: 5
+        radius:  Maui.Style.radiusV         
     }
 
     RowLayout

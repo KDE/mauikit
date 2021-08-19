@@ -88,6 +88,11 @@ Item
     property alias label4 : _label4
 
     /**
+     * iconItemContainer : Item
+     */
+    property alias iconContainer : _iconLoader
+    
+    /**
       * iconItem : Item
       */
     property alias iconItem : _iconLoader.item

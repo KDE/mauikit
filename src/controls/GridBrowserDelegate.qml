@@ -136,16 +136,26 @@ Maui.ItemDelegate
     {
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         
-        color: control.isCurrentItem || _template.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
+        color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
 
         radius: control.radius
 //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
-    }
+    }    
     
     DropArea
     {
         id: _dropArea
         anchors.fill: parent
+        
+        Rectangle
+        {
+            id: light
+            anchors.fill: parent
+            radius: control.radius
+            color:  control.Kirigami.Theme.backgroundColor
+            border.color: control.Kirigami.Theme.highlightColor
+            visible: parent.containsDrag
+        }
         
         onDropped:
         {
@@ -157,8 +167,9 @@ Maui.ItemDelegate
     {
         id: _template
         anchors.fill: parent
+        iconContainer.scale: _dropArea.containsDrag ? 0.8 : 1
         
-        hovered: control.hovered || control.containsPress || _dropArea.containsDrag
+        hovered: control.hovered 
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
     }

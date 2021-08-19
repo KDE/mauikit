@@ -65,7 +65,7 @@ Item
         property alias iconItem : _iconLoader.item
         
         /**
-         * iconItem : Item
+         * iconItemContainer : Item
          */
         property alias iconContainer : _iconLoader
         

@@ -236,7 +236,7 @@ Item
 
             onPressAndHold :
             {
-                xAnim.running = true
+                xAnim.running = control.draggable
 
                 if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
                 {
