@@ -124,10 +124,16 @@ Kirigami.ShadowedRectangle
                 width: control.width
                 height: control.height
 
-                Rectangle
+                Kirigami.ShadowedRectangle
                 {
                     anchors.fill: parent
-                    radius: control.radius
+                    corners
+                    {
+                        topLeftRadius: control.corners.topLeftRadius
+                        topRightRadius: control.corners.topRightRadius
+                        bottomLeftRadius: control.corners.bottomLeftRadius
+                        bottomRightRadius: control.corners.bottomRightRadius
+                    }
                 }
             }
         }

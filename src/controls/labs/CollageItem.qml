@@ -44,9 +44,9 @@ Maui.GridBrowserDelegate
     
     template.iconComponent: Kirigami.ShadowedRectangle
     {
-                id: _collageLayout
-
-            color: "#333"
+        id: _collageLayout
+        
+        color: "#333"
         corners
         {
             topLeftRadius: control.radius
@@ -59,8 +59,6 @@ Maui.GridBrowserDelegate
         shadow.yOffset: 0
         shadow.color: Qt.rgba(0, 0, 0, 0.3)
         shadow.size: 10
-  
-               
         
         GridLayout
         {
@@ -100,24 +98,29 @@ Maui.GridBrowserDelegate
                 }
             }
             
-             layer.enabled: control.maskRadius
-        layer.effect: OpacityMask
-        {
-            maskSource: Item
+            layer.enabled: control.maskRadius
+            layer.effect: OpacityMask
             {
-                width: _collageLayout.width
-                height: _collageLayout.height
-                
-                Rectangle
+                maskSource: Item
                 {
-                    anchors.fill: parent
-                    radius: control.maskRadius
+                    width: _collageLayout.width
+                    height: _collageLayout.height
+                    
+                    Kirigami.ShadowedRectangle
+                    {
+                        corners
+                        {
+                            topLeftRadius: control.radius
+                            topRightRadius: control.radius
+                            bottomLeftRadius: 0
+                            bottomRightRadius: 0
+                        }
+                        anchors.fill: parent
+                        radius: control.maskRadius
+                    }
                 }
             }
-        }
-        }        
-        
-       
+        }   
     }
     
     background: Rectangle

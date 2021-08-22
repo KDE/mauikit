@@ -46,6 +46,14 @@ Maui.GridBrowserDelegate
         images: control.images
         cb: control.cb
         fillMode: control.fillMode
+        
+        corners
+        {
+            topLeftRadius: control.radius
+            topRightRadius: control.radius
+            bottomLeftRadius: 0
+            bottomRightRadius: 0
+        }
     }
     
     background: Rectangle
