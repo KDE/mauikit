@@ -22,7 +22,7 @@
 
 import QtQuick 2.14
 import QtQuick.Templates 2.14 as T
-import org.kde.kirigami 2.8 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 T.Slider
@@ -45,9 +45,8 @@ T.Slider
         width: Maui.Style.iconSizes.medium
         height: width
         radius: width /2
-        color: control.Kirigami.Theme.backgroundColor
-        border.color: control.Kirigami.Theme.highlightColor
-//        scale: control.pressed ? 1.5 : 1
+        color: Kirigami.Theme.highlightColor
+        border.color: Kirigami.Theme.highlightColor
 
         Behavior on scale
         {
@@ -75,13 +74,21 @@ T.Slider
         scale: control.horizontal && control.mirrored ? -1 : 1
         radius: 4
 
-        Rectangle
+        Kirigami.ShadowedRectangle
         {
             x: control.horizontal ? 0 : (parent.width - width) / 2
             y: control.horizontal ? (parent.height - height) / 2 : control.visualPosition * parent.height
             width: control.horizontal ? control.position * parent.width : 8
             height: control.horizontal ? 8 : control.position * parent.height
-            radius: 4
+
+            corners
+            {
+                topLeftRadius: 4
+                topRightRadius: 0
+                bottomLeftRadius:  4
+                bottomRightRadius: 0
+            }
+
             color: Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.7)
 //            border.color: control.Kirigami.Theme.highlightColor
         }
