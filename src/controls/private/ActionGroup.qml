@@ -137,7 +137,7 @@ Item
         Maui.ToolButtonMenu
         {
             id: _menuButton
-            icon.name: "view-more-horizontal-symbolic"
+            icon.name: "overflow-menu"
             icon.width: Maui.Style.iconSizes.medium
             icon.height: Maui.Style.iconSizes.medium
             visible: control.hiddenItems.length > 0

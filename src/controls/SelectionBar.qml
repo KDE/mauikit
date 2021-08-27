@@ -352,7 +352,7 @@ Item
                 Layout.fillHeight: true
                 Layout.margins: Maui.Style.space.medium
                 implicitWidth: height
-                text: selectionList.count
+                text: control.count
                 radius: Maui.Style.radiusV
                 font.pointSize: Maui.Style.fontSizes.big
                 Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
@@ -431,8 +431,7 @@ Item
                     }
                 }
             }
-        }
-        
+        }        
         
         Maui.Rectangle
         {

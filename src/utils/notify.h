@@ -24,7 +24,7 @@
 #include <QQmlListProperty>
 #include <QUrl>
 
-
+class Notify;
 class NotifyAction : public QObject
 {
     Q_OBJECT
@@ -39,7 +39,7 @@ private:
     QString m_text;
     
 signals:
-    void triggered();
+    void triggered(Notify* notify);
     void textChanged();
 };
 

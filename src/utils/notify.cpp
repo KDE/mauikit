@@ -147,21 +147,18 @@ void Notify::send()
   notification->setText (m_message);
   notification->setTitle (m_title);
   notification->setIconName (m_iconName);
-//  notification->setUrls (m_urls);
+  notification->setPixmap (QPixmap(m_imageSource.toString()));  
+ notification->setUrls (m_urls);
 
   qDebug() << notification->eventId ();
-  //  connect(this, &Notify::imageSourceChanged, m_notification, [this](QUrl source)
-  //  {
-  //    m_notification->setPixmap (QPixmap(source.toString ()));
-  //  });
-
+  
 
   connect(notification, QOverload<unsigned int>::of(&KNotification::activated), this, &Notify::actionActivated);
 
   connect(notification, &KNotification::defaultActivated,[this]()
   {
       if(m_defaultAction)
-       emit m_defaultAction->triggered ();
+       emit m_defaultAction->triggered (this);
     });
 
   notification->sendEvent();
@@ -190,7 +187,7 @@ if(index == 0)
 
   if(index >= 1 && index-1 < m_actions.count ())
     {
-      emit m_actions.at (index-1)->triggered ();
+      emit m_actions.at (index-1)->triggered (this);
     }
 }
 
