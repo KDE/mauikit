@@ -202,7 +202,8 @@ Item
             control.adaptGrid()
     }
     
-    QtObject {
+    QtObject 
+    {
         id: internal
         
         readonly property real verticalScrollBarWidth: _scrollView.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.vertical.width : 0

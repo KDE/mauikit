@@ -205,7 +205,8 @@ Item
     Keys.enabled : true
     Keys.forwardTo : _listView
     
-    QtObject {
+    QtObject 
+    {
         id: internal
         
         readonly property real verticalScrollBarWidth: _scrollView.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.vertical.width : 0

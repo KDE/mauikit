@@ -33,6 +33,8 @@ Maui.Page
       To access the precise view use the aliases for the GridView or ListView.
     */
     readonly property Item currentView : control.viewType === AltBrowser.ViewType.List ? _listView : _gridView
+    
+    onCurrentViewChanged: control.currentView.forceActiveFocus()
 
     enum ViewType
     {

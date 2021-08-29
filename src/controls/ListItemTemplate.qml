@@ -272,7 +272,7 @@ Item
             Layout.fillHeight: true
             Layout.fillWidth: true
             spacing: 0
-
+            
             Label
             {
                 id: _label1
@@ -280,13 +280,12 @@ Item
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label2.visible ? Qt.AlignBottom :  Qt.AlignVCenter
-
-                elide: Text.ElideMiddle
-                wrapMode: Text.NoWrap
+                
+                elide: Text.ElideRight
+                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-                font.weight: Font.Normal
-            }
-
+            }         
+            
             Label
             {
                 id: _label2
@@ -294,14 +293,12 @@ Item
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label1.visible ? Qt.AlignTop : Qt.AlignVCenter
-
+                
                 elide: Text.ElideRight
-                wrapMode: Text.NoWrap
-
+                wrapMode: Text.Wrap
+                
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
-
-                font.weight: Font.Normal
             }
         }
 
