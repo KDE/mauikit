@@ -267,14 +267,6 @@ Window
     */
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
 
-    /***************************************************/
-    /******************** SIGNALS *********************/
-    /*************************************************/
-    /*!
-      Triggered when the main menu button has been clicked.
-    */
-    signal menuButtonClicked();
-
     onClosing:
     {
         if(!Kirigami.Settings.isMobile)
@@ -298,7 +290,6 @@ Window
         {
             id: _content
             anchors.fill: parent
-            Kirigami.Theme.inherit: false
 
             transform: Translate
             {

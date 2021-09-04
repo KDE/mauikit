@@ -16,7 +16,7 @@ MenuItem
     default property list<Action> actions
     implicitWidth: ListView.view.width
     implicitHeight: Maui.Style.rowHeight
-background: null
+    background: null
 
     RowLayout
     {
@@ -34,7 +34,12 @@ background: null
                 id: _delegate
                 Layout.fillWidth: true
                 action: modelData
-
+                display: ToolButton.IconOnly
+                ToolTip.delay: 1000
+                ToolTip.timeout: 5000
+                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length 
+                ToolTip.text: modelData.text
+                
                 Connections
                 {
                     target: _delegate.action

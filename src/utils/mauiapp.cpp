@@ -38,8 +38,6 @@
 
 #include "../mauikit_version.h"
 
-static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/kwinrc";
-
 MauiApp *MauiApp::m_instance = nullptr;
 
 MauiApp::MauiApp()
@@ -114,14 +112,6 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
 {
   this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
-
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
-  auto configWatcher = new QFileSystemWatcher({CONF_FILE.toLocalFile()}, this);
-  connect(configWatcher, &QFileSystemWatcher::fileChanged, [this](QString) {
-    this->getWindowControlsSettings();
-  });
-#endif
-
   this->getWindowControlsSettings();
 }
 

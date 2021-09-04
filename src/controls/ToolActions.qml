@@ -21,7 +21,7 @@ import "private" as Private
 Item
 {
     id: control
-    implicitWidth: _loader.item.implicitWidth 
+    implicitWidth: control.expanded ? _row.implicitWidth : _defaultButtonMouseArea.implicitWidth
     implicitHeight: Maui.Style.rowHeight
     opacity: enabled ? 1 : 0.5
     
@@ -119,21 +119,13 @@ Item
         }
     }    
     
-    Loader
-    {
-        id: _loader
-        anchors.fill: parent
-        asynchronous: true
-        sourceComponent: control.expanded ? _rowComponent : _menuComponent
-    } 
-    
-    Component
-    {
-        id: _rowComponent
-        
+  
+  
         Row
         {
             id: _row
+            anchors.fill: parent
+            visible: control.expanded 
             spacing: 2
             
             Behavior on width
@@ -163,7 +155,7 @@ Item
                     
                     autoExclusive: control.autoExclusive
                     height: parent.height
-                    width : implicitWidth + Maui.Style.space.medium
+                    width : Math.max(implicitWidth + Maui.Style.space.medium, 80)
                     
                     enabled: action.enabled                    
                     
@@ -193,15 +185,14 @@ Item
                 }
             }
         }
-    }
     
-    Component
-    {
-        id: _menuComponent
-        
+    
+   
         MouseArea
         {
             id: _defaultButtonMouseArea
+            anchors.fill: parent
+            visible: !control.expanded 
             hoverEnabled: true
             implicitWidth: _defaultButtonLayout.implicitWidth
             
@@ -278,7 +269,7 @@ Item
                 }
             }
             
-            onClicked: triggerAction()
+            onClicked: _defaultButtonMouseArea.triggerAction()
             
             Maui.ContextualMenu
             {
@@ -315,11 +306,11 @@ Item
                 {
                     id: _defaultButtonIcon
                     Layout.fillHeight: true
-                    
-                    property var m_item : buttonAction()
+                    Layout.minimumWidth: 80
+                    property var m_item : _defaultButtonMouseArea.buttonAction()
                     property Action m_action : m_item.action
                     
-                    onClicked: triggerAction()                    
+                    onClicked: _defaultButtonMouseArea.triggerAction()                    
                     
                     icon.width:  Maui.Style.iconSizes.small
                     icon.height: Maui.Style.iconSizes.small
@@ -375,6 +366,6 @@ Item
                     }
                 }
             }
-        }
+        
     }
 }
