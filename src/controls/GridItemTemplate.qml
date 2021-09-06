@@ -211,7 +211,7 @@ Item
                         Layout.alignment: Qt.AlignCenter
                         
                         elide: Qt.ElideRight
-                        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                        wrapMode: Text.Wrap
                         color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
                     }
                     

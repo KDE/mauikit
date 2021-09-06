@@ -155,7 +155,7 @@ Item
                     
                     autoExclusive: control.autoExclusive
                     height: parent.height
-                    width : Math.max(implicitWidth + Maui.Style.space.medium, 80)
+                    width : Math.max(implicitWidth + Maui.Style.space.medium, 48)
                     
                     enabled: action.enabled                    
                     
@@ -306,7 +306,7 @@ Item
                 {
                     id: _defaultButtonIcon
                     Layout.fillHeight: true
-                    Layout.minimumWidth: 80
+                    Layout.minimumWidth: 48
                     property var m_item : _defaultButtonMouseArea.buttonAction()
                     property Action m_action : m_item.action
                     
