@@ -174,7 +174,6 @@ Item
                     height: Maui.Style.iconSizes.small
                     width: height
                     source:  control.iconSource || "folder-images"
-                    isMask: true
                     color: Kirigami.Theme.textColor
                     opacity: 0.5
                 }      
