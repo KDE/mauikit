@@ -28,7 +28,7 @@ Row
             readonly property bool checked : control.currentColor === modelData
             implicitHeight: Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
             implicitWidth: implicitHeight
-
+            hoverEnabled: true
             onClicked: control.colorPicked(modelData)
             
             Rectangle
@@ -37,11 +37,12 @@ Row
                 radius: height/2
                 color: enabled ? modelData : "transparent"
                 border.color: Qt.darker(modelData, 2)
+                border.width: parent.containsMouse ?  2 : 1
                 
                 Kirigami.Icon
                 {
                     visible: opacity > 0
-                    color: "white"
+                    color: parent.border.color
                     anchors.centerIn: parent
                     height: checked ? Math.round(parent.height * 0.9) : 0
                     width: height
