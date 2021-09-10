@@ -748,5 +748,26 @@
         <file>icons/luv-icon-theme/Luv/actions/22/file-zoom-in.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/file-zoom-out.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/tools.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/adjustlevels.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/code-context.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/dialog-cancel.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-duplicate.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/gps.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/rating.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/license.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/checkmark.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/object-flip-horizontal.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/object-flip-vertical.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/package.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/plugins.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/transform-crop.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/transform-rotate.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-hidden.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/games-config-background.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/videoclip-amarok.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-readermode-active.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-readermode.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/dialog-scripts.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/download.svg</file>
     </qresource>
 </RCC>

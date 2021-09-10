@@ -18,7 +18,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(MAUIKIT_VERSION 2.0.1)
+set(MAUIKIT_VERSION 2.0.2)
 
 set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.controls)
 
