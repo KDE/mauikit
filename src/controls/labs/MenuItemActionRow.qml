@@ -44,7 +44,10 @@ MenuItem
                 {
                     target: _delegate.action
                     ignoreUnknownSignals: true
-                    onTriggered: control.triggered()
+                    function onTriggered()
+                    {
+                        control.triggered()
+                    }
                 }
             }
         }

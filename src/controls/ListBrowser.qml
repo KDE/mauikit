@@ -63,6 +63,12 @@ Item
     property alias contentY: _listView.contentY
     
     /**
+     * contentX : int
+     */
+    property alias contentX: _listView.contentX
+    
+    
+    /**
      * currentIndex : int
      */
     property alias currentIndex : _listView.currentIndex
