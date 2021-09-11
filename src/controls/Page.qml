@@ -693,6 +693,28 @@ Pane
         }
     }
 
+    MouseArea // to support tbutton go back and forward
+    {
+        anchors.fill: parent
+        propagateComposedEvents: true
+        acceptedButtons: Qt.BackButton | Qt.ForwardButton
+        //        hoverEnabled: true
+        //        onEntered: _splitView.currentIndex = control.index
+        onPressed:
+        {
+            mouse.accepted = false
+            if(mouse.button === Qt.BackButton)
+            {
+                control.goBackTriggered()
+            }
+
+            if(mouse.button === Qt.ForwardButton)
+            {
+                control.goForwardTriggered()
+            }
+        }
+    }
+
     MouseArea
     {
         id: _touchMouse
