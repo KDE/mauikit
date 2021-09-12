@@ -95,7 +95,6 @@ void MauiApp::setDonationPage(const QString &value)
 void MauiApp::setDefaultMauiStyle()
 {
 #if defined QICON_H && defined QQUICKSTYLE_H
-    qDebug() << "trying to set icon theme" << "Luv"<< QFileInfo(":/icons/luv-icon-theme").exists() << QFileInfo(":/android_rcc_bundle/icons/luv-icon-theme").exists() <<  QFileInfo(":/android_rcc_bundle/qml/QtQuick/Controls.2/maui-style/icons/luv-icon-theme/Luv").exists();
   QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
   QIcon::setThemeName("Luv");
   qDebug() << QIcon::themeSearchPaths() << QIcon::hasThemeIcon("sidebar-expand");
@@ -117,8 +116,21 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
 
 void CSDControls::getWindowControlsSettings()
 {
+    
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 
+    m_styleName = UTIL::loadSettings("CSDStyle", "GLOBAL", "Nitrux", true).toString();
+    auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_styleName));
+    QFileInfo file(confFile);
+    if(file.exists ())
+    {
+        QSettings conf (confFile, QSettings::IniFormat);
+        conf.beginGroup ("Decoration");
+        m_borderRadius = conf.value ("BorderRadius", 8).toInt();
+        m_buttonSize = conf.value ("ButtonSize", 16).toInt();
+        conf.endGroup ();        
+    }    
+    
   auto kconf = KSharedConfig::openConfig("kwinrc");
   const auto group = kconf->group("org.kde.kdecoration2");
 
@@ -178,10 +190,26 @@ void CSDControls::setEnableCSD(const bool &value)
 #endif
 }
 
+QString CSDControls::styleName() const
+{
+    return m_styleName;
+}
+
+int CSDControls::borderRadius() const
+{
+   return m_borderRadius;
+}
+
+int CSDControls::buttonSize() const
+{
+    return m_buttonSize;
+}
+
 CSDButton::CSDButton(QObject *parent): QObject(parent)
 {
   connect(this, &CSDButton::typeChanged, this, &CSDButton::setSources);
   connect(this, &CSDButton::stateChanged, this, &CSDButton::requestCurrentSource);
+  m_style = MauiApp::instance()->controls()->styleName();  
 }
 
 QUrl CSDButton::source() const
@@ -192,7 +220,7 @@ QUrl CSDButton::source() const
 void CSDButton::setSources()
 {
   qDebug( )<< "Looking for CSD CONTROLS STYLE BUTTONS" << m_type;
-  auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, "org.mauikit.controls/csd/Nitrux/config.conf");
+  auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_style));
   qDebug( )<< "Looking for CSD CONTROLS STYLE BUTTONS" << confFile;
   QFileInfo file(confFile);
   if(file.exists ())

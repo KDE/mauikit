@@ -303,7 +303,7 @@ Window
         {
             id: _pageBackground
             color: Kirigami.Theme.backgroundColor
-            radius: root.visibility === Window.Maximized || !Maui.App.controls.enableCSD ? 0 :Maui.Style.radiusV
+            radius: root.visibility === Window.Maximized || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
         }
 
         layer.enabled: Maui.App.controls.enableCSD

@@ -32,7 +32,7 @@ Loader
 
     sourceComponent: Item
     {
-        implicitHeight: visible ? Maui.Style.iconSizes.medium : 0
+        implicitHeight: visible ? Maui.App.controls.buttonSize + Maui.Style.space.medium : 0
         implicitWidth: visible ? _row.implicitWidth : 0
 
         visible: control.model.length > 0
@@ -64,8 +64,8 @@ Loader
             {
                 id: _button
                 hoverEnabled: true
-                width: 22
-                height: 22
+                width: height
+                height: Maui.App.controls.buttonSize + Maui.Style.space.medium
 
                 Maui.CSDButton
                 {
@@ -75,16 +75,18 @@ Loader
                     isPressed: _button.pressed
                     isFocused:  root.active
                     isMaximized: root.visibility === Window.Maximized
-
                 }
 
                 contentItem: Item
                 {
-                    Kirigami.Icon
+                    Image
                     {
-                        width: 16
-                        height: 16
+                        width: Maui.App.controls.buttonSize
+                        height: Maui.App.controls.buttonSize
+                        smooth: true
                         source: button.source
+                        sourceSize.height: height
+                        sourceSize.width: width
                         anchors.centerIn: parent
                     }
                 }

@@ -20,6 +20,7 @@
 import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
+import QtGraphicalEffects 1.0
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
@@ -63,9 +64,18 @@ Drawer
     padding: 0
     leftPadding: 0
     rightPadding: 0
-    background: Rectangle
+    background: Kirigami.ShadowedRectangle
     {
         color: Kirigami.Theme.backgroundColor
+        property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
+        
+        corners
+        {
+            topLeftRadius: radius
+            topRightRadius: 0
+            bottomLeftRadius: radius
+            bottomRightRadius: 0
+        }
     }
 
     /*!
@@ -187,6 +197,22 @@ Drawer
             control.contentDropped(drop)
         }
     }
+    
+    //layer.enabled: Maui.App.controls.enableCSD
+    //layer.effect: OpacityMask
+    //{
+        //maskSource: Item
+        //{
+            //width: _page.width
+            //height: _page.height
+            
+            //Rectangle
+            //{
+                //anchors.fill: parent
+                //radius: _pageBackground.radius
+            //}
+        //}
+    //}
 
     function toggle()
     {
