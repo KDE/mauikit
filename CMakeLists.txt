@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.16)
 
 set(REQUIRED_QT_VERSION 5.14.0)
 set(REQUIRED_KF5_VERSION 5.40.0)
@@ -29,8 +29,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH}
     ${ECM_KDE_MODULE_DIR})
 
 #DEFAULT COMPONENTS DEFINITIONS
-option(COMPONENT_TERMINAL "Build terminal component" ON)
-
 include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
@@ -42,7 +40,7 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(ECMQtDeclareLoggingCategory)
 include(ECMAddQch)
-include(KDECompilerSettings NO_POLICY_SCOPE)
+#include(KDECompilerSettings NO_POLICY_SCOPE)
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
     
@@ -53,7 +51,8 @@ if(ANDROID)
     find_package(Qt5 REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
-    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
+    find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS X11Extras)
+    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config WindowSystem)
 endif()
 
 find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons Notifications)

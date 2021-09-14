@@ -62,12 +62,8 @@ ItemDelegate
       */
     property alias labelTxt : labelTxt
 
-    background: Rectangle
-    {
-        color: control.isCurrentListItem ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-        opacity: control.isCurrentListItem ? 1 : 0.1
-    }
-
+    background: Item{}
+    
     Label
     {
         id: labelTxt

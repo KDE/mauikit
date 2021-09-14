@@ -35,6 +35,10 @@
 #include "platforms/linux/mauilinux.h"
 #endif
 
+#include "shadowhelper/windowshadow.h"
+#include "blurhelper/windowblur.h"
+#include "windowhelper.h"
+
 #include "platform.h"
 
 #include <KI18n/KLocalizedContext>
@@ -191,14 +195,17 @@ void MauiKit::registerTypes(const char *uri)
         return new MAUIAndroid;
     });
 #elif defined Q_OS_LINUX
-    qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE");
-
+    qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE"); 
 #elif defined Q_OS_WIN32
     // here window platform integration interfaces
 #elif defined Q_OS_MACOS
 
 #endif
 
+    qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
+    qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
+    qmlRegisterType<WindowHelper>(uri, 1, 0, "WindowHelper");
+    
     /** DATA MODELING TEMPLATED INTERFACES **/
     qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST
     qmlRegisterType<MauiModel>(uri, 1, 0, "BaseModel"); // BASE MODEL

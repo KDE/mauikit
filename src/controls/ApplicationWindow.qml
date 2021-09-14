@@ -63,6 +63,21 @@ Window
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
 
+    
+    
+    Maui.WindowHelper 
+    {
+        id: windowHelper
+    }
+    
+    // Window shadows
+    Maui.WindowShadow 
+    {
+        view: root
+        radius: _pageBackground.radius
+    }
+    
+    
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
@@ -257,6 +272,9 @@ Window
       Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
     */
     property bool isWide : root.width >= Kirigami.Units.gridUnit * 30
+    
+    readonly property bool isMaximized: root.visibility === Window.Maximized
+    readonly property bool isFullScreen: root.visibility === Window.FullScreen
 
     /***************************************************/
     /**************** READONLY PROPS ******************/
@@ -290,7 +308,7 @@ Window
         {
             id: _content
             anchors.fill: parent
-
+            clip: true
             transform: Translate
             {
                 x: root.sideBar && root.sideBar.collapsible && root.sideBar.collapsed ? root.sideBar.position * (root.sideBar.width) : 0
@@ -302,8 +320,9 @@ Window
         background: Rectangle
         {
             id: _pageBackground
+            opacity: 0.7
             color: Kirigami.Theme.backgroundColor
-            radius: root.visibility === Window.Maximized || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
+            radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
         }
 
         layer.enabled: Maui.App.controls.enableCSD
@@ -330,8 +349,8 @@ Window
         anchors.fill: parent
         radius: _pageBackground.radius - 0.5
         color: "transparent"
-        border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
-        opacity: 0.8
+        border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.3)
+        opacity: 0.5
 
         Rectangle
         {
@@ -340,7 +359,7 @@ Window
             color: "transparent"
             radius: parent.radius - 0.5
             border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-            opacity: 0.8
+            opacity: 0.7
         }
     }
 
@@ -414,7 +433,6 @@ Window
         id: _aboutDialogComponent
         Private.AboutDialog {}
     }
-
 
     Component
     {
@@ -568,7 +586,7 @@ Window
       */
     function toggleMaximized()
     {
-        if (root.visibility === Window.Maximized)
+        if (root.isMaximized)
         {
             root.showNormal();
         } else
@@ -577,6 +595,17 @@ Window
         }
     }
 
+    function toggleFullscreen()
+    {
+        if (root.isFullScreen)
+        {
+            root.showNormal();
+        } else
+        {
+            root.showFullScreen()();
+        }
+    }
+    
     /**
       * Reference to the application main page
       */

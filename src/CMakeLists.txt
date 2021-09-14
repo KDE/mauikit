@@ -13,15 +13,6 @@ include_directories(
 
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux
-    ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
-    ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
-    ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
     )
 
 set(mauikit_SRCS
@@ -95,7 +86,23 @@ if (ANDROID)
         platforms/android/mauiandroid.h
         )
 
-    kde_enable_exceptions(MauiKit PRIVATE)
+  set(window_PLATFORM_SRCS        
+           platforms/android/windowhelper.cpp
+            platforms/android/blurhelper/windowblur.cpp
+            platforms/android/shadowhelper/boxshadowrenderer.cpp
+            platforms/android/shadowhelper/tileset.cpp
+            platforms/android/shadowhelper/windowshadow.cpp
+        )
+        
+          set(window_PLATFORM_HDRS        
+           platforms/android/windowhelper.h
+            platforms/android/blurhelper/windowblur.h
+            platforms/android/shadowhelper/boxshadowrenderer.h
+            platforms/android/shadowhelper/tileset.h
+            platforms/android/shadowhelper/windowshadow.h
+        )
+        
+#    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
 
     set(mauikit_PLATFORM_SRCS
@@ -104,6 +111,22 @@ elseif(UNIX AND NOT APPLE)
 
     set(mauikit_PLATFORM_HDRS
         platforms/linux/mauilinux.h
+        )
+        
+        set(window_PLATFORM_SRCS        
+           platforms/linux/windowhelper.cpp
+            platforms/linux/blurhelper/windowblur.cpp
+            platforms/linux/shadowhelper/boxshadowrenderer.cpp
+            platforms/linux/shadowhelper/tileset.cpp
+            platforms/linux/shadowhelper/windowshadow.cpp
+        )
+        
+          set(window_PLATFORM_HDRS        
+           platforms/linux/windowhelper.h
+            platforms/linux/blurhelper/windowblur.h
+            platforms/linux/shadowhelper/boxshadowrenderer.h
+            platforms/linux/shadowhelper/tileset.h
+            platforms/linux/shadowhelper/windowshadow.h
         )
 elseif(APPLE)
 #    set(CMAKE_CXX_FLAGS "-x objective-c++")
@@ -135,18 +158,37 @@ add_library(MauiKit
     ${mauikit_PLATFORM_HDRS}
     ${mauikit_PLATFORM_SRCS}
 
+    ${window_PLATFORM_HDRS}
+    ${window_PLATFORM_SRCS}
+    
     maui-style/style.qrc
     assets.qrc
     mauikit.qrc
 )
 
 if(ANDROID)
+    include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/android
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/android
+        )
     target_include_directories(MauiKit PRIVATE platforms/android)
 elseif(WIN32)
+    include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
+        )
     target_include_directories(MauiKit PRIVATE platforms/windows)
 elseif(UNIX AND NOT APPLE)
+    include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux
+        )
     target_include_directories(MauiKit PRIVATE platforms/linux)
 elseif(APPLE)
+    include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
+        )
     target_include_directories(MauiKit PRIVATE platforms/macos)
 endif()
 
@@ -163,7 +205,8 @@ if(ANDROID)
         install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
     endif()
 elseif(UNIX AND NOT ANDROID)
-    target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
+    target_link_libraries(MauiKit PRIVATE Qt5::X11Extras KF5::ConfigCore KF5::WindowSystem)
+    
 endif()
 
 target_link_libraries(MauiKit
