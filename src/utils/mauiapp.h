@@ -20,8 +20,7 @@
 #define MAUIAPP_H
 #include <QObject>
 #include <QQmlEngine>
-#include <QQuickWindow>
-#include <QQuickItem>
+
 
 #include "fmh.h"
 
@@ -48,6 +47,8 @@
  * }
  */
 
+class QQuickWindow;
+class QQuickItem;
 class CSDButton : public QObject
 {
   Q_OBJECT

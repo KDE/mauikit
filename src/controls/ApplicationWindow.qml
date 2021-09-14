@@ -63,7 +63,6 @@ Window
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
 
-
     
     Maui.WindowHelper 
     {
@@ -73,7 +72,7 @@ Window
     // Window shadows
     Maui.WindowShadow 
     {
-        view: root
+        view: !Kirigami.Settings.isMobile && Maui.Handy.isLinux ? root : null
         radius: _pageBackground.radius
     }
     
