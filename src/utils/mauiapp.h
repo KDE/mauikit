@@ -20,6 +20,8 @@
 #define MAUIAPP_H
 #include <QObject>
 #include <QQmlEngine>
+#include <QQuickWindow>
+#include <QQuickItem>
 
 #include "fmh.h"
 
@@ -193,7 +195,9 @@ class MAUIKIT_EXPORT MauiApp : public QObject
   Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
   Q_PROPERTY(CSDControls * controls READ controls CONSTANT FINAL)
   Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
-
+//   Q_PROPERTY(QQuickWindow *window READ window WRITE setWindow NOTIFY windowChanged)
+//   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
+  
 public:
   static MauiApp *qmlAttachedProperties(QObject *object);
 
@@ -260,13 +264,16 @@ public:
 
   CSDControls *controls() const;
   
+  QQuickWindow *window() const;  
+  QQuickItem *windowPage() const;
+  
 private:
   static MauiApp *m_instance;
   MauiApp();
   CSDControls * m_controls;
   QString m_iconName;
   QString m_donationPage;
-
+  
 signals:
   void iconNameChanged();
   void donationPageChanged();

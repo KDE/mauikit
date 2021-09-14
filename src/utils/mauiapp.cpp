@@ -102,6 +102,16 @@ void MauiApp::setDefaultMauiStyle()
     #endif
 }
 
+QQuickWindow * MauiApp::window() const
+{
+    return nullptr; //for now until figure out how ot get root window
+}
+
+QQuickItem * MauiApp::windowPage() const
+{
+    return nullptr;
+}
+
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 {
     Q_UNUSED(object)

@@ -63,7 +63,7 @@ Window
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
 
-    
+
     
     Maui.WindowHelper 
     {
@@ -525,6 +525,9 @@ Window
 
     Component.onCompleted:
     {
+        //Maui.App.window = root
+        //Maui.App.windowPage = _page
+        
         if(Maui.Handy.isAndroid)
         {
             if(headBar.position === ToolBar.Footer)

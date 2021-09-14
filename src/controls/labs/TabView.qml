@@ -209,7 +209,7 @@ Container
                 Maui.TabButton
                 {
                     id: _tabButton
-                    implicitHeight: tabsBar.implicitHeight
+                    implicitHeight: parent.height
                     implicitWidth: Math.max(parent.width / _repeater.count, 200)
                     checked: index === control.currentIndex
                     text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
@@ -264,19 +264,19 @@ Container
                         }
                     }
 
-                    Kirigami.Separator
-                    {
+                    //Kirigami.Separator
+                    //{
 
-                        height: 0.5
-                        weight: Kirigami.Separator.Weight.Light
-                        visible: index < control.count
-                        anchors
-                        {
-                            bottom: parent.bottom
-                            top: parent.top
-                            right: parent.right
-                        }
-                    }
+                        //height: 0.5
+                        //weight: Kirigami.Separator.Weight.Light
+                        //visible: index < control.count
+                        //anchors
+                        //{
+                            //bottom: parent.bottom
+                            //top: parent.top
+                            //right: parent.right
+                        //}
+                    //}
                 }
             }
         }

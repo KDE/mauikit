@@ -66,7 +66,7 @@ Item
      */
     signal doubleClicked(int index)
     
-    property Component delegate : BasicToolButton
+    property Component delegate : ToolButton
     {
         Layout.alignment: Qt.AlignCenter
 //         Layout.preferredWidth: visible ? implicitWidth : 0
@@ -112,7 +112,7 @@ Item
             delegate: control.delegate
         }
         
-        BasicToolButton
+        ToolButton
         {
                     Layout.alignment: Qt.AlignCenter
 

@@ -23,8 +23,8 @@ TabBar
     
     implicitWidth: _content.width
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+    //Kirigami.Theme.colorSet: Kirigami.Theme.View
+    //Kirigami.Theme.inherit: false
     
     /**
      * content : RowLayout.data
@@ -44,20 +44,6 @@ TabBar
     background: Rectangle
     {
         color: Kirigami.Theme.backgroundColor
-        
-        Kirigami.Separator
-        {
-            height: 0.5
-            weight: Kirigami.Separator.Weight.Light
-
-            anchors
-            {
-                left: parent.left
-                right: parent.right
-                top: control.position === TabBar.Footer ? parent.top : undefined
-                bottom: control.position == TabBar.Header ? parent.bottom : undefined
-            }
-        }
     }
     
     contentItem: Item
@@ -99,12 +85,14 @@ TabBar
         RowLayout
         {
             anchors.fill: parent
-            spacing: 0
+            spacing: 0 
             
             ScrollView
             {
+                id: _scrollView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.margins: Maui.Style.space.tiny
                 
                 contentHeight: availableHeight
                 contentWidth: _content.implicitWidth
@@ -115,13 +103,14 @@ TabBar
                 Flickable
                 {
                     id: _flickable
-                    interactive: false
+                    interactive: Maui.Handy.isTouch
                     
                     Row
                     {
                         id: _content
-                        width: _flickable.width
-                        height: _flickable.height
+                        width: _scrollView.width
+                        height: _scrollView.height
+                        spacing: 0
                     }
                 }
             }

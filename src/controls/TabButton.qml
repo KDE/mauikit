@@ -33,20 +33,25 @@ TabButton
     signal closeClicked()
     signal rightClicked(var mouse)
 
-    Kirigami.Separator
-    {
-        color: Kirigami.Theme.highlightColor
-        height: 2
-        visible: checked
-        anchors
-        {
-            bottom: parent.bottom
-            left: parent.left
-            right: parent.right
-        }
-    }
+    //Kirigami.Separator
+    //{
+        //color: Kirigami.Theme.highlightColor
+        //height: 2
+        //visible: checked
+        //anchors
+        //{
+            //bottom: parent.bottom
+            //left: parent.left
+            //right: parent.right
+        //}
+    //}
 
-    background: null
+    background: Rectangle
+    {
+        visible: control.checked|| control.down
+        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+        radius: Maui.Style.radiusV
+    }
 
     contentItem: RowLayout
     {
