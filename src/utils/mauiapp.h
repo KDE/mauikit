@@ -102,6 +102,9 @@ public:
   CSDButton::CSDButtonType type() const;
   void setType(CSDButton::CSDButtonType newType);
 
+public slots:
+  CSDButton::CSDButtonType mapType(const QString &value);
+
 private:
   CSDButtonType m_type = CSDButtonType::None;
   QUrl m_source;

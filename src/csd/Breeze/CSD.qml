@@ -41,11 +41,10 @@ id: control
                 width: height
                 height: 18 + Maui.Style.space.medium
 
-
                 Maui.CSDButton
                 {
                     id: button
-                    type: mapControl(modelData)
+                    type: mapType(modelData)
                     isHovered: _button.hovered
                     isPressed: _button.pressed
                     isFocused:  root.active
@@ -66,17 +65,6 @@ id: control
                     }
                 }
                 onClicked: buttonClicked(button.type)
-            }
-        }
-
-        function mapControl(key)
-        {
-            switch(key)
-            {
-            case "X": return  Maui.CSDButton.Close;
-            case "I": return  Maui.CSDButton.Minimize;
-            case "A": return  Maui.CSDButton.Maximize;
-            default: return null;
             }
         }
     }
