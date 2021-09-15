@@ -94,9 +94,14 @@ void MauiApp::setDonationPage(const QString &value)
     emit this->donationPageChanged();
 }
 
+KAboutData MauiApp::getAbout() const
+{
+    return KAboutData::applicationData();
+}
+
 void MauiApp::setDefaultMauiStyle()
 {
-    #if defined QICON_H && defined QQUICKSTYLE_H
+#if defined QICON_H && defined QQUICKSTYLE_H
     QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
     QIcon::setThemeName("Luv");
     qDebug() << QIcon::themeSearchPaths() << QIcon::hasThemeIcon("sidebar-expand");
@@ -112,6 +117,22 @@ QQuickWindow * MauiApp::window() const
 QQuickItem * MauiApp::windowPage() const
 {
     return nullptr;
+}
+
+bool MauiApp::translucencyAvailable() const
+{
+    return m_translucencyAvailable;
+}
+
+void MauiApp::setTranslucencyAvailable(const bool &value)
+{
+    if(value == m_translucencyAvailable)
+    {
+        return;
+    }
+
+    m_translucencyAvailable = value;
+    emit this->translucencyAvailableChanged(m_translucencyAvailable);
 }
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)

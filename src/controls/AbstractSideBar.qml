@@ -68,7 +68,7 @@ Drawer
     {
         color: Kirigami.Theme.backgroundColor
         property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
-        
+        opacity: Maui.App.translucencyAvailable ? 0.4 : 1
         corners
         {
             topLeftRadius: radius

@@ -37,7 +37,6 @@
 
 #include "shadowhelper/windowshadow.h"
 #include "blurhelper/windowblur.h"
-#include "windowhelper.h"
 
 #include "platform.h"
 
@@ -62,9 +61,7 @@ void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
 }
 
 void MauiKit::registerTypes(const char *uri)
-{
-//     Q_ASSERT(uri == QLatin1String(MAUIKIT_URI));
-
+{   
     qmlRegisterSingletonType(componentUrl(QStringLiteral("Style.qml")), uri, 1, 0, "Style");
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
     qmlRegisterType(componentUrl(QStringLiteral("ApplicationWindow.qml")), uri, 1, 0, "ApplicationWindow");
@@ -157,7 +154,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
 
     qmlRegisterType<SettingSection>(uri, 1, 2, "SettingSection");
-//     qmlRegisterSingletonInstance<Platform>(uri, 1, 2, "Platform", Platform::instance());
+    //     qmlRegisterSingletonInstance<Platform>(uri, 1, 2, "Platform", Platform::instance());
     qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(scriptEngine)
         auto platform = Platform::instance();
@@ -174,7 +171,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_LINUX && !defined Q_OS_ANDROID
 
-    #if defined Q_PROCESSOR_ARM
+#if defined Q_PROCESSOR_ARM
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #else
     qmlRegisterType(componentUrl(QStringLiteral("labs/CSDControls.qml")), uri, 1, 1, "CSDControls");
@@ -195,7 +192,7 @@ void MauiKit::registerTypes(const char *uri)
         return new MAUIAndroid;
     });
 #elif defined Q_OS_LINUX
-    qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE"); 
+    qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE");
 #elif defined Q_OS_WIN32
     // here window platform integration interfaces
 #elif defined Q_OS_MACOS
@@ -204,7 +201,6 @@ void MauiKit::registerTypes(const char *uri)
 
     qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
     qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
-    qmlRegisterType<WindowHelper>(uri, 1, 0, "WindowHelper");
     
     /** DATA MODELING TEMPLATED INTERFACES **/
     qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST

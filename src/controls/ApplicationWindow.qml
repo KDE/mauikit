@@ -312,7 +312,7 @@ Window
         background: Rectangle
         {
             id: _pageBackground
-            opacity: 0.7
+            opacity: Maui.App.translucencyAvailable ? 0.7 : 1
             color: Kirigami.Theme.backgroundColor
             radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
         }

@@ -110,7 +110,7 @@ TabBar
                         id: _content
                         width: _scrollView.width
                         height: _scrollView.height
-                        spacing: 0
+                        spacing: Maui.Style.space.tiny
                     }
                 }
             }

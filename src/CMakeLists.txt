@@ -47,7 +47,7 @@ set(mauikit_HDRS
     )
 
 if(${SUPPORT_PLUGINS})
-       message(STATUS "INCLUDING PLUGINS SUPPORT")
+    message(STATUS "INCLUDING PLUGINS SUPPORT")
     set(mauikitplugin_SRCS
         utils/plugin/pluginmanager.cpp
         )
@@ -74,35 +74,33 @@ if(ANDROID OR WIN32 OR IS_APPIMAGE_PACKAGE OR APPLE)
 endif()
 
 if (ANDROID)
-#   add_subdirectory(platforms/android)
+    #   add_subdirectory(platforms/android)
 
     set(mauikit_PLATFORM_SRCS
         platforms/android/mauiandroid.cpp
         platforms/android/qtquickcontrols2.conf
         platforms/android/android.qrc
-    )
+        )
 
     set(mauikit_PLATFORM_HDRS
         platforms/android/mauiandroid.h
         )
 
-  set(window_PLATFORM_SRCS        
-           platforms/android/windowhelper.cpp
-            platforms/android/blurhelper/windowblur.cpp
-            platforms/android/shadowhelper/boxshadowrenderer.cpp
-            platforms/android/shadowhelper/tileset.cpp
-            platforms/android/shadowhelper/windowshadow.cpp
+    set(window_PLATFORM_SRCS
+        platforms/android/blurhelper/windowblur.cpp
+        platforms/android/shadowhelper/boxshadowrenderer.cpp
+        platforms/android/shadowhelper/tileset.cpp
+        platforms/android/shadowhelper/windowshadow.cpp
         )
-        
-          set(window_PLATFORM_HDRS        
-           platforms/android/windowhelper.h
-            platforms/android/blurhelper/windowblur.h
-            platforms/android/shadowhelper/boxshadowrenderer.h
-            platforms/android/shadowhelper/tileset.h
-            platforms/android/shadowhelper/windowshadow.h
+
+    set(window_PLATFORM_HDRS
+        platforms/android/blurhelper/windowblur.h
+        platforms/android/shadowhelper/boxshadowrenderer.h
+        platforms/android/shadowhelper/tileset.h
+        platforms/android/shadowhelper/windowshadow.h
         )
-        
-#    kde_enable_exceptions(MauiKit PRIVATE)
+
+    #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
 
     set(mauikit_PLATFORM_SRCS
@@ -112,32 +110,30 @@ elseif(UNIX AND NOT APPLE)
     set(mauikit_PLATFORM_HDRS
         platforms/linux/mauilinux.h
         )
-        
-        set(window_PLATFORM_SRCS        
-           platforms/linux/windowhelper.cpp
-            platforms/linux/blurhelper/windowblur.cpp
-            platforms/linux/shadowhelper/boxshadowrenderer.cpp
-            platforms/linux/shadowhelper/tileset.cpp
-            platforms/linux/shadowhelper/windowshadow.cpp
+
+    set(window_PLATFORM_SRCS
+        platforms/linux/blurhelper/windowblur.cpp
+        platforms/linux/shadowhelper/boxshadowrenderer.cpp
+        platforms/linux/shadowhelper/tileset.cpp
+        platforms/linux/shadowhelper/windowshadow.cpp
         )
-        
-          set(window_PLATFORM_HDRS        
-           platforms/linux/windowhelper.h
-            platforms/linux/blurhelper/windowblur.h
-            platforms/linux/shadowhelper/boxshadowrenderer.h
-            platforms/linux/shadowhelper/tileset.h
-            platforms/linux/shadowhelper/windowshadow.h
+
+    set(window_PLATFORM_HDRS
+        platforms/linux/blurhelper/windowblur.h
+        platforms/linux/shadowhelper/boxshadowrenderer.h
+        platforms/linux/shadowhelper/tileset.h
+        platforms/linux/shadowhelper/windowshadow.h
         )
 elseif(APPLE)
-#    set(CMAKE_CXX_FLAGS "-x objective-c++")
+    #    set(CMAKE_CXX_FLAGS "-x objective-c++")
 
-#    set(mauikit_PLATFORM_SRCS
-#        platforms/macos/mauimacos.cpp
-#        )
+    #    set(mauikit_PLATFORM_SRCS
+    #        platforms/macos/mauimacos.cpp
+    #        )
 
-#    set(mauikit_PLATFORM_HDRS
-#        platforms/macos/mauimacos.h
-#        )
+    #    set(mauikit_PLATFORM_HDRS
+    #        platforms/macos/mauimacos.h
+    #        )
 elseif(WIN32)
     set(mauikit_PLATFORM_SRCS
         platforms/windows/mauiwindows.cpp
@@ -164,7 +160,7 @@ add_library(MauiKit
     maui-style/style.qrc
     assets.qrc
     mauikit.qrc
-)
+    )
 
 if(ANDROID)
     include_directories(

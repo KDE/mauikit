@@ -28,6 +28,8 @@
 #include <xcb/shape.h>
 #include <xcb/xcb_icccm.h>
 
+#include "mauiapp.h"
+
 WindowBlur::WindowBlur(QObject *parent) noexcept
     : QObject(parent)
     , m_view(nullptr)
@@ -46,6 +48,7 @@ void WindowBlur::classBegin()
 
 void WindowBlur::componentComplete()
 {
+    MauiApp::instance()->setTranslucencyAvailable(m_enabled);
     updateBlur();
 }
 

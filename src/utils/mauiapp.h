@@ -196,6 +196,7 @@ class MAUIKIT_EXPORT MauiApp : public QObject
   Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
   Q_PROPERTY(CSDControls * controls READ controls CONSTANT FINAL)
   Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
+    Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
 //   Q_PROPERTY(QQuickWindow *window READ window WRITE setWindow NOTIFY windowChanged)
 //   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
   
@@ -256,10 +257,7 @@ public:
      * Returns a model of the credits represented as a QVariantList, some of the fields used are: name, email, year.
      * @return
      */
-  KAboutData getAbout() const
-  {
-    return KAboutData::applicationData();
-  }
+  KAboutData getAbout() const;
 
   static void setDefaultMauiStyle();
 
@@ -268,6 +266,9 @@ public:
   QQuickWindow *window() const;  
   QQuickItem *windowPage() const;
   
+  bool translucencyAvailable() const;
+  void setTranslucencyAvailable(const bool &value);
+
 private:
   static MauiApp *m_instance;
   MauiApp();
@@ -275,9 +276,12 @@ private:
   QString m_iconName;
   QString m_donationPage;
   
+  bool m_translucencyAvailable = false;
+
 signals:
   void iconNameChanged();
   void donationPageChanged();
+  void translucencyAvailableChanged(bool translucencyAvailable);
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)
