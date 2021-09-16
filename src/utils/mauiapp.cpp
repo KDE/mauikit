@@ -353,11 +353,11 @@ void CSDButton::setType(CSDButtonType newType)
 CSDButton::CSDButtonType CSDButton::mapType(const QString &value)
 {
     if(value == "X") return  CSDButton::CSDButtonType::Close;
-     if(value == "I")  return CSDButton::CSDButtonType::Minimize;
+    if(value == "I")  return CSDButton::CSDButtonType::Minimize;
     if(value == "A")  return  CSDButton::CSDButtonType::Maximize;
-
+    
     return CSDButtonType::None;
-    }
+}
 
 bool CSDButton::isHovered() const
 {

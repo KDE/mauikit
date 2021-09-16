@@ -27,7 +27,8 @@
 #include <xcb/xcb.h>
 #include <xcb/shape.h>
 #include <xcb/xcb_icccm.h>
-
+#include <KWindowSystem>
+#include <KWindowEffects>
 #include "mauiapp.h"
 
 WindowBlur::WindowBlur(QObject *parent) noexcept
@@ -120,6 +121,13 @@ void WindowBlur::updateBlur()
 {
     if (!m_view)
         return;
+    
+    if(KWindowSystem::isPlatformWayland())
+    {
+        KWindowEffects::enableBlurBehind(m_view, m_enabled);
+        KWindowEffects::enableBackgroundContrast(m_view, m_enabled);
+        return;
+    }
 
     xcb_connection_t *c = QX11Info::connection();
     if (!c)
