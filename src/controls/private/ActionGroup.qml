@@ -66,7 +66,7 @@ Item
      */
     signal doubleClicked(int index)
     
-    property Component delegate : ToolButton
+    property Component delegate : Maui.BasicToolButton
     {
         Layout.alignment: Qt.AlignCenter
 //         Layout.preferredWidth: visible ? implicitWidth : 0
@@ -112,9 +112,9 @@ Item
             delegate: control.delegate
         }
         
-        ToolButton
+        Maui.BasicToolButton
         {
-                    Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignCenter
 
             readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
             
