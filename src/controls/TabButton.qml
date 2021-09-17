@@ -3,7 +3,7 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 /**
@@ -48,8 +48,9 @@ TabButton
 
     background: Rectangle
     {
-        visible: control.checked|| control.down
-        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+        visible: control.checked || control.down || control.hovered
+        opacity: control.hovered && !control.checked ? 0.2 : 1
+        color: control.hovered && !control.checked ? Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.4) : Qt.lighter(Kirigami.Theme.backgroundColor)
         radius: Maui.Style.radiusV
     }
 
