@@ -28,12 +28,12 @@ SplitView
     {
         id: _horizontalHandleComponent
         
-        Item
+        Rectangle
         {
             implicitWidth: Maui.Handy.isTouch ? 20 : 12
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
             
-            //color: control.Kirigami.Theme.backgroundColor
+            color: Kirigami.Theme.backgroundColor
 
             Rectangle
             {
@@ -79,12 +79,12 @@ SplitView
     {
         id: _verticalHandleComponent
 
-        Item
+        Rectangle
         {
             implicitWidth: Maui.Handy.isTouch ? 20 : 12
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
 
-            //color:  control.Kirigami.Theme.backgroundColor
+            color: Kirigami.Theme.backgroundColor
 
             Rectangle
             {
