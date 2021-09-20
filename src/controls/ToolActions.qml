@@ -117,9 +117,7 @@ Item
             
             control.actions[i].checked = false
         }
-    }    
-    
-  
+    }      
   
         Row
         {
@@ -145,8 +143,9 @@ Item
                 Private.BasicToolButton
                 {                    
                     action : modelData
-                    checkable: control.checkable && action.checkable
-                                       
+                    checkable: control.checkable || action.checkable
+                    checked: action.checked
+                    
                     Binding on checked
                     {
                         when: autoExclusive
@@ -184,9 +183,7 @@ Item
                     }
                 }
             }
-        }
-    
-    
+        }   
    
         MouseArea
         {
@@ -281,16 +278,26 @@ Item
                     
                     MenuItem
                     {
+                        action: modelData
                         enabled: modelData.enabled
                         text: modelData.text
                         icon.name: modelData.icon.name
                         autoExclusive: control.autoExclusive
-                        checked: index === control.currentIndex && control.checkable
-                        checkable: control.checkable
+                                            checked: action.checked
+
+                        Binding on checked
+                    {
+                        when: autoExclusive
+                        value: control.currentIndex === index
+                    }
+                    
+                        checkable: control.checkable || modelData.checkable
                         onTriggered:
                         {
+                              if(autoExclusive)
                             control.currentIndex = index
-                            modelData.triggered()
+                            
+//                             modelData.triggered()
                         }
                     }
                 }
