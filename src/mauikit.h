@@ -24,8 +24,6 @@
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
 
-static constexpr const char *MAUIKIT_URI = "org.mauikit.controls";
-
 class MauiAccounts;
 class MAUIKIT_EXPORT MauiKit : public QQmlExtensionPlugin
 {
