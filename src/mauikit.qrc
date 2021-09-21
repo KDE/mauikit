@@ -86,7 +86,8 @@
         <file alias="ProgressIndicator.qml">controls/ProgressIndicator.qml</file>
         <file alias="ComboBox.qml">controls/labs/ComboBox.qml</file>
         <file alias="MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
-        <file>controls/labs/GalleryRollTemplate.qml</file>
+        <file alias="GalleryRollTemplate.qml">controls/labs/GalleryRollTemplate.qml</file>
+        <file alias="ImageViewer.qml">controls/labs/ImageViewer.qml</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

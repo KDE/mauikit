@@ -61,7 +61,7 @@ void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
 }
 
 void MauiKit::registerTypes(const char *uri)
-{   
+{
     qmlRegisterSingletonType(componentUrl(QStringLiteral("Style.qml")), uri, 1, 0, "Style");
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
     qmlRegisterType(componentUrl(QStringLiteral("ApplicationWindow.qml")), uri, 1, 0, "ApplicationWindow");
@@ -116,6 +116,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/TabsBrowser.qml")), uri, 1, 1, "TabsBrowser");
     qmlRegisterType(componentUrl(QStringLiteral("labs/SettingsDialog.qml")), uri, 1, 1, "SettingsDialog");
     qmlRegisterType(componentUrl(QStringLiteral("labs/SettingsSection.qml")), uri, 1, 1, "SettingsSection");
+    qmlRegisterType(componentUrl(QStringLiteral("labs/ImageViewer.qml")), uri, 1, 1, "ImageViewer");
 
     /** 1.2 **/
     qmlRegisterType(componentUrl(QStringLiteral("labs/SettingTemplate.qml")), uri, 1, 2, "SettingTemplate");
@@ -142,7 +143,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("SplitViewItem.qml")), uri, 1, 3, "SplitViewItem");
     qmlRegisterType(componentUrl(QStringLiteral("ProgressIndicator.qml")), uri, 1, 3, "ProgressIndicator");
 
-    //2.0
     qmlRegisterType(componentUrl(QStringLiteral("labs/MenuItemActionRow.qml")), uri, 1, 3, "MenuItemActionRow");
     qmlRegisterType(componentUrl(QStringLiteral("labs/GalleryRollTemplate.qml")), uri, 1, 3, "GalleryRollTemplate");
 
@@ -201,7 +201,7 @@ void MauiKit::registerTypes(const char *uri)
 
     qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
     qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
-    
+
     /** DATA MODELING TEMPLATED INTERFACES **/
     qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST
     qmlRegisterType<MauiModel>(uri, 1, 0, "BaseModel"); // BASE MODEL
