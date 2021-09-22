@@ -45,6 +45,8 @@ T.ToolButton
 {
     id: control
 
+    opacity: enabled ? 1 : 0.5
+
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,

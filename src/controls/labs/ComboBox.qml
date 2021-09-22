@@ -50,6 +50,7 @@ T.ComboBox
     id: control
 
     palette: Kirigami.Theme.palette
+    enabled: control.count > 0
        //NOTE: typeof necessary to not have warnings on Qt 5.7
        Kirigami.Theme.colorSet: typeof(editable) != "undefined" && editable ? Kirigami.Theme.View : Kirigami.Theme.Button
        Kirigami.Theme.inherit: false
@@ -123,9 +124,9 @@ T.ComboBox
 
         radius: Maui.Style.radiusV
 
-        color: control.editable ? control.Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)
+        color: control.enabled ? (control.editable ? control.Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)) : "transparent"
 
-        border.color:  control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : color
+        border.color: control.enabled ? ( control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : color) : control.Kirigami.Theme.backgroundColor
 
         MouseArea
         {
