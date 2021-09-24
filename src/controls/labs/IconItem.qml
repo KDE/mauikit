@@ -89,20 +89,20 @@ Item
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
         color: control.highlighted ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-//         isMask: height <= Maui.Style.iconSizes.medium
+        isMask: height <= Maui.Style.iconSizes.small
     }
 
     Image
     {
         id: img
 
-        width:  imageSizeHint >=0  ? imageSizeHint : parent.width
-        height:  imageSizeHint >= 0 ? imageSizeHint : parent.height
+        width: imageSizeHint >=0  ? imageSizeHint : parent.width
+        height: imageSizeHint >= 0 ? imageSizeHint : parent.height
 
         anchors.centerIn: parent
 
-        sourceSize.width:  (control.imageWidth > -1 ? control.imageWidth : width)
-        sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : height)
+        sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : width)
+        sourceSize.height: (control.imageHeight > -1 ? control.imageHeight : height)
 
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
