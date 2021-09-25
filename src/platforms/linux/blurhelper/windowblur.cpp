@@ -32,10 +32,10 @@
 #include "mauiapp.h"
 
 WindowBlur::WindowBlur(QObject *parent) noexcept
-    : QObject(parent)
-    , m_view(nullptr)
-    , m_enabled(false)
-    , m_windowRadius(0.0)
+: QObject(parent)
+, m_view(nullptr)
+, m_enabled(false)
+, m_windowRadius(0.0)
 {
 }
 
@@ -59,7 +59,7 @@ void WindowBlur::setView(QWindow *view)
         m_view = view;
         updateBlur();
         emit viewChanged();
-
+        
         connect(m_view, &QWindow::visibleChanged, this, &WindowBlur::onViewVisibleChanged);
     }
 }
@@ -73,7 +73,11 @@ void WindowBlur::setGeometry(const QRect &rect)
 {
     if (rect != m_rect) {
         m_rect = rect;
-        updateBlur();
+        
+        if(KWindowSystem::isPlatformX11())
+        {
+            updateBlur();
+        }
         emit geometryChanged();
     }
 }
@@ -101,7 +105,11 @@ void WindowBlur::setWindowRadius(qreal radius)
 {
     if (radius != m_windowRadius) {
         m_windowRadius = radius;
-        updateBlur();
+        
+        if(KWindowSystem::isPlatformX11())
+        {
+            updateBlur();
+        }
         emit windowRadiusChanged();
     }
 }
@@ -128,17 +136,17 @@ void WindowBlur::updateBlur()
         KWindowEffects::enableBackgroundContrast(m_view, m_enabled);
         return;
     }
-
+    
     xcb_connection_t *c = QX11Info::connection();
     if (!c)
         return;
-
+    
     const QByteArray effectName = QByteArrayLiteral("_KDE_NET_WM_BLUR_BEHIND_REGION");
     xcb_intern_atom_cookie_t atomCookie = xcb_intern_atom_unchecked(c, false, effectName.length(), effectName.constData());
     QScopedPointer<xcb_intern_atom_reply_t, QScopedPointerPodDeleter> atom(xcb_intern_atom_reply(c, atomCookie, nullptr));
     if (!atom)
         return;
-
+    
     if (m_enabled) {
         qreal devicePixelRatio = m_view->screen()->devicePixelRatio();
         QPainterPath path;
@@ -152,10 +160,10 @@ void WindowBlur::updateBlur()
                 data << i->x() << i->y() << i->width() << i->height();
             }
         }
-
+        
         xcb_change_property(c, XCB_PROP_MODE_REPLACE, m_view->winId(), atom->atom, XCB_ATOM_CARDINAL,
                             32, data.size(), data.constData());
-
+        
     } else {
         xcb_delete_property(c, m_view->winId(), atom->atom);
     }

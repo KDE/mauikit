@@ -15,11 +15,13 @@ MenuItem
     id: control
     default property list<Action> actions
     implicitWidth: ListView.view.width
-    implicitHeight: Maui.Style.rowHeight
+    implicitHeight: Math.max( Maui.Style.rowHeight, _layout.implicitHeight)
     background: null
 
+   display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : ToolButton.TextUnderIcon
     RowLayout
     {
+        id: _layout
         anchors.fill: parent
         anchors.leftMargin: Maui.Style.space.medium
         anchors.rightMargin: Maui.Style.space.medium
@@ -27,6 +29,7 @@ MenuItem
 
         Repeater
         {
+            id: _repeater
             model: control.actions
 
             delegate: ToolButton
@@ -34,7 +37,7 @@ MenuItem
                 id: _delegate
                 Layout.fillWidth: true
                 action: modelData
-                display: ToolButton.IconOnly
+                display: control.display
                 ToolTip.delay: 1000
                 ToolTip.timeout: 5000
                 ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length 
