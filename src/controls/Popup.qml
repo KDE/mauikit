@@ -44,6 +44,8 @@ Popup
     width: filling ? parent.width : mWidth
     height: filling ? parent.height : mHeight
     
+//     anchors.centerIn: Overlay.overlay
+    
     Behavior on width
     {
         enabled: control.hint === 1
@@ -123,12 +125,9 @@ Popup
          */
         property int verticalAlignment : Qt.AlignVCenter
         
-        contentItem: null
-        
-        Item
+        contentItem: Item
         {
             id: _content
-            anchors.fill: parent
             layer.enabled: true
             layer.effect: OpacityMask
             {
@@ -163,8 +162,7 @@ Popup
             readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
             
             border.color: control.filling ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
-            
-            radius: control.filling ? 0 : Maui.Style.radiusV
+          radius: control.filling ? 0 : Maui.Style.radiusV          
         }
         
         /**
