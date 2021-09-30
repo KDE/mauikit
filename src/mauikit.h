@@ -36,20 +36,17 @@ public:
 
 private:
     QUrl componentUrl(const QString &fileName) const;
-    QString resolveFilePath(const QString &path) const
-    {
-#if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        return QStringLiteral(":/android_rcc_bundle/qml/org/mauikit/controls/") + path;
-#else
-        return baseUrl().toLocalFile() + QLatin1Char('/') + path;
-#endif
-    }
+
     QString resolveFileUrl(const QString &filePath) const
     {
 #if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
         return QStringLiteral("qrc:/android_rcc_bundle/qml/org/mauikit/controls/") + filePath;
 #else
+#ifdef QUICK_COMPILER
+        return QStringLiteral("qrc:/maui/kit/") + filePath;
+#else
         return baseUrl().toString() + QLatin1Char('/') + filePath;
+#endif
 #endif
     }
 

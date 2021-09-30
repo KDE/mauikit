@@ -46,6 +46,12 @@ set(mauikit_HDRS
     platforms/platform.h
     )
 
+if(QUICK_COMPILER)
+        qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+else()
+        qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+endif()
+
 if(${SUPPORT_PLUGINS})
     message(STATUS "INCLUDING PLUGINS SUPPORT")
     set(mauikitplugin_SRCS
@@ -157,10 +163,15 @@ add_library(MauiKit
     ${window_PLATFORM_HDRS}
     ${window_PLATFORM_SRCS}
     
-    maui-style/style.qrc
+
     assets.qrc
-    mauikit.qrc
+    ${mauikit_QML_QRC}
     )
+
+if(QUICK_COMPILER)
+    add_definitions(-DQUICK_COMPILER)
+    target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
+endif()
 
 if(ANDROID)
     include_directories(

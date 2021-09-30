@@ -74,20 +74,19 @@
         <file alias="labs/IconItem.qml">controls/labs/IconItem.qml</file>
         <file alias="labs/DoodleCanvas.qml">controls/labs/DoodleCanvas.qml</file>
         <file alias="private/TerminalInputArea.qml">controls/private/TerminalInputArea.qml</file>
-        <file alias="labs/FlexListItem">controls/labs/FlexListItem.qml</file>
-        <file alias="labs/Chip">controls/labs/Chip.qml</file>
-        <file alias="labs/ContextualMenu">controls/labs/ContextualMenu.qml</file>
-        <file alias="labs/ColorsRow">controls/labs/ColorsRow.qml</file>
-        <file alias="TabView">controls/labs/TabView.qml</file>
-        <file alias="CloseButton">controls/CloseButton.qml</file>
-        <file alias="BrowserDelegate">controls/BrowserDelegate.qml</file>
+        <file alias="labs/FlexListItem.qml">controls/labs/FlexListItem.qml</file>
+        <file alias="labs/Chip.qml">controls/labs/Chip.qml</file>
+        <file alias="labs/ContextualMenu.qml">controls/labs/ContextualMenu.qml</file>
+        <file alias="labs/ColorsRow.qml">controls/labs/ColorsRow.qml</file>
+        <file alias="labs/TabView.qml">controls/labs/TabView.qml</file>
+        <file alias="CloseButton.qml">controls/CloseButton.qml</file>
+        <file alias="BrowserDelegate.qml">controls/BrowserDelegate.qml</file>
         <file alias="SplitView.qml">controls/SplitView.qml</file>
         <file alias="SplitViewItem.qml">controls/SplitViewItem.qml</file>
         <file alias="ProgressIndicator.qml">controls/ProgressIndicator.qml</file>
-        <file alias="ComboBox.qml">controls/labs/ComboBox.qml</file>
-        <file alias="MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
-        <file alias="GalleryRollTemplate.qml">controls/labs/GalleryRollTemplate.qml</file>
-        <file alias="ImageViewer.qml">controls/labs/ImageViewer.qml</file>
+        <file alias="labs/ComboBox.qml">controls/labs/ComboBox.qml</file>
+        <file alias="labs/MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
+        <file alias="labs/GalleryRollTemplate.qml">controls/labs/GalleryRollTemplate.qml</file>
+        <file alias="labs/ImageViewer.qml">controls/labs/ImageViewer.qml</file>
     </qresource>
-    <qresource prefix="/"/>
 </RCC>

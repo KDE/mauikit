@@ -42,6 +42,8 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMAddQch)
 #include(KDECompilerSettings NO_POLICY_SCOPE)
 
+option(QUICK_COMPILER "Use QtQuick compiler to improve performance" TRUE)
+
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
     
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
@@ -56,6 +58,14 @@ elseif(UNIX AND NOT ANDROID)
 endif()
 
 find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons Notifications)
+
+if(QUICK_COMPILER)
+        find_package(Qt5QuickCompiler)
+        set_package_properties(Qt5QuickCompiler PROPERTIES
+                DESCRIPTION "Compile QML at build time"
+                TYPE OPTIONAL
+        )
+endif()
 
 add_subdirectory(src)
 
