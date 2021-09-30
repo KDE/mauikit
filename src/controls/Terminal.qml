@@ -283,7 +283,7 @@ Maui.Page
             }
         }
         
-        TerminalInputArea 
+        Private.TerminalInputArea
         {
         id: inputArea
 //         enabled: terminalPage.state != "SELECTION"

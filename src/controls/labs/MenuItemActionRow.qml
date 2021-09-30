@@ -14,7 +14,7 @@ MenuItem
 {
     id: control
     default property list<Action> actions
-    implicitWidth: ListView.view.width
+//    implicitWidth: ListView.view.width
     implicitHeight: Math.max( Maui.Style.rowHeight, _layout.implicitHeight)
     background: null
 

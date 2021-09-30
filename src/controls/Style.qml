@@ -31,11 +31,6 @@ import org.mauikit.controls 1.2 as Maui
 QtObject
 {
     /**
-      * unit : int
-      */
-    property int unit : Kirigami.Units.devicePixelRatio
-
-    /**
       * radiusV : int
       */
     property int radiusV : Maui.Handy.isWindows ? 2 : 4
@@ -102,12 +97,12 @@ QtObject
       */    
     readonly property QtObject iconSizes: QtObject {
         property int tiny : 8
-        property int small: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(16 * Kirigami.Units.devicePixelRatio))
-        property int medium: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(22 * Kirigami.Units.devicePixelRatio))
-        property int big: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(32 * Kirigami.Units.devicePixelRatio))
-        property int large: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(48 * Kirigami.Units.devicePixelRatio))
-        property int huge: Math.floor(Kirigami.Units.fontMetrics.roundedIconSize(64 * Kirigami.Units.devicePixelRatio))
-        property int enormous: Math.floor(128 * Kirigami.Units.devicePixelRatio)
+        property int small: 16
+        property int medium: 22
+        property int big: 32
+        property int large: 48
+        property int huge: 64
+        property int enormous: 128
     }
     
      function mapToIconSizes(size)
