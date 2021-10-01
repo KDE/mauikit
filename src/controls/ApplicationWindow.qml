@@ -24,7 +24,7 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.14
 
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
@@ -57,9 +57,12 @@ ApplicationWindow {
 Window
 {
     id: root
+
     visible: true
+
     width: Screen.desktopAvailableWidth * (Kirigami.Settings.isMobile ? 1 : 0.4)
     height: Screen.desktopAvailableHeight * (Kirigami.Settings.isMobile ? 1 : 0.4)
+
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
 
@@ -265,9 +268,6 @@ Window
     */
     property bool isWide : root.width >= Kirigami.Units.gridUnit * 30
     
-    readonly property bool isMaximized: root.visibility === Window.Maximized
-    readonly property bool isFullScreen: root.visibility === Window.FullScreen
-
     /***************************************************/
     /**************** READONLY PROPS ******************/
     /*************************************************/
@@ -275,6 +275,8 @@ Window
       If the screen where the application is drawn is in portrait mode or not,
       other wise it is in landscape mode.
     */
+    readonly property bool isMaximized: root.visibility === Window.Maximized
+    readonly property bool isFullScreen: root.visibility === Window.FullScreen
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
 
     onClosing:
@@ -336,7 +338,8 @@ Window
 
     Rectangle
     {
-        visible: Maui.App.controls.enableCSD
+        enabled: Maui.App.controls.enableCSD
+        visible: visible
         z: ApplicationWindow.overlay.z + 9999
         anchors.fill: parent
         radius: _pageBackground.radius - 0.5
@@ -357,7 +360,8 @@ Window
 
     MouseArea
     {
-        visible: Maui.App.controls.enableCSD
+        enabled: Maui.App.controls.enableCSD
+        visible: visible
         height: 16
         width: height
         anchors.bottom: parent.bottom
@@ -381,7 +385,8 @@ Window
 
     MouseArea
     {
-        visible: Maui.App.controls.enableCSD
+        enabled: Maui.App.controls.enableCSD
+        visible: visible
         height: 16
         width: height
         anchors.bottom: parent.bottom
@@ -517,9 +522,6 @@ Window
 
     Component.onCompleted:
     {
-        //Maui.App.window = root
-        //Maui.App.windowPage = _page
-        
         if(Maui.Handy.isAndroid)
         {
             if(headBar.position === ToolBar.Footer)

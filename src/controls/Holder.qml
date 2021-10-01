@@ -70,7 +70,7 @@ Item
     /**
       * emojiSize : int
       */
-    property int emojiSize : Maui.Style.iconSizes.large
+    property int emojiSize : Maui.Style.iconSizes.huge
 
     /**
       * enabled : bool

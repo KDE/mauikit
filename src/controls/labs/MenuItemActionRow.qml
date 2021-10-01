@@ -14,11 +14,11 @@ MenuItem
 {
     id: control
     default property list<Action> actions
-//    implicitWidth: ListView.view.width
     implicitHeight: Math.max( Maui.Style.rowHeight, _layout.implicitHeight)
     background: null
 
-   display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : ToolButton.TextUnderIcon
+    display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
+
     RowLayout
     {
         id: _layout
@@ -40,7 +40,7 @@ MenuItem
                 display: control.display
                 ToolTip.delay: 1000
                 ToolTip.timeout: 5000
-                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length 
+                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
                 ToolTip.text: modelData.text
                 
                 Connections
