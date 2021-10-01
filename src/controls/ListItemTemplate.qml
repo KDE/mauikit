@@ -91,7 +91,7 @@ Item
      * iconItemContainer : Item
      */
     property alias iconContainer : _iconLoader
-    
+
     /**
       * iconItem : Item
       */
@@ -127,7 +127,7 @@ Item
       */
     property int iconSizeHint : Maui.Style.iconSizes.big
     property int imageSizeHint : -1
-    
+
     property int headerSizeHint : height
 
     /**
@@ -209,7 +209,7 @@ Item
 
             iconSizeHint: control.iconSizeHint
             imageSizeHint: control.imageSizeHint
-            
+
             fillMode: control.fillMode
             maskRadius: control.maskRadius
         }
@@ -242,17 +242,17 @@ Item
             Layout.preferredWidth: Math.min(height, control.headerSizeHint)
             Layout.preferredHeight: Math.max(control.height, control.headerSizeHint)
 
-            Kirigami.Icon
-            {
-                visible: _iconLoader.status !== Loader.Ready
-                anchors.centerIn: parent
-                height: Maui.Style.iconSizes.small
-                width: height
-                source:  control.iconSource || "folder-images"
-                isMask: true
-                color: Kirigami.Theme.textColor
-                opacity: 0.5
-            }
+//            Kirigami.Icon
+//            {
+//                visible: _iconLoader.status !== Loader.Ready
+//                anchors.centerIn: parent
+//                height: Maui.Style.iconSizes.small
+//                width: height
+//                source:  control.iconSource || "folder-images"
+//                isMask: true
+//                color: Kirigami.Theme.textColor
+//                opacity: 0.5
+//            }
 
             Loader
             {
@@ -272,7 +272,7 @@ Item
             Layout.fillHeight: true
             Layout.fillWidth: true
             spacing: 0
-            
+
             Label
             {
                 id: _label1
@@ -280,14 +280,14 @@ Item
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label2.visible ? Qt.AlignBottom :  Qt.AlignVCenter
-                
+
                 elide: Text.ElideRight
 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
 
                 color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-            }         
-            
+            }
+
             Label
             {
                 id: _label2
@@ -295,7 +295,7 @@ Item
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label1.visible ? Qt.AlignTop : Qt.AlignVCenter
-                
+
                 elide: Text.ElideRight
 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap

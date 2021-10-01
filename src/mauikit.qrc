@@ -5,7 +5,6 @@
         <file alias="AbstractSideBar.qml">controls/AbstractSideBar.qml</file>
         <file alias="SideBar.qml">controls/SideBar.qml</file>
         <file alias="ApplicationWindow.qml">controls/ApplicationWindow.qml</file>
-        <file alias="Style.qml">controls/Style.qml</file>
         <file alias="ShareDialog.qml">controls/ShareDialog.qml</file>
         <file alias="labs/ShareDialog.qml">controls/labs/ShareDialog.qml</file>
         <file alias="labs/ShareDialogLinux.qml">controls/labs/ShareDialogLinux.qml</file>

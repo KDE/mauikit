@@ -57,7 +57,7 @@ Item
       */
     property alias isCurrentItem :  control.highlighted
 
-      /**
+    /**
       * padding :
       */
     property alias padding: _delegate.padding
@@ -106,7 +106,7 @@ Item
       * highlighted :
       */
     property bool highlighted: control.isCurrentItem
-    
+
     property int radius:  Maui.Style.radiusV
 
     /**
@@ -138,14 +138,14 @@ Item
     Drag.dragType: Drag.Automatic
     Drag.supportedActions: Qt.MoveAction
     Drag.hotSpot.x: control.width / 2
-    Drag.hotSpot.y: control.height / 2 
-    
+    Drag.hotSpot.y: control.height / 2
+
     Control
     {
         id: _delegate
 
-       height: parent.height
-       width: parent.width
+        height: parent.height
+        width: parent.width
 
         hoverEnabled: !Kirigami.Settings.isMobile
 
