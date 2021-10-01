@@ -67,12 +67,12 @@ Window
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
 
     // Window shadows
-    Maui.WindowShadow 
+    Maui.WindowShadow
     {
         view: Maui.App.controls.enableCSD && !Kirigami.Settings.isMobile && Maui.Handy.isLinux ? root : null
         radius: _pageBackground.radius
     }
-        
+
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
@@ -267,7 +267,7 @@ Window
       Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
     */
     property bool isWide : root.width >= Kirigami.Units.gridUnit * 30
-    
+
     /***************************************************/
     /**************** READONLY PROPS ******************/
     /*************************************************/
@@ -339,7 +339,7 @@ Window
     Rectangle
     {
         enabled: Maui.App.controls.enableCSD
-        visible: visible
+        visible: enabled
         z: ApplicationWindow.overlay.z + 9999
         anchors.fill: parent
         radius: _pageBackground.radius - 0.5
@@ -361,7 +361,7 @@ Window
     MouseArea
     {
         enabled: Maui.App.controls.enableCSD
-        visible: visible
+        visible: enabled
         height: 16
         width: height
         anchors.bottom: parent.bottom
@@ -386,7 +386,7 @@ Window
     MouseArea
     {
         enabled: Maui.App.controls.enableCSD
-        visible: visible
+        visible: enabled
         height: 16
         width: height
         anchors.bottom: parent.bottom
@@ -602,7 +602,7 @@ Window
             root.showFullScreen()();
         }
     }
-    
+
     /**
       * Reference to the application main page
       */
