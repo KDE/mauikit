@@ -115,22 +115,22 @@ Item
         asynchronous: true
         smooth: control.smooth
 
-        layer.enabled: control.maskRadius
-        layer.effect: OpacityMask
-        {
-            maskSource: Item
-            {
-                width: img.width
-                height: img.height
-
-                Rectangle
-                {
-                    anchors.centerIn: parent
-                    width: Math.min(parent.width, img.paintedWidth)
-                    height: Math.min(parent.height, img.paintedHeight)
-                    radius: control.maskRadius
-                }
-            }
-        }
+//         layer.enabled: control.maskRadius
+//         layer.effect: OpacityMask
+//         {
+//             maskSource: Item
+//             {
+//                 width: img.width
+//                 height: img.height
+// 
+//                 Rectangle
+//                 {
+//                     anchors.centerIn: parent
+//                     width: Math.min(parent.width, img.paintedWidth)
+//                     height: Math.min(parent.height, img.paintedHeight)
+//                     radius: control.maskRadius
+//                 }
+//             }
+//         }
     }
 }

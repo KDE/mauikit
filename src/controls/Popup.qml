@@ -23,7 +23,7 @@ import QtQuick.Controls 2.14
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 
 /**
  * Popup
@@ -128,22 +128,22 @@ Popup
         contentItem: Item
         {
             id: _content
-            layer.enabled: true
-            layer.effect: OpacityMask
-            {
-                cached: true
-                maskSource: Item
-                {
-                    width: _content.width
-                    height: _content.height
-                    
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        radius: control.background.radius
-                    }
-                }
-            }
+//             layer.enabled: true
+//             layer.effect: OpacityMask
+//             {
+//                 cached: true
+//                 maskSource: Item
+//                 {
+//                     width: _content.width
+//                     height: _content.height
+//                     
+//                     Rectangle
+//                     {
+//                         anchors.fill: parent
+//                         radius: control.background.radius
+//                     }
+//                 }
+//             }
         }
         
         Rectangle

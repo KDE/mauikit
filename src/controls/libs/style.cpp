@@ -8,7 +8,6 @@ Style::Style(QObject *parent) : QObject(parent)
 ,m_space( new GroupSizes(4, 6, 8, 16, 24, 32, 40, this))
 ,m_fontSizes (new GroupSizes{uint(qRound (m_defaultFont.pointSize ()*0.7)),uint(qRound (m_defaultFont.pointSize ()*0.8)),uint(m_defaultFont.pointSize ()),uint(qRound (m_defaultFont.pointSize ()*1.1)),uint(qRound (m_defaultFont.pointSize ()*1.2)),uint(qRound (m_defaultFont.pointSize ()*1.3)),uint(qRound (m_defaultFont.pointSize ()*1.4)), this})
 ,m_defaultFontSize(m_defaultFont.pointSize ())
-
 {
 
 }
