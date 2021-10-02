@@ -319,21 +319,21 @@ Window
             radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
         }
 
-        //layer.enabled: Maui.App.controls.enableCSD
-        //layer.effect: OpacityMask
-        //{
-            //maskSource: Item
-            //{
-                //width: _page.width
-                //height: _page.height
+        layer.enabled: Maui.App.controls.enableCSD
+        layer.effect: OpacityMask
+        {
+            maskSource: Item
+            {
+                width: _page.width
+                height: _page.height
 
-                //Rectangle
-                //{
-                    //anchors.fill: parent
-                    //radius: _pageBackground.radius
-                //}
-            //}
-        //}
+                Rectangle
+                {
+                    anchors.fill: parent
+                    radius: _pageBackground.radius
+                }
+            }
+        }
     }
 
     Rectangle

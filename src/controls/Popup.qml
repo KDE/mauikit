@@ -128,22 +128,22 @@ Popup
         contentItem: Item
         {
             id: _content
-//             layer.enabled: true
-//             layer.effect: OpacityMask
-//             {
-//                 cached: true
-//                 maskSource: Item
-//                 {
-//                     width: _content.width
-//                     height: _content.height
-//                     
-//                     Rectangle
-//                     {
-//                         anchors.fill: parent
-//                         radius: control.background.radius
-//                     }
-//                 }
-//             }
+            layer.enabled: true
+            layer.effect: OpacityMask
+            {
+                cached: true
+                maskSource: Item
+                {
+                    width: _content.width
+                    height: _content.height
+                    
+                    Rectangle
+                    {
+                        anchors.fill: parent
+                        radius: control.background.radius
+                    }
+                }
+            }
         }
         
         Rectangle
