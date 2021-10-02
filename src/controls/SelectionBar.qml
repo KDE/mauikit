@@ -250,9 +250,7 @@ Item
             
             delegate: control.listDelegate
         }                            
-    }
-    
-    
+    }       
     
     Item
     {

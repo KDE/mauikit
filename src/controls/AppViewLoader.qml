@@ -39,6 +39,7 @@ Loader
 
       The source component to be loaded.
     */
+    asynchronous: true
     default property alias content : control.sourceComponent
     active: SwipeView.isCurrentItem || item
 }
