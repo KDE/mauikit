@@ -23,7 +23,7 @@ import QtQuick.Controls 2.14
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
-//import QtGraphicalEffects 1.0
+import QtGraphicalEffects 1.0
 
 /**
  * Popup

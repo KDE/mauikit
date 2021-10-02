@@ -24,7 +24,6 @@ import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 
 import "private" as Private
 
@@ -176,7 +175,6 @@ ToolBar
             id: wheelHandler
             target: mainFlickable
         }
-
         
         Item
         {
@@ -260,13 +258,6 @@ ToolBar
                     spacing: control.spacing
                 }
 
-               /* ToolSeparator
-                {
-                    visible: farLeftRowContent.visibleChildren.length && (leftRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
-                    implicitHeight: Maui.Style.iconSizes.tiny
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                }  */
-
                 ScrollView
                 {
                     id: _scrollView
@@ -347,7 +338,7 @@ ToolBar
                                 }
                             }
 
-                             Item //helper to force center middle content
+                            Item //helper to force center middle content
                             {
                                 id: _h2
                                 visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
@@ -371,13 +362,6 @@ ToolBar
                         }
                     }
                 }
-
-                //ToolSeparator
-                //{
-                    //visible: farRightRowContent.visibleChildren.length && (rightRowContent.visibleChildren.length || middleRowContent.visibleChildren.length)
-                    //implicitHeight: Maui.Style.iconSizes.tiny
-                    //Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-                //}
 
                 Private.ToolBarSection
                 {

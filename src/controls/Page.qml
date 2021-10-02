@@ -441,16 +441,6 @@ Pane
                 height: 0.5
                 weight: Kirigami.Separator.Weight.Light
             }
-
-//             layer.enabled: false
-//             layer.effect: Kirigami.ShadowedRectangle
-//             {
-//                 color: Kirigami.Theme.backgroundColor
-//                 shadow.xOffset: 0
-//                 shadow.yOffset: control.altHeader ? -2 : 2
-//                 shadow.color: Qt.rgba(0, 0, 0, 0.2)
-//                 shadow.size: 4
-//             }
         }
     }
 
@@ -497,16 +487,6 @@ Pane
                 height: 0.5
                 weight: Kirigami.Separator.Weight.Light
             }
-
-            //layer.enabled: true
-            //layer.effect: Kirigami.ShadowedRectangle
-            //{
-                //color: Kirigami.Theme.backgroundColor
-                //shadow.xOffset: 0
-                //shadow.yOffset: -2
-                //shadow.color: Qt.rgba(0, 0, 0, 0.2)
-                //shadow.size: 4
-            //}
         }
     }
 
