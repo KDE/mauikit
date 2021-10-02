@@ -1,4 +1,5 @@
 #include "style.h"
+#include <QCoreApplication>
 
 Style *Style::m_instance = nullptr;
 
@@ -9,7 +10,11 @@ Style::Style(QObject *parent) : QObject(parent)
 ,m_fontSizes (new GroupSizes{uint(qRound (m_defaultFont.pointSize ()*0.7)),uint(qRound (m_defaultFont.pointSize ()*0.8)),uint(m_defaultFont.pointSize ()),uint(qRound (m_defaultFont.pointSize ()*1.1)),uint(qRound (m_defaultFont.pointSize ()*1.2)),uint(qRound (m_defaultFont.pointSize ()*1.3)),uint(qRound (m_defaultFont.pointSize ()*1.4)), this})
 ,m_defaultFontSize(m_defaultFont.pointSize ())
 {
-
+ connect(qApp, &QCoreApplication::aboutToQuit, []()
+    {
+        delete m_instance;
+        m_instance = nullptr;
+    });    
 }
 
 int getClosest(int, int, int);
