@@ -60,7 +60,11 @@ Maui.Page
          *     The toolbar where the app view buttons will be* added.
          */
         
-        headBar.middleContent: Private.ActionGroup
+        headBar.middleContent: Loader
+        {
+            asynchronous: true
+            
+            sourceComponent: Private.ActionGroup
         {
             id: _actionGroup
             currentIndex : _swipeView.currentIndex
@@ -94,6 +98,7 @@ Maui.Page
                     }
                 }
             }
+        }
         }
         
         SwipeView
