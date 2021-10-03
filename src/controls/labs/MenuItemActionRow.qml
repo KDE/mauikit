@@ -14,42 +14,47 @@ MenuItem
 {
     id: control
     default property list<Action> actions
-    implicitHeight: Math.max( Maui.Style.rowHeight, _layout.implicitHeight)
+    implicitHeight: Math.max( Maui.Style.rowHeight, _layoutLoader.item.implicitHeight)
     background: null
-
+    
     display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
-
-    RowLayout
+    
+    Loader
     {
-        id: _layout
+        id: _layoutLoader
+        asynchronous: true
         anchors.fill: parent
         anchors.leftMargin: Maui.Style.space.medium
         anchors.rightMargin: Maui.Style.space.medium
-        spacing: Maui.Style.space.medium
-
-        Repeater
-        {
-            id: _repeater
-            model: control.actions
-
-            delegate: ToolButton
+        
+        sourceComponent: RowLayout
+        {      
+            spacing: Maui.Style.space.medium
+            
+            Repeater
             {
-                id: _delegate
-                Layout.fillWidth: true
-                action: modelData
-                display: control.display
-                ToolTip.delay: 1000
-                ToolTip.timeout: 5000
-                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
-                ToolTip.text: modelData.text
+                id: _repeater
+                model: control.actions
                 
-                Connections
+                delegate: ToolButton
                 {
-                    target: _delegate.action
-                    ignoreUnknownSignals: true
-                    function onTriggered()
+                    id: _delegate
+                    Layout.fillWidth: true
+                    action: modelData
+                    display: control.display
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
+                    ToolTip.text: modelData.text
+                    
+                    Connections
                     {
-                        control.triggered()
+                        target: _delegate.action
+                        ignoreUnknownSignals: true
+                        function onTriggered()
+                        {
+                            control.triggered()
+                        }
                     }
                 }
             }
