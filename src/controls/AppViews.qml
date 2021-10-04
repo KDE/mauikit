@@ -20,8 +20,8 @@
 import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
+
 import org.mauikit.controls 1.2 as Maui
-import org.kde.kirigami 2.9 as Kirigami
 
 import "private" as Private
 
@@ -42,34 +42,37 @@ import "private" as Private
 Maui.Page
 {
     id: control
+    
     default property alias content: _swipeView.contentData
-        property alias currentIndex : _swipeView.currentIndex
-        property alias currentItem : _swipeView.currentItem
-        property alias count : _swipeView.count
-        property alias interactive : _swipeView.interactive
+
+    property alias currentIndex : _swipeView.currentIndex
+    property alias currentItem : _swipeView.currentItem
+    property alias count : _swipeView.count
+    property alias interactive : _swipeView.interactive
+    
+    focus: true
+    
+    /*!
+     *     Maximum number of views to be shown in the app* view port in the header.
+     *     The rest of views buttons will be collapsed into a menu button.
+     */
+    property int maxViews : 4
+    
+    /*!
+     *     The toolbar where the app view buttons will be* added.
+     */
+    
+    headBar.middleContent: Loader
+    {
+        asynchronous: true
         
-        focus: true
-        
-        /*!
-         *     Maximum number of views to be shown in the app* view port in the header.
-         *     The rest of views buttons will be collapsed into a menu button.
-         */
-        property int maxViews : 4
-        
-        /*!
-         *     The toolbar where the app view buttons will be* added.
-         */
-        
-        headBar.middleContent: Loader
-        {
-            asynchronous: true
-            
-            sourceComponent: Private.ActionGroup
+        sourceComponent: Private.ActionGroup
         {
             id: _actionGroup
             currentIndex : _swipeView.currentIndex
             
-            Binding on currentIndex {
+            Binding on currentIndex 
+            {
                 value: _swipeView.currentIndex
                 restoreMode: Binding.RestoreValue
             }
@@ -99,138 +102,131 @@ Maui.Page
                 }
             }
         }
-        }
+    }
+    
+    SwipeView
+    {
+        id:_swipeView   
+        anchors.fill: parent
+        interactive: false
         
-        SwipeView
+        onCurrentItemChanged:
         {
-            id:_swipeView    //     interactive: Kirigami.Settings.hasTransientTouchInput
-            anchors.fill: parent
-            interactive: false
-            
-            
-            //TODO: grouped property docs
-            /*!
-             *      Access to the view port component where the app view buttons is added.
-             */
-            
-            
-            onCurrentItemChanged:
-            {
-                currentItem.forceActiveFocus()
-                _listView.positionViewAtIndex(control.currentIndex , ListView.SnapPosition)
-                history.push(_swipeView.currentIndex)
-            }
-            
-            Keys.onBackPressed:
-            {
-                control.goBack()
-            }
-            
-            Shortcut
-            {
-                sequence: StandardKey.Back
-                onActivated: control.goBack()
-            }
-            
-            contentItem: ListView
-            {
-                id: _listView
-                model: _swipeView.contentModel
-                interactive: _swipeView.interactive
-                currentIndex: _swipeView.currentIndex
-                spacing: _swipeView.spacing
-                orientation: _swipeView.orientation
-                snapMode: ListView.SnapOneItem
-                boundsBehavior: Flickable.StopAtBounds
-                clip: _swipeView.clip
-                preferredHighlightBegin: 0
-                preferredHighlightEnd: width
-                
-                highlightRangeMode: ListView.StrictlyEnforceRange
-                highlightMoveDuration: 0
-                highlightFollowsCurrentItem: true
-                highlightResizeDuration: 0
-                highlightMoveVelocity: -1
-                highlightResizeVelocity: -1
-                
-                maximumFlickVelocity: 4 * (_swipeView.orientation === Qt.Horizontal ? width : height)
-                
-                property int lastPos: 0
-                
-                onCurrentIndexChanged:
-                {
-                    _listView.lastPos = _listView.contentX
-                }
-                
-            }
-            
-            Keys.enabled: true
-            //     Keys.forwardTo:_listView
-            Keys.onPressed:
-            {
-                if((event.key == Qt.Key_1) && (event.modifiers & Qt.ControlModifier))
-                {
-                    if(_swipeView.count > -1 )
-                    {
-                        _swipeView.currentIndex = 0
-                    }
-                }
-                
-                if((event.key == Qt.Key_2) && (event.modifiers & Qt.ControlModifier))
-                {
-                    if(_swipeView.count > 0 )
-                    {
-                        _swipeView.currentIndex = 1
-                    }
-                }
-                
-                if((event.key == Qt.Key_3) && (event.modifiers & Qt.ControlModifier))
-                {
-                    if(_swipeView.count > 1 )
-                    {
-                        _swipeView.currentIndex = 2
-                    }
-                }
-                
-                if((event.key == Qt.Key_4) && (event.modifiers & Qt.ControlModifier))
-                {
-                    if(_swipeView.count > 2 )
-                    {
-                        _swipeView.currentIndex = 3
-                    }
-                }
-            }
-            
+            currentItem.forceActiveFocus()
+            _listView.positionViewAtIndex(control.currentIndex , ListView.SnapPosition)
+            history.push(_swipeView.currentIndex)
         }
         
-        
-        property QtObject history : QtObject
+        Keys.onBackPressed:
         {
-            property var historyIndexes : []
-            
-            function pop()
-            {
-                historyIndexes.pop()
-                return historyIndexes.pop()
-            }
-            
-            function push(index)
-            {
-                historyIndexes.push(index)
-            }
-            
-            function indexes()
-            {
-                return historyIndexes
-            }
+            control.goBack()
         }
         
-        /**
-         * 
-         */
-        function goBack()
+        Shortcut
         {
-            _swipeView.setCurrentIndex(history.pop())
+            sequence: StandardKey.Back
+            onActivated: control.goBack()
         }
         
+        contentItem: ListView
+        {
+            id: _listView
+            model: _swipeView.contentModel
+            interactive: _swipeView.interactive
+            currentIndex: _swipeView.currentIndex
+            spacing: _swipeView.spacing
+            orientation: _swipeView.orientation
+            snapMode: ListView.SnapOneItem
+            boundsBehavior: Flickable.StopAtBounds
+            clip: _swipeView.clip
+            preferredHighlightBegin: 0
+            preferredHighlightEnd: width
+            
+            highlightRangeMode: ListView.StrictlyEnforceRange
+            highlightMoveDuration: 0
+            highlightFollowsCurrentItem: true
+            highlightResizeDuration: 0
+            highlightMoveVelocity: -1
+            highlightResizeVelocity: -1
+            
+            maximumFlickVelocity: 4 * (_swipeView.orientation === Qt.Horizontal ? width : height)
+            
+            property int lastPos: 0
+            
+            onCurrentIndexChanged:
+            {
+                _listView.lastPos = _listView.contentX
+            }
+            
+        }
+        
+        Keys.enabled: true
+        //     Keys.forwardTo:_listView
+        Keys.onPressed:
+        {
+            if((event.key == Qt.Key_1) && (event.modifiers & Qt.ControlModifier))
+            {
+                if(_swipeView.count > -1 )
+                {
+                    _swipeView.currentIndex = 0
+                }
+            }
+            
+            if((event.key == Qt.Key_2) && (event.modifiers & Qt.ControlModifier))
+            {
+                if(_swipeView.count > 0 )
+                {
+                    _swipeView.currentIndex = 1
+                }
+            }
+            
+            if((event.key == Qt.Key_3) && (event.modifiers & Qt.ControlModifier))
+            {
+                if(_swipeView.count > 1 )
+                {
+                    _swipeView.currentIndex = 2
+                }
+            }
+            
+            if((event.key == Qt.Key_4) && (event.modifiers & Qt.ControlModifier))
+            {
+                if(_swipeView.count > 2 )
+                {
+                    _swipeView.currentIndex = 3
+                }
+            }
+        }
+        
+    }
+    
+    
+    property QtObject history : QtObject
+    {
+        property var historyIndexes : []
+        
+        function pop()
+        {
+            historyIndexes.pop()
+            return historyIndexes.pop()
+        }
+        
+        function push(index)
+        {
+            historyIndexes.push(index)
+        }
+        
+        function indexes()
+        {
+            return historyIndexes
+        }
+    }
+    
+    /**
+     * 
+     */
+    function goBack()
+    {
+        _swipeView.setCurrentIndex(history.pop())
+    }
+    
 }

@@ -18,7 +18,6 @@
  */
 
 import QtQuick 2.9
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import org.mauikit.controls 1.0 as Maui
 import org.kde.kirigami 2.7 as Kirigami
@@ -44,7 +43,7 @@ Maui.Dialog
 
     widthHint: 0.9
 
-    maxHeight: Math.max(_layout.contentHeight, maxWidth) + (page.padding * 2.5) + headBar.height
+    maxHeight: Math.max(grid.contentHeight, maxWidth) + (page.padding * 2.5) + headBar.height
     maxWidth: 500
 
     verticalAlignment: Qt.AlignBottom
@@ -54,17 +53,11 @@ Maui.Dialog
     page.title: i18n("Share with")
     headBar.visible: true
 
-    Kirigami.ScrollablePage
-    {
-        id: _layout
-        anchors.fill: parent
-        leftPadding: 0
-        rightPadding: 0
-
+ 
         Maui.GridBrowser
         {
             id: grid
-            width: parent.width
+            anchors.fill: parent
             showEmblem: false
             model: ListModel {}
             onItemClicked:
@@ -73,8 +66,7 @@ Maui.Dialog
                 triggerService(index)
             }
         }
-    }
-
+    
 
     onOpened: populate()
 

@@ -6,80 +6,101 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
 import QtQml.Models 2.3
-import QtQml 2.14
 
 import org.kde.kirigami 2.8 as Kirigami
-
 import org.mauikit.controls 1.3 as Maui
 
 Item
 {
     id: control
-
+    
     default property alias content: _container.data
 
     // the index of the item in the split view layout
     readonly property int splitIndex : ObjectModel.index
-
+    
     property int minimumWidth : 200
     property int minimumHeight : 100
-
+    
     SplitView.fillHeight: true
     SplitView.fillWidth: true
-
+    
     SplitView.preferredHeight: SplitView.view.orientation === Qt.Vertical ? SplitView.view.height / (SplitView.view.count) :  SplitView.view.height
     SplitView.minimumHeight: SplitView.view.orientation === Qt.Vertical ?  minimumHeight : 0
-
+    
     SplitView.preferredWidth: SplitView.view.orientation === Qt.Horizontal ? SplitView.view.width / (SplitView.view.count) : SplitView.view.width
     SplitView.minimumWidth: SplitView.view.orientation === Qt.Horizontal ? minimumWidth :  0
-
+    
     opacity: SplitView.view.currentIndex === splitIndex ? 1 : 0.7
-
+    
     Item
     {
         id:  _container
         anchors.fill: parent
     }
     
-    Rectangle
+    Loader
     {
+        asynchronous: true
         anchors.fill: parent
-        visible:  control.SplitView.view.resizing 
-        color: Kirigami.Theme.backgroundColor
-        opacity: (control.minimumWidth) / control.width
+        active: control.SplitView.view.resizing 
+        visible: active
+        sourceComponent: Rectangle
+        {
+            
+            color: Kirigami.Theme.backgroundColor
+            opacity: (control.minimumWidth) / control.width
+        }
     }
-
-    Rectangle
+    
+    Loader
     {
+        asynchronous: true
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         height: 2
-        opacity: 1
-        color: Kirigami.Theme.highlightColor
-        visible: control.SplitView.view.currentIndex === splitIndex && control.SplitView.view.count > 1
+        active: control.SplitView.view.currentIndex === splitIndex && control.SplitView.view.count > 1
+        visible: active
+        sourceComponent: Rectangle
+        {
+            
+            color: Kirigami.Theme.highlightColor
+        }
     }
-
-    Maui.Chip
+    
+    Loader
     {
-        opacity: (control.minimumWidth) / control.width
+        asynchronous: true
         anchors.centerIn: parent
-        Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeTextColor
-        label.text: i18n("Close Split")
-        visible: control.SplitView.view.resizing && control.width < control.minimumWidth + 60
+        active: control.SplitView.view.resizing && control.width < control.minimumWidth + 60
+        visible: active
+        sourceComponent: Maui.Chip
+        {
+            opacity: (control.minimumWidth) / control.width
+            
+            Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeTextColor
+            label.text: i18n("Close Split")
+        }
     }
-
-    Maui.Chip
+    
+    Loader
     {
-        opacity: (control.minimumHeight) / control.height
+        asynchronous: true
         anchors.centerIn: parent
-        Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeTextColor
-        label.text: i18n("Close Split")
-        visible: control.SplitView.view.resizing && control.height < control.minimumHeight + 60
+        active: control.SplitView.view.resizing && control.height < control.minimumHeight + 60
+        visible: active
+        sourceComponent: Maui.Chip
+        {
+            opacity: (control.minimumHeight) / control.height
+            
+            Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeTextColor
+            label.text: i18n("Close Split")
+        }
     }
-
+    
+    
     Connections
     {
         target: control.SplitView.view
@@ -89,14 +110,14 @@ Item
             {
                 control.SplitView.view.closeSplit(control.splitIndex)
             }
-
+            
             if(control.height === control.minimumHeight && !control.SplitView.view.resizing)
             {
                 control.SplitView.view.closeSplit(control.splitIndex)
             }
         }
     }
-
+    
     MouseArea
     {
         anchors.fill: parent
@@ -109,10 +130,9 @@ Item
             mouse.accepted = false
         }
     }
-
+    
     function focusSplitItem()
     {
-         control.SplitView.view.currentIndex = control.splitIndex
-    }
-
+        control.SplitView.view.currentIndex = control.splitIndex
+    }    
 }

@@ -19,7 +19,7 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
+
 import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.9 as Kirigami
 
@@ -242,7 +242,6 @@ Item
             id: _listView
             focus: true
             
-            property alias position : _hoverHandler.point.position
             property var selectedIndexes : []            
             
             clip: control.clip
@@ -262,38 +261,6 @@ Item
             keyNavigationWraps : true
             Keys.onPressed: control.keyPress(event)
             
-            onPositionChanged:
-            {
-                if(_hoverHandler.hovered && position.x < 84 &&  _hoverHandler.point.pressPosition.y != position.y)
-                {
-                    const index = _listView.indexAt(position.x, position.y)
-                    if(!selectedIndexes.includes(index) && index > -1 && index < _listView.count)
-                    {
-                        selectedIndexes.push(index)
-                        control.itemsSelected([index])
-                    }
-                }
-            }
-            
-            HoverHandler
-            {
-                id: _hoverHandler
-                margin: Maui.Style.space.big
-                //                 enabled: control.enableLassoSelection && control.selectionMode && !_listView.draggingVertically
-                enabled: false
-                acceptedDevices: PointerDevice.TouchScreen
-                acceptedPointerTypes : PointerDevice.Finger
-                grabPermissions : PointerHandler.CanTakeOverFromAnything
-                
-                onHoveredChanged:
-                {
-                    if(!hovered)
-                    {
-                        _listView.selectedIndexes = []
-                    }
-                }
-            }
-            
             Maui.Holder
             {
                 id: _holder
@@ -301,110 +268,117 @@ Item
                 anchors.fill : parent
             }
             
-            MouseArea
+            Loader
             {
-                id: _mouseArea
+                asynchronous: true
                 z: -1
                 anchors.fill: parent
-                propagateComposedEvents: true
-                //             preventStealing: true
-                acceptedButtons:  Qt.RightButton | Qt.LeftButton
+                active: !Kirigami.Settings.hasTransientTouchInput && !Kirigami.Settings.isMobile
                 
-                onClicked:
+                sourceComponent: MouseArea
                 {
-                    control.areaClicked(mouse)
-                    control.forceActiveFocus()
+                    id: _mouseArea
                     
-                    if(mouse.button === Qt.RightButton)
+                    propagateComposedEvents: true
+                    //             preventStealing: true
+                    acceptedButtons:  Qt.RightButton | Qt.LeftButton
+                    
+                    onClicked:
                     {
-                        control.areaRightClicked()
-                        return
-                    }
-                }
-                
-                onPositionChanged:
-                {
-                    if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
-                    {
-                        if(mouseX >= selectLayer.newX)
+                        control.areaClicked(mouse)
+                        control.forceActiveFocus()
+                        
+                        if(mouse.button === Qt.RightButton)
                         {
-                            selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
-                        } else {
-                            selectLayer.x = mouseX < control.x ? control.x : mouseX;
-                            selectLayer.width = selectLayer.newX - selectLayer.x;
+                            control.areaRightClicked()
+                            return
+                        }
+                    }
+                    
+                    onPositionChanged:
+                    {
+                        if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
+                        {
+                            if(mouseX >= selectLayer.newX)
+                            {
+                                selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
+                            } else {
+                                selectLayer.x = mouseX < control.x ? control.x : mouseX;
+                                selectLayer.width = selectLayer.newX - selectLayer.x;
+                            }
+                            
+                            if(mouseY >= selectLayer.newY) {
+                                selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
+                                if(!_listView.atYEnd &&  mouseY > (control.y + control.height))
+                                    _listView.contentY += 10
+                            } else {
+                                selectLayer.y = mouseY < control.y ? control.y : mouseY;
+                                selectLayer.height = selectLayer.newY - selectLayer.y;
+                                
+                                if(!_listView.atYBeginning && selectLayer.y === 0)
+                                    _listView.contentY -= 10
+                            }
+                        }
+                    }
+                    
+                    onPressed:
+                    {
+                        if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
+                        {
+                            selectLayer.visible = true;
+                            selectLayer.x = mouseX;
+                            selectLayer.y = mouseY;
+                            selectLayer.newX = mouseX;
+                            selectLayer.newY = mouseY;
+                            selectLayer.width = 0
+                            selectLayer.height = 0;
+                        }                    
+                    }
+                    
+                    onPressAndHold:
+                    {
+                        if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
+                        {
+                            selectLayer.visible = true;
+                            selectLayer.x = mouseX;
+                            selectLayer.y = mouseY;
+                            selectLayer.newX = mouseX;
+                            selectLayer.newY = mouseY;
+                            selectLayer.width = 0
+                            selectLayer.height = 0;
+                            mouse.accepted = true
+                        }else
+                        {
+                            mouse.accepted = false
+                        }
+                    }
+                    
+                    onReleased:
+                    {
+                        if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
+                        {
+                            mouse.accepted = false
+                            return;
                         }
                         
-                        if(mouseY >= selectLayer.newY) {
-                            selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
-                            if(!_listView.atYEnd &&  mouseY > (control.y + control.height))
-                                _listView.contentY += 10
-                        } else {
-                            selectLayer.y = mouseY < control.y ? control.y : mouseY;
-                            selectLayer.height = selectLayer.newY - selectLayer.y;
-                            
-                            if(!_listView.atYBeginning && selectLayer.y === 0)
-                                _listView.contentY -= 10
+                        if(selectLayer.y > _listView.contentHeight)
+                        {
+                            return selectLayer.reset();
                         }
+                        
+                        var lassoIndexes = []
+                        var limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
+                        
+                        for(var y = lassoRec.y; y < limitY; y+=10)
+                        {
+                            const index = _listView.indexAt(_listView.width/2,y+_listView.contentY)
+                            if(!lassoIndexes.includes(index) && index>-1 && index< _listView.count)
+                                lassoIndexes.push(index)
+                        }
+                        
+                        control.itemsSelected(lassoIndexes)
+                        selectLayer.reset()
                     }
-                }
-                
-                onPressed:
-                {
-                    if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
-                    {
-                        selectLayer.visible = true;
-                        selectLayer.x = mouseX;
-                        selectLayer.y = mouseY;
-                        selectLayer.newX = mouseX;
-                        selectLayer.newY = mouseY;
-                        selectLayer.width = 0
-                        selectLayer.height = 0;
-                    }                    
-                }
-                
-                onPressAndHold:
-                {
-                    if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
-                    {
-                        selectLayer.visible = true;
-                        selectLayer.x = mouseX;
-                        selectLayer.y = mouseY;
-                        selectLayer.newX = mouseX;
-                        selectLayer.newY = mouseY;
-                        selectLayer.width = 0
-                        selectLayer.height = 0;
-                        mouse.accepted = true
-                    }else
-                    {
-                        mouse.accepted = false
-                    }
-                }
-                
-                onReleased:
-                {
-                    if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
-                    {
-                        mouse.accepted = false
-                        return;
-                    }
-                    
-                    if(selectLayer.y > _listView.contentHeight)
-                    {
-                        return selectLayer.reset();
-                    }
-                    
-                    var lassoIndexes = []
-                    var limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
-                    
-                    for(var y = lassoRec.y; y < limitY; y+=10)
-                    {
-                        const index = _listView.indexAt(_listView.width/2,y+_listView.contentY)
-                        if(!lassoIndexes.includes(index) && index>-1 && index< _listView.count)
-                            lassoIndexes.push(index)
-                    }
-                    
-                    control.itemsSelected(lassoIndexes)
-                    selectLayer.reset()
                 }
             }
             

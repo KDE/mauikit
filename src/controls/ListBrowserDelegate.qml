@@ -113,7 +113,7 @@ Maui.ItemDelegate
     /**
       * checked : bool
       */
-    property alias checked : _emblem.checked
+    property bool checked : false
 
     /**
       * checkable : bool
@@ -158,12 +158,14 @@ Maui.ItemDelegate
 //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
     }
     
-    DropArea
+    Loader
     {
-        id: _dropArea
+        asynchronous: true
         anchors.fill: parent
-        enabled: control.draggable
-
+        active: control.draggable
+ 
+        sourceComponent: DropArea
+    {       
         Rectangle
         {
             anchors.fill: parent
@@ -177,7 +179,8 @@ Maui.ItemDelegate
         {
             control.contentDropped(drop)
         }
-    }
+    } 
+    }   
 
     RowLayout
     {
@@ -186,19 +189,24 @@ Maui.ItemDelegate
 
         Item
         {
-            Layout.preferredHeight: _emblem.height
-            visible: _emblem.visible
+            Layout.preferredHeight: parent.height
+            visible: control.checked
         }
-
-        Private.CheckBoxItem
+        
+        Loader
         {
-            id: _emblem        
-            visible: control.checkable || control.checked
-            implicitHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
-            implicitWidth: height        
-            Layout.alignment: Qt.AlignCenter     
-            onToggled: control.toggled(state)      
-        }
+            asynchronous: true
+            active: control.checkable || control.checked
+            visible: active
+            Layout.preferredHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
+            Layout.preferredWidth: height        
+            Layout.alignment: Qt.AlignCenter   
+            sourceComponent: Private.CheckBoxItem
+            {                
+                checked: control.checked
+                onToggled: control.toggled(state)      
+            }
+        }    
         
         Maui.ListItemTemplate
         {

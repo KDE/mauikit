@@ -19,8 +19,6 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import org.mauikit.controls 1.0 as Maui
-import org.kde.kirigami 2.7 as Kirigami
 
 /*!
 \since org.mauikit.controls 1.0

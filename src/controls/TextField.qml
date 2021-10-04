@@ -18,7 +18,6 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.14 as Kirigami

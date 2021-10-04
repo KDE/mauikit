@@ -6,8 +6,6 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
-import Qt.labs.settings 1.0
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -60,18 +58,6 @@ SplitView
                
                 color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
-
-            //Kirigami.Separator
-            //{
-                //anchors.top: parent.top
-                //width: parent.width
-            //}
-
-            //Kirigami.Separator
-            //{
-                //anchors.top: parent.bottom
-                //width: parent.width
-            //}
         }
     }
 
@@ -109,21 +95,8 @@ SplitView
                 radius: width
                 color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
-
-            //Kirigami.Separator
-            //{
-                //anchors.left: parent.left
-                //height: parent.height
-            //}
-
-            //Kirigami.Separator
-            //{
-                //anchors.right: parent.right
-                //height: parent.height
-            //}
         }
     }
-
 
     handle: Loader
     {

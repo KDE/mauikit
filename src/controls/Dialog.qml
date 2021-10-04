@@ -18,9 +18,10 @@
  */
 
 import QtQuick 2.14
-import QtQml 2.14
+
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
+
 import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.9 as Kirigami
 
@@ -41,7 +42,6 @@ Layout.fillheight layout.fillWidth, etc.
 Maui.Popup
 {
     id: control
-//     clip: true
     
     closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
     

@@ -25,12 +25,13 @@ TabBar
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
     //Kirigami.Theme.colorSet: Kirigami.Theme.View
     //Kirigami.Theme.inherit: false
-    
-    /**
+     
+     /**
      * content : RowLayout.data
      */
     default property alias content : _content.data
         
+    
     /**
      * showNewTabButton : bool
      */
@@ -50,35 +51,51 @@ TabBar
     {        
         readonly property bool fits : _flickable.contentWidth <= width
         
-        Private.EdgeShadow
+        Loader
         {
+            z: 999
+            
+            asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            visible: !_flickable.atXEnd && !parent.fits 
-            opacity: 0.7
-            z: 999
-            edge: Qt.RightEdge
+            active: !_flickable.atXEnd && !parent.fits 
+            visible: active
+            
             anchors
             {
                 right: parent.right
                 top: parent.top
                 bottom: parent.bottom
             }
+            
+            sourceComponent: Private.EdgeShadow
+            {                    
+                opacity: 0.7
+                edge: Qt.RightEdge                    
+            }
         }
         
-        Private.EdgeShadow
+        Loader
         {
+            z: 999
+            
+            asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            visible: !_flickable.atXBeginning && !parent.fits 
-            opacity: 0.7
-            z: 999
-            edge: Qt.LeftEdge
+            active: !_flickable.atXBeginning && !parent.fits 
+            visible: active
             anchors
             {
                 left: parent.left
                 top: parent.top
                 bottom: parent.bottom
+            }
+            
+            sourceComponent: Private.EdgeShadow
+            {
+                
+                opacity: 0.7
+                edge: Qt.LeftEdge            
             }
         }
         
@@ -115,20 +132,26 @@ TabBar
                 }
             }
             
-            MouseArea
+            Loader
             {
-                visible: control.showNewTabButton
-                hoverEnabled: true
-                onClicked: control.newTabClicked()
+                active: control.showNewTabButton
+                visible: active
+                asynchronous: true
                 Layout.fillHeight: true
                 Layout.preferredWidth: visible ? height : 0
                 
-                Maui.PlusSign
+                sourceComponent: MouseArea
                 {
-                    height: Maui.Style.iconSizes.tiny
-                    width: height
-                    anchors.centerIn: parent
-                    color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+                    hoverEnabled: true
+                    onClicked: control.newTabClicked()              
+                    
+                    Maui.PlusSign
+                    {
+                        height: Maui.Style.iconSizes.tiny
+                        width: height
+                        anchors.centerIn: parent
+                        color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+                    }
                 }
             }
         }

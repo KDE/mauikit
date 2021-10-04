@@ -18,12 +18,10 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
+
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
-
-import "private"
 
 /**
  * LabelDelegate
@@ -75,7 +73,7 @@ ItemDelegate
         text: labelTxt.text
         elide: Text.ElideRight
         wrapMode: Text.NoWrap
-        color:  control.isCurrentListItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+        color: control.isCurrentListItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
         font.bold: control.isSection
         font.weight : control.isSection ? Font.Bold : Font.Normal
     }

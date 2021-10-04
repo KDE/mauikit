@@ -111,7 +111,6 @@ Item
             source: emoji
         }
     }
-
     
     Column
     {
@@ -121,13 +120,13 @@ Item
         
         Loader
         {
-            id: loader
-            visible: control.height > (_label1.implicitHeight + _label2.implicitHeight + emojiSize)
+            visible: active
+            active: control.height > (_label1.implicitHeight + _label2.implicitHeight + emojiSize) && control.emoji
             height: control.emoji && visible ? emojiSize : 0
             width: height
             asynchronous: true
             anchors.horizontalCenter: parent.horizontalCenter
-            sourceComponent: control.emoji ? (isGif ? animComponent : imgComponent) : null
+            sourceComponent: isGif ? animComponent : imgComponent
         }
 
         Item
@@ -135,6 +134,7 @@ Item
             width: height
             height: Maui.Style.space.medium
         }
+        
         Label
         {
             id: _label1

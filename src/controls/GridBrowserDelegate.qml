@@ -98,7 +98,7 @@ Maui.ItemDelegate
     /**
      * checked : bool
      */
-    property alias checked : _emblem.checked
+    property bool checked : false
     
     property alias fillMode : _template.fillMode
     
@@ -114,7 +114,7 @@ Maui.ItemDelegate
      */
     property alias dropArea : _dropArea
     
-       property alias imageWidth : _template.imageWidth
+    property alias imageWidth : _template.imageWidth
     property alias imageHeight : _template.imageHeight
     
     /**
@@ -137,9 +137,9 @@ Maui.ItemDelegate
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
-
+        
         radius: control.radius
-//         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
+        //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
     }    
     
     DropArea
@@ -149,7 +149,6 @@ Maui.ItemDelegate
         
         Rectangle
         {
-            id: light
             anchors.fill: parent
             radius: control.radius
             color:  control.Kirigami.Theme.backgroundColor
@@ -174,15 +173,21 @@ Maui.ItemDelegate
         isCurrentItem: control.isCurrentItem
     }
     
-    Private.CheckBoxItem
+    Loader
     {
-        id: _emblem
-        visible: control.checkable || control.checked
+        asynchronous: true
+        active: control.checkable || control.checked
+        visible: active
         height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.1)
         width: height
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
-        onToggled: control.toggled(state)
+        
+        sourceComponent: Private.CheckBoxItem
+        {      
+            checked: control.checked
+            onToggled: control.toggled(state)
+        }
     }
 }

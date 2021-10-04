@@ -19,33 +19,19 @@ import org.mauikit.controls 1.3 as Maui
 TabButton
 {
     id: control
-    implicitWidth: 200
+    implicitWidth: 200    
     
-
     property alias content: _content.data
-
-    property alias closeButtonVisible: _closeButton.visible
+    
+    property bool closeButtonVisible: true
     property bool centerLabel : true
-
+    
     /**
-         * closeClicked :
-         */
+     * closeClicked :
+     */
     signal closeClicked()
     signal rightClicked(var mouse)
-
-    //Kirigami.Separator
-    //{
-        //color: Kirigami.Theme.highlightColor
-        //height: 2
-        //visible: checked
-        //anchors
-        //{
-            //bottom: parent.bottom
-            //left: parent.left
-            //right: parent.right
-        //}
-    //}
-
+    
     background: Rectangle
     {
         visible: control.checked || control.down || control.hovered
@@ -53,49 +39,58 @@ TabButton
         color: control.hovered && !control.checked ? Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.4) : Qt.lighter(Kirigami.Theme.backgroundColor)
         radius: Maui.Style.radiusV
     }
-
+    
     contentItem: RowLayout
     {
         id: _content
-
-        Maui.CloseButton
+        
+        Loader
         {
-            id: _closeButton
-
-            opacity: Kirigami.Settings.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
-
-            implicitWidth: height
+            asynchronous: true
+            active: control.closeButtonVisible
+            
+            Layout.preferredWidth: height
             Layout.fillHeight: true
-
-            onClicked: control.closeClicked()
-            Behavior on opacity
+            
+            sourceComponent: Maui.CloseButton
             {
-                NumberAnimation
+                opacity: Kirigami.Settings.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
+                
+                onClicked: control.closeClicked()
+                Behavior on opacity
                 {
-                    duration: Kirigami.Units.longDuration
-                    easing.type: Easing.InOutQuad
+                    NumberAnimation
+                    {
+                        duration: Kirigami.Units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
                 }
             }
-
         }
-
-        Label
+        
+        Loader
         {
+            asynchronous: true
             Layout.fillWidth: true
             Layout.fillHeight: true
-            text: control.text
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-            color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-            wrapMode: Text.NoWrap
-            elide: Text.ElideMiddle
+            
+            sourceComponent: Label
+            {         
+                text: control.text
+                
+                horizontalAlignment: Qt.AlignHCenter
+                verticalAlignment: Qt.AlignVCenter
+                color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                wrapMode: Text.NoWrap
+                elide: Text.ElideMiddle
+            }  
         }
         
         Item
         {
             Layout.fillHeight: true
             implicitWidth: height
-            visible: _closeButton.visible && control.centerLabel
+            visible: control.closeButtonVisible && control.centerLabel
         }
     }
     

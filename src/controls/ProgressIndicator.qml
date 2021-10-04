@@ -1,6 +1,5 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
 
 ProgressBar
 {
@@ -8,7 +7,8 @@ ProgressBar
    
     indeterminate: true
     
-    contentItem: Item {
+    contentItem: Item 
+    {
         x: control.leftPadding
         y: control.topPadding
         width: control.availableWidth
@@ -16,10 +16,12 @@ ProgressBar
         
         scale: control.mirrored ? -1 : 1
         
-        Repeater {
+        Repeater
+        {
             model: 2
             
-            Rectangle {
+            Rectangle 
+            {
                 property real offset: 0
                 
                 x: (control.indeterminate ? offset * parent.width : 0)
@@ -29,7 +31,8 @@ ProgressBar
                 
                 color: "violet"
                 
-                SequentialAnimation on offset {
+                SequentialAnimation on offset
+                {
                     loops: Animation.Infinite
                     running: control.indeterminate && control.visible
                     PauseAnimation { duration: index ? 520 : 0 }
