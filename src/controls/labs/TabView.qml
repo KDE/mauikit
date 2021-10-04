@@ -193,6 +193,7 @@ Container
             asynchronous: true
             active: control.count > 1 && !control.mobile && control.tabBarVisible
             Layout.fillWidth: true
+            visible: active
             
             sourceComponent: Maui.TabBar
             {        
@@ -299,6 +300,7 @@ Container
         Loader
         {
             asynchronous: true
+            visible: active
             
             Layout.fillWidth: true
             active: control.count > 1 && control.mobile && !control.overviewMode && control.tabBarVisible

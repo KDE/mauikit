@@ -294,26 +294,31 @@ Item
             }
         }
         
-        DropShadow
+        Loader
         {
-            id: rectShadow
+            asynchronous: true
             anchors.fill: bg
-            cached: true
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8.0
-            samples: 16
-            color:  "#80000000"
-            smooth: true
-            source: bg
-        }      
+            
+            sourceComponent:  DropShadow
+            {
+                id: rectShadow
+                cached: true
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
+                source: bg
+            }   
+        }
         
         Loader
         {
             id: _layoutLoader
-            anchors.fill: parent
-            
+            anchors.fill: parent            
             asynchronous: true
+            
             sourceComponent:  Maui.ToolBar
             {
                 clip: true
