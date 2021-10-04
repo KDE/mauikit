@@ -10,7 +10,7 @@ import org.mauikit.controls 1.3 as Maui
 Loader
 {
     id: control
-
+    asynchronous: true
     active: Maui.App.controls.enableCSD
     visible: buttonsModel.length && active
 
