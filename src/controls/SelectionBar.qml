@@ -114,11 +114,11 @@ Item
      */
     readonly property alias count : _urisModel.count
     
-    /**
-     * background : Rectangle
-     * The default style of the background. This can be customized by changing its properties.
-     */
-    property alias background : bg
+    //     /**
+    //      * background : Rectangle
+    //      * The default style of the background. This can be customized by changing its properties.
+    //      */
+    //     property alias background : bg
     
     /**
      * listDelegate : Component
@@ -226,7 +226,6 @@ Item
     {
         id: _loader
         active: control.visible
-        //         asynchronous: true
     }
     
     Component
@@ -257,70 +256,70 @@ Item
         }  
     }
     
-    Item
+    Loader
     {
-        id: _container
-        anchors.centerIn: parent
-        implicitHeight: control.barHeight
-        width: parent.width
+        id: _layoutLoader
+                asynchronous: true
+        active: control.count > 0 || item
+        anchors.fill: parent
+        anchors.margins: control.padding * 0.5
         
-        Rectangle
-        {
-            id: bg
-            anchors.fill: parent
-            color: Kirigami.Theme.backgroundColor
-            radius: control.radius
-            
-            MouseArea
+        sourceComponent: Item
+        {            
+            property alias implicitWidth: _layout.implicitWidth
+            Rectangle
             {
+                id: bg
                 anchors.fill: parent
-                acceptedButtons: Qt.RightButton | Qt.LeftButton
-                propagateComposedEvents: false
-                preventStealing: true
+                color: Kirigami.Theme.backgroundColor
+                radius: control.radius
                 
-                onClicked:
+                MouseArea
                 {
-                    if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
-                        control.rightClicked(mouse)
-                        else
-                            control.clicked(mouse)
-                }
-                
-                onPressAndHold :
-                {
-                    if(Kirigami.Settings.isMobile)
-                        control.rightClicked(mouse)
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton | Qt.LeftButton
+                    propagateComposedEvents: false
+                    preventStealing: true
+                    
+                    onClicked:
+                    {
+                        if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
+                            control.rightClicked(mouse)
+                            else
+                                control.clicked(mouse)
+                    }
+                    
+                    onPressAndHold :
+                    {
+                        if(Kirigami.Settings.isMobile)
+                            control.rightClicked(mouse)
+                    }
                 }
             }
-        }
-        
-        Loader
-        {
-            asynchronous: true
-            anchors.fill: bg
             
-            sourceComponent:  DropShadow
+            Loader
             {
-                id: rectShadow
-                cached: true
-                horizontalOffset: 0
-                verticalOffset: 0
-                radius: 8.0
-                samples: 16
-                color:  "#80000000"
-                smooth: true
-                source: bg
-            }   
-        }
-        
-        Loader
-        {
-            id: _layoutLoader
-            anchors.fill: parent            
-            asynchronous: true
+                asynchronous: true
+                anchors.fill: bg
+                
+                sourceComponent:  DropShadow
+                {
+                    id: rectShadow
+                    cached: true
+                    horizontalOffset: 0
+                    verticalOffset: 0
+                    radius: 8.0
+                    samples: 16
+                    color:  "#80000000"
+                    smooth: true
+                    source: bg
+                }   
+            }
             
-            sourceComponent:  Maui.ToolBar
+            Maui.ToolBar
             {
+                id: _layout
+                anchors.fill: parent
                 clip: true
                 position: ToolBar.Footer
                 //             spacing: Maui.Style.space.big
@@ -371,7 +370,7 @@ Item
                     radius: Maui.Style.radiusV
                     font.pointSize: Maui.Style.fontSizes.big
                     Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                    Kirigami.Theme.backgroundColor: _loader.item.visible ?
+                    Kirigami.Theme.backgroundColor: _loader.item && _loader.item.visible ?
                     Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
                     border.color: "transparent"
                     
@@ -380,7 +379,7 @@ Item
                         _loader.sourceComponent = _listContainerComponent
                         _loader.item.open() 
                     }
-                                        
+                    
                     Maui.Rectangle
                     {
                         opacity: 0.3
@@ -430,30 +429,30 @@ Item
                             _counter.y = startY
                         }
                     }
+                }               
+            }        
+            
+            Maui.Rectangle
+            {
+                opacity: 0.2
+                anchors.fill: parent
+                anchors.margins: 4
+                visible: _dropArea.containsDrag
+                color: "transparent"
+                borderColor: "white"
+                solidBorder: false
+            }
+            
+            DropArea
+            {
+                id: _dropArea
+                anchors.fill: parent
+                onDropped:
+                {
+                    control.urisDropped(drop.urls)
                 }
-            }   
+            } 
         }        
-        
-        Maui.Rectangle
-        {
-            opacity: 0.2
-            anchors.fill: parent
-            anchors.margins: 4
-            visible: _dropArea.containsDrag
-            color: "transparent"
-            borderColor: "white"
-            solidBorder: false
-        }
-    }
-    
-    DropArea
-    {
-        id: _dropArea
-        anchors.fill: parent
-        onDropped:
-        {
-            control.urisDropped(drop.urls)
-        }
     }
     
     Keys.onEscapePressed:
@@ -539,13 +538,13 @@ Item
             {
                 clear()
             }                
-                _private._items.push(item)
-                _private._uris.push(uri)
-                
-                item.uri = uri
-                _urisModel.append(item)                
-                control.itemAdded(item)
-                control.uriAdded(uri)                
+            _private._items.push(item)
+            _private._uris.push(uri)
+            
+            item.uri = uri
+            _urisModel.append(item)                
+            control.itemAdded(item)
+            control.uriAdded(uri)                
         }
     }
     
