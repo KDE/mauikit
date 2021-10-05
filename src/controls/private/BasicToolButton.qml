@@ -88,9 +88,10 @@ AbstractButton
         }
     }
 
-    contentItem: GridLayout
+ GridLayout
     {
         id: _layoutButton
+        anchors.centerIn: parent
         rowSpacing: 0
         columnSpacing: 0
 
