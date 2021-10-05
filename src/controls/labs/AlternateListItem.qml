@@ -1,5 +1,4 @@
 import QtQuick 2.9
-import QtQuick.Controls 2.2
 
 import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.2 as Maui
@@ -31,7 +30,6 @@ Maui.ItemDelegate
 
         Kirigami.Separator
         {
-            id: _sep
             visible: !control.lastOne
             weight: Kirigami.Separator.Weight.Light
             height: 0.5

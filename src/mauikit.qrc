@@ -52,7 +52,6 @@
         <file alias="AppViews.qml">controls/AppViews.qml</file>
         <file alias="AppViewLoader.qml">controls/AppViewLoader.qml</file>
         <file alias="AltBrowser.qml">controls/AltBrowser.qml</file>
-        <file alias="labs/TabsBrowser.qml">controls/labs/TabsBrowser.qml</file>
         <file alias="labs/SettingsDialog.qml">controls/labs/SettingsDialog.qml</file>
         <file alias="labs/SettingsSection.qml">controls/labs/SettingsSection.qml</file>
         <file alias="labs/SettingTemplate.qml">controls/labs/SettingTemplate.qml</file>

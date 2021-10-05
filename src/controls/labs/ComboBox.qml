@@ -194,7 +194,6 @@ T.ComboBox
 
         contentItem: Maui.ListBrowser
         {
-            id: _listView
             clip: true
 
             implicitWidth: {

@@ -20,6 +20,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
@@ -27,8 +28,8 @@ Item
 {
     id: control
     
-    implicitWidth: _layout.implicitWidth
-    implicitHeight: _layout.implicitHeight
+    implicitWidth: _layoutLoader.implicitWidth
+    implicitHeight: _layoutLoader.implicitHeight
     
     Layout.fillWidth: !root.isWide
     /**
@@ -45,7 +46,7 @@ Item
      * 
      */
     property int currentIndex : 0
- 
+    
     /**
      * 
      */
@@ -69,8 +70,8 @@ Item
     property Component delegate : Maui.BasicToolButton
     {
         Layout.alignment: Qt.AlignCenter
-//         Layout.preferredWidth: visible ? implicitWidth : 0
-       //Layout.fillWidth: true
+        //         Layout.preferredWidth: visible ? implicitWidth : 0
+        //Layout.fillWidth: true
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
@@ -100,81 +101,86 @@ Item
         }
     }
     
-    RowLayout
+    Loader
     {
-        id: _layout     
+        id: _layoutLoader   
         anchors.fill: parent
-        spacing: Maui.Style.space.medium
         
-        Repeater
+        asynchronous: true
+        sourceComponent: RowLayout
         {
-            model: control.items
-            delegate: control.delegate
-        }
-        
-        Maui.BasicToolButton
-        {
-            Layout.alignment: Qt.AlignCenter
-
-            readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
-            
-            visible: obj && obj.visible
-            checked: visible
-            autoExclusive: true
-            icon.name: obj ? obj.Maui.AppView.iconName : ""
-            icon.width: Maui.Style.iconSizes.medium
-            icon.height: Maui.Style.iconSizes.medium
-            flat: display === ToolButton.IconOnly
-            
-            display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
-            
-            text: obj ? obj.Maui.AppView.title : ""
-            
-            Kirigami.Theme.backgroundColor: obj ? obj.Kirigami.Theme.backgroundColor : undefined
-            Kirigami.Theme.highlightColor: obj ? obj.Kirigami.Theme.highlightColor: undefined
-        }
-        
-        Maui.ToolButtonMenu
-        {
-            id: _menuButton
-            icon.name: "overflow-menu"
-            icon.width: Maui.Style.iconSizes.medium
-            icon.height: Maui.Style.iconSizes.medium
-            visible: control.hiddenItems.length > 0
-            
-            Layout.alignment: Qt.AlignCenter
-            display: checked ? ToolButton.TextBesideIcon : ToolButton.IconOnly
-            
-            Behavior on implicitWidth
-            {
-                NumberAnimation
-                {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.InOutQuad
-                }
-            }
+            spacing: Maui.Style.space.medium
             
             Repeater
             {
-                model: control.hiddenItems
-
-                MenuItem
+                model: control.items
+                delegate: control.delegate
+            }
+            
+            Maui.BasicToolButton
+            {
+                Layout.alignment: Qt.AlignCenter
+                
+                readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
+                
+                visible: obj && obj.visible
+                checked: visible
+                autoExclusive: true
+                icon.name: obj ? obj.Maui.AppView.iconName : ""
+                icon.width: Maui.Style.iconSizes.medium
+                icon.height: Maui.Style.iconSizes.medium
+                flat: display === ToolButton.IconOnly
+                
+                display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
+                
+                text: obj ? obj.Maui.AppView.title : ""
+                
+                Kirigami.Theme.backgroundColor: obj ? obj.Kirigami.Theme.backgroundColor : undefined
+                Kirigami.Theme.highlightColor: obj ? obj.Kirigami.Theme.highlightColor: undefined
+            }
+            
+            Maui.ToolButtonMenu
+            {
+                id: _menuButton
+                icon.name: "overflow-menu"
+                icon.width: Maui.Style.iconSizes.medium
+                icon.height: Maui.Style.iconSizes.medium
+                visible: control.hiddenItems.length > 0
+                
+                Layout.alignment: Qt.AlignCenter
+                display: checked ? ToolButton.TextBesideIcon : ToolButton.IconOnly
+                
+                Behavior on implicitWidth
                 {
-                    text: modelData.Maui.AppView.title
-                    icon.name: modelData.Maui.AppView.iconName
-                    autoExclusive: true
-                    checkable: true
-                    checked: control.currentIndex === control.items.length + index
-
-                    onTriggered:
+                    NumberAnimation
                     {
-                        if(control.items.length + index === control.currentIndex)
+                        duration: Kirigami.Units.shortDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+                
+                Repeater
+                {
+                    model: control.hiddenItems
+                    
+                    MenuItem
+                    {
+                        text: modelData.Maui.AppView.title
+                        icon.name: modelData.Maui.AppView.iconName
+                        autoExclusive: true
+                        checkable: true
+                        checked: control.currentIndex === control.items.length + index
+                        
+                        onTriggered:
                         {
-                            return
+                            if(control.items.length + index === control.currentIndex)
+                            {
+                                return
+                            }
+                            
+                            control.currentIndex = control.items.length + index
+                            control.clicked(control.currentIndex)
                         }
-
-                        control.currentIndex = control.items.length + index
-                        control.clicked(control.currentIndex)
                     }
                 }
             }

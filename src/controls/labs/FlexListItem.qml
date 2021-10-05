@@ -21,7 +21,6 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
-import org.kde.kirigami 2.8 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 
@@ -91,7 +90,7 @@ ItemDelegate
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
-    background: Item {}
+    background: null
 
     GridLayout
     {

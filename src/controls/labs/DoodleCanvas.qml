@@ -1,14 +1,10 @@
        import QtQuick 2.13
        import QtQuick.Controls 2.13
-       import QtQuick.Layouts 1.3
-       
-       import org.mauikit.controls 1.0 as Maui
-       import org.kde.kirigami 2.7 as Kirigami
-       
+              
        /*!
-           \since org.mauikit.controls.labs 1.0
-           \inqmlmodule org.mauikit.controls.labs
-       */
+        *           \since org.mauikit.controls.labs 1.0
+        *           \inqmlmodule org.mauikit.controls.labs
+        */
        Item
        {
            id: control
@@ -238,9 +234,9 @@
                    }
                }
                
-             
+               
            }
-          
+           
            // Bezier Curve
            function bezierCurve(start, control, end, t)
            {
@@ -273,5 +269,6 @@
                return Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB));
            }            
        }
+       
        
        

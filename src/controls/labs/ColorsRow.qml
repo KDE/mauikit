@@ -1,11 +1,8 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
-
-import org.mauikit.filebrowsing 1.3 as FB
 
 Row
 {
@@ -64,20 +61,25 @@ Row
         }
     }
     
-    Item
+    Loader
     {
-        implicitHeight: Maui.Style.iconSizes.medium
-        implicitWidth: implicitHeight
-
-        ToolButton
+        asynchronous: true
+        sourceComponent: Item
         {
-            flat: true
-            anchors.centerIn: parent
-            icon.name: "edit-clear"
-            onClicked:
+            implicitHeight: Maui.Style.iconSizes.medium
+            implicitWidth: implicitHeight
+            
+            ToolButton
             {
-                control.colorPicked(control.defaultColor)
+                flat: true
+                anchors.centerIn: parent
+                icon.name: "edit-clear"
+                onClicked:
+                {
+                    control.colorPicked(control.defaultColor)
+                }
             }
         }
     }
+   
 }

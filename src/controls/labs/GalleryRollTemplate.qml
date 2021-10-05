@@ -9,28 +9,28 @@ Kirigami.ShadowedRectangle
 {
     id: control
     color: "#333"
-
+    
     property int orientation : Qt.Horizontal
-
+    
     /**
      * cached
      */
     property bool cache : true
-
-
+    
+    
     /**
      * cb : function
      */
     property var cb
-
+    
     /**
      * images :
      */
     property var images : []
     property int radius : 0
-
+    
     property int fillMode: Image.PreserveAspectCrop
-
+    
     corners
     {
         topLeftRadius: control.radius
@@ -38,109 +38,114 @@ Kirigami.ShadowedRectangle
         bottomLeftRadius: control.radius
         bottomRightRadius: control.radius
     }
-
+    
     shadow.xOffset: 0
     shadow.yOffset: 0
     shadow.color: Qt.rgba(0, 0, 0, 0.3)
     shadow.size: 10
-
-    Timer
+    
+    Loader
     {
-        id: _featuredTimer
-        interval: randomInteger(6000, 8000)
-        repeat: true
-        onTriggered: _featuredRoll.cycleSlideForward()
-    }
-
-    ListView
-    {
-        id: _featuredRoll
+        asynchronous: true
         anchors.fill: parent
-        interactive: false
-        orientation: control.orientation
-        snapMode: ListView.SnapOneItem
-        clip: true
-
-        model: control.images
-
-        function cycleSlideForward()
+        
+        sourceComponent: ListView
         {
-            _featuredTimer.restart()
-
-            if (_featuredRoll.currentIndex === _featuredRoll.count - 1)
+            id: _featuredRoll
+            interactive: false
+            orientation: control.orientation
+            snapMode: ListView.SnapOneItem
+            clip: true
+            
+            model: control.images
+            
+            Component.onCompleted: _featuredTimer.start()
+            
+            Timer
             {
-                _featuredRoll.currentIndex = 0
-            } else
-            {
-                _featuredRoll.incrementCurrentIndex()
+                id: _featuredTimer
+                interval: randomInteger(6000, 8000)
+                repeat: true
+                onTriggered: _featuredRoll.cycleSlideForward()
             }
-        }
-
-        function cycleSlideBackward()
-        {
-            _featuredTimer.restart()
-
-            if (_featuredRoll.currentIndex === 0)
+            
+            function cycleSlideForward()
             {
-                _featuredRoll.currentIndex = _featuredRoll.count - 1;
-            } else
-            {
-                _featuredRoll.decrementCurrentIndex();
-            }
-        }
-
-        delegate: Item
-        {
-            width: ListView.view.width
-            height: ListView.view.height
-
-            Image
-            {
-                anchors.fill: parent
-                sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : control.width) * 1.5
-                sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : control.height)  * 1.5
-                asynchronous: true
-                smooth: true
-                cache: control.cache
-                source: control.cb ? control.cb(modelData) : modelData
-                fillMode: control.fillMode
-            }
-
-            Behavior on height
-            {
-                NumberAnimation
+                _featuredTimer.restart()
+                
+                if (_featuredRoll.currentIndex === _featuredRoll.count - 1)
                 {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.InOutQuad
+                    _featuredRoll.currentIndex = 0
+                } else
+                {
+                    _featuredRoll.incrementCurrentIndex()
                 }
             }
-        }
-
-        layer.enabled: control.radius
-        layer.effect: OpacityMask
-        {
-            maskSource: Item
+            
+            function cycleSlideBackward()
             {
-                width: control.width
-                height: control.height
-
-                Kirigami.ShadowedRectangle
+                _featuredTimer.restart()
+                
+                if (_featuredRoll.currentIndex === 0)
+                {
+                    _featuredRoll.currentIndex = _featuredRoll.count - 1;
+                } else
+                {
+                    _featuredRoll.decrementCurrentIndex();
+                }
+            }
+            
+            delegate: Item
+            {
+                width: ListView.view.width
+                height: ListView.view.height
+                
+                Image
                 {
                     anchors.fill: parent
-                    corners
+                    sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : control.width) * 1.5
+                    sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : control.height)  * 1.5
+                    asynchronous: true
+                    smooth: true
+                    cache: control.cache
+                    source: control.cb ? control.cb(modelData) : modelData
+                    fillMode: control.fillMode
+                }
+                
+                Behavior on height
+                {
+                    NumberAnimation
                     {
-                        topLeftRadius: control.corners.topLeftRadius
-                        topRightRadius: control.corners.topRightRadius
-                        bottomLeftRadius: control.corners.bottomLeftRadius
-                        bottomRightRadius: control.corners.bottomRightRadius
+                        duration: Kirigami.Units.shortDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+            
+            layer.enabled: control.radius
+            layer.effect: OpacityMask
+            {
+                maskSource: Item
+                {
+                    width: control.width
+                    height: control.height
+                    
+                    Kirigami.ShadowedRectangle
+                    {
+                        anchors.fill: parent
+                        corners
+                        {
+                            topLeftRadius: control.corners.topLeftRadius
+                            topRightRadius: control.corners.topRightRadius
+                            bottomLeftRadius: control.corners.bottomLeftRadius
+                            bottomRightRadius: control.corners.bottomRightRadius
+                        }
                     }
                 }
             }
         }
-    }
-
-    Component.onCompleted: _featuredTimer.start()
-
+    }    
+    
     function randomInteger(min, max)
     {
         return Math.floor(Math.random() * (max - min + 1)) + min;

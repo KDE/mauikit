@@ -11,8 +11,8 @@ Loader
 {
     id: control
     asynchronous: true
-    active: Maui.App.controls.enableCSD
-    visible: buttonsModel.length && active
+    active: Maui.App.controls.enableCSD && buttonsModel.length
+    visible: active
 
     required property int side
 

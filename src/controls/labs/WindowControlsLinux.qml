@@ -1,7 +1,3 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.3
-import QtQuick.Window 2.3
-
 import org.mauikit.controls 1.3 as Maui
 
 /*!

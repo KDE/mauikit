@@ -60,63 +60,67 @@ Maui.GridBrowserDelegate
         shadow.color: Qt.rgba(0, 0, 0, 0.3)
         shadow.size: 10
         
-        GridLayout
+        
+        Loader
         {
+            asynchronous: true
             anchors.fill: parent
-            columns: 3
-            rows: 2
-            columnSpacing: 2
-            rowSpacing: 2
             
-            Repeater
+            sourceComponent: GridLayout
             {
-                id: _repeater
+                columns: 3
+                rows: 2
+                columnSpacing: 2
+                rowSpacing: 2
                 
-                model: control.images
-                
-                delegate: Rectangle
-                {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    Layout.maximumHeight: index === 0 ? control.height : control.height * 0.3
-                    //                     Layout.minimumHeight: index === 0 ? control.height * 0.6 : control.height * 0.2
-                    Layout.columnSpan: index === 0 ? 3 : 1
-                    Layout.rowSpan: index === 0 ? 2 : 1
-                    color: Qt.rgba(0,0,0,0.3)
+                Repeater
+                {                
+                    model: control.images
                     
-                    Image
+                    delegate: Rectangle
                     {
-                        anchors.fill: parent
-                        sourceSize.width:  (control.imageWidth > -1 ? control.imageWidth : width)
-                        sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : height)
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: index === 0 ? control.height : control.height * 0.3
+                        //                     Layout.minimumHeight: index === 0 ? control.height * 0.6 : control.height * 0.2
+                        Layout.columnSpan: index === 0 ? 3 : 1
+                        Layout.rowSpan: index === 0 ? 2 : 1
+                        color: Qt.rgba(0,0,0,0.3)
                         
-                        asynchronous: true
-                        smooth: true
-                        source: control.cb ? control.cb(modelData) : modelData
-                        fillMode: control.fillMode
+                        Image
+                        {
+                            anchors.fill: parent
+                            sourceSize.width:  (control.imageWidth > -1 ? control.imageWidth : width)
+                            sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : height)
+                            
+                            asynchronous: true
+                            smooth: true
+                            source: control.cb ? control.cb(modelData) : modelData
+                            fillMode: control.fillMode
+                        }
                     }
                 }
-            }
-            
-            layer.enabled: control.maskRadius
-            layer.effect: OpacityMask
-            {
-                maskSource: Item
+                
+                layer.enabled: control.maskRadius
+                layer.effect: OpacityMask
                 {
-                    width: _collageLayout.width
-                    height: _collageLayout.height
-                    
-                    Kirigami.ShadowedRectangle
+                    maskSource: Item
                     {
-                        corners
+                        width: _collageLayout.width
+                        height: _collageLayout.height
+                        
+                        Kirigami.ShadowedRectangle
                         {
-                            topLeftRadius: control.radius
-                            topRightRadius: control.radius
-                            bottomLeftRadius: 0
-                            bottomRightRadius: 0
+                            corners
+                            {
+                                topLeftRadius: control.radius
+                                topRightRadius: control.radius
+                                bottomLeftRadius: 0
+                                bottomRightRadius: 0
+                            }
+                            anchors.fill: parent
+                            radius: control.maskRadius
                         }
-                        anchors.fill: parent
-                        radius: control.maskRadius
                     }
                 }
             }
@@ -130,6 +134,5 @@ Maui.GridBrowserDelegate
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.5)       
         
         radius: control.radius
-    }
-    
+    }    
 }

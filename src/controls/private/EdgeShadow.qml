@@ -21,7 +21,8 @@ import QtQuick 2.1
 import QtGraphicalEffects 1.0
 import org.kde.kirigami 2.8 as Kirigami
 
-LinearGradient {
+LinearGradient
+{
     id: control
     /**
      * edge: enumeration

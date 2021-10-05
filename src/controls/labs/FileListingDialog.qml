@@ -91,7 +91,7 @@ Maui.Dialog
         }
     }
     
-    template.leftLabels.data:  Column
+    template.leftLabels.data: Column
     {
         id: _content
         Layout.fillWidth: true
@@ -152,7 +152,7 @@ Maui.Dialog
     Maui.Separator
     {
         edge: Qt.TopEdge
-        visible: _listView.visible
+        visible: _listViewLoader.active
         Layout.preferredWidth: 100
         Layout.alignment: Qt.AlignCenter
         radius: 1
@@ -161,18 +161,26 @@ Maui.Dialog
 
     Item {Layout.fillWidth: true}
     
-    Maui.ListBrowser
+    Loader
     {
-        id: _listView
-        visible: control.urls.length > 0
+        id: _listViewLoader      
+
+        asynchronous: true
+        active: control.urls.length > 0
+        visible: active
         
         Layout.fillWidth: true
-        implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)
-        model: urls
-        spacing: Maui.Style.space.small
-        padding: 0
-        verticalScrollBarPolicy: ScrollBar.AlwaysOff
         
-        delegate: control.listDelegate
+        sourceComponent: Maui.ListBrowser
+        {
+            
+            implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)
+            model: urls
+            spacing: Maui.Style.space.small
+            padding: 0
+            verticalScrollBarPolicy: ScrollBar.AlwaysOff
+            
+            delegate: control.listDelegate
+        }
     }
 }

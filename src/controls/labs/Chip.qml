@@ -73,30 +73,41 @@ ItemDelegate
             color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.2 : 0.4))
         }
 
-        MouseArea
+        Loader
         {
-            id: _closeIcon
-            visible: showCloseButton
-            hoverEnabled: true
-
+            active: control.showCloseButton
+            visible: active
+            
+            asynchronous: true
             Layout.fillHeight: true
-            implicitWidth: Maui.Style.iconSizes.medium
+            Layout.preferredWidth: Maui.Style.iconSizes.medium
             Layout.alignment: Qt.AlignRight
-            onClicked: control.close()
-
-            Maui.X
+            
+            sourceComponent: MouseArea
             {
-                height: Maui.Style.iconSizes.tiny
-                width: height
-                anchors.centerIn: parent
-                color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : _label1.color
+                hoverEnabled: true
+                
+                onClicked: control.close()
+                
+                Maui.X
+                {
+                    height: Maui.Style.iconSizes.tiny
+                    width: height
+                    anchors.centerIn: parent
+                    color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : _label1.color
+                }
             }
-        }
+        }        
         
-        Item
+        Loader
         {
-            visible: !showCloseButton
-            Layout.fillHeight: true
+            visible: active
+            
+            asynchronous: true
+            active: !showCloseButton
+            Layout.fillHeight: true            
+            
+            sourceComponent: Item {}
         }
     }
 }
