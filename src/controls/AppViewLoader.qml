@@ -40,4 +40,10 @@ Loader
     asynchronous: true
     default property alias content : control.sourceComponent
     active: SwipeView.isCurrentItem || item
+
+    BusyIndicator
+    {
+        running: control.status === Loader.Loading
+        anchors.centerIn: parent
+    }
 }

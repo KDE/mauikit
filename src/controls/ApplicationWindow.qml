@@ -336,75 +336,91 @@ Window
         }
     }
 
-    Rectangle
+    Loader
     {
-        enabled: Maui.App.controls.enableCSD
-        visible: enabled
+        active: Maui.App.controls.enableCSD
+        visible: active
         z: ApplicationWindow.overlay.z + 9999
         anchors.fill: parent
-        radius: _pageBackground.radius - 0.5
-        color: "transparent"
-        border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.3)
-        opacity: 0.5
+        asynchronous: true
 
-        Rectangle
+        sourceComponent: Rectangle
         {
-            anchors.fill: parent
-            anchors.margins: 1
+            radius: _pageBackground.radius - 0.5
             color: "transparent"
-            radius: parent.radius - 0.5
-            border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-            opacity: 0.7
+            border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.3)
+            opacity: 0.5
+
+            Rectangle
+            {
+                anchors.fill: parent
+                anchors.margins: 1
+                color: "transparent"
+                radius: parent.radius - 0.5
+                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                opacity: 0.7
+            }
         }
     }
 
-    MouseArea
+    Loader
     {
-        enabled: Maui.App.controls.enableCSD
-        visible: enabled
+        asynchronous: true
+        active: Maui.App.controls.enableCSD
+        visible: active
         height: 16
         width: height
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        cursorShape: Qt.SizeBDiagCursor
-        propagateComposedEvents: true
-        preventStealing: false
 
-        onPressed: mouse.accepted = false
-
-        DragHandler
+        sourceComponent: MouseArea
         {
-            grabPermissions: TapHandler.TakeOverForbidden
-            target: null
-            onActiveChanged: if (active)
-                             {
-                                 root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
-                             }
+            cursorShape: Qt.SizeBDiagCursor
+            propagateComposedEvents: true
+            preventStealing: false
+
+            onPressed: mouse.accepted = false
+
+            DragHandler
+            {
+                grabPermissions: TapHandler.TakeOverForbidden
+                target: null
+                onActiveChanged: if (active)
+                                 {
+                                     root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
+                                 }
+            }
         }
     }
 
-    MouseArea
+    Loader
     {
-        enabled: Maui.App.controls.enableCSD
-        visible: enabled
+        asynchronous: true
+        active: Maui.App.controls.enableCSD
+        visible: active
         height: 16
         width: height
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        cursorShape: Qt.SizeFDiagCursor
-        propagateComposedEvents: true
-        preventStealing: false
 
-        onPressed: mouse.accepted = false
-
-        DragHandler
+        sourceComponent: MouseArea
         {
-            grabPermissions: TapHandler.TakeOverForbidden
-            target: null
-            onActiveChanged: if (active)
-                             {
-                                 root.startSystemResize(Qt.RightEdge | Qt.BottomEdge);
-                             }
+
+            cursorShape: Qt.SizeFDiagCursor
+            propagateComposedEvents: true
+            preventStealing: false
+
+            onPressed: mouse.accepted = false
+
+            DragHandler
+            {
+                grabPermissions: TapHandler.TakeOverForbidden
+                target: null
+                onActiveChanged: if (active)
+                                 {
+                                     root.startSystemResize(Qt.RightEdge | Qt.BottomEdge);
+                                 }
+            }
         }
     }
 
