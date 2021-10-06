@@ -155,7 +155,7 @@ Maui.ItemDelegate
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
 
         radius: control.radius
-//         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
+        //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"
     }
     
     Loader
@@ -163,24 +163,24 @@ Maui.ItemDelegate
         asynchronous: true
         anchors.fill: parent
         active: control.draggable
- 
-        sourceComponent: DropArea
-    {       
-        Rectangle
-        {
-            anchors.fill: parent
-            radius: control.radius
-            visible: parent.containsDrag
-            color:  control.Kirigami.Theme.backgroundColor
-            border.color: control.Kirigami.Theme.highlightColor
-        }
 
-        onDropped:
+        sourceComponent: DropArea
         {
-            control.contentDropped(drop)
+            Rectangle
+            {
+                anchors.fill: parent
+                radius: control.radius
+                visible: parent.containsDrag
+                color:  control.Kirigami.Theme.backgroundColor
+                border.color: control.Kirigami.Theme.highlightColor
+            }
+
+            onDropped:
+            {
+                control.contentDropped(drop)
+            }
         }
-    } 
-    }   
+    }
 
     RowLayout
     {
@@ -199,14 +199,14 @@ Maui.ItemDelegate
             active: control.checkable || control.checked
             visible: active
             Layout.preferredHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
-            Layout.preferredWidth: height        
-            Layout.alignment: Qt.AlignCenter   
+            Layout.preferredWidth: height
+            Layout.alignment: Qt.AlignCenter
             sourceComponent: Private.CheckBoxItem
-            {                
+            {
                 checked: control.checked
-                onToggled: control.toggled(state)      
+                onToggled: control.toggled(state)
             }
-        }    
+        }
         
         Maui.ListItemTemplate
         {
