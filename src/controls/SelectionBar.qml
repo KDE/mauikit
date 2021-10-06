@@ -239,10 +239,10 @@ Item
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
             modal: false
             height: Math.min(Math.min(400, control.maxListHeight), selectionList.contentHeight) + Maui.Style.space.big
-            width: parent.width           
+            width: parent.width
             
             y: ((height) * -1) - Maui.Style.space.big
-            x: 0                                
+            x: 0
             
             Maui.ListBrowser
             {
@@ -253,20 +253,20 @@ Item
                 model: _urisModel
                 
                 delegate: control.listDelegate
-            }                            
-        }  
+            }
+        }
     }
     
     Loader
     {
         id: _layoutLoader
-                asynchronous: true
+        asynchronous: true
         active: control.count > 0 || item
         anchors.fill: parent
         anchors.margins: control.padding * 0.5
         
         sourceComponent: Item
-        {            
+        {
             property alias implicitWidth: _layout.implicitWidth
             Rectangle
             {
@@ -286,8 +286,8 @@ Item
                     {
                         if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
                             control.rightClicked(mouse)
-                            else
-                                control.clicked(mouse)
+                        else
+                            control.clicked(mouse)
                     }
                     
                     onPressAndHold :
@@ -314,7 +314,7 @@ Item
                     color:  "#80000000"
                     smooth: true
                     source: bg
-                }   
+                }
             }
             
             Maui.ToolBar
@@ -324,16 +324,16 @@ Item
                 clip: true
                 position: ToolBar.Footer
                 //             spacing: Maui.Style.space.big
-                preferredHeight: height                
+                preferredHeight: height
                 
                 background: null
                 
                 farLeftContent: ToolButton
                 {
                     icon.name: "go-previous"
-                    onClicked: 
+                    onClicked:
                     {
-                        control.exitClicked()                
+                        control.exitClicked()
                     }
                 }
                 
@@ -359,7 +359,7 @@ Item
                     icon.name: "overflow-menu"
                     visible: content.length > 0
                     content: control.hiddenActions
-                }  
+                }
                 
                 farRightContent: Maui.Badge
                 {
@@ -372,13 +372,13 @@ Item
                     font.pointSize: Maui.Style.fontSizes.big
                     Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
                     Kirigami.Theme.backgroundColor: _loader.item && _loader.item.visible ?
-                    Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                                                        Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
                     border.color: "transparent"
                     
                     onClicked:
                     {
                         _loader.sourceComponent = _listContainerComponent
-                        _loader.item.open() 
+                        _loader.item.open()
                     }
                     
                     Maui.Rectangle
@@ -430,8 +430,8 @@ Item
                             _counter.y = startY
                         }
                     }
-                }               
-            }        
+                }
+            }
             
             Maui.Rectangle
             {
@@ -452,8 +452,8 @@ Item
                 {
                     control.urisDropped(drop.urls)
                 }
-            } 
-        }        
+            }
+        }
     }
     
     Keys.onEscapePressed:
@@ -477,7 +477,7 @@ Item
         _urisModel.clear()
         control.cleared()
         
-        _loader.item.close()        
+        _loader.item.close()
     }
     
     /**
@@ -486,8 +486,10 @@ Item
     function itemAt(index)
     {
         if(index < 0 ||  index > control.count)
+        {
             return
-            return _urisModel.get(index)
+        }
+        return _urisModel.get(index)
     }
     
     /**
@@ -496,19 +498,21 @@ Item
     function removeAtIndex(index)
     {
         if(index < 0)
+        {
             return
-            
-            const item = _urisModel.get(index)
-            const uri = item.uri
-            
-            if(contains(uri))
-            {
-                _private._uris.splice(index, 1)
-                _private._items.splice(index, 1)
-                _urisModel.remove(index)
-                control.itemRemoved(item)
-                control.uriRemoved(uri)
-            }
+        }
+
+        const item = _urisModel.get(index)
+        const uri = item.uri
+
+        if(contains(uri))
+        {
+            _private._uris.splice(index, 1)
+            _private._items.splice(index, 1)
+            _urisModel.remove(index)
+            control.itemRemoved(item)
+            control.uriRemoved(uri)
+        }
     }
     
     /**
@@ -532,20 +536,19 @@ Item
      */
     function append(uri, item)
     {
-        const index  = _private._uris.indexOf(uri)
-        if(index < 0)
+        if(!contains(uri))
         {
             if(control.singleSelection)
             {
                 clear()
-            }                
+            }
             _private._items.push(item)
             _private._uris.push(uri)
             
             item.uri = uri
-            _urisModel.append(item)                
+            _urisModel.append(item)
             control.itemAdded(item)
-            control.uriAdded(uri)                
+            control.uriAdded(uri)
         }
     }
     

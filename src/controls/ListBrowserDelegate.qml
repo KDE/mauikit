@@ -190,7 +190,7 @@ Maui.ItemDelegate
         Item
         {
             Layout.preferredHeight: parent.height
-            visible: control.checked
+            visible: control.checkable || control.checked
         }
         
         Loader
