@@ -206,7 +206,7 @@ Item
         id: internal
         
         readonly property real verticalScrollBarWidth: _scrollView.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.vertical.width : 0
-        readonly property real horizontalScrollBarHeight: _scrollView.ScrollBar.horizontal.visible && !Maui.Settings.tabletMode ? _scrollView.ScrollBar.horizontal.height : 0
+        readonly property real horizontalScrollBarHeight: _scrollView.ScrollBar.horizontal.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.horizontal.height : 0
     }
     
     ScrollView
@@ -215,7 +215,7 @@ Item
         anchors.fill: parent   
         focus: true
         
-        padding: (Maui.Settings.isMobile ? 0 : Maui.Style.space.medium)
+        padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
         rightPadding: padding + internal.verticalScrollBarWidth
         leftPadding: padding 
         topPadding: padding

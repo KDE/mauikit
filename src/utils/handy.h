@@ -32,7 +32,6 @@
 class MAUIKIT_EXPORT Handy : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool hasTransientTouchInput READ hasTransientTouchInput NOTIFY hasTransientTouchInputChanged)
     Q_PROPERTY(bool isMobile READ isMobile NOTIFY isMobileChanged)
     Q_PROPERTY(bool isTouch MEMBER m_isTouch CONSTANT FINAL)
     Q_PROPERTY(bool hasMouse READ hasMouse NOTIFY hasMouseChanged)
@@ -183,12 +182,6 @@ public slots:
     void setIsMobile(bool mobile);
     bool isMobile() const;   
     
-    void setTransientTouchInput(bool touch);
-    bool hasTransientTouchInput() const;
-  
-protected:
-    bool eventFilter(QObject *watched, QEvent *event) override;
-    
 signals:
     /**
      * @brief singleClickChanged
@@ -196,8 +189,7 @@ signals:
     void singleClickChanged();
     void hasKeyboardChanged();
     void hasMouseChanged();
-       void isMobileChanged();
-    void hasTransientTouchInputChanged();
+    void isMobileChanged();
 };
 
 #endif // HANDY_H
