@@ -12,7 +12,7 @@ Container
     spacing: 0
     
     property alias holder : _holder
-    property bool mobile : Kirigami.Settings.isMobile
+    property bool mobile : true
     
     property bool overviewMode : false
     
@@ -298,10 +298,10 @@ Container
         Loader
         {
             asynchronous: true
-            visible: active
+            visible: active && !control.overviewMode
             
             Layout.fillWidth: true
-            active: control.count > 1 && control.mobile && !control.overviewMode && control.tabBarVisible
+            active: control.count > 1 && control.mobile && control.tabBarVisible
             
             sourceComponent: Maui.TabBar
             {
@@ -380,7 +380,7 @@ Container
             Loader
             {                
                 active: (control.overviewMode && control.mobile) || item
-                visible: active
+                visible: active && control.overviewMode
                 asynchronous: true
                 anchors.fill: parent
                 
