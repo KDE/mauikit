@@ -12,7 +12,7 @@ Container
     spacing: 0
     
     property alias holder : _holder
-    property bool mobile : true
+    property bool mobile : Kirigami.Settings.isMobile
     
     property bool overviewMode : false
     
