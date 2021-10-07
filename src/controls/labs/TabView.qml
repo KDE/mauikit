@@ -385,8 +385,7 @@ Container
                 anchors.fill: parent
                 
                 sourceComponent: Rectangle
-                {
-                    
+                {                    
                     Kirigami.Theme.colorSet: Kirigami.Theme.Window
                     Kirigami.Theme.inherit: false
                     
@@ -414,6 +413,7 @@ Container
                             
                             Maui.GridBrowserDelegate
                             {
+                                id: _delegate
                                 anchors.centerIn: parent
                                 width: _overviewGrid.itemSize - Maui.Style.space.small
                                 height: _overviewGrid.itemHeight  - Maui.Style.space.small
@@ -468,7 +468,8 @@ Container
                                 {
                                     color: Qt.lighter(Kirigami.Theme.backgroundColor)
                                     property int radius : Maui.Style.radiusV
-                                    
+                                    border.color: _delegate.hovered || _delegate.containsPress? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
+                                    border.width: 1
                                     corners
                                     {
                                         topLeftRadius: radius
