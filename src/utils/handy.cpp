@@ -29,6 +29,8 @@
 #include <QOperatingSystemVersion>
 #include <QTouchDevice>
 #include <QStandardPaths>
+#include <QMouseEvent>
+#include <QWindow>
 
 #include "platforms/platform.h"
 
@@ -61,6 +63,8 @@ static const auto confCheck = [](QString key, QVariant defaultValue) -> QVariant
 Handy::Handy(QObject *parent)
     : QObject(parent)
     , m_isTouch(Handy::isTouch())
+    , m_hasTransientTouchInput(false)
+
 {
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
 
@@ -76,8 +80,30 @@ Handy::Handy(QObject *parent)
 
     m_singleClick = false;
     emit singleClickChanged();
+    
+    #endif
+    
+    #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
+    m_mobile = true;
+    #else
+    // Mostly for debug purposes and for platforms which are always mobile,
+    // such as Plasma Mobile
+    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
+        m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
+    } else {
+        m_mobile = false;
+    }
 
+    if (m_isTouch)
+    {
+        connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win) {
+            if (win) {
+                win->installEventFilter(this);
+            }
+        });
+    }
 #endif
+
 }
 
 #ifdef Q_OS_ANDROID
@@ -217,7 +243,6 @@ bool Handy::isTouch()
     for (const auto &device : devices) {
         if (device->type() == QTouchDevice::TouchScreen)
             return true;
-        qDebug() << "DEVICE CAPABILITIES" << device->capabilities() << device->name();
     }
 
     return false;
@@ -283,5 +308,58 @@ void Handy::saveSettings(const QString &key, const QVariant &value, const QStrin
 QVariant Handy::loadSettings(const QString &key, const QString &group, const QVariant &defaultValue)
 {
     return UTIL::loadSettings(key, group, defaultValue);
+}
+
+bool Handy::eventFilter(QObject *watched, QEvent *event)
+{
+    Q_UNUSED(watched)
+    switch (event->type()) {
+    case QEvent::TouchBegin:
+        setTransientTouchInput(true);
+        break;
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseMove: {
+        QMouseEvent *me = static_cast<QMouseEvent *>(event);
+        if (me->source() == Qt::MouseEventNotSynthesized) {
+            setTransientTouchInput(false);
+        }
+        break;
+    }
+    case QEvent::Wheel:
+        setTransientTouchInput(false);
+    default:
+        break;
+    }
+
+    return false;
+}
+
+void Handy::setIsMobile(bool mobile)
+{
+    if (mobile == m_mobile) {
+        return;
+    }
+
+    m_mobile = mobile;
+    Q_EMIT isMobileChanged();
+}
+
+bool Handy::isMobile() const
+{
+    return m_mobile;
+}
+
+void Handy::setTransientTouchInput(bool touch)
+{
+    if (touch == m_hasTransientTouchInput) {
+        return;
+    }
+
+    m_hasTransientTouchInput = touch;
+}
+
+bool Handy::hasTransientTouchInput() const
+{
+    return m_hasTransientTouchInput;
 }
 

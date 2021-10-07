@@ -67,10 +67,7 @@ if(${SUPPORT_PLUGINS})
     add_definitions(-DSUPPORT_PLUGINS)
 endif()
 
-#options - for the appimage
-option(IS_APPIMAGE_PACKAGE "If set to true then the icons and styled is packaged as well" OFF)
-
-if(ANDROID OR WIN32 OR IS_APPIMAGE_PACKAGE OR APPLE)
+if(ANDROID OR WIN32 OR APPLE)
     if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme/.git)
         find_package(Git REQUIRED)
         execute_process(COMMAND ${GIT_EXECUTABLE} clone --depth 1 https://github.com/Nitrux/luv-icon-theme.git ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme)
@@ -230,10 +227,6 @@ target_link_libraries(MauiKit
     Qt5::QuickControls2
     )
 
-if(IS_APPIMAGE_PACKAGE)
-    target_compile_definitions(MauiKit PUBLIC APPIMAGE_PACKAGE)
-endif()
-
 generate_export_header(MauiKit BASE_NAME MauiKit)
 install(TARGETS MauiKit EXPORT MauiKitTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -249,11 +242,13 @@ add_custom_command(TARGET copy PRE_BUILD COMMAND ${CMAKE_COMMAND}
 
 add_dependencies(MauiKit copy)
 
-install(DIRECTORY controls/ DESTINATION
-    ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+if(QUICK_COMPILER)
+    install(FILES controls/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+else()
+    install(DIRECTORY controls/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+endif()    
 
-install(TARGETS MauiKit DESTINATION
-    ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+install(TARGETS MauiKit DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 install(FILES
     ${mauikit_HDRS}

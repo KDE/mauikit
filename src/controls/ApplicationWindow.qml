@@ -60,8 +60,8 @@ Window
 
     visible: true
 
-    width: Screen.desktopAvailableWidth * (Kirigami.Settings.isMobile ? 1 : 0.4)
-    height: Screen.desktopAvailableHeight * (Kirigami.Settings.isMobile ? 1 : 0.4)
+    width: Screen.desktopAvailableWidth * (Maui.Handy.isMobile ? 1 : 0.4)
+    height: Screen.desktopAvailableHeight * (Maui.Handy.isMobile ? 1 : 0.4)
 
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
@@ -69,7 +69,7 @@ Window
     // Window shadows for CSD
     Loader
     {
-        active:  Maui.App.controls.enableCSD && !Kirigami.Settings.isMobile && Maui.Handy.isLinux
+        active:  Maui.App.controls.enableCSD && !Maui.Handy.isMobile && Maui.Handy.isLinux
         asynchronous: true
         sourceComponent: Maui.WindowShadow
         {
@@ -286,7 +286,7 @@ Window
 
     onClosing:
     {
-        if(!Kirigami.Settings.isMobile)
+        if(!Maui.Handy.isMobile)
         {
             const height = root.height
             const width = root.width
@@ -448,12 +448,6 @@ Window
 
     Component
     {
-        id: _aboutDialogComponent
-        Private.AboutDialog {}
-    }
-
-    Component
-    {
         id: _notifyDialogComponent
 
         Maui.Dialog
@@ -556,7 +550,7 @@ Window
             }
         }
 
-        if(!Kirigami.Settings.isMobile)
+        if(!Maui.Handy.isMobile)
         {
             const rect = Maui.Handy.loadSettings("GEOMETRY", "WINDOW", Qt.rect(root.x, root.y, root.width, root.height))
             root.x = rect.x
@@ -633,7 +627,7 @@ Window
 
     function about()
     {
-        dialogLoader.sourceComponent = _aboutDialogComponent
+        dialogLoader.source = "qrc:/maui/kit/private/AboutDialog.qml"
         dialog.open()
     }
 }

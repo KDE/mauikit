@@ -379,7 +379,7 @@ Container
             
             Loader
             {                
-                active: (control.count > 1  && control.mobile) || item
+                active: (control.count > 1 && control.mobile) || item
                 visible: active && control.overviewMode
                 asynchronous: true
                 anchors.fill: parent
