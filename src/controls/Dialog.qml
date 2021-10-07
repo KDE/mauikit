@@ -199,6 +199,8 @@ Maui.Popup
     */
     property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
     
+    property bool autoClose : true
+    
     /*!
       * Triggered when the accepted button is clicked.
     */
@@ -208,6 +210,8 @@ Maui.Popup
       * Triggered when the rejected button is clicked.
     */
     signal rejected()
+    
+    signal closeTriggered()
 
     ColumnLayout
     {
@@ -227,22 +231,54 @@ Maui.Popup
             headBar.visible: control.persistent
             headerColorSet: Kirigami.Theme.Header        
             headBar.background: null
-                            background: null
-
-            headBar.farLeftContent: [Maui.CloseButton
+            background: null
+            
+            headBar.farLeftContent: [
+            
+            Loader
+            {
+                asynchronous: true
+                visible: active
+                active: control.persistent && !control.filling && closeButtonVisible
+                
+                sourceComponent: Maui.CloseButton
                 {
-                    visible: control.persistent && !control.filling && closeButtonVisible
-                    onClicked: close()
-                },
-
-                ToolButton
-                {
-                    visible: control.filling && control.persistent && closeButtonVisible
-                    icon.name: "go-previous"
-                    onClicked: control.close()
+                    onClicked: 
+                     {
+                        if(control.autoClose)
+                        {
+                            control.close()
+                        }else
+                        {
+                            control.closeTriggered()
+                        }
+                    }
                 }
+            },
+            
+            Loader
+            {
+                asynchronous: true
+                visible: active
+                active: control.filling && control.persistent && closeButtonVisible
+                
+                sourceComponent: ToolButton
+                {
+                    icon.name: "go-previous"
+                    onClicked: 
+                    {
+                        if(control.autoClose)
+                        {
+                            control.close()
+                        }else
+                        {
+                            control.closeTriggered()
+                        }
+                    }
+                }
+            }
             ]
-
+            
             ColumnLayout
             {
                 id: _stack
