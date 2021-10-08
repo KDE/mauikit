@@ -28,10 +28,9 @@ Item
 {
     id: control
     
-    implicitWidth: _layoutLoader.implicitWidth
-    implicitHeight: _layoutLoader.implicitHeight
+    implicitWidth: _layoutLoader.item.implicitWidth
+    implicitHeight: _layoutLoader.item.implicitHeight
     
-    Layout.fillWidth: !root.isWide
     /**
      * 
      */

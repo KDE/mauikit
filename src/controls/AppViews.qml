@@ -20,6 +20,7 @@
 import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
+import QtQuick.Layouts 1.3
 
 import org.mauikit.controls 1.2 as Maui
 
@@ -65,7 +66,8 @@ Maui.Page
     headBar.middleContent: Loader
     {
         asynchronous: true
-        
+        Layout.fillWidth: !root.isWide
+
         sourceComponent: Private.ActionGroup
         {
             id: _actionGroup
