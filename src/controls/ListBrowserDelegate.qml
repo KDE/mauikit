@@ -161,7 +161,8 @@ Maui.ItemDelegate
     Loader
     {
         asynchronous: true
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height
         active: control.draggable
 
         sourceComponent: DropArea
@@ -184,7 +185,8 @@ Maui.ItemDelegate
 
     RowLayout
     {
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height
         spacing: _template.spacing
 
         Item

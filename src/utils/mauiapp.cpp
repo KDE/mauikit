@@ -33,8 +33,11 @@
 #include <QFileSystemWatcher>
 #endif
 
-#if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
+#if defined BUNDLE_LUV_ICONS
 #include <QIcon>
+#endif
+
+#if defined BUNDLE_MAUI_STYLE
 #include <QQuickStyle>
 #endif
 
@@ -53,10 +56,8 @@ MauiApp::MauiApp()
         m_instance = nullptr;
     });
     
-    #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
     setDefaultMauiStyle();
-    #endif
-    
+   
     //    qputenv("QT_QUICK_CONTROLS_CONF",  "://qtquickcontrols2.conf");
 }
 
@@ -101,12 +102,17 @@ KAboutData MauiApp::getAbout() const
 
 void MauiApp::setDefaultMauiStyle()
 {
-#if defined QICON_H && defined QQUICKSTYLE_H
+    #if defined BUNDLE_LUV_ICONS
+    Q_INIT_RESOURCE(icons);
     QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
     QIcon::setThemeName("Luv");
-    qDebug() << QIcon::themeSearchPaths() << QIcon::hasThemeIcon("sidebar-expand");
-    QQuickStyle::setStyle("maui-style");
     #endif
+    
+#if defined BUNDLE_MAUI_STYLE
+        Q_INIT_RESOURCE(style);
+        QQuickStyle::setStyle("maui-style");
+        qDebug() << QQuickStyle::name();
+#endif
 }
 
 QQuickWindow * MauiApp::window() const

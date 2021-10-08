@@ -226,10 +226,10 @@ Item
         clip: control.clip
         
         focus: true
-        padding: control.enableLassoSelection ?  Maui.Style.space.medium : Maui.Style.space.small
+        padding: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
         horizontalPadding: padding
         verticalPadding: padding
-        rightPadding: padding + internal.verticalScrollBarWidth
+        rightPadding: padding
         leftPadding: padding
         topPadding: padding
         bottomPadding: padding + internal.horizontalScrollBarHeight
@@ -241,7 +241,8 @@ Item
         {
             id: _listView
             focus: true
-            
+            width: parent.width
+            height: parent.height
             property var selectedIndexes : []            
             
             clip: control.clip

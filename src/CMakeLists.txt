@@ -67,7 +67,7 @@ if(${SUPPORT_PLUGINS})
     add_definitions(-DSUPPORT_PLUGINS)
 endif()
 
-if(ANDROID OR WIN32 OR APPLE)
+if(BUNDLE_LUV_ICONS)
     if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme/.git)
         find_package(Git REQUIRED)
         execute_process(COMMAND ${GIT_EXECUTABLE} clone --depth 1 https://github.com/Nitrux/luv-icon-theme.git ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme)
@@ -150,7 +150,6 @@ endif()
 add_library(MauiKit
 
     SHARED
-
     ${mauikit_HDRS}
     ${mauikit_SRCS}
 
@@ -158,8 +157,7 @@ add_library(MauiKit
     ${mauikit_PLATFORM_SRCS}
 
     ${window_PLATFORM_HDRS}
-    ${window_PLATFORM_SRCS}
-    
+    ${window_PLATFORM_SRCS}    
 
     assets.qrc
     ${mauikit_QML_QRC}
@@ -168,6 +166,16 @@ add_library(MauiKit
 if(QUICK_COMPILER)
     add_definitions(-DQUICK_COMPILER)
     target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
+endif()
+
+if(BUNDLE_MAUI_STYLE)
+    add_definitions(-DBUNDLE_MAUI_STYLE)
+    target_compile_definitions(MauiKit PUBLIC BUNDLE_MAUI_STYLE)
+endif()
+
+if(BUNDLE_LUV_ICONS)
+    add_definitions(-DBUNDLE_LUV_ICONS)
+    target_compile_definitions(MauiKit PUBLIC BUNDLE_LUV_ICONS)
 endif()
 
 if(ANDROID)
@@ -258,7 +266,9 @@ install(FILES
     COMPONENT Devel)
 
 ##INSTALL MAUI STYLE
-install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
+if(NOT BUNDLE_MAUI_STYLE)
+    install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
+endif()
 
 ##INSTALL THE DECO FOR CSD
 install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/org.mauikit.controls)

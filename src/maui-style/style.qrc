@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/style">
+    <qresource prefix="/maui-style">
         <file>ApplicationWindow.qml</file>
         <file>BusyIndicator.qml</file>
         <file>Button.qml</file>

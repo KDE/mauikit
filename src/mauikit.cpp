@@ -237,11 +237,15 @@ void MauiKit::registerTypes(const char *uri)
 
 void MauiKit::initResources()
 {
-#if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
-  Q_INIT_RESOURCE(mauikit);
-  Q_INIT_RESOURCE(style);
-  Q_INIT_RESOURCE(icons);
-#endif
+// #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
+//   Q_INIT_RESOURCE(mauikit);
+//   Q_INIT_RESOURCE(icons);
+// #endif
+//   
+// #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN || defined BUNDLE_MAUI_STYLE
+//     Q_INIT_RESOURCE(style);
+//   Q_INIT_RESOURCE(mauikit);
+// #endif
 }
 
 //#include "moc_mauikit.cpp"

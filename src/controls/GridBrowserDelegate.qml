@@ -145,8 +145,8 @@ Maui.ItemDelegate
     DropArea
     {
         id: _dropArea
-        anchors.fill: parent
-        
+ width: parent.width
+        height: parent.height        
         Rectangle
         {
             anchors.fill: parent
@@ -165,7 +165,8 @@ Maui.ItemDelegate
     Maui.GridItemTemplate
     {
         id: _template
-        anchors.fill: parent
+ width: parent.width
+        height: parent.height
         iconContainer.scale: _dropArea.containsDrag ? 0.8 : 1
         
         hovered: control.hovered 
