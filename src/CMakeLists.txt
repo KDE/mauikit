@@ -157,7 +157,7 @@ add_library(MauiKit
     ${mauikit_PLATFORM_SRCS}
 
     ${window_PLATFORM_HDRS}
-    ${window_PLATFORM_SRCS}    
+    ${window_PLATFORM_SRCS}
 
     assets.qrc
     ${mauikit_QML_QRC}
@@ -250,11 +250,11 @@ add_custom_command(TARGET copy PRE_BUILD COMMAND ${CMAKE_COMMAND}
 
 add_dependencies(MauiKit copy)
 
-if(QUICK_COMPILER)
+if(QUICK_COMPILER AND NOT ANDROID )
     install(FILES controls/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 else()
     install(DIRECTORY controls/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
-endif()    
+endif()
 
 install(TARGETS MauiKit DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 

@@ -55,8 +55,6 @@ QUrl MauiKit::componentUrl(const QString &fileName) const
 void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
 {
   Q_UNUSED(uri);
-  this->initResources();
-
   KLocalizedString::setApplicationDomain("mauikit");
   engine->rootContext()->setContextObject(new KLocalizedContext(engine));
 }
@@ -233,19 +231,6 @@ void MauiKit::registerTypes(const char *uri)
 #endif
 
   qmlProtectModule(uri, 1);
-}
-
-void MauiKit::initResources()
-{
-// #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN
-//   Q_INIT_RESOURCE(mauikit);
-//   Q_INIT_RESOURCE(icons);
-// #endif
-//   
-// #if defined Q_OS_ANDROID || defined Q_OS_MACOS || defined Q_OS_WIN || defined BUNDLE_MAUI_STYLE
-//     Q_INIT_RESOURCE(style);
-//   Q_INIT_RESOURCE(mauikit);
-// #endif
 }
 
 //#include "moc_mauikit.cpp"

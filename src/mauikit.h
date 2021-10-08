@@ -32,7 +32,6 @@ class MAUIKIT_EXPORT MauiKit : public QQmlExtensionPlugin
 
 public:
     void registerTypes(const char *uri) Q_DECL_OVERRIDE;
-    static void initResources();
 
 private:
     QUrl componentUrl(const QString &fileName) const;

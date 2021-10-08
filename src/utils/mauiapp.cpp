@@ -46,8 +46,8 @@
 MauiApp *MauiApp::m_instance = nullptr;
 
 MauiApp::MauiApp()
-: QObject(nullptr)
-, m_controls(new CSDControls(this))
+    : QObject(nullptr)
+    , m_controls(new CSDControls(this))
 {
     connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
@@ -57,7 +57,7 @@ MauiApp::MauiApp()
     });
     
     setDefaultMauiStyle();
-   
+
     //    qputenv("QT_QUICK_CONTROLS_CONF",  "://qtquickcontrols2.conf");
 }
 
@@ -68,7 +68,6 @@ QString MauiApp::getMauikitVersion()
 
 QString MauiApp::getIconName() const
 {
-    qDebug() << "REQUESTING ICONNAME" << m_iconName << this;
     return m_iconName;
 }
 
@@ -102,16 +101,16 @@ KAboutData MauiApp::getAbout() const
 
 void MauiApp::setDefaultMauiStyle()
 {
-    #if defined BUNDLE_LUV_ICONS
+#if defined BUNDLE_LUV_ICONS
     Q_INIT_RESOURCE(icons);
     QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
     QIcon::setThemeName("Luv");
-    #endif
+#endif
     
 #if defined BUNDLE_MAUI_STYLE
-        Q_INIT_RESOURCE(style);
-        QQuickStyle::setStyle("maui-style");
-        qDebug() << QQuickStyle::name();
+    Q_INIT_RESOURCE(style);
+    QQuickStyle::setStyle("maui-style");
+    qDebug() << QQuickStyle::name();
 #endif
 }
 
@@ -154,7 +153,7 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
 
 void CSDControls::getWindowControlsSettings()
 {    
-    #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
     
     m_styleName = UTIL::loadSettings("CSDStyle", "GLOBAL", "Nitrux", true).toString();
     auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_styleName));
@@ -167,8 +166,8 @@ void CSDControls::getWindowControlsSettings()
         conf.beginGroup ("Decoration");
         m_source = dir.toString()+"/"+ conf.value("Source").toString();
         m_borderRadius = conf.value ("BorderRadius", 8).toInt();
-        conf.endGroup ();        
-    }    
+        conf.endGroup ();
+    }
     
     qDebug() << "CSD QML SOURCXE" << m_source;
     auto kconf = KSharedConfig::openConfig("kwinrc");
@@ -184,14 +183,14 @@ void CSDControls::getWindowControlsSettings()
         emit this->rightWindowControlsChanged();
     }
     
-    #elif defined Q_OS_MACOS || defined Q_OS_ANDROID
+#elif defined Q_OS_MACOS || defined Q_OS_ANDROID
     m_leftWindowControls = QStringList {"X", "I", "A"};
     emit this->leftWindowControlsChanged();
     
-    #elif defined Q_OS_WIN32
+#elif defined Q_OS_WIN32
     //   m_rightWindowControls = QStringList {"I", "A", "X"};
     emit this->rightWindowControlsChanged();
-    #endif
+#endif
 }
 
 bool CSDControls::enableCSD() const
@@ -201,10 +200,10 @@ bool CSDControls::enableCSD() const
 
 void CSDControls::setEnableCSD(const bool &value)
 {
-    #if defined Q_OS_ANDROID || defined Q_OS_IOS // ignore csd for those
+#if defined Q_OS_ANDROID || defined Q_OS_IOS // ignore csd for those
     Q_UNUSED(value)
     return;
-    #else
+#else
     
     if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
     {
@@ -214,7 +213,7 @@ void CSDControls::setEnableCSD(const bool &value)
             return;
         }
     }else
-    {        
+    {
         if (m_enableCSD == value)
             return;
         
@@ -226,7 +225,7 @@ void CSDControls::setEnableCSD(const bool &value)
     if (m_enableCSD) {
         getWindowControlsSettings();
     }
-    #endif
+#endif
 }
 
 QUrl CSDControls::source() const
@@ -248,7 +247,7 @@ CSDButton::CSDButton(QObject *parent): QObject(parent)
 {
     connect(this, &CSDButton::typeChanged, this, &CSDButton::setSources);
     connect(this, &CSDButton::stateChanged, this, &CSDButton::requestCurrentSource);
-    m_style = MauiApp::instance()->controls()->styleName();  
+    m_style = MauiApp::instance()->controls()->styleName();
 }
 
 QUrl CSDButton::source() const
@@ -287,7 +286,7 @@ QUrl CSDButton::extractStateValue(QSettings &settings, const CSDButton::CSDButto
     settings.beginGroup (mapButtonType (m_type));
     res =  m_dir.toString ()+"/"+settings.value (mapButtonState (state)).toString ();
     settings.endGroup ();
-       
+
     if(QFile::exists (res.toLocalFile ()))
     {
         return res;
@@ -307,12 +306,12 @@ QString CSDButton::mapButtonType(const CSDButtonType &type)
 {
     switch(type)
     {
-        case Close: return "Close";
-        case Maximize: return "Maximize";
-        case Minimize: return "Minimize";
-        case Restore: return "Restore";
-        case Fullscreen: return "Fullscreen";
-        default: return "";
+    case Close: return "Close";
+    case Maximize: return "Maximize";
+    case Minimize: return "Minimize";
+    case Restore: return "Restore";
+    case Fullscreen: return "Fullscreen";
+    default: return "";
     }
 }
 
@@ -320,12 +319,12 @@ QString CSDButton::mapButtonState(const CSDButtonState &type)
 {
     switch(type)
     {
-        case Normal: return "Normal";
-        case Hover: return "Hover";
-        case Pressed: return "Pressed";
-        case Backdrop: return "Backdrop";
-        case Disabled: return "Disabled";
-        default: return "";
+    case Normal: return "Normal";
+    case Hover: return "Hover";
+    case Pressed: return "Pressed";
+    case Backdrop: return "Backdrop";
+    case Disabled: return "Disabled";
+    default: return "";
     }
 }
 
