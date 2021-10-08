@@ -155,7 +155,6 @@ Maui.ItemDelegate
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
 
         radius: control.radius
-        //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"
     }
     
     Loader
@@ -169,13 +168,14 @@ Maui.ItemDelegate
         {
             Rectangle
             {
-                anchors.fill: parent
+                width: parent.width
+                height: parent.height
                 radius: control.radius
                 visible: parent.containsDrag
                 color:  control.Kirigami.Theme.backgroundColor
                 border.color: control.Kirigami.Theme.highlightColor
             }
-
+            
             onDropped:
             {
                 control.contentDropped(drop)

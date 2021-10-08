@@ -139,13 +139,12 @@ Maui.ItemDelegate
         color: control.isCurrentItem || control.hovered || control.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)
         
         radius: control.radius
-        //         border.color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : "transparent"        
     }    
     
     DropArea
     {
         id: _dropArea
- width: parent.width
+        width: parent.width
         height: parent.height        
         Rectangle
         {
@@ -165,7 +164,7 @@ Maui.ItemDelegate
     Maui.GridItemTemplate
     {
         id: _template
- width: parent.width
+        width: parent.width
         height: parent.height
         iconContainer.scale: _dropArea.containsDrag ? 0.8 : 1
         
