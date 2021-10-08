@@ -398,8 +398,8 @@ Container
                         anchors.fill: parent
                         model: control.count
                         currentIndex: control.currentIndex
-                        itemSize: width / 3
-                        itemHeight:  (height / 3)
+                        itemSize: Math.floor(width / 3)
+                        itemHeight:  Math.floor(height / 3)
                         
                         onAreaClicked:
                         {

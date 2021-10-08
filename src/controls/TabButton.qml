@@ -96,7 +96,8 @@ TabButton
     
     MouseArea
     {
-        anchors.fill: parent
+        width: parent.width
+        height: parent.height
         acceptedButtons:  Qt.RightButton
         
         onClicked:
