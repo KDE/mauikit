@@ -177,13 +177,17 @@ Item
             Button
             {
                 id: _button
-              
+                implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) + Maui.Style.space.big
+                implicitHeight: background.implicitHeight
                 anchors.horizontalCenter: parent.horizontalCenter
                 flat: true
                 action: modelData
                 
                 background: Rectangle
                 {
+                    implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
+                    implicitHeight: Maui.Style.rowHeight
+
                     radius: Maui.Style.radiusV
                     color: _button.hovered || _button.down || _button.pressed ? "#26c6da" : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
                 }

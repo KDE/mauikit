@@ -115,19 +115,12 @@ Maui.Page
 
     flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
 
-    Maui.Holder
-    {
-        id: _holder
-        anchors.fill: parent
-        visible: false
-    }
-
     Maui.GridView
     {
         id: _gridView
         focus: control.focus
         anchors.fill: parent
-        visible: control.viewType === AltBrowser.ViewType.Grid
+        visible: control.viewType === AltBrowser.ViewType.Grid && !_holder.visible
         currentIndex: control.currentIndex
         model: control.model
         delegate: control.gridDelegate
@@ -142,12 +135,19 @@ Maui.Page
         anchors.fill: parent
         focus: control.focus
         id: _listView
-        visible: control.viewType === AltBrowser.ViewType.List
+        visible: control.viewType === AltBrowser.ViewType.List && !_holder.visible
         currentIndex: control.currentIndex
         model: control.model
         delegate: control.listDelegate
         enableLassoSelection: control.enableLassoSelection
         selectionMode: control.selectionMode
         clip: control.clip
+    }
+
+    Maui.Holder
+    {
+        id: _holder
+        anchors.fill: parent
+        visible: false
     }
 }
