@@ -37,9 +37,10 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 
-T.SwipeView {
+T.SwipeView 
+{
     id: control
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
@@ -47,7 +48,8 @@ T.SwipeView {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
 
-    contentItem: ListView {
+    contentItem: ListView 
+    {
         model: control.contentModel
         interactive: control.interactive
         currentIndex: control.currentIndex
@@ -65,7 +67,8 @@ T.SwipeView {
     }
     
     
-    background: Rectangle {
-        color: Kirigami.Theme.viewBackgroundColor
+    background: Rectangle
+    {
+        color: Kirigami.Theme.backgroundColor
     }
 }

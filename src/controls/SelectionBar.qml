@@ -477,7 +477,6 @@ Item
         _urisModel.clear()
         control.cleared()
         
-        _loader.item.close()
     }
     
     /**

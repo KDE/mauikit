@@ -16,16 +16,15 @@
  *   Free Software Foundation, Inc.,
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+#pragma once
 
 #ifndef MAUIKIT_H
 #define MAUIKIT_H
 
-#include "mauikit_export.h"
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
 
-class MauiAccounts;
-class MAUIKIT_EXPORT MauiKit : public QQmlExtensionPlugin
+class MauiKit : public QQmlExtensionPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
