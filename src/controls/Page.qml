@@ -130,7 +130,8 @@ Pane
      *      Layout.fillWidth can be set, but an implicit or preferredHeight must be given.
      */
     property alias footerColumn : _footerContent.data
-    
+    property alias footerContainer : _footerContent
+
     /*!
      *      \qmlproperty list<Object> Page::headerColumn
      *      Quick way to add more children to the header bar.
@@ -138,7 +139,8 @@ Pane
      *      Layout.fillWidth can be set, but an implicit or preferredHeight must be given.
      */
     property alias headerColumn : _headerContent.data
-    
+    property alias headerContainer : _headerContent
+
     /*!
      *      The page margins between the children contents and the actual container.
      *      This margins do not affect the header or footer bars.
@@ -237,7 +239,7 @@ Pane
     QtObject
     {
         id: _private
-        property int topMargin : !control.altHeader ? (control.floatingHeader ? 0 : _headerContent.height) : 0
+        property int topMargin : !control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0
         property int bottomMargin: control.floatingFooter && control.footerPositioning === ListView.InlineFooter  ? control.bottomMargin : control.bottomMargin + _footerContent.implicitHeight
     }
     
@@ -609,7 +611,7 @@ Pane
         id: _layout
         anchors.fill: parent
         
-        anchors.bottomMargin: control.altHeader ? _headerContent.height : 0
+        anchors.bottomMargin: control.altHeader ? _headerContent.implicitHeight : 0
         anchors.topMargin: _private.topMargin
         
         Item
@@ -763,7 +765,7 @@ Pane
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: visible ? _headerContent.height + control.autoHideHeaderMargins : 0
+        height: active ? _headerContent.implicitHeight + control.autoHideHeaderMargins : 0
         z: _content.z +1
         active: control.autoHideHeader && !control.altHeader && !Maui.Handy.isTouch
         
@@ -804,7 +806,7 @@ Pane
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        height: visible ? _footerContent.height + control.autoHideFooterMargins : 0
+        height: active ? _footerContent.implicitHeight + control.autoHideFooterMargins : 0
         z: _footerContent.z - 1
         active: control.autoHideFooter && !control.altHeader && !Maui.Handy.isTouch
         

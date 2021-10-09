@@ -41,12 +41,10 @@ Drawer
     visible: enabled    
     
     implicitWidth: Math.min(preferredWidth, window().width)
-    width: implicitWidth
 
     implicitHeight: window().internalHeight
-    height: window().internalHeight
 
-    y: (window().header && !window().altHeader ? window().header.height : 0)
+    y: (!window().altHeader ? window().headerContainer.implicitHeight : 0)
     //    closePolicy: modal || collapsed ?  Popup.CloseOnEscape | Popup.CloseOnPressOutside : Popup.NoAutoClose
 
     interactive: (modal || collapsed ) && Maui.Handy.isTouch && enabled
