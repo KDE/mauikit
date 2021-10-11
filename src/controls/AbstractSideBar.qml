@@ -106,7 +106,7 @@ Drawer
       the sidebar is in a constrained state, and the app main content gets dimmed by an overlay.
       This property gives access to such ovelay element drawn on top of the app contents.
     */
-    readonly property alias overlay : _overlay
+    readonly property alias overlay : _overlayLoader.item
 
     signal contentDropped(var drop)
     
@@ -130,26 +130,32 @@ Drawer
         }
     }
 
-    MouseArea
+    Loader
     {
-        id: _overlay
-        enabled: control.visible
+        id: _overlayLoader
+        
+        active: control.visible
+        asynchronous: true 
         anchors.fill: parent
         anchors.margins: 0
         anchors.leftMargin: (control.width * control.position)
-        parent: window().pageContent
-        preventStealing: true
-        propagateComposedEvents: false
         visible: (control.collapsed && control.position > 0 && control.visible)
-        Rectangle
-        {
-            color: Qt.rgba(control.Kirigami.Theme.backgroundColor.r,control.Kirigami.Theme.backgroundColor.g,control.Kirigami.Theme.backgroundColor.b, 0.5)
-            opacity: control.position
-            anchors.fill: parent
+        
+       sourceComponent: MouseArea
+        {           
+            parent: window().pageContent
+            preventStealing: true
+            propagateComposedEvents: false
+            Rectangle
+            {
+                color: Qt.rgba(control.Kirigami.Theme.backgroundColor.r,control.Kirigami.Theme.backgroundColor.g,control.Kirigami.Theme.backgroundColor.b, 0.5)
+                opacity: control.position
+                anchors.fill: parent
+            }
+            
+            onClicked: control.close()
         }
-
-        onClicked: control.close()
-    }
+    }    
 
     Item
     {
