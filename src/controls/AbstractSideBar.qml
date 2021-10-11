@@ -140,10 +140,10 @@ Drawer
         anchors.margins: 0
         anchors.leftMargin: (control.width * control.position)
         visible: (control.collapsed && control.position > 0 && control.visible)
+        parent: window().pageContent
         
        sourceComponent: MouseArea
         {           
-            parent: window().pageContent
             preventStealing: true
             propagateComposedEvents: false
             Rectangle

@@ -225,7 +225,7 @@ Maui.Popup
             clip: true
             Layout.fillWidth: true
             Layout.fillHeight: true
-            implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footer.height + (_page.margins*2) + _page.header.height + Maui.Style.space.big +( _page.padding * 2)
+            implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.margins*2) + _page.headerContainer.implicitHeight + (_page.padding * 2) + parent.spacing
             headerPositioning: ListView.InlineHeader
             padding: 0
             headBar.visible: control.persistent
