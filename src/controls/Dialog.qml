@@ -299,7 +299,8 @@ Maui.Popup
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
                 
                 background: null
-
+                clip: true
+                
                 Flickable
                 {
                     id: _flickable
