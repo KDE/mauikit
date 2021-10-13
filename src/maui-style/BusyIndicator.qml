@@ -24,7 +24,8 @@ import QtQuick 2.6
 import org.kde.kirigami 2.2 as Kirigami
 import QtQuick.Templates 2.3 as T
 
-T.BusyIndicator {
+T.BusyIndicator 
+{
     id: controlRoot
 
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
@@ -35,7 +36,8 @@ T.BusyIndicator {
 
     hoverEnabled: true
 
-    contentItem: Kirigami.Icon {
+    contentItem: Kirigami.Icon 
+    {
         source: "view-refresh"
         opacity: controlRoot.running ? 1 : 0
 
@@ -48,8 +50,8 @@ T.BusyIndicator {
         RotationAnimator {
             target: controlRoot
             running: controlRoot.visible && controlRoot.running
-            from: 360
-            to: 0
+            from: 0
+            to: 360
             loops: Animation.Infinite
             duration: 1000
         }
