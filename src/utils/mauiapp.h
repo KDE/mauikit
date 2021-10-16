@@ -18,15 +18,14 @@
 
 #ifndef MAUIAPP_H
 #define MAUIAPP_H
+
 #include <QObject>
 #include <QQmlEngine>
-
 
 #include "fmh.h"
 
 #include "mauikit_export.h"
 
-#include <QColor>
 #include <QSettings>
 
 #if defined Q_OS_LINUX && !defined Q_OS_ANDROID
