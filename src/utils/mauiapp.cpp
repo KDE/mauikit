@@ -148,7 +148,18 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
 {
-    this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
+#if !defined Q_OS_ANDROID || defined Q_OS_LINUX // ignore csd for those
+    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
+    {
+        if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
+        {
+                        this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
+        }
+    }else
+    {
+        this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
+    }
+#endif
 }
 
 void CSDControls::getWindowControlsSettings()
@@ -200,32 +211,17 @@ bool CSDControls::enableCSD() const
 
 void CSDControls::setEnableCSD(const bool &value)
 {
-#if defined Q_OS_ANDROID || defined Q_OS_IOS // ignore csd for those
-    Q_UNUSED(value)
-    return;
-#else
-    
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
-    {
-        if (QByteArrayList {"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
-        {
-            m_enableCSD = false;
-            return;
-        }
-    }else
-    {
         if (m_enableCSD == value)
             return;
         
         m_enableCSD = value;
-    }
+    
     
     emit enableCSDChanged();
     
     if (m_enableCSD) {
         getWindowControlsSettings();
     }
-#endif
 }
 
 QUrl CSDControls::source() const
