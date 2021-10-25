@@ -145,6 +145,20 @@ elseif(WIN32)
     set(mauikit_PLATFORM_HDRS
         platforms/windows/mauiwindows.h
         )
+
+    set(window_PLATFORM_SRCS
+        platforms/windows/blurhelper/windowblur.cpp
+        platforms/windows/shadowhelper/boxshadowrenderer.cpp
+        platforms/windows/shadowhelper/tileset.cpp
+        platforms/windows/shadowhelper/windowshadow.cpp
+        )
+
+    set(window_PLATFORM_HDRS
+        platforms/windows/blurhelper/windowblur.h
+        platforms/windows/shadowhelper/boxshadowrenderer.h
+        platforms/windows/shadowhelper/tileset.h
+        platforms/windows/shadowhelper/windowshadow.h
+        )
 endif()
 
 add_library(MauiKit

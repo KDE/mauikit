@@ -19,16 +19,16 @@
 #ifndef MAUILIST_H
 #define MAUILIST_H
 
+/**
+ * @todo write docs
+ */
+#include <QObject>
+
 #include "fmh.h"
 
 #include "mauikit_export.h"
 
 #include <QQmlParserStatus>
-
-/**
- * @todo write docs
- */
-#include <QObject>
 
 class MAUIKIT_EXPORT MauiList : public QObject, public QQmlParserStatus {
     Q_INTERFACES(QQmlParserStatus)
