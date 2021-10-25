@@ -20,7 +20,6 @@
 #define MAUIMODEL_H
 
 #include <QAbstractListModel>
-#include <QList>
 #include <QObject>
 #include <QSortFilterProxyModel>
 

@@ -49,6 +49,7 @@ MauiApp::MauiApp()
     : QObject(nullptr)
     , m_controls(new CSDControls(this))
 {
+    qDebug() << "CREATING INSTANCE OF MAUI APP";
     connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         qDebug() << "Lets remove MauiApp singleton instance";

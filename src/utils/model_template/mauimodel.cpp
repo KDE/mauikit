@@ -251,8 +251,9 @@ void MauiModel::setList(MauiList *value)
 {
     if(value && value != this->m_list)
     {
-        value->modelHooked();
         this->m_list = value;
+        this->m_list->modelHooked();
+        
         this->m_model->setUpList();
         emit this->listChanged();
         
