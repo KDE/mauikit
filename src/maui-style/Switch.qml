@@ -40,7 +40,8 @@ import QtQuick.Controls.Material.impl 2.12
 import QtQuick.Templates 2.12 as T
 import org.mauikit.controls 1.0 as Maui
 
-T.Switch {
+T.Switch
+{
     id: control
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -50,13 +51,15 @@ T.Switch {
     padding: 8
     spacing: 8
 
-    indicator: SwitchIndicator {
+    indicator: SwitchIndicator
+    {
         x: text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
         control: control
     }
 
-    contentItem: Text {
+    contentItem: Text
+    {
         leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
         rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
 
@@ -67,7 +70,8 @@ T.Switch {
         verticalAlignment: Text.AlignVCenter
     }
 
-    background: Item {
+    background: Item
+    {
         implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
     }
 }

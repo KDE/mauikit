@@ -55,7 +55,7 @@ T.ToolButton
 
     hoverEnabled: !Kirigami.Settings.isMobile
     padding: Maui.Style.space.small
-    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
+    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.small :  Maui.Style.space.small
     rightPadding: Maui.Style.space.small
     leftPadding: Maui.Style.space.small
     topPadding: Maui.Style.space.small

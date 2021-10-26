@@ -61,6 +61,11 @@ Flickable
     property alias imageHeight: image.sourceSize.height
 
     /**
+      * animated : bool
+      */
+    property bool animated: false
+
+    /**
       * source : url
       */
     property alias source : image.source
@@ -150,18 +155,19 @@ Flickable
             }
         }
 
-        Image {
+        AnimatedImage {
             id: image
             width: flick.contentWidth
             height: flick.contentHeight
-            fillMode: Image.PreserveAspectFit
+            fillMode: AnimatedImage.PreserveAspectFit
             autoTransform: true
             asynchronous: true
+            onStatusChanged: playing = (status == AnimatedImage.Ready)
 
             BusyIndicator
             {
                 anchors.centerIn: parent
-                running: parent.status === Image.Loading
+                running: parent.status === AnimatedImage.Loading
             }
 
             MouseArea {

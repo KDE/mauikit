@@ -18,35 +18,37 @@ MenuItem
     background: null
     
     display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
-    
-    Loader
+    leftPadding: Maui.Style.space.medium
+    rightPadding: Maui.Style.space.medium
+    topPadding: 0
+    bottomPadding: 0
+
+   contentItem: Loader
     {
         id: _layoutLoader
         asynchronous: true
-        anchors.fill: parent
-        anchors.leftMargin: Maui.Style.space.medium
-        anchors.rightMargin: Maui.Style.space.medium
-        
+
         sourceComponent: RowLayout
-        {      
+        {
             spacing: Maui.Style.space.medium
-            
+
             Repeater
             {
                 id: _repeater
                 model: control.actions
-                
+
                 delegate: ToolButton
                 {
                     id: _delegate
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
                     action: modelData
                     display: control.display
                     ToolTip.delay: 1000
                     ToolTip.timeout: 5000
                     ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
                     ToolTip.text: modelData.text
-                    
+
                     Connections
                     {
                         target: _delegate.action

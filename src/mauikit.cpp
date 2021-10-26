@@ -113,6 +113,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/SettingsDialog.qml")), uri, 1, 1, "SettingsDialog");
     qmlRegisterType(componentUrl(QStringLiteral("labs/SettingsSection.qml")), uri, 1, 1, "SettingsSection");
     qmlRegisterType(componentUrl(QStringLiteral("labs/ImageViewer.qml")), uri, 1, 1, "ImageViewer");
+    qmlRegisterType(componentUrl(QStringLiteral("labs/AnimatedImageViewer.qml")), uri, 1, 1, "AnimatedImageViewer");
 
     /** 1.2 **/
     qmlRegisterType(componentUrl(QStringLiteral("labs/SettingTemplate.qml")), uri, 1, 2, "SettingTemplate");

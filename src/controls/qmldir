@@ -62,6 +62,7 @@ ShareDialog 1.1 labs/ShareDialog.qml
 ActionToolBar 1.1 labs/ActionToolBar.qml
 ToolButtonAction 1.1 labs/ToolButtonAction.qml
 ImageViewer 1.1 labs/ImageViewer.qml
+AnimatedImageViewer 1.1 labs/AnimatedImageViewer.qml
 
 TabsBrowser 1.1 labs/TabsBrowser.qml
 SettingsDialog 1.1 labs/SettingsDialog.qml

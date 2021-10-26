@@ -77,7 +77,7 @@ Item
     property int imageWidth : -1
     property int imageHeight : -1
     
-    property bool smooth: true
+    property bool smooth: false
 
     Kirigami.Icon
     {
@@ -114,6 +114,7 @@ Item
         cache: false
         asynchronous: true
         smooth: control.smooth
+        mipmap: false
 
         layer.enabled: control.maskRadius
         layer.effect: OpacityMask

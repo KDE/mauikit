@@ -121,6 +121,8 @@ Item
         property int imageWidth : -1
         
         property int imageHeight: -1
+
+    property bool smooth : false
         
         /**
          * iconComponent : Component
@@ -138,7 +140,7 @@ Item
                 
                 highlighted: control.isCurrentItem
                 hovered: control.hovered
-                
+                smooth: control.smooth
                 iconSizeHint: control.iconSizeHint
                 
                 fillMode: control.fillMode

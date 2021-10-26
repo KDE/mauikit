@@ -86,5 +86,6 @@
         <file alias="labs/MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
         <file alias="labs/GalleryRollTemplate.qml">controls/labs/GalleryRollTemplate.qml</file>
         <file alias="labs/ImageViewer.qml">controls/labs/ImageViewer.qml</file>
+        <file alias="labs/AnimatedImageViewer.qml">controls/labs/AnimatedImageViewer.qml</file>
     </qresource>
 </RCC>

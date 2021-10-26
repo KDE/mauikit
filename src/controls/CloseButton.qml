@@ -13,8 +13,7 @@ AbstractButton
     hoverEnabled: true
 
    contentItem:  Item
-    {
-       
+    {       
         Maui.X
         {
             height: Maui.Style.iconSizes.tiny
