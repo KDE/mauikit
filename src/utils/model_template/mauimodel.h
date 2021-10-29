@@ -36,6 +36,8 @@ class MauiList;
 class MAUIKIT_EXPORT MauiModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY(MauiModel)
+    
     Q_PROPERTY(MauiList *list READ getList WRITE setList NOTIFY listChanged)
     Q_PROPERTY(QString filter READ getFilter WRITE setFilter NOTIFY filterChanged)
     Q_PROPERTY(QString filterRole READ getFilterRoleName WRITE setFilterRoleName NOTIFY filterRoleNameChanged)
@@ -167,6 +169,8 @@ signals:
 class MauiModel::PrivateAbstractListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PrivateAbstractListModel)
+    
 public:
     PrivateAbstractListModel(MauiModel *);
     int rowCount(const QModelIndex & = QModelIndex()) const override;

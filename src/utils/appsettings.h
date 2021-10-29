@@ -13,6 +13,8 @@
 class SettingSection : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SettingSection)
+    
     Q_PROPERTY(QString key READ key WRITE setKey NOTIFY keyChanged)
     Q_PROPERTY(QString group READ group WRITE setGroup NOTIFY groupChanged)
     Q_PROPERTY(QVariant defaultValue READ defaultValue WRITE setDefaultValue NOTIFY defaultValueChanged)
@@ -48,6 +50,8 @@ signals:
 class MAUIKIT_EXPORT AppSettings : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AppSettings)
+    
 public:
     /**
      * @brief local
@@ -69,8 +73,6 @@ public:
         return settings;
     }
 
-    AppSettings(const AppSettings &) = delete;
-    AppSettings &operator=(const AppSettings &) = delete;
     AppSettings(AppSettings &&) = delete;
     AppSettings &operator=(AppSettings &&) = delete;
 

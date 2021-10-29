@@ -51,6 +51,8 @@ class QQuickItem;
 class CSDButton : public QObject
 {
   Q_OBJECT
+  Q_DISABLE_COPY(CSDButton)
+  
   Q_PROPERTY(bool isHovered READ isHovered WRITE setIsHovered NOTIFY isHoveredChanged)
   Q_PROPERTY(bool isMaximized READ isMaximized WRITE setIsMaximized NOTIFY isMaximizedChanged)
   Q_PROPERTY(bool isPressed READ isPressed WRITE setIsPressed NOTIFY isPressedChanged)
@@ -141,7 +143,8 @@ signals:
 class CSDControls : public QObject
 {
   Q_OBJECT
-
+  Q_DISABLE_COPY(CSDControls)
+  
   Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
   Q_PROPERTY(QUrl source READ source CONSTANT FINAL)
   Q_PROPERTY(int borderRadius READ borderRadius CONSTANT FINAL)
@@ -193,6 +196,8 @@ class Notify;
 class MAUIKIT_EXPORT MauiApp : public QObject
 {
   Q_OBJECT
+  Q_DISABLE_COPY(MauiApp)
+  
   Q_PROPERTY(KAboutData about READ getAbout CONSTANT FINAL)
   Q_PROPERTY(QString iconName READ getIconName WRITE setIconName NOTIFY iconNameChanged)
   Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
@@ -214,8 +219,6 @@ public:
     return m_instance;
   }
 
-  MauiApp(const MauiApp &) = delete;
-  MauiApp &operator=(const MauiApp &) = delete;
   MauiApp(MauiApp &&) = delete;
   MauiApp &operator=(MauiApp &&) = delete;
 

@@ -28,6 +28,8 @@ class Notify;
 class NotifyAction : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(NotifyAction)
+    
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
     
 public:
@@ -50,6 +52,8 @@ class KNotification;
 class Notify : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(Notify)
+    
     Q_PROPERTY(QString componentName READ componentName WRITE setComponentName NOTIFY componentNameChanged)
     Q_PROPERTY(QString eventId READ eventId WRITE setEventId REQUIRED)
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
