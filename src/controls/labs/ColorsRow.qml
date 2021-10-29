@@ -20,21 +20,20 @@ Row
     {
         model: control.colors
 
-        MouseArea
+        AbstractButton
         {
-            readonly property bool checked : control.currentColor === modelData
+            checked : control.currentColor === modelData
             implicitHeight: Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
             implicitWidth: implicitHeight
             hoverEnabled: true
             onClicked: control.colorPicked(modelData)
             
-            Rectangle
+            contentItem: Rectangle
             {
-                anchors.fill: parent
                 radius: height/2
                 color: enabled ? modelData : "transparent"
                 border.color: Qt.darker(modelData, 2)
-                border.width: parent.containsMouse ?  2 : 1
+                border.width: parent.hovered ?  2 : 1
                 
                 Kirigami.Icon
                 {
@@ -66,7 +65,7 @@ Row
         asynchronous: true
         sourceComponent: Item
         {
-            implicitHeight: Maui.Style.iconSizes.medium
+            implicitHeight: Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
             implicitWidth: implicitHeight
             
             ToolButton
