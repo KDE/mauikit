@@ -197,7 +197,6 @@ ToolBar
         
         Loader
         {
-            asynchronous: true
             anchors.fill: parent
             active: control.draggable
             

@@ -40,65 +40,11 @@ TabButton
         radius: Maui.Style.radiusV
     }
     
-    contentItem: RowLayout
+    contentItem:  MouseArea
     {
-        id: _content
-        
-        Loader
-        {
-            asynchronous: true
-            active: control.closeButtonVisible
-            
-            Layout.preferredWidth: height
-            Layout.fillHeight: true
-            
-            sourceComponent: Maui.CloseButton
-            {
-                opacity: Kirigami.Settings.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
-                
-                onClicked: control.closeClicked()
-                Behavior on opacity
-                {
-                    NumberAnimation
-                    {
-                        duration: Kirigami.Units.longDuration
-                        easing.type: Easing.InOutQuad
-                    }
-                }
-            }
-        }
-        
-        Loader
-        {
-            asynchronous: true
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            
-            sourceComponent: Label
-            {         
-                text: control.text
-                
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-                wrapMode: Text.NoWrap
-                elide: Text.ElideMiddle
-            }  
-        }
-        
-        Item
-        {
-            Layout.fillHeight: true
-            implicitWidth: height
-            visible: control.closeButtonVisible && control.centerLabel
-        }
-    }
-    
-    MouseArea
-    {
-        width: parent.width
-        height: parent.height
         acceptedButtons:  Qt.RightButton
+        propagateComposedEvents: true
+        preventStealing: false
         
         onClicked:
         {
@@ -107,6 +53,62 @@ TabButton
                 control.rightClicked(mouse)
             }          
         }
-    }
+        
+        RowLayout
+        {
+            id: _content
+            anchors.fill: parent
+            
+            Loader
+            {
+                asynchronous: true
+                active: control.closeButtonVisible
+                
+                Layout.preferredWidth: height
+                Layout.fillHeight: true
+                
+                sourceComponent: Maui.CloseButton
+                {
+                    opacity: Kirigami.Settings.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
+                    
+                    onClicked: control.closeClicked()
+                    Behavior on opacity
+                    {
+                        NumberAnimation
+                        {
+                            duration: Kirigami.Units.longDuration
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+                }
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                sourceComponent: Label
+                {         
+                    text: control.text
+                    
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                    wrapMode: Text.NoWrap
+                    elide: Text.ElideMiddle
+                }  
+            }
+            
+            Item
+            {
+                Layout.fillHeight: true
+                implicitWidth: height
+                visible: control.closeButtonVisible && control.centerLabel
+            }
+        }        
+    }    
+    
 }
 
