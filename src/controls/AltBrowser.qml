@@ -120,7 +120,7 @@ Maui.Page
         id: _gridView
         focus: control.focus
         anchors.fill: parent
-        visible: control.viewType === AltBrowser.ViewType.Grid && !_holder.visible
+        visible: control.viewType === AltBrowser.ViewType.Grid
         currentIndex: control.currentIndex
         model: control.model
         delegate: control.gridDelegate
@@ -135,7 +135,7 @@ Maui.Page
         anchors.fill: parent
         focus: control.focus
         id: _listView
-        visible: control.viewType === AltBrowser.ViewType.List && !_holder.visible
+        visible: control.viewType === AltBrowser.ViewType.List 
         currentIndex: control.currentIndex
         model: control.model
         delegate: control.listDelegate
