@@ -53,7 +53,7 @@ ToolBar
         /**
          * preferredHeight : int
          */
-        property int preferredHeight: Math.max(Maui.Style.toolBarHeight, layout.implicitHeight)
+        property int preferredHeight: Math.max(Maui.Style.toolBarHeight, layout.implicitHeight + Maui.Style.space.medium)
         
         /**
          * forceCenterMiddleContent : bool

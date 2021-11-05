@@ -331,7 +331,7 @@ Item
                     
                     display: control.display  
                     
-                    checkable: control.checkable && m_action.checkable
+                    checkable: control.checkable && (m_action ? m_action.checkable : false)
                     
                     background: Kirigami.ShadowedRectangle
                     {
