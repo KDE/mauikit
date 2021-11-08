@@ -122,7 +122,7 @@ Item
         
         property int imageHeight: -1
 
-    property bool smooth : false
+        property bool smooth : false
         
         /**
          * iconComponent : Component
@@ -213,7 +213,7 @@ Item
                         
                         elide: Qt.ElideRight
                         wrapMode: Text.Wrap
-                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                     }
                     
                     Label
@@ -230,7 +230,7 @@ Item
                         
                         elide: Qt.ElideRight
                         wrapMode: Text.NoWrap
-                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                         opacity: control.isCurrentItem ? 0.8 : 0.6
                     }
                 }

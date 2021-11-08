@@ -285,7 +285,7 @@ Item
 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
             }
 
             Label
@@ -300,7 +300,7 @@ Item
 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }

@@ -31,26 +31,26 @@ MouseArea
         label1.font.bold: true
         label1.font.weight: Font.Bold
         label2.wrapMode: Text.WordWrap
-        label1.color: control.hovered || control.pressed || control.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+        label1.color: Kirigami.Theme.textColor
 //         leftMargin: 0
 //         rightMargin: 0
 //         
-//        Item
-//        {
-//            Layout.alignment: Qt.AlignCenter
-//            implicitHeight: Maui.Style.iconSizes.medium
-//            implicitWidth: implicitHeight
+       Item
+       {
+           implicitHeight: Maui.Style.iconSizes.medium
+           implicitWidth: implicitHeight
             
-//            Maui.Triangle
-//            {
-//                anchors.centerIn: parent
-//                height: Maui.Style.iconSizes.tiny
-//                width: height
-//                rotation: !control.checked ? -45 : -225
-//                color: control.hovered || control.pressed || control.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-//                opacity: 0.7
-//            }
-//        }
+           Maui.Triangle
+           {
+               visible: control.hovered || control.pressed || control.containsMouse 
+               anchors.centerIn: parent
+               height: Maui.Style.iconSizes.tiny
+               width: height
+               rotation: !control.checked ? -225 : -45 
+               color: Kirigami.Theme.textColor
+               opacity: 0.7
+           }
+       }
     }
     
     onClicked: control.checked = !control.checked    

@@ -265,7 +265,7 @@ Item
                         duration: Kirigami.Units.shortDuration
                     }
                 }
-                color: control.isCurrentItem || control.hovered || _mouseArea.containsPress ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
+                color: control.hovered  ? control.Kirigami.Theme.hoverColor : (control.isCurrentItem || _mouseArea.containsPress ? control.Kirigami.Theme.highlightColor: "transparent")
                 
                 radius: control.radius
             }

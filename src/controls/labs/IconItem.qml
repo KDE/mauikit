@@ -88,8 +88,8 @@ Item
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
-        color: control.highlighted ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
-        isMask: height <= Maui.Style.iconSizes.small
+        color: control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+        isMask: height <= Maui.Style.iconSizes.medium
     }
 
     Image

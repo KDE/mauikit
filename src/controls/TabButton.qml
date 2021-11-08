@@ -32,6 +32,8 @@ TabButton
     signal closeClicked()
     signal rightClicked(var mouse)
     
+    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    
     background: Rectangle
     {
         visible: control.checked || control.down || control.hovered
@@ -59,6 +61,31 @@ TabButton
             id: _content
             anchors.fill: parent
             
+            Item
+            {
+                Layout.fillHeight: true
+                implicitWidth: height
+                visible: control.closeButtonVisible && control.centerLabel
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                sourceComponent: Label
+                {         
+                    text: control.text
+                    
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    color: control.checked ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+                    wrapMode: Text.NoWrap
+                    elide: Text.ElideMiddle
+                }  
+            }            
+          
             Loader
             {
                 asynchronous: true
@@ -81,31 +108,6 @@ TabButton
                         }
                     }
                 }
-            }
-            
-            Loader
-            {
-                asynchronous: true
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                
-                sourceComponent: Label
-                {         
-                    text: control.text
-                    
-                    horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignVCenter
-                    color: control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
-                    wrapMode: Text.NoWrap
-                    elide: Text.ElideMiddle
-                }  
-            }
-            
-            Item
-            {
-                Layout.fillHeight: true
-                implicitWidth: height
-                visible: control.closeButtonVisible && control.centerLabel
             }
         }        
     }    

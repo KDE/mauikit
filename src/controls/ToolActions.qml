@@ -172,7 +172,7 @@ Item
                     
                     background: Kirigami.ShadowedRectangle
                     {
-                        color: checked || down ? Qt.rgba(Kirigami.Theme.highlightColor.r, Kirigami.Theme.highlightColor.g, Kirigami.Theme.highlightColor.b, 0.15) : Qt.lighter(Kirigami.Theme.backgroundColor)
+                        color: checked || down ? Kirigami.Theme.highlightColor : Qt.lighter(Kirigami.Theme.backgroundColor)
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0
@@ -283,21 +283,21 @@ Item
                         text: modelData.text
                         icon.name: modelData.icon.name
                         autoExclusive: control.autoExclusive
-                                            checked: action.checked
-
+                        checked: action.checked
+                        
                         Binding on checked
-                    {
-                        when: autoExclusive
-                        value: control.currentIndex === index
-                    }
-                    
+                        {
+                            when: autoExclusive
+                            value: control.currentIndex === index
+                        }
+                        
                         checkable: control.checkable || modelData.checkable
                         onTriggered:
                         {
-                              if(autoExclusive)
-                            control.currentIndex = index
-                            
-//                             modelData.triggered()
+                            if(autoExclusive)
+                                control.currentIndex = index
+                                
+                                //                             modelData.triggered()
                         }
                     }
                 }

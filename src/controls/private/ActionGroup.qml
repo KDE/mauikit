@@ -78,7 +78,7 @@ Item
         //Kirigami.Theme.highlightColor: modelData.Kirigami.Theme.highlightColor
         icon.name: modelData.Maui.AppView.iconName
         text: modelData.Maui.AppView.title
-        flat: display === ToolButton.IconOnly
+//         flat: display === ToolButton.IconOnly
         
         display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
         

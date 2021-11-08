@@ -233,7 +233,7 @@ Maui.Popup
             headBar.background: null
             background: null
             
-            headBar.farLeftContent: [
+            headBar.farRightContent: [
             
             Loader
             {

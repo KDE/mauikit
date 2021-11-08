@@ -76,7 +76,7 @@ AbstractButton
 
         visible: !control.flat
         radius: Maui.Style.radiusV
-        color: control.down || control.checked || control.hovered || control.pressed ? Qt.rgba(control.Kirigami.Theme.highlightColor.r,  control.Kirigami.Theme.highlightColor.g,  control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
+        color: control.down || control.checked || control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? Kirigami.Theme.hoverColor : "transparent")
 //         border.color:  checked ?  control.Kirigami.Theme.highlightColor : "transparent"
 
         Behavior on color
@@ -113,7 +113,7 @@ AbstractButton
                 width: control.icon.width
                 height: control.icon.height
 
-                color: (control.icon.color && control.icon.color.length ) ? control.icon.color : ( (control.checked || control.hovered || control.pressed || control.down ) && enabled ) ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                color: (control.icon.color && control.icon.color.length ) ? control.icon.color : ( (control.checked || control.down ) && enabled ) ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
 
                 source: control.icon.name
                 isMask: true
@@ -131,7 +131,7 @@ AbstractButton
             horizontalAlignment: Qt.AlignHCenter
             Layout.fillWidth: visible
             Layout.preferredWidth: visible ? implicitWidth : 0
-            color: control.down || control.pressed || control.checked || control.hovered ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+            color: control.down || control.pressed || control.checked || control.hovered ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
 
             font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium
             
