@@ -113,7 +113,7 @@ AbstractButton
                 width: control.icon.width
                 height: control.icon.height
 
-                color: (control.icon.color && control.icon.color.length ) ? control.icon.color : ( (control.checked || control.down ) && enabled ) ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color:  enabled ? (control.icon.color && control.icon.color.length ) ? control.icon.color : ((control.checked || control.down) ? (control.flat ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.highlightedTextColor) : control.Kirigami.Theme.textColor) : Kirigami.Theme.disabledTextColor
 
                 source: control.icon.name
                 isMask: true
