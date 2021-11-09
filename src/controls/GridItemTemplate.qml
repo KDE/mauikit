@@ -124,6 +124,8 @@ Item
 
         property bool smooth : false
         
+        property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
+        
         /**
          * iconComponent : Component
          */
@@ -148,6 +150,8 @@ Item
                 
                 imageWidth: control.imageWidth
                 imageHeight: control.imageHeight
+                
+                isMask: control.isMask
             }
         }
         

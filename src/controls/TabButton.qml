@@ -22,6 +22,7 @@ TabButton
     implicitWidth: 200    
     
     property alias content: _content.data
+    property alias leftContent: _leftContent.data
     
     property bool closeButtonVisible: true
     property bool centerLabel : true
@@ -61,6 +62,13 @@ TabButton
             id: _content
             anchors.fill: parent
             
+            Row
+            {
+                id: _leftContent
+                Layout.fillHeight: true
+                
+            }
+            
             Item
             {
                 Layout.fillHeight: true
@@ -80,7 +88,7 @@ TabButton
                     
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
-                    color: control.checked ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+                    color: Kirigami.Theme.textColor
                     wrapMode: Text.NoWrap
                     elide: Text.ElideMiddle
                 }  

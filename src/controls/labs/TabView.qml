@@ -323,9 +323,9 @@ Container
                         control.closeTabClicked(control.currentIndex)
                     }
                     
-                    content: Item
+                    leftContent: Item
                     {
-                        Layout.fillHeight: true
+                        height: parent.height
                         implicitWidth: height
                         
                         Maui.Badge

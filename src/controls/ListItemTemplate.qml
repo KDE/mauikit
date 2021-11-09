@@ -194,6 +194,8 @@ Item
       * iconComponent : Component
       */
     property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
+    
+    property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
 
     Component
     {
@@ -212,6 +214,8 @@ Item
 
             fillMode: control.fillMode
             maskRadius: control.maskRadius
+            
+            isMask: control.isMask
         }
     }
 

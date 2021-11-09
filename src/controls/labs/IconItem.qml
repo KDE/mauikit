@@ -79,6 +79,8 @@ Item
     
     property bool smooth: false
 
+    property alias isMask : icon.isMask
+    
     Kirigami.Icon
     {
         id: icon
@@ -89,7 +91,7 @@ Item
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
         color: control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
-        isMask: height <= Maui.Style.iconSizes.medium
+        isMask: height <= Maui.Style.iconSizes.small
     }
 
     Image
