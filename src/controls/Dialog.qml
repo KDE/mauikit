@@ -233,30 +233,7 @@ Maui.Popup
             headBar.background: null
             background: null
             
-            headBar.farRightContent: [
-            
-            Loader
-            {
-                asynchronous: true
-                visible: active
-                active: control.persistent && !control.filling && closeButtonVisible
-                
-                sourceComponent: Maui.CloseButton
-                {
-                    onClicked: 
-                     {
-                        if(control.autoClose)
-                        {
-                            control.close()
-                        }else
-                        {
-                            control.closeTriggered()
-                        }
-                    }
-                }
-            },
-            
-            Loader
+            headBar.farLeftContent:  Loader
             {
                 asynchronous: true
                 visible: active
@@ -277,7 +254,27 @@ Maui.Popup
                     }
                 }
             }
-            ]
+            
+            headBar.farRightContent: Loader
+            {
+                asynchronous: true
+                visible: active
+                active: control.persistent && !control.filling && closeButtonVisible
+                
+                sourceComponent: Maui.CloseButton
+                {
+                    onClicked: 
+                     {
+                        if(control.autoClose)
+                        {
+                            control.close()
+                        }else
+                        {
+                            control.closeTriggered()
+                        }
+                    }
+                }
+            }
             
             ColumnLayout
             {
