@@ -333,7 +333,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
@@ -352,7 +352,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
