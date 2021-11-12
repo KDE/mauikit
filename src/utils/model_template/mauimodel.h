@@ -86,6 +86,9 @@ public:
     QString getFilterRoleName() const;
     
     int count() const;
+    
+    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
+    bool moveRow(const QModelIndex &sourceParent, int sourceRow, const QModelIndex &destinationParent, int destinationChild);
 
 protected:
     bool filterAcceptsRow(int, const QModelIndex &) const override;
@@ -156,6 +159,8 @@ public slots:
      */
     int mappedToSource(const int &) const;
     void setFilterRoleName(QString );
+    
+    bool move(const int &index, const int &to);
 
 signals:
     void listChanged();

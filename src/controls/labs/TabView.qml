@@ -1,4 +1,6 @@
 import QtQuick 2.15
+import QtQml 2.14
+
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.10
 
@@ -188,16 +190,22 @@ Container
         
         Loader
         {            
-            asynchronous: true
+            asynchronous: false
             active: control.count > 1 && !control.mobile && control.tabBarVisible
             Layout.fillWidth: true
             visible: active
             
             sourceComponent: Maui.TabBar
             {        
+                id: _tabBar
                 position: TabBar.Header
                 
-                currentIndex : control.currentIndex
+                
+                Binding on currentIndex
+                {
+                    value: control.currentIndex
+                    restoreMode: Binding.RestoreValue
+                }
                 
                 onNewTabClicked: control.newTabClicked()
                 
@@ -217,14 +225,16 @@ Container
                 Repeater
                 {
                     id: _repeater
-                    model: control.count
+                    model: control.contentModel.count
                     
                     Maui.TabButton
                     {
                         id: _tabButton
-                        implicitHeight: parent.height
-                        implicitWidth: Math.max(parent.width / _repeater.count, 200)
-                        checked: index === control.currentIndex
+                        property int mindex : index
+                        
+                        implicitHeight: ListView.view.height
+                        implicitWidth: Math.max(ListView.view.width / _repeater.count, 200)
+                        checked: ListView.isCurrentItem
                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
                         
                         ToolTip.delay: 1000
@@ -249,6 +259,43 @@ Container
                             control.closeTabClicked(index)
                         }
                         
+                        //Drag.active: dragArea.held
+                        //Drag.source: _tabButton
+                        //Drag.hotSpot.x: width / 2
+                        //Drag.hotSpot.y: height / 2
+                        //Drag.dragType: Drag.Automatic
+                        
+                        
+                        //Label
+                        //{
+                            //color: "orange"
+                            //text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
+                        //}
+                        
+                        //MouseArea
+                        //{
+                            //id: dragArea
+                            //anchors.fill: parent
+                            //property bool held: false
+                            
+                            //drag.target: held ? _tabButton : undefined
+                            //drag.axis: Drag.XAxis
+                            //drag.smoothed: false
+                            //preventStealing: false
+                            //propagateComposedEvents: true
+                            //onPressAndHold: held = true
+                            //onReleased:
+                            //{
+                                //held = false
+                            //}
+                            //onClicked:
+                            //{
+                                //control.currentIndex = index
+                                //control.currentItem.forceActiveFocus()
+                            //}
+                        //}
+                        
+                        
                         Timer
                         {
                             id: _dropAreaTimer
@@ -268,6 +315,13 @@ Container
                             anchors.fill: parent
                             onEntered:
                             {
+                                //console.log("Move ", drop.source.mindex,
+                                            //_tabButton.mindex)
+                                //const from = drop.source.mindex
+                                //const to = _tabButton.mindex
+                                
+                                                                //control.moveItem(from , to)
+                                                                //_tabBar.moveItem(from , to)
                                 _dropAreaTimer.restart()
                             }
                             

@@ -71,6 +71,7 @@ signals:
     void updateModel(int index, QVector<int> roles);
     void preListChanged();
     void postListChanged();
+    void itemMoved(int index, int to);
 
     void countChanged();
 };

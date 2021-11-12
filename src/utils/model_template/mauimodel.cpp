@@ -242,6 +242,12 @@ void MauiModel::PrivateAbstractListModel::setUpList()
                 endResetModel();
             },
             Qt::DirectConnection);
+        
+        connect(
+            m_model->getList(),
+                &MauiList::itemMoved,
+                m_model, &MauiModel::move,
+                Qt::DirectConnection);
     }
 
     endResetModel();
@@ -345,3 +351,49 @@ QHash<int, QByteArray> MauiModel::PrivateAbstractListModel::roleNames() const
 
     return names;
 }
+
+bool MauiModel::move(const int &index, const int &to)
+{
+    if(index == to)
+        return false;
+    
+    if(index>=0 && index< count())
+    {
+        if(to >= count() || to < 0)
+            return false;
+        
+        beginMoveRows(QModelIndex(), index, index, QModelIndex(), index < to ? to+1 : to);
+        endMoveRows();
+    }
+    
+    return true;
+}
+
+/*!
+ * Must be reimplemented, because moving rows should be possible
+ * \brief ListModel::moveRows
+ * \param sourceParent
+ * \param sourceRow
+ * \param count
+ * \param destinationParent
+ * \param destinationChild
+ * \return
+ */
+bool MauiModel::moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) {
+    if (sourceRow < 0
+        //|| sourceRow + count - 1 >= rowCount(sourceParent)
+        || destinationChild <= 0
+        //|| destinationChild > rowCount(destinationParent)
+        || sourceRow == destinationChild - 1
+        || count <= 0) {
+        return false;
+        }
+        
+        return true;
+}
+
+bool MauiModel::moveRow(const QModelIndex &sourceParent, int sourceRow, const QModelIndex &destinationParent, int destinationChild) {
+    
+    return true;
+}
+

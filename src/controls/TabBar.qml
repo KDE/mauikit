@@ -1,6 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
+import QtQuick.Templates 2.15 as T
 
 import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.2 as Maui
@@ -17,20 +18,15 @@ import "private" as Private
  *
  *
  */
-TabBar
+T.TabBar
 {
     id: control
     
-    implicitWidth: _content.width
+    implicitWidth: _content.contentWidth
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
     //Kirigami.Theme.colorSet: Kirigami.Theme.View
     //Kirigami.Theme.inherit: false
-     
-     /**
-     * content : RowLayout.data
-     */
-    default property alias content : _content.data
-        
+    
     
     /**
      * showNewTabButton : bool
@@ -49,7 +45,7 @@ TabBar
     
     contentItem: Item
     {        
-        readonly property bool fits : _flickable.contentWidth <= width
+        readonly property bool fits : _content.contentWidth <= width
         
         Loader
         {
@@ -58,7 +54,7 @@ TabBar
             asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            active: !_flickable.atXEnd && !parent.fits 
+            active: !_content.atXEnd && !parent.fits 
             visible: active
             
             anchors
@@ -82,7 +78,7 @@ TabBar
             asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            active: !_flickable.atXBeginning && !parent.fits 
+            active: !_content.atXBeginning && !parent.fits 
             visible: active
             anchors
             {
@@ -110,26 +106,25 @@ TabBar
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.margins: Maui.Style.space.tiny
-                
-                contentHeight: availableHeight
-                contentWidth: _content.implicitWidth
-                
+                                
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 
-                Flickable
+                                ListView
                 {
-                    id: _flickable
+                    id: _content
+                    orientation: ListView.Horizontal
+                    width: parent.width
+                    height: parent.height
+                    spacing: Maui.Style.space.tiny
+                    model: control.contentModel
                     interactive: Maui.Handy.isTouch
+                    currentIndex: control.currentIndex
+                    snapMode: ListView.SnapOneItem
                     
-                    Row
-                    {
-                        id: _content
-                        width: _scrollView.width
-                        height: _scrollView.height
-                        spacing: Maui.Style.space.tiny
-                    }
+                
                 }
+                
             }
             
             Loader

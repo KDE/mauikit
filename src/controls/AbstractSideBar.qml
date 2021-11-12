@@ -107,6 +107,8 @@ Drawer
       This property gives access to such ovelay element drawn on top of the app contents.
     */
     readonly property alias overlay : _overlayLoader.item
+    
+    property alias dropArea : _dropArea
 
     signal contentDropped(var drop)
     
