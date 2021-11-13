@@ -18,6 +18,8 @@
  */
 
 import QtQuick 2.14
+import QtQml 2.14
+
 import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.7 as Kirigami
@@ -185,8 +187,12 @@ Maui.ItemDelegate
         anchors.margins: Maui.Style.space.medium
         
         sourceComponent: Private.CheckBoxItem
-        {      
-            checked: control.checked
+        {
+            Binding on checked
+            {
+                value: control.checked
+                restoreMode: Binding.RestoreBinding 
+            }
             onToggled: control.toggled(state)
         }
     }

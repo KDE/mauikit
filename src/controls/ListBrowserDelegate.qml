@@ -18,6 +18,8 @@
  */
 
 import QtQuick 2.14
+import QtQml 2.14
+
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
@@ -205,7 +207,11 @@ Maui.ItemDelegate
             Layout.alignment: Qt.AlignCenter
             sourceComponent: Private.CheckBoxItem
             {
-                checked: control.checked
+                Binding on checked
+                {
+                    value: control.checked
+                    restoreMode: Binding.RestoreBinding 
+                }
                 onToggled: control.toggled(state)
             }
         }
