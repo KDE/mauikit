@@ -198,8 +198,7 @@ Container
             sourceComponent: Maui.TabBar
             {        
                 id: _tabBar
-                position: TabBar.Header
-                
+                position: TabBar.Header                
                 
                 Binding on currentIndex
                 {
@@ -225,7 +224,7 @@ Container
                 Repeater
                 {
                     id: _repeater
-                    model: control.contentModel.count
+                    model: control.count
                     
                     Maui.TabButton
                     {
@@ -366,7 +365,8 @@ Container
                 
                 Maui.TabButton
                 {
-                    anchors.fill: parent
+                    implicitWidth: ListView.view.width
+                    implicitHeight: ListView.view.height
                     closeButtonVisible: control.count > 1
                     text: control.currentItem.Maui.TabViewInfo.tabTitle
                     checked: true

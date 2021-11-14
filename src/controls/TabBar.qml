@@ -22,7 +22,7 @@ T.TabBar
 {
     id: control
     
-    implicitWidth: _content.contentWidth
+//     implicitWidth: _content.contentWidth
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
    
    palette: Kirigami.Theme.palette
@@ -110,13 +110,14 @@ T.TabBar
                 
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                contentWidth: availableWidth
                 
                 ListView
                 {
                     id: _content
                     orientation: ListView.Horizontal
-                    width: parent.width
-                    height: parent.height
+                    width: _scrollView.width
+                    height: _scrollView.height
                     spacing: Maui.Style.space.tiny
                     model: control.contentModel
                     interactive: Maui.Handy.isTouch

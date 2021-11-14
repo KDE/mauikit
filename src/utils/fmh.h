@@ -205,7 +205,8 @@ enum MODEL_KEY : int {
     LASTSYNC,
     UDI,
     LATITUDE,
-    LONGITUDE
+    LONGITUDE,
+    BRANCH
 };
 
 static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
@@ -354,8 +355,9 @@ static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
                                                      {MODEL_KEY::UDI, "udi"},
                                                      {MODEL_KEY::LASTSYNC, "lastsync"},
                                                      {MODEL_KEY::LATITUDE, "latitude"},
+                                                     {MODEL_KEY::BRANCH, "branch"},
                                                      {MODEL_KEY::LONGITUDE, "lastsync"}};
-
+                                                     
 static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::ICON], MODEL_KEY::ICON},
                                                          {MODEL_NAME[MODEL_KEY::LABEL], MODEL_KEY::LABEL},
                                                          {MODEL_NAME[MODEL_KEY::PATH], MODEL_KEY::PATH},
@@ -505,8 +507,9 @@ static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::
                                                          {MODEL_NAME[MODEL_KEY::UDI], MODEL_KEY::UDI},
                                                          {MODEL_NAME[MODEL_KEY::LASTSYNC], MODEL_KEY::LASTSYNC},
                                                          {MODEL_NAME[MODEL_KEY::LATITUDE], MODEL_KEY::LATITUDE},
-                                                         {MODEL_NAME[MODEL_KEY::LONGITUDE], MODEL_KEY::LONGITUDE}};
-/**
+                                                         {MODEL_NAME[MODEL_KEY::LONGITUDE], MODEL_KEY::LONGITUDE},
+                                                         {MODEL_NAME[MODEL_KEY::BRANCH], MODEL_KEY::BRANCH}};
+                                                         /**
  * @brief MODEL
  */
 typedef QHash<MODEL_KEY, QString> MODEL;
