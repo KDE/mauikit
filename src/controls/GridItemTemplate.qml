@@ -82,6 +82,7 @@ Item
          * iconSizeHint : int
          */
         property int iconSizeHint : Maui.Style.iconSizes.big
+        property int imageSizeHint : -1
         
         /**
          * imageSource : string
@@ -144,6 +145,7 @@ Item
                 hovered: control.hovered
                 smooth: control.smooth
                 iconSizeHint: control.iconSizeHint
+                imageSizeHint: control.imageSizeHint
                 
                 fillMode: control.fillMode
                 maskRadius: control.maskRadius

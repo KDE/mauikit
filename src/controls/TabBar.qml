@@ -24,10 +24,11 @@ T.TabBar
     
     implicitWidth: _content.contentWidth
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
-    //Kirigami.Theme.colorSet: Kirigami.Theme.View
-    //Kirigami.Theme.inherit: false
-    
-    
+   
+   palette: Kirigami.Theme.palette
+   Kirigami.Theme.colorSet: Kirigami.Theme.Window
+   Kirigami.Theme.inherit: false
+   
     /**
      * showNewTabButton : bool
      */
@@ -106,11 +107,11 @@ T.TabBar
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.margins: Maui.Style.space.tiny
-                                
+                
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 
-                                ListView
+                ListView
                 {
                     id: _content
                     orientation: ListView.Horizontal
@@ -120,11 +121,8 @@ T.TabBar
                     model: control.contentModel
                     interactive: Maui.Handy.isTouch
                     currentIndex: control.currentIndex
-                    snapMode: ListView.SnapOneItem
-                    
-                
-                }
-                
+                    snapMode: ListView.SnapOneItem  
+                }                
             }
             
             Loader
