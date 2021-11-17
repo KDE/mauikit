@@ -232,7 +232,7 @@ Container
                         property int mindex : index
                         
                         implicitHeight: ListView.view.height
-                        implicitWidth: Math.max(ListView.view.width / _repeater.count, 200)
+                        width: Math.max(Math.floor((ListView.view.width / _repeater.count) -(_tabBar.spacing * _repeater.count)), 200)
                         checked: ListView.isCurrentItem
                         text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
                         

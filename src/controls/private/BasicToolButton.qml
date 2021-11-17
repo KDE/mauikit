@@ -131,7 +131,7 @@ AbstractButton
             horizontalAlignment: Qt.AlignHCenter
             Layout.fillWidth: visible
             Layout.preferredWidth: visible ? implicitWidth : 0
-            color: control.down || control.pressed || control.checked || control.hovered ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+            color: control.hovered ? (control.down || control.pressed || control.checked ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : (control.down || control.pressed || control.checked ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) 
 
             font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium
             

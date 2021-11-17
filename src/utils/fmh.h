@@ -206,6 +206,8 @@ enum MODEL_KEY : int {
     UDI,
     LATITUDE,
     LONGITUDE,
+    MESSAGE,
+    AUTHOR,
     BRANCH
 };
 
@@ -356,6 +358,8 @@ static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
                                                      {MODEL_KEY::LASTSYNC, "lastsync"},
                                                      {MODEL_KEY::LATITUDE, "latitude"},
                                                      {MODEL_KEY::BRANCH, "branch"},
+                                                     {MODEL_KEY::MESSAGE, "message"},
+                                                     {MODEL_KEY::AUTHOR, "author"},
                                                      {MODEL_KEY::LONGITUDE, "lastsync"}};
                                                      
 static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::ICON], MODEL_KEY::ICON},
@@ -370,10 +374,7 @@ static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::
                                                          {MODEL_NAME[MODEL_KEY::DATE], MODEL_KEY::DATE},
                                                          {MODEL_NAME[MODEL_KEY::MODIFIED], MODEL_KEY::MODIFIED},
                                                          {MODEL_NAME[MODEL_KEY::MIME], MODEL_KEY::MIME},
-                                                         {
-                                                             MODEL_NAME[MODEL_KEY::SIZE],
-                                                             MODEL_KEY::SIZE,
-                                                         },
+                                                         {MODEL_NAME[MODEL_KEY::SIZE], MODEL_KEY::SIZE},
                                                          {MODEL_NAME[MODEL_KEY::TAG], MODEL_KEY::TAG},
                                                          {MODEL_NAME[MODEL_KEY::PERMISSIONS], MODEL_KEY::PERMISSIONS},
                                                          {MODEL_NAME[MODEL_KEY::THUMBNAIL], MODEL_KEY::THUMBNAIL},
@@ -508,6 +509,8 @@ static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::
                                                          {MODEL_NAME[MODEL_KEY::LASTSYNC], MODEL_KEY::LASTSYNC},
                                                          {MODEL_NAME[MODEL_KEY::LATITUDE], MODEL_KEY::LATITUDE},
                                                          {MODEL_NAME[MODEL_KEY::LONGITUDE], MODEL_KEY::LONGITUDE},
+                                                         {MODEL_NAME[MODEL_KEY::MESSAGE], MODEL_KEY::MESSAGE},
+                                                         {MODEL_NAME[MODEL_KEY::AUTHOR], MODEL_KEY::AUTHOR},
                                                          {MODEL_NAME[MODEL_KEY::BRANCH], MODEL_KEY::BRANCH}};
                                                          /**
  * @brief MODEL

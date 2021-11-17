@@ -29,6 +29,7 @@ T.TabBar
    Kirigami.Theme.colorSet: Kirigami.Theme.Window
    Kirigami.Theme.inherit: false
    
+   spacing: Maui.Style.space.tiny
     /**
      * showNewTabButton : bool
      */
@@ -118,7 +119,7 @@ T.TabBar
                     orientation: ListView.Horizontal
                     width: _scrollView.width
                     height: _scrollView.height
-                    spacing: Maui.Style.space.tiny
+                    spacing: control.spacing
                     model: control.contentModel
                     interactive: Maui.Handy.isTouch
                     currentIndex: control.currentIndex

@@ -72,7 +72,8 @@ Item
     /**
      * currentIndex : int
      */
-    property int currentIndex : -1
+    property int currentIndex : -1    
+    
     onCurrentIndexChanged:
     {
         if(control.autoExclusive && control.count > 0)
@@ -172,7 +173,7 @@ Item
                     
                     background: Kirigami.ShadowedRectangle
                     {
-                        color: checked || down ? Kirigami.Theme.highlightColor : Qt.lighter(Kirigami.Theme.backgroundColor)
+                        color: checked || down ? Kirigami.Theme.highlightColor : ( hovered ? Kirigami.Theme.hoverColor : Qt.lighter(Kirigami.Theme.backgroundColor))
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0
@@ -372,7 +373,6 @@ Item
                         height:  width
                     }
                 }
-            }
-        
+            }        
     }
 }
