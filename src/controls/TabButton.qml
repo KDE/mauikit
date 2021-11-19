@@ -46,7 +46,7 @@ T.TabButton
     
     contentItem:  MouseArea
     {
-        acceptedButtons:  Qt.RightButton
+        acceptedButtons: Qt.RightButton
         propagateComposedEvents: true
         preventStealing: false
         

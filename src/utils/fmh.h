@@ -208,7 +208,8 @@ enum MODEL_KEY : int {
     LONGITUDE,
     MESSAGE,
     AUTHOR,
-    BRANCH
+    BRANCH,
+    UPDATABLE
 };
 
 static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
@@ -360,6 +361,7 @@ static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, "icon"},
                                                      {MODEL_KEY::BRANCH, "branch"},
                                                      {MODEL_KEY::MESSAGE, "message"},
                                                      {MODEL_KEY::AUTHOR, "author"},
+                                                     {MODEL_KEY::UPDATABLE, "updatable"},
                                                      {MODEL_KEY::LONGITUDE, "lastsync"}};
                                                      
 static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::ICON], MODEL_KEY::ICON},
@@ -511,6 +513,7 @@ static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::
                                                          {MODEL_NAME[MODEL_KEY::LONGITUDE], MODEL_KEY::LONGITUDE},
                                                          {MODEL_NAME[MODEL_KEY::MESSAGE], MODEL_KEY::MESSAGE},
                                                          {MODEL_NAME[MODEL_KEY::AUTHOR], MODEL_KEY::AUTHOR},
+                                                         {MODEL_NAME[MODEL_KEY::UPDATABLE], MODEL_KEY::UPDATABLE},
                                                          {MODEL_NAME[MODEL_KEY::BRANCH], MODEL_KEY::BRANCH}};
                                                          /**
  * @brief MODEL
