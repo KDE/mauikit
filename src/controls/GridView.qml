@@ -112,6 +112,8 @@ Item
      */
     property alias contentWidth : controlView.contentWidth
     
+    property alias scrollView: _scrollView
+    
     /**
      * topPadding : int
      */
@@ -136,6 +138,16 @@ Item
      * padding : int
      */
     property alias padding: _scrollView.padding
+    
+    /**
+     * leftMargin : int
+     */
+    property int verticalScrollBarPolicy:  ScrollBar.AsNeeded
+    
+    /**
+     * horizontalScrollBarPolicy : ScrollBar.policy
+     */
+    property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
     
     /**
      * holder : Holder
@@ -223,8 +235,8 @@ Item
         horizontalPadding: padding
         verticalPadding: padding
         clip: control.clip
-        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-        ScrollBar.vertical.policy: ScrollBar.AsNeeded        
+        ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
+        ScrollBar.vertical.policy: control.verticalScrollBarPolicy  
         
         GridView
         {
