@@ -26,7 +26,7 @@
 #include <QQuickWindow>
 #include <QQuickItem>
 
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 #include <KConfig>
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -149,7 +149,7 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
 {
-#if !defined Q_OS_ANDROID || defined Q_OS_LINUX // ignore csd for those
+#if !defined Q_OS_ANDROID || defined Q_OS_LINUX || defined Q_OS_FREEBSD // ignore csd for those
     if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
     {
         if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
@@ -165,7 +165,7 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
 
 void CSDControls::getWindowControlsSettings()
 {    
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
     
     m_styleName = UTIL::loadSettings("CSDStyle", "GLOBAL", "Nitrux", true).toString();
     auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_styleName));

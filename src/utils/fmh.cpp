@@ -103,7 +103,7 @@ bool isWindows()
 
 bool isLinux()
 {
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
     return true;
 #else
     return false;

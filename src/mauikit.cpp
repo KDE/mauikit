@@ -32,7 +32,7 @@
 
 #ifdef Q_OS_ANDROID
 #include "platforms/android/mauiandroid.h"
-#elif defined Q_OS_LINUX
+#elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
 #include "platforms/linux/mauilinux.h"
 #endif
 
@@ -163,10 +163,8 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_ANDROID
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
-#elif defined Q_OS_LINUX && !defined Q_OS_ANDROID
-
-    qmlRegisterType(componentUrl(QStringLiteral("labs/CSDControls.qml")), uri, 1, 1, "CSDControls");
-    
+#elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
+    qmlRegisterType(componentUrl(QStringLiteral("labs/CSDControls.qml")), uri, 1, 1, "CSDControls");    
 #if defined Q_PROCESSOR_ARM
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #else
@@ -176,7 +174,7 @@ void MauiKit::registerTypes(const char *uri)
 #endif
 
     /** PLATFORMS SPECIFIC CONTROLS **/
-#if defined Q_OS_LINUX || defined Q_OS_MACOS
+#if defined Q_OS_LINUX || defined Q_OS_FREEBSD || defined Q_OS_MACOS
     qmlRegisterType(componentUrl(QStringLiteral("Terminal.qml")), uri, 1, 0, "Terminal");
 #endif
 
@@ -186,7 +184,7 @@ void MauiKit::registerTypes(const char *uri)
         Q_UNUSED(scriptEngine)
         return new MAUIAndroid;
     });
-#elif defined Q_OS_LINUX
+#elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
     qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE");
 #elif defined Q_OS_WIN32
     // here window platform integration interfaces

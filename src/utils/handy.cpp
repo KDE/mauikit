@@ -38,7 +38,7 @@
 #include <QApplication>
 #endif
 
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 #include <KSharedConfig>
 #include <KConfig>
 #include <KConfigGroup>
@@ -62,7 +62,7 @@ Handy::Handy(QObject *parent)
     : QObject(parent)
     , m_isTouch(Handy::isTouch())
 {
-#if defined Q_OS_LINUX && !defined Q_OS_ANDROID
+#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 
     auto configWatcher = new QFileSystemWatcher({CONF_FILE.toLocalFile()}, this);
 
