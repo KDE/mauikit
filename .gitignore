@@ -74,3 +74,11 @@ CMakeLists.txt.user*
 
 # Bazaar files
 .bzr
+
+# LSP & IDEs
+/.clang-format
+/compile_commands.json
+.clangd
+.cache
+.idea
+/cmake-build*
