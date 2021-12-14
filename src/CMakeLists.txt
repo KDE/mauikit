@@ -130,13 +130,26 @@ elseif(UNIX AND NOT APPLE)
 elseif(APPLE)
     #    set(CMAKE_CXX_FLAGS "-x objective-c++")
 
-    #    set(mauikit_PLATFORM_SRCS
-    #        platforms/macos/mauimacos.cpp
-    #        )
+    set(mauikit_PLATFORM_SRCS
+        platforms/macos/mauimacos.cpp
+    )
 
-    #    set(mauikit_PLATFORM_HDRS
-    #        platforms/macos/mauimacos.h
-    #        )
+    set(mauikit_PLATFORM_HDRS
+        platforms/macos/mauimacos.h
+    )
+    # Temporarily share blur, shawdow implementation for Windows
+    set(window_PLATFORM_SRCS
+        platforms/windows/blurhelper/windowblur.cpp
+        platforms/windows/shadowhelper/boxshadowrenderer.cpp
+        platforms/windows/shadowhelper/tileset.cpp
+        platforms/windows/shadowhelper/windowshadow.cpp
+        )
+    set(window_PLATFORM_HDRS
+        platforms/windows/blurhelper/windowblur.h
+        platforms/windows/shadowhelper/boxshadowrenderer.h
+        platforms/windows/shadowhelper/tileset.h
+        platforms/windows/shadowhelper/windowshadow.h
+        )
 elseif(WIN32)
     set(mauikit_PLATFORM_SRCS
         platforms/windows/mauiwindows.cpp
@@ -211,10 +224,15 @@ elseif(UNIX AND NOT APPLE)
         )
     target_include_directories(MauiKit PRIVATE platforms/linux)
 elseif(APPLE)
+    # Temporarily share blur, shawdow implementation for Windows
     include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
-        ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
         )
+    # include_directories(
+    #     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
+    #     ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
+    #     )
     target_include_directories(MauiKit PRIVATE platforms/macos)
 endif()
 
@@ -231,8 +249,11 @@ if(ANDROID)
         install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
     endif()
 elseif(UNIX AND NOT ANDROID)
-    target_link_libraries(MauiKit PRIVATE Qt5::X11Extras KF5::ConfigCore KF5::WindowSystem)
-    
+    if(NOT APPLE)
+        target_link_libraries(MauiKit PRIVATE Qt5::X11Extras)
+        target_link_libraries(MauiKit PRIVATE KF5::WindowSystem)
+    endif()
+    target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
 endif()
 
 target_link_libraries(MauiKit
