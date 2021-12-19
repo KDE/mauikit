@@ -195,13 +195,14 @@ ToolBar
             }
         }
         
-        Loader
+      /*  Loader
         {
             anchors.fill: parent
             active: control.draggable
             
-            sourceComponent: Item
+            sourceComponent: */Item
             {
+                anchors.fill: parent
                 DragHandler
                 {
                     acceptedDevices: PointerDevice.GenericPointer
@@ -209,7 +210,7 @@ ToolBar
                     onActiveChanged: if (active) { root.startSystemMove(); }
                 }
             }
-        }
+        //}
         
         Item
         {

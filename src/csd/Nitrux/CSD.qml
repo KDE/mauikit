@@ -16,7 +16,7 @@ Item
     {
         id: _row
         height: parent.height
-        spacing: Maui.Style.space.medium
+        spacing: Maui.Style.space.small
 
         ToolSeparator
         {
@@ -66,7 +66,11 @@ Item
                 }
             }
 
-            onClicked: buttonClicked(button.type)
+            onClicked: 
+            {
+                console.log("NITRUX CSD BUTTON CLICKED", button.type)
+               buttonClicked(button.type)
+            }
         }
     }
 }

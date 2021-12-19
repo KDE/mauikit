@@ -14,6 +14,7 @@ Maui.CSDControls
       */
     function performActiveWindowAction(type)
     {
+        console.log("WINDOW CSD CLICKED", type)
         if (type === Maui.CSDButton.Close) {
             root.close()
         } else if (type === Maui.CSDButton.Maximize || type === Maui.CSDButton.Restore) {

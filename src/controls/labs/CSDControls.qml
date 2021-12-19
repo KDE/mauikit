@@ -15,7 +15,7 @@ Loader
     active: Maui.App.controls.enableCSD && buttonsModel.length
     visible: active
 
-    required property int side
+    property int side
     
     property bool maximized : root.visibility === Window.Maximized
     property bool isActiveWindow : root.active

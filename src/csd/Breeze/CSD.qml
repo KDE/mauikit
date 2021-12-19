@@ -47,8 +47,8 @@ Item
                 type: mapType(modelData)
                 isHovered: _button.hovered
                 isPressed: _button.pressed
-                isFocused:  root.active
-                isMaximized: root.visibility === Window.Maximized
+                isFocused:  isActiveWindow
+                isMaximized: maximized
             }
             
             contentItem: Item
