@@ -49,6 +49,7 @@ Pane
     topPadding: control.padding
     bottomPadding: control.padding
     
+//     Kirigami.Theme.inherit: true
     Kirigami.Theme.colorSet: Kirigami.Theme.View    
     
     /*!

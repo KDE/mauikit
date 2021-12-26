@@ -40,6 +40,7 @@ Popup
     id: control
     
     parent: ApplicationWindow.overlay
+    Kirigami.Theme.colorSet: Kirigami.Theme.Window    
     
     width: filling ? parent.width : mWidth
     height: filling ? parent.height : mHeight
@@ -155,15 +156,15 @@ Popup
                 anchors.fill: parent
                 color: "transparent"
                 radius: Maui.Style.radiusV - 0.5
-                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                border.color: Qt.lighter(control.Kirigami.Theme.backgroundColor, 2)
                 opacity: 0.7
             }            
         }        
         
         background: Rectangle
         {
-            color: Kirigami.Theme.backgroundColor            
-            readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+            color: control.Kirigami.Theme.backgroundColor            
+            readonly property color m_color : Qt.darker(control.Kirigami.Theme.backgroundColor, 2.2)
             
             border.color: control.filling ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
             radius: control.filling ? 0 : Maui.Style.radiusV          

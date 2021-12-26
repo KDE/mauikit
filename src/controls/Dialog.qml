@@ -24,6 +24,7 @@ import QtQuick.Layouts 1.3
 
 import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.9 as Kirigami
+import QtQuick.Templates 2.15 as T
 
 import QtGraphicalEffects 1.0
 
@@ -223,6 +224,7 @@ Maui.Popup
         {
             id: _page
             clip: true
+            Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
             Layout.fillWidth: true
             Layout.fillHeight: true
             implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.margins*2) + _page.headerContainer.implicitHeight + (_page.padding * 2) + parent.spacing
@@ -377,9 +379,11 @@ Maui.Popup
             Layout.maximumHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
             visible: control.defaultButtons || control.actions.length
 
-            Button
+            T.Button
             {
                 id: _rejectButton
+                Kirigami.Theme.inherit: true
+                Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -405,10 +409,12 @@ Maui.Popup
                 onClicked: rejected()            
             }
 
-            Button
+            T.Button
             {
                 id: _acceptButton
-
+                Kirigami.Theme.inherit: true
+                Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 implicitWidth: width
@@ -435,9 +441,12 @@ Maui.Popup
             {
                 model: control.actions
 
-                Button
+                T.Button
                 {
                     id: _actionButton
+                    Kirigami.Theme.inherit: true
+                    Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                    
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     implicitWidth: width
