@@ -182,18 +182,20 @@ void CSDControls::getWindowControlsSettings()
     }
     
     qDebug() << "CSD QML SOURCXE" << m_source;
-    auto kconf = KSharedConfig::openConfig("kwinrc");
-    const auto group = kconf->group("org.kde.kdecoration2");
-    
-    if (group.hasKey("ButtonsOnLeft")) {
-        m_leftWindowControls = group.readEntry("ButtonsOnLeft", "").split("", Qt::SkipEmptyParts);
-        emit this->leftWindowControlsChanged();
-    }
-    
-    if (group.hasKey("ButtonsOnRight")) {
-        m_rightWindowControls = group.readEntry("ButtonsOnRight", "").split("", Qt::SkipEmptyParts);
-        emit this->rightWindowControlsChanged();
-    }
+    m_rightWindowControls =  QStringList {"I", "A", "X"};
+    emit this->rightWindowControlsChanged();
+//     auto kconf = KSharedConfig::openConfig("kwinrc");
+//     const auto group = kconf->group("org.kde.kdecoration2");
+//     
+//     if (group.hasKey("ButtonsOnLeft")) {
+//         m_leftWindowControls = group.readEntry("ButtonsOnLeft", "").split("", Qt::SkipEmptyParts);
+//         emit this->leftWindowControlsChanged();
+//     }
+//     
+//     if (group.hasKey("ButtonsOnRight")) {
+//         m_rightWindowControls = group.readEntry("ButtonsOnRight", "").split("", Qt::SkipEmptyParts);
+//         emit this->rightWindowControlsChanged();
+//     }
     
 #elif defined Q_OS_MACOS || defined Q_OS_ANDROID
     m_leftWindowControls = QStringList {"X", "I", "A"};
