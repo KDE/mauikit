@@ -186,13 +186,13 @@ Item
             }
         }   
    
-        MouseArea
+        AbstractButton
         {
             id: _defaultButtonMouseArea
             anchors.fill: parent
             visible: !control.expanded 
             hoverEnabled: true
-            implicitWidth: _defaultButtonLayout.implicitWidth
+            implicitWidth: _defaultButtonLayout.implicitWidth + leftPadding + rightPadding
             
             function triggerAction()
             {
@@ -304,10 +304,9 @@ Item
                 }
             }                
             
-            RowLayout
+            contentItem: RowLayout
             {
                 id: _defaultButtonLayout
-                height: parent.height
                 spacing: 2
                 
                 Private.BasicToolButton

@@ -79,7 +79,7 @@ T.Switch
             {
                 source: control.icon.name
                 height: control.icon.height
-                width: ccontrol.icon.width
+                width: control.icon.width
                 anchors.centerIn: parent
             }
         }

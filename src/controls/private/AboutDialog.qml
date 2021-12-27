@@ -71,16 +71,16 @@ Maui.Dialog
         ]
         
         
-        Maui.AlternateListItem
+        Control
         {
             id: _header
             Layout.fillWidth: true
             implicitHeight: Math.max((_div1.implicitHeight * 1.2) + Maui.Style.space.medium, control.page.height+ Maui.Style.space.tiny)
+            padding: 0
             
-            Item
+            background: Item
             {
                 id: _iconItem
-                anchors.fill: parent
                 clip: true
                 
                 Item

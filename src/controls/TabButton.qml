@@ -56,6 +56,8 @@ T.TabButton
             {
                 control.rightClicked(mouse)
             }          
+            
+            mouse.accepted = false
         }
         
         RowLayout

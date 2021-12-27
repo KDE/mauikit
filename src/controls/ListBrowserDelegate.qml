@@ -187,8 +187,7 @@ Maui.ItemDelegate
 
     RowLayout
     {
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
         spacing: _template.spacing
 
         Item
@@ -223,8 +222,7 @@ Maui.ItemDelegate
             Layout.fillWidth: true
             
             isCurrentItem : control.isCurrentItem
-            hovered: control.hovered
-            leftMargin: iconVisible ? 0 : Maui.Style.space.medium
+            leftPadding: iconVisible ? 0 : Maui.Style.space.medium
         }
     }
 }

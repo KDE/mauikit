@@ -3,28 +3,29 @@ import QtQuick.Controls 2.13
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Templates 2.15 as T
 
 /*!
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-MouseArea
+
+T.ItemDelegate
 {
     id: control
-    property bool checked : false
+    checked : false
     
     property alias template : _template
     property alias label1 : _template.label1
     property alias label2 : _template.label2
     
-    implicitHeight: _template.implicitHeight + Maui.Style.space.medium
+    implicitHeight: _template.implicitHeight + topPadding + bottomPadding
     hoverEnabled: true
     
-    Maui.ListItemTemplate
+   contentItem: Maui.ListItemTemplate
     {
         id: _template
-        width: parent.width
-        anchors.centerIn: parent
+      
         headerSizeHint: iconSizeHint + Maui.Style.space.big
 
         label1.font.pointSize: Maui.Style.fontSizes.big
@@ -42,7 +43,7 @@ MouseArea
             
            Maui.Triangle
            {
-               visible: control.hovered || control.pressed || control.containsMouse 
+               visible: control.hovered || control.pressed  
                anchors.centerIn: parent
                height: Maui.Style.iconSizes.tiny
                width: height

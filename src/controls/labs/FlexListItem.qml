@@ -23,6 +23,7 @@ import QtQuick.Layouts 1.3
 
 import org.mauikit.controls 1.2 as Maui
 
+import QtQuick.Templates 2.15 as T
 
 /*!
   \since org.mauikit.controls.labs 1.0
@@ -30,7 +31,7 @@ import org.mauikit.controls 1.2 as Maui
 
   A template to position text besides an icon or image with a flex content side, that flexes under constrained spaces.
 */
-ItemDelegate
+T.ItemDelegate
 {
     id: control
 
@@ -92,11 +93,9 @@ ItemDelegate
 
     background: null
 
-    GridLayout
+    contentItem: GridLayout
     {
         id: _layout
-        anchors.fill: parent
-        anchors.margins: control.padding
         rowSpacing: 0
         columnSpacing: 0
         rows: 2

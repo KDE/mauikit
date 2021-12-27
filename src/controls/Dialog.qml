@@ -321,8 +321,8 @@ Maui.Popup
                             label2.textFormat : TextEdit.AutoText
                             label2.wrapMode: TextEdit.WordWrap
                             iconVisible: control.width > Kirigami.Units.gridUnit * 20
-                            leftMargin: 0
-                            rightMargin: 0
+                            leftPadding: 0
+                            rightPadding: 0
 
                             iconSizeHint: Maui.Style.iconSizes.large
                             spacing: Maui.Style.space.big

@@ -2,6 +2,7 @@ import QtQuick 2.9
 
 import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Templates 2.15 as T
 
 /*!
   \since org.mauikit.controls.labs 1.0
@@ -9,10 +10,11 @@ import org.mauikit.controls 1.2 as Maui
 
   An alternate style of list item.
 */
-Maui.ItemDelegate
+T.Control
 {
     id: control
 
+    default property alias content : _content.data
     /*!
       Whether or not this list item is the last list item in the view.
     */
@@ -20,8 +22,13 @@ Maui.ItemDelegate
     
     hoverEnabled: false
 
-    leftPadding: Maui.Style.space.big
-    rightPadding: Maui.Style.space.big
+    padding: Maui.Style.space.big
+//     rightPadding: Maui.Style.space.big
+    
+    contentItem: Item
+    {
+        id: _content
+    }
 
     background: Rectangle
     {

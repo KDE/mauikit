@@ -1,4 +1,5 @@
 import QtQuick.Layouts 1.3
+import QtQuick 2.14
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -38,18 +39,16 @@ Maui.AlternateListItem
         /**
          * 
          */
-        property alias spacing: _mainData.spacing
+        spacing: Maui.Style.space.medium
         
         Layout.fillWidth: true
-        implicitHeight: _layout.implicitHeight + (Maui.Style.space.big * 2)
+        implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
-        ColumnLayout
+        contentItem: ColumnLayout
         {
             id: _layout
-            anchors.fill: parent
-            anchors.margins: Maui.Style.space.big
             
-            spacing: Maui.Style.space.medium
+            spacing: control.spacing
             
             Maui.SectionDropDown
             {
@@ -60,12 +59,20 @@ Maui.AlternateListItem
                 checked: true
             }            
             
-            ColumnLayout
+            Rectangle
             {
-                id: _mainData
                 Layout.fillWidth: true
-               
-                visible: _template.checked                           
+                implicitHeight: _mainData.implicitHeight
+                color: "pink"
+                border.color: "red"
+                ColumnLayout
+                {
+                    id: _mainData
+                    anchors.fill: parent
+                    spacing: control.spacing
+                    
+                    visible: _template.checked                           
+                }
             }
         }
 }

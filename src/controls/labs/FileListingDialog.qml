@@ -62,8 +62,8 @@ Maui.Dialog
         iconSource: item.icon
         imageSource: item.thumbnail
         iconSizeHint: Maui.Style.iconSizes.medium
-        leftMargin: 0
-        rightMargin: 0
+        leftPadding: 0
+        rightPadding: 0
         
         ToolButton
         {

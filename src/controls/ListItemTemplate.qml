@@ -23,6 +23,7 @@ import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Templates 2.15 as T
 
 /**
  * ListItemTemplate
@@ -34,7 +35,7 @@ import org.mauikit.controls 1.3 as Maui
  *
  *
  */
-Item
+T.Control
 {
     id: control
 
@@ -44,9 +45,15 @@ Item
       */
     default property alias content: _layout.data
 
-    implicitHeight: _layout.implicitHeight + control.topMargin + control.bottomMargin
-    implicitWidth: _layout.implicitWidth + control.leftMargin +control.rightMargin
+    implicitHeight: _layout.implicitHeight + control.topPadding + control.bottomPadding
 
+    spacing: Maui.Style.space.small
+    padding: 0
+    topPadding: 0
+    bottomPadding: 0
+    leftPadding: Maui.Style.space.medium
+    rightPadding: Maui.Style.space.medium
+    
     /**
       * text1 : string
       */
@@ -112,11 +119,7 @@ Item
       */
     property alias rightLabels : _rightLabels
 
-    /**
-      * spacing : int
-      */
-    property alias spacing : _layout.spacing
-
+ 
     /**
       * layout : RowLayout
       */
@@ -150,10 +153,6 @@ Item
       */
     property bool labelsVisible: true
 
-    /**
-      * hovered : bool
-      */
-    property bool hovered : false
 
     /**
       * fillMode : Image.fillMode
@@ -165,31 +164,7 @@ Item
       */
     property int maskRadius: 0
 
-    /**
-      * margins : int
-      */
-    property int margins: 0
-
-    /**
-      * rightMargin : int
-      */
-    property int rightMargin: Maui.Style.space.medium
-
-    /**
-      * leftMargin : int
-      */
-    property int leftMargin: Maui.Style.space.medium
-
-    /**
-      * topMargin : int
-      */
-    property int topMargin: margins
-
-    /**
-      * bottomMargin : int
-      */
-    property int bottomMargin: margins
-
+    
     /**
       * iconComponent : Component
       */
@@ -197,6 +172,7 @@ Item
     
     property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
 
+    
     Component
     {
         id: _iconComponent
@@ -219,17 +195,12 @@ Item
         }
     }
 
-    RowLayout
+   contentItem: RowLayout
     {
         id: _layout
-        anchors.fill: parent
-        anchors.margins: control.margins
-        anchors.leftMargin: control.leftMargin
-        anchors.rightMargin: control.rightMargin
-        anchors.topMargin: control.topMargin
-        anchors.bottomMargin: control.bottomMargin
+        
 
-        spacing: Maui.Style.space.small
+        spacing: control.spacing
 
         Item
         {

@@ -22,6 +22,7 @@ import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Templates 2.15 as T
 
 /**
  * ItemDelegate
@@ -33,14 +34,25 @@ import org.mauikit.controls 1.2 as Maui
  *
  *
  */
-Item
+
+
+T.Control
 {
     id: control
+    
+    hoverEnabled: !Kirigami.Settings.isMobile
+    
+    padding: 0
+    bottomPadding: padding
+    rightPadding: padding
+    leftPadding: padding
+    topPadding: padding
+    
     focus: false
     /**
      * content :
      */
-    default property alias content : _delegate.data
+    default property alias content : _content.data
         
         /**
          * mouseArea :
@@ -57,50 +69,12 @@ Item
          */
         property alias isCurrentItem :  control.highlighted
         
-        /**
-         * padding :
-         */
-        property alias padding: _delegate.padding
         
-        /**
-         * leftPadding :
-         */
-        property alias leftPadding: _delegate.leftPadding
-        
-        /**
-         * rightPadding :
-         */
-        property alias rightPadding: _delegate.rightPadding
-        
-        /**
-         * topPadding :
-         */
-        property alias topPadding: _delegate.topPadding
-        
-        /**
-         * bottomPadding :
-         */
-        property alias bottomPadding: _delegate.bottomPadding
-        
-        /**
-         * hovered :
-         */
-        property alias hovered: _delegate.hovered
         
         /**
          * containsPress :
          */
         property alias containsPress: _mouseArea.containsPress
-        
-        /**
-         * hoverEnabled :
-         */
-        property alias hoverEnabled: _delegate.hoverEnabled
-        
-        /**
-         * background :
-         */
-        property alias background : _delegate.background
         
         /**
          * highlighted :
@@ -140,38 +114,15 @@ Item
         Drag.hotSpot.x: control.width / 2
         Drag.hotSpot.y: control.height / 2
         
-        Control
+        
+        
+        contentItem : Item
         {
-            id: _delegate
-            
-            height: parent.height
-            width: parent.width
-            
-            hoverEnabled: !Kirigami.Settings.isMobile
-            
-            padding: 0
-            bottomPadding: padding
-            rightPadding: padding
-            leftPadding: padding
-            topPadding: padding
-            
-            SequentialAnimation on y
-            {
-                id: xAnim
-                // Animations on properties start running by default
-                running: false
-                loops: 2
-                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
-                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
-                PauseAnimation { duration: 50 } // This puts a bit of time between the loop
-            }
-            
+            id: _content
             MouseArea
             {
                 id: _mouseArea
-                
-                width: parent.width
-                height: parent.height
+                anchors.fill: parent
                 
                 acceptedButtons:  Qt.RightButton | Qt.LeftButton
                 property bool pressAndHoldIgnored : false
@@ -253,21 +204,33 @@ Item
                         drag.target = null
                         control.pressAndHold(mouse)
                     }
-                }
-            }
-            
-            background: Rectangle
-            {
-                Behavior on color
-                {
-                    ColorAnimation
-                    {
-                        duration: Kirigami.Units.shortDuration
-                    }
-                }
-                color: control.hovered  ? control.Kirigami.Theme.hoverColor : (control.isCurrentItem || _mouseArea.containsPress ? control.Kirigami.Theme.highlightColor: "transparent")
-                
-                radius: control.radius
+                }                
             }
         }
+        
+        SequentialAnimation on y
+        {
+            id: xAnim
+            // Animations on properties start running by default
+            running: false
+            loops: 2
+            NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
+            PauseAnimation { duration: 50 } // This puts a bit of time between the loop
+        }
+        
+        background: Rectangle
+        {
+            Behavior on color
+            {
+                ColorAnimation
+                {
+                    duration: Kirigami.Units.shortDuration
+                }
+            }
+            color: control.hovered  ? control.Kirigami.Theme.hoverColor : (control.isCurrentItem || _mouseArea.containsPress ? control.Kirigami.Theme.highlightColor: "transparent")
+            
+            radius: control.radius
+        }
 }
+
