@@ -112,7 +112,8 @@ T.Control
         Drag.dragType: Drag.Automatic
         Drag.supportedActions: Qt.MoveAction
         Drag.hotSpot.x: control.width / 2
-        Drag.hotSpot.y: control.height / 2      
+        Drag.hotSpot.y: control.height / 2  
+        
         
         contentItem : Item
         {
