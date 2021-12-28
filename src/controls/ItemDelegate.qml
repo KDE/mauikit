@@ -203,17 +203,17 @@ T.Control
                         drag.target = null
                         control.pressAndHold(mouse)
                     }
-                }                
-            }
-            
-            onPositionChanged:
-            {
-                if(mouseArea.drag.active)
+                }
+                
+                onPositionChanged:
                 {
-                    pressAndHoldIgnored = false
+                    if(mouseArea.drag.active)
+                    {
+                        pressAndHoldIgnored = false
+                    }
                 }
             }
-            
+         
             SequentialAnimation on y
             {
                 id: xAnim

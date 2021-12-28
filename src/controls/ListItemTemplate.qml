@@ -37,7 +37,6 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-    
     opacity: enabled ? 1 : 0.5
     /**
      * content : data
@@ -126,7 +125,7 @@ Item
         property int iconSizeHint : Maui.Style.iconSizes.big
         property int imageSizeHint : -1
         
-        property int headerSizeHint : height
+        property int headerSizeHint : Math.max(height, iconSizeHint)
         
         /**
          * imageSource : string
@@ -194,13 +193,14 @@ Item
         RowLayout
         {
             id: _layout
-            anchors.fill: parent
+           height: parent.height
+           width: parent.width
             spacing: Maui.Style.space.small
           
             Item
             {
                 id: _iconContainer
-                implicitHeight: iconSizeHint
+                implicitHeight: control.headerSizeHint
                 
                 visible: (control.width > Kirigami.Units.gridUnit * 10) && (iconSource.length > 0 || imageSource.length > 0)
                 
@@ -209,8 +209,8 @@ Item
                 Layout.fillHeight: true
                 Layout.fillWidth: !control.labelsVisible
                 
-                Layout.preferredWidth: Math.min(height, control.headerSizeHint)
-                Layout.preferredHeight: Math.max(control.height, control.headerSizeHint)
+                Layout.preferredWidth:  control.headerSizeHint
+                Layout.preferredHeight: implicitHeight
                 
                 //            Kirigami.Icon
                 //            {

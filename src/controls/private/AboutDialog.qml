@@ -71,18 +71,17 @@ Maui.Dialog
         ]
         
         
-        Control
+        Item
         {
             id: _header
             Layout.fillWidth: true
-            implicitHeight: control.page.height
-            padding: 0
+            implicitHeight: Math.max(_div1.implicitHeight, control.page.height)
             
-            background: Item
+            Item
             {
                 id: _iconItem
                 clip: true
-                
+                anchors.fill: parent
                 Item
                 {
                     id: _iconRec
@@ -146,58 +145,57 @@ Maui.Dialog
                 }
             }
             
-            contentItem: Item 
+            Maui.ListItemTemplate
             {
-                Maui.ListItemTemplate
+                id: _div1
+//                 color: "blue"
+                width: parent.width
+//                 height: implicitHeight
+                anchors.centerIn: parent
+                
+                iconSource: Maui.App.iconName
+                
+                fillMode: Image.PreserveAspectFit
+                iconSizeHint: Maui.Style.iconSizes.huge
+                imageSizeHint: iconSizeHint
+                headerSizeHint: iconSizeHint + Maui.Style.space.huge
+                
+                spacing: Maui.Style.space.big
+                label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                label1.text: Maui.App.about.displayName
+                label1.font.weight: Font.Bold
+                label1.font.bold: true
+                label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
+                
+                label2.text: Maui.App.about.shortDescription
+                label2.font.pointSize: Maui.Style.fontSizes.big
+                label2.elide: Text.ElideRight
+                label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                leftLabels.spacing: Maui.Style.space.medium
+                leftLabels.data: [ Repeater
                 {
-                    id: _div1
-                    
-                    width: parent.width
-                    anchors.centerIn: parent
-                    
-                    iconSource: Maui.App.iconName
-                    
-                    fillMode: Image.PreserveAspectFit
-                    iconSizeHint: Maui.Style.iconSizes.huge
-                    imageSizeHint: iconSizeHint
-                    headerSizeHint: iconSizeHint + Maui.Style.space.huge
-                    
-                    spacing: Maui.Style.space.big
-                    label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    label1.text: Maui.App.about.displayName
-                    label1.font.weight: Font.Bold
-                    label1.font.bold: true
-                    label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
-                    
-                    label2.text: Maui.App.about.shortDescription
-                    label2.font.pointSize: Maui.Style.fontSizes.big
-                    label2.elide: Text.ElideRight
-                    label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    leftLabels.spacing: Maui.Style.space.medium
-                    leftLabels.data: [ Repeater
-                    {
-                        model: Maui.App.about.licenses
-                        Label
-                        {
-                            Layout.fillWidth: true
-                            text: "© " + modelData.name
-                            opacity: 0.6
-                            font.pointSize: Maui.Style.fontSizes.small
-                        }
-                    },
-                    
+                    model: Maui.App.about.licenses
                     Label
                     {
                         Layout.fillWidth: true
-                        text:   Maui.App.about.version + " " + Maui.App.about.otherText
-                        font.family: "Monospace"
+                        text: "© " + modelData.name
                         opacity: 0.6
                         font.pointSize: Maui.Style.fontSizes.small
                     }
-                    
-                    ]
+                },
+                
+                Label
+                {
+                    Layout.fillWidth: true
+                    text:   Maui.App.about.version + " " + Maui.App.about.otherText
+                    font.family: "Monospace"
+                    opacity: 0.6
+                    font.pointSize: Maui.Style.fontSizes.small
                 }
+                
+                ]
             }
+            
         }
         
         Loader
