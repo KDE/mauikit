@@ -40,9 +40,9 @@ Item
     
     implicitHeight:  _imp.implicitHeight + Maui.Style.space.big
     implicitWidth: _imp.implicitWidth
-    property bool hidden : count === 0
+    readonly property bool hidden : count === 0
     
-    //     visible: control.count > 0
+    visible: !hidden
     focus: true
     Keys.enabled: true
     /**
@@ -301,6 +301,27 @@ Item
                 }
             }
             
+            Maui.Rectangle
+            {
+                opacity: 0.2
+                anchors.fill: parent
+                anchors.margins: 4
+                visible: _dropArea.containsDrag
+                color: "transparent"
+                borderColor: Kirigami.Theme.textColor
+                solidBorder: false
+            }
+            
+            DropArea
+            {
+                id: _dropArea
+                anchors.fill: parent
+                onDropped:
+                {
+                    control.urisDropped(drop.urls)
+                }
+            }
+            
             layer.enabled: true
             layer.effect: DropShadow
             {
@@ -431,29 +452,12 @@ Item
                 }
             }
             
-            Maui.Rectangle
-            {
-                opacity: 0.2
-                anchors.fill: parent
-                anchors.margins: 4
-                visible: _dropArea.containsDrag
-                color: "transparent"
-                borderColor: "white"
-                solidBorder: false
-            }
             
-            DropArea
-            {
-                id: _dropArea
-                anchors.fill: parent
-                onDropped:
-                {
-                    control.urisDropped(drop.urls)
-                }
-            }
         }
         
     }
+    
+  
     
     Keys.onEscapePressed:
     {
