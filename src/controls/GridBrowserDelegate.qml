@@ -170,7 +170,6 @@ Maui.ItemDelegate
         height: parent.height
         iconContainer.scale: _dropArea.containsDrag ? 0.8 : 1
         
-        hovered: control.hovered 
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
     }

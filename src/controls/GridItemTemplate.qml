@@ -23,6 +23,7 @@ import QtQuick.Controls 2.15
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Templates 2.15 as T
 
 /**
  * GridItemTemplate
@@ -34,10 +35,19 @@ import org.mauikit.controls 1.3 as Maui
  *
  *
  */
-Item
+T.Control
 {
     id: control
     focus: false
+    spacing: Maui.Style.space.small
+    padding: Maui.Style.space.tiny
+    topPadding: padding
+    bottomPadding: padding
+    rightPadding: padding
+    leftPadding: padding
+    
+    implicitHeight: _layout.implicitHeight + control.topPadding + control.bottomPadding
+    
     /**
      * content : data
      */
@@ -114,15 +124,11 @@ Item
          */
         property int maskRadius: 0
         
-        /**
-         * hovered : bool
-         */
-        property bool hovered: false
-        
+       
         property int imageWidth : -1
         
         property int imageHeight: -1
-
+        
         property bool smooth : false
         
         property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
@@ -157,12 +163,10 @@ Item
             }
         }
         
-        ColumnLayout
+         contentItem:  ColumnLayout
         {
             id: _layout
-            width: parent.width
-            height: parent.height
-            spacing: 0
+            spacing: control.spacing
             
             Loader
             {
@@ -170,11 +174,20 @@ Item
                 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.margins: 2
+//                 Layout.margins: 2
                 
                 asynchronous: true
-                sourceComponent: control.iconComponent
+                sourceComponent: control.iconComponent                
                 
+                Behavior on scale
+                {
+                    NumberAnimation
+                    {
+                        duration: Kirigami.Units.longDuration
+                        easing.type: Easing.OutInQuad
+                        
+                    }
+                }
                 //                Kirigami.Icon
                 //                {
                 //                    visible: _iconLoader.status !== Loader.Ready
@@ -195,7 +208,7 @@ Item
                 
                 Layout.preferredHeight: labelSizeHint
                 Layout.fillWidth: true
-                Layout.margins: Maui.Style.space.medium
+//                 Layout.margins: Maui.Style.space.small
                 Layout.maximumHeight: control.height* 0.9
                 Layout.minimumHeight: labelSizeHint
                 
