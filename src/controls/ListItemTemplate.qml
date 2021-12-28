@@ -23,7 +23,6 @@ import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
 
 /**
  * ListItemTemplate
@@ -35,7 +34,7 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.Control
+Item
 {
     id: control
 
@@ -45,15 +44,15 @@ T.Control
       */
     default property alias content: _layout.data
 
-    implicitHeight: _layout.implicitHeight + control.topPadding + control.bottomPadding
+    implicitHeight: _layout.implicitHeight /*+ control.topPadding + control.bottomPadding*/
 
-    spacing: Maui.Style.space.small
-    padding: 0
-    topPadding: 0
-    bottomPadding: 0
-    leftPadding: Maui.Style.space.medium
-    rightPadding: Maui.Style.space.medium
-    
+property alias spacing: _layout.spacing
+// padding: 0
+//     topPadding: 0
+//     bottomPadding: 0
+//     leftPadding: Maui.Style.space.medium
+//     rightPadding: Maui.Style.space.medium
+
     /**
       * text1 : string
       */
@@ -119,7 +118,7 @@ T.Control
       */
     property alias rightLabels : _rightLabels
 
- 
+
     /**
       * layout : RowLayout
       */
@@ -164,15 +163,16 @@ T.Control
       */
     property int maskRadius: 0
 
-    
+
     /**
       * iconComponent : Component
       */
     property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
-    
-    property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
 
-    
+    property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
+    property bool hovered: false
+
+
     Component
     {
         id: _iconComponent
@@ -190,17 +190,16 @@ T.Control
 
             fillMode: control.fillMode
             maskRadius: control.maskRadius
-            
+
             isMask: control.isMask
         }
     }
 
-   contentItem: RowLayout
+   RowLayout
     {
         id: _layout
-        
-
-        spacing: control.spacing
+        anchors.fill: parent
+        spacing: Maui.Style.space.small
 
         Item
         {

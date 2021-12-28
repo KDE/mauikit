@@ -41,11 +41,12 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
-    
+
     radius: Maui.Style.radiusV
 
     implicitHeight: label4.visible || label2.visible ? Maui.Style.rowHeight + (Maui.Style.space.medium * 1.5) : Maui.Style.rowHeight
     isCurrentItem : ListView.isCurrentItem || checked
+    leftPadding: iconVisible ? 0 : Maui.Style.space.medium
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
@@ -136,7 +137,7 @@ Maui.ItemDelegate
       * template : ListItemTemplate
       */
     property alias template : _template
-    
+
     property alias maskRadius : _template.maskRadius
 
     /**
@@ -149,16 +150,16 @@ Maui.ItemDelegate
       */
     signal toggled(bool state)
 
-    
+
     background: Rectangle
     {
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-        
+
         color: control.hovered ? control.Kirigami.Theme.hoverColor :( control.isCurrentItem ||  control.containsPress ? control.Kirigami.Theme.highlightColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))
-        
+
         radius: control.radius
     }
-    
+
     Loader
     {
         asynchronous: true
@@ -177,7 +178,7 @@ Maui.ItemDelegate
                 color:  control.Kirigami.Theme.backgroundColor
                 border.color: control.Kirigami.Theme.highlightColor
             }
-            
+
             onDropped:
             {
                 control.contentDropped(drop)
@@ -195,7 +196,7 @@ Maui.ItemDelegate
             Layout.preferredHeight: parent.height
             visible: control.checkable || control.checked
         }
-        
+
         Loader
         {
             asynchronous: true
@@ -209,20 +210,20 @@ Maui.ItemDelegate
                 Binding on checked
                 {
                     value: control.checked
-                    restoreMode: Binding.RestoreBinding 
+                    restoreMode: Binding.RestoreBinding
                 }
                 onToggled: control.toggled(state)
             }
         }
-        
+
         Maui.ListItemTemplate
         {
             id: _template
             Layout.fillHeight: true
             Layout.fillWidth: true
-            
+            hovered: control.hovered
+
             isCurrentItem : control.isCurrentItem
-            leftPadding: iconVisible ? 0 : Maui.Style.space.medium
         }
     }
 }

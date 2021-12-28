@@ -42,112 +42,112 @@ Maui.ItemDelegate
     id: control
     focus: false
     isCurrentItem : GridView.isCurrentItem || checked
-    
+
     radius: Maui.Style.radiusV
     /**
      * tooltipText : string
      */
     property string tooltipText
-    
+
     /**
      * template : GridItemTemplate
      */
     property alias template : _template
-    
+
     /**
      * label1 : Label
      */
     property alias label1 : _template.label1
-    
+
     /**
      * label2 : Label
      */
     property alias label2 : _template.label2
-    
-    
+
+
     /**
      * iconItem : Item
      */
     property alias iconItem : _template.iconItem
-    
+
     /**
      * iconVisible : bool
      */
     property alias iconVisible : _template.iconVisible
-    
+
     /**
      * iconSizeHint : int
      */
     property alias iconSizeHint : _template.iconSizeHint
-    
+
     /**
      * imageSource : string
      */
     property alias imageSource : _template.imageSource
-    
+
     /**
      * iconSource : string
      */
     property alias iconSource : _template.iconSource
-    
+
     /**
      * showLabel : bool
      */
     //property alias showLabel : _template.labelsVisible
-    
+
     property alias labelsVisible : _template.labelsVisible
-    
+
     /**
      * checked : bool
      */
     property bool checked : false
-    
+
     property alias fillMode : _template.fillMode
-    
+
     property alias maskRadius : _template.maskRadius
-    
+
     /**
      * checkable : bool
      */
     property bool checkable: false
-    
+
     /**
      * dropArea : DropArea
      */
     property alias dropArea : _dropArea
-    
+
     property alias imageWidth : _template.imageWidth
     property alias imageHeight : _template.imageHeight
-    
+
     /**
      * contentDropped :
      */
     signal contentDropped(var drop)
-    
+
     /**
      * toggled :
      */
     signal toggled(bool state)
-    
+
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && control.tooltipText
     ToolTip.text: control.tooltipText
-    
+
     background: Rectangle
     {
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-        
+
         color: control.hovered ? control.Kirigami.Theme.hoverColor :( control.isCurrentItem ||  control.containsPress ? control.Kirigami.Theme.highlightColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))
-        
+
         radius: control.radius
-    }    
-    
+    }
+
     DropArea
     {
         id: _dropArea
         width: parent.width
-        height: parent.height        
+        height: parent.height
         Rectangle
         {
             anchors.fill: parent
@@ -156,24 +156,24 @@ Maui.ItemDelegate
             border.color: control.Kirigami.Theme.highlightColor
             visible: parent.containsDrag
         }
-        
+
         onDropped:
         {
             control.contentDropped(drop)
         }
     }
-    
+
     Maui.GridItemTemplate
     {
         id: _template
         width: parent.width
         height: parent.height
         iconContainer.scale: _dropArea.containsDrag ? 0.8 : 1
-        
+        hovered: control.hovered
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
     }
-    
+
     Loader
     {
         asynchronous: true
@@ -184,13 +184,13 @@ Maui.ItemDelegate
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
-        
+
         sourceComponent: Private.CheckBoxItem
         {
             Binding on checked
             {
                 value: control.checked
-                restoreMode: Binding.RestoreBinding 
+                restoreMode: Binding.RestoreBinding
             }
             onToggled: control.toggled(state)
         }

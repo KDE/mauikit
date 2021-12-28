@@ -43,18 +43,18 @@ Layout.fillheight layout.fillWidth, etc.
 Maui.Popup
 {
     id: control
-    
+
     closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
-    
+
     maxWidth: 300
     maxHeight: implicitHeight
     implicitHeight: _layout.implicitHeight
-    
+
     hint: 0.9
     heightHint: 0.9
-    
+
     filling: persistent && mWidth === control.parent.width
-    
+
     /*!
       \qmlproperty list<Item> ApplicationWindow::scrollable
 
@@ -177,21 +177,21 @@ Maui.Popup
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property alias flickable : _flickable
-    
+
     /*!
       \qmlproperty ScrollView Dialog::scrollView
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property alias scrollView : _scrollView
-    
+
     /*!
       \qmlproperty int ScrollBar::policy
 
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property int verticalScrollBarPolicy: ScrollBar.AsNeeded
-    
+
 
     /*!
       \qmlproperty int ScrollBar::policy
@@ -199,9 +199,9 @@ Maui.Popup
       MouseArea for the close button when the dialog is marked as persistent.
     */
     property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
-    
+
     property bool autoClose : true
-    
+
     /*!
       * Triggered when the accepted button is clicked.
     */
@@ -211,7 +211,7 @@ Maui.Popup
       * Triggered when the rejected button is clicked.
     */
     signal rejected()
-    
+
     signal closeTriggered()
 
     ColumnLayout
@@ -231,20 +231,20 @@ Maui.Popup
             headerPositioning: ListView.InlineHeader
             padding: 0
             headBar.visible: control.persistent
-            headerColorSet: Kirigami.Theme.Header        
+            headerColorSet: Kirigami.Theme.Header
             headBar.background: null
             background: null
-            
+
             headBar.farLeftContent:  Loader
             {
                 asynchronous: true
                 visible: active
                 active: control.filling && control.persistent && closeButtonVisible
-                
+
                 sourceComponent: ToolButton
                 {
                     icon.name: "go-previous"
-                    onClicked: 
+                    onClicked:
                     {
                         if(control.autoClose)
                         {
@@ -256,16 +256,16 @@ Maui.Popup
                     }
                 }
             }
-            
+
             headBar.farRightContent: Loader
             {
                 asynchronous: true
                 visible: active
                 active: control.persistent && !control.filling && closeButtonVisible
-                
+
                 sourceComponent: Maui.CloseButton
                 {
-                    onClicked: 
+                    onClicked:
                      {
                         if(control.autoClose)
                         {
@@ -277,7 +277,7 @@ Maui.Popup
                     }
                 }
             }
-            
+
             ColumnLayout
             {
                 id: _stack
@@ -290,22 +290,22 @@ Maui.Popup
                 id: _scrollView
                 anchors.fill: parent
                 visible: _stack.children.length === 0
-                               
+
                 contentWidth: availableWidth
                 contentHeight: _pageContent.implicitHeight
-                
+
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
-                
+
                 background: null
                 clip: true
-                
+
                 Flickable
                 {
                     id: _flickable
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
-                    
+
                     ColumnLayout
                     {
                         id: _pageContent
@@ -321,12 +321,10 @@ Maui.Popup
                             label2.textFormat : TextEdit.AutoText
                             label2.wrapMode: TextEdit.WordWrap
                             iconVisible: control.width > Kirigami.Units.gridUnit * 20
-                            leftPadding: 0
-                            rightPadding: 0
 
                             iconSizeHint: Maui.Style.iconSizes.large
                             spacing: Maui.Style.space.big
-                            
+
                             leftLabels.spacing: control.spacing
                             leftLabels.data:  Maui.TextField
                             {
@@ -387,10 +385,10 @@ Maui.Popup
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                
+
                 implicitWidth: width
                 implicitHeight: height
-                
+
                 visible: control.defaultButtons
                 text: i18n("Cancel")
                 background: Rectangle
@@ -405,8 +403,8 @@ Maui.Popup
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                 }
-                
-                onClicked: rejected()            
+
+                onClicked: rejected()
             }
 
             T.Button
@@ -414,11 +412,11 @@ Maui.Popup
                 id: _acceptButton
                 Kirigami.Theme.inherit: true
                 Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 implicitWidth: width
-                
+
                 text: i18n("Accept")
                 visible: control.defaultButtons
                 background: Rectangle
@@ -446,11 +444,11 @@ Maui.Popup
                     id: _actionButton
                     Kirigami.Theme.inherit: true
                     Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                    
+
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     implicitWidth: width
-                    
+
                     action: modelData
 
                     background: Rectangle
@@ -469,13 +467,13 @@ Maui.Popup
             }
         }
     }
-    
+
     onOpened:
     {
         if(control.entryField)
             control.textEntry.forceActiveFocus()
     }
-    
+
     /**
       * Send an alert message that is shown inline in the dialog.
       * Depending on the level the color may differ.

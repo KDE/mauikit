@@ -32,24 +32,24 @@ import org.mauikit.filebrowsing 1.0 as FB
 Maui.Dialog
 {
     id: control
-    
+
     default property alias content : _content.data
     property var urls: []
-    
+
     readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
-    
+
     maxWidth: 400
     closeButtonVisible: false
     page.margins: Maui.Style.space.big
-    
+
     spacing: Maui.Style.space.medium
-    
+
     template.headerSizeHint: template.iconSizeHint + Maui.Style.space.big
     template.iconSource: singleItem.icon
     template.imageSource: singleItem.thumbnail
     template.iconSizeHint: Maui.Style.iconSizes.huge
     template.implicitHeight: Math.max(template.leftLabels.implicitHeight, 64)
-    
+
     property Component listDelegate : Maui.ListItemTemplate
     {
         width: ListView.view.width
@@ -62,48 +62,46 @@ Maui.Dialog
         iconSource: item.icon
         imageSource: item.thumbnail
         iconSizeHint: Maui.Style.iconSizes.medium
-        leftPadding: 0
-        rightPadding: 0
-        
+
         ToolButton
         {
             //text: i18n("Clear")
             icon.name: "edit-clear"
             icon.width: Maui.Style.iconSizes.small
             icon.height: Maui.Style.iconSizes.small
-            
-            onClicked: 
+
+            onClicked:
             {
                 var array = control.urls
                 const index = array.indexOf(modelData);
                 if (index > -1) {
                     array.splice(index, 1);
                 }
-                
+
                 if(array.length === 0)
                 {
                     control.close()
                     return
                 }
-                
-                control.urls = array                            
+
+                control.urls = array
             }
         }
     }
-    
+
     template.leftLabels.data: Column
     {
         id: _content
         Layout.fillWidth: true
     }
-    
+
     template.iconComponent: Item
     {
         Item
         {
             anchors.fill: parent
             layer.enabled: true
-            
+
             Rectangle
             {
                 visible: control.urls ? control.urls.length > 1 : false
@@ -114,7 +112,7 @@ Maui.Dialog
                 color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
                 border.color: Kirigami.Theme.backgroundColor
             }
-            
+
             Rectangle
             {
                 visible: control.urls ? control.urls.length > 1 : false
@@ -126,22 +124,22 @@ Maui.Dialog
                 color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
                 border.color: Kirigami.Theme.backgroundColor
             }
-            
+
             Rectangle
             {
                 anchors.fill: parent
                 anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
                 border.color: Kirigami.Theme.backgroundColor
-                
+
                 radius: Maui.Style.radiusV
                 color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-                
+
                 Maui.GridItemTemplate
                 {
                     anchors.fill: parent
                     anchors.margins: Maui.Style.space.tiny
                     iconSizeHint: height
-                    
+
                     iconSource: control.template.iconSource
                     imageSource:  control.template.imageSource
                 }
@@ -160,26 +158,26 @@ Maui.Dialog
     }
 
     Item {Layout.fillWidth: true}
-    
+
     Loader
     {
-        id: _listViewLoader      
+        id: _listViewLoader
 
         asynchronous: true
         active: control.urls.length > 0
         visible: active
-        
+
         Layout.fillWidth: true
-        
+
         sourceComponent: Maui.ListBrowser
         {
-            
+
             implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)
             model: urls
             spacing: Maui.Style.space.small
             padding: 0
             verticalScrollBarPolicy: ScrollBar.AlwaysOff
-            
+
             delegate: control.listDelegate
         }
     }
