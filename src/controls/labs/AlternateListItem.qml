@@ -28,8 +28,8 @@ T.Control
     contentItem: MouseArea
     {
         id: _content
-        propagateComposedEvents: true
-        preventStealing: false
+//         propagateComposedEvents: true
+//         preventStealing: false
     }
 
     background: Rectangle
