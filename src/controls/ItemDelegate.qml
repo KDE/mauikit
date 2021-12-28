@@ -179,7 +179,7 @@ T.Control
                         //drag.target = null
                     //}
                     
-                    if(pressAndHoldIgnored && !control.Drag.active)
+                    if(pressAndHoldIgnored)
                     {
                         control.pressAndHold(mouse)
                         pressAndHoldIgnored = false
@@ -204,6 +204,14 @@ T.Control
                         control.pressAndHold(mouse)
                     }
                 }                
+            }
+            
+            onPositionChanged:
+            {
+                if(mouseArea.drag.active)
+                {
+                    pressAndHoldIgnored = false
+                }
             }
             
             SequentialAnimation on y
