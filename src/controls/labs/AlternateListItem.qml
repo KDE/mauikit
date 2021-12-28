@@ -25,9 +25,11 @@ T.Control
     padding: Maui.Style.space.big
 //     rightPadding: Maui.Style.space.big
     
-    contentItem: Item
+    contentItem: MouseArea
     {
         id: _content
+        propagateComposedEvents: true
+        preventStealing: false
     }
 
     background: Rectangle
