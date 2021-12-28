@@ -17,6 +17,7 @@ Item
 
     signal toggled(bool state)
     
+  
     Rectangle
     {
         anchors.fill: parent

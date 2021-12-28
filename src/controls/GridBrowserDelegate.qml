@@ -178,13 +178,23 @@ Maui.ItemDelegate
     {
         asynchronous: true
         active: control.checkable || control.checked
-        visible: active
+//         visible: active
         height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.1)
         width: height
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
-
+        scale: active ? 1 : 0
+        
+        Behavior on scale
+        {
+            NumberAnimation
+            {
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        
         sourceComponent: Private.CheckBoxItem
         {
             Binding on checked

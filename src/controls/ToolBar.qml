@@ -138,6 +138,98 @@ ToolBar
   
         //}
         
+        background: Rectangle
+        {
+            color: control.Kirigami.Theme.backgroundColor            
+                       
+            Loader
+            {
+                asynchronous: true
+                width: Maui.Style.iconSizes.medium
+                height: parent.height
+                active: !mainFlickable.atXEnd && !control.fits
+                visible: active
+                z: 999
+                parent: control.background
+                anchors
+                {
+                    right: parent.right
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                
+                sourceComponent: Private.EdgeShadow
+                {                    
+                    opacity: 0.7
+                    edge: Qt.RightEdge
+                }
+            }
+            
+            Loader
+            {
+                parent: control.background
+                asynchronous: true
+                width: Maui.Style.iconSizes.medium
+                height: parent.height
+                active: !mainFlickable.atXBeginning && !control.fits
+                visible: active
+                z: 999
+                anchors
+                {
+                    left: parent.left
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                
+                sourceComponent: Private.EdgeShadow
+                {
+                    
+                    opacity: 0.7
+                    edge: Qt.LeftEdge
+                    
+                }
+            }
+            
+            Kirigami.Separator
+            {
+                id: _border
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 0.5
+                weight: Kirigami.Separator.Weight.Light
+            }
+            
+            
+            
+            states: [  State
+            {
+                when: control.position === ToolBar.Header
+                
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                }
+            },
+            
+            State
+            {
+                when: control.position === ToolBar.Footer
+                
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: parent.top
+                    anchors.bottom: undefined
+                 
+                }
+            }
+            ]
+        }
+        
+  
+        
        contentItem: Item
         {
             id: _container
@@ -165,52 +257,7 @@ ToolBar
             //}
             
             
-            Loader
-            {
-                asynchronous: true
-                width: Maui.Style.iconSizes.medium
-                height: parent.height
-                active: !mainFlickable.atXEnd && !control.fits
-                visible: active
-                z: 999
-                anchors
-                {
-                    right: parent.right
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                
-                sourceComponent: Private.EdgeShadow
-                {
-                    
-                    opacity: 0.7
-                    edge: Qt.RightEdge
-                }
-            }
             
-            Loader
-            {
-                asynchronous: true
-                width: Maui.Style.iconSizes.medium
-                height: parent.height
-                active: !mainFlickable.atXBeginning && !control.fits
-                visible: active
-                z: 999
-                anchors
-                {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                
-                sourceComponent: Private.EdgeShadow
-                {
-                    
-                    opacity: 0.7
-                    edge: Qt.LeftEdge
-                    
-                }
-            }
             
             Loader
             {
@@ -221,12 +268,7 @@ ToolBar
                 }
             }
             
-            /*  Loader
-             {    *
-             anchors.fill: parent
-             active: control.draggable
-             
-             sourceComponent: */Item
+           Item
              {
                  anchors.fill: parent
                  DragHandler
@@ -236,6 +278,7 @@ ToolBar
                      onActiveChanged: if (active) { root.startSystemMove(); }
                  }
              }
+             
             states: [State
             {
                 when: control.position === ToolBar.Header

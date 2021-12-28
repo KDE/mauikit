@@ -429,22 +429,8 @@ Pane
             
             Layout.fillWidth: true
             Layout.fillHeight: true
-        }
+        }       
         
-        background: Rectangle
-        {
-            implicitHeight: Maui.Style.toolBarHeight
-            color: _headBar.Kirigami.Theme.backgroundColor
-            
-            Kirigami.Separator
-            {
-                id: _border
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: 0.5
-                weight: Kirigami.Separator.Weight.Light
-            }
-        }
     }
     
     //Label
@@ -475,22 +461,7 @@ Pane
                 duration: Kirigami.Units.shortDuration
                 easing.type: Easing.InOutQuad
             }
-        }
-        
-        background: Rectangle
-        {
-            implicitHeight: Maui.Style.toolBarHeight
-            color: _footBar.Kirigami.Theme.backgroundColor
-            
-            Kirigami.Separator
-            {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
-                height: 0.5
-                weight: Kirigami.Separator.Weight.Light
-            }
-        }
+        }       
     }
     
     states: [  State
@@ -502,13 +473,6 @@ Pane
             target: _headerContent
             anchors.top: parent.top
             anchors.bottom: undefined
-        }
-        
-        AnchorChanges
-        {
-            target: _border
-            anchors.top: undefined
-            anchors.bottom: parent.bottom
         }
         
         PropertyChanges
@@ -527,13 +491,6 @@ Pane
             target: _headerContent
             anchors.top: undefined
             anchors.bottom: parent.bottom
-        }
-        
-        AnchorChanges
-        {
-            target: _border
-            anchors.top: parent.top
-            anchors.bottom: undefined
         }
         
         PropertyChanges

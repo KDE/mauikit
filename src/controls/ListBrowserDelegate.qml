@@ -205,6 +205,15 @@ Maui.ItemDelegate
             Layout.preferredHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
             Layout.preferredWidth: height
             Layout.alignment: Qt.AlignCenter
+            scale: active? 1 : 0
+            Behavior on scale
+            {
+                NumberAnimation
+                {
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InOutQuad
+                }
+            }
             sourceComponent: Private.CheckBoxItem
             {
                 Binding on checked
