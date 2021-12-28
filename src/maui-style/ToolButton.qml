@@ -51,24 +51,27 @@ T.ToolButton
                             contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
-    baselineOffset: contentItem.y + contentItem.baselineOffset
+//    baselineOffset: contentItem.y + contentItem.baselineOffset
 
     hoverEnabled: !Kirigami.Settings.isMobile
+
+    spacing: Maui.Style.space.small
+
     padding: Maui.Style.space.small
-    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.small :  Maui.Style.space.small
-    rightPadding: Maui.Style.space.small
-    leftPadding: Maui.Style.space.small
-    topPadding: Maui.Style.space.small
-    bottomPadding: Maui.Style.space.small
+    rightPadding: padding
+    leftPadding: padding
+    topPadding: padding
+    bottomPadding: padding
     
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
     
-    icon.color: control.down || control.checked || control.highlighted || control.hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+    icon.color: control.down || control.checked || control.highlighted || control.hovered ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
     
     flat: control.parent === T.ToolBar
 
     font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
+
     contentItem: IconLabel
     {
         spacing: control.spacing
@@ -78,12 +81,13 @@ T.ToolButton
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.down || control.checked || control.highlighted || control.hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+        color: control.icon.color
 
         Behavior on color
         {
             ColorAnimation
             {
+                easing.type: Easing.InQuad
                 duration: Kirigami.Units.shortDuration
             }
         }
@@ -97,12 +101,13 @@ T.ToolButton
 
         radius: Maui.Style.radiusV
 
-        color: control.pressed || control.down || control.checked || control.highlighted || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : "transparent"
+        color: control.pressed || control.down || control.checked || control.highlighted || control.hovered ? control.Kirigami.Theme.highlightColor : "transparent"
 
         Behavior on color
         {
             ColorAnimation
             {
+                 easing.type: Easing.InQuad
                 duration: Kirigami.Units.shortDuration
             }
         }

@@ -117,7 +117,6 @@ T.Control
         
         contentItem : Item
         {
-            id: _content
             MouseArea
             {
                 id: _mouseArea
@@ -174,10 +173,10 @@ T.Control
                 
                 onReleased :
                 {
-                    //if(control.draggable)
-                    //{
-                        //drag.target = null
-                    //}
+                    if(control.draggable)
+                    {
+                        drag.target = null
+                    }
                     
                     if(pressAndHoldIgnored)
                     {
@@ -212,20 +211,26 @@ T.Control
                         pressAndHoldIgnored = false
                     }
                 }
+
+                Item
+                {
+                    id: _content
+                    height: parent.height
+                    width: parent.width
+
+                    SequentialAnimation on y
+                    {
+                        id: xAnim
+                        // Animations on properties start running by default
+                        running: false
+                        loops: 2
+                        NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
+                        NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
+                        PauseAnimation { duration: 50 } // This puts a bit of time between the loop
+                    }
+                }
             }
-         
-            SequentialAnimation on y
-            {
-                id: xAnim
-                // Animations on properties start running by default
-                running: false
-                loops: 2
-                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
-                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
-                PauseAnimation { duration: 50 } // This puts a bit of time between the loop
-            }            
-        }
-        
+        }        
       
         background: Rectangle
         {

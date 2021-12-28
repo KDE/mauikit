@@ -21,6 +21,7 @@ import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
+import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.14 as Kirigami
@@ -38,7 +39,7 @@ import org.kde.kirigami 2.14 as Kirigami
  * toolbar behaviour, floating toolbars, etc.
  * 
  */
-Pane
+T.Pane
 {
     id: control
     focus: true
@@ -293,7 +294,7 @@ Pane
             {
                 return
             }
-            
+
             var oldFHeight
             var oldHHeight
             

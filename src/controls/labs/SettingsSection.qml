@@ -59,12 +59,11 @@ Maui.AlternateListItem
                 checked: true
             }            
             
-            Rectangle
+            Item
             {
                 Layout.fillWidth: true
                 implicitHeight: _mainData.implicitHeight
-                color: "pink"
-                border.color: "red"
+
                 ColumnLayout
                 {
                     id: _mainData

@@ -16,9 +16,9 @@ T.Menu
     
     property bool responsive: Kirigami.Settings.hasTransientTouchInput    
     
-    parent: control.responsive ?  window() : undefined
+    parent: control.responsive ?  ApplicationWindow.overlay : undefined
     
-    x: control.responsive ? 0 : 0
+//     x: control.responsive ? 0 : 0
     y: control.responsive ? window().height - height : 0
     
     implicitWidth: control.responsive ? window().width :  Math.min(window().width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))

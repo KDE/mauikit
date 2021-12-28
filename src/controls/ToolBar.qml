@@ -22,6 +22,7 @@ import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Templates 2.15 as T
 
 import QtQuick.Layouts 1.3
 
@@ -37,171 +38,175 @@ import "private" as Private
  *
  *
  */
-ToolBar
+T.ToolBar
 {
     id: control
     implicitHeight: preferredHeight + topPadding + bottomPadding
+
     implicitWidth: _mainLayout.implicitWidth + leftPadding + rightPadding
     spacing: Maui.Style.space.small
-    padding: 0
-    leftPadding: Maui.Style.space.medium
-    rightPadding: Maui.Style.space.medium
+    padding: Maui.Style.space.small
+    topPadding: Maui.Style.space.tiny
+    bottomPadding: Maui.Style.space.tiny
+
+    leftPadding: padding
+    rightPadding: padding
     /**
      * content : RowLayout.data
      */
     default property alias content : leftRowContent.content
-        
-        /**
+
+    /**
          * preferredHeight : int
          */
-        property int preferredHeight: Math.max(Maui.Style.toolBarHeight, layout.implicitHeight + Maui.Style.space.medium)
-        
-        /**
+    property int preferredHeight: Math.max(Maui.Style.toolBarHeight, _mainLayout.implicitHeight )
+
+    /**
          * forceCenterMiddleContent : bool
          */
-        property bool forceCenterMiddleContent : true
-        
-        /**
+    property bool forceCenterMiddleContent : true
+
+    /**
          * leftContent : RowLayout.data
          */
-        property alias leftContent : leftRowContent.content
-        
-        /**
+    property alias leftContent : leftRowContent.content
+
+    /**
          * middleContent : RowLayout.data
          */
-        property alias middleContent : middleRowContent.data
-        
-        /**
+    property alias middleContent : middleRowContent.data
+
+    /**
          * rightContent : RowLayout.data
          */
-        property alias rightContent : rightRowContent.content
-        
-        /**
+    property alias rightContent : rightRowContent.content
+
+    /**
          * farLeftContent : RowLayout.data
          */
-        property alias farLeftContent : farLeftRowContent.content
-        
-        /**
+    property alias farLeftContent : farLeftRowContent.content
+
+    /**
          * farRightContent : RowLayout.data
          */
-        property alias farRightContent : farRightRowContent.content
-        
-        /**
+    property alias farRightContent : farRightRowContent.content
+
+    /**
          * middleLayout : RowLayout
          */
-        property alias middleLayout : middleRowContent
-        
-        /**
+    property alias middleLayout : middleRowContent
+
+    /**
          * leftLayout : RowLayout
          */
-        property alias leftLayout : leftRowContent
-        
-        /**
+    property alias leftLayout : leftRowContent
+
+    /**
          * rightLayout : RowLayout
          */
-        property alias rightLayout : rightRowContent
-        
-        /**
+    property alias rightLayout : rightRowContent
+
+    /**
          * farRightLayout : RowLayout
          */
-        property alias farRightLayout : farRightRowContent
-        
-        /**
+    property alias farRightLayout : farRightRowContent
+
+    /**
          * rightLayout : RowLayout
          */
-        property alias farLeftLayout : farLeftRowContent
-        
-        /**
+    property alias farLeftLayout : farLeftRowContent
+
+    /**
          * layout : RowLayout
          */
-        property alias layout : layout
-        
-        /**
+    property alias layout : layout
+
+    /**
          * fits : bool
          */
-        readonly property alias fits : _scrollView.fits
-       
-        
-        /**
+    readonly property alias fits : _scrollView.fits
+
+
+    /**
          * count : int
          */
-        readonly property int count : leftContent.length + middleContent.length + rightContent.length + farLeftContent.length + farRightContent.length
-        
-        /**
+    readonly property int count : leftContent.length + middleContent.length + rightContent.length + farLeftContent.length + farRightContent.length
+
+    /**
          * visibleCount: int
          */
-        readonly property int visibleCount : leftRowContent.visibleChildren.length + middleRowContent.visibleChildren.length  + rightRowContent.visibleChildren.length + farLeftRowContent.visibleChildren.length  + farRightRowContent.visibleChildren.length
-        
-        
-        property bool draggable : true
-        
-  
-        //}
-        
-        background: Rectangle
+    readonly property int visibleCount : leftRowContent.visibleChildren.length + middleRowContent.visibleChildren.length  + rightRowContent.visibleChildren.length + farLeftRowContent.visibleChildren.length  + farRightRowContent.visibleChildren.length
+
+
+    property bool draggable : true
+
+
+    //}
+
+    background: Rectangle
+    {
+        color: control.Kirigami.Theme.backgroundColor
+
+        Loader
         {
-            color: control.Kirigami.Theme.backgroundColor            
-                       
-            Loader
+            asynchronous: true
+            width: Maui.Style.iconSizes.medium
+            height: parent.height
+            active: !mainFlickable.atXEnd && !control.fits
+            visible: active
+            z: 999
+            parent: control.background
+            anchors
             {
-                asynchronous: true
-                width: Maui.Style.iconSizes.medium
-                height: parent.height
-                active: !mainFlickable.atXEnd && !control.fits
-                visible: active
-                z: 999
-                parent: control.background
-                anchors
-                {
-                    right: parent.right
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                
-                sourceComponent: Private.EdgeShadow
-                {                    
-                    opacity: 0.7
-                    edge: Qt.RightEdge
-                }
+                right: parent.right
+                top: parent.top
+                bottom: parent.bottom
             }
-            
-            Loader
+
+            sourceComponent: Private.EdgeShadow
             {
-                parent: control.background
-                asynchronous: true
-                width: Maui.Style.iconSizes.medium
-                height: parent.height
-                active: !mainFlickable.atXBeginning && !control.fits
-                visible: active
-                z: 999
-                anchors
-                {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                
-                sourceComponent: Private.EdgeShadow
-                {
-                    
-                    opacity: 0.7
-                    edge: Qt.LeftEdge
-                    
-                }
+                opacity: 0.7
+                edge: Qt.RightEdge
             }
-            
-            Kirigami.Separator
+        }
+
+        Loader
+        {
+            parent: control.background
+            asynchronous: true
+            width: Maui.Style.iconSizes.medium
+            height: parent.height
+            active: !mainFlickable.atXBeginning && !control.fits
+            visible: active
+            z: 999
+            anchors
             {
-                id: _border
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: 0.5
-                weight: Kirigami.Separator.Weight.Light
+                left: parent.left
+                top: parent.top
+                bottom: parent.bottom
             }
-            
-            
-            
-            states: [  State
+
+            sourceComponent: Private.EdgeShadow
+            {
+
+                opacity: 0.7
+                edge: Qt.LeftEdge
+
+            }
+        }
+
+        Kirigami.Separator
+        {
+            id: _border
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 0.5
+            weight: Kirigami.Separator.Weight.Light
+        }
+
+
+
+        states: [  State
             {
                 when: control.position === ToolBar.Header
                 
@@ -222,18 +227,21 @@ ToolBar
                     target: _border
                     anchors.top: parent.top
                     anchors.bottom: undefined
-                 
+
                 }
             }
-            ]
-        }
-        
-  
-        
-       contentItem: Item
+        ]
+    }
+
+
+
+    contentItem: Item
+    {
+        Item
         {
             id: _container
-       
+            height: control.preferredHeight
+            width: parent.width
             //              Label{
             //                  anchors.left: parent.left
             //                  z: parent.z + 9999
@@ -255,10 +263,7 @@ ToolBar
             //color: "orange"
             //text: farRightRowContent.implicitWidth + " / " + rightRowContent.implicitWidth  + " / " + control.width
             //}
-            
-            
-            
-            
+
             Loader
             {
                 asynchronous: true
@@ -268,40 +273,40 @@ ToolBar
                 }
             }
             
-           Item
-             {
-                 anchors.fill: parent
-                 DragHandler
-                 {
-                     acceptedDevices: PointerDevice.GenericPointer
-                     grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                     onActiveChanged: if (active) { root.startSystemMove(); }
-                 }
-             }
-             
-            states: [State
+            Item
             {
-                when: control.position === ToolBar.Header
-                
-                AnchorChanges
+                anchors.fill: parent
+                DragHandler
                 {
-                    target: _container
-                    anchors.top: undefined
-                    anchors.bottom: parent.bottom
-                }
-            },
-            
-            State
-            {
-                when: control.position === ToolBar.Footer
-                
-                AnchorChanges
-                {
-                    target: _container
-                    anchors.top: parent.top
-                    anchors.bottom: undefined
+                    acceptedDevices: PointerDevice.GenericPointer
+                    grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                    onActiveChanged: if (active) { root.startSystemMove(); }
                 }
             }
+
+            states: [State
+                {
+                    when: control.position === ToolBar.Header
+
+                    AnchorChanges
+                    {
+                        target: _container
+                        anchors.top: undefined
+                        anchors.bottom: parent.bottom
+                    }
+                },
+
+                State
+                {
+                    when: control.position === ToolBar.Footer
+
+                    AnchorChanges
+                    {
+                        target: _container
+                        anchors.top: parent.top
+                        anchors.bottom: undefined
+                    }
+                }
             ]
             
             RowLayout
@@ -322,6 +327,7 @@ ToolBar
                 ScrollView
                 {
                     id: _scrollView
+                    implicitHeight: layout.implicitHeight
                     readonly property bool fits : contentWidth < width
                     onFitsChanged: mainFlickable.returnToBounds()
                     
@@ -434,4 +440,5 @@ ToolBar
                 }
             }
         }
+    }
 }
