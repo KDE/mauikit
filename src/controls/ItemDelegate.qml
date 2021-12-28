@@ -174,12 +174,12 @@ T.Control
                 
                 onReleased :
                 {
-                    if(control.draggable)
-                    {
-                        drag.target = null
-                    }
+                    //if(control.draggable)
+                    //{
+                        //drag.target = null
+                    //}
                     
-                    if(pressAndHoldIgnored)
+                    if(pressAndHoldIgnored && !control.Drag.active)
                     {
                         control.pressAndHold(mouse)
                         pressAndHoldIgnored = false
