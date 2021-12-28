@@ -40,11 +40,12 @@ import "private" as Private
 ToolBar
 {
     id: control
-    implicitHeight: preferredHeight
-    implicitWidth: _scrollView.contentWidth
+    implicitHeight: preferredHeight + topPadding + bottomPadding
+    implicitWidth: _mainLayout.implicitWidth + leftPadding + rightPadding
     spacing: Maui.Style.space.small
     padding: 0
-    
+    leftPadding: Maui.Style.space.medium
+    rightPadding: Maui.Style.space.medium
     /**
      * content : RowLayout.data
      */
@@ -119,11 +120,7 @@ ToolBar
          * fits : bool
          */
         readonly property alias fits : _scrollView.fits
-        
-        /**
-         * margins : int
-         */
-        property int margins: control.spacing
+       
         
         /**
          * count : int
@@ -138,86 +135,13 @@ ToolBar
         
         property bool draggable : true
         
-        
-        Loader
-        {
-            asynchronous: true
-            width: Maui.Style.iconSizes.medium
-            height: parent.height
-            active: !mainFlickable.atXEnd && !control.fits
-            visible: active
-            z: 999
-            anchors
-            {
-                right: parent.right
-                top: parent.top
-                bottom: parent.bottom
-            }
-            
-            sourceComponent: Private.EdgeShadow
-            {
-                
-                opacity: 0.7
-                edge: Qt.RightEdge
-            }
-        }
-        
-        Loader
-        {
-            asynchronous: true
-            width: Maui.Style.iconSizes.medium
-            height: parent.height
-            active: !mainFlickable.atXBeginning && !control.fits
-            visible: active
-            z: 999
-            anchors
-            {
-                left: parent.left
-                top: parent.top
-                bottom: parent.bottom
-            }
-            
-            sourceComponent: Private.EdgeShadow
-            {
-                
-                opacity: 0.7
-                edge: Qt.LeftEdge
-                
-            }
-        }
-        
-        Loader
-        {
-            asynchronous: true
-            sourceComponent: Kirigami.WheelHandler
-            {
-                target: mainFlickable
-            }
-        }
-        
-      /*  Loader
-        {
-            anchors.fill: parent
-            active: control.draggable
-            
-            sourceComponent: */Item
-            {
-                anchors.fill: parent
-                DragHandler
-                {
-                    acceptedDevices: PointerDevice.GenericPointer
-                    grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                    onActiveChanged: if (active) { root.startSystemMove(); }
-                }
-            }
+  
         //}
         
-        Item
+       contentItem: Item
         {
             id: _container
-            height: control.implicitHeight
-            width: control.width
-            
+       
             //              Label{
             //                  anchors.left: parent.left
             //                  z: parent.z + 9999
@@ -239,6 +163,79 @@ ToolBar
             //color: "orange"
             //text: farRightRowContent.implicitWidth + " / " + rightRowContent.implicitWidth  + " / " + control.width
             //}
+            
+            
+            Loader
+            {
+                asynchronous: true
+                width: Maui.Style.iconSizes.medium
+                height: parent.height
+                active: !mainFlickable.atXEnd && !control.fits
+                visible: active
+                z: 999
+                anchors
+                {
+                    right: parent.right
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                
+                sourceComponent: Private.EdgeShadow
+                {
+                    
+                    opacity: 0.7
+                    edge: Qt.RightEdge
+                }
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                width: Maui.Style.iconSizes.medium
+                height: parent.height
+                active: !mainFlickable.atXBeginning && !control.fits
+                visible: active
+                z: 999
+                anchors
+                {
+                    left: parent.left
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                
+                sourceComponent: Private.EdgeShadow
+                {
+                    
+                    opacity: 0.7
+                    edge: Qt.LeftEdge
+                    
+                }
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                sourceComponent: Kirigami.WheelHandler
+                {
+                    target: mainFlickable
+                }
+            }
+            
+            /*  Loader
+             {    *
+             anchors.fill: parent
+             active: control.draggable
+             
+             sourceComponent: */Item
+             {
+                 anchors.fill: parent
+                 DragHandler
+                 {
+                     acceptedDevices: PointerDevice.GenericPointer
+                     grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                     onActiveChanged: if (active) { root.startSystemMove(); }
+                 }
+             }
             states: [State
             {
                 when: control.position === ToolBar.Header
@@ -266,10 +263,8 @@ ToolBar
             
             RowLayout
             {
+                id: _mainLayout
                 anchors.fill: parent
-                anchors.leftMargin: control.margins
-                anchors.rightMargin: control.margins
-                
                 spacing: control.spacing
                 
                 Private.ToolBarSection

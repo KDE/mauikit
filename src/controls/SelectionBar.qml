@@ -24,6 +24,7 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.0 as Maui
 import QtGraphicalEffects 1.0
+import QtQuick.Templates 2.15 as T
 
 /**
  * SelectionBar
@@ -37,15 +38,13 @@ Item
 {
     id: control
     
-    implicitHeight: barHeight + padding
-    implicitWidth: _layoutLoader.item.implicitWidth + Maui.Style.space.big + (height * 2)
+    implicitHeight:  _imp.implicitHeight + Maui.Style.space.big
+    implicitWidth: _imp.implicitWidth
+    property bool hidden : count === 0
     
-    visible: control.count > 0
+    //     visible: control.count > 0
     focus: true
-    
-    //     Kirigami.Theme.inherit: false
-    //     Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
-    
+    Keys.enabled: true
     /**
      * actions : list<Action>
      * Default list of actions, the actions are positioned into a Kirigami ActionToolBar.
@@ -58,17 +57,6 @@ Item
      */
     property list<Action> hiddenActions
     
-    /**
-     * padding : int
-     *
-     */
-    property int padding : 0
-    
-    /**
-     * barHeight : int
-     * height of the selection bar withouh the padding.
-     */
-    property int barHeight: Maui.Style.toolBarHeight
     
     /**
      * display : int
@@ -257,179 +245,189 @@ Item
         }
     }
     
-    Loader
+    
+    T.Control
     {
-        id: _layoutLoader
-        asynchronous: true
-        active: control.count > 0 || item
-        anchors.fill: parent
-        anchors.margins: control.padding * 0.5
+        id: _imp
         
-        sourceComponent: Item
+        implicitHeight:  _layout.implicitHeight + topPadding + bottomPadding
+        implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
+
+        padding: 0
+        topPadding: padding
+        bottomPadding: padding
+        rightPadding: padding
+        leftPadding: padding
+        
+        y: control.hidden ? control.height : 0
+        
+        Behavior on y
         {
-            property alias implicitWidth: _layout.implicitWidth
-            Rectangle
+            NumberAnimation
             {
-                id: bg
+                duration: Kirigami.Units.longDuration*2
+                easing.type: control.hidden ? Easing.InBack : Easing.OutBack
+                
+            }
+        }
+        
+        focus: true
+        
+        background:    Rectangle
+        {
+            id: bg
+            color: Kirigami.Theme.backgroundColor
+            radius: control.radius
+            
+            MouseArea
+            {
                 anchors.fill: parent
-                color: Kirigami.Theme.backgroundColor
-                radius: control.radius
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                propagateComposedEvents: false
+                preventStealing: true
+                
+                onClicked:
+                {
+                    if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
+                        control.rightClicked(mouse)
+                        else
+                            control.clicked(mouse)
+                }
+                
+                onPressAndHold :
+                {
+                    if(Kirigami.Settings.isMobile)
+                        control.rightClicked(mouse)
+                }
+            }
+            
+            layer.enabled: true
+            layer.effect: DropShadow
+            {
+                cached: true
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
+            }
+        }
+        
+        
+        contentItem:  Maui.ToolBar
+        {
+            id: _layout
+            
+            clip: true
+            position: ToolBar.Footer
+            //             spacing: Maui.Style.space.big
+            //preferredHeight: height
+            
+            background: null
+            
+            farLeftContent: ToolButton
+            {
+                icon.name: "go-previous"
+                onClicked:
+                {
+                    control.exitClicked()
+                }
+            }
+            
+            middleContent: Repeater
+            {
+                model: control.actions
+                
+                ToolButton
+                {
+                    action: modelData
+                    display: control.display
+                    //                         Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                    //                         Kirigami.Theme.inherit: false
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: hovered || pressed && action.text
+                    ToolTip.text: action.text
+                }
+            }
+            
+            rightContent: Maui.ToolButtonMenu
+            {
+                icon.name: "overflow-menu"
+                visible: content.length > 0
+                content: control.hiddenActions
+            }
+            
+            farRightContent: Maui.Badge
+            {
+                id: _counter
+                Layout.fillHeight: true
+                Layout.margins: Maui.Style.space.medium
+                implicitWidth: height
+                text: control.count
+                radius: Maui.Style.radiusV
+                font.pointSize: Maui.Style.fontSizes.big
+                Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                Kirigami.Theme.backgroundColor: _loader.item && _loader.item.visible ?
+                Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                border.color: "transparent"
+                
+                onClicked:
+                {
+                    _loader.sourceComponent = _listContainerComponent
+                    _loader.item.open()
+                }
+                
+                Maui.Rectangle
+                {
+                    opacity: 0.3
+                    anchors.fill: parent
+                    anchors.margins: 4
+                    visible: _counter.hovered
+                    color: "transparent"
+                    borderColor: "white"
+                    solidBorder: false
+                }
                 
                 MouseArea
                 {
+                    id: _mouseArea
                     anchors.fill: parent
-                    acceptedButtons: Qt.RightButton | Qt.LeftButton
-                    propagateComposedEvents: false
-                    preventStealing: true
+                    propagateComposedEvents: true
+                    property int startX
+                    property int startY
+                    Drag.active: drag.active
+                    Drag.hotSpot.x: 0
+                    Drag.hotSpot.y: 0
+                    Drag.dragType: Drag.Automatic
+                    Drag.supportedActions: Qt.CopyAction
+                    Drag.keys: ["text/plain","text/uri-list"]
                     
-                    onClicked:
+                    onPressed:
                     {
-                        if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
-                            control.rightClicked(mouse)
-                        else
-                            control.clicked(mouse)
-                    }
-                    
-                    onPressAndHold :
-                    {
-                        if(Kirigami.Settings.isMobile)
-                            control.rightClicked(mouse)
-                    }
-                }
-            }
-            
-            Loader
-            {
-                asynchronous: true
-                anchors.fill: bg
-                
-                sourceComponent:  DropShadow
-                {
-                    id: rectShadow
-                    cached: true
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 8.0
-                    samples: 16
-                    color:  "#80000000"
-                    smooth: true
-                    source: bg
-                }
-            }
-            
-            Maui.ToolBar
-            {
-                id: _layout
-                anchors.fill: parent
-                clip: true
-                position: ToolBar.Footer
-                //             spacing: Maui.Style.space.big
-                preferredHeight: height
-                
-                background: null
-                
-                farLeftContent: ToolButton
-                {
-                    icon.name: "go-previous"
-                    onClicked:
-                    {
-                        control.exitClicked()
-                    }
-                }
-                
-                middleContent: Repeater
-                {
-                    model: control.actions
-                    
-                    ToolButton
-                    {
-                        action: modelData
-                        display: control.display
-                        //                         Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                        //                         Kirigami.Theme.inherit: false
-                        ToolTip.delay: 1000
-                        ToolTip.timeout: 5000
-                        ToolTip.visible: hovered || pressed && action.text
-                        ToolTip.text: action.text
-                    }
-                }
-                
-                rightContent: Maui.ToolButtonMenu
-                {
-                    icon.name: "overflow-menu"
-                    visible: content.length > 0
-                    content: control.hiddenActions
-                }
-                
-                farRightContent: Maui.Badge
-                {
-                    id: _counter
-                    Layout.fillHeight: true
-                    Layout.margins: Maui.Style.space.medium
-                    implicitWidth: height
-                    text: control.count
-                    radius: Maui.Style.radiusV
-                    font.pointSize: Maui.Style.fontSizes.big
-                    Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                    Kirigami.Theme.backgroundColor: _loader.item && _loader.item.visible ?
-                                                        Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-                    border.color: "transparent"
-                    
-                    onClicked:
-                    {
-                        _loader.sourceComponent = _listContainerComponent
-                        _loader.item.open()
-                    }
-                    
-                    Maui.Rectangle
-                    {
-                        opacity: 0.3
-                        anchors.fill: parent
-                        anchors.margins: 4
-                        visible: _counter.hovered
-                        color: "transparent"
-                        borderColor: "white"
-                        solidBorder: false
-                    }
-                    
-                    MouseArea
-                    {
-                        id: _mouseArea
-                        anchors.fill: parent
-                        propagateComposedEvents: true
-                        property int startX
-                        property int startY
-                        Drag.active: drag.active
-                        Drag.hotSpot.x: 0
-                        Drag.hotSpot.y: 0
-                        Drag.dragType: Drag.Automatic
-                        Drag.supportedActions: Qt.CopyAction
-                        Drag.keys: ["text/plain","text/uri-list"]
-                        
-                        onPressed:
+                        if( mouse.source !== Qt.MouseEventSynthesizedByQt)
                         {
-                            if( mouse.source !== Qt.MouseEventSynthesizedByQt)
+                            drag.target = _counter
+                            _counter.grabToImage(function(result)
                             {
-                                drag.target = _counter
-                                _counter.grabToImage(function(result)
-                                {
-                                    _mouseArea.Drag.imageSource = result.url
-                                })
-                                
-                                _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
-                                
-                                startX = _counter.x
-                                startY = _counter.y
-                                
-                            }else mouse.accepted = false
-                        }
-                        
-                        onReleased :
-                        {
-                            _counter.x = startX
-                            _counter.y = startY
-                        }
+                                _mouseArea.Drag.imageSource = result.url
+                            })
+                            
+                            _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
+                            
+                            startX = _counter.x
+                            startY = _counter.y
+                            
+                        }else mouse.accepted = false
                     }
+                    
+                    onReleased :
+                    {
+                        _counter.x = startX
+                        _counter.y = startY
+                    }
+                    
                 }
             }
             
@@ -454,6 +452,7 @@ Item
                 }
             }
         }
+        
     }
     
     Keys.onEscapePressed:
@@ -499,10 +498,10 @@ Item
         {
             return
         }
-
+        
         const item = _urisModel.get(index)
         const uri = item.uri
-
+        
         if(contains(uri))
         {
             _private._uris.splice(index, 1)
