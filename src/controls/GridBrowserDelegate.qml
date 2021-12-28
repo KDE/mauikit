@@ -42,7 +42,7 @@ Maui.ItemDelegate
     id: control
     focus: false
     isCurrentItem : GridView.isCurrentItem || checked
-
+    padding: Maui.Style.space.tiny
     radius: Maui.Style.radiusV
     /**
      * tooltipText : string

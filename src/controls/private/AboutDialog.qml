@@ -75,7 +75,7 @@ Maui.Dialog
         {
             id: _header
             Layout.fillWidth: true
-            implicitHeight: Math.max((_div1.implicitHeight * 1.2) + Maui.Style.space.medium, control.page.height+ Maui.Style.space.tiny)
+            implicitHeight: control.page.height
             padding: 0
             
             background: Item
@@ -146,54 +146,57 @@ Maui.Dialog
                 }
             }
             
-            Maui.ListItemTemplate
+            contentItem: Item 
             {
-                id: _div1
-                
-                width: parent.width
-                anchors.centerIn: parent
-                
-                iconSource: Maui.App.iconName
-                
-                fillMode: Image.PreserveAspectFit
-                iconSizeHint: Maui.Style.iconSizes.huge
-                imageSizeHint: iconSizeHint
-                headerSizeHint: iconSizeHint + Maui.Style.space.huge
-                
-                spacing: Maui.Style.space.big
-                label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                label1.text: Maui.App.about.displayName
-                label1.font.weight: Font.Bold
-                label1.font.bold: true
-                label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
-                
-                label2.text: Maui.App.about.shortDescription
-                label2.font.pointSize: Maui.Style.fontSizes.big
-                label2.elide: Text.ElideRight
-                label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                leftLabels.spacing: Maui.Style.space.medium
-                leftLabels.data: [ Repeater
+                Maui.ListItemTemplate
                 {
-                    model: Maui.App.about.licenses
+                    id: _div1
+                    
+                    width: parent.width
+                    anchors.centerIn: parent
+                    
+                    iconSource: Maui.App.iconName
+                    
+                    fillMode: Image.PreserveAspectFit
+                    iconSizeHint: Maui.Style.iconSizes.huge
+                    imageSizeHint: iconSizeHint
+                    headerSizeHint: iconSizeHint + Maui.Style.space.huge
+                    
+                    spacing: Maui.Style.space.big
+                    label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    label1.text: Maui.App.about.displayName
+                    label1.font.weight: Font.Bold
+                    label1.font.bold: true
+                    label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
+                    
+                    label2.text: Maui.App.about.shortDescription
+                    label2.font.pointSize: Maui.Style.fontSizes.big
+                    label2.elide: Text.ElideRight
+                    label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                    leftLabels.spacing: Maui.Style.space.medium
+                    leftLabels.data: [ Repeater
+                    {
+                        model: Maui.App.about.licenses
+                        Label
+                        {
+                            Layout.fillWidth: true
+                            text: "© " + modelData.name
+                            opacity: 0.6
+                            font.pointSize: Maui.Style.fontSizes.small
+                        }
+                    },
+                    
                     Label
                     {
                         Layout.fillWidth: true
-                        text: "© " + modelData.name
+                        text:   Maui.App.about.version + " " + Maui.App.about.otherText
+                        font.family: "Monospace"
                         opacity: 0.6
                         font.pointSize: Maui.Style.fontSizes.small
                     }
-                },
-                
-                Label
-                {
-                    Layout.fillWidth: true
-                    text:   Maui.App.about.version + " " + Maui.App.about.otherText
-                    font.family: "Monospace"
-                    opacity: 0.6
-                    font.pointSize: Maui.Style.fontSizes.small
+                    
+                    ]
                 }
-                
-                ]
             }
         }
         
@@ -370,7 +373,7 @@ Maui.Dialog
                         implicitHeight: Maui.Style.iconSizes.big
                         implicitWidth: implicitHeight
                     }
-                                        
+                    
                     Maui.ListItemTemplate
                     {
                         id: _copyRight

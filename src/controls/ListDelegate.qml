@@ -35,7 +35,8 @@ import org.mauikit.controls 1.3 as Maui
 Maui.ItemDelegate
 {
     id: control
-
+    leftPadding: Maui.Style.space.medium
+    rightPadding: Maui.Style.space.medium
     /**
       * labelVisible : bool
       */
@@ -85,6 +86,8 @@ Maui.ItemDelegate
         id: _template
         anchors.fill: parent
         labelsVisible: control.labelVisible
+        hovered: control.hovered
+      
         isCurrentItem: control.isCurrentItem
     }
 }

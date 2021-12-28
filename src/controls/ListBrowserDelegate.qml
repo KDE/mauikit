@@ -222,7 +222,7 @@ Maui.ItemDelegate
             Layout.fillHeight: true
             Layout.fillWidth: true
             hovered: control.hovered
-
+           
             isCurrentItem : control.isCurrentItem
         }
     }
