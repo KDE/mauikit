@@ -63,4 +63,37 @@ Item
             control.toggled(control.checked)
         }
     }
+
+    onCheckedChanged:
+    {
+        if(checked)
+        {
+            _checkAnimation.start()
+        }else
+        {
+            _uncheckAnimation.start()
+        }
+    }
+
+    NumberAnimation
+    {
+        id: _checkAnimation
+        target: control
+        property: "scale"
+        from: 1.3
+        to: 1
+        duration: Kirigami.Units.longDuration
+        easing.type: Easing.OutBack
+    }
+
+    NumberAnimation
+    {
+        id: _uncheckAnimation
+        target: control
+        property: "scale"
+        from: 0.7
+        to: 1
+        duration: Kirigami.Units.longDuration
+        easing.type: Easing.InBack
+    }
 }

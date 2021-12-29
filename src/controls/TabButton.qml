@@ -42,6 +42,7 @@ T.TabButton
         opacity: control.hovered && !control.checked ? 0.2 : 1
         color: control.hovered && !control.checked ? Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.4) : Qt.lighter(Kirigami.Theme.backgroundColor)
         radius: Maui.Style.radiusV
+        
     }
     
     contentItem:  MouseArea
