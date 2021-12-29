@@ -123,14 +123,14 @@ QVariantMap Handy::userInfo()
 QString Handy::getClipboardText()
 {
 #ifdef Q_OS_ANDROID
-    auto clipbopard = QGuiApplication::clipboard();
+    auto clipboard = QGuiApplication::clipboard();
 #else
-    auto clipbopard = QApplication::clipboard();
+    auto clipboard = QApplication::clipboard();
 #endif
 
-    auto mime = clipbopard->mimeData();
+    auto mime = clipboard->mimeData();
     if (mime->hasText())
-        return clipbopard->text();
+        return clipboard->text();
 
     return QString();
 }
