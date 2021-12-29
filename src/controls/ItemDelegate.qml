@@ -187,7 +187,7 @@ T.Control
                 
                 onPressAndHold :
                 {
-                    xAnim.running = control.draggable
+                    xAnim.running = control.draggable || mouse.source === Qt.MouseEventSynthesizedByQt
                     
                     if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
                     {

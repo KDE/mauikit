@@ -24,7 +24,8 @@ T.TabBar
     
 //     implicitWidth: _content.contentWidth
     implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
-   
+    padding: Maui.Style.space.tiny
+
    palette: Kirigami.Theme.palette
    Kirigami.Theme.colorSet: Kirigami.Theme.Window
    Kirigami.Theme.inherit: false
@@ -107,7 +108,6 @@ T.TabBar
                 id: _scrollView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.margins: Maui.Style.space.tiny
                 
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
