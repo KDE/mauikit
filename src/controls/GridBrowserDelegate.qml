@@ -190,8 +190,8 @@ Maui.ItemDelegate
         {
             NumberAnimation
             {
-                duration: Kirigami.Units.longDuration
-                easing.type: Easing.InOutQuad
+                duration: Kirigami.Units.longDuration*4
+                easing.type: Easing.OutBack
             }
         }
         

@@ -57,7 +57,6 @@ Item
         height: parent.height + targetMargin
         width: parent.width + targetMargin
 
-
         onClicked:
         {
             control.checked = !control.checked

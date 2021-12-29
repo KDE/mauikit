@@ -491,7 +491,7 @@ Container
                     {
                         height: GridView.view.cellHeight
                         width: GridView.view.cellWidth
-                        
+
                         Maui.GridBrowserDelegate
                         {
                             id: _delegate

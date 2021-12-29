@@ -42,7 +42,18 @@ Item
     implicitWidth: _imp.implicitWidth
     readonly property bool hidden : count === 0
     
-    visible: !hidden
+    onHiddenChanged:
+    {
+        if(hidden)
+        {
+            control.close()
+        }else
+        {
+            control.open()
+        }
+    }
+    
+    visible: false
     focus: true
     Keys.enabled: true
     /**
@@ -243,15 +254,14 @@ Item
                 delegate: control.listDelegate
             }
         }
-    }
-    
+    }    
     
     T.Control
     {
         id: _imp
         
-        implicitHeight:  _layout.implicitHeight + topPadding + bottomPadding
-        implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
+        implicitHeight: implicitContentHeight + topPadding + bottomPadding
+        implicitWidth: implicitContentWidth + leftPadding + rightPadding
 
         padding: 0
         topPadding: padding
@@ -259,21 +269,96 @@ Item
         rightPadding: padding
         leftPadding: padding
         
-        y: control.hidden ? control.height : 0
+        y: control.height 
         
-        Behavior on y
+//         Behavior on y
+//         {
+//             NumberAnimation
+//             {
+//                 duration: Kirigami.Units.longDuration*2
+//                 easing.type: control.hidden ? Easing.InBack : Easing.OutBack
+//                 
+//             }
+//         }
+        
+        ParallelAnimation
         {
+            id: _openAnimation
             NumberAnimation
             {
-                duration: Kirigami.Units.longDuration*2
-                easing.type: control.hidden ? Easing.InBack : Easing.OutBack
+                target: _imp
+                property: "y"
+                from: _imp.height
+                to: Maui.Style.space.big/2
+                duration: Kirigami.Units.longDuration*4
+                easing.type:  Easing.OutBack 
                 
             }
+            
+            NumberAnimation
+            {
+                target: _imp
+                property: "scale"
+                from: 0.5
+                to: 1
+                duration: Kirigami.Units.longDuration*4
+                easing.type: Easing.OutQuad                 
+            }
+            
+            //NumberAnimation
+            //{
+                //target: _imp
+                //property: "opacity"
+                //from: 0
+                //to: 1
+                //duration: Kirigami.Units.longDuration*2
+                //easing.type: Easing.InBack                 
+            //}
         }
+        
+        ParallelAnimation
+        {
+            id: _closeAnimation
+            NumberAnimation
+            {
+                target: _imp
+                property: "y"
+                from: Maui.Style.space.big/2
+                to: _imp.height
+                duration: Kirigami.Units.longDuration*4
+                easing.type: Easing.InBack
+                
+            }
+            
+            NumberAnimation
+            {
+                target: _imp
+                property: "scale"
+                from: 1
+                to: 0.5
+                duration: Kirigami.Units.longDuration*4
+                easing.type: Easing.InQuad
+                
+            }
+            
+            //NumberAnimation
+            //{
+                //target: _imp
+                //property: "opacity"
+                //from: 1
+                //to: 0
+                //duration: Kirigami.Units.longDuration*2
+                //easing.type: Easing.OutBack
+                
+            //}
+            
+            onFinished: control.visible = false
+        }
+        
         
         focus: true
         
-        background:    Rectangle
+        background: Rectangle
         {
             id: bg
             color: Kirigami.Theme.backgroundColor
@@ -393,6 +478,22 @@ Item
                 Kirigami.Theme.backgroundColor: _loader.item && _loader.item.visible ?
                 Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
                 border.color: "transparent"
+                
+//                 onTextChanged: _counterAnimation.start()                
+//              
+//                     ColorAnimation on color
+//                     {
+//                         id:  _counterAnimation
+//                         
+//                         from: Kirigami.Theme.highlightColor
+//                         to: Kirigami.Theme.backgroundColor
+//                         loops:3
+//                         easing {
+//                             type: Easing.OutElastic
+//                             amplitude: 1.0
+//                             period: 0.5
+//                         }                        
+//                     }
                 
                 onClicked:
                 {
@@ -567,5 +668,25 @@ Item
     function contains(uri)
     {
         return _private._uris.includes(uri)
+    }
+    
+    function open()
+    {        
+        if(control.visible)
+        {
+            return;            
+        }
+        
+        control.visible = true
+        _openAnimation.start()
+    }
+    
+    function close()
+    {
+        if(!control.visible)
+        {
+            return
+        }
+        _closeAnimation.start()
     }
 }
