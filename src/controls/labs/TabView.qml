@@ -437,7 +437,7 @@ Container
                 emojiSize: Maui.Style.iconSizes.huge
             }
 
-            scale: control.overviewMode ? 0.3 : 1
+            scale: control.overviewMode ? 0.5 : 1
             Behavior on scale
             {
                 NumberAnimation
