@@ -438,6 +438,7 @@ Container
             }
 
             scale: control.overviewMode ? 0.5 : 1
+            opacity: control.overviewMode ? 1  : 0
             Behavior on scale
             {
                 NumberAnimation
@@ -446,8 +447,16 @@ Container
                     easing.type: Easing.InOutQuad
                 }
             }
-        }
 
+            Behavior on opacity
+            {
+                NumberAnimation
+                {
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InOutQuad
+                }
+            }
+        }
         
         Loader
         {
