@@ -438,7 +438,7 @@ Container
             }
 
             scale: control.overviewMode ? 0.5 : 1
-            opacity: control.overviewMode ? 1  : 0
+            opacity: control.overviewMode ? 0  : 1
             Behavior on scale
             {
                 NumberAnimation
