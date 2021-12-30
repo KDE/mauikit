@@ -290,7 +290,7 @@ Item
                 property: "y"
                 from: _imp.height
                 to: Maui.Style.space.big/2
-                duration: Kirigami.Units.longDuration*2
+                duration: Kirigami.Units.longDuration*1
                 easing.type:  Easing.OutBack 
                 
             }
@@ -301,7 +301,7 @@ Item
                 property: "scale"
                 from: 0.5
                 to: 1
-                duration: Kirigami.Units.longDuration*2
+                duration: Kirigami.Units.longDuration*1
                 easing.type: Easing.OutQuad                 
             }
             
@@ -325,7 +325,7 @@ Item
                 property: "y"
                 from: Maui.Style.space.big/2
                 to: _imp.height
-                duration: Kirigami.Units.longDuration*2
+                duration: Kirigami.Units.longDuration*1
                 easing.type: Easing.InBack
                 
             }
@@ -336,7 +336,7 @@ Item
                 property: "scale"
                 from: 1
                 to: 0.5
-                duration: Kirigami.Units.longDuration*2
+                duration: Kirigami.Units.longDuration*1
                 easing.type: Easing.InQuad
                 
             }

@@ -168,14 +168,17 @@ Maui.ItemDelegate
         id: _template
         width: parent.width
         height: parent.height
-        iconContainer.scale: _dropArea.containsDrag ? 0.8 : 1
+        iconContainer.scale: _dropArea.containsDrag  || _checkboxLoader.active ? 0.8 : 1
         hovered: control.hovered
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
+
+       
     }
 
     Loader
     {
+        id: _checkboxLoader
         asynchronous: true
         active: control.checkable || control.checked
 //         visible: active

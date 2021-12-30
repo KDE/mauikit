@@ -185,7 +185,7 @@ Item
                     NumberAnimation
                     {
                         duration: Kirigami.Units.longDuration
-                        easing.type: Easing.OutInQuad
+                        easing.type: Easing.OutBack
 
                     }
                 }
