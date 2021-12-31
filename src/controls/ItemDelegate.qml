@@ -49,6 +49,18 @@ T.Control
     topPadding: padding
     
     focus: false
+
+    ToolTip.delay: 1000
+    ToolTip.timeout: 5000
+    ToolTip.visible: control.hovered && control.tooltipText
+    ToolTip.text: control.tooltipText
+
+    /**
+      * tooltipText : string
+      */
+    property string tooltipText
+
+
     /**
      * content :
      */
@@ -112,8 +124,7 @@ T.Control
         Drag.dragType: Drag.Automatic
         Drag.supportedActions: Qt.MoveAction
         Drag.hotSpot.x: control.width / 2
-        Drag.hotSpot.y: control.height / 2  
-        
+        Drag.hotSpot.y: control.height / 2          
         
         contentItem : Item
         {
@@ -168,6 +179,7 @@ T.Control
                         drag.target = null
                     }
                     
+                    pressAndHoldIgnored = false
                     control.pressed(mouse)
                 }
                 
@@ -206,9 +218,12 @@ T.Control
                 
                 onPositionChanged:
                 {
-                    if(mouseArea.drag.active)
+
+                    if(control.Drag.active && pressAndHoldIgnored)
                     {
+//                        console.log(control.Drag.active && pressAndHoldIgnored)
                         pressAndHoldIgnored = false
+                        mouse.accepted = true
                     }
                 }
 

@@ -44,24 +44,15 @@ Maui.ItemDelegate
 
     radius: Maui.Style.radiusV
 
-    implicitHeight: label4.visible || label2.visible ? Maui.Style.rowHeight + (Maui.Style.space.medium * 1.5) : Maui.Style.rowHeight
-    isCurrentItem : ListView.isCurrentItem || checked
-    leftPadding: iconVisible ? 0 : Maui.Style.space.medium
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
-    ToolTip.delay: 1000
-    ToolTip.timeout: 5000
-    ToolTip.visible: control.hovered && control.tooltipText
-    ToolTip.text: control.tooltipText
+    isCurrentItem : ListView.isCurrentItem || checked
+    padding: Maui.Style.space.small
 
     /**
       * content : ListItemTemplate.data
       */
     default property alias content : _template.content
-
-    /**
-      * tooltipText : string
-      */
-    property string tooltipText
 
     /**
       * label1 : Label
@@ -140,11 +131,18 @@ Maui.ItemDelegate
 
     property alias maskRadius : _template.maskRadius
 
+    property alias containsDrag : _dropArea.containsDrag
+
+    property alias dropArea : _dropArea
+
+    property alias layout : _layout
+
     /**
       * contentDropped :
       */
     signal contentDropped(var drop)
 
+    signal contentEntered(var drag)
     /**
       * toggled :
       */
@@ -158,44 +156,47 @@ Maui.ItemDelegate
         color: control.hovered ? control.Kirigami.Theme.hoverColor :( control.isCurrentItem ||  control.containsPress ? control.Kirigami.Theme.highlightColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))
 
         radius: control.radius
+
+        Rectangle
+        {
+            width: parent.width
+            height: parent.height
+            radius: control.radius
+            visible: control.containsDrag
+            color:  control.Kirigami.Theme.backgroundColor
+            border.color: control.Kirigami.Theme.highlightColor
+        }
     }
 
-    Loader
+    DropArea
     {
-        asynchronous: true
+        id: _dropArea
         width: parent.width
         height: parent.height
-        active: control.draggable
+        enabled: control.draggable
 
-        sourceComponent: DropArea
+        onDropped:
         {
-            Rectangle
-            {
-                width: parent.width
-                height: parent.height
-                radius: control.radius
-                visible: parent.containsDrag
-                color:  control.Kirigami.Theme.backgroundColor
-                border.color: control.Kirigami.Theme.highlightColor
-            }
+            control.contentDropped(drop)
+        }
 
-            onDropped:
-            {
-                control.contentDropped(drop)
-            }
+        onEntered:
+        {
+            control.contentEntered(drag)
         }
     }
 
     RowLayout
     {
+        id: _layout
         anchors.fill: parent
         spacing: _template.spacing
 
-        Item
-        {
-            Layout.preferredHeight: parent.height
-            visible: control.checkable || control.checked
-        }
+//        Item
+//        {
+//            Layout.preferredHeight: Maui.Style.iconSizes.medium
+//            visible: control.checkable || control.checked
+//        }
 
         Loader
         {
@@ -203,7 +204,7 @@ Maui.ItemDelegate
             active: control.checkable || control.checked
             visible: active
             Layout.preferredHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
-            Layout.preferredWidth: height
+            Layout.preferredWidth: Maui.Style.iconSizes.medium
             Layout.alignment: Qt.AlignCenter
             scale: active? 1 : 0
             Behavior on scale
@@ -231,7 +232,7 @@ Maui.ItemDelegate
             Layout.fillHeight: true
             Layout.fillWidth: true
             hovered: control.hovered
-           
+
             isCurrentItem : control.isCurrentItem
         }
     }

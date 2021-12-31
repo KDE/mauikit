@@ -91,7 +91,7 @@ Maui.Dialog
             delegate: Maui.ListBrowserDelegate
             {
                 width: ListView.view.width
-                height: Maui.Style.rowHeight * 2
+//                height: Maui.Style.rowHeight * 2
                 
                 label1.text: model.display
                 iconSource: model.iconName

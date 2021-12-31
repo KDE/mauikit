@@ -44,10 +44,6 @@ Maui.ItemDelegate
     isCurrentItem : GridView.isCurrentItem || checked
     padding: Maui.Style.space.tiny
     radius: Maui.Style.radiusV
-    /**
-     * tooltipText : string
-     */
-    property string tooltipText
 
     /**
      * template : GridItemTemplate
@@ -128,11 +124,6 @@ Maui.ItemDelegate
      * toggled :
      */
     signal toggled(bool state)
-
-    ToolTip.delay: 1000
-    ToolTip.timeout: 5000
-    ToolTip.visible: control.hovered && control.tooltipText
-    ToolTip.text: control.tooltipText
 
     background: Rectangle
     {

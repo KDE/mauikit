@@ -96,8 +96,8 @@ T.ItemDelegate
     contentItem: GridLayout
     {
         id: _layout
-        rowSpacing: 0
-        columnSpacing: 0
+        rowSpacing: Maui.Style.space.medium
+        columnSpacing: Maui.Style.space.medium
         rows: 2
         columns: 2
 
@@ -119,7 +119,7 @@ T.ItemDelegate
         {
             id: _content
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.margins: control.wide ? Maui.Style.space.medium : Maui.Style.space.tiny
+//            Layout.margins: control.wide ? Maui.Style.space.medium : Maui.Style.space.tiny
             Layout.row: control.wide ? 0 : 1
             Layout.column: control.wide ? 1 : 0
 
