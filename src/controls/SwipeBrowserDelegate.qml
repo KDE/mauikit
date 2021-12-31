@@ -32,6 +32,9 @@ import org.mauikit.controls 1.0 as Maui
 Maui.SwipeItemDelegate
 {
     id: control
+    padding: 0
+    
+    implicitHeight: _template.implicitHeight + topPadding + bottomPadding
 
     /**
       * label1 : Label

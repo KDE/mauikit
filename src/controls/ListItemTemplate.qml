@@ -205,7 +205,7 @@ Item
 
             Layout.alignment: Qt.AlignCenter
 
-            //                Layout.fillHeight: true
+                           Layout.fillHeight: true
             //                Layout.fillWidth: !control.labelsVisible
 
             Layout.preferredWidth:  control.headerSizeHint

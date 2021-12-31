@@ -263,6 +263,8 @@ Item
         implicitHeight: implicitContentHeight + topPadding + bottomPadding
         implicitWidth: implicitContentWidth + leftPadding + rightPadding
 
+        width: control.width
+
         padding: 0
         topPadding: padding
         bottomPadding: padding

@@ -70,7 +70,6 @@ Maui.ItemDelegate
     {
         id: _swipeDelegate
         anchors.fill: parent
-        anchors.margins: 1
         hoverEnabled: true
         clip: true
 
@@ -81,6 +80,10 @@ Maui.ItemDelegate
 
         swipe.enabled: control.collapse && control.showQuickActions
         padding: 0
+        topPadding: padding
+        bottomPadding: padding
+        leftPadding: padding
+        rightPadding: padding
 
         Rectangle
         {
@@ -94,7 +97,7 @@ Maui.ItemDelegate
 
         background: RowLayout
         {
-            spacing: 0
+            spacing: control.spacing
             id: _background
 
             //                transform: Translate {
@@ -114,7 +117,7 @@ Maui.ItemDelegate
                 Layout.fillHeight: true
                 Layout.preferredWidth: Math.max(Maui.Style.space.big, _buttonsRow.implicitWidth)
                 Layout.alignment: Qt.AlignRight
-                Layout.margins: Maui.Style.space.medium
+//                 Layout.margins: Maui.Style.space.medium
 
                 Behavior on Layout.preferredWidth
                 {
