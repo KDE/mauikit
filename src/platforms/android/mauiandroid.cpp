@@ -51,9 +51,19 @@ public:
     }
 };
 
+static MAUIAndroid *m_instance = nullptr;
+
 MAUIAndroid::MAUIAndroid(QObject *parent)
     : AbstractPlatform(parent)
 {
+    m_instance = this;
+//    connect(qApp, &QCoreApplication::aboutToQuit, []()
+//    {
+//        qDebug() << "Lets remove MauiApp singleton instance";
+//        delete m_instance;
+//        m_instance = nullptr;
+//    });
+
 }
 
 static QAndroidJniObject getAndroidWindow()
@@ -392,3 +402,37 @@ void MAUIAndroid::handleActivityResult(int receiverRequestCode, int resultCode, 
         emit folderPicked(url);
     }
 }
+
+static JNINativeMethod methods[] = {
+    { "darkModeEnabledChangedJNI", "()V", (void *)MAUIAndroid::darkModeEnabledChangedJNI },
+};
+
+void MAUIAndroid::darkModeEnabledChangedJNI()
+{
+    if(m_instance)
+    {
+        emit m_instance->darkModeEnabledChanged();
+    }
+}
+
+bool MAUIAndroid::darkModeEnabled()
+{
+    return QtAndroid::androidActivity().callMethod<jboolean>("darkModeEnabled");
+}
+
+//JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* /*reserved*/)
+//{
+//    JNIEnv* env;
+//    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+//        return JNI_ERR;
+//    }
+
+//    jclass javaClass = env->FindClass("com/kde/maui/tools/ConfigActivity");
+//    if (!javaClass)
+//        return JNI_ERR;
+
+//    if (env->RegisterNatives(javaClass, methods, sizeof(methods) / sizeof(methods[0])) < 0) {
+//        return JNI_ERR;
+//    }
+//    return JNI_VERSION_1_6;
+//}

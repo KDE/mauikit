@@ -16,6 +16,7 @@
 class MAUIKIT_EXPORT AbstractPlatform : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool darkModeEnabled READ darkModeEnabled NOTIFY darkModeEnabledChanged FINAL)
 
 public:
     explicit AbstractPlatform(QObject *parent = nullptr);
@@ -48,10 +49,13 @@ public slots:
 
     virtual void notify(const QString &title, const QString &message, const QString &icon, const QString &imageUrl);
 
+    virtual bool darkModeEnabled() =0;
+
 signals:
     void hasKeyboardChanged();
     void hasMouseChanged();
     void shareFilesRequest(QStringList urls);
+    void darkModeEnabledChanged();
 };
 
 #endif // ABSTRACTPLATFORM_H

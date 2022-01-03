@@ -237,6 +237,10 @@ elseif(APPLE)
 endif()
 
 if(ANDROID)
+#    set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/android)
+
+    add_subdirectory(platforms/android)
+
     target_link_libraries(MauiKit PRIVATE Qt5::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit COMPONENT Devel)
@@ -289,6 +293,10 @@ if(QUICK_COMPILER AND NOT ANDROID )
     install(FILES controls/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 else()
     install(DIRECTORY controls/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+endif()
+
+if(ANDROID)
+    install(DIRECTORY styles/maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kirigami.2/styles)
 endif()
 
 install(TARGETS MauiKit DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)

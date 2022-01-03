@@ -32,13 +32,15 @@ public slots:
     void shareFiles(const QList<QUrl> &urls) override final;
     void shareText(const QString &text) override final;
     bool hasKeyboard() override final;
-    bool hasMouse() override final;
+    bool hasMouse() override final;    
+    bool darkModeEnabled() override final;
 
 private:
     static Platform *m_instance;
 
     explicit Platform(QObject *parent = nullptr);
     AbstractPlatform *m_platform;
+
 };
 
 QML_DECLARE_TYPEINFO(Platform, QML_HAS_ATTACHED_PROPERTIES)

@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/dummy">
         <file>AndroidManifest.xml</file>
         <file>qtquickcontrols2.conf</file>
     </qresource>

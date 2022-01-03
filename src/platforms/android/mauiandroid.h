@@ -39,8 +39,20 @@
 class Q_DECL_EXPORT MAUIAndroid : public AbstractPlatform
 {
     Q_OBJECT
+//    Q_DISABLE_COPY(MAUIAndroid)
+    Q_DISABLE_MOVE(MAUIAndroid)
+
 public:
     explicit MAUIAndroid(QObject *parent = nullptr);
+
+//    static MAUIAndroid *instance()
+//    {
+//      if (m_instance)
+//        return m_instance;
+
+//      m_instance = new MAUIAndroid;
+//      return m_instance;
+//    }
 
     /**
      * @brief fileChooser
@@ -51,7 +63,9 @@ public:
     static QVariantMap createVariantMap(jobject data);
 
 private:
+//    static MAUIAndroid *m_instance;
     void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject &data);
+
 
 public slots:
 
@@ -126,6 +140,11 @@ signals:
      * @param path
      */
     void folderPicked(QString path);
+
+    // AbstractPlatform interface
+public slots:
+    bool darkModeEnabled() override final;
+    static void darkModeEnabledChangedJNI();
 };
 
 //namespace PATHS

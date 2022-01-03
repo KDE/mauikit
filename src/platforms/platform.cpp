@@ -66,3 +66,9 @@ bool Platform::hasMouse()
 {
     return m_platform->hasMouse();
 }
+
+
+bool Platform::darkModeEnabled()
+{
+    return m_platform->darkModeEnabled();
+}

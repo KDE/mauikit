@@ -7,7 +7,9 @@ import QtQuick.Layouts 1.10
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
-Container
+import QtQuick.Templates 2.15 as T
+
+T.Container
 {
     id: control
     
@@ -78,7 +80,7 @@ Container
     
     data: Loader
     {
-        id: _loader    
+        id: _loader
     }
     
     Component
@@ -89,98 +91,98 @@ Container
         {
             id: _quickSearch
             defaultButtons: false
-                persistent: false
-                headBar.visible: true
-                
-                onOpened: _quickSearchField.forceActiveFocus()
-                
-                function find(query)
+            persistent: false
+            headBar.visible: true
+
+            onOpened: _quickSearchField.forceActiveFocus()
+
+            function find(query)
+            {
+                for(var i = 0; i < control.count; i ++)
                 {
-                    for(var i = 0; i < control.count; i ++)
+                    var obj = control.contentModel.get(i)
+                    if(obj.Maui.TabViewInfo.tabTitle)
                     {
-                        var obj = control.contentModel.get(i)
-                        if(obj.Maui.TabViewInfo.tabTitle)
+                        console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
+
+                        if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
                         {
-                            console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
-                            
-                            if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
-                            {
-                                return i
-                            }
-                        }
-                    }
-                    
-                    return -1
-                }
-                
-                Timer
-                {
-                    id: _typingTimer
-                    interval: 250
-                    onTriggered:
-                    {
-                        var index = _quickSearch.find(_quickSearchField.text)
-                        if(index > -1)
-                        {
-                            _filterTabsList.currentIndex = index
+                            return i
                         }
                     }
                 }
-                
-                headBar.middleContent: Maui.TextField
+
+                return -1
+            }
+
+            Timer
+            {
+                id: _typingTimer
+                interval: 250
+                onTriggered:
                 {
-                    id: _quickSearchField
-                    Layout.fillWidth: true
-                    Layout.maximumWidth: 500
-                    
-                    onTextChanged: _typingTimer.restart()
-                    
-                    onAccepted:
+                    var index = _quickSearch.find(_quickSearchField.text)
+                    if(index > -1)
                     {
-                        control.currentIndex = _filterTabsList.currentIndex
+                        _filterTabsList.currentIndex = index
+                    }
+                }
+            }
+
+            headBar.middleContent: Maui.TextField
+            {
+                id: _quickSearchField
+                Layout.fillWidth: true
+                Layout.maximumWidth: 500
+
+                onTextChanged: _typingTimer.restart()
+
+                onAccepted:
+                {
+                    control.currentIndex = _filterTabsList.currentIndex
+                    _quickSearch.close()
+                    control.currentItem.forceActiveFocus()
+                }
+
+                Keys.enabled: true
+
+                Keys.onPressed:
+                {
+                    if((event.key === Qt.Key_Up))
+                    {
+                        _filterTabsList.flickable.decrementCurrentIndex()
+                    }
+
+                    if((event.key === Qt.Key_Down))
+                    {
+                        _filterTabsList.flickable.incrementCurrentIndex()
+                    }
+                }
+            }
+
+            stack: Maui.ListBrowser
+            {
+                id: _filterTabsList
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                currentIndex: control.currentIndex
+
+                model: control.count
+
+                delegate: Maui.ListDelegate
+                {
+                    width: ListView.view.width
+
+                    label: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+
+                    onClicked:
+                    {
+                        currentIndex =index
+                        control.currentIndex = index
                         _quickSearch.close()
-                        control.currentItem.forceActiveFocus()
-                    }
-                    
-                    Keys.enabled: true
-                    
-                    Keys.onPressed:
-                    {
-                        if((event.key === Qt.Key_Up))
-                        {
-                            _filterTabsList.flickable.decrementCurrentIndex()
-                        }
-                        
-                        if((event.key === Qt.Key_Down))
-                        {
-                            _filterTabsList.flickable.incrementCurrentIndex()
-                        }
                     }
                 }
-                
-                stack: Maui.ListBrowser
-                {
-                    id: _filterTabsList
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    currentIndex: control.currentIndex
-                    
-                    model: control.count
-                    
-                    delegate: Maui.ListDelegate
-                    {
-                        width: ListView.view.width
-                        
-                        label: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                        
-                        onClicked:
-                        {
-                            currentIndex =index
-                            control.currentIndex = index
-                            _quickSearch.close()
-                        }
-                    }
-                }
+            }
         }
     }
     
@@ -189,16 +191,16 @@ Container
         spacing: 0
         
         Loader
-        {            
+        {
             asynchronous: false
             active: control.count > 1 && !control.mobile && control.tabBarVisible
             Layout.fillWidth: true
             visible: active
             
             sourceComponent: Maui.TabBar
-            {        
+            {
                 id: _tabBar
-                position: TabBar.Header                
+                position: TabBar.Header
                 
                 Binding on currentIndex
                 {
@@ -267,31 +269,31 @@ Container
                         
                         //Label
                         //{
-                            //color: "orange"
-                            //text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
+                        //color: "orange"
+                        //text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
                         //}
                         
                         //MouseArea
                         //{
-                            //id: dragArea
-                            //anchors.fill: parent
-                            //property bool held: false
-                            
-                            //drag.target: held ? _tabButton : undefined
-                            //drag.axis: Drag.XAxis
-                            //drag.smoothed: false
-                            //preventStealing: false
-                            //propagateComposedEvents: true
-                            //onPressAndHold: held = true
-                            //onReleased:
-                            //{
-                                //held = false
-                            //}
-                            //onClicked:
-                            //{
-                                //control.currentIndex = index
-                                //control.currentItem.forceActiveFocus()
-                            //}
+                        //id: dragArea
+                        //anchors.fill: parent
+                        //property bool held: false
+
+                        //drag.target: held ? _tabButton : undefined
+                        //drag.axis: Drag.XAxis
+                        //drag.smoothed: false
+                        //preventStealing: false
+                        //propagateComposedEvents: true
+                        //onPressAndHold: held = true
+                        //onReleased:
+                        //{
+                        //held = false
+                        //}
+                        //onClicked:
+                        //{
+                        //control.currentIndex = index
+                        //control.currentItem.forceActiveFocus()
+                        //}
                         //}
                         
                         
@@ -315,12 +317,12 @@ Container
                             onEntered:
                             {
                                 //console.log("Move ", drop.source.mindex,
-                                            //_tabButton.mindex)
+                                //_tabButton.mindex)
                                 //const from = drop.source.mindex
                                 //const to = _tabButton.mindex
                                 
-                                                                //control.moveItem(from , to)
-                                                                //_tabBar.moveItem(from , to)
+                                //control.moveItem(from , to)
+                                //_tabBar.moveItem(from , to)
                                 _dropAreaTimer.restart()
                             }
                             
@@ -393,184 +395,183 @@ Container
             }
         }
         
-
         Item
         {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-        ListView
-        {
-           height: parent.height
-           width: parent.width
-            model: control.contentModel
-            interactive: false
-            currentIndex: control.currentIndex
-            spacing: 0
-            orientation: ListView.Horizontal
-            snapMode: ListView.SnapOneItem
-            
-            boundsBehavior: Flickable.StopAtBounds
-            boundsMovement :Flickable.StopAtBounds
-            
-            preferredHighlightBegin: 0
-            preferredHighlightEnd: width
-            
-            highlightRangeMode: ListView.StrictlyEnforceRange
-            highlightMoveDuration: 0
-            highlightFollowsCurrentItem: true
-            highlightResizeDuration: 0
-            highlightMoveVelocity: -1
-            highlightResizeVelocity: -1
-            
-            maximumFlickVelocity: 4 * width
-            
-            cacheBuffer: control.count * width
-            keyNavigationEnabled : false
-            keyNavigationWraps : false
-            
-            Maui.Holder
+            ListView
             {
-                id: _holder
-                anchors.fill: parent
-                visible: !control.count
-                emojiSize: Maui.Style.iconSizes.huge
-            }
+                height: parent.height
+                width: parent.width
+                model: control.contentModel
+                interactive: false
+                currentIndex: control.currentIndex
+                spacing: 0
+                orientation: ListView.Horizontal
+                snapMode: ListView.SnapOneItem
 
-            scale: control.overviewMode ? 0.5 : 1
-            opacity: control.overviewMode ? 0  : 1
-            Behavior on scale
-            {
-                NumberAnimation
-                {
-                    duration: Kirigami.Units.longDuration 
-                    easing.type: Easing.InOutQuad
-                }
-            }
+                boundsBehavior: Flickable.StopAtBounds
+                boundsMovement :Flickable.StopAtBounds
 
-            Behavior on opacity
-            {
-                NumberAnimation
+                preferredHighlightBegin: 0
+                preferredHighlightEnd: width
+
+                highlightRangeMode: ListView.StrictlyEnforceRange
+                highlightMoveDuration: 0
+                highlightFollowsCurrentItem: true
+                highlightResizeDuration: 0
+                highlightMoveVelocity: -1
+                highlightResizeVelocity: -1
+
+                maximumFlickVelocity: 4 * width
+
+                cacheBuffer: control.count * width
+                keyNavigationEnabled : false
+                keyNavigationWraps : false
+
+                Maui.Holder
                 {
-                    duration: Kirigami.Units.longDuration
-                    easing.type: Easing.InOutQuad
-                }
-            }
-        }
-        
-        Loader
-        {
-            active: (control.count > 1 && control.mobile) || item
-            visible: active && control.overviewMode
-            asynchronous: true
-            anchors.fill: parent
-           
-            sourceComponent: Rectangle
-            {
-                Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                Kirigami.Theme.inherit: false
-                
-                color: Kirigami.Theme.backgroundColor
-                
-                Maui.GridView
-                {
-                    id: _overviewGrid
-                    
+                    id: _holder
                     anchors.fill: parent
-                    model: control.count
-                    currentIndex: control.currentIndex
-                    itemSize: Math.floor(width / 3)
-                    itemHeight:  Math.floor(height / 3)
-                    
-                    onAreaClicked:
-                    {
-                        control.overviewMode = false
-                    }
-                    
-                    delegate: Item
-                    {
-                        height: GridView.view.cellHeight
-                        width: GridView.view.cellWidth
+                    visible: !control.count
+                    emojiSize: Maui.Style.iconSizes.huge
+                }
 
-                        Maui.GridBrowserDelegate
+                scale: control.overviewMode ? 0.5 : 1
+                opacity: control.overviewMode ? 0  : 1
+                Behavior on scale
+                {
+                    NumberAnimation
+                    {
+                        duration: Kirigami.Units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+
+                Behavior on opacity
+                {
+                    NumberAnimation
+                    {
+                        duration: Kirigami.Units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+
+            Loader
+            {
+                active: (control.count > 1 && control.mobile) || item
+                visible: active && control.overviewMode
+                asynchronous: true
+                anchors.fill: parent
+
+                sourceComponent: Rectangle
+                {
+                    Kirigami.Theme.colorSet: Kirigami.Theme.Window
+                    Kirigami.Theme.inherit: false
+
+                    color: Kirigami.Theme.backgroundColor
+
+                    Maui.GridView
+                    {
+                        id: _overviewGrid
+
+                        anchors.fill: parent
+                        model: control.count
+                        currentIndex: control.currentIndex
+                        itemSize: Math.floor(width / 3)
+                        itemHeight:  Math.floor(height / 3)
+
+                        onAreaClicked:
                         {
-                            id: _delegate
-                            anchors.centerIn: parent
-                            width: _overviewGrid.itemSize - Maui.Style.space.small
-                            height: _overviewGrid.itemHeight  - Maui.Style.space.small
-                            
-                            isCurrentItem : parent.GridView.isCurrentItem
-                            label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                            iconSource: "tab-new"
-                            
-                            onRightClicked:
+                            control.overviewMode = false
+                        }
+
+                        delegate: Item
+                        {
+                            height: GridView.view.cellHeight
+                            width: GridView.view.cellWidth
+
+                            Maui.GridBrowserDelegate
                             {
-                                control.currentIndex = index
-                                _menu.index = control.currentIndex
-                                _menu.show()
-                            }
-                            
-                            onClicked:
-                            {
-                                control.currentIndex = index
-                                control.overviewMode = false
-                                control.currentItem.forceActiveFocus()
-                            }
-                            
-                            onPressAndHold:
-                            {
-                                control.currentIndex = index
-                                _menu.index = control.currentIndex
-                                _menu.show()
-                            }
-                            
-                            template.iconComponent: Item
-                            {
-                                clip: true
-                                
-                                ShaderEffectSource
+                                id: _delegate
+                                anchors.centerIn: parent
+                                width: _overviewGrid.itemSize - Maui.Style.space.small
+                                height: _overviewGrid.itemHeight  - Maui.Style.space.small
+
+                                isCurrentItem : parent.GridView.isCurrentItem
+                                label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                                iconSource: "tab-new"
+
+                                onRightClicked:
                                 {
-                                    id: _effect
-                                    
-                                    anchors.centerIn: parent
-                                    
-                                    height: _overviewGrid.itemHeight - 4
-                                    width: _overviewGrid.itemSize - 4
-                                    
-                                    hideSource: visible
-                                    live: true
-                                    textureSize: Qt.size(width,height)
-                                    sourceItem: control.contentModel.get(index)
-                                    
+                                    control.currentIndex = index
+                                    _menu.index = control.currentIndex
+                                    _menu.show()
                                 }
-                            }
-                            
-                            background: Kirigami.ShadowedRectangle
-                            {
-                                color: Qt.lighter(Kirigami.Theme.backgroundColor)
-                                property int radius : Maui.Style.radiusV
-                                border.color: _delegate.hovered || _delegate.containsPress? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
-                                border.width: 1
-                                corners
+
+                                onClicked:
                                 {
-                                    topLeftRadius: radius
-                                    topRightRadius: radius
-                                    bottomLeftRadius: radius
-                                    bottomRightRadius: radius
+                                    control.currentIndex = index
+                                    control.overviewMode = false
+                                    control.currentItem.forceActiveFocus()
                                 }
-                                
-                                shadow.xOffset: 0
-                                shadow.yOffset: 0
-                                shadow.color: Qt.rgba(0, 0, 0, 0.3)
-                                shadow.size: 10
+
+                                onPressAndHold:
+                                {
+                                    control.currentIndex = index
+                                    _menu.index = control.currentIndex
+                                    _menu.show()
+                                }
+
+                                template.iconComponent: Item
+                                {
+                                    clip: true
+
+                                    ShaderEffectSource
+                                    {
+                                        id: _effect
+
+                                        anchors.centerIn: parent
+
+                                        height: _overviewGrid.itemHeight - 4
+                                        width: _overviewGrid.itemSize - 4
+
+                                        hideSource: visible
+                                        live: true
+                                        textureSize: Qt.size(width,height)
+                                        sourceItem: control.contentModel.get(index)
+
+                                    }
+                                }
+
+                                background: Kirigami.ShadowedRectangle
+                                {
+                                    color: _delegate.isCurrentItem ? Kirigami.Theme.highlightColor : Qt.lighter(Kirigami.Theme.backgroundColor)
+                                    property int radius : Maui.Style.radiusV
+                                    border.color: _delegate.hovered || _delegate.containsPress? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
+                                    border.width: 1
+                                    corners
+                                    {
+                                        topLeftRadius: radius
+                                        topRightRadius: radius
+                                        bottomLeftRadius: radius
+                                        bottomRightRadius: radius
+                                    }
+
+                                    shadow.xOffset: 0
+                                    shadow.yOffset: 0
+                                    shadow.color: Qt.rgba(0, 0, 0, 0.3)
+                                    shadow.size: 10
+                                }
                             }
                         }
                     }
                 }
             }
+
         }
-        
-    }
     }
     
     function closeTab(index)

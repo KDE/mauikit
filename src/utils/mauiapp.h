@@ -196,8 +196,9 @@ class Notify;
 class MAUIKIT_EXPORT MauiApp : public QObject
 {
   Q_OBJECT
-  Q_DISABLE_COPY(MauiApp)
-  
+    Q_DISABLE_COPY(MauiApp)
+    Q_DISABLE_MOVE(MauiApp)
+
   Q_PROPERTY(KAboutData about READ getAbout CONSTANT FINAL)
   Q_PROPERTY(QString iconName READ getIconName WRITE setIconName NOTIFY iconNameChanged)
   Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
@@ -206,6 +207,7 @@ class MAUIKIT_EXPORT MauiApp : public QObject
     Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
 //   Q_PROPERTY(QQuickWindow *window READ window WRITE setWindow NOTIFY windowChanged)
 //   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
+    Q_PROPERTY(bool darkMode READ darkMode WRITE setDarkMode NOTIFY darkModeChanged)
   
 public:
   static MauiApp *qmlAttachedProperties(QObject *object);
@@ -219,8 +221,8 @@ public:
     return m_instance;
   }
 
-  MauiApp(MauiApp &&) = delete;
-  MauiApp &operator=(MauiApp &&) = delete;
+//  MauiApp(MauiApp &&) = delete;
+//  MauiApp &operator=(MauiApp &&) = delete;
 
   /**
      * @brief getMauikitVersion
@@ -274,6 +276,21 @@ public:
   bool translucencyAvailable() const;
   void setTranslucencyAvailable(const bool &value);
 
+  bool darkMode() const
+  {
+      return m_darkMode;
+  }
+
+public slots:
+  void setDarkMode(bool darkMode)
+  {
+      if (m_darkMode == darkMode)
+          return;
+
+      m_darkMode = darkMode;
+      emit darkModeChanged(m_darkMode);
+  }
+
 private:
   static MauiApp *m_instance;
   MauiApp();
@@ -283,10 +300,13 @@ private:
   
   bool m_translucencyAvailable = false;
 
+  bool m_darkMode;
+
 signals:
   void iconNameChanged();
   void donationPageChanged();
   void translucencyAvailableChanged(bool translucencyAvailable);
+  void darkModeChanged(bool darkMode);
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)

@@ -17,6 +17,11 @@ set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.controls)
 
 project(mauikit VERSION ${MAUIKIT_VERSION})
 
+if(ANDROID)
+    set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/platforms/android)
+    set(ANDROID_ABIS "armeabi-v7a")
+endif()
+
 find_package(ECM ${REQUIRED_KF5_VERSION} NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} 
     ${ECM_KDE_MODULE_DIR})
