@@ -40,6 +40,8 @@ Maui.Dialog
     maxWidth: 400
     maxHeight: 220 + defaultButtonsLayout.height
 
+    Kirigami.Theme.inherit: false
+    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
     verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
     /**
@@ -75,74 +77,72 @@ Maui.Dialog
     {
         id: _header
         Layout.fillWidth: true
-        implicitHeight: Math.max(_div1.implicitHeight, control.page.height)
+        implicitHeight: control.page.height
 
-        Item
-        {
-            id: _iconItem
-            clip: true
-            anchors.fill: parent
-            Item
-            {
-                id: _iconRec
-                anchors.fill: parent
+        //        Item
+        //        {
+        //            id: _iconItem
+        //            clip: true
+        //            anchors.fill: parent
+        //            Item
+        //            {
+        //                id: _iconRec
+        //                anchors.fill: parent
 
-                FastBlur
-                {
-                    rotation: 45
+        //                FastBlur
+        //                {
+        //                    rotation: 45
 
-                    id: fastBlur
-                    height: parent.height * 3
-                    width: parent.width * 4
-                    anchors.centerIn: parent
-                    source: _div1.iconItem
-                    radius: 64
-                    transparentBorder: false
-                }
+        //                    id: fastBlur
+        //                    height: parent.height * 3
+        //                    width: parent.width * 4
+        //                    anchors.centerIn: parent
+        //                    source: _div1.iconItem
+        //                    radius: 64
+        //                    transparentBorder: false
+        //                }
 
-                Rectangle
-                {
-                    anchors.fill: parent
-                    opacity: 0.8
-                    color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-                }
-            }
+        //                Rectangle
+        //                {
+        //                    anchors.fill: parent
+        //                    opacity: 0.8
+        //                    color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        //                }
+        //            }
 
-            HueSaturation
-            {
-                anchors.fill: _iconRec
-                source: _iconRec
-                hue: 0
-                saturation: 1
-                lightness: 0
-            }
+        //            HueSaturation
+        //            {
+        //                anchors.fill: _iconRec
+        //                source: _iconRec
+        //                hue: 0
+        //                saturation: 1
+        //                lightness: 0
+        //            }
 
-            OpacityMask
-            {
-                source: mask
-                maskSource: _iconRec
-            }
+        //            OpacityMask
+        //            {
+        //                source: mask
+        //                maskSource: _iconRec
+        //            }
 
-            LinearGradient
-            {
-                id: mask
-                anchors.fill: parent
-                gradient: Gradient {
-                    GradientStop { position: 0.2; color: "transparent"}
-                    GradientStop { position: 0.5; color: control.background.color}
-                }
+        //            LinearGradient
+        //            {
+        //                id: mask
+        //                anchors.fill: parent
+        //                gradient: Gradient {
+        //                    GradientStop { position: 0.2; color: "transparent"}
+        //                    GradientStop { position: 0.5; color: control.background.color}
+        //                }
 
-                start: Qt.point(0, 0)
-                end: Qt.point(_iconRec.width, _iconRec.height)
-            }
-        }
+        //                start: Qt.point(0, 0)
+        //                end: Qt.point(_iconRec.width, _iconRec.height)
+        //            }
+        //        }
 
         Maui.ListItemTemplate
         {
             id: _div1
-            //                 color: "blue"
             width: parent.width
-            //                 height: implicitHeight
             anchors.centerIn: parent
 
             iconSource: Maui.App.iconName
@@ -157,7 +157,7 @@ Maui.Dialog
             label1.text: Maui.App.about.displayName
             label1.font.weight: Font.Bold
             label1.font.bold: true
-            label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.3
+            label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.5
 
             label2.text: Maui.App.about.shortDescription
             label2.font.pointSize: Maui.Style.fontSizes.big
@@ -170,6 +170,8 @@ Maui.Dialog
                     Label
                     {
                         Layout.fillWidth: true
+                        Layout.fillHeight: true
+
                         text: "© " + modelData.name
                         opacity: 0.6
                         font.pointSize: Maui.Style.fontSizes.small
@@ -179,6 +181,8 @@ Maui.Dialog
                 Label
                 {
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
+
                     text:   Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
                     opacity: 0.6

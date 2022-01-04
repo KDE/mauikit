@@ -42,25 +42,10 @@ Maui.GridBrowserDelegate
     label1.font.weight: Font.Bold
     label1.font.pointSize: Maui.Style.fontSizes.big
     
-    template.iconComponent: Kirigami.ShadowedRectangle
+    template.iconComponent: Item
     {
         id: _collageLayout
-        
-        color: "#333"
-        corners
-        {
-            topLeftRadius: control.radius
-            topRightRadius: control.radius
-            bottomLeftRadius: control.radius
-            bottomRightRadius: control.radius
-        }
-        
-        shadow.xOffset: 0
-        shadow.yOffset: 0
-        shadow.color: Qt.rgba(0, 0, 0, 0.3)
-        shadow.size: 10
-        
-        
+
         Loader
         {
             asynchronous: true
@@ -109,15 +94,8 @@ Maui.GridBrowserDelegate
                         width: _collageLayout.width
                         height: _collageLayout.height
                         
-                        Kirigami.ShadowedRectangle
+                        Rectangle
                         {
-                            corners
-                            {
-                                topLeftRadius: control.radius
-                                topRightRadius: control.radius
-                                bottomLeftRadius: 0
-                                bottomRightRadius: 0
-                            }
                             anchors.fill: parent
                             radius: control.maskRadius
                         }

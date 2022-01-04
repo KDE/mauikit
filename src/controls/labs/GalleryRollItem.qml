@@ -50,8 +50,8 @@ Maui.GridBrowserDelegate
         {
             topLeftRadius: control.radius
             topRightRadius: control.radius
-            bottomLeftRadius: 0
-            bottomRightRadius: 0
+            bottomLeftRadius: control.radius
+            bottomRightRadius: control.radius
         }
     }
     
