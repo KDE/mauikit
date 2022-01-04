@@ -6,6 +6,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.15
 
 import QtQuick.Templates 2.15 as T
+import QtGraphicalEffects 1.0
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -13,7 +14,8 @@ import org.mauikit.controls 1.3 as Maui
 T.Menu
 {
     id: control
-    
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+
     property bool responsive: Kirigami.Settings.hasTransientTouchInput    
     
     parent: control.responsive ?  ApplicationWindow.overlay : undefined
@@ -29,9 +31,13 @@ T.Menu
     
     spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
     
-    margins: 0
-    
-    padding: 1
+    margins: 0    
+    rightMargin: control.margins
+    leftMargin: control.margins
+    topMargin: control.margins
+    bottomMargin: control.margins
+
+    padding: 0
     topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
     bottomPadding: Maui.Style.space.medium
     
@@ -64,20 +70,6 @@ T.Menu
         implicitWidth: Kirigami.Units.gridUnit * 8
         color: control.Kirigami.Theme.backgroundColor
         radius: control.responsive ? 0 : Maui.Style.radiusV
-        
-        readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
-        border.color: control.responsive ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
-        
-        Rectangle
-        {
-            visible: !control.responsive
-            anchors.fill: parent
-            anchors.margins: 1
-            color: "transparent"
-            radius: parent.radius - 0.5
-            border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
-            opacity: 0.7
-        }
 
         Kirigami.Separator
         {
@@ -89,22 +81,16 @@ T.Menu
             weight: Kirigami.Separator.Weight.Light
         }
 
-        layer.enabled: control.responsive
-        layer.effect: Kirigami.ShadowedRectangle
+        layer.enabled: true
+        layer.effect: DropShadow
         {
-            color: Kirigami.Theme.backgroundColor
-            shadow.xOffset: 0
-            shadow.yOffset: -2
-            shadow.color: Qt.rgba(0, 0, 0, 0.3)
-            shadow.size: 8
-
-            corners
-            {
-                topLeftRadius: _bg.radius
-                topRightRadius: _bg.radius
-                bottomLeftRadius: _bg.radius
-                bottomRightRadius: _bg.radius
-            }
+            cached: true
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 8.0
+            samples: 16
+            color:  "#80000000"
+            smooth: true
         }
     }
     

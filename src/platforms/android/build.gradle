@@ -1,46 +1,48 @@
 buildscript {
-   repositories {
-       google()
-       jcenter()
-   }
+    repositories {
+        google()
+                jcenter()
+    }
 
-   dependencies {
+    dependencies {
         classpath 'com.android.tools.build:gradle:3.6.4'
     }
 }
 
 repositories {
-   google()
-   jcenter()
+    google()
+            jcenter()
 }
 
 apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion @ANDROID_SDK_COMPILE_API@
-    buildToolsVersion '@ANDROID_SDK_BUILD_TOOLS_REVISION@'
+    android {
+        compileSdkVersion @ANDROID_SDK_COMPILE_API@
+        buildToolsVersion '@ANDROID_SDK_BUILD_TOOLS_REVISION@'
 
 
-   sourceSets {
-       main {
-           manifest.srcFile '@CMAKE_CURRENT_SOURCE_DIR@/AndroidManifest.xml'
-           java.srcDirs = ['@CMAKE_CURRENT_SOURCE_DIR@/src']
-      }
-   }
+        sourceSets {
+        main {
+        manifest.srcFile '@CMAKE_CURRENT_SOURCE_DIR@/AndroidManifest.xml'
+        java.srcDirs = ['/opt/Qt/src/android/java/src', '@CMAKE_CURRENT_SOURCE_DIR@/src']
+        aidl.srcDirs = ['/opt/Qt/src/android/java/src', 'src', 'aidl']
 
-   lintOptions {
-       abortOnError false
-   }
+        }
+        }
 
-   dependencies {
-       implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-       implementation 'com.android.support:support-compat:28.0.0'
-compile fileTree(dir: 'libs', include: ['*.jar'])
-compile 'com.google.firebase:firebase-auth:9.2.0'
-   }
-   
-   defaultConfig {
-        minSdkVersion @ANDROID_API_LEVEL@
-        targetSdkVersion @ANDROID_SDK_COMPILE_API@
-    }
+        lintOptions {
+        abortOnError false
+        }
+
+        dependencies {
+        implementation fileTree(dir: '/opt/Qt/jar', include: ['*.jar', '*.aar'])
+  implementation 'com.android.support:support-compat:28.0.0'
+  compile fileTree(dir: '/opt/Qt/jar', include: ['*.jar'])
+
+  }
+
+  defaultConfig {
+    minSdkVersion @ANDROID_API_LEVEL@
+            targetSdkVersion @ANDROID_SDK_COMPILE_API@
+}
 }

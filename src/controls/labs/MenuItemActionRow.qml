@@ -9,12 +9,13 @@ import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Templates 2.15 as T
 
-MenuItem
+T.MenuItem
 {
     id: control
     default property list<Action> actions
-    implicitHeight: Math.max( Maui.Style.rowHeight, _layoutLoader.item.implicitHeight)
+    implicitHeight: Math.max( Maui.Style.rowHeight, _layoutLoader.item.implicitHeight) + topPadding + bottomPadding
     background: null
     
     display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
@@ -23,7 +24,7 @@ MenuItem
     topPadding: 0
     bottomPadding: 0
 
-   contentItem: Loader
+    contentItem: Loader
     {
         id: _layoutLoader
         asynchronous: true

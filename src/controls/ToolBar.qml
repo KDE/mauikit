@@ -204,8 +204,6 @@ T.ToolBar
             weight: Kirigami.Separator.Weight.Light
         }
 
-
-
         states: [  State
             {
                 when: control.position === ToolBar.Header

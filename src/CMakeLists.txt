@@ -237,9 +237,8 @@ elseif(APPLE)
 endif()
 
 if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/platforms/android)
 
-    add_subdirectory(platforms/android)
+#    add_subdirectory(platforms/android)
 
     target_link_libraries(MauiKit PRIVATE Qt5::AndroidExtras jnigraphics)
 

@@ -517,8 +517,6 @@
         <file>icons/luv-icon-theme/Luv/apps/64/nx-software-center.svg</file>
         <file>icons/luv-icon-theme/Luv/apps/64/muon.svg</file>
         <file>icons/luv-icon-theme/Luv/apps/64/maui-pix.svg</file>
-        <file>icons/luv-icon-theme/Luv/apps/64/maui-nota.svg</file>
-        <file>icons/luv-icon-theme/Luv/apps/64/maui-buho.svg</file>
         <file>icons/luv-icon-theme/Luv/apps/64/live-installer.svg</file>
         <file>icons/luv-icon-theme/Luv/apps/64/linguist-qt5.svg</file>
         <file>icons/luv-icon-theme/Luv/apps/64/lightworks.svg</file>
@@ -768,5 +766,10 @@
         <file>icons/luv-icon-theme/Luv/actions/22/view-readermode.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/dialog-scripts.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/download.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/edit-clear-history.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/speedometer.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/item-handle.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/office-chart-line.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-process-system.svg</file>
     </qresource>
 </RCC>

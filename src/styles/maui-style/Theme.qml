@@ -63,8 +63,8 @@ Kirigami.BasicThemeDefinition {
     tooltipHoverColor: "#333"
     tooltipFocusColor: "#333"
 
-    complementaryTextColor: Maui.App.darkMode ? "#eff0f1" : "yellow"
-    complementaryBackgroundColor: Maui.App.darkMode ? "#31363b" : "yellow"
+    complementaryTextColor: Maui.App.darkMode ? "#eff0f1" : "#fafafa"
+    complementaryBackgroundColor: Maui.App.darkMode ? "#31363b" : "#333"
     complementaryAlternateBackgroundColor: Qt.lighter(theme.complementaryBackgroundColor, 1.05)
     complementaryHoverColor: Maui.App.darkMode ? "#3daee6" : "#3daee6"
     complementaryFocusColor: Maui.App.darkMode ? "#1e92ff" : "#1e92ff"

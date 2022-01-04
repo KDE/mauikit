@@ -64,6 +64,10 @@ public slots:
     void shareText(const QString &text) override final;
     bool hasKeyboard() override final;
     bool hasMouse() override final;
+
+    // AbstractPlatform interface
+public slots:
+    bool darkModeEnabled() override final;
 };
 
 QML_DECLARE_TYPEINFO(MAUIKDE, QML_HAS_ATTACHED_PROPERTIES)

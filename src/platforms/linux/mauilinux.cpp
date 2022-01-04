@@ -56,3 +56,9 @@ void MAUIKDE::shareFiles(const QList<QUrl> &urls)
 void MAUIKDE::shareText(const QString &)
 {
 }
+
+
+bool MAUIKDE::darkModeEnabled()
+{
+    return false;
+}

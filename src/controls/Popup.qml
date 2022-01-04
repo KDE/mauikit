@@ -22,6 +22,7 @@ import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Templates 2.15 as T
 
 import QtGraphicalEffects 1.0
 
@@ -35,12 +36,12 @@ import QtGraphicalEffects 1.0
  *
  *
  */
-Popup
+T.Popup
 {
     id: control
     
     parent: ApplicationWindow.overlay
-    Kirigami.Theme.colorSet: Kirigami.Theme.Window    
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
     
     width: filling ? parent.width : mWidth
     height: filling ? parent.height : mHeight
@@ -77,8 +78,8 @@ Popup
     
     modal: !filling
     
-    margins: filling ? 0 : 1
-    padding: filling ? 0 : 1
+    margins: 0
+    padding: 0
     
     topPadding: control.padding
     bottomPadding: control.padding
@@ -128,46 +129,52 @@ Popup
         
         contentItem: Item
         {
-            Item
+            id: _content
+            layer.enabled: !control.filling
+            layer.effect: OpacityMask
             {
-                id: _content
-                anchors.fill: parent
-                layer.enabled: true
-                layer.effect: OpacityMask
+                cached: true
+                maskSource: Item
                 {
-                    cached: true
-                    maskSource: Item
+                    width: _content.width
+                    height: _content.height
+
+                    Rectangle
                     {
-                        width: _content.width
-                        height: _content.height
-                        
-                        Rectangle
-                        {
-                            anchors.fill: parent
-                            radius: control.background.radius
-                        }
+                        anchors.fill: parent
+                        radius: control.background.radius
                     }
                 }
             }
             
-            Rectangle
-            {
-                visible: !control.filling
-                anchors.fill: parent
-                color: "transparent"
-                radius: Maui.Style.radiusV - 0.5
-                border.color: Qt.lighter(control.Kirigami.Theme.backgroundColor, 2)
-                opacity: 0.7
-            }            
+//            Rectangle
+//            {
+//                visible: !control.filling
+//                anchors.fill: parent
+//                color: "transparent"
+//                radius: Maui.Style.radiusV - 0.5
+//                border.color: Qt.lighter(control.Kirigami.Theme.backgroundColor, 2)
+//                opacity: 0.7
+//            }
         }        
         
         background: Rectangle
         {
             color: control.Kirigami.Theme.backgroundColor            
-            readonly property color m_color : Qt.darker(control.Kirigami.Theme.backgroundColor, 2.2)
             
-            border.color: control.filling ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
-            radius: control.filling ? 0 : Maui.Style.radiusV          
+            radius: control.filling ? 0 : Maui.Style.radiusV
+
+            layer.enabled: !control.filling
+            layer.effect: DropShadow
+            {
+                cached: true
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
+            }
         }
         
         /**
