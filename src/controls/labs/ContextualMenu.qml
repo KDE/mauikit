@@ -70,6 +70,7 @@ T.Menu
         implicitWidth: Kirigami.Units.gridUnit * 8
         color: control.Kirigami.Theme.backgroundColor
         radius: control.responsive ? 0 : Maui.Style.radiusV
+border.color: control.responsive ? "transparent" : Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
 
         Kirigami.Separator
         {
