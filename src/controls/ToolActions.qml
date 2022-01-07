@@ -181,6 +181,15 @@ Item
                             bottomLeftRadius: index === 0 ? Maui.Style.radiusV : 0
                             bottomRightRadius:  index === _repeater.count - 1 ? Maui.Style.radiusV : 0
                         }
+
+                        Behavior on color
+                        {
+                            ColorAnimation
+                            {
+                                easing.type: Easing.InQuad
+                                duration: Kirigami.Units.longDuration
+                            }
+                        }
                     }
                 }
             }

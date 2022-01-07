@@ -166,6 +166,15 @@ Maui.ItemDelegate
             color:  control.Kirigami.Theme.backgroundColor
             border.color: control.Kirigami.Theme.highlightColor
         }
+
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.longDuration
+            }
+        }
     }
 
     DropArea

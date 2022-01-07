@@ -77,18 +77,18 @@ AbstractButton
         visible: !control.flat
         radius: Maui.Style.radiusV
         color: control.down || control.checked || control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? Kirigami.Theme.hoverColor : "transparent")
-//         border.color:  checked ?  control.Kirigami.Theme.highlightColor : "transparent"
-
+        //         border.color:  checked ?  control.Kirigami.Theme.highlightColor : "transparent"
         Behavior on color
         {
             ColorAnimation
             {
+                easing.type: Easing.InQuad
                 duration: Kirigami.Units.longDuration
             }
         }
     }
 
- GridLayout
+    GridLayout
     {
         id: _layoutButton
         anchors.centerIn: parent
@@ -99,7 +99,7 @@ AbstractButton
         {
             implicitWidth: visible ? _icon.width + Maui.Style.space.medium : 0
             implicitHeight: Math.floor( _icon.height + (Maui.Style.space.medium))
-           
+
             Layout.column: 0
             Layout.row: 0
             Layout.alignment: Qt.AlignCenter
@@ -131,7 +131,7 @@ AbstractButton
             horizontalAlignment: Qt.AlignHCenter
             Layout.fillWidth: visible
             Layout.preferredWidth: visible ? implicitWidth : 0
-            color: control.hovered ? (control.down || control.pressed || control.checked ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : (control.down || control.pressed || control.checked ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) 
+            color: control.hovered ? (control.down || control.pressed || control.checked ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : (control.down || control.pressed || control.checked ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor)
 
             font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium
             

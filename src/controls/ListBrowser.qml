@@ -232,7 +232,7 @@ Item
         rightPadding: padding
         leftPadding: padding
         topPadding: padding
-        bottomPadding: padding + internal.horizontalScrollBarHeight
+        bottomPadding: padding
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy

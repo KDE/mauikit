@@ -271,17 +271,7 @@ Item
         rightPadding: padding
         leftPadding: padding
         
-        y: control.height 
-        
-//         Behavior on y
-//         {
-//             NumberAnimation
-//             {
-//                 duration: Kirigami.Units.longDuration*2
-//                 easing.type: control.hidden ? Easing.InBack : Easing.OutBack
-//                 
-//             }
-//         }
+        y: control.height         
         
         ParallelAnimation
         {
@@ -365,7 +355,16 @@ Item
             id: bg
             color: Kirigami.Theme.backgroundColor
             radius: control.radius
-            
+
+            Behavior on color
+            {
+                ColorAnimation
+                {
+                    easing.type: Easing.InQuad
+                    duration: Kirigami.Units.shortDuration
+                }
+            }
+
             MouseArea
             {
                 anchors.fill: parent
@@ -423,7 +422,7 @@ Item
         }
         
         
-        contentItem:  Maui.ToolBar
+        contentItem: Maui.ToolBar
         {
             id: _layout
             
@@ -451,8 +450,6 @@ Item
                 {
                     action: modelData
                     display: control.display
-                    //                         Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                    //                         Kirigami.Theme.inherit: false
                     ToolTip.delay: 1000
                     ToolTip.timeout: 5000
                     ToolTip.visible: hovered || pressed && action.text
@@ -554,13 +551,8 @@ Item
                     
                 }
             }
-            
-            
         }
-        
-    }
-    
-  
+    }     
     
     Keys.onEscapePressed:
     {

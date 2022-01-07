@@ -132,6 +132,16 @@ Maui.ItemDelegate
         color: control.hovered ? control.Kirigami.Theme.hoverColor :( control.isCurrentItem ||  control.containsPress ? control.Kirigami.Theme.highlightColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))
 
         radius: control.radius
+
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.longDuration
+            }
+        }
+
     }
 
     DropArea

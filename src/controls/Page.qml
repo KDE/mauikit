@@ -248,6 +248,14 @@ T.Pane
     background: Rectangle
     {
         color: Kirigami.Theme.backgroundColor
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.shortDuration
+            }
+        }
     }
     
     onFlickableChanged:

@@ -16,11 +16,11 @@ T.Menu
     id: control
     Kirigami.Theme.colorSet: Kirigami.Theme.View
 
-    property bool responsive: Kirigami.Settings.hasTransientTouchInput    
+    property bool responsive: Kirigami.Settings.hasTransientTouchInput
     
     parent: control.responsive ?  ApplicationWindow.overlay : undefined
     
-//     x: control.responsive ? 0 : 0
+    //     x: control.responsive ? 0 : 0
     y: control.responsive ? window().height - height : 0
     
     implicitWidth: control.responsive ? window().width :  Math.min(window().width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
@@ -31,7 +31,7 @@ T.Menu
     
     spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
     
-    margins: 0    
+    margins: 0
     rightMargin: control.margins
     leftMargin: control.margins
     topMargin: control.margins
@@ -70,8 +70,16 @@ T.Menu
         implicitWidth: Kirigami.Units.gridUnit * 8
         color: control.Kirigami.Theme.backgroundColor
         radius: control.responsive ? 0 : Maui.Style.radiusV
-border.color: control.responsive ? "transparent" : Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+        border.color: control.responsive ? "transparent" : Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
 
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.shortDuration
+            }
+        }
         Kirigami.Separator
         {
             visible: control.responsive

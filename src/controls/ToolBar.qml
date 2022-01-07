@@ -146,7 +146,14 @@ T.ToolBar
     background: Rectangle
     {
         color: control.Kirigami.Theme.backgroundColor
-
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.shortDuration
+            }
+        }
         Loader
         {
             asynchronous: true

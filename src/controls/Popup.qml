@@ -79,7 +79,7 @@ T.Popup
     modal: !filling
     
     margins: 0
-    padding: control.filling ? 0 : 1
+    padding: 0
     
     topPadding: control.padding
     bottomPadding: control.padding
@@ -163,7 +163,15 @@ T.Popup
         color: control.Kirigami.Theme.backgroundColor
 
         radius: control.filling ? 0 : Maui.Style.radiusV
-        border.color: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+//        border.color: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.longDuration
+            }
+        }
 
         layer.enabled: !control.filling
         layer.effect: DropShadow

@@ -39,6 +39,15 @@ Maui.FlexListItem
         readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.85))         
         radius: Maui.Style.radiusV
         color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4) :  "transparent"
+
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.longDuration
+            }
+        }
     }
     
     onClicked:
