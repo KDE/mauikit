@@ -33,7 +33,14 @@ AbstractButton
     
     Kirigami.Theme.inherit: false
     Kirigami.Theme.colorSet: Kirigami.Theme.Button
-    
+    spacing: Maui.Style.space.small
+
+    padding: Maui.Style.space.small
+    rightPadding: padding
+    leftPadding: padding
+    topPadding: padding
+    bottomPadding: padding
+
     property bool flat : false
 
     /**
@@ -62,8 +69,8 @@ AbstractButton
     focusPolicy: Qt.NoFocus
 
     hoverEnabled: !Kirigami.Settings.isMobile
-    implicitHeight: _layoutButton.implicitHeight
-    implicitWidth: Math.floor(_layoutButton.implicitWidth + (Maui.Style.space.big ))
+    implicitHeight: _layoutButton.implicitHeight + topPadding + bottomPadding
+    implicitWidth: _layoutButton.implicitWidth + leftPadding + rightPadding
 
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
@@ -88,17 +95,16 @@ AbstractButton
         }
     }
 
-    GridLayout
+    contentItem: GridLayout
     {
         id: _layoutButton
-        anchors.centerIn: parent
-        rowSpacing: 0
-        columnSpacing: 0
+        rowSpacing: control.spacing
+        columnSpacing: control.spacing
 
         Item
         {
-            implicitWidth: visible ? _icon.width + Maui.Style.space.medium : 0
-            implicitHeight: Math.floor( _icon.height + (Maui.Style.space.medium))
+            implicitWidth: implicitHeight
+            implicitHeight: Math.max(control.icon.height, control.icon.width)
 
             Layout.column: 0
             Layout.row: 0
@@ -109,9 +115,7 @@ AbstractButton
             Kirigami.Icon
             {
                 id: _icon
-                anchors.centerIn: parent
-                width: control.icon.width
-                height: control.icon.height
+                anchors.fill: parent
 
                 color:  enabled ? (control.icon.color && control.icon.color.length ) ? control.icon.color : ((control.checked || control.down) ? (control.flat ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.highlightedTextColor) : control.Kirigami.Theme.textColor) : Kirigami.Theme.disabledTextColor
 
@@ -139,8 +143,8 @@ AbstractButton
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.InOutQuad
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InQuad
                 }
             }
 
@@ -148,8 +152,8 @@ AbstractButton
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.InOutQuad
+                    duration: Kirigami.Units.longDuration
+                    easing.type: Easing.InQuad
                 }
             }
         }

@@ -67,12 +67,13 @@ Maui.Page
     {
         asynchronous: true
         Layout.fillWidth: !root.isWide
+        Layout.alignment: Qt.AlignCenter
 
         sourceComponent: Private.ActionGroup
         {
             id: _actionGroup
             currentIndex : _swipeView.currentIndex
-            
+
             Binding on currentIndex 
             {
                 value: _swipeView.currentIndex

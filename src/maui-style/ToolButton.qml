@@ -67,7 +67,7 @@ T.ToolButton
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
     
-    icon.color: control.down || control.checked || control.highlighted || control.hovered ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+    icon.color: control.down || control.checked || control.highlighted || control.hovered ? (control.flat ? Kirigami.Theme.highlightColor : Kirigami.Theme.highlightedTextColor) : Kirigami.Theme.textColor
     
     flat: control.parent === T.ToolBar
 

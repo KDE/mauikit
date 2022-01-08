@@ -392,20 +392,21 @@ T.ToolBar
                                 Layout.fillWidth: true
                             }
                             
-                            
-                            Private.ToolBarSection
+                            Item
                             {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                Layout.minimumWidth: implicitWidth
-                                
+                                Layout.minimumWidth:implicitWidth
+                                implicitWidth:  middleRowContent.implicitWidth
+                                implicitHeight:  middleRowContent.implicitHeight
+//                                color: "yellow"
                                 RowLayout
                                 {
                                     id: middleRowContent
-                                    Layout.fillWidth: true
-                                    Layout.fillHeight: true
-                                    Layout.minimumWidth: implicitWidth
-                                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                                    anchors.fill: parent
+                                    //                                    Layout.minimumWidth: implicitWidth
+                                    //                                    Layout.maximumWidth: implicitWidth
+                                    //                                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                                     spacing: control.spacing
                                 }
                             }
