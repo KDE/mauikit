@@ -45,6 +45,7 @@ T.ToolBar
 
     implicitWidth: _mainLayout.implicitWidth + leftPadding + rightPadding
     spacing: Maui.Style.space.small
+
     padding: Maui.Style.space.small
     topPadding: Maui.Style.space.tiny
     bottomPadding: Maui.Style.space.tiny
