@@ -13,5 +13,7 @@
         <file>assets/kde.svg</file>
         <file>assets/nitrux.svg</file>
         <file>assets/mauikit.svg</file>
+        <file>assets/application-x-zerosize.png</file>
+        <file>assets/close.svg</file>
     </qresource>
 </RCC>

@@ -118,22 +118,11 @@ T.Pane
             {
                 target: _buttonDelegate.kicon
                 property: "scale"
-                from: 1
-                to: 1.5
-                duration: 200
-                easing.type: Easing.InQuad
-            }
-
-            NumberAnimation
-            {
-                target: _buttonDelegate.kicon
-                property: "scale"
                 from: 1.5
                 to: 1
                 duration: 200
-                easing.type: Easing.OutQuad
+                easing.type: Easing.InQuad
             }
-
 //            onFinished:
 //            {
 //                control.currentIndex = index
