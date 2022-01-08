@@ -126,126 +126,117 @@ T.Control
     Drag.hotSpot.x: control.width / 2
     Drag.hotSpot.y: control.height / 2
 
-    contentItem : Item
+    contentItem : MouseArea
     {
-        MouseArea
+        id: _mouseArea
+        //        anchors.fill: parent
+        //        scrollGestureEnabled: false
+        //        preventStealing: true
+        propagateComposedEvents: false
+        acceptedButtons:  Qt.RightButton | Qt.LeftButton
+        property bool pressAndHoldIgnored : false
+        drag.axis: Drag.XAndYAxis
+
+        drag.minimumY: control.height
+        drag.minimumX : control.width
+
+        onClicked:
         {
-            id: _mouseArea
-            anchors.fill: parent
-
-            acceptedButtons:  Qt.RightButton | Qt.LeftButton
-            property bool pressAndHoldIgnored : false
-            drag.axis: Drag.XAndYAxis
-
-            //            drag.minimumY: control.height
-            //            drag.minimumX : control.width
-
-            onCanceled:
+            if(mouse.button === Qt.RightButton)
             {
-                //                if(control.draggable)
-                //                {
-                //                    drag.target = null
-                //                }
+                control.rightClicked(mouse)
+            }
+            else
+            {
+                control.clicked(mouse)
+            }
+        }
+
+        onDoubleClicked:
+        {
+            control.doubleClicked(mouse)
+        }
+
+        onPressed:
+        {
+            if(control.draggable && mouse.source !== Qt.MouseEventSynthesizedByQt)
+            {
+                drag.target = _mouseArea
+                control.grabToImage(function(result)
+                {
+                    control.Drag.imageSource = result.url
+                })
+            }else
+            {
+                drag.target = null
             }
 
-            onClicked:
+            pressAndHoldIgnored = false
+            control.pressed(mouse)
+        }
+
+        onReleased :
+        {
+            if(control.draggable)
             {
-                if(mouse.button === Qt.RightButton)
-                {
-                    control.rightClicked(mouse)
-                }
-                else
-                {
-                    control.clicked(mouse)
-                }
+                drag.target = null
             }
 
-            onDoubleClicked:
+            if(pressAndHoldIgnored)
             {
-                control.doubleClicked(mouse)
-            }
-
-            onPressed:
-            {
-                if(control.draggable && mouse.source !== Qt.MouseEventSynthesizedByQt)
-                {
-                    drag.target = _mouseArea
-                    control.grabToImage(function(result)
-                    {
-                        control.Drag.imageSource = result.url
-                    })
-                }else
-                {
-                    drag.target = null
-                }
-
+                control.pressAndHold(mouse)
                 pressAndHoldIgnored = false
-                control.pressed(mouse)
             }
+        }
 
-            onReleased :
+        onPressAndHold :
+        {
+            xAnim.running = control.draggable || mouse.source === Qt.MouseEventSynthesizedByQt
+
+            if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
             {
-                if(control.draggable)
+                drag.target = _mouseArea
+                control.grabToImage(function(result)
                 {
-                    drag.target = null
-                }
-
-                if(pressAndHoldIgnored)
-                {
-                    control.pressAndHold(mouse)
-                    pressAndHoldIgnored = false
-                }
+                    control.Drag.imageSource = result.url
+                })
+                pressAndHoldIgnored = true
+            }else
+            {
+                drag.target = null
+                control.pressAndHold(mouse)
             }
+        }
 
-            onPressAndHold :
+        onPositionChanged:
+        {
+            if(control.Drag.active && pressAndHoldIgnored)
             {
-                xAnim.running = control.draggable || mouse.source === Qt.MouseEventSynthesizedByQt
-
-                if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
-                {
-                    drag.target = _mouseArea
-                    control.grabToImage(function(result)
-                    {
-                        control.Drag.imageSource = result.url
-                    })
-                    pressAndHoldIgnored = true
-                }else
-                {
-                    drag.target = null
-                    control.pressAndHold(mouse)
-                }
+                //                        console.log(control.Drag.active && pressAndHoldIgnored)
+                pressAndHoldIgnored = false
+                mouse.accepted = true
             }
+        }
 
-            onPositionChanged:
+        Item
+        {
+            id: _content
+            height: parent.height
+            width: parent.width
+
+            SequentialAnimation on y
             {
-
-                if(control.Drag.active && pressAndHoldIgnored)
-                {
-                    //                        console.log(control.Drag.active && pressAndHoldIgnored)
-                    pressAndHoldIgnored = false
-                    mouse.accepted = true
-                }
-            }
-
-            Item
-            {
-                id: _content
-                height: parent.height
-                width: parent.width
-
-                SequentialAnimation on y
-                {
-                    id: xAnim
-                    // Animations on properties start running by default
-                    running: false
-                    loops: 2
-                    NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
-                    NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
-                    PauseAnimation { duration: 50 } // This puts a bit of time between the loop
-                }
+                id: xAnim
+                // Animations on properties start running by default
+                running: false
+                loops: 2
+                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
+                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
+                PauseAnimation { duration: 50 } // This puts a bit of time between the loop
             }
         }
     }
+
 
     background: Rectangle
     {

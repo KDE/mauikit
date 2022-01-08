@@ -432,43 +432,8 @@ Item
             //preferredHeight: height
             
             background: null
-            
-            farRightContent: Maui.CloseButton
-            {
-                icon.width: Maui.Style.iconSizes.medium
-                icon.height: Maui.Style.iconSizes.medium
 
-                onClicked:
-                {
-                    control.exitClicked()
-                }
-            }
-            
-            middleContent: [
-                Repeater
-                {
-                    model: control.actions
-
-                    ToolButton
-                    {
-                        action: modelData
-                        display: control.display
-                        ToolTip.delay: 1000
-                        ToolTip.timeout: 5000
-                        ToolTip.visible: hovered || pressed && action.text
-                        ToolTip.text: action.text
-                    }
-                },
-
-                Maui.ToolButtonMenu
-                {
-                    icon.name: "overflow-menu"
-                    visible: content.length > 0
-                    content: control.hiddenActions
-                }
-            ]
-
-            farLeftContent: Maui.Badge
+            Maui.Badge
             {
                 id: _counter
                 Layout.fillHeight: true
@@ -553,6 +518,39 @@ Item
                         _counter.y = startY
                     }
 
+                }
+            }
+
+            Repeater
+            {
+                model: control.actions
+
+                ToolButton
+                {
+                    action: modelData
+                    display: control.display
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: hovered || pressed && action.text
+                    ToolTip.text: action.text
+                }
+            }
+
+            Maui.ToolButtonMenu
+            {
+                icon.name: "overflow-menu"
+                visible: content.length > 0
+                content: control.hiddenActions
+            }
+
+            Maui.CloseButton
+            {
+                icon.width: Maui.Style.iconSizes.medium
+                icon.height: Maui.Style.iconSizes.medium
+
+                onClicked:
+                {
+                    control.exitClicked()
                 }
             }
         }

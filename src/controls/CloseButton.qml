@@ -7,11 +7,12 @@ import org.mauikit.controls 1.2 as Maui
 AbstractButton
 {
     id: control
-    implicitWidth: (Maui.Style.iconSizes.medium*1.5 )+ leftPadding + rightPadding
-    implicitHeight: (Maui.Style.iconSizes.medium*1.5) + topPadding + bottomPadding
+    implicitWidth: (icon.width)+ leftPadding + rightPadding
+    implicitHeight: (icon.height) + topPadding + bottomPadding
 
     hoverEnabled: true
 
+    padding: Maui.Style.space.small
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
 
@@ -23,7 +24,7 @@ AbstractButton
             height: control.icon.height
             width: control.icon.width
             anchors.centerIn: parent
-            color: control.hovered || control.containsPress ? Kirigami.Theme.negativeTextColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.2))
+            color: control.hovered || control.containsPress ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
         }
     }
     

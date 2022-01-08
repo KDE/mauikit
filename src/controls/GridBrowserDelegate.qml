@@ -40,7 +40,6 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
-    focus: false
     isCurrentItem : GridView.isCurrentItem || checked
     padding: Maui.Style.space.tiny
     radius: Maui.Style.radiusV
@@ -167,15 +166,12 @@ Maui.ItemDelegate
     Maui.GridItemTemplate
     {
         id: _template
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
         iconContainer.scale: _dropArea.containsDrag  || _checkboxLoader.active ? 0.8 : 1
         hovered: control.hovered
         maskRadius: control.radius
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
-
-       
     }
 
     Loader
@@ -190,7 +186,7 @@ Maui.ItemDelegate
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
         scale: active ? 1 : 0
-        
+
         Behavior on scale
         {
             NumberAnimation
@@ -199,7 +195,7 @@ Maui.ItemDelegate
                 easing.type: Easing.OutBack
             }
         }
-        
+
         sourceComponent: Private.CheckBoxItem
         {
             Binding on checked

@@ -242,7 +242,7 @@ Item
         {
             id: controlView
             focus: true
-            pressDelay: 1000 
+//            pressDelay: 1000
             width: parent.width
             height: parent.height
             

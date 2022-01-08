@@ -502,6 +502,7 @@ T.Container
 
                                 isCurrentItem : parent.GridView.isCurrentItem
                                 label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                                template.labelSizeHint: 32
                                 iconSource: "tab-new"
 
                                 onRightClicked:
