@@ -158,8 +158,8 @@ TextField
                 visible: control.text.length
                 icon.name: "edit-clear"
                 icon.color: control.color
-                icon.height: Maui.Style.iconSizes.small
-                icon.width: Maui.Style.iconSizes.small
+                icon.height: Maui.Style.iconSizes.medium
+                icon.width: Maui.Style.iconSizes.medium
                 onClicked:
                 {
                     control.clear()
