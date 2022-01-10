@@ -283,7 +283,7 @@ Item
                 from: _imp.height
                 to: Maui.Style.space.big/2
                 duration: Kirigami.Units.longDuration*1
-                easing.type:  Easing.OutBack
+                easing.type: Easing.OutBack
                 
             }
             

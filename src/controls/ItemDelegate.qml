@@ -122,7 +122,7 @@ T.Control
 
     Drag.active: mouseArea.drag.active && control.draggable
     Drag.dragType: Drag.Automatic
-    Drag.supportedActions: Qt.MoveAction
+//     Drag.supportedActions: Qt.MoveAction
     Drag.hotSpot.x: control.width / 2
     Drag.hotSpot.y: control.height / 2
 
@@ -135,10 +135,6 @@ T.Control
         propagateComposedEvents: false
         acceptedButtons:  Qt.RightButton | Qt.LeftButton
         property bool pressAndHoldIgnored : false
-        drag.axis: Drag.XAndYAxis
-
-        drag.minimumY: control.height
-        drag.minimumX : control.width
 
         onClicked:
         {
@@ -161,7 +157,7 @@ T.Control
         {
             if(control.draggable && mouse.source !== Qt.MouseEventSynthesizedByQt)
             {
-                drag.target = _mouseArea
+                drag.target = _content
                 control.grabToImage(function(result)
                 {
                     control.Drag.imageSource = result.url
@@ -177,6 +173,8 @@ T.Control
 
         onReleased :
         {
+            _content.x = 0
+            _content.y = 0
             if(control.draggable)
             {
                 drag.target = null
@@ -195,7 +193,7 @@ T.Control
 
             if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
             {
-                drag.target = _mouseArea
+                drag.target = _content
                 control.grabToImage(function(result)
                 {
                     control.Drag.imageSource = result.url
@@ -221,6 +219,7 @@ T.Control
         Item
         {
             id: _content
+            
             height: parent.height
             width: parent.width
 
@@ -229,9 +228,9 @@ T.Control
                 id: xAnim
                 // Animations on properties start running by default
                 running: false
-                loops: 2
-                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
-                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
+                loops: 3
+                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InBack }
+                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.OutBack }
                 PauseAnimation { duration: 50 } // This puts a bit of time between the loop
             }
         }
