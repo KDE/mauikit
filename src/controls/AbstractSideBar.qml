@@ -17,8 +17,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQml 2.14
+import QtQuick 2.15
+import QtQml 2.15
 import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.14 as Kirigami
@@ -44,6 +44,7 @@ T.Drawer
     implicitWidth: Math.min(preferredWidth, window().width) 
     
     implicitHeight: window().internalHeight
+    height: implicitHeight
     
     y: (!window().altHeader ? window().headerContainer.implicitHeight : 0)
     //    closePolicy: modal || collapsed ?  Popup.CloseOnEscape | Popup.CloseOnPressOutside : Popup.NoAutoClose
@@ -161,12 +162,12 @@ T.Drawer
                   
         }    
         
-        //Label
-        //{
-            //parent: ApplicationWindow.overlay
-            //color: "orange"
-            //text: control.width + " /" + control.position
-        //}
+        Label
+        {
+            parent: ApplicationWindow.overlay
+            color: "orange"
+            text: control.height + " /" + window().internalHeight
+        }
         
         contentItem: Item
         {
