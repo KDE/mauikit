@@ -23,16 +23,17 @@ import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
+import QtQuick.Templates 2.15 as T
 
 /*!
-\since org.mauikit.controls 1.0
-\inqmlmodule org.mauikit.controls
-\brief Collapsible sidebar
-
-A global sidebar for the application window that can be collapsed.
-To use a collapsable sidebar is a better idea to make use of the SideBar or ActionSideBar components which are ready for it and are handled by a ListView, you only need a data model or list of actions to be used.
-*/
-Drawer
+ * \since org.mauikit.controls 1.0
+ * \inqmlmodule org.mauikit.controls
+ * \brief Collapsible sidebar
+ * 
+ * A global sidebar for the application window that can be collapsed.
+ * To use a collapsable sidebar is a better idea to make use of the SideBar or ActionSideBar components which are ready for it and are handled by a ListView, you only need a data model or list of actions to be used.
+ */
+T.Drawer
 {
     id: control
     edge: Qt.LeftEdge
@@ -40,100 +41,85 @@ Drawer
     position: visible ? 1 : 0
     visible: enabled    
     
-    implicitWidth: Math.min(preferredWidth, window().width)
-
+    implicitWidth: Math.min(preferredWidth, window().width) 
+    
     implicitHeight: window().internalHeight
-
+    
     y: (!window().altHeader ? window().headerContainer.implicitHeight : 0)
     //    closePolicy: modal || collapsed ?  Popup.CloseOnEscape | Popup.CloseOnPressOutside : Popup.NoAutoClose
-
+    
     interactive: (modal || collapsed ) && Maui.Handy.isTouch && enabled
-
-    dragMargin: Maui.Style.space.medium
-
+    
+    //     dragMargin: Maui.Style.space.medium
+    
     modal: false
-
+    
     opacity: _dropArea.containsDrag ? 0.5 : 1
     clip: true
     
-    contentItem: null
-
     padding: 0
+    topPadding: 0
+    bottomPadding: 0
     leftPadding: 0
     rightPadding: 0
-    background: Kirigami.ShadowedRectangle
-    {
-        color: Kirigami.Theme.backgroundColor
-        property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
-        opacity: Maui.App.translucencyAvailable ? 0.4 : 1
-        corners
-        {
-            topLeftRadius: radius
-            topRightRadius: 0
-            bottomLeftRadius: radius
-            bottomRightRadius: 0
-        }
-    }
-
+    
     /*!
-      \qmlproperty Item AbstractSideBar::content
-
-      The main content is added to an Item contents, it can anchored or sized normally.
-    */
+     *      \qmlproperty Item AbstractSideBar::content
+     * 
+     *      The main content is added to an Item contents, it can anchored or sized normally.
+     */
     default property alias content : _content.data
-
-    /*!
-      If the sidebar can be collapsed into a slimmer bar with a width defined by the collapsedSize hint.
-    */
-    property bool collapsible: false
-
-    /*!
-      If the sidebar should be collapsed or not, this property can be used to dynamically collapse
-      the sidebar on constrained spaces.
-    */
-    property bool collapsed: false
-
-    /*!
-      preferredWidth : int
-      The preferred width of the sidebar in the expanded state.
-    */
-    property int preferredWidth : Kirigami.Units.gridUnit * 12
-
-    /*!
-      \qmlproperty MouseArea AbstractSideBar::overlay
-
-      When the application has a constrained width to fit the sidebar and main contain,
-      the sidebar is in a constrained state, and the app main content gets dimmed by an overlay.
-      This property gives access to such ovelay element drawn on top of the app contents.
-    */
-    readonly property alias overlay : _overlayLoader.item
-    
-    property alias dropArea : _dropArea
-
-    signal contentDropped(var drop)
-    
-    Binding on z
-    {
-        value: root.window().z
-        restoreMode: Binding.RestoreBindingOrValue
-    }
-    
-    onCollapsedChanged:
-    {
-        if(collapsed || !control.enabled)
+        
+        /*!
+         *      If the sidebar can be collapsed into a slimmer bar with a width defined by the collapsedSize hint.
+         */
+        property bool collapsible: false
+        
+        /*!
+         *      If the sidebar should be collapsed or not, this property can be used to dynamically collapse
+         *      the sidebar on constrained spaces.
+         */
+        property bool collapsed: false
+        
+        /*!
+         *      preferredWidth : int
+         *      The preferred width of the sidebar in the expanded state.
+         */
+        property int preferredWidth : Kirigami.Units.gridUnit * 12
+        
+        /*!
+         *      \qmlproperty MouseArea AbstractSideBar::overlay
+         * 
+         *      When the application has a constrained width to fit the sidebar and main contain,
+         *      the sidebar is in a constrained state, and the app main content gets dimmed by an overlay.
+         *      This property gives access to such ovelay element drawn on top of the app contents.
+         */
+        readonly property alias overlay : _overlayLoader.item
+        
+        property alias dropArea : _dropArea
+        
+        signal contentDropped(var drop)
+        
+        //Binding on z
+        //{
+        //value: root.window().z
+        //restoreMode: Binding.RestoreBindingOrValue
+        //}
+        
+        onCollapsedChanged:
         {
-            control.position = 0
-            control.close()
+            if(collapsed || !control.enabled)
+            {
+                control.close()
+            }
+            else
+            {
+                control.open()
+            }
         }
-        else
+        
+        Loader
         {
-            control.position = 1
-            control.open()
-        }
-    }
-
-    Loader
-    {
         id: _overlayLoader
         
         active: control.visible
@@ -144,81 +130,106 @@ Drawer
         visible: (control.collapsed && control.position > 0 && control.visible)
         parent: window().pageContent
         
-       sourceComponent: MouseArea
+        sourceComponent: MouseArea
         {           
-            preventStealing: true
-            propagateComposedEvents: false
-            Rectangle
-            {
-                color: Qt.rgba(control.Kirigami.Theme.backgroundColor.r,control.Kirigami.Theme.backgroundColor.g,control.Kirigami.Theme.backgroundColor.b, 0.5)
-                opacity: control.position
-                anchors.fill: parent
-            }
-            
-            onClicked: control.close()
-        }
-    }    
-
-    Item
-    {
-        id: _content
-        anchors.fill: parent       
-    }
-
-    Kirigami.Separator
-    {
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        width: 0.5
-        weight: Kirigami.Separator.Weight.Light
-    }
-    
-    Component.onCompleted:
-    {
-        if(control.visible)
+        preventStealing: true
+        propagateComposedEvents: false
+        Rectangle
         {
-            control.position = 1
-            control.open()
-        }
-    }
-
-    Behavior on position
-    {
-        enabled: control.collapsible && control.position === 1
-        NumberAnimation
-        {
-            duration: Kirigami.Units.shortDuration
-            easing.type: Easing.InOutQuad
-        }
-    }
-
-    DropArea
-    {
-        id: _dropArea
+        color: Qt.rgba(control.Kirigami.Theme.backgroundColor.r,control.Kirigami.Theme.backgroundColor.g,control.Kirigami.Theme.backgroundColor.b, 0.5)
+        opacity: control.position
         anchors.fill: parent
-        onDropped:
-        {
-            control.contentDropped(drop)
-        }
-    }
-    
-    function toggle()
-    {
-        if(!control.enabled)
-        {
-             close()
-             return
         }
         
-        if(control.position > 0 && control.visible)
-        {
-            control.close()
+        onClicked: control.close()
         }
-        else
+        }    
+        
+        background: Kirigami.ShadowedRectangle
         {
-            control.open()
+            color: Kirigami.Theme.backgroundColor
+            property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
+            opacity: Maui.App.translucencyAvailable ? 0.4 : 1
+            corners
+            {
+                topLeftRadius: radius
+                topRightRadius: 0
+                bottomLeftRadius: radius
+                bottomRightRadius: 0
+            }        
+            
+                  
+        }    
+        
+        //Label
+        //{
+            //parent: ApplicationWindow.overlay
+            //color: "orange"
+            //text: control.width + " /" + control.position
+        //}
+        
+        contentItem: Item
+        {
+            id: _content
+            
+            DropArea
+            {
+                id: _dropArea
+                anchors.fill: parent
+                onDropped:
+                {
+                    control.contentDropped(drop)
+                }
+            }        
         }
-    }
+        
+        Kirigami.Separator
+        {
+            z: contentItem.z + 1
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            width: 0.5
+            weight: Kirigami.Separator.Weight.Light
+        } 
+        
+        Component.onCompleted:
+        {
+            if(control.visible)
+            {
+                control.open()
+            }
+        }
+        
+        Behavior on position
+        {
+            enabled: control.collapsible 
+            NumberAnimation
+            {
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        
+        onClosed: control.position = 0
+        onOpened: control.position = 1
+        
+        function toggle()
+        {
+            if(!control.enabled)
+            {
+                control.close()
+                return
+            }
+            
+            if(control.position > 0 && control.visible)
+            {
+                control.close()
+            }
+            else
+            {
+                control.open()
+            }
+        }
 }
 

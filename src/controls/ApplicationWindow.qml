@@ -310,10 +310,10 @@ Window
             clip: true
             transform: Translate
             {
-                x: root.sideBar && root.sideBar.collapsible && root.sideBar.collapsed ? root.sideBar.position * (root.sideBar.width) : 0
+                x: root.sideBar && root.sideBar.collapsible && root.sideBar.collapsed ? root.sideBar.position * (root.sideBar.implicitWidth) : 0
             }
 
-            anchors.leftMargin: root.sideBar ? ((root.sideBar.collapsible && root.sideBar.collapsed) ? 0 : (root.sideBar.width ) * root.sideBar.position) : 0
+            anchors.leftMargin: root.sideBar ? ((root.sideBar.collapsible && root.sideBar.collapsed) ? 0 : (root.sideBar.implicitWidth ) * root.sideBar.position) : 0
         }
 
         background: Rectangle

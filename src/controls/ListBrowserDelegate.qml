@@ -212,10 +212,11 @@ Maui.ItemDelegate
             asynchronous: true
             active: control.checkable || control.checked
             visible: active
-            Layout.preferredHeight: Math.min(Maui.Style.iconSizes.medium, control.height)
-            Layout.preferredWidth: Maui.Style.iconSizes.medium
+            Layout.preferredHeight: Maui.Style.iconSizes.medium
+            Layout.preferredWidth: Math.max(Maui.Style.iconSizes.medium, _template.headerSizeHint)
             Layout.alignment: Qt.AlignCenter
             scale: active? 1 : 0
+            
             Behavior on scale
             {
                 NumberAnimation
@@ -224,15 +225,23 @@ Maui.ItemDelegate
                     easing.type: Easing.InOutQuad
                 }
             }
-            sourceComponent: Private.CheckBoxItem
+            sourceComponent: Item
             {
-                Binding on checked
+                Private.CheckBoxItem
                 {
-                    value: control.checked
-                    restoreMode: Binding.RestoreBinding
+                    anchors.centerIn: parent
+                    height: Maui.Style.iconSizes.medium
+                    width: Maui.Style.iconSizes.medium
+                    Binding on checked
+                    {
+                        value: control.checked
+                        restoreMode: Binding.RestoreBinding
+                    }
+                    onToggled: control.toggled(state)
                 }
-                onToggled: control.toggled(state)
+                
             }
+            
         }
 
         Maui.ListItemTemplate
