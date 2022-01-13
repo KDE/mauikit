@@ -17,11 +17,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Layouts 1.3
+
+import QtQuick.Templates 2.15 as T
 
 /**
  * TextField
@@ -33,11 +36,31 @@ import org.mauikit.controls 1.3 as Maui
  *
  *
  */
-TextField
+T.TextField
 {
     id: control
+    
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Kirigami.Theme.inherit: false
+    
+    color: Kirigami.Theme.textColor
+    selectionColor: Kirigami.Theme.highlightColor
+    selectedTextColor: Kirigami.Theme.highlightedTextColor
     focus: true
-    implicitHeight: Maui.Style.rowHeight
+    implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
+    implicitWidth: 500 + leftPadding + rightPadding
+    
+    verticalAlignment: TextInput.AlignVCenter
+    horizontalAlignment: Text.AlignLeft
+    padding: 0
+    leftPadding: _icon.width+ Maui.Style.space.small
+    rightPadding: _actionsLayoutLoader.item.implicitWidth + Maui.Style.space.small
+    
+    selectByMouse: !Kirigami.Settings.isMobile
+    
+    persistentSelection: true
+    
+    wrapMode: TextInput.NoWrap
     /**
      * menu : Menu
      */
@@ -47,6 +70,8 @@ TextField
      * actions : RowLayout
      */
     property list<Action> actions
+    
+    property alias icon : _icon
     
     /**
      * cleared
@@ -68,13 +93,7 @@ TextField
      */
     signal contentDropped(var drop)
     
-    rightPadding: _actionsLayoutLoader.item.implicitWidth + Maui.Style.space.small
     
-    selectByMouse: !Kirigami.Settings.isMobile
-    
-    persistentSelection: true
-    
-    wrapMode: TextInput.NoWrap
     
     onPressAndHold: !Kirigami.Settings.isMobile ? entryMenu.show() : undefined
     onPressed:
@@ -111,6 +130,63 @@ TextField
     {
         sequence: StandardKey.Back
         onActivated: goBackTriggered();
+    }
+    
+    Behavior on leftPadding 
+    {
+        NumberAnimation {
+            duration: Kirigami.Units.longDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
+    
+    Behavior on rightPadding 
+    {
+        NumberAnimation
+        {
+            duration: Kirigami.Units.longDuration
+            easing.type: Easing.InOutQuad
+        }
+    }    
+    
+    RowLayout
+    {
+        anchors.centerIn: parent
+        visible: opacity > 0
+        anchors.verticalCenter: parent.verticalCenter  
+        opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.4 : 0     
+        
+        Behavior on opacity 
+        {
+            NumberAnimation
+            {
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+        
+        
+        Kirigami.Icon
+        {
+            id: _icon
+            source: "edit-find"
+            implicitHeight: visible ? 16 : 0
+            implicitWidth: height
+            color: control.color        
+        }    
+        
+        Label
+        {
+            id: placeholder
+            
+            text: control.placeholderText
+            font: control.font
+            color: control.color
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: control.verticalAlignment
+            elide: Text.ElideRight
+            wrapMode: Text.NoWrap
+        }
     }
     
     Loader
@@ -253,5 +329,13 @@ TextField
                 control.contentDropped(drop)
             }
         }
+    }
+    
+    background: Rectangle 
+    {       
+        color: control.enabled ? (control.activeFocus ? Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)) : "transparent"
+        border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
+        
+        radius: Maui.Style.radiusV
     }
 }

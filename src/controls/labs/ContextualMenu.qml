@@ -16,16 +16,15 @@ T.Menu
     id: control
     Kirigami.Theme.colorSet: Kirigami.Theme.View
 
-    property bool responsive: Kirigami.Settings.hasTransientTouchInput
-    
+    property bool responsive:true
     parent: control.responsive ?  ApplicationWindow.overlay : undefined
     
     //     x: control.responsive ? 0 : 0
-    y: control.responsive ? window().height - height : 0
+    y: control.responsive ? ApplicationWindow.overlay.height - height : 0
     
-    implicitWidth: control.responsive ? window().width :  Math.min(window().width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
+    implicitWidth: control.responsive ? ApplicationWindow.overlay.width :  Math.min(ApplicationWindow.overlay.width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
     
-    implicitHeight: control.responsive ? Math.min(window().height * 0.7, contentHeight + Maui.Style.space.huge) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
+    implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.7, contentHeight + Maui.Style.space.huge) :  Math.min(contentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.7)
     
     modal: control.responsive
     
@@ -110,8 +109,8 @@ T.Menu
     //enabled: control.responsive
     
     //YAnimator {
-    //from: window().height
-    //to: window().height - _menu.height
+    //from: ApplicationWindow.overlay.height
+    //to: ApplicationWindow.overlay.height - _menu.height
     //duration: Kirigami.Units.shortDuration
     //easing.type: Easing.OutCubic
     //}
@@ -123,7 +122,7 @@ T.Menu
     
     //YAnimator {
     //from: _menu.y
-    //to: window().height
+    //to: ApplicationWindow.overlay.height
     //duration: Kirigami.Units.shortDuration
     
     //easing.type: Easing.OutCubic

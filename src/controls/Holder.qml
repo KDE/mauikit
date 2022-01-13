@@ -36,7 +36,7 @@ import org.mauikit.controls 1.2 as Maui
 Item
 {
     id: control
-    
+    implicitHeight: _layout.implicitHeight
     
     default property list<Action> actions
     

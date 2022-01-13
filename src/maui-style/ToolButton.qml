@@ -45,7 +45,7 @@ T.ToolButton
 {
     id: control
     Kirigami.Theme.colorSet: flat ? Kirigami.Theme.Window : Kirigami.Theme.Button
-    Kirigami.Theme.inherit: flat
+    Kirigami.Theme.inherit: true
     opacity: enabled ? 1 : 0.5
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
