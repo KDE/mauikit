@@ -151,7 +151,11 @@ T.Pane
             {
                 return
             }
-            _enterAnim.start()
+            if(_buttonDelegate.display === ToolButton.IconOnly)
+            {
+                _enterAnim.start()
+            }
+
             control.currentIndex = index
             control.clicked(index)
         }

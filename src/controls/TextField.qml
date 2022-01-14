@@ -48,12 +48,12 @@ T.TextField
     selectedTextColor: Kirigami.Theme.highlightedTextColor
     focus: true
     implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
-    implicitWidth: 500 + leftPadding + rightPadding
+    implicitWidth: 100 + leftPadding + rightPadding
     
     verticalAlignment: TextInput.AlignVCenter
     horizontalAlignment: Text.AlignLeft
     padding: 0
-    leftPadding: _icon.width+ Maui.Style.space.small
+    leftPadding: Maui.Style.space.small
     rightPadding: _actionsLayoutLoader.item.implicitWidth + Maui.Style.space.small
     
     selectByMouse: !Kirigami.Settings.isMobile
@@ -92,8 +92,6 @@ T.TextField
      * contentDropped :
      */
     signal contentDropped(var drop)
-    
-    
     
     onPressAndHold: !Kirigami.Settings.isMobile ? entryMenu.show() : undefined
     onPressed:
@@ -163,13 +161,12 @@ T.TextField
                 duration: Kirigami.Units.longDuration
                 easing.type: Easing.InOutQuad
             }
-        }
-        
+        }        
         
         Kirigami.Icon
         {
             id: _icon
-            source: "edit-find"
+            visible: String(_icon.source).length > 0
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color        
@@ -199,31 +196,7 @@ T.TextField
         sourceComponent: Row
         {
             z: parent.z + 1
-            spacing: Maui.Style.space.medium
-            
-            Maui.BasicToolButton
-            {
-                property int previousEchoMode
-                flat: true
-                icon.name: control.echoMode === TextInput.Normal ? "view-hidden" : "view-visible"
-                icon.color: control.color
-                onClicked:
-                {
-                    if(control.echoMode === TextInput.Normal)
-                    {
-                        control.echoMode = previousEchoMode
-                    }else
-                    {
-                        control.echoMode = TextInput.Normal
-                    }
-                }
-                
-                Component.onCompleted:
-                {
-                    previousEchoMode = control.echoMode
-                    visible =  control.echoMode === TextInput.Password || control.echoMode === TextInput.PasswordEchoOnEdit
-                }
-            }
+            spacing: Maui.Style.space.medium        
             
             Maui.BasicToolButton
             {
@@ -249,11 +222,12 @@ T.TextField
                 
                 Maui.BasicToolButton
                 {
-                    flat: true
+                    flat: !checkable
                     focusPolicy: Qt.NoFocus
                     action: modelData
-                    icon.height: Maui.Style.iconSizes.small
-                    icon.width: Maui.Style.iconSizes.small
+                    icon.color: control.color
+                    icon.height: Maui.Style.iconSizes.medium
+                    icon.width: Maui.Style.iconSizes.medium
                 }
             }
         }

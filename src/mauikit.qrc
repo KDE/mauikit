@@ -28,6 +28,8 @@
         <file alias="private/AboutDialog.qml">controls/private/AboutDialog.qml</file>
         <file alias="Popup.qml">controls/Popup.qml</file>
         <file alias="TextField.qml">controls/TextField.qml</file>
+        <file alias="SearchField.qml">controls/SearchField.qml</file>
+        <file alias="PasswordField.qml">controls/PasswordField.qml</file>
         <file alias="Badge.qml">controls/Badge.qml</file>
         <file alias="GridView.qml">controls/GridView.qml</file>
         <file alias="Terminal.qml">controls/Terminal.qml</file>

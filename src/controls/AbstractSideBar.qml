@@ -162,12 +162,12 @@ T.Drawer
                   
         }    
         
-        Label
-        {
-            parent: ApplicationWindow.overlay
-            color: "orange"
-            text: control.height + " /" + window().internalHeight
-        }
+        //Label
+        //{
+            //parent: ApplicationWindow.overlay
+            //color: "orange"
+            //text: control.height + " /" + window().internalHeight
+        //}
         
         contentItem: Item
         {

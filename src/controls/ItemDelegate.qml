@@ -229,8 +229,8 @@ T.Control
                 // Animations on properties start running by default
                 running: false
                 loops: 3
-                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InBack }
-                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.OutBack }
+                NumberAnimation { from: 0; to: -10; duration: 200; easing.type: Easing.InBack }
+                NumberAnimation { from: -10; to: 0; duration: 200; easing.type: Easing.OutBack }
                 PauseAnimation { duration: 50 } // This puts a bit of time between the loop
             }
         }
