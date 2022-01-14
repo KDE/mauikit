@@ -113,6 +113,8 @@ T.Pane
             Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeBackgroundColor
             Kirigami.Theme.textColor: Kirigami.Theme.negativeTextColor
             border.color: Kirigami.Theme.textColor
+            
+            mouseArea.enabled: false
         }
         //        onCheckedChanged:
         //        {
