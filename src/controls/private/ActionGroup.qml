@@ -99,6 +99,21 @@ T.Pane
         font.bold: true
         display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
 
+        Maui.Badge
+        {
+            visible: modelData.Maui.AppView.badgeText
+            text: modelData.Maui.AppView.badgeText
+            
+            anchors.horizontalCenter: parent.right
+            anchors.verticalCenter: parent.top
+            anchors.verticalCenterOffset: 10
+            anchors.horizontalCenterOffset: -5
+            
+            Kirigami.Theme.colorSet: Kirigami.Theme.View
+            Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeBackgroundColor
+            Kirigami.Theme.textColor: Kirigami.Theme.negativeTextColor
+            border.color: Kirigami.Theme.textColor
+        }
         //        onCheckedChanged:
         //        {
         //            if(checked)

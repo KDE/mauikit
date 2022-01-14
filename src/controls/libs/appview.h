@@ -30,7 +30,8 @@ class AppView : public QObject
     Q_OBJECT
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
     Q_PROPERTY(QString iconName READ iconName WRITE setIconName NOTIFY iconNameChanged)
-
+    Q_PROPERTY(QString badgeText READ badgeText WRITE setBadgeText NOTIFY badgeTextChanged)
+    
 public:
     static AppView *qmlAttachedProperties(QObject *object)
     {
@@ -64,6 +65,19 @@ public:
         m_iconName = iconName;
         emit iconNameChanged();
     }
+    
+    /**
+     * @brief setIconName
+     * @param iconName
+     */
+    inline void setBadgeText(const QString &text)
+    {
+        if (text == m_badgeText)
+            return;
+        
+        m_badgeText = text;
+        emit badgeTextChanged();
+    }
 
     /**
      * @brief title
@@ -82,16 +96,24 @@ public:
     {
         return m_iconName;
     }
+    
+    inline const QString badgeText() const
+    {
+        return m_badgeText;
+    }
+    
 
 private:
     using QObject::QObject;
 
     QString m_title;
     QString m_iconName;
+    QString m_badgeText;
 
 signals:
     void titleChanged();
     void iconNameChanged();
+    void badgeTextChanged();
 };
 
 QML_DECLARE_TYPEINFO(AppView, QML_HAS_ATTACHED_PROPERTIES)
