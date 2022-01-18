@@ -89,17 +89,12 @@ Maui.GridBrowserDelegate
                 layer.enabled: control.maskRadius
                 layer.effect: OpacityMask
                 {
-                    maskSource: Item
+                    maskSource: Rectangle
                     {
                         width: _collageLayout.width
                         height: _collageLayout.height
-                        
-                        Rectangle
-                        {
-                            anchors.fill: parent
-                            radius: control.maskRadius
-                        }
-                    }
+                        radius: control.maskRadius
+                    }                    
                 }
             }
         }   

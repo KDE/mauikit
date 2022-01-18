@@ -327,17 +327,12 @@ Window
         layer.enabled: Maui.App.controls.enableCSD
         layer.effect: OpacityMask
         {
-            maskSource: Item
+            maskSource: Rectangle
             {
                 width: _page.width
                 height: _page.height
-
-                Rectangle
-                {
-                    anchors.fill: parent
-                    radius: _pageBackground.radius
-                }
-            }
+                radius: _pageBackground.radius
+            }            
         }
     }
 

@@ -134,17 +134,12 @@ T.Popup
         layer.effect: OpacityMask
         {
             cached: true
-            maskSource: Item
+            maskSource: Rectangle
             {
                 width: _content.width
                 height: _content.height
-
-                Rectangle
-                {
-                    anchors.fill: parent
-                    radius: control.background.radius
-                }
-            }
+                radius: control.background.radius
+            }            
         }
 
         //            Rectangle

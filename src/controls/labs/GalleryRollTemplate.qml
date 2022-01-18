@@ -125,23 +125,19 @@ Kirigami.ShadowedRectangle
             layer.enabled: control.radius
             layer.effect: OpacityMask
             {
-                maskSource: Item
+                maskSource: Kirigami.ShadowedRectangle
                 {
                     width: control.width
                     height: control.height
                     
-                    Kirigami.ShadowedRectangle
+                    corners
                     {
-                        anchors.fill: parent
-                        corners
-                        {
-                            topLeftRadius: control.corners.topLeftRadius
-                            topRightRadius: control.corners.topRightRadius
-                            bottomLeftRadius: control.corners.bottomLeftRadius
-                            bottomRightRadius: control.corners.bottomRightRadius
-                        }
+                        topLeftRadius: control.corners.topLeftRadius
+                        topRightRadius: control.corners.topRightRadius
+                        bottomLeftRadius: control.corners.bottomLeftRadius
+                        bottomRightRadius: control.corners.bottomRightRadius
                     }
-                }
+                }               
             }
         }
     }    

@@ -189,8 +189,12 @@ T.TextField
     Loader
     {
         id: _actionsLayoutLoader
+//         height: parent.height
+anchors.top: parent.top
+anchors.bottom: parent.bottom
+anchors.margins: 2
         anchors.right: control.right
-        anchors.verticalCenter: parent.verticalCenter
+//         anchors.verticalCenter: parent.verticalCenter
         asynchronous: true
         
         sourceComponent: Row
@@ -201,6 +205,7 @@ T.TextField
             Maui.BasicToolButton
             {
                 id: clearButton
+                height: parent.height
                 flat: true
                 focusPolicy: Qt.NoFocus
                 
@@ -223,6 +228,7 @@ T.TextField
                 Maui.BasicToolButton
                 {
                     flat: !checkable
+                    height: parent.height
                     focusPolicy: Qt.NoFocus
                     action: modelData
                     icon.color: control.color
