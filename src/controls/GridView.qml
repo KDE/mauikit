@@ -228,7 +228,7 @@ Item
         focus: true
         
         padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
-        rightPadding: padding
+        rightPadding: padding + internal.verticalScrollBarWidth
         leftPadding: padding 
         topPadding: padding
         bottomPadding: padding
@@ -242,7 +242,6 @@ Item
         {
             id: controlView
             focus: true
-//            pressDelay: 1000
             width: parent.width
             height: parent.height
             

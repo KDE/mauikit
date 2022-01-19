@@ -34,8 +34,6 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-
-
 T.Control
 {
     id: control
@@ -80,8 +78,6 @@ T.Control
          * isCurrentItem :
          */
     property alias isCurrentItem :  control.highlighted
-
-
 
     /**
          * containsPress :
@@ -129,7 +125,6 @@ T.Control
     contentItem : MouseArea
     {
         id: _mouseArea
-        //        anchors.fill: parent
         //        scrollGestureEnabled: false
         //        preventStealing: true
         propagateComposedEvents: false
@@ -167,7 +162,7 @@ T.Control
                 drag.target = null
             }
 
-            pressAndHoldIgnored = false
+            _mouseArea.pressAndHoldIgnored = false
             control.pressed(mouse)
         }
 
@@ -180,10 +175,10 @@ T.Control
                 drag.target = null
             }
 
-            if(pressAndHoldIgnored)
+            if(_mouseArea.pressAndHoldIgnored)
             {
                 control.pressAndHold(mouse)
-                pressAndHoldIgnored = false
+                _mouseArea.pressAndHoldIgnored = false
             }
         }
 
@@ -198,7 +193,7 @@ T.Control
                 {
                     control.Drag.imageSource = result.url
                 })
-                pressAndHoldIgnored = true
+                _mouseArea.pressAndHoldIgnored = true
             }else
             {
                 drag.target = null
@@ -208,10 +203,10 @@ T.Control
 
         onPositionChanged:
         {
-            if(control.Drag.active && pressAndHoldIgnored)
+            if(control.Drag.active && _mouseArea.pressAndHoldIgnored)
             {
                 //                        console.log(control.Drag.active && pressAndHoldIgnored)
-                pressAndHoldIgnored = false
+                _mouseArea.pressAndHoldIgnored = false
                 mouse.accepted = true
             }
         }

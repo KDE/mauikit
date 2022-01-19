@@ -227,9 +227,9 @@ Item
         
         focus: true
         padding: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
-        horizontalPadding: padding
-        verticalPadding: padding
-        rightPadding: padding
+//         horizontalPadding: padding
+//         verticalPadding: padding
+        rightPadding: padding + internal.verticalScrollBarWidth
         leftPadding: padding
         topPadding: padding
         bottomPadding: padding
@@ -241,8 +241,8 @@ Item
         {
             id: _listView
             focus: true
-            width: parent.width
-            height: parent.height
+            width: _scrollView.width
+            height: _scrollView.height
             property var selectedIndexes : []            
             
             clip: control.clip
@@ -251,7 +251,7 @@ Item
             snapMode: ListView.NoSnap
             
             boundsBehavior: Flickable.StopAtBounds
-            boundsMovement :Flickable.StopAtBounds
+            boundsMovement: Flickable.StopAtBounds
             
             interactive: Kirigami.Settings.hasTransientTouchInput /*&& (control.selectionMode ? _listView.position.x > 84 : true)*/
             highlightFollowsCurrentItem: true

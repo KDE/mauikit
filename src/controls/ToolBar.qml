@@ -351,7 +351,7 @@ T.ToolBar
                         id: mainFlickable
                         
                         flickableDirection: Flickable.HorizontalFlick
-                        interactive: !fits && Maui.Handy.isTouch
+                        interactive: !control.fits && Maui.Handy.isTouch
                         
                         boundsBehavior: Flickable.StopAtBounds
                         boundsMovement :Flickable.StopAtBounds
@@ -378,8 +378,7 @@ T.ToolBar
                                 Layout.preferredWidth: implicitWidth
                                 //
                                 spacing: control.spacing
-                            }
-                            
+                            }                            
                             
                             Item //helper to force center middle content
                             {

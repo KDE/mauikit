@@ -43,10 +43,9 @@ Item
      */
     default property alias content: _layout.data
 
-    implicitHeight: _layout.implicitHeight /*+ control.topPadding + control.bottomPadding*/
+    implicitHeight: _layout.implicitHeight
 
     property alias spacing: _layout.spacing
-
 
     /**
          * text1 : string
@@ -201,12 +200,11 @@ Item
             id: _iconContainer
             implicitHeight: control.headerSizeHint
 
-            visible: (control.width > Kirigami.Units.gridUnit * 10) && (iconSource.length > 0 || imageSource.length > 0)
+            visible: (control.width > Kirigami.Units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
 
             Layout.alignment: Qt.AlignCenter
-
-                           Layout.fillHeight: true
-            //                Layout.fillWidth: !control.labelsVisible
+            Layout.fillHeight: true
+            Layout.fillWidth: !control.labelsVisible
 
             Layout.preferredWidth:  control.headerSizeHint
             Layout.preferredHeight: implicitHeight
