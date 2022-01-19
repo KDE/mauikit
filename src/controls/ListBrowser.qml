@@ -243,7 +243,7 @@ Item
             focus: true
             width: _scrollView.width
             height: _scrollView.height
-            property var selectedIndexes : []            
+            property var selectedIndexes : []  
             
             clip: control.clip
             

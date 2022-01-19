@@ -23,7 +23,7 @@ T.TabBar
     id: control
     
 //     implicitWidth: _content.contentWidth
-    implicitHeight: Maui.Style.rowHeight + Maui.Style.space.tiny
+    implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
     padding: Maui.Style.space.tiny
 
    palette: Kirigami.Theme.palette
