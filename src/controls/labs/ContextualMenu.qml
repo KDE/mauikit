@@ -16,7 +16,8 @@ T.Menu
     id: control
     Kirigami.Theme.colorSet: Kirigami.Theme.View
 
-    property bool responsive:true
+    property bool responsive: Kirigami.Settings.hasTransientTouchInput
+    
     parent: control.responsive ?  ApplicationWindow.overlay : undefined
     
     //     x: control.responsive ? 0 : 0

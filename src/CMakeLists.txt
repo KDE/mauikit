@@ -288,7 +288,7 @@ add_custom_command(TARGET copy PRE_BUILD COMMAND ${CMAKE_COMMAND}
 
 add_dependencies(MauiKit copy)
 
-if(QUICK_COMPILER AND NOT ANDROID )
+if(QUICK_COMPILER AND NOT ANDROID)
     install(FILES controls/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 else()
     install(DIRECTORY controls/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
