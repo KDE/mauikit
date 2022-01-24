@@ -17,11 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 
 import org.kde.kirigami 2.9 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
 import QtQuick.Layouts 1.3
@@ -281,12 +282,13 @@ T.ToolBar
             
             Item
             {
+                id: _dragHandler
                 anchors.fill: parent
                 DragHandler
                 {
                     acceptedDevices: PointerDevice.GenericPointer
                     grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                    onActiveChanged: if (active) { root.startSystemMove(); }
+                    onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
                 }
             }
 

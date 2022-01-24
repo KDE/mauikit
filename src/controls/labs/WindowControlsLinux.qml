@@ -1,4 +1,5 @@
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Window 2.15
 
 /*!
   \since org.mauikit.controls.labs 1.0
@@ -16,11 +17,11 @@ Maui.CSDControls
     {
         console.log("WINDOW CSD CLICKED", type)
         if (type === Maui.CSDButton.Close) {
-            root.close()
+            Window.window.close()
         } else if (type === Maui.CSDButton.Maximize || type === Maui.CSDButton.Restore) {
-            root.toggleMaximized()
+            Window.window.toggleMaximized()
         } else if (type ===  Maui.CSDButton.Minimize) {
-            root.showMinimized()
+            Window.window.showMinimized()
         }
     }
 }

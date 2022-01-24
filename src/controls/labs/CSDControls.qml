@@ -17,8 +17,8 @@ Loader
 
     property int side
     
-    property bool maximized : root.visibility === Window.Maximized
-    property bool isActiveWindow : root.active
+    property bool maximized : Window.window.visibility === Window.Maximized
+    property bool isActiveWindow : Window.window.active
     
     readonly property var buttonsModel : control.side === Qt.LeftEdge ?  Maui.App.controls.leftWindowControls :  Maui.App.controls.rightWindowControls
 

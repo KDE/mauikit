@@ -17,12 +17,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
-import QtQuick.Window 2.14
+import Qt.labs.settings 1.0
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -47,7 +48,7 @@ For more details you can refer to the Maui Page documentation for fine tweaking 
 \code
 ApplicationWindow {
     id: root
-    //The rectangle will automatically bescrollable
+
     AppViews {
         anchors.fill: parent
     }
@@ -65,18 +66,26 @@ Window
 
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
+    
+    Settings 
+    {
+        property alias x: root.x
+        property alias y: root.y
+        property alias width: root.width
+        property alias height: root.height
+    }
 
     // Window shadows for CSD
     Loader
     {
-        active:  Maui.App.controls.enableCSD && !Kirigami.Settings.isMobile && Maui.Handy.isLinux
+        active: Maui.App.controls.enableCSD && !Kirigami.Settings.isMobile && Maui.Handy.isLinux
         asynchronous: true
         sourceComponent: Maui.WindowShadow
         {
             view: root
             radius: _pageBackground.radius
         }
-    }
+    }       
 
     /***************************************************/
     /********************* COLORS *********************/
@@ -283,18 +292,6 @@ Window
     readonly property bool isMaximized: root.visibility === Window.Maximized
     readonly property bool isFullScreen: root.visibility === Window.FullScreen
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
-
-    onClosing:
-    {
-        if(!Kirigami.Settings.isMobile)
-        {
-            const height = root.height
-            const width = root.width
-            const x = root.x
-            const y = root.y
-            Maui.Handy.saveSettings("GEOMETRY", Qt.rect(x, y, width, height), "WINDOW")
-        }
-    }
 
     Maui.Page
     {
@@ -543,15 +540,6 @@ Window
                 Maui.Android.statusbarColor(headBar.Kirigami.Theme.backgroundColor, true)
                 Maui.Android.navBarColor(footBar.visible ? footBar.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor, true)
             }
-        }
-
-        if(!Kirigami.Settings.isMobile)
-        {
-            const rect = Maui.Handy.loadSettings("GEOMETRY", "WINDOW", Qt.rect(root.x, root.y, root.width, root.height))
-            root.x = rect.x
-            root.y = rect.y
-            root.width = rect.width
-            root.height = rect.height
         }
     }
 

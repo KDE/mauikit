@@ -10,10 +10,10 @@ import org.mauikit.controls 1.3 as Maui
 /**
  * \internal
  */
-Kirigami.BasicThemeDefinition {
+Kirigami.BasicThemeDefinition 
+{
     id: theme
-    //NOTE: this is useless per se, but it forces the Material attached property to be created
-//Material.theme: root.Material.theme
+
     textColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
     disabledTextColor: "#9931363b"
 

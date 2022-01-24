@@ -101,12 +101,6 @@ T.Drawer
         
         signal contentDropped(var drop)
         
-        //Binding on z
-        //{
-        //value: root.window().z
-        //restoreMode: Binding.RestoreBindingOrValue
-        //}
-        
         onCollapsedChanged:
         {
             if(collapsed || !control.enabled)

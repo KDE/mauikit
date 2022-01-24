@@ -66,7 +66,6 @@ Maui.Page
     headBar.middleContent: Loader
     {
         asynchronous: true
-//        Layout.fillWidth: !root.isWide
         Layout.alignment: Qt.AlignCenter
 
         sourceComponent: Private.ActionGroup

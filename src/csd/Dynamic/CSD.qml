@@ -1,6 +1,6 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.3
-import QtQuick.Window 2.3
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.7 as Kirigami
@@ -57,12 +57,12 @@ Item
             scheme: colorsModel.defaultSchemeFile()
 
             //                 isOnAllDesktops: root.isLastActiveWindowPinned
-            isMaximized: root.visibility === Window.Maximized
+            isMaximized: Window.window.visibility === Window.Maximized
             //                 isKeepAbove: root.isLastActiveWindowKeepAbove
 
             //                 localX: x
             //                 localY: y
-            isActive: root.active
+            isActive: Window.window.active
             onClicked: buttonClicked(button.mapType(modelData))
         }
     }
