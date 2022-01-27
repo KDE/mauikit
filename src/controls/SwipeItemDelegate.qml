@@ -45,6 +45,7 @@ Maui.ItemDelegate
       */
     default property alias content : _content.data
 
+        property alias actionRow : _background.data
     /**
       * showQuickActions : bool
       */
