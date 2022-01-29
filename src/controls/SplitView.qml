@@ -49,7 +49,7 @@ SplitView
                           }
                       }  
                       
-                      opacity: pressed ? 1 : 0.4
+                      opacity: pressed ? 1 : 0.2
                       
                 anchors.centerIn: parent
                 height: 8
@@ -88,7 +88,7 @@ SplitView
                     }
                 }  
                 
-                opacity: pressed ? 1 : 0.4
+                opacity: pressed ? 1 : 0.2
                 anchors.centerIn: parent
                 height: length
                 width: 8

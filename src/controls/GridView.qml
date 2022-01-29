@@ -384,7 +384,7 @@ Item
                     {
                         if (mouse.source === Qt.MouseEventNotSynthesized)
                         {
-                            if(control.enableLassoSelection && mouse.button === Qt.LeftButton )
+                            if(control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
                             {
                                 selectLayer.visible = true;
                                 selectLayer.x = mouseX;

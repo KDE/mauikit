@@ -238,7 +238,7 @@ Item
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
             modal: true
             height: Math.min(Math.min(400, control.maxListHeight), selectionList.contentHeight) + Maui.Style.space.big
-            width: Math.max(300, parent.width)
+            width: Math.max(600, parent.width)
             
             y: ((height) * -1) - Maui.Style.space.big
             x: Math.round( parent.width / 2 - width / 2 )

@@ -324,7 +324,7 @@ Item
                     
                     onPressed:
                     {
-                        if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
+                        if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
                         {
                             selectLayer.visible = true;
                             selectLayer.x = mouseX;

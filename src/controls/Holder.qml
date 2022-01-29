@@ -70,7 +70,7 @@ Item
     /**
       * emojiSize : int
       */
-    property int emojiSize : Maui.Style.iconSizes.huge
+    property int emojiSize : Maui.Style.iconSizes.big
 
     /**
       * enabled : bool
@@ -93,8 +93,6 @@ Item
         {
             id: imageHolder
 
-            width: Math.min(parent.width, emojiSize)
-            height: width
             color: _label1.color
             isMask: control.isMask
             opacity: isMask ? _label1.opacity : 1
@@ -125,27 +123,24 @@ Item
             height: control.emoji && visible ? emojiSize : 0
             width: height
             asynchronous: true
-            anchors.horizontalCenter: parent.horizontalCenter
             sourceComponent: isGif ? animComponent : imgComponent
         }
-
+/*
         Item
         {
             width: height
             height: Maui.Style.space.medium
         }
-        
+        */
         Label
         {
             id: _label1
             width: Math.min(control.width * 0.7, implicitWidth)
             opacity: 0.7
-            anchors.horizontalCenter: parent.horizontalCenter
             
-            font.pointSize: Maui.Style.fontSizes.huge            
+            font.pointSize: Maui.Style.fontSizes.enormous* 1.2            
             font.bold: true
             font.weight: Font.Bold
-            horizontalAlignment: Qt.AlignHCenter
             elide: Text.ElideRight
             color: Kirigami.Theme.textColor
             wrapMode: Text.Wrap
@@ -155,21 +150,13 @@ Item
         {
             id: _label2
             width: Math.min(control.width * 0.7, implicitWidth)
-            anchors.horizontalCenter: parent.horizontalCenter
-            
             opacity: 0.5
-            horizontalAlignment: Qt.AlignHCenter
             elide: Text.ElideRight
             color: Kirigami.Theme.textColor
             wrapMode: Text.Wrap
         }
         
-        Item
-        {
-            width: height
-            height: Maui.Style.space.big
-        }
-        
+            
         Repeater
         {
             model: control.actions
@@ -177,9 +164,12 @@ Item
             Button
             {
                 id: _button
-                implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) + Maui.Style.space.big
-                implicitHeight: background.implicitHeight
-                anchors.horizontalCenter: parent.horizontalCenter
+                implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) +leftPadding + rightPadding
+                implicitHeight: background.implicitHeight+ topPadding + bottomPadding 
+                
+                leftPadding: Maui.Style.space.medium
+                rightPadding: leftPadding
+                
                 flat: true
                 action: modelData
                 
