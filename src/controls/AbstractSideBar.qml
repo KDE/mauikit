@@ -51,7 +51,7 @@ T.Drawer
     
     interactive: (modal || collapsed ) && Maui.Handy.isTouch && enabled
     
-    //     dragMargin: Maui.Style.space.medium
+    dragMargin: Maui.Style.space.medium
     
     modal: false
     
