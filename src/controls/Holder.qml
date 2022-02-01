@@ -19,6 +19,7 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import QtQuick.Templates 2.15 as T
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.2 as Maui
@@ -161,7 +162,7 @@ Item
         {
             model: control.actions
             
-            Button
+            T.Button
             {
                 id: _button
                 implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) +leftPadding + rightPadding
@@ -169,6 +170,8 @@ Item
                 
                 leftPadding: Maui.Style.space.medium
                 rightPadding: leftPadding
+                topPadding: 0
+                bottomPadding: 0
                 
                 flat: true
                 action: modelData

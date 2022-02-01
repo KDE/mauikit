@@ -103,8 +103,6 @@ T.Menu
         }
     }
     
-    
-    
     //enter: Transition
     //{
     //enabled: control.responsive

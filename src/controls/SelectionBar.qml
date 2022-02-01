@@ -20,9 +20,11 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
+import QtQuick.Window 2.15
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+
 import QtGraphicalEffects 1.0
 import QtQuick.Templates 2.15 as T
 
@@ -141,8 +143,7 @@ Item
         onToggled: control.removeAtIndex(index)
         
         onClicked: control.itemClicked(index)
-        onPressAndHold: control.itemPressAndHold(index)
-        
+        onPressAndHold: control.itemPressAndHold(index)        
     }
     
     /**
@@ -238,7 +239,7 @@ Item
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
             modal: true
             height: Math.min(Math.min(400, control.maxListHeight), selectionList.contentHeight) + Maui.Style.space.big
-            width: Math.max(600, parent.width)
+            width: Math.min(600, control.Window.window.width)
             
             y: ((height) * -1) - Maui.Style.space.big
             x: Math.round( parent.width / 2 - width / 2 )

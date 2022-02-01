@@ -30,14 +30,14 @@ import org.kde.kirigami 2.14 as Kirigami
  * \since org.mauikit.controls 1.0
  * \inqmlmodule org.mauikit.controls
  * \brief A page with a header and footer bar, that can be switched among many other features.
- * 
+ *
  * This page has a header and footer bar that by default are a MauiKit ToolBar,
  * the header bar can be dinamically moved to the bottom under the footer for better
  * reachability on hand held devices like phones.
- * 
+ *
  * Among other features, the page can have a reference to a flickable element to allow to have pull back
  * toolbar behaviour, floating toolbars, etc.
- * 
+ *
  */
 T.Pane
 {
@@ -51,429 +51,424 @@ T.Pane
     bottomPadding: control.padding
     
     //     Kirigami.Theme.inherit: true
-    Kirigami.Theme.colorSet: Kirigami.Theme.View    
+    Kirigami.Theme.colorSet: Kirigami.Theme.View
     
     /*!
      *      \qmlproperty list<Object> Item::content
-     * 
+     *
      *      The default content of the page.
      *      To position child elements use anchors or do it manually.
      */
     default property alias content: _content.data
-        
-        /*!
+
+    /*!
          *      \qmlproperty Item Page::pageContent
-         * 
+         *
          *      An alias to the actual Item that contains the page children.
          */
-        readonly property alias pageContent : _content
-        
-        /*!
+    readonly property alias pageContent : _content
+
+    /*!
          *      \qmlproperty int Page::internalHeight
-         * 
+         *
          *      The actual height of the page contents withouth the header or footer bars.
          */
-        readonly property alias internalHeight : _content.height
-        
-        /*!
+    readonly property alias internalHeight : _content.height
+
+    /*!
          *      A flickable element can be referenced in order to support the header and footer positioning options
          *        such as Inline, Pullback or floating.
          *        If a flickable is set, the page will modify its top or bottom margins properties.
          *        And watch for changes in properties such a contentX and contentY in order to support the former mentioned features.
          */
-        property Flickable flickable : null
-        
-        /*!
+    property Flickable flickable : null
+
+    /*!
          *      The footer bar can be place static and always visible with the InlineFooter value, or move with the flickable contents when using the PullBackFooter value.
          *      This is only supported if a flickable element has been set.
          *      By default this is set to InlineFooter.
          */
-        property int footerPositioning : ListView.InlineFooter
-        
-        /*!
+    property int footerPositioning : ListView.InlineFooter
+
+    /*!
          *      The header bar can be place static and always visible with the InlineHeader value, or move with the flickable contents when using the PullBackHeader value.
          *      This is only supported if a flickable element has been set.
          *      By default this is set to InlineHeader unless it is a Mobile device, in which case it is PullBackHeader.
          */
-        property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
-        
-        property int headerColorSet : altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header
-        
-        /*!
+    property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
+
+    property int headerColorSet : altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header
+
+    /*!
          *      A title for the page.
          *      This title is shown in the middle of the default header bar if the showTitle property is set to true.
          *      The displayed title in the header bar wont wrap and will elide in the middle.
          */
-        property string title
-        
-        /*!
+    property string title
+
+    /*!
          *      If a title is set and this is set to true, such title will be displayed in the default header bar in the middle.
          */
-        property bool showTitle : true
-        
-        /*!
+    property bool showTitle : true
+
+    /*!
          *      \qmlproperty ToolBar Page::headBar
          *      An alias to the default header bar toolbar.
          *      The toolbar is a MauiKit ToolBar.
          */
-        property alias headBar : _headBar
-        
-        /*!
+    property alias headBar : _headBar
+
+    /*!
          *      \qmlproperty ToolBar Page::footBar
          *      An alias to the default footer bar toolbar.
          *      The toolbar is a MauiKit ToolBar.
          */
-        property alias footBar: _footBar
-        
-        /*!
+    property alias footBar: _footBar
+
+    /*!
          *      \qmlproperty list<Object> Page::footerColumn
          *      Quick way to add more children to the footer bar.
          *      The footer bar is handled by a ColumnLayout so any elements to be added need to be postioned using the Layout attached properties.
          *      Layout.fillWidth can be set, but an implicit or preferredHeight must be given.
          */
-        property alias footerColumn : _footerContent.data
-        property alias footerContainer : _footerContent
-        
-        /*!
+    property alias footerColumn : _footerContent.data
+    property alias footerContainer : _footerContent
+
+    /*!
          *      \qmlproperty list<Object> Page::headerColumn
          *      Quick way to add more children to the header bar.
          *      The header bar is handled by a ColumnLayout so any elements to be added need to be postioned using the Layout attached properties.
          *      Layout.fillWidth can be set, but an implicit or preferredHeight must be given.
          */
-        property alias headerColumn : _headerContent.data
-        property alias headerContainer : _headerContent
-        
-        /*!
+    property alias headerColumn : _headerContent.data
+    property alias headerContainer : _headerContent
+
+    /*!
          *      The page margins between the children contents and the actual container.
          *      This margins do not affect the header or footer bars.
          *      By default this is set to 0
          */
-        property int margins: 0
-        
-        /*!
+    property int margins: 0
+
+    /*!
          *      Page left margins
          */
-        property int leftMargin : margins
-        
-        /*!
+    property int leftMargin : margins
+
+    /*!
          *      Page right margins
          */
-        property int rightMargin: margins
-        
-        /*!
+    property int rightMargin: margins
+
+    /*!
          *      Page top margins
          */
-        property int topMargin: margins
-        
-        /*!
+    property int topMargin: margins
+
+    /*!
          *      Page bottom margins
          */
-        property int bottomMargin: margins
-        
-        /*!
+    property int bottomMargin: margins
+
+    /*!
          *      If set to true the header bar will be positioned to the bottom under the footer bar.
          *      This makes sense in some cases for better reachability, or custom design patterns.
          */
-        property bool altHeader : false
-        
-        /*!
+    property bool altHeader : false
+
+    /*!
          *      If the header bar should hide under certain conditions.
          *      To fine tune a threshold margin can be set, and a time delay.
          */
-        property bool autoHideHeader : false
-        
-        /*!
+    property bool autoHideHeader : false
+
+    /*!
          *      If the footer bar should hide under certain conditions.
          *      To fine tune a threshold margin can be set, and a time delay.
          */
-        property bool autoHideFooter : false
-        
-        /*!
+    property bool autoHideFooter : false
+
+    /*!
          *      Pixels threshold for when the header should auto hide.
          *      The default value is set to Maui.Style.toolBarHeight, which is the double distance of the default header bar toolbar.
          */
-        property int autoHideHeaderMargins : Maui.Style.toolBarHeight
-        
-        /*!
+    property int autoHideHeaderMargins : Maui.Style.toolBarHeight
+
+    /*!
          *      Pixels threshold for when the footer should auto hide.
          *      The default value is set to Maui.Style.toolBarHeight, which is the double distance of the default footer bar toolbar.
          */
-        property int autoHideFooterMargins : Maui.Style.toolBarHeight
-        
-        /*!
+    property int autoHideFooterMargins : Maui.Style.toolBarHeight
+
+    /*!
          *      Span of time to hide the footer bar after the conditions have been met.
          *      If within the span of time the conditions changed then the timer gets reseted.
          */
-        property int autoHideFooterDelay : Maui.Handy.isTouch ? 0 : 1000
-        
-        /*!
+    property int autoHideFooterDelay : Maui.Handy.isTouch ? 0 : 1000
+
+    /*!
          *      Span of time to hide the header bar after the conditions have been met.
          *      If within the span of time the conditions changed then the timer gets reseted.
          */
-        property int autoHideHeaderDelay : Maui.Handy.isTouch ? 0 : 1000
-        
-        //    property bool floatingHeader : control.flickable && !control.flickable.atYBeginning
-        
-        /*!
+    property int autoHideHeaderDelay : Maui.Handy.isTouch ? 0 : 1000
+
+    //    property bool floatingHeader : control.flickable && !control.flickable.atYBeginning
+
+    /*!
          *      If the footer bar should float over the page contents, if a flickable has been set then the default header bar will have a translucent ShaderEffect
          *      to hint about the content under it.
          */
-        property bool floatingHeader : false
-        
-        /*!
+    property bool floatingHeader : false
+
+    /*!
          *      If the header bar should float over the page contents, if a flickable has been set then the default header bar will have a translucent ShaderEffect
          *      to hint about the content under it.
          */
-        property bool floatingFooter: false
-        
-        property bool showCSDControls : false
-        
-        /*!
+    property bool floatingFooter: false
+
+    property bool showCSDControls : false
+
+    /*!
          *      The page has requested to go back by a gesture or keyboard shortcut
          */
-        signal goBackTriggered()
-        
-        /*!
+    signal goBackTriggered()
+
+    /*!
          *      The page has requested to go forward by a gesture or keyboard shortcut
          */
-        signal goForwardTriggered()
-        
-        QtObject
+    signal goForwardTriggered()
+
+    QtObject
+    {
+        id: _private
+        property int topMargin : !control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0
+        property int bottomMargin: control.floatingFooter && control.footerPositioning === ListView.InlineFooter  ? control.bottomMargin : control.bottomMargin + _footerContent.implicitHeight
+    }
+
+    background: Rectangle
+    {
+        color: Kirigami.Theme.backgroundColor
+        Behavior on color
         {
-            id: _private
-            property int topMargin : !control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0
-            property int bottomMargin: control.floatingFooter && control.footerPositioning === ListView.InlineFooter  ? control.bottomMargin : control.bottomMargin + _footerContent.implicitHeight
-        }
-        
-        background: Rectangle
-        {
-            color: Kirigami.Theme.backgroundColor
-            Behavior on color
+            ColorAnimation
             {
-                ColorAnimation
-                {
-                    easing.type: Easing.InQuad
-                    duration: Kirigami.Units.shortDuration
-                }
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.shortDuration
             }
         }
-        
-        onFlickableChanged:
+    }
+
+    onFlickableChanged:
+    {
+        returnToBounds()
+    }
+
+    Binding
+    {
+        when:  control.floatingFooter && control.footerPositioning === ListView.InlineFooter && _footerContent.implicitHeight > 0
+        target: control.flickable
+        property: "bottomMargin"
+        value:  _footerContent.implicitHeight
+        restoreMode: Binding.RestoreBindingOrValue
+    }
+
+    Connections
+    {
+        target: control.flickable ? control.flickable : null
+        ignoreUnknownSignals: true
+        enabled: control.flickable && ((control.header && control.headerPositioning === ListView.PullBackHeader) || (control.footer &&  control.footerPositioning === ListView.PullBackFooter))
+        property int oldContentY
+        property bool updatingContentY: false
+
+        function onContentYChanged()
         {
-            returnToBounds()
-        }
-        
-        Binding
-        {
-            when:  control.floatingFooter && control.footerPositioning === ListView.InlineFooter && _footerContent.implicitHeight > 0
-            target: control.flickable
-            property: "bottomMargin"
-            value:  _footerContent.implicitHeight
-            restoreMode: Binding.RestoreBindingOrValue
-        }
-        
-        Connections
-        {
-            target: control.flickable ? control.flickable : null
-            ignoreUnknownSignals: true
-            enabled: control.flickable && ((control.header && control.headerPositioning === ListView.PullBackHeader) || (control.footer &&  control.footerPositioning === ListView.PullBackFooter))
-            property int oldContentY
-            property bool updatingContentY: false
-            
-            function onContentYChanged()
+            _headerAnimation.enabled = false
+            _footerAnimation.enabled = false
+
+            if(!control.flickable.dragging && control.flickable.atYBeginning)
             {
-                _headerAnimation.enabled = false
-                _footerAnimation.enabled = false
-                
-                if(!control.flickable.dragging && control.flickable.atYBeginning)
+                control.returnToBounds()
+            }
+
+            if (updatingContentY || !control.flickable || !control.flickable.dragging)
+            {
+                oldContentY = control.flickable.contentY;
+                return;
+                //TODO: merge
+                //if moves but not dragging, just update oldContentY
+            }
+
+            if(control.flickable.contentHeight < control.height)
+            {
+                return
+            }
+
+            var oldFHeight
+            var oldHHeight
+
+            if (control.footer && control.footerPositioning === ListView.PullBackFooter && control.footer.visible)
+            {
+                oldFHeight = control.footer.height
+                control.footer.height = Math.max(0,
+                                                 Math.min(control.footer.implicitHeight,
+                                                          control.footer.height + oldContentY - control.flickable.contentY));
+            }
+
+            if (control.header && control.headerPositioning === ListView.PullBackHeader && control.header.visible && !control.altHeader)
+            {
+                oldHHeight = control.header.height
+                control.header.height = Math.max(0,
+                                                 Math.min(control.header.implicitHeight,
+                                                          control.header.height + oldContentY - control.flickable.contentY));
+            }
+
+            //if the implicitHeight is changed, use that to simulate scroll
+            if (control.header && oldHHeight !== control.header.height && control.header.visible && !control.altHeader)
+            {
+                updatingContentY = true
+                control.flickable.contentY -= (oldHHeight - control.header.height)
+                updatingContentY = false
+
+            } else {
+                oldContentY = control.flickable.contentY
+            }
+        }
+
+        function onMovementEnded()
+        {
+            if (control.header && control.header.visible && control.headerPositioning === ListView.PullBackHeader && !control.altHeader)
+            {
+                _headerAnimation.enabled = true
+
+                if (control.header.height >= (control.header.implicitHeight/2) || control.flickable.atYBeginning )
                 {
-                    control.returnToBounds()
-                }
-                
-                if (updatingContentY || !control.flickable || !control.flickable.dragging)
+                    control.header.height =  control.header.implicitHeight
+
+                } else
                 {
-                    oldContentY = control.flickable.contentY;
-                    return;
-                    //TODO: merge
-                    //if moves but not dragging, just update oldContentY
-                }
-                
-                if(control.flickable.contentHeight < control.height)
-                {
-                    return
-                }
-                
-                var oldFHeight
-                var oldHHeight
-                
-                if (control.footer && control.footerPositioning === ListView.PullBackFooter && control.footer.visible)
-                {
-                    oldFHeight = control.footer.height
-                    control.footer.height = Math.max(0,
-                                                     Math.min(control.footer.implicitHeight,
-                                                              control.footer.height + oldContentY - control.flickable.contentY));
-                }
-                
-                if (control.header && control.headerPositioning === ListView.PullBackHeader && control.header.visible && !control.altHeader)
-                {
-                    oldHHeight = control.header.height
-                    control.header.height = Math.max(0,
-                                                     Math.min(control.header.implicitHeight,
-                                                              control.header.height + oldContentY - control.flickable.contentY));
-                }
-                
-                //if the implicitHeight is changed, use that to simulate scroll
-                if (control.header && oldHHeight !== control.header.height && control.header.visible && !control.altHeader)
-                {
-                    updatingContentY = true
-                    control.flickable.contentY -= (oldHHeight - control.header.height)
-                    updatingContentY = false
-                    
-                } else {
-                    oldContentY = control.flickable.contentY
+                    control.header.height = 0
                 }
             }
-            
-            function onMovementEnded()
+
+            if (control.footer && control.footer.visible && control.footerPositioning === ListView.PullBackFooter)
             {
-                if (control.header && control.header.visible && control.headerPositioning === ListView.PullBackHeader && !control.altHeader)
+                _footerAnimation.enabled = true
+
+                if (control.footer.height >= (control.footer.implicitHeight/2) ||  control.flickable.atYEnd)
                 {
-                    _headerAnimation.enabled = true
-                    
-                    if (control.header.height >= (control.header.implicitHeight/2) || control.flickable.atYBeginning )
+                    if(control.flickable.atYEnd)
                     {
-                        control.header.height =  control.header.implicitHeight
-                        
-                    } else
+                        control.footer.height =  control.footer.implicitHeight
+
+                        control.flickable.contentY = control.flickable.contentHeight - control.flickable.height
+                        oldContentY = control.flickable.contentY
+                    }else
                     {
-                        control.header.height = 0
+                        control.footer.height =  control.footer.implicitHeight
+
                     }
-                }
-                
-                if (control.footer && control.footer.visible && control.footerPositioning === ListView.PullBackFooter)
+
+                } else
                 {
-                    _footerAnimation.enabled = true
-                    
-                    if (control.footer.height >= (control.footer.implicitHeight/2) ||  control.flickable.atYEnd)
-                    {
-                        if(control.flickable.atYEnd)
-                        {
-                            control.footer.height =  control.footer.implicitHeight
-                            
-                            control.flickable.contentY = control.flickable.contentHeight - control.flickable.height
-                            oldContentY = control.flickable.contentY
-                        }else
-                        {
-                            control.footer.height =  control.footer.implicitHeight
-                            
-                        }
-                        
-                    } else
-                    {
-                        control.footer.height = 0
-                    }
+                    control.footer.height = 0
                 }
             }
         }
-        
-        /*!
-         * 
+    }
+
+    /*!
+         *
          */
-        property Item header : Maui.ToolBar
+    property Item header : Maui.ToolBar
+    {
+        id: _headBar
+        visible: count > 0
+        width: visible ? parent.width : 0
+        height: visible ? implicitHeight : 0
+
+        Kirigami.Theme.inherit: false
+        Kirigami.Theme.colorSet: control.headerColorSet
+
+        //             Label
+        //             {
+        //                 visible: false
+        //                 color: "yellow"
+        //                 text: _headBar.visibleCount + " / " + _headBar.count + " - " + _headBar.height + " / " + header.height + " - " + _headBar.visible + " / " + header.visible
+        //             }
+
+        Behavior on height
         {
-            id: _headBar
-            visible: count > 0
-            width: visible ? parent.width : 0
-            height: visible ? implicitHeight : 0
-            
-            Kirigami.Theme.inherit: false
-            Kirigami.Theme.colorSet: control.headerColorSet
-            
-            //             Label
-            //             {
-            //                 visible: false
-            //                 color: "yellow"
-            //                 text: _headBar.visibleCount + " / " + _headBar.count + " - " + _headBar.height + " / " + header.height + " - " + _headBar.visible + " / " + header.visible
-            //             }
-            
-            Behavior on height
+            id: _headerAnimation
+            enabled: false
+            NumberAnimation
             {
-                id: _headerAnimation
-                enabled: false
-                NumberAnimation
-                {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.InOutQuad
-                }
+                duration: Kirigami.Units.shortDuration
+                easing.type: Easing.InOutQuad
             }
-            
-            Component
-            {
-                id: _titleComponent
-                
-                Item
-                {
-                    Label
-                    {
-                        anchors.fill: parent
-                        text: control.title
-                        elide : Text.ElideRight
-                        font.bold : true
-                        font.weight: Font.Bold
-                        color : Kirigami.Theme.textColor
-                        font.pointSize: Maui.Style.fontSizes.big
-                        horizontalAlignment : Text.AlignHCenter
-                        verticalAlignment :  Text.AlignVCenter
-                    }
-                }
-            }
-            
-            middleContent: Loader
-            {
-                visible: item
-                active: control.title && control.showTitle
-                sourceComponent: _titleComponent
-                
-                asynchronous: true
-                
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-            }       
-            
         }
-        
-        //Label
-        //{
-        //z: 999999999999
-        //color: "yellow"
-        //text: _footBar.visibleCount + " / " + _footBar.count + " - " + _footBar.height + " / " + footer.height + " - " + _footBar.visible + " / " + footer.visible + " / " + footer.height + " / " + _footerContent.implicitHeight  + " / " + _footerContent.implicitHeight
-        //}
-        
-        /*!
-         * 
+
+        Component
+        {
+            id: _titleComponent
+
+            Label
+            {
+                text: control.title
+                elide : Text.ElideRight
+                font.bold : true
+                font.weight: Font.Bold
+                color : Kirigami.Theme.textColor
+                font.pointSize: Maui.Style.fontSizes.big
+                horizontalAlignment : Text.AlignHCenter
+                verticalAlignment :  Text.AlignVCenter
+            }
+        }
+
+        middleContent: Loader
+        {
+            visible: item
+            active: control.title && control.showTitle
+            sourceComponent: _titleComponent
+
+            asynchronous: true
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+    }
+
+    //Label
+    //{
+    //z: 999999999999
+    //color: "yellow"
+    //text: _footBar.visibleCount + " / " + _footBar.count + " - " + _footBar.height + " / " + footer.height + " - " + _footBar.visible + " / " + footer.visible + " / " + footer.height + " / " + _footerContent.implicitHeight  + " / " + _footerContent.implicitHeight
+    //}
+
+    /*!
+         *
          */
-        property Item footer : Maui.ToolBar
+    property Item footer : Maui.ToolBar
+    {
+        id: _footBar
+        visible: count > 0
+        width: visible ? parent.width : 0
+        height: visible ? implicitHeight : 0
+
+        position: ToolBar.Footer
+
+        Behavior on height
         {
-            id: _footBar
-            visible: count > 0
-            width: visible ? parent.width : 0
-            height: visible ? implicitHeight : 0
-            
-            position: ToolBar.Footer
-            
-            Behavior on height
+            id: _footerAnimation
+            enabled: false
+            NumberAnimation
             {
-                id: _footerAnimation
-                enabled: false
-                NumberAnimation
-                {
-                    duration: Kirigami.Units.shortDuration
-                    easing.type: Easing.InOutQuad
-                }
-            }       
+                duration: Kirigami.Units.shortDuration
+                easing.type: Easing.InOutQuad
+            }
         }
-        
-        states: [  State
+    }
+
+    states: [  State
         {
             when: !altHeader && header.visible
             
@@ -514,249 +509,161 @@ T.Pane
                 position: ToolBar.Footer
             }
         } ]
-        
-        onAutoHideHeaderChanged:
-        {
-            if(control.autoHideHeader){
-                if(header.height !== 0)
-                {
-                    _autoHideHeaderTimer.start()
-                    _revealHeaderTimer.stop()
-                    
-                }else
-                {
-                    _autoHideHeaderTimer.stop()
-                    _revealHeaderTimer.start()
-                }
+
+    onAutoHideHeaderChanged:
+    {
+        if(control.autoHideHeader){
+            if(header.height !== 0)
+            {
+                _autoHideHeaderTimer.start()
+                _revealHeaderTimer.stop()
+
+            }else
+            {
+                _autoHideHeaderTimer.stop()
+                _revealHeaderTimer.start()
             }
         }
-        
-        onAutoHideFooterChanged:
+    }
+
+    onAutoHideFooterChanged:
+    {
+        if(control.autoHideFooter)
         {
-            if(control.autoHideFooter)
+            if(footer.height !== 0)
             {
-                if(footer.height !== 0)
-                {
-                    _autoHideFooterTimer.start()
-                } else
-                {
-                    pullDownFooter()
-                    _autoHideFooterTimer.stop()
-                }
+                _autoHideFooterTimer.start()
+            } else
+            {
+                pullDownFooter()
+                _autoHideFooterTimer.stop()
             }
         }
-        onAltHeaderChanged: pullDownHeader()
-        
-        
-        //                 Label
-        //                 {
-        //                     anchors.centerIn: _headerContent
-        //                     text: header.height + "/" + _headerContent.height + " - " + _layout.anchors.topMargin
-        //                     color: "orange"
-        //                     z: _headerContent.z + 1
-        //                     visible: header.visible
-        //                 }
-        //
-        //                    Label
-        //                 {
-        //                     anchors.centerIn: _footerContent
-        //                     text: footer.height + "/" + _footerContent.height + " - " + _layout.anchors.topMargin
-        //                     color: "orange"
-        //                     z: _footerContent.z + 9999
-        //                 }
-        
-        contentItem: Item
-        {            
-            Column
-            {
-                id: _headerContent
-                anchors.left: parent.left
-                anchors.right: parent.right
-                z: _content.z+1
-            }
-            
+    }
+    onAltHeaderChanged: pullDownHeader()
+
+
+    //                 Label
+    //                 {
+    //                     anchors.centerIn: _headerContent
+    //                     text: header.height + "/" + _headerContent.height + " - " + _layout.anchors.topMargin
+    //                     color: "orange"
+    //                     z: _headerContent.z + 1
+    //                     visible: header.visible
+    //                 }
+    //
+    //                    Label
+    //                 {
+    //                     anchors.centerIn: _footerContent
+    //                     text: footer.height + "/" + _footerContent.height + " - " + _layout.anchors.topMargin
+    //                     color: "orange"
+    //                     z: _footerContent.z + 9999
+    //                 }
+
+    contentItem: Item
+    {
+        Column
+        {
+            id: _headerContent
+            anchors.left: parent.left
+            anchors.right: parent.right
+            z: _content.z+1
+        }
+
+        Item
+        {
+            id: _layout
+            anchors.fill: parent
+
+            anchors.bottomMargin: control.altHeader ? _headerContent.implicitHeight : 0
+            anchors.topMargin: _private.topMargin
+
             Item
             {
-                id: _layout
+                id: _content
                 anchors.fill: parent
-                
-                anchors.bottomMargin: control.altHeader ? _headerContent.implicitHeight : 0
-                anchors.topMargin: _private.topMargin
-                
-                Item
-                {
-                    id: _content
-                    anchors.fill: parent
-                    anchors.margins: control.margins
-                    anchors.leftMargin: control.leftMargin
-                    anchors.rightMargin: control.rightMargin
-                    anchors.topMargin: control.topMargin
-                    anchors.bottomMargin: _private.bottomMargin
-                }
-                
-                Column
-                {
-                    id: _footerContent
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                }
-            }            
-            
-            Loader
+                anchors.margins: control.margins
+                anchors.leftMargin: control.leftMargin
+                anchors.rightMargin: control.rightMargin
+                anchors.topMargin: control.topMargin
+                anchors.bottomMargin: _private.bottomMargin
+            }
+
+            Column
             {
-                anchors.fill: parent
-                asynchronous: true
-                sourceComponent: MouseArea // to support tbutton go back and forward
-                
+                id: _footerContent
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+            }
+        }
+
+        Loader
+        {
+            anchors.fill: parent
+            asynchronous: true
+            sourceComponent: MouseArea // to support tbutton go back and forward
+
+            {
+                propagateComposedEvents: true
+                acceptedButtons: Qt.BackButton | Qt.ForwardButton
+                //        hoverEnabled: true
+                //        onEntered: _splitView.currentIndex = control.index
+                onPressed:
                 {
-                    propagateComposedEvents: true
-                    acceptedButtons: Qt.BackButton | Qt.ForwardButton
-                    //        hoverEnabled: true
-                    //        onEntered: _splitView.currentIndex = control.index
-                    onPressed:
+                    mouse.accepted = false
+                    if(mouse.button === Qt.BackButton)
                     {
-                        mouse.accepted = false
-                        if(mouse.button === Qt.BackButton)
-                        {
-                            control.goBackTriggered()
-                        }
-                        
-                        if(mouse.button === Qt.ForwardButton)
-                        {
-                            control.goForwardTriggered()
-                        }
+                        control.goBackTriggered()
+                    }
+
+                    if(mouse.button === Qt.ForwardButton)
+                    {
+                        control.goForwardTriggered()
                     }
                 }
             }
-            
-            Loader
+        }
+
+        Loader
+        {
+            anchors.fill: parent
+            asynchronous: true
+            z: _content.z +1
+            active: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
+
+            sourceComponent: MouseArea
             {
-                anchors.fill: parent
-                asynchronous: true
-                z: _content.z +1
-                active: (control.autoHideFooter || control.autoHideHeader ) && Maui.Handy.isTouch
-                
-                sourceComponent: MouseArea
+                parent: _content
+                propagateComposedEvents: true
+                drag.filterChildren: true
+
+                Timer
                 {
-                    parent: _content
-                    propagateComposedEvents: true
-                    drag.filterChildren: true
-                    
-                    Timer 
+                    id: doubleClickTimer
+                    interval: 900
+                    onTriggered:
                     {
-                        id: doubleClickTimer
-                        interval: 900
-                        onTriggered:
+                        if(control.autoHideHeader)
                         {
-                            if(control.autoHideHeader)
-                            {
-                                if(header.height !== 0)
-                                {
-                                    _autoHideHeaderTimer.start()
-                                    _revealHeaderTimer.stop()
-                                    
-                                }else
-                                {
-                                    _autoHideHeaderTimer.stop()
-                                    _revealHeaderTimer.start()
-                                }
-                            }
-                            
-                            if(control.autoHideFooter)
-                            {
-                                if(footer.height !== 0)
-                                {
-                                    _autoHideFooterTimer.start()
-                                    
-                                }else
-                                {
-                                    pullDownFooter()
-                                    _autoHideFooterTimer.stop()
-                                }
-                            }
-                        }
-                    }
-                    
-                    onPressed:
-                    {
-                        doubleClickTimer.restart();
-                        mouse.accepted = false
-                    }
-                }
-            }            
-            
-            Loader
-            {
-                asynchronous: true
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: active ? _headerContent.implicitHeight + control.autoHideHeaderMargins : 0
-                z: _content.z +1
-                active: control.autoHideHeader && !control.altHeader && !Maui.Handy.isTouch
-                
-                sourceComponent: Item
-                {
-                    
-                    HoverHandler
-                    {
-                        target: parent
-                        acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
-                        
-                        onHoveredChanged:
-                        {
-                            if(!control.autoHideHeader || control.altHeader)
-                            {
-                                _autoHideHeaderTimer.stop()
-                                return
-                            }
-                            
-                            if(!hovered)
+                            if(header.height !== 0)
                             {
                                 _autoHideHeaderTimer.start()
                                 _revealHeaderTimer.stop()
-                                
+
                             }else
                             {
                                 _autoHideHeaderTimer.stop()
                                 _revealHeaderTimer.start()
                             }
                         }
-                    }
-                }
-            }
-            
-            Loader
-            {
-                asynchronous: true
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: active ? _footerContent.implicitHeight + control.autoHideFooterMargins : 0
-                z: _footerContent.z - 1
-                active: control.autoHideFooter && !control.altHeader && !Maui.Handy.isTouch
-                
-                sourceComponent: Item
-                {
-                    
-                    HoverHandler
-                    {
-                        target: parent
-                        
-                        acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
-                        
-                        onHoveredChanged:
+
+                        if(control.autoHideFooter)
                         {
-                            if(!control.autoHideFooter)
-                            {
-                                return
-                            }
-                            
-                            if(!hovered)
+                            if(footer.height !== 0)
                             {
                                 _autoHideFooterTimer.start()
-                                
+
                             }else
                             {
                                 pullDownFooter()
@@ -765,150 +672,238 @@ T.Pane
                         }
                     }
                 }
-            }            
-        }
-        
-        Timer
-        {
-            id: _revealHeaderTimer
-            interval: autoHideHeaderDelay
-            
-            onTriggered:
-            {
-                pullDownHeader()
-            }
-        }
-        
-        Timer
-        {
-            id: _autoHideHeaderTimer
-            interval: autoHideHeaderDelay
-            onTriggered:
-            {
-                if(control.autoHideHeader)
+
+                onPressed:
                 {
-                    pullBackHeader()
+                    doubleClickTimer.restart();
+                    mouse.accepted = false
                 }
-                
-                stop()
             }
         }
-        
-        Timer
+
+        Loader
         {
-            id: _autoHideFooterTimer
-            interval: control.autoHideFooterDelay
-            onTriggered:
+            asynchronous: true
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: active ? _headerContent.implicitHeight + control.autoHideHeaderMargins : 0
+            z: _content.z +1
+            active: control.autoHideHeader && !control.altHeader && !Maui.Handy.isTouch
+
+            sourceComponent: Item
             {
-                if(control.autoHideFooter)
+
+                HoverHandler
                 {
-                    pullBackFooter()
+                    target: parent
+                    acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
+
+                    onHoveredChanged:
+                    {
+                        if(!control.autoHideHeader || control.altHeader)
+                        {
+                            _autoHideHeaderTimer.stop()
+                            return
+                        }
+
+                        if(!hovered)
+                        {
+                            _autoHideHeaderTimer.start()
+                            _revealHeaderTimer.stop()
+
+                        }else
+                        {
+                            _autoHideHeaderTimer.stop()
+                            _revealHeaderTimer.start()
+                        }
+                    }
                 }
-                
-                stop()
             }
         }
-        
-        Keys.onBackPressed:
+
+        Loader
         {
-            control.goBackTriggered();
-        }
-        
-        Shortcut
-        {
-            sequence: "Forward"
-            onActivated: control.goForwardTriggered();
-        }
-        
-        Shortcut
-        {
-            sequence: StandardKey.Forward
-            onActivated: control.goForwardTriggered();
-        }
-        
-        Shortcut
-        {
-            sequence: StandardKey.Back
-            onActivated: control.goBackTriggered();
-        }
-        
-        Component
-        {
-            id: _csdRightControlsComponent
-            Maui.WindowControls
+            asynchronous: true
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: active ? _footerContent.implicitHeight + control.autoHideFooterMargins : 0
+            z: _footerContent.z - 1
+            active: control.autoHideFooter && !control.altHeader && !Maui.Handy.isTouch
+
+            sourceComponent: Item
             {
-                side: Qt.RightEdge
+
+                HoverHandler
+                {
+                    target: parent
+
+                    acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus
+
+                    onHoveredChanged:
+                    {
+                        if(!control.autoHideFooter)
+                        {
+                            return
+                        }
+
+                        if(!hovered)
+                        {
+                            _autoHideFooterTimer.start()
+
+                        }else
+                        {
+                            pullDownFooter()
+                            _autoHideFooterTimer.stop()
+                        }
+                    }
+                }
             }
         }
-        
-        Component.onCompleted :
+    }
+
+    Timer
+    {
+        id: _revealHeaderTimer
+        interval: autoHideHeaderDelay
+
+        onTriggered:
         {
-            if(footer)
-            {
-                _footerContent.data.push(footer)
-            }
-            
-            if(header)
-            {
-                _headerContent.data.push(header)
-            }
-            
-            if(Maui.App.controls.enableCSD && Maui.Handy.isLinux && control.showCSDControls)
-            {
-                var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
-                control.headBar.farRightContent.push(obj)
-            }
+            pullDownHeader()
         }
-        
-        /*!
-         * 
+    }
+
+    Timer
+    {
+        id: _autoHideHeaderTimer
+        interval: autoHideHeaderDelay
+        onTriggered:
+        {
+            if(control.autoHideHeader)
+            {
+                pullBackHeader()
+            }
+
+            stop()
+        }
+    }
+
+    Timer
+    {
+        id: _autoHideFooterTimer
+        interval: control.autoHideFooterDelay
+        onTriggered:
+        {
+            if(control.autoHideFooter)
+            {
+                pullBackFooter()
+            }
+
+            stop()
+        }
+    }
+
+    Keys.onBackPressed:
+    {
+        control.goBackTriggered();
+    }
+
+    Shortcut
+    {
+        sequence: "Forward"
+        onActivated: control.goForwardTriggered();
+    }
+
+    Shortcut
+    {
+        sequence: StandardKey.Forward
+        onActivated: control.goForwardTriggered();
+    }
+
+    Shortcut
+    {
+        sequence: StandardKey.Back
+        onActivated: control.goBackTriggered();
+    }
+
+    Component
+    {
+        id: _csdRightControlsComponent
+        Maui.WindowControls
+        {
+            side: Qt.RightEdge
+        }
+    }
+
+    Component.onCompleted :
+    {
+        if(footer)
+        {
+            _footerContent.data.push(footer)
+        }
+
+        if(header)
+        {
+            _headerContent.data.push(header)
+        }
+
+        if(Maui.App.controls.enableCSD && Maui.Handy.isLinux && control.showCSDControls)
+        {
+            var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
+            control.headBar.farRightContent.push(obj)
+        }
+    }
+
+    /*!
+         *
          */
-        function returnToBounds()
+    function returnToBounds()
+    {
+        if(control.header)
         {
-            if(control.header)
-            {
-                pullDownHeader()
-            }
-            
-            if(control.footer)
-            {
-                pullDownFooter()
-            }
+            pullDownHeader()
         }
-        
-        /*!
-         * 
+
+        if(control.footer)
+        {
+            pullDownFooter()
+        }
+    }
+
+    /*!
+         *
          */
-        function pullBackHeader()
-        {
-            _headerAnimation.enabled = true
-            header.height = 0
-        }
-        
-        /*!
-         * 
+    function pullBackHeader()
+    {
+        _headerAnimation.enabled = true
+        header.height = 0
+    }
+
+    /*!
+         *
          */
-        function pullDownHeader()
-        {
-            _headerAnimation.enabled = true
-            header.height = header.implicitHeight
-        }
-        
-        /*!
-         * 
+    function pullDownHeader()
+    {
+        _headerAnimation.enabled = true
+        header.height = header.implicitHeight
+    }
+
+    /*!
+         *
          */
-        function pullBackFooter()
-        {
-            _footerAnimation.enabled = true
-            footer.height= 0
-        }
-        
-        /*!
-         * 
+    function pullBackFooter()
+    {
+        _footerAnimation.enabled = true
+        footer.height= 0
+    }
+
+    /*!
+         *
          */
-        function pullDownFooter()
-        {
-            _footerAnimation.enabled = true
-            footer.height = footer.implicitHeight
-        }
+    function pullDownFooter()
+    {
+        _footerAnimation.enabled = true
+        footer.height = footer.implicitHeight
+    }
 }
