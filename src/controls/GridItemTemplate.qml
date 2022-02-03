@@ -37,7 +37,7 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-    focus: false
+    focus: true
     property alias spacing: _layout.spacing
      //property int padding: Maui.Style.space.tiny
      //property int topPadding: padding

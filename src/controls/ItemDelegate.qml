@@ -46,7 +46,7 @@ T.Control
     leftPadding: padding
     topPadding: padding
     
-    focus: false
+    focus: true
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000

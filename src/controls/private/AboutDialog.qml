@@ -164,19 +164,7 @@ Maui.Dialog
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             leftLabels.spacing: Maui.Style.space.medium
-            leftLabels.data: [ Repeater
-                {
-                    model: Maui.App.about.licenses
-                    Label
-                    {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        text: "© " + modelData.name
-                        opacity: 0.6
-                        font.pointSize: Maui.Style.fontSizes.small
-                    }
-                },
+            leftLabels.data: [
                 
                 Label
                 {

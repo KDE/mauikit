@@ -41,7 +41,7 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
-
+    focus: true
     radius: Maui.Style.radiusV
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
