@@ -1,10 +1,10 @@
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
 
-import org.kde.kirigami 2.9 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.kde.kirigami 2.14 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
 
@@ -44,12 +44,11 @@ T.TabBar
     background: Rectangle
     {
         color: Kirigami.Theme.backgroundColor
-    }
-    
-    contentItem: Item
-    {        
-        readonly property bool fits : _content.contentWidth <= width
-        
+        Label
+        {
+            color: "orange"
+            text: " meh" +  _wheel.target
+        }
         Loader
         {
             z: 999
@@ -91,31 +90,36 @@ T.TabBar
             }
             
             sourceComponent: Private.EdgeShadow
-            {
-                
+            {                
                 opacity: 0.7
                 edge: Qt.LeftEdge            
             }
         }
-        
+    }
+    
+    contentItem: Item
+    {        
+        readonly property bool fits : _content.contentWidth <= width
+                        
         RowLayout
         {
             anchors.fill: parent
             spacing: 0 
             
-            ScrollView
+            Maui.ScrollView
             {
                 id: _scrollView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                
+             
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 contentWidth: availableWidth
-                
+               
                 ListView
                 {
                     id: _content
+                    clip: true
                     orientation: ListView.Horizontal
                     width: _scrollView.width
                     height: _scrollView.height

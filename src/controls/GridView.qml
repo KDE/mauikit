@@ -17,8 +17,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 import org.mauikit.controls 1.2 as Maui
 import org.kde.kirigami 2.9 as Kirigami
@@ -213,27 +213,12 @@ Item
             control.adaptGrid()
     }
     
-    QtObject 
-    {
-        id: internal
-        
-        readonly property real verticalScrollBarWidth: _scrollView.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.vertical.width : 0
-        readonly property real horizontalScrollBarHeight: _scrollView.ScrollBar.horizontal.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.horizontal.height : 0
-    }
-    
-    ScrollView
+   Maui.ScrollView
     {
         id: _scrollView
         anchors.fill: parent   
-        focus: true
-        
-        padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
-        rightPadding: padding + internal.verticalScrollBarWidth
-        leftPadding: padding 
-        topPadding: padding
-        bottomPadding: padding
-        horizontalPadding: padding
-        verticalPadding: padding
+        focus: true              
+      
         clip: control.clip
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy  

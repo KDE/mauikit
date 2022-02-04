@@ -240,8 +240,6 @@ T.ToolBar
         ]
     }
 
-
-
     contentItem: Item
     {
         Item
@@ -332,7 +330,7 @@ T.ToolBar
                     spacing: control.spacing
                 }
                 
-                ScrollView
+                Maui.ScrollView
                 {
                     id: _scrollView
                     implicitHeight: layout.implicitHeight

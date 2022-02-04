@@ -316,7 +316,7 @@ Maui.Dialog
     ]
 
     headBar.visible: false
-    ScrollView
+    Maui.ScrollView
     {
         Layout.fillHeight: true
         Layout.fillWidth: true

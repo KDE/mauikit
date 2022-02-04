@@ -20,7 +20,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.9 as Kirigami
 
 /**
@@ -211,15 +211,7 @@ Item
     Keys.enabled : true
     Keys.forwardTo : _listView
     
-    QtObject 
-    {
-        id: internal
-        
-        readonly property real verticalScrollBarWidth: _scrollView.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.vertical.width : 0
-        readonly property real horizontalScrollBarHeight: _scrollView.ScrollBar.horizontal.visible && !Kirigami.Settings.tabletMode ? _scrollView.ScrollBar.horizontal.height : 0
-    }
-    
-    ScrollView
+    Maui.ScrollView
     {
         id: _scrollView
         anchors.fill: parent
@@ -227,13 +219,7 @@ Item
         
         focus: true
         padding: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
-//         horizontalPadding: padding
-//         verticalPadding: padding
-        rightPadding: padding + internal.verticalScrollBarWidth
-        leftPadding: padding
-        topPadding: padding
-        bottomPadding: padding
-        
+
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
         

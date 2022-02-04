@@ -288,7 +288,7 @@ Maui.Popup
                 spacing: control.spacing
             }
 
-            ScrollView
+            Maui.ScrollView
             {
                 id: _scrollView
                 anchors.fill: parent
