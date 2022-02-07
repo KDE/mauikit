@@ -10,8 +10,10 @@ import QtQuick 2.9
 import QtQuick.Controls 2.15
 import QtQuick.Templates 2.15 as T
 import org.kde.kirigami 2.9 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
-T.ScrollView {
+T.ScrollView
+{
     id: control
 
     clip: true
@@ -22,11 +24,12 @@ T.ScrollView {
     Kirigami.Theme.colorSet: Kirigami.Theme.View
     Kirigami.Theme.inherit: !background || !background.visible
     
-    padding: (Kirigami.Settings.isMobile ? 0 : Maui.Style.space.medium)
+    padding: 0
     rightPadding: padding + internal.verticalScrollBarWidth
     leftPadding: padding 
     topPadding: padding
     bottomPadding: padding
+    
     wheelEnabled: false
     data: [
     Kirigami.WheelHandler {
@@ -58,8 +61,5 @@ T.ScrollView {
         y: control.height - height
         width: control.width
         active: control.ScrollBar.vertical.active
-    }
-    
-    
-  
+    }  
 }

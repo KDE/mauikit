@@ -16,13 +16,11 @@ T.MenuItem
     id: control
     default property list<Action> actions
     implicitHeight: Math.max( Maui.Style.rowHeight, _layoutLoader.item.implicitHeight) + topPadding + bottomPadding
+    width: ListView.view.width
     background: null
     
     display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
-    leftPadding: Maui.Style.space.medium
-    rightPadding: Maui.Style.space.medium
-    topPadding: 0
-    bottomPadding: 0
+    padding: 0
 
     contentItem: Loader
     {

@@ -17,6 +17,10 @@ T.Menu
     Kirigami.Theme.colorSet: Kirigami.Theme.View
 
     property bool responsive: Kirigami.Settings.hasTransientTouchInput
+   
+   property string subtitle
+    property string titleImageSource
+    property string titleIconSource
     
     parent: control.responsive ?  ApplicationWindow.overlay : undefined
     
@@ -25,7 +29,7 @@ T.Menu
     
     implicitWidth: control.responsive ? ApplicationWindow.overlay.width :  Math.min(ApplicationWindow.overlay.width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
     
-    implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.7, contentHeight + Maui.Style.space.huge) :  Math.min(contentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.7)
+    implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.7, contentHeight + Maui.Style.space.huge) :  Math.min(implicitContentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.7)
     
     modal: control.responsive
     
@@ -43,13 +47,50 @@ T.Menu
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem {}
+    
 
     contentItem: Maui.ListBrowser
     {
         id: _listView
-        clip: true
+        clip: true       
+                
+        flickable.header: Control
+        {
+            visible: control.title && control.title.length
+            height: visible ?  48 + topPadding + bottomPadding : 0
+            padding: Maui.Style.space.tiny
+            topPadding: 0
+            bottomPadding: control.bottomPadding
+            
+            width: parent.width
+            
+//            background: Item
+//            {
+//                Kirigami.Separator
+//                {
+//                    width: parent.width
+//                    anchors.bottom: parent.bottom
+//                }
+//            }
+            
+            contentItem: Maui.ListItemTemplate
+            {
+                label1.font.bold: true
+                label1.text: control.title
+                label2.text: control.subtitle
+                imageSource: control.titleImageSource
+                iconSource: control.titleIconSource
+                maskRadius: Maui.Style.radiusV
+                imageSizeHint: 42
+                iconSizeHint: 32
+                
+            }
+        }
+       
+        flickable.headerPositioning: ListView.InlineHeader
         
-        implicitWidth: {
+        implicitWidth: 
+        {
             var maxWidth = 0;
             for (var i = 0; i < contentItem.children.length; ++i) {
                 maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
