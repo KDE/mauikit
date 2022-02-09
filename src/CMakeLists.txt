@@ -294,10 +294,6 @@ else()
     install(DIRECTORY controls/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 endif()
 
-if(ANDROID)
-    install(DIRECTORY styles/maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kirigami.2/styles)
-endif()
-
 install(TARGETS MauiKit DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 install(FILES
@@ -310,6 +306,8 @@ install(FILES
 ##INSTALL MAUI STYLE
 if(NOT BUNDLE_MAUI_STYLE)
     install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
+else()
+    install(DIRECTORY styles/maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kirigami.2/styles)
 endif()
 
 ##INSTALL THE DECO FOR CSD

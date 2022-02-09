@@ -9,6 +9,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import org.kde.kirigami 2.9 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 Flickable
 {
@@ -22,10 +23,13 @@ Flickable
     interactive: contentWidth > width || contentHeight > height
     clip: true
 
-    ScrollBar.vertical: ScrollBar {
+    ScrollBar.vertical: ScrollBar
+    {
         visible: false
     }
-    ScrollBar.horizontal: ScrollBar {
+    
+    ScrollBar.horizontal: ScrollBar 
+    {
         visible: false
     }
 
@@ -75,7 +79,8 @@ Flickable
       */
     signal pressAndHold()
 
-    PinchArea {
+    PinchArea 
+    {
         width: Math.max(flick.contentWidth, flick.width)
         height: Math.max(flick.contentHeight, flick.height)
 
@@ -150,7 +155,8 @@ Flickable
             }
         }
 
-        Image {
+        Image
+        {
             id: image
             width: flick.contentWidth
             height: flick.contentHeight
@@ -161,7 +167,16 @@ Flickable
             BusyIndicator
             {
                 anchors.centerIn: parent
-                running: parent.status === Image.Loading
+                running: image.status === Image.Loading
+            }
+            
+            Maui.Holder
+            {
+                anchors.fill: parent
+                visible: image.status === Image.Error || image.status === Image.Null 
+                title: i18n("Oops!")
+                body: i18n("The image could not be loaded.")
+                emoji: "qrc:/assets/dialog-information.svg"
             }
 
             MouseArea {

@@ -149,6 +149,7 @@ T.TextField
     
     RowLayout
     {
+        width: Math.min(implicitWidth, control.width)
         anchors.centerIn: parent
         visible: opacity > 0
         anchors.verticalCenter: parent.verticalCenter  
