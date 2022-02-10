@@ -208,6 +208,7 @@ class MAUIKIT_EXPORT MauiApp : public QObject
 //   Q_PROPERTY(QQuickWindow *window READ window WRITE setWindow NOTIFY windowChanged)
 //   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
     Q_PROPERTY(bool darkMode READ darkMode WRITE setDarkMode NOTIFY darkModeChanged)
+    Q_PROPERTY(bool bundledStyle READ bundledStyle CONSTANT FINAL)
   
 public:
   static MauiApp *qmlAttachedProperties(QObject *object);
@@ -276,20 +277,12 @@ public:
   bool translucencyAvailable() const;
   void setTranslucencyAvailable(const bool &value);
 
-  bool darkMode() const
-  {
-      return m_darkMode;
-  }
+  bool darkMode() const;
+
+  bool bundledStyle() const;
 
 public slots:
-  void setDarkMode(bool darkMode)
-  {
-      if (m_darkMode == darkMode)
-          return;
-
-      m_darkMode = darkMode;
-      emit darkModeChanged(m_darkMode);
-  }
+  void setDarkMode(bool darkMode);
 
 private:
   static MauiApp *m_instance;
@@ -300,7 +293,7 @@ private:
   
   bool m_translucencyAvailable = false;
 
-  bool m_darkMode;
+  bool m_darkMode;  
 
 signals:
   void iconNameChanged();
