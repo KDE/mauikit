@@ -15,21 +15,20 @@ T.MenuItem
 {
     id: control
     default property list<Action> actions
-    implicitHeight: Math.max( Maui.Style.rowHeight, _layoutLoader.item.implicitHeight) + topPadding + bottomPadding
-    width: ListView.view.width
-    background: null
+    implicitHeight: Math.max( Maui.Style.rowHeight, implicitContentHeight) + topPadding + bottomPadding
+    implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
+     
+    Layout.fillWidth: true
+    background: Item {}
+    
+    spacing: Maui.Style.space.medium
+    padding: Maui.Style.space.small
     
     display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
-    padding: 0
 
-    contentItem: Loader
-    {
-        id: _layoutLoader
-        asynchronous: true
-
-        sourceComponent: RowLayout
+    contentItem:  RowLayout
         {
-            spacing: Maui.Style.space.medium
+            spacing: control.spacing
 
             Repeater
             {
@@ -59,6 +58,6 @@ T.MenuItem
                     }
                 }
             }
-        }
+        
     }
 }

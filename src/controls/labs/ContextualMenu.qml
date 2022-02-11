@@ -27,7 +27,7 @@ T.Menu
     //     x: control.responsive ? 0 : 0
     y: control.responsive ? ApplicationWindow.overlay.height - height : 0
     
-    implicitWidth: control.responsive ? ApplicationWindow.overlay.width :  Math.min(ApplicationWindow.overlay.width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
+    implicitWidth: control.responsive ? ApplicationWindow.overlay.width :  Math.min(ApplicationWindow.overlay.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
     
     implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.7, contentHeight + Maui.Style.space.huge) :  Math.min(implicitContentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.7)
     
@@ -89,19 +89,19 @@ T.Menu
        
         flickable.headerPositioning: ListView.InlineHeader
         
-        implicitWidth: 
-        {
-            var maxWidth = 0;
-            for (var i = 0; i < contentItem.children.length; ++i) {
-                maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
-            }
-            return Math.min(250, maxWidth);
-        }
+//         implicitWidth: 
+//         {
+//             var maxWidth = 0;
+//             for (var i = 0; i < control.contentItem.children.length; ++i) {
+//                 maxWidth = Math.max(maxWidth, control.contentItem.children[i].implicitWidth);
+//             }
+//             return Math.min(250, maxWidth);
+//         }
         
         implicitHeight: contentHeight
         model: control.contentModel
         spacing: control.spacing
-        padding: control.margins
+        padding: 0
         currentIndex: control.currentIndex || 0
     }
     

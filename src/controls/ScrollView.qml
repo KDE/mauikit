@@ -25,7 +25,7 @@ T.ScrollView
     Kirigami.Theme.inherit: !background || !background.visible
     
     padding: 0
-    rightPadding: padding + internal.verticalScrollBarWidth
+    rightPadding: padding
     leftPadding: padding 
     topPadding: padding
     bottomPadding: padding
