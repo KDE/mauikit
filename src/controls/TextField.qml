@@ -41,7 +41,7 @@ T.TextField
     id: control
     
     Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+//     Kirigami.Theme.inherit: true
     
     color: Kirigami.Theme.textColor
     selectionColor: Kirigami.Theme.highlightColor
