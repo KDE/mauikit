@@ -318,5 +318,14 @@ anchors.margins: 2
         border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
         
         radius: Maui.Style.radiusV
+        
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.longDuration
+            }
+        }
     }
 }
