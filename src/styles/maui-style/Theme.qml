@@ -17,16 +17,16 @@ Kirigami.BasicThemeDefinition
     textColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
     disabledTextColor: "#9931363b"
 
-    highlightColor: Maui.App.darkMode ? "#26c6da" : "#26c6da"
+    highlightColor: Maui.App.accentColor
     //FIXME: something better?
     highlightedTextColor: Maui.App.darkMode ? "#eff0f1" : "#eff0f1"
     backgroundColor: Maui.App.darkMode ? "#3a3f41" : "#fafafa"
     alternateBackgroundColor: Qt.darker(theme.backgroundColor, 1.05)
 
-    hoverColor: "#00acc1"
-    focusColor: "#26c6da"
+    hoverColor: Qt.darker(Maui.App.accentColor, 1.1)
+    focusColor: Maui.App.accentColor
 
-    activeTextColor: Maui.App.darkMode ? "#26c6da" : "#26c6da"
+    activeTextColor: Maui.App.accentColor
     activeBackgroundColor: Maui.App.darkMode ? "red" : "yellow"
     linkColor: "#2980B9"
     linkBackgroundColor: "#2980B9"
@@ -42,8 +42,8 @@ Kirigami.BasicThemeDefinition
     buttonTextColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
     buttonBackgroundColor: Maui.App.darkMode ? "#3a3f41" : "#fcfdfd"
     buttonAlternateBackgroundColor: Qt.darker(theme.buttonBackgroundColor, 1.05)
-    buttonHoverColor: Maui.App.darkMode ? "#00acc1" : "#00acc1"
-    buttonFocusColor: Maui.App.darkMode ? "#26c6da" : "#26c6da"
+    buttonHoverColor: Qt.darker(Maui.App.accentColor, 1.1)
+    buttonFocusColor: Maui.App.accentColor
 
     viewTextColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
     viewBackgroundColor: Maui.App.darkMode ? "#3b3f3f" : "#fafafa"
@@ -52,7 +52,7 @@ Kirigami.BasicThemeDefinition
     viewFocusColor: theme.focusColor
 
     selectionTextColor: Maui.App.darkMode ? "#fcfcfc" : "#eff0f1"
-    selectionBackgroundColor: Maui.App.darkMode ? "#26c6da" : "yellow"
+    selectionBackgroundColor: Maui.App.accentColor
     selectionAlternateBackgroundColor: Qt.darker(theme.selectionTextColor, 1.05)
     selectionHoverColor: theme.hoverColor
     selectionFocusColor: theme.focusColor
