@@ -13,6 +13,7 @@ import org.mauikit.controls 1.3 as Maui
 Kirigami.BasicThemeDefinition 
 {
     id: theme
+    
 
     textColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
     disabledTextColor: "#9931363b"
@@ -39,14 +40,14 @@ Kirigami.BasicThemeDefinition
     positiveTextColor: "#27AE60"
     positiveBackgroundColor: "#27AE60"
 
-    buttonTextColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
-    buttonBackgroundColor: Maui.App.darkMode ? "#3a3f41" : "#fcfdfd"
+    buttonTextColor: theme.textColor
+    buttonBackgroundColor: Maui.App.darkMode ? Qt.lighter(theme.backgroundColor, 1.05) : Qt.darker(theme.backgroundColor, 1.05)
     buttonAlternateBackgroundColor: Qt.darker(theme.buttonBackgroundColor, 1.05)
     buttonHoverColor: Qt.darker(Maui.App.accentColor, 1.1)
     buttonFocusColor: Maui.App.accentColor
 
-    viewTextColor: Maui.App.darkMode ? "#f4f5f6" : "#31363b"
-    viewBackgroundColor: Maui.App.darkMode ? "#3b3f3f" : "#fafafa"
+    viewTextColor: theme.textColor
+    viewBackgroundColor: Maui.App.darkMode ? Qt.darker(theme.backgroundColor, 1.1) : Qt.lighter(theme.backgroundColor, 1.1)
     viewAlternateBackgroundColor: Qt.darker(theme.viewBackgroundColor, 1.05)
     viewHoverColor: theme.hoverColor
     viewFocusColor: theme.focusColor
@@ -77,10 +78,26 @@ Kirigami.BasicThemeDefinition
 
     defaultFont: fontMetrics.font
 
+        property color bgColor :  Maui.App.darkMode ? "#3a3f41" : "#fafafa"
     property list<QtObject> children: [
         TextMetrics {
             id: fontMetrics
+        },       
+                
+        Kirigami.ImageColors
+        {
+            id: _imageColors
+            source: Maui.Style.adaptiveColorSchemeSource
+            onPaletteChanged:
+            {
+                Maui.App.darkMode = _imageColors.paletteBrightness === Kirigami.ColorUtils.Dark
+                Maui.App.accentColor = _imageColors.highlight
+                theme.highlightedTextColor = _imageColors.foreground
+                theme.backgroundColor = Qt.tint(_imageColors.background, Qt.rgba(bgColor.r,bgColor.g,bgColor.b, 0.8))
+                theme.textColor = Maui.App.darkMode ? _imageColors.closestToWhite : _imageColors.closestToBlack
+            }
         }
+        
     ]
 
 //    onSync: {

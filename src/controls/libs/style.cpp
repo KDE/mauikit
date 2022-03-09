@@ -98,3 +98,21 @@ GroupSizes::GroupSizes(const uint tiny, const uint small, const uint medium, con
 {
 
 }
+
+QVariant Style::adaptiveColorSchemeSource() const
+{
+    return m_adaptiveColorSchemeSource;
+}
+
+void Style::setAdaptiveColorSchemeSource(const QVariant& source)
+{
+    if(source == m_adaptiveColorSchemeSource)
+    {
+        return;
+    }
+    
+    m_adaptiveColorSchemeSource = source;
+    Q_EMIT adaptiveColorSchemeSourceChanged();
+}
+
+

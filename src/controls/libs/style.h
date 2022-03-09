@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QFont>
+#include <QVariant>
 
 class GroupSizes : public QObject
 {
@@ -44,6 +45,8 @@ class Style : public QObject
   Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes CONSTANT FINAL)
   Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
   Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
+  
+  Q_PROPERTY(QVariant adaptiveColorSchemeSource READ adaptiveColorSchemeSource WRITE setAdaptiveColorSchemeSource NOTIFY adaptiveColorSchemeSourceChanged)
 
 public:
   static Style *instance()
@@ -59,6 +62,9 @@ public:
   Style &operator=(const Style &) = delete;
   Style(Style &&) = delete;
   Style &operator=(Style &&) = delete;
+  
+  QVariant adaptiveColorSchemeSource() const;
+  void setAdaptiveColorSchemeSource(const QVariant &source);
 
 public slots:
   int mapToIconSizes(const int &size);
@@ -80,9 +86,13 @@ private:
   uint m_rowHeight = 32;
   uint m_rowHeightAlt = 28;
   uint m_contentMargins = 8;
+  
+  QVariant m_adaptiveColorSchemeSource;
 
 signals:
   void defaultFontChanged();
+  void adaptiveColorSchemeSourceChanged();
+  
 };
 
 #endif // STYLE_H

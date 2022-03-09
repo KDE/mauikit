@@ -54,7 +54,7 @@ Item
         radius: height / 2
         y: parent.height / 2 - height / 2
         border.color: control.enabled ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
-        color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.2) : "transparent"
+        color: control.enabled ? m_color : "transparent"
     }
 
     Rectangle
@@ -65,7 +65,7 @@ Item
         width: 16
         height: 16
         radius: width / 2
-        color: control.enabled ? (control.checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor)
+        color: control.enabled ? (control.checked ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.backgroundColor)
                                : "transparent"
         border.color: control.enabled ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
 
