@@ -48,7 +48,6 @@ MauiApp *MauiApp::m_instance = nullptr;
 MauiApp::MauiApp()
     : QObject(nullptr)
     , m_controls(new CSDControls(this))
-    , m_accentColor(QColor("#26c6da"))
 {
     qDebug() << "CREATING INSTANCE OF MAUI APP";
     connect(qApp, &QCoreApplication::aboutToQuit, []()
@@ -167,23 +166,6 @@ void MauiApp::setDarkMode(bool darkMode)
 
     UTIL::saveSettings("DARK_MODE", m_darkMode, "UI", false);
 }
-
-QColor MauiApp::accentColor() const
-{
-    return m_accentColor;
-}
-
-void MauiApp::setAccentColor(const QColor& color)
-{
-    if(m_accentColor == color)
-    {
-        return;
-    }
-    
-    m_accentColor = color;
-    emit accentColorChanged();
-}
-
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 {

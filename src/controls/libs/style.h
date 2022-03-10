@@ -1,9 +1,10 @@
-#ifndef STYLE_H
-#define STYLE_H
+#pragma once
 
 #include <QObject>
 #include <QFont>
+#include <QColor>
 #include <QVariant>
+#include <QQmlEngine>
 
 class GroupSizes : public QObject
 {
@@ -32,6 +33,9 @@ private:
 class Style : public QObject
 {
   Q_OBJECT
+  Q_DISABLE_COPY(Style)
+  Q_DISABLE_MOVE(Style)
+  
   Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
   Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
   Q_PROPERTY(uint radiusV MEMBER m_radiusV CONSTANT FINAL)
@@ -46,9 +50,14 @@ class Style : public QObject
   Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
   Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
   
+  Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged FINAL)
+    
   Q_PROPERTY(QVariant adaptiveColorSchemeSource READ adaptiveColorSchemeSource WRITE setAdaptiveColorSchemeSource NOTIFY adaptiveColorSchemeSourceChanged)
-
+  Q_PROPERTY(bool adaptiveColorScheme READ adaptiveColorScheme WRITE setAdaptiveColorScheme NOTIFY adaptiveColorSchemeChanged)
+  
 public:
+    static Style *qmlAttachedProperties(QObject *object);
+    
   static Style *instance()
   {
     if (m_instance)
@@ -58,14 +67,16 @@ public:
     return m_instance;
   }
 
-  Style(const Style &) = delete;
-  Style &operator=(const Style &) = delete;
-  Style(Style &&) = delete;
-  Style &operator=(Style &&) = delete;
-  
+    
   QVariant adaptiveColorSchemeSource() const;
   void setAdaptiveColorSchemeSource(const QVariant &source);
 
+  bool adaptiveColorScheme() const;
+  void setAdaptiveColorScheme(const bool &value);
+  
+  QColor accentColor() const;
+  void setAccentColor(const QColor &color);
+  
 public slots:
   int mapToIconSizes(const int &size);
 
@@ -87,12 +98,18 @@ private:
   uint m_rowHeightAlt = 28;
   uint m_contentMargins = 8;
   
+  QColor m_accentColor;
+  
   QVariant m_adaptiveColorSchemeSource;
-
+  bool m_adaptiveColorScheme = false;
+  
 signals:
   void defaultFontChanged();
   void adaptiveColorSchemeSourceChanged();
+  void adaptiveColorSchemeChanged();
+  void accentColorChanged();
   
 };
 
-#endif // STYLE_H
+QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)
+

@@ -9,12 +9,19 @@ Style::Style(QObject *parent) : QObject(parent)
 ,m_space( new GroupSizes(4, 6, 8, 16, 24, 32, 40, this))
 ,m_fontSizes (new GroupSizes{uint(qRound (m_defaultFont.pointSize ()*0.7)),uint(qRound (m_defaultFont.pointSize ()*0.8)),uint(m_defaultFont.pointSize ()),uint(qRound (m_defaultFont.pointSize ()*1.1)),uint(qRound (m_defaultFont.pointSize ()*1.2)),uint(qRound (m_defaultFont.pointSize ()*1.3)),uint(qRound (m_defaultFont.pointSize ()*1.4)), this})
 ,m_defaultFontSize(m_defaultFont.pointSize ())
+, m_accentColor(QColor("#26c6da"))
 {
  connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         delete m_instance;
         m_instance = nullptr;
     });    
+}
+
+Style *Style::qmlAttachedProperties(QObject *object)
+{
+    Q_UNUSED(object)
+    return Style::instance();
 }
 
 int getClosest(int, int, int);
@@ -115,4 +122,34 @@ void Style::setAdaptiveColorSchemeSource(const QVariant& source)
     Q_EMIT adaptiveColorSchemeSourceChanged();
 }
 
+bool Style::adaptiveColorScheme() const
+{
+    return m_adaptiveColorScheme;
+}
 
+void Style::setAdaptiveColorScheme(const bool& value)
+{
+    if(value == m_adaptiveColorScheme)
+    {
+        return;
+    }
+    
+    m_adaptiveColorScheme = value;
+    Q_EMIT adaptiveColorSchemeChanged();
+}
+
+QColor Style::accentColor() const
+{
+    return m_accentColor;
+}
+
+void Style::setAccentColor(const QColor& color)
+{
+    if(m_accentColor == color)
+    {
+        return;
+    }
+    
+    m_accentColor = color;
+    emit accentColorChanged();
+}

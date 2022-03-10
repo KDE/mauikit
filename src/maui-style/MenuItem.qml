@@ -68,7 +68,7 @@ T.MenuItem
     leftInset: Maui.Style.space.small
     rightInset: Maui.Style.space.small
     
-    icon.color: control.Kirigami.Theme.textColor
+    icon.color: control.checked || control.pressed || control.hovered ?  control.Kirigami.Theme.HighlightedTextColor : control.Kirigami.Theme.textColor
 
     indicator: CheckIndicator
     {
@@ -120,7 +120,7 @@ T.MenuItem
 
         readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
 
-        color: control.enabled ? (control.pressed || control.hovered ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2) : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)) : "transparent"
+        color: control.enabled ? (control.pressed || control.hovered ? control.Kirigami.Theme.highlightColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3)) : "transparent"
 
 //         border.color: control.enabled ? (control.checked || control.down ? control.Kirigami.Theme.highlightColor : "transparent") : m_color
     }

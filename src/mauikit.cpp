@@ -211,11 +211,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType<Notify>(uri, 1, 3, "Notify");
     qmlRegisterType<NotifyAction>(uri, 1, 3, "NotifyAction");
 
-    qmlRegisterSingletonType<Style>(uri, 1, 0, "Style", [] (QQmlEngine *, QJSEngine *)
-    {
-        return Style::instance ();
-    });
-
+    qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
     qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
     qmlRegisterSingletonType<Handy>(uri, 1, 0, "Handy", [](QQmlEngine *, QJSEngine *)
     {
