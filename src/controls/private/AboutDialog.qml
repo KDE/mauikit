@@ -151,6 +151,7 @@ Maui.Dialog
             iconSizeHint: Maui.Style.iconSizes.huge
             imageSizeHint: iconSizeHint
             headerSizeHint: iconSizeHint + Maui.Style.space.huge
+            isMask: false
 
             spacing: Maui.Style.space.big
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere

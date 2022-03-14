@@ -41,7 +41,7 @@ Kirigami.BasicThemeDefinition
     positiveBackgroundColor: "#27AE60"
     
     buttonTextColor: theme.textColor
-    buttonBackgroundColor: Maui.App.darkMode ? Qt.lighter(theme.backgroundColor, 1.05) : Qt.darker(theme.backgroundColor, 1.05)
+    buttonBackgroundColor: Maui.App.darkMode ? Qt.lighter(theme.backgroundColor, 1.05) : Qt.darker(theme.backgroundColor, 1.1)
     buttonAlternateBackgroundColor: Qt.darker(theme.buttonBackgroundColor, 1.05)
     buttonHoverColor: Qt.darker(Maui.Style.accentColor, 1.1)
     buttonFocusColor: Maui.Style.accentColor
