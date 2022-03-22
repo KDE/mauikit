@@ -68,7 +68,7 @@ T.MenuItem
     leftInset: Maui.Style.space.small
     rightInset: Maui.Style.space.small
     
-    icon.color: control.checked || control.pressed || control.hovered ?  control.Kirigami.Theme.HighlightedTextColor : control.Kirigami.Theme.textColor
+    icon.color: control.pressed || control.hovered ?  control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
 
     indicator: CheckIndicator
     {

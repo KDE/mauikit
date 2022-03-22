@@ -112,7 +112,7 @@ Kirigami.BasicThemeDefinition
                     Maui.App.darkMode = _imageColors.paletteBrightness === Kirigami.ColorUtils.Dark
                     Maui.Style.accentColor = _imageColors.highlight
                     theme.highlightedTextColor = _imageColors.foreground
-                    theme.backgroundColor = Qt.tint(_imageColors.background, Qt.rgba(bgColor.r,bgColor.g,bgColor.b, 0.7))
+                    theme.backgroundColor = Qt.tint(_imageColors.background, Qt.rgba(bgColor.r,bgColor.g,bgColor.b, 0.8))
                     theme.textColor = Maui.App.darkMode ? _imageColors.closestToWhite : _imageColors.closestToBlack
                 }
             }
