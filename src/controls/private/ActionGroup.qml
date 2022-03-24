@@ -74,7 +74,7 @@ T.Pane
     {
         NumberAnimation
         {
-            duration: Kirigami.Units.longDuration
+            duration: Kirigami.Units.shortDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -168,10 +168,10 @@ T.Pane
             {
                 return
             }
-            if(_buttonDelegate.display === ToolButton.IconOnly)
-            {
-                _enterAnim.start()
-            }
+            //if(_buttonDelegate.display === ToolButton.IconOnly)
+            //{
+                //_enterAnim.start()
+            //}
 
             control.currentIndex = index
             control.clicked(index)

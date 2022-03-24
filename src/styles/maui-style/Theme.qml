@@ -24,7 +24,7 @@ Kirigami.BasicThemeDefinition
     backgroundColor: Maui.App.darkMode ? "#3a3f41" : "#fafafa"
     alternateBackgroundColor: Qt.darker(theme.backgroundColor, 1.05)
     
-    hoverColor: Qt.darker(Maui.Style.accentColor, 1.1)
+    hoverColor: Maui.App.darkMode ? Qt.lighter(backgroundColor, 1.2) : Qt.darker(backgroundColor, 1.1)
     focusColor: Maui.Style.accentColor
     
     activeTextColor: Maui.Style.accentColor
@@ -80,6 +80,7 @@ Kirigami.BasicThemeDefinition
         
         property color bgColor :  Maui.App.darkMode ? "#3a3f41" : "#fafafa"
         property bool adaptive : Maui.Style.adaptiveColorScheme
+        property color txtColor : Maui.App.darkMode ? "#f4f5f6" : "#31363b"
         
         onAdaptiveChanged:
         {
@@ -100,7 +101,7 @@ Kirigami.BasicThemeDefinition
         TextMetrics {
             id: fontMetrics
         },       
-        
+                
         Kirigami.ImageColors
         {
             id: _imageColors
@@ -111,9 +112,9 @@ Kirigami.BasicThemeDefinition
                 {
                     Maui.App.darkMode = _imageColors.paletteBrightness === Kirigami.ColorUtils.Dark
                     Maui.Style.accentColor = _imageColors.highlight
-                    theme.highlightedTextColor = _imageColors.foreground
+                    theme.highlightedTextColor = Kirigami.ColorUtils.brightnessForColor(_imageColors.highlight) == Kirigami.ColorUtils.Light ? _imageColors.closestToBlack :  _imageColors.closestToWhite
                     theme.backgroundColor = Qt.tint(_imageColors.background, Qt.rgba(bgColor.r,bgColor.g,bgColor.b, 0.8))
-                    theme.textColor = Maui.App.darkMode ? _imageColors.closestToWhite : _imageColors.closestToBlack
+                    theme.textColor =  _imageColors.foreground
                 }
             }
         }

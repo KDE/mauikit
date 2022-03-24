@@ -22,7 +22,7 @@
 import QtQuick 2.13
 import QtQuick.Templates 2.3 as T
 import org.kde.kirigami 2.8 as Kirigami
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls 1.3 as Maui
 import QtQuick.Controls.impl 2.12
 
 T.Button
@@ -39,10 +39,12 @@ T.Button
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
 
-    icon.color: control.highlighted || control.down || control.hovered ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
-
+    icon.color: control.down || control.checked ? (control.flat ? Kirigami.Theme.highlightColor : Kirigami.Theme.highlightedTextColor) : Kirigami.Theme.textColor
+    
     spacing: Maui.Style.space.small
     padding: Maui.Style.space.tiny
+    topPadding: 0
+    bottomPadding: 0
     
     contentItem: IconLabel
     {
@@ -61,9 +63,8 @@ T.Button
         visible: !control.flat
         implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
         implicitHeight: Maui.Style.rowHeight
-
-        color: control.down || control.pressed || control.checked || control.hovered ? control.Kirigami.Theme.highlightColor : Qt.lighter(Kirigami.Theme.backgroundColor)
-
+        color: control.pressed || control.down || control.checked ? control.Kirigami.Theme.highlightColor : (control.highlighted || control.hovered ? control.Kirigami.Theme.hoverColor : (Maui.Style.darkMode ? Qt.lighter(Kirigami.Theme.backgroundColor,1.1) : Qt.darker(Kirigami.Theme.backgroundColor, 1.1)))
+        
         radius: Maui.Style.radiusV
     }
 }

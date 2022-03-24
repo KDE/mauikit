@@ -227,8 +227,6 @@ Item
         {
             id: controlView
             focus: true
-            width: parent.width
-            height: parent.height
             
             /**
              * itemSize : int

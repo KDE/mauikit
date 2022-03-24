@@ -31,8 +31,7 @@ AbstractButton
 {
     id: control
     
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    Kirigami.Theme.colorSet: flat ? Kirigami.Theme.Window : Kirigami.Theme.Button
     spacing: Maui.Style.space.small
 
     padding: Maui.Style.space.small
@@ -83,7 +82,7 @@ AbstractButton
 
         visible: !control.flat
         radius: Maui.Style.radiusV
-        color: control.down || control.checked || control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? Kirigami.Theme.hoverColor : "transparent")
+        color: control.down || control.checked || control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? control.Kirigami.Theme.hoverColor : "transparent")
         //         border.color:  checked ?  control.Kirigami.Theme.highlightColor : "transparent"
         Behavior on color
         {
@@ -117,7 +116,7 @@ AbstractButton
                 id: _icon
                 anchors.fill: parent
 
-                color:  enabled ? (control.icon.color && control.icon.color.length ) ? control.icon.color : ((control.checked || control.down) ? (control.flat ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.highlightedTextColor) : control.Kirigami.Theme.textColor) : Kirigami.Theme.disabledTextColor
+                color: enabled ? (control.icon.color && control.icon.color.length ) ? control.icon.color : ((control.checked || control.down) ? (control.flat ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.highlightedTextColor) : control.Kirigami.Theme.textColor) : Kirigami.Theme.disabledTextColor
 
                 source: control.icon.name
                 isMask: true
@@ -143,7 +142,7 @@ AbstractButton
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.longDuration
+                    duration: Kirigami.Units.shortDuration
                     easing.type: Easing.InQuad
                 }
             }
@@ -152,7 +151,7 @@ AbstractButton
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.longDuration
+                    duration: Kirigami.Units.shortDuration
                     easing.type: Easing.InQuad
                 }
             }
