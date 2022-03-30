@@ -149,6 +149,7 @@ T.TextField
     
     RowLayout
     {
+        clip: true
         width: Math.min(implicitWidth, control.width)
         anchors.centerIn: parent
         visible: opacity > 0
@@ -176,7 +177,7 @@ T.TextField
         Label
         {
             id: placeholder
-            
+            Layout.fillWidth: true
             text: control.placeholderText
             font: control.font
             color: control.color
