@@ -44,8 +44,8 @@ Rectangle
     implicitWidth: 18
     implicitHeight: 18
     color: !control.enabled ? "transparent"
-                            :(checked ? Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.4) : control.Kirigami.Theme.backgroundColor)
-//     border.color: checked ? control.Kirigami.Theme.highlightColor: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
+                            :(checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor)
+     border.color: enabled ? "transparent" : Kirigami.Theme.textColor
 
 //     border.width: control.checked ? 1 : 1
     radius: control.autoExclusive ? Math.min(height, width) : Maui.Style.radiusV
@@ -71,6 +71,15 @@ Rectangle
         }
     }
 
+    Behavior on color
+    {
+        ColorAnimation
+        {
+            duration: 100
+            easing.type: Easing.OutCubic
+        }
+    }
+
     Kirigami.Icon
     {
         visible: !control.autoExclusive
@@ -79,10 +88,19 @@ Rectangle
         width: 16
         height: 16
         source: "qrc:/assets/checkmark.svg"
-        color: control.checked ? Kirigami.Theme.highlightColor : "transparent"
+        color: control.checked ? Kirigami.Theme.highlightedTextColor : "transparent"
 
         scale: checked ? 1 : 0
         Behavior on scale { NumberAnimation { duration: 100 } }
+
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                duration: 100
+                easing.type: Easing.OutCubic
+            }
+        }
     }
 
     Rectangle
@@ -92,10 +110,20 @@ Rectangle
         y: (parent.height - height) / 2
         width: 10
         height: 10
-        color: control.checked ? Kirigami.Theme.highlightColor : "transparent"
+        color: control.checked ? Kirigami.Theme.highlightedTextColor : "transparent"
         radius: height
         scale: checked ? 1 : 0
         Behavior on scale { NumberAnimation { duration: 100 } }
+
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                duration: 100
+                easing.type: Easing.OutCubic
+            }
+        }
+
     }
 
     transitions: Transition
