@@ -47,7 +47,7 @@ T.TextField
     selectionColor: Kirigami.Theme.highlightColor
     selectedTextColor: Kirigami.Theme.highlightedTextColor
     focus: true
-    implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
+    implicitHeight: Math.max(_actionsLayoutLoader.item.implicitHeight, Maui.Style.rowHeight + topPadding + bottomPadding)
     implicitWidth: 100 + leftPadding + rightPadding
     
     verticalAlignment: TextInput.AlignVCenter
@@ -191,10 +191,10 @@ T.TextField
     Loader
     {
         id: _actionsLayoutLoader
-//         height: parent.height
-anchors.top: parent.top
-anchors.bottom: parent.bottom
-anchors.margins: 2
+        //         height: parent.height
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.margins: 2
         anchors.right: control.right
 //         anchors.verticalCenter: parent.verticalCenter
         asynchronous: true

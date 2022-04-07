@@ -265,7 +265,8 @@ Item
         implicitWidth: implicitContentWidth + leftPadding + rightPadding
 
         width: control.width
-
+        focus: true
+        
         padding: 0
         topPadding: padding
         bottomPadding: padding
@@ -349,7 +350,6 @@ Item
         }
         
         
-        focus: true
         
         background: Rectangle
         {
@@ -429,9 +429,6 @@ Item
             
             clip: true
             position: ToolBar.Footer
-            //             spacing: Maui.Style.space.big
-            //preferredHeight: height
-            
             background: null
 
             Maui.Badge
