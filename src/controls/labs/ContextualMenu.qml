@@ -15,10 +15,10 @@ T.Menu
 {
     id: control
     Kirigami.Theme.colorSet: Kirigami.Theme.View
-
+    
     property bool responsive: Kirigami.Settings.hasTransientTouchInput
-   
-   property string subtitle
+    
+    property string subtitle
     property string titleImageSource
     property string titleIconSource
     
@@ -29,8 +29,9 @@ T.Menu
     
     implicitWidth: control.responsive ? ApplicationWindow.overlay.width :  Math.min(ApplicationWindow.overlay.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
     
-    implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.7, contentHeight + Maui.Style.space.huge) :  Math.min(implicitContentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.7)
+    implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.8, contentHeight + Maui.Style.space.huge) :  Math.min(implicitContentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.9)
     
+    focus: true
     modal: control.responsive
     
     spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
@@ -40,7 +41,7 @@ T.Menu
     leftMargin: control.margins
     topMargin: control.margins
     bottomMargin: control.margins
-
+    
     padding: 0
     topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
     bottomPadding: Maui.Style.space.medium
@@ -48,12 +49,15 @@ T.Menu
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem {}
     
-
+    Keys.forwardTo: _listView
+    
+    
     contentItem: Maui.ListBrowser
     {
         id: _listView
         clip: true       
-                
+        focus: true 
+        
         flickable.header: Control
         {
             visible: control.title && control.title.length
@@ -64,14 +68,14 @@ T.Menu
             
             width: parent.width
             
-//            background: Item
-//            {
-//                Kirigami.Separator
-//                {
-//                    width: parent.width
-//                    anchors.bottom: parent.bottom
-//                }
-//            }
+            //            background: Item
+            //            {
+            //                Kirigami.Separator
+            //                {
+            //                    width: parent.width
+            //                    anchors.bottom: parent.bottom
+            //                }
+            //            }
             
             contentItem: Maui.ListItemTemplate
             {
@@ -86,17 +90,17 @@ T.Menu
                 
             }
         }
-       
+        
         flickable.headerPositioning: ListView.InlineHeader
         
-//         implicitWidth: 
-//         {
-//             var maxWidth = 0;
-//             for (var i = 0; i < control.contentItem.children.length; ++i) {
-//                 maxWidth = Math.max(maxWidth, control.contentItem.children[i].implicitWidth);
-//             }
-//             return Math.min(250, maxWidth);
-//         }
+        //         implicitWidth: 
+        //         {
+        //             var maxWidth = 0;
+        //             for (var i = 0; i < control.contentItem.children.length; ++i) {
+        //                 maxWidth = Math.max(maxWidth, control.contentItem.children[i].implicitWidth);
+        //             }
+        //             return Math.min(250, maxWidth);
+        //         }
         
         implicitHeight: contentHeight
         model: control.contentModel
@@ -112,7 +116,7 @@ T.Menu
         color: control.Kirigami.Theme.backgroundColor
         radius: control.responsive ? 0 : Maui.Style.radiusV
         border.color: control.responsive ? "transparent" : Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
-
+        
         Behavior on color
         {
             ColorAnimation
@@ -130,7 +134,7 @@ T.Menu
             height: 0.5
             weight: Kirigami.Separator.Weight.Light
         }
-
+        
         layer.enabled: true
         layer.effect: DropShadow
         {
@@ -181,5 +185,7 @@ T.Menu
             control.popup(parent,x ,y)
         }
     }
+    
+    onOpened: control.forceActiveFocus()
 }
 

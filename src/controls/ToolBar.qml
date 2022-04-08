@@ -156,6 +156,7 @@ T.ToolBar
                     duration: Kirigami.Units.shortDuration
                 }
             }
+            
             Loader
             {
                 asynchronous: true
@@ -209,7 +210,7 @@ T.ToolBar
                 id: _border
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: 0.5
+//                 height: 0.5
                 weight: Kirigami.Separator.Weight.Light
             }
             
@@ -233,8 +234,7 @@ T.ToolBar
                 {
                     target: _border
                     anchors.top: parent.top
-                    anchors.bottom: undefined
-                    
+                    anchors.bottom: undefined                    
                 }
             }
             ]

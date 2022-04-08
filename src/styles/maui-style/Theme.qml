@@ -21,7 +21,7 @@ Kirigami.BasicThemeDefinition
     highlightColor: Maui.Style.accentColor
     //FIXME: something better?
     highlightedTextColor: Maui.App.darkMode ? "#eff0f1" : "#eff0f1"
-    backgroundColor: Maui.App.darkMode ? "#3a3f41" : "#fafafa"
+    backgroundColor: Maui.App.darkMode ? "#3a3f41" : "#efefef"
     alternateBackgroundColor: Qt.darker(theme.backgroundColor, 1.05)
     
     hoverColor: Maui.App.darkMode ? Qt.lighter(backgroundColor, 1.2) : Qt.darker(backgroundColor, 1.1)
