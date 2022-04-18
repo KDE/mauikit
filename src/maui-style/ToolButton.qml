@@ -98,7 +98,7 @@ T.ToolButton
     {
         visible: !control.flat
         implicitWidth: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
-        implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
+        implicitHeight: Maui.Style.rowHeight
 
         radius: Maui.Style.radiusV
 

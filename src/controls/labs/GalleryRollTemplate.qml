@@ -30,6 +30,7 @@ Kirigami.ShadowedRectangle
     property int radius : 0
     
     property int fillMode: Image.PreserveAspectCrop
+    property alias running: _featuredTimer.running 
     
     corners
     {
@@ -43,15 +44,13 @@ Kirigami.ShadowedRectangle
 //    shadow.yOffset: 0
 //    shadow.color: Qt.rgba(0, 0, 0, 0.3)
 //    shadow.size: 10
-    
-    Loader
-    {
-        asynchronous: true
-        anchors.fill: parent
-        
-        sourceComponent: ListView
+
+
+ListView
         {
             id: _featuredRoll
+            anchors.fill: parent
+            
             interactive: false
             orientation: control.orientation
             snapMode: ListView.SnapOneItem
@@ -59,7 +58,7 @@ Kirigami.ShadowedRectangle
             
             model: control.images
             
-            Component.onCompleted: _featuredTimer.start()
+            Component.onCompleted: _featuredTimer.start()      
             
             Timer
             {
@@ -68,7 +67,7 @@ Kirigami.ShadowedRectangle
                 repeat: true
                 onTriggered: _featuredRoll.cycleSlideForward()
             }
-            
+          
             function cycleSlideForward()
             {
                 _featuredTimer.restart()
@@ -140,7 +139,7 @@ Kirigami.ShadowedRectangle
                 }               
             }
         }
-    }    
+    
     
     function randomInteger(min, max)
     {

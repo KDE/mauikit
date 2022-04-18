@@ -37,7 +37,8 @@ import org.mauikit.controls 1.2 as Maui
 Maui.ItemDelegate
 {
     id: control
-
+    spacing: Maui.Style.space.medium
+    
     isCurrentItem : ListView.isCurrentItem
 
     /**
@@ -66,6 +67,8 @@ Maui.ItemDelegate
         if(_swipeDelegate.swipe.position < 0)
             _swipeDelegate.swipe.close()
     }
+    
+    background: null
 
     SwipeDelegate
     {
@@ -80,23 +83,23 @@ Maui.ItemDelegate
         onPressAndHold: control.pressAndHold(null)
 
         swipe.enabled: control.collapse && control.showQuickActions
-        padding: 0
+        padding: Maui.Style.space.small
         topPadding: padding
         bottomPadding: padding
         leftPadding: padding
         rightPadding: padding
 
-        Rectangle
+        background: Rectangle
         {
             id: _bg
-            anchors.fill: _swipeDelegate.background
-            z: _swipeDelegate.background.z -1
+//             anchors.fill: _swipeDelegate.background
+            //z: _swipeDelegate.background.z -1
             color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.95))
             radius: Maui.Style.radiusV
             // 				opacity: Math.abs( _swipeDelegate.swipe.position)
         }
 
-        background: RowLayout
+        contentItem: RowLayout
         {
             spacing: control.spacing
             id: _background
@@ -114,7 +117,8 @@ Maui.ItemDelegate
             Row
             {
                 id: _buttonsRow
-                visible: hovered && control.showQuickActions && !control.collapse
+                spacing: control.spacing
+                visible: control.hovered && control.showQuickActions && !control.collapse
                 Layout.fillHeight: true
                 Layout.preferredWidth: Math.max(Maui.Style.space.big, _buttonsRow.implicitWidth)
                 Layout.alignment: Qt.AlignRight
@@ -128,8 +132,6 @@ Maui.ItemDelegate
                         easing.type: Easing.InOutQuad
                     }
                 }
-
-                spacing: Maui.Style.space.medium
 
                 Repeater
                 {
@@ -164,7 +166,7 @@ Maui.ItemDelegate
             id: _rowActions
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            spacing: Maui.Style.space.big
+            spacing: control.spacing
             padding: Maui.Style.space.medium
             //                width:  implicitWidth * Math.abs(_swipeDelegate.swipe.position)
             height: parent.height

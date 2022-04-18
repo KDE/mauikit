@@ -133,6 +133,8 @@ Item
         property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
 
         property bool hovered: false
+        
+        property bool autoTransform: false
         /**
          * iconComponent : Component
          */
@@ -160,6 +162,7 @@ Item
                 imageHeight: control.imageHeight
 
                 isMask: control.isMask
+                image.autoTransform: control.autoTransform
             }
         }
 

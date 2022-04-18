@@ -88,7 +88,7 @@ T.Pane
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
-        padding: Maui.Style.space.medium
+        //padding: Maui.Style.space.medium
         leftPadding: Maui.Style.space.big
         rightPadding: Maui.Style.space.big
         //Kirigami.Theme.backgroundColor: modelData.Kirigami.Theme.backgroundColor
@@ -184,11 +184,10 @@ T.Pane
         }
     }
 
-    contentItem:  RowLayout
+    contentItem: RowLayout
     {
         id: _layout
         spacing: control.spacing
-
 
         Repeater
         {
@@ -199,9 +198,9 @@ T.Pane
         Maui.BasicToolButton
         {
             Layout.alignment: Qt.AlignCenter
-            padding: Maui.Style.space.medium
-            leftPadding: Maui.Style.space.big
-            rightPadding: Maui.Style.space.big
+//             padding: Maui.Style.space.medium
+//             leftPadding: Maui.Style.space.big
+//             rightPadding: Maui.Style.space.big
             readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
 
             visible: obj && obj.visible

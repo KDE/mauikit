@@ -80,6 +80,8 @@ Item
     property bool smooth: false
 
     property alias isMask : icon.isMask
+    property alias image : img
+    property alias icon: icon
     
     Kirigami.Icon
     {
@@ -113,7 +115,7 @@ Item
 
         source: control.imageSource
 
-        cache: false
+        cache: true
         asynchronous: true
         smooth: control.smooth
         mipmap: false

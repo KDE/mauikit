@@ -45,6 +45,21 @@ Maui.GridBrowserDelegate
     template.iconComponent: Item
     {
         id: _collageLayout
+        
+        function spanColumn(index, count)
+        {
+            if(index === 0)
+            {
+                return 3;
+            }
+            
+            if(count === 2 || count === 3)
+            {
+                return 3;
+            }
+            
+            return 1;
+        }
 
         Loader
         {
@@ -59,7 +74,8 @@ Maui.GridBrowserDelegate
                 rowSpacing: 2
                 
                 Repeater
-                {                
+                {     
+                    id: _repeater
                     model: control.images
                     
                     delegate: Rectangle
@@ -68,8 +84,8 @@ Maui.GridBrowserDelegate
                         Layout.fillWidth: true
                         Layout.maximumHeight: index === 0 ? control.height : control.height * 0.3
                         //                     Layout.minimumHeight: index === 0 ? control.height * 0.6 : control.height * 0.2
-                        Layout.columnSpan: index === 0 ? 3 : 1
-                        Layout.rowSpan: index === 0 ? 2 : 1
+                        Layout.columnSpan: spanColumn(index, _repeater.count)
+                        Layout.rowSpan: 1
                         color: Qt.rgba(0,0,0,0.3)
                         
                         Image
