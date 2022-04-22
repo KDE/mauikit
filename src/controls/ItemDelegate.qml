@@ -242,9 +242,9 @@ T.Control
                 duration: Kirigami.Units.longDuration
             }
         }
-
-        color: control.hovered  ? control.Kirigami.Theme.hoverColor : (control.isCurrentItem || _mouseArea.containsPress ? control.Kirigami.Theme.highlightColor: "transparent")
-
+       
+        color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : ( control.hovered ? control.Kirigami.Theme.hoverColor : "transparent")
+        
         radius: control.radius
     }
 }
