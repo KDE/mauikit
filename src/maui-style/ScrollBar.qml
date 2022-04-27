@@ -47,24 +47,27 @@ T.ScrollBar {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    padding: control.interactive ? 1 : 2
+    padding: control.interactive ? 2 : 2
     visible: control.policy !== T.ScrollBar.AlwaysOff
     minimumSize: orientation == Qt.Horizontal ? height / width : width / height
 
-    contentItem: Rectangle {
+    interactive: !Kirigami.Settings.isMobile
+    contentItem: Rectangle
+    {
         
         radius: Maui.Style.radiusV
-        implicitWidth: control.interactive ? 6 : 4
-        implicitHeight: control.interactive ? 6 : 4
+        implicitWidth: control.interactive ? 10 : 4
+        implicitHeight: control.interactive ? 10 : 4
 
         color: control.pressed ? control.Material.scrollBarPressedColor :
                control.interactive && control.hovered ? control.Material.scrollBarHoveredColor : control.Material.scrollBarColor
         opacity: 0.0
     }
 
-    background: Rectangle {
-        implicitWidth: control.interactive ? 8 : 4
-        implicitHeight: control.interactive ? 8 : 4
+    background: Rectangle
+    {
+        implicitWidth: control.interactive ? 14 : 4
+        implicitHeight: control.interactive ? 14 : 4
         color: "#0e000000"
         opacity: 0.0
         visible: control.interactive

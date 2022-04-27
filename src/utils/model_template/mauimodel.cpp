@@ -56,13 +56,57 @@ void MauiModel::setFilter(const QString &filter)
         return;
 
     this->m_filter = filter;
-    emit this->filterChanged(this->m_filter);
     this->setFilterFixedString(this->m_filter);
+    emit this->filterChanged(this->m_filter);
 }
 
 const QString MauiModel::getFilter() const
 {
     return this->m_filter;
+}
+
+void MauiModel::setFilters(const QStringList& filters)
+{
+    if (this->m_filters == filters)
+        return;
+    
+    this->m_filters = filters;
+    QString rx;
+    for( int i = 0; i < m_filters.count(); ++i )
+    {
+        QString filter = QRegExp::escape( m_filters.at(i) );
+        if( i > 0 )
+            rx += '|';
+        rx += filter;
+    }
+    qDebug() << "FILTERS" << filters << m_filters << m_filter << rx << filterCaseSensitivity() << ( filterCaseSensitivity() == Qt::CaseSensitivity::CaseSensitive);
+    QRegExp reg(rx);
+    reg.setCaseSensitivity(filterCaseSensitivity());
+    this->setFilterRegExp(reg );
+    emit this->filtersChanged(this->m_filters);
+}
+
+const QStringList MauiModel::getFilters() const
+{
+    return m_filters;
+}
+
+void MauiModel::clearFilters()
+{   
+    this->m_filter.clear();
+    this->m_filters.clear();
+    this->setFilterFixedString("");
+    this->setFilterRegExp("");
+    this->invalidateFilter();
+    emit this->filtersChanged(this->m_filters);
+    emit this->filterChanged(this->m_filter);
+    
+}
+
+void MauiModel::PrivateAbstractListModel::reset()
+{ 
+    this->beginResetModel();
+    this->endResetModel();    
 }
 
 QString MauiModel::getFilterRoleName() const

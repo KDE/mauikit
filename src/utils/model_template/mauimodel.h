@@ -40,6 +40,7 @@ class MAUIKIT_EXPORT MauiModel : public QSortFilterProxyModel
     
     Q_PROPERTY(MauiList *list READ getList WRITE setList NOTIFY listChanged)
     Q_PROPERTY(QString filter READ getFilter WRITE setFilter NOTIFY filterChanged)
+    Q_PROPERTY(QStringList filters READ getFilters WRITE setFilters NOTIFY filtersChanged)
     Q_PROPERTY(QString filterRole READ getFilterRoleName WRITE setFilterRoleName NOTIFY filterRoleNameChanged)
     Q_PROPERTY(Qt::SortOrder sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
     Q_PROPERTY(QString sort READ getSort WRITE setSort NOTIFY sortChanged)
@@ -82,6 +83,12 @@ public:
      * @return
      */
     const QString getFilter() const;
+    /**
+     * @brief getFilter
+     * The filter being applied to the model
+     * @return
+     */
+    const QStringList getFilters() const;
 
     QString getFilterRoleName() const;
     
@@ -99,6 +106,7 @@ private:
     MauiList *m_list;
     
     QString m_filter;
+    QStringList m_filters;
     QString m_filterRoleName;
     Qt::SortOrder m_sortOrder;
     QString m_sort;
@@ -111,7 +119,8 @@ public slots:
      * Simple filter string
      */
     void setFilter(const QString &filter);
-
+    void setFilters(const QStringList &filters);
+    
     /**
      * @brief setSortOrder
      * Set the sort order, asc or dec
@@ -161,10 +170,13 @@ public slots:
     void setFilterRoleName(QString );
     
     bool move(const int &index, const int &to);
+    
+    void clearFilters();
 
 signals:
     void listChanged();
     void filterChanged(QString);
+    void filtersChanged(QStringList);
     void sortOrderChanged(Qt::SortOrder);
     void sortChanged(QString);
     void filterRoleNameChanged(QString);
@@ -191,6 +203,7 @@ public:
 
     void setUpList();
 
+    void reset();
 private:
     MauiModel *m_model;
 };

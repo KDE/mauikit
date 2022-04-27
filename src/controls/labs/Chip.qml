@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.14 as Kirigami
@@ -9,18 +10,26 @@ import org.kde.kirigami 2.14 as Kirigami
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-ItemDelegate
+T.ItemDelegate
 {
     id: control
 
     hoverEnabled: !Kirigami.Settings.isMobile
     implicitHeight: Maui.Style.iconSizes.big
-    implicitWidth: _layout.implicitWidth + Maui.Style.space.big
-
+    implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
+    padding: spacing
+    bottomPadding: padding
+    rightPadding: padding
+    leftPadding: padding
+    topPadding: padding
+    spacing: Maui.Style.space.medium
+    
     property alias label : _label1
     property alias iconSource : _icon.source
 
     property bool showCloseButton : false
+    
+    property color color : control.Kirigami.Theme.backgroundColor
 
     ToolTip.visible: hovered
     ToolTip.text: label.text
@@ -32,28 +41,20 @@ ItemDelegate
         id: _background
 //         opacity: 0.5
                
-        color: Qt.lighter(control.hovered || control.containsPress ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.backgroundColor)
+        color: Qt.lighter( control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? control.Kirigami.Theme.hoverColor : control.color))
         radius:  Maui.Style.radiusV         
     }
 
-    RowLayout
+    contentItem: RowLayout
     {
         id: _layout
-        height: parent.height
-        anchors.centerIn: parent
-        spacing: Maui.Style.space.medium
-        
-        Item
-        {
-            visible: !_icon.valid
-            Layout.fillHeight: true
-        }
+        spacing: control.spacing
         
         Item
         {
             visible: _icon.valid
             Layout.fillHeight: true
-            implicitWidth: visible ? Maui.Style.iconSizes.medium : 0
+            Layout.preferredWidth: visible ? Maui.Style.iconSizes.medium : 0
             
             Kirigami.Icon
             {
@@ -68,9 +69,11 @@ ItemDelegate
         Label
         {
             id: _label1
+            text: control.text
             Layout.fillHeight: true
+            Layout.fillWidth: true
             verticalAlignment: Qt.AlignVCenter
-            color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(_background.color.r, _background.color.g, _background.color.b, control.hovered ?  0.2 : 0.4))
+            color: Kirigami.ColorUtils.brightnessForColor(_background.color) === Kirigami.ColorUtils.Light ? Qt.darker(_background.color) : Qt.lighter(_background.color)
         }
 
         Loader
@@ -80,7 +83,7 @@ ItemDelegate
             
             asynchronous: true
             Layout.fillHeight: true
-            Layout.preferredWidth: Maui.Style.iconSizes.medium
+            Layout.preferredWidth: visible ? Maui.Style.iconSizes.medium : 0
             Layout.alignment: Qt.AlignRight
             
             sourceComponent: MouseArea
@@ -97,17 +100,6 @@ ItemDelegate
                     color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : _label1.color
                 }
             }
-        }        
-        
-        Loader
-        {
-            visible: active
-            
-            asynchronous: true
-            active: !showCloseButton
-            Layout.fillHeight: true            
-            
-            sourceComponent: Item {}
-        }
+        }     
     }
 }
