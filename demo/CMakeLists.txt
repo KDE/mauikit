@@ -21,13 +21,13 @@ add_executable(mauidemo
     src/main.cpp
     src/qml.qrc
     )
-    
+
 if (ANDROID)
     find_package(Qt5 REQUIRED COMPONENTS AndroidExtras)
 
     target_link_libraries(mauidemo Qt5::AndroidExtras)
     kde_source_files_enable_exceptions(index src/index.cpp)
-else() 
+else()
     find_package(KF5 ${KF5_VERSION} REQUIRED COMPONENTS I18n Notifications Config KIO Service Attica)
     find_package(Qt5 REQUIRED COMPONENTS WebEngine)
 
@@ -38,7 +38,7 @@ if (TARGET create-apk-mauidemo)
     set_target_properties(create-apk-mauidemo PROPERTIES ANDROID_APK_DIR "${MAUIKIT_ANDROID_DIR}")
 endif()
 
-target_link_libraries(mauidemo MauiKit Qt5::Sql Qt5::Qml Qt5::Widgets Qt5::Svg)
+target_link_libraries(mauidemo MauiKit Qt5::Sql Qt5::Qml Qt5::Widgets Qt5::Svg Qt5::QuickControls2)
 
 install(TARGETS mauidemo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES org.kde.mauidemo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
