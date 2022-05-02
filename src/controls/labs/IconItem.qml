@@ -21,7 +21,7 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtGraphicalEffects 1.0
 
-import org.kde.kirigami 2.7 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 /*!
@@ -92,8 +92,9 @@ Item
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
-        color: control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
-        isMask: height <= Maui.Style.iconSizes.small
+        color: isMask ? (control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : "transparent"
+        isMask: (height <= Maui.Style.iconSizes.small) || control.isMask
+        selected: control.highlighted
     }
 
     Image

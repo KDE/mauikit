@@ -211,7 +211,7 @@ T.TextField
                 flat: true
                 focusPolicy: Qt.NoFocus
                 
-                visible: control.text.length
+                visible: control.text.length || control.activeFocus
                 icon.name: "edit-clear"
                 icon.color: control.color
                 icon.height: Maui.Style.iconSizes.medium

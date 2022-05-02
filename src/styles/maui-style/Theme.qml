@@ -116,6 +116,8 @@ Kirigami.BasicThemeDefinition
                     theme.backgroundColor = Qt.tint(_imageColors.background, Qt.rgba(bgColor.r,bgColor.g,bgColor.b, 0.8))
                     theme.textColor =  _imageColors.foreground
                 }
+                
+                Maui.Style.colorSchemeChanged()
             }
         }
         

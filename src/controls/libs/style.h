@@ -66,7 +66,6 @@ public:
     m_instance = new Style;
     return m_instance;
   }
-
     
   QVariant adaptiveColorSchemeSource() const;
   void setAdaptiveColorSchemeSource(const QVariant &source);
@@ -108,6 +107,7 @@ signals:
   void adaptiveColorSchemeSourceChanged();
   void adaptiveColorSchemeChanged();
   void accentColorChanged();
+  void colorSchemeChanged();
   
 };
 
