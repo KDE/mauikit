@@ -2,6 +2,7 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 import QtQml 2.14
+import QtQuick.Templates 2.15 as T
 
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
@@ -18,11 +19,11 @@ import "private" as Private
  *
  *
  */
-Control
+T.Control
 {
     id: control
-    implicitWidth: _loader.item.implicitWidth + leftPadding + rightPadding
-    implicitHeight: Math.max( _loader.item.implicitHeight, Maui.Style.rowHeight) + topPadding + bottomPadding
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: Math.max(implicitContentHeight, Maui.Style.rowHeight) + topPadding + bottomPadding
     opacity: enabled ? 1 : 0.5
     
     spacing: 2
@@ -135,7 +136,7 @@ Control
         sourceComponent: control.expanded ? _rowComponent : _buttonComponent
     }
     
-    background: null
+    background: Item {}
     
     Component
     {

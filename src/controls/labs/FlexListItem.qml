@@ -83,7 +83,7 @@ T.ItemDelegate
     /**
       *
       */
-    property bool wide : _content.implicitWidth < control.width * 0.5
+    property bool wide : _content.implicitWidth <= (control.width/2)
 
     property alias rowSpacing : _layout.rowSpacing
 
@@ -92,6 +92,11 @@ T.ItemDelegate
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
     background: null
+    
+    onWideChanged:
+    {
+      _layout.force
+    }
 
     contentItem: GridLayout
     {
@@ -99,7 +104,7 @@ T.ItemDelegate
         rowSpacing: Maui.Style.space.medium
         columnSpacing: Maui.Style.space.medium
         rows: 2
-        columns: 2
+        columns:2
 
         Maui.ListItemTemplate
         {
@@ -115,11 +120,10 @@ T.ItemDelegate
             label1.font.bold: true
         }
 
-        RowLayout
+        Row
         {
             id: _content
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-//            Layout.margins: control.wide ? Maui.Style.space.medium : Maui.Style.space.tiny
             Layout.row: control.wide ? 0 : 1
             Layout.column: control.wide ? 1 : 0
 
@@ -127,6 +131,13 @@ T.ItemDelegate
             Layout.rowSpan: control.wide ? 2 : 1
 
             Layout.fillWidth: !control.wide
+            Layout.maximumWidth: control.wide ? control.width * 0.5 : control.width
         }
     }
+    
+//     Label
+//     {
+//       color: "yellow"
+//       text: _content.implicitWidth + " / " + control.width + " / " + control.wide
+//     }
 }

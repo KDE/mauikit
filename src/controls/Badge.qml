@@ -101,7 +101,7 @@ Rectangle
     z: parent.z+1
 
     implicitHeight: size
-    implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.item.implicitWidth, size) : size
+    implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.implicitWidth, size) : size
 
     radius: Math.min(width, height)
     color: Kirigami.Theme.backgroundColor

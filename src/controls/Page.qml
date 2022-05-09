@@ -418,7 +418,7 @@ T.Pane
                 font.bold : true
                 font.weight: Font.Bold
                 color : Kirigami.Theme.textColor
-                font.pointSize: Maui.Style.fontSizes.big
+                font.pointSize: Maui.Style.fontSizes.large
                 horizontalAlignment : Text.AlignHCenter
                 verticalAlignment :  Text.AlignVCenter
             }

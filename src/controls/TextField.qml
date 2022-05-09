@@ -47,14 +47,14 @@ T.TextField
     selectionColor: Kirigami.Theme.highlightColor
     selectedTextColor: Kirigami.Theme.highlightedTextColor
     focus: true
-    implicitHeight: Math.max(_actionsLayoutLoader.item.implicitHeight, Maui.Style.rowHeight + topPadding + bottomPadding)
+    implicitHeight: Math.max(_actionsLayoutLoader.implicitHeight, Maui.Style.rowHeight + topPadding + bottomPadding)
     implicitWidth: 100 + leftPadding + rightPadding
     
     verticalAlignment: TextInput.AlignVCenter
     horizontalAlignment: Text.AlignLeft
     padding: 0
     leftPadding: Maui.Style.space.small
-    rightPadding: _actionsLayoutLoader.item.implicitWidth + Maui.Style.space.small
+    rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.small
     
     selectByMouse: !Kirigami.Settings.isMobile
     
