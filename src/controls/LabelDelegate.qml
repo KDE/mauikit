@@ -35,46 +35,46 @@ import org.mauikit.controls 1.2 as Maui
  */
 ItemDelegate
 {
-    id: control
-    Kirigami.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Kirigami.Theme.backgroundColor) : "transparent")
-    implicitHeight: Maui.Style.rowHeight
-
-    highlighted:  ListView.isCurrentItem
-    /**
-      * isCurrentListItem : bool
-      */
-    property alias isCurrentListItem : control.highlighted
-
-    /**
-      * isSection : bool
-      */
-    property bool isSection : false
-
-    /**
-      * label : string
-      */
-    property alias label: labelTxt.text
-
-    /**
-      * labelTxt : Label
-      */
-    property alias labelTxt : labelTxt
-
-    background: Item{}
-    
-    Label
-    {
-        id: labelTxt
-        anchors.margins: Maui.Style.contentMargins
-        anchors.fill: parent
-
-        horizontalAlignment: Qt.AlignLeft
-        verticalAlignment: Qt.AlignVCenter
-        text: labelTxt.text
-        elide: Text.ElideRight
-        wrapMode: Text.NoWrap
-        color: control.isCurrentListItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
-        font.bold: control.isSection
-        font.weight : control.isSection ? Font.Bold : Font.Normal
-    }
+  id: control
+  Kirigami.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Kirigami.Theme.backgroundColor) : "transparent")
+  implicitHeight: Maui.Style.rowHeight
+  
+  highlighted:  ListView.isCurrentItem
+  /**
+   * isCurrentListItem : bool
+   */
+  property alias isCurrentListItem : control.highlighted
+  
+  /**
+   * isSection : bool
+   */
+  property bool isSection : false
+  
+  /**
+   * label : string
+   */
+  property alias label: labelTxt.text
+  
+  /**
+   * labelTxt : Label
+   */
+  property alias labelTxt : labelTxt
+  
+  background: Item{}
+  
+  Label
+  {
+    id: labelTxt
+    anchors.margins: Maui.Style.contentMargins
+    anchors.fill: parent
+    font.pointSize: control.isSection ? Maui.Style.fontSizes.large : Maui.Style.fontSizes.medium
+    horizontalAlignment: Qt.AlignLeft
+    verticalAlignment: Qt.AlignVCenter
+    text: labelTxt.text
+    elide: Text.ElideRight
+    wrapMode: Text.NoWrap
+    color: control.isCurrentListItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+    font.bold: control.isSection
+    font.weight : control.isSection ? Font.Bold : Font.Normal
+  }
 }

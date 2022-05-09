@@ -28,7 +28,7 @@ T.ItemDelegate
       
         headerSizeHint: iconSizeHint + Maui.Style.space.big
 
-        label1.font.pointSize: Maui.Style.fontSizes.big
+        label1.font.pointSize: Maui.Style.fontSizes.large
         label1.font.bold: true
         label1.font.weight: Font.Bold
         label2.wrapMode: Text.WordWrap

@@ -315,8 +315,8 @@ T.TextField
     
     background: Rectangle 
     {       
-        color: control.enabled ? (control.activeFocus ? Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)) : "transparent"
-        border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
+        color: control.enabled ? Qt.lighter(Kirigami.Theme.backgroundColor) : "transparent"
+//         border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
         
         radius: Maui.Style.radiusV
         

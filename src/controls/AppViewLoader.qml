@@ -39,7 +39,7 @@ Loader
     */
     asynchronous: true
     default property alias content : control.sourceComponent
-    active: SwipeView.isCurrentItem || item
+    active: (SwipeView.view.visible && SwipeView.isCurrentItem) || item
 
     BusyIndicator
     {

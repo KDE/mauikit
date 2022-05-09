@@ -38,8 +38,10 @@ import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
 import QtQuick.Controls.Material 2.12
 import org.mauikit.controls 1.2 as Maui
+import org.kde.kirigami 2.7 as Kirigami
 
-T.ScrollBar {
+T.ScrollBar
+{
     id: control
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
