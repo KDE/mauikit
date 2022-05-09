@@ -40,14 +40,14 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMAddQch)
 #include(KDECompilerSettings NO_POLICY_SCOPE)
 
-option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." TRUE)
-option(BUNDLE_MAUI_STYLE "Ship Maui Style bundled, maui-style won't be installed in the file system." OFF)
+option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." ON)
+option(BUNDLE_MAUI_STYLE "Ship Maui Style bundled, maui-style won't be installed in the file system." ON)
 option(BUNDLE_LUV_ICONS "Ship Luv icon them bundled." OFF)
 
 if(ANDROID OR WIN32 OR APPLE)
-set(QUICK_COMPILER TRUE)
-set(BUNDLE_MAUI_STYLE TRUE)
-set(BUNDLE_LUV_ICONS TRUE)
+set(QUICK_COMPILER ON)
+set(BUNDLE_MAUI_STYLE ON)
+set(BUNDLE_LUV_ICONS ON)
 endif()
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
