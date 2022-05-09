@@ -406,21 +406,25 @@ T.Pane
                 easing.type: Easing.InOutQuad
             }
         }
-
+        
         Component
         {
             id: _titleComponent
-
-            Label
+            
+            Item
             {
-                text: control.title
-                elide : Text.ElideRight
-                font.bold : true
-                font.weight: Font.Bold
-                color : Kirigami.Theme.textColor
-                font.pointSize: Maui.Style.fontSizes.large
-                horizontalAlignment : Text.AlignHCenter
-                verticalAlignment :  Text.AlignVCenter
+                Label
+                {                
+                    anchors.fill: parent
+                    text: control.title
+                    elide : Text.ElideRight
+                    font.bold : true
+                    font.weight: Font.Bold
+                    color : Kirigami.Theme.textColor
+                    font.pointSize: Maui.Style.fontSizes.large
+                    horizontalAlignment : Text.AlignHCenter
+                    verticalAlignment :  Text.AlignVCenter
+                }
             }
         }
 
@@ -431,7 +435,6 @@ T.Pane
             sourceComponent: _titleComponent
 
             asynchronous: true
-
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
