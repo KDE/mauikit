@@ -58,7 +58,7 @@ T.Menu
         clip: true       
         focus: true 
         
-        flickable.header: Control
+        flickable.header: T.Control
         {
             visible: control.title && control.title.length
             height: visible ?  48 + topPadding + bottomPadding : 0
@@ -82,12 +82,12 @@ T.Menu
                 label1.font.bold: true
                 label1.text: control.title
                 label2.text: control.subtitle
+                label1.font.pointSize: Maui.Style.fontSizes.large
                 imageSource: control.titleImageSource
                 iconSource: control.titleIconSource
                 maskRadius: Maui.Style.radiusV
                 imageSizeHint: 42
-                iconSizeHint: 32
-                
+                iconSizeHint: 32                
             }
         }
         

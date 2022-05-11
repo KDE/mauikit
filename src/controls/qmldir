@@ -64,7 +64,6 @@ ToolButtonAction 1.1 labs/ToolButtonAction.qml
 ImageViewer 1.1 labs/ImageViewer.qml
 AnimatedImageViewer 1.1 labs/AnimatedImageViewer.qml
 
-TabsBrowser 1.1 labs/TabsBrowser.qml
 SettingsDialog 1.1 labs/SettingsDialog.qml
 SettingsSection 1.1 labs/SettingsSection.qml
 SettingTemplate 1.2 labs/SettingTemplate.qml
