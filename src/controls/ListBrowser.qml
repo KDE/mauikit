@@ -188,6 +188,9 @@ Item
      */
     property alias lassoRec : selectLayer
     
+    property alias header : _listView.header
+    property alias footer : _listView.footer
+    
     /**
      * itemsSelected :
      */

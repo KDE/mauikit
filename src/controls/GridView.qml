@@ -181,6 +181,9 @@ Item
     
     property alias currentItem : controlView.currentItem
     
+    property alias header : controlView.header
+    property alias footer : controlView.footer
+    
     /**
      * itemsSelected :
      */

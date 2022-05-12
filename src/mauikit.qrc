@@ -91,5 +91,6 @@
         <file alias="labs/ImageViewer.qml">controls/labs/ImageViewer.qml</file>
         <file alias="labs/AnimatedImageViewer.qml">controls/labs/AnimatedImageViewer.qml</file>
         <file alias="ScrollView.qml">controls/ScrollView.qml</file>
+        <file alias="labs/StackView.qml">controls/labs/StackView.qml</file>
     </qresource>
 </RCC>

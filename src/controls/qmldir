@@ -94,3 +94,4 @@ ColorsRow 1.3 labs/ColorsRow.qml
 SearchField 1.3 SearchField.qml
 PasswordField 1.3 PasswordField.qml
 
+StackView 1.3 labs/StackView.qml

@@ -14,7 +14,7 @@ T.ItemDelegate
 {
     id: control
     checked : false
-    
+    checkable: false
     property alias template : _template
     property alias label1 : _template.label1
     property alias label2 : _template.label2
@@ -38,6 +38,7 @@ T.ItemDelegate
 //         
        Item
        {
+           visible: control.checkable
            implicitHeight: Maui.Style.iconSizes.medium
            implicitWidth: implicitHeight
             
