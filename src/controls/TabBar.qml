@@ -44,11 +44,7 @@ T.TabBar
     background: Rectangle
     {
         color: Kirigami.Theme.backgroundColor
-        Label
-        {
-            color: "orange"
-            text: " meh" +  _wheel.target
-        }
+       
         Loader
         {
             z: 999

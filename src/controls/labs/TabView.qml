@@ -587,8 +587,8 @@ T.Container
         const object = component.createObject(control.contentModel, properties);
         
         control.addItem(object)
-        control.currentIndex = Math.max(control.count -1, 0)
-        object.forceActiveFocus()
+//         control.currentIndex = Math.max(control.count -1, 0)
+        //object.forceActiveFocus()
         
         return object
     }

@@ -85,6 +85,7 @@ IconItem 1.3 labs/IconItem.qml
 Chip 1.3 labs/Chip.qml
 ContextualMenu 1.3 labs/ContextualMenu.qml
 ComboBox 1.3 labs/ComboBox.qml
+FontsComboBox 1.3 labs/FontsComboBox.qml
 TabView 1.3 labs/TabView.qml
 CloseButton 1.3 CloseButton.qml
 ProgressIndicator 1.3 ProgressIndicator.qml

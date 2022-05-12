@@ -85,6 +85,7 @@
         <file alias="SplitViewItem.qml">controls/SplitViewItem.qml</file>
         <file alias="ProgressIndicator.qml">controls/ProgressIndicator.qml</file>
         <file alias="labs/ComboBox.qml">controls/labs/ComboBox.qml</file>
+        <file alias="labs/FontsComboBox.qml">controls/labs/FontsComboBox.qml</file>
         <file alias="labs/MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
         <file alias="labs/GalleryRollTemplate.qml">controls/labs/GalleryRollTemplate.qml</file>
         <file alias="labs/ImageViewer.qml">controls/labs/ImageViewer.qml</file>

@@ -15,14 +15,14 @@ Flickable
 {
     id: flick
     property string currentImageSource
-
+    
     contentWidth: width
     contentHeight: height
     boundsBehavior: Flickable.StopAtBounds
     boundsMovement: Flickable.StopAtBounds
     interactive: contentWidth > width || contentHeight > height
     clip: true
-
+    
     ScrollBar.vertical: ScrollBar
     {
         visible: false
@@ -32,89 +32,89 @@ Flickable
     {
         visible: false
     }
-
+    
     /**
-      * image : Image
-      */
-   property alias image:  image
-
-   property alias sourceSize : image.sourceSize
+     * image : Image
+     */
+    property alias image:  image
+    
+    property alias sourceSize : image.sourceSize
     /**
-      * fillMode : Image.fillMode
-      */
+     * fillMode : Image.fillMode
+     */
     property int fillMode: Image.PreserveAspectFit
-
+    
     /**
-      * asynchronous : bool
-      */
+     * asynchronous : bool
+     */
     property alias asynchronous : image.asynchronous
-
+    
     /**
-      * cache : bool
-      */
+     * cache : bool
+     */
     property alias cache: image.cache
-
+    
     /**
-      * imageWidth : int
-      */
+     * imageWidth : int
+     */
     property alias imageWidth: image.sourceSize.width
-
+    
     /**
-      * imageHeight : int
-      */
+     * imageHeight : int
+     */
     property alias imageHeight: image.sourceSize.height
-
+    
     /**
-      * source : url
-      */
+     * source : url
+     */
     property alias source : image.source
-
+    
     /**
-      * rightClicked
-      */
+     * rightClicked
+     */
     signal rightClicked()
-
+    
     /**
-      * pressAndHold
-      */
+     * pressAndHold
+     */
     signal pressAndHold()
-
+    
     PinchArea 
     {
         width: Math.max(flick.contentWidth, flick.width)
         height: Math.max(flick.contentHeight, flick.height)
-
+        
         property real initialWidth
         property real initialHeight
-
+        
         onPinchStarted: {
             initialWidth = flick.contentWidth
             initialHeight = flick.contentHeight
         }
-
+        
         onPinchUpdated: {
             // adjust content pos due to drag
             flick.contentX += pinch.previousCenter.x - pinch.center.x
             flick.contentY += pinch.previousCenter.y - pinch.center.y
-
+            
             // resize content
             flick.resizeContent(Math.max(flick.width*0.7, initialWidth * pinch.scale), Math.max(flick.height*0.7, initialHeight * pinch.scale), pinch.center)
         }
-
+        
         onPinchFinished: {
             // Move its content within bounds.
             if (flick.contentWidth < flick.width ||
                 flick.contentHeight < flick.height) {
                 zoomAnim.x = 0;
-                zoomAnim.y = 0;
-                zoomAnim.width = flick.width;
-                zoomAnim.height = flick.height;
-                zoomAnim.running = true;
-            } else {
-                flick.returnToBounds();
-            }
+            zoomAnim.y = 0;
+            zoomAnim.width = flick.width;
+            zoomAnim.height = flick.height;
+            zoomAnim.running = true;
+                } else {
+                    flick.returnToBounds();
+                }
         }
-
+        
         ParallelAnimation {
             id: zoomAnim
             property real x: 0
@@ -154,7 +154,7 @@ Flickable
                 easing.type: Easing.InOutQuad
             }
         }
-
+        
         Image
         {
             id: image
@@ -163,7 +163,7 @@ Flickable
             fillMode: Image.PreserveAspectFit
             autoTransform: true
             asynchronous: true
-
+            
             BusyIndicator
             {
                 anchors.centerIn: parent
@@ -178,13 +178,13 @@ Flickable
                 body: i18n("The image could not be loaded.")
                 emoji: "qrc:/assets/dialog-information.svg"
             }
-
+            
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons:  Qt.RightButton | Qt.LeftButton
                 onClicked:  if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
                 flick.rightClicked()
-
+                
                 onPressAndHold: flick.pressAndHold()
                 onDoubleClicked: {
                     if (flick.interactive) {
@@ -208,60 +208,67 @@ Flickable
                         if (wheel.angleDelta.y != 0) {
                             var factor = 1 + wheel.angleDelta.y / 600;
                             zoomAnim.running = false;
-
+                            
                             zoomAnim.width = Math.min(Math.max(flick.width, zoomAnim.width * factor), flick.width * 4);
                             zoomAnim.height = Math.min(Math.max(flick.height, zoomAnim.height * factor), flick.height * 4);
-
+                            
                             //actual factors, may be less than factor
                             var xFactor = zoomAnim.width / flick.contentWidth;
                             var yFactor = zoomAnim.height / flick.contentHeight;
-
+                            
                             zoomAnim.x = flick.contentX * xFactor + (((wheel.x - flick.contentX) * xFactor) - (wheel.x - flick.contentX))
                             zoomAnim.y = flick.contentY * yFactor + (((wheel.y - flick.contentY) * yFactor) - (wheel.y - flick.contentY))
                             zoomAnim.running = true;
-
+                            
                         } else if (wheel.pixelDelta.y != 0) {
                             flick.resizeContent(Math.min(Math.max(flick.width, flick.contentWidth + wheel.pixelDelta.y), flick.width * 4),
                                                 Math.min(Math.max(flick.height, flick.contentHeight + wheel.pixelDelta.y), flick.height * 4),
                                                 wheel);
                         }
                     } else {
-                        flick.contentX += wheel.pixelDelta.x;
-                        flick.contentY += wheel.pixelDelta.y;
+                        
+                        if(zoomAnim.width !== flick.contentWidth || zoomAnim.height !== flick.contentHeight)
+                        {
+                            flick.contentX += wheel.pixelDelta.x;
+                            flick.contentY += wheel.pixelDelta.y;
+                        }else
+                        {
+                            wheel.accepted = false
+                        }
                     }
                 }
             }
         }
     }
-
-
+    
+    
     /**
-      *
-      */
+     * 
+     */
     function fit()
     {
         image.width = image.sourceSize.width
     }
-
+    
     /**
-      *
-      */
+     * 
+     */
     function fill()
     {
         image.width = parent.width
     }
-
+    
     /**
-      *
-      */
+     * 
+     */
     function rotateLeft()
     {
         image.rotation = image.rotation - 90
     }
-
+    
     /**
-      *
-      */
+     * 
+     */
     function rotateRight()
     {
         image.rotation = image.rotation + 90

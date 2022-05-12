@@ -66,8 +66,8 @@ T.ComboBox
     //    topInset: Maui.Style.space.small
     //    bottomInset: Maui.Style.space.small
 
-    spacing: control.responsive ? Maui.Style.space.medium : (Maui.Handy.isTouch ? Maui.Style.space.small : 0)
-
+    spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
+    
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
 
