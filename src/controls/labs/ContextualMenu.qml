@@ -42,7 +42,7 @@ T.Menu
     topMargin: control.margins
     bottomMargin: control.margins
     
-    padding: 0
+    padding: 1
     topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
     bottomPadding: Maui.Style.space.medium
     
@@ -115,7 +115,9 @@ T.Menu
         implicitWidth: Kirigami.Units.gridUnit * 8
         color: control.Kirigami.Theme.backgroundColor
         radius: control.responsive ? 0 : Maui.Style.radiusV
-        border.color: control.responsive ? "transparent" : Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+        property color borderColor: Kirigami.Theme.textColor
+        
+        border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
         Behavior on color
         {

@@ -93,7 +93,7 @@ Item
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
         color: isMask ? (control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : "transparent"
-        isMask: (height <= Maui.Style.iconSizes.small) || control.isMask
+        isMask: (height <= Maui.Style.iconSizes.small)
         selected: control.highlighted
     }
 

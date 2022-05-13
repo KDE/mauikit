@@ -79,7 +79,7 @@ T.Popup
     modal: !filling
     
     margins: 0
-    padding: 0
+    padding: 1
     
     topPadding: control.padding
     bottomPadding: control.padding
@@ -129,7 +129,10 @@ T.Popup
 
     contentItem: Item
     {
+        Item
+        {
         id: _content
+        anchors.fill: parent
         layer.enabled: !control.filling
         layer.effect: OpacityMask
         {
@@ -141,24 +144,36 @@ T.Popup
                 radius: control.background.radius
             }            
         }
+        }
+        
+        //Rectangle
+        //{
+            //visible: !control.filling
+            //anchors.fill: parent
+            //color: "transparent"
+            //radius: Maui.Style.radiusV - 0.5
+            //border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+            
+            
+            //property color borderColor: control.Kirigami.Theme.textColor
+            ////                        opacity: 0.7
+        //}
 
-        //            Rectangle
-        //            {
-        //                visible: !control.filling
-        //                anchors.fill: parent
-        //                color: "transparent"
-        //                radius: Maui.Style.radiusV - 0.5
-        //                border.color: Qt.lighter(control.Kirigami.Theme.backgroundColor, 2)
-        //                opacity: 0.7
-        //            }
     }
 
+    
+  
+    
     background: Rectangle
     {
         color: control.Kirigami.Theme.backgroundColor
 
         radius: control.filling ? 0 : Maui.Style.radiusV
 //        border.color: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+
+
+property color borderColor: control.Kirigami.Theme.textColor
         Behavior on color
         {
             ColorAnimation

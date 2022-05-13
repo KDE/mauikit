@@ -4,13 +4,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Templates 2.15 as T
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
-SplitView
+T.SplitView
 {
     id: control
 
@@ -33,6 +34,7 @@ SplitView
             
             color: Kirigami.Theme.backgroundColor
 
+          
             Rectangle
             {
                 property int length: pressed ? 80 : 48
@@ -56,7 +58,7 @@ SplitView
                 width: length
                 radius: height
                
-                color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                color: pressed || control.SplitHandle.hovered  ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
         }
     }
@@ -71,6 +73,7 @@ SplitView
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
 
             color: Kirigami.Theme.backgroundColor
+            
 
             Rectangle
             {
@@ -93,7 +96,7 @@ SplitView
                 height: length
                 width: 8
                 radius: width
-                color: pressed ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                color: pressed || control.SplitHandle.hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
             }
         }
     }

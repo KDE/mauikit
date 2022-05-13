@@ -37,8 +37,8 @@ Maui.Dialog
 
     page.padding: 0
 
-    maxWidth: 400
-    maxHeight: 220 + defaultButtonsLayout.height
+    maxWidth: 360
+    maxHeight: 200 + defaultButtonsLayout.height
 
     Kirigami.Theme.inherit: false
     Kirigami.Theme.colorSet: Kirigami.Theme.Complementary

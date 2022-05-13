@@ -66,12 +66,14 @@ T.ScrollBar
         opacity: 0.0
     }
 
-    background: Rectangle
+    background: Item
     {
+        //radius: Maui.Style.radiusV
+        
         implicitWidth: control.interactive ? 14 : 4
         implicitHeight: control.interactive ? 14 : 4
-        color: "#0e000000"
-        opacity: 0.0
+//         color: "#0e000000"
+//         opacity: 0.0
         visible: control.interactive
     }
 
