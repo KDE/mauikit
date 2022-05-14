@@ -15,49 +15,50 @@ T.MenuItem
 {
     id: control
     default property list<Action> actions
-    implicitHeight: visible ? Math.max( Maui.Style.rowHeight, implicitContentHeight) + topPadding + bottomPadding : 0
+    
+    implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight) + topPadding + bottomPadding
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-     
-    Layout.fillWidth: true
+    
     background: Item {}
     
     spacing: Maui.Style.space.medium
     padding: Maui.Style.space.small
     
     display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
-
-    contentItem:  RowLayout
+    
+    contentItem: RowLayout
+    {
+        id: _layout
+        spacing: control.spacing
+        
+        Repeater
         {
-            spacing: control.spacing
-
-            Repeater
+            id: _repeater
+            model: control.actions
+            
+            delegate: ToolButton
             {
-                id: _repeater
-                model: control.actions
-
-                delegate: ToolButton
+                id: _delegate
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                action: modelData
+                display: control.display
+                
+                ToolTip.delay: 1000
+                ToolTip.timeout: 5000
+                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
+                ToolTip.text: modelData.text
+                
+                Connections
                 {
-                    id: _delegate
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    action: modelData
-                    display: control.display
-                    ToolTip.delay: 1000
-                    ToolTip.timeout: 5000
-                    ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
-                    ToolTip.text: modelData.text
-
-                    Connections
+                    target: _delegate.action
+                    ignoreUnknownSignals: true
+                    function onTriggered()
                     {
-                        target: _delegate.action
-                        ignoreUnknownSignals: true
-                        function onTriggered()
-                        {
-                            control.triggered()
-                        }
+                        control.triggered()
                     }
                 }
             }
-        
+        }        
     }
 }

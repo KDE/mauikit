@@ -55,6 +55,25 @@ Item
         y: parent.height / 2 - height / 2
         border.color: control.enabled ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
         color: control.enabled ? m_color : "transparent"
+        opacity: control.checked ? 1 : 0.5
+        
+        Behavior on color
+        {
+            ColorAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.shortDuration
+            }
+        }
+        
+        Behavior on opacity
+        {
+            NumberAnimation
+            {
+                easing.type: Easing.InQuad
+                duration: Kirigami.Units.shortDuration
+            }
+        }
     }
 
     Rectangle

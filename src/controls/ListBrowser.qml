@@ -230,8 +230,6 @@ Item
         {
             id: _listView
             focus: true
-            width: _scrollView.width
-            height: _scrollView.height
             property var selectedIndexes : []  
             
             clip: control.clip
