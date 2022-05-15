@@ -138,7 +138,7 @@ Maui.ItemDelegate
             ColorAnimation
             {
                 easing.type: Easing.InQuad
-                duration: Kirigami.Units.longDuration
+                duration: Kirigami.Units.shortDuration
             }
         }
     }

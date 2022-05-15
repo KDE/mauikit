@@ -167,22 +167,22 @@ T.Popup
     background: Rectangle
     {
         color: control.Kirigami.Theme.backgroundColor
-
+        
         radius: control.filling ? 0 : Maui.Style.radiusV
-//        border.color: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
-border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-
-
-property color borderColor: control.Kirigami.Theme.textColor
+        //        border.color: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+        border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+        
+        
+        property color borderColor: control.Kirigami.Theme.textColor
         Behavior on color
         {
             ColorAnimation
             {
                 easing.type: Easing.InQuad
-                duration: Kirigami.Units.longDuration
+                duration: Kirigami.Units.shortDuration
             }
         }
-
+        
         layer.enabled: !control.filling
         layer.effect: DropShadow
         {

@@ -163,6 +163,7 @@ T.Control
                 
                 Private.BasicToolButton
                 {
+                    id: _actionButton
                     action : modelData
                     checkable: control.checkable || action.checkable
                     checked: action.checked
@@ -171,7 +172,7 @@ T.Control
                     Binding on checked
                     {
                         when: autoExclusive
-                        value: control.currentIndex === index
+                        value: control.currentIndex === index || _actionButton.checked
                     }
                     
                     autoExclusive: control.autoExclusive
@@ -208,7 +209,7 @@ T.Control
                             ColorAnimation
                             {
                                 easing.type: Easing.InQuad
-                                duration: Kirigami.Units.longDuration
+                                duration: Kirigami.Units.shortDuration
                             }
                         }
                     }
@@ -407,6 +408,8 @@ T.Control
                     }
                 }
             }
+            
+            
         }
     }
 }
