@@ -94,7 +94,7 @@ Item
         width: height
         color: isMask ? (control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : "transparent"
         isMask: (height <= Maui.Style.iconSizes.small)
-        selected: control.highlighted
+//         selected: control.highlighted
     }
 
     Image
