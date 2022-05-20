@@ -23,6 +23,8 @@ set(mauikit_SRCS
     utils/mauiapp.cpp
     utils/handy.cpp
     utils/notify.cpp
+    utils/platformtheme.cpp
+    utils/basictheme.cpp
     utils/model_template/mauilist.cpp
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
@@ -37,6 +39,8 @@ set(mauikit_HDRS
     utils/handy.h
     utils/notify.h
     utils/mauiapp.h
+    utils/platformtheme.h
+    utils/basictheme_p.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
     controls/libs/appview.h

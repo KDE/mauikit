@@ -25,7 +25,8 @@ import QtQuick.Window 2.2
 import QtQuick.Templates 2.3 as T
 import org.kde.kirigami 2.2 as Kirigami
 
-T.Label {
+T.Label 
+{
     id: control
 
     verticalAlignment: lineCount > 1 ? Text.AlignTop : Text.AlignVCenter
@@ -44,6 +45,7 @@ T.Label {
     font.underline: Kirigami.Theme.defaultFont.underline
     font.weight: Kirigami.Theme.defaultFont.weight
     font.wordSpacing: Kirigami.Theme.defaultFont.wordSpacing
+    
     color: Kirigami.Theme.textColor
     linkColor: Kirigami.Theme.linkColor
 
@@ -51,4 +53,13 @@ T.Label {
 
     Accessible.role: Accessible.StaticText
     Accessible.name: text
+    
+    Behavior on color
+    {
+        ColorAnimation
+        {
+            easing.type: Easing.InQuad
+            duration: Kirigami.Units.shortDuration
+        }
+    }
 }
