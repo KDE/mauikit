@@ -219,7 +219,7 @@ Item
         id: _scrollView
         anchors.fill: parent
         clip: control.clip
-        
+        visible: !_holder.visible
         focus: true
         padding: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
 
@@ -248,14 +248,7 @@ Item
             keyNavigationEnabled : true
             keyNavigationWraps : true
             Keys.onPressed: control.keyPress(event)
-            
-            Maui.Holder
-            {
-                id: _holder
-                visible: false
-                anchors.fill : parent
-            }
-            
+           
             Loader
             {
                 asynchronous: true
@@ -399,7 +392,14 @@ Item
                 }
             }
         }
-    }
+    }    
+    
+    Maui.Holder
+    {
+        id: _holder
+        visible: false
+        anchors.fill : parent
+    }    
 }
 
 

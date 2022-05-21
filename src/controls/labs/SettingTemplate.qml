@@ -32,13 +32,19 @@ Maui.FlexListItem
     id: control
     padding: Math.floor(Maui.Style.space.medium * 1.5)
     Layout.fillWidth: true
+    hoverEnabled: true
 //    label2.opacity: 0.5
         
     background: Rectangle
     {
-        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.85))         
+        readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        
+        color: control.enabled ? (( control.hovered ? control.Kirigami.Theme.hoverColor : (control.flat ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)))) : "transparent"
+        
+        
+        //readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.85))         
         radius: Maui.Style.radiusV
-        color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4) :  "transparent"
+        //color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4) :  "transparent"
 
         Behavior on color
         {

@@ -14,6 +14,7 @@ Item
     implicitWidth: implicitHeight
     
     property bool checked : false
+    property bool checkable: false
 
     signal toggled(bool state)
     
@@ -50,6 +51,7 @@ Item
 
     MouseArea
     {
+        //enabled: control.checkable
         hoverEnabled: true
 
         readonly property int targetMargin:  Kirigami.Settings.hasTransientTouchInput ? Maui.Style.space.big : 0

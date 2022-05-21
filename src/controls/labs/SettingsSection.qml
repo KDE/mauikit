@@ -42,6 +42,8 @@ Maui.AlternateListItem
         spacing: Maui.Style.space.medium
         
         Layout.fillWidth: true
+        Layout.maximumWidth: 600
+        Layout.alignment: Qt.AlignCenter
         implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
         contentItem: ColumnLayout
@@ -54,6 +56,7 @@ Maui.AlternateListItem
             {
                 id: _template
                 Layout.fillWidth: true
+                padding: Maui.Style.space.medium
                 label1.text: control.title
                 label2.text: control.description
                 checked: true

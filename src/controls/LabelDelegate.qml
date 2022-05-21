@@ -21,7 +21,9 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.7 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
+
+import QtQuick.Templates 2.15 as T
 
 /**
  * LabelDelegate
@@ -33,11 +35,12 @@ import org.mauikit.controls 1.2 as Maui
  *
  *
  */
-ItemDelegate
+T.ItemDelegate
 {
   id: control
   Kirigami.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Kirigami.Theme.backgroundColor) : "transparent")
-  implicitHeight: Maui.Style.rowHeight
+  implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
+  padding: Maui.Style.contentMargins
   
   highlighted:  ListView.isCurrentItem
   /**
@@ -62,11 +65,9 @@ ItemDelegate
   
   background: Item{}
   
-  Label
+ contentItem: Label
   {
     id: labelTxt
-    anchors.margins: Maui.Style.contentMargins
-    anchors.fill: parent
     font.pointSize: control.isSection ? Maui.Style.fontSizes.large : Maui.Style.fontSizes.medium
     horizontalAlignment: Qt.AlignLeft
     verticalAlignment: Qt.AlignVCenter
