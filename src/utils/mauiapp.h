@@ -26,7 +26,6 @@
 #include "mauikit_export.h"
 
 #include <QSettings>
-#include <QColor>
 
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 #include <KAboutData>
@@ -207,8 +206,6 @@ class MAUIKIT_EXPORT MauiApp : public QObject
     Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
 //   Q_PROPERTY(QQuickWindow *window READ window WRITE setWindow NOTIFY windowChanged)
 //   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
-    Q_PROPERTY(bool darkMode READ darkMode WRITE setDarkMode NOTIFY darkModeChanged)
-    Q_PROPERTY(bool bundledStyle READ bundledStyle CONSTANT FINAL)
   
 public:
   static MauiApp *qmlAttachedProperties(QObject *object);
@@ -277,13 +274,6 @@ public:
   bool translucencyAvailable() const;
   void setTranslucencyAvailable(const bool &value);
 
-  bool darkMode() const;
-
-  bool bundledStyle() const;
-
-public slots:
-  void setDarkMode(bool darkMode);
-
 private:
   static MauiApp *m_instance;
   MauiApp();
@@ -293,13 +283,10 @@ private:
   
   bool m_translucencyAvailable = false;
 
-  bool m_darkMode;  
-
 signals:
   void iconNameChanged();
   void donationPageChanged();
   void translucencyAvailableChanged(bool translucencyAvailable);
-  void darkModeChanged(bool darkMode);
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)

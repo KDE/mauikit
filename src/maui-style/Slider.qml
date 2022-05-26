@@ -20,10 +20,10 @@
  */
 
 
-import QtQuick 2.14
-import QtQuick.Templates 2.14 as T
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
 import org.kde.kirigami 2.14 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 T.Slider
 {
@@ -55,6 +55,12 @@ T.Slider
                 duration: 250
             }
         }
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
     }
 
     snapMode: T.Slider.SnapOnRelease
@@ -73,6 +79,12 @@ T.Slider
         color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         scale: control.horizontal && control.mirrored ? -1 : 1
         radius: 4
+        
+Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
 
         Kirigami.ShadowedRectangle
         {
@@ -91,6 +103,12 @@ T.Slider
 
             color: Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.7)
 //            border.color: control.Kirigami.Theme.highlightColor
+            
+            Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
         }
     }
 }

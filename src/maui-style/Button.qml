@@ -19,8 +19,8 @@
  * met: http://www.gnu.org/licenses/gpl-2.0.html.
  */
 
-import QtQuick 2.13
-import QtQuick.Templates 2.3 as T
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
 import org.kde.kirigami 2.8 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Controls.impl 2.12
@@ -56,6 +56,11 @@ T.Button
         mirrored: control.mirrored
         display: control.display
         alignment: Qt.AlignCenter
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
     
     background: Rectangle
@@ -66,5 +71,10 @@ T.Button
         color: control.pressed || control.down || control.checked ? control.Kirigami.Theme.highlightColor : (control.highlighted || control.hovered ? control.Kirigami.Theme.hoverColor : (Maui.Style.darkMode ? Qt.lighter(Kirigami.Theme.backgroundColor,1.1) : Qt.darker(Kirigami.Theme.backgroundColor, 1.1)))
         
         radius: Maui.Style.radiusV
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 }

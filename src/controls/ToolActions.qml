@@ -1,5 +1,5 @@
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQml 2.14
 import QtQuick.Templates 2.15 as T
@@ -136,7 +136,7 @@ T.Control
         sourceComponent: control.expanded ? _rowComponent : _buttonComponent
     }
     
-    background: Item {}
+    background: null
     
     Component
     {
@@ -206,11 +206,7 @@ T.Control
                         
                         Behavior on color
                         {
-                            ColorAnimation
-                            {
-                                easing.type: Easing.InQuad
-                                duration: Kirigami.Units.shortDuration
-                            }
+                            Maui.ColorTransition{}
                         }
                     }
                 }
@@ -378,6 +374,11 @@ T.Control
                             bottomLeftRadius: Maui.Style.radiusV
                             bottomRightRadius: !_dropArrowItem.visible ? Maui.Style.radiusV : 0
                         }
+                        
+                        Behavior on color
+                        {
+                            Maui.ColorTransition{}
+                        }
                     }
                 }
                 
@@ -405,6 +406,11 @@ T.Control
                         color: _defaultButtonIcon.icon.color
                         width: Maui.Style.iconSizes.tiny-3
                         height:  width
+                    }
+                    
+                    Behavior on color
+                    {
+                        Maui.ColorTransition{}
                     }
                 }
             }

@@ -34,9 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.13
 import org.kde.kirigami 2.7 as Kirigami
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 Rectangle
 {
@@ -70,15 +70,11 @@ Rectangle
             easing.type: Easing.OutCubic
         }
     }
-
-    Behavior on color
-    {
-        ColorAnimation
+    
+   Behavior on color
         {
-            duration: 100
-            easing.type: Easing.OutCubic
+            Maui.ColorTransition{}
         }
-    }
 
     Kirigami.Icon
     {
@@ -95,12 +91,9 @@ Rectangle
 
         Behavior on color
         {
-            ColorAnimation
-            {
-                duration: 100
-                easing.type: Easing.OutCubic
-            }
+            Maui.ColorTransition{}
         }
+
     }
 
     Rectangle
@@ -115,13 +108,9 @@ Rectangle
         scale: checked ? 1 : 0
         Behavior on scale { NumberAnimation { duration: 100 } }
 
-        Behavior on color
+         Behavior on color
         {
-            ColorAnimation
-            {
-                duration: 100
-                easing.type: Easing.OutCubic
-            }
+            Maui.ColorTransition{}
         }
 
     }

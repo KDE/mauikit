@@ -63,6 +63,7 @@ elseif(UNIX AND NOT ANDROID)
         # Do not find X11 on macOS
         find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS X11Extras)
         find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS WindowSystem)
+        find_package(MauiMan)
     endif()
     find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
 endif()

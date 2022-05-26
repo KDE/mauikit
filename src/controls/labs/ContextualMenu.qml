@@ -120,14 +120,16 @@ T.Menu
         
         border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
-        Behavior on color
+         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+            Maui.ColorTransition{}
         }
+        
+         Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+        
         Kirigami.Separator
         {
             visible: control.responsive
@@ -136,6 +138,10 @@ T.Menu
             anchors.right: parent.right
             height: 0.5
             weight: Kirigami.Separator.Weight.Light
+             Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
         }
         
         layer.enabled: true

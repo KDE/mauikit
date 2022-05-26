@@ -62,4 +62,6 @@ T.ScrollView
         width: control.width
         active: control.ScrollBar.vertical.active
     }  
+    
+    background: null
 }

@@ -1,5 +1,6 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import org.mauikit.controls 1.3 as Maui
 
 ProgressBar
 {
@@ -31,6 +32,11 @@ ProgressBar
                 
                 color: "violet"
                 
+                  Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
                 SequentialAnimation on offset
                 {
                     loops: Animation.Infinite

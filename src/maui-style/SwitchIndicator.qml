@@ -34,8 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.15
 import org.kde.kirigami 2.9 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 Item
 {
@@ -57,13 +58,9 @@ Item
         color: control.enabled ? m_color : "transparent"
         opacity: control.checked ? 1 : 0.5
         
-        Behavior on color
+      Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+            Maui.ColorTransition{}
         }
         
         Behavior on opacity
@@ -95,6 +92,11 @@ Item
             {
                 duration: 300
             }
+        }
+        
+           Behavior on color
+        {
+            Maui.ColorTransition{}
         }
     }
 }

@@ -1,7 +1,7 @@
-import QtQuick 2.9
+import QtQuick 2.15
 
 import org.kde.kirigami 2.9 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
 /*!
@@ -37,6 +37,11 @@ T.Control
         color: control.hovered ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"
         opacity: control.hovered ? 0.5 : 1
 
+         Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
         //Kirigami.Separator
         //{
             //visible: !control.lastOne

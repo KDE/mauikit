@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import QtQuick 2.13
-import QtQuick.Controls 2.13
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.14 as Kirigami
@@ -19,7 +19,7 @@ T.MenuItem
     implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight) + topPadding + bottomPadding
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
-    background: Item {}
+    background: null
     
     spacing: Maui.Style.space.medium
     padding: Maui.Style.space.small

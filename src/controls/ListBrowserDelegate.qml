@@ -46,7 +46,7 @@ Maui.ItemDelegate
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
-    isCurrentItem : ListView.isCurrentItem || checked
+//     isCurrentItem : ListView.isCurrentItem || checked
     padding: Maui.Style.space.medium
 
     /**
@@ -152,9 +152,9 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-        readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        readonly property color m_color : Qt.tint(Qt.lighter(Kirigami.Theme.textColor), Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
 
-        color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : ( control.hovered ? control.Kirigami.Theme.hoverColor : (control.flat ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)))
+        color: control.flat ? "transparent" : (control.isCurrentItem || control.containsPress ? Kirigami.Theme.highlightColor : ( control.hovered ? Kirigami.Theme.hoverColor : ( Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))))
 
         radius: control.radius
 
@@ -166,15 +166,15 @@ Maui.ItemDelegate
             visible: control.containsDrag
             color:  control.Kirigami.Theme.backgroundColor
             border.color: control.Kirigami.Theme.highlightColor
+            Behavior on color
+            {
+              Maui.ColorTransition{}
+            }
         }
 
         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+           Maui.ColorTransition{}
         }
     }
 
@@ -251,8 +251,8 @@ Maui.ItemDelegate
             Layout.fillHeight: true
             Layout.fillWidth: true
             hovered: control.hovered
-
             isCurrentItem : control.isCurrentItem
+            highlighted: control.containsPress 
         }
     }
 }

@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.2
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
 
@@ -42,7 +42,12 @@ T.ItemDelegate
 //         opacity: 0.5
                
         color: Qt.lighter( control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? control.Kirigami.Theme.hoverColor : control.color))
-        radius:  Maui.Style.radiusV         
+        radius:  Maui.Style.radiusV   
+        
+ Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     contentItem: RowLayout
@@ -63,6 +68,11 @@ T.ItemDelegate
                 implicitWidth: Maui.Style.iconSizes.small
                 implicitHeight: implicitWidth
                 color: _label1.color
+                
+Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
             }            
         }
     

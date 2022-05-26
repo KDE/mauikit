@@ -47,6 +47,11 @@ Item
                 }
             }
         }
+        
+         Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     MouseArea

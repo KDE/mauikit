@@ -135,6 +135,9 @@ Item
         property bool hovered: false
         
         property bool autoTransform: false
+        
+                property bool highlighted: false
+
         /**
          * iconComponent : Component
          */
@@ -149,7 +152,7 @@ Item
                 iconSource: control.iconSource
                 imageSource: control.imageSource
 
-                highlighted: control.isCurrentItem
+                highlighted: control.isCurrentItem || control.highlighted
                 hovered: control.hovered
                 smooth: control.smooth
                 iconSizeHint: control.iconSizeHint
@@ -236,7 +239,7 @@ Item
 
                         elide: Qt.ElideRight
                         wrapMode: Text.Wrap
-                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                        color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                     }
 
                     Label
@@ -253,7 +256,7 @@ Item
 
                         elide: Qt.ElideRight
                         wrapMode: Text.NoWrap
-                        color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                        color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                         opacity: control.isCurrentItem ? 0.8 : 0.6
                     }
                 }

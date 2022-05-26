@@ -64,6 +64,12 @@ T.ScrollBar
         color: control.pressed ? control.Material.scrollBarPressedColor :
                control.interactive && control.hovered ? control.Material.scrollBarHoveredColor : control.Material.scrollBarColor
         opacity: 0.0
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
     }
 
     background: Item

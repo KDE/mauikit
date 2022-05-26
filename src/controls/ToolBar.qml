@@ -150,11 +150,7 @@ T.ToolBar
             color: control.Kirigami.Theme.backgroundColor
             Behavior on color
             {
-                ColorAnimation
-                {
-                    easing.type: Easing.InQuad
-                    duration: Kirigami.Units.shortDuration
-                }
+                Maui.ColorTransition {}
             }
             
             Loader
@@ -210,8 +206,13 @@ T.ToolBar
                 id: _border
                 anchors.left: parent.left
                 anchors.right: parent.right
-//                 height: 0.5
+                //                 height: 0.5
                 weight: Kirigami.Separator.Weight.Light
+                
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
             }
             
             states: [  State

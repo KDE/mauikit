@@ -319,6 +319,11 @@ Window
             opacity: Maui.App.translucencyAvailable ? 0.7 : 1
             color: Kirigami.Theme.backgroundColor
             radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
+            
+            Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
         }
 
         layer.enabled: Maui.App.controls.enableCSD
@@ -347,6 +352,11 @@ Window
             color: "transparent"
             border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.3)
             opacity: 0.5
+            
+            Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
 
             Rectangle
             {
@@ -356,6 +366,11 @@ Window
                 radius: parent.radius - 0.5
                 border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
                 opacity: 0.7
+                
+                Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
             }
         }
     }
@@ -428,6 +443,11 @@ Window
         Behavior on opacity { NumberAnimation { duration: 150 } }
 
         radius: _pageBackground.radius
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     Overlay.overlay.modeless: Rectangle
@@ -436,6 +456,11 @@ Window
 
         color: Qt.rgba( root.Kirigami.Theme.backgroundColor.r,  root.Kirigami.Theme.backgroundColor.g,  root.Kirigami.Theme.backgroundColor.b, 0.7)
         Behavior on opacity { NumberAnimation { duration: 150 } }
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     Component

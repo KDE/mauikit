@@ -300,7 +300,6 @@ Maui.Popup
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
 
-                background: null
                 clip: true
 
                 Flickable
@@ -397,6 +396,11 @@ Maui.Popup
                 background: Rectangle
                 {
                     color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? "#da4453" : Qt.lighter(Kirigami.Theme.backgroundColor)
+                    
+                    Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
                 }
 
                 contentItem: Label
@@ -425,6 +429,10 @@ Maui.Popup
                 background: Rectangle
                 {
                     color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? "#26c6da" : Qt.lighter(Kirigami.Theme.backgroundColor)
+                    Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
                 }
 
                 contentItem: Label
@@ -457,6 +465,11 @@ Maui.Popup
                     background: Rectangle
                     {
                         color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? "#26c6da" : Qt.lighter(Kirigami.Theme.backgroundColor)
+                        
+                        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
                     }
 
                     contentItem: Label

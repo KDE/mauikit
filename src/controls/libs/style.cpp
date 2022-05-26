@@ -1,6 +1,9 @@
 #include "style.h"
 #include <QCoreApplication>
 
+#include <MauiMan/thememanager.h>
+#include <MauiMan/backgroundmanager.h>
+
 Style *Style::m_instance = nullptr;
 
 Style::Style(QObject *parent) : QObject(parent)
@@ -16,6 +19,35 @@ Style::Style(QObject *parent) : QObject(parent)
         delete m_instance;
         m_instance = nullptr;
     });    
+  
+ auto themeSettings = new MauiMan::ThemeManager(this);
+ auto backgroundSettings = new MauiMan::BackgroundManager(this);
+ 
+ connect(themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
+ {
+     m_darkMode = type == 1;
+     m_adaptiveColorScheme = type == 2;
+     emit this->darkModeChanged(m_darkMode);
+     emit this->adaptiveColorSchemeChanged();
+ });
+ 
+  connect(themeSettings, &MauiMan::ThemeManager::accentColorChanged, [this](QString color)
+ {
+     m_accentColor = color;
+     emit this->accentColorChanged();
+ });
+  
+   connect(backgroundSettings, &MauiMan::BackgroundManager::wallpaperSourceChanged, [this](QString source)
+ {
+     m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
+     emit this->adaptiveColorSchemeSourceChanged();
+ }); 
+ 
+   m_accentColor = themeSettings->accentColor();
+    m_darkMode = themeSettings->styleType() == 1;
+    
+    m_adaptiveColorScheme = themeSettings->styleType() == 2;
+    m_adaptiveColorSchemeSource = QUrl::fromUserInput(backgroundSettings->wallpaperSource()).toLocalFile();
 }
 
 Style *Style::qmlAttachedProperties(QObject *object)
@@ -152,4 +184,27 @@ void Style::setAccentColor(const QColor& color)
     
     m_accentColor = color;
     emit accentColorChanged();
+}
+
+bool Style::darkMode() const
+{
+    return m_darkMode;
+}
+
+bool Style::bundledStyle() const
+{
+#if defined BUNDLE_MAUI_STYLE
+    return true;
+#else
+    return false;
+#endif
+}
+
+void Style::setDarkMode(bool darkMode)
+{
+    if (m_darkMode == darkMode)
+        return;
+
+    m_darkMode = darkMode;
+    emit darkModeChanged(m_darkMode);
 }

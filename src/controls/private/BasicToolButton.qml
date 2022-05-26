@@ -86,11 +86,7 @@ AbstractButton
         //         border.color:  checked ?  control.Kirigami.Theme.highlightColor : "transparent"
         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+             Maui.ColorTransition{}
         }
     }
     
@@ -120,6 +116,11 @@ AbstractButton
                 
                 source: control.icon.name
                 isMask: true
+                
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
             }
         }
         

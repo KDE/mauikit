@@ -1,6 +1,6 @@
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
 
@@ -43,6 +43,10 @@ T.TabButton
         color: control.hovered && !control.checked ? Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.4) : Qt.lighter(Kirigami.Theme.backgroundColor)
         radius: Maui.Style.radiusV
         
+         Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
     
     contentItem:  MouseArea

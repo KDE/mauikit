@@ -171,7 +171,13 @@ T.TextField
             visible: String(_icon.source).length > 0
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
-            color: control.color        
+            color: control.color   
+            
+Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
         }    
         
         Label
@@ -322,11 +328,7 @@ T.TextField
         
         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+            Maui.ColorTransition{}
         }
     }
 }

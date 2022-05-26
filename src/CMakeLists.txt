@@ -257,8 +257,12 @@ if(ANDROID)
     endif()
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
-        target_link_libraries(MauiKit PRIVATE Qt5::X11Extras)
-        target_link_libraries(MauiKit PRIVATE KF5::WindowSystem)
+        target_link_libraries(MauiKit 
+        PRIVATE 
+        MauiMan
+        KF5::WindowSystem
+        Qt5::X11Extras
+        )
     endif()
     target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
 endif()

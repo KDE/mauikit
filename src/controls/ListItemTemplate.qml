@@ -165,6 +165,8 @@ Item
 
     property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
     property bool hovered: false
+    
+    property bool highlighted: false
 
     Component
     {
@@ -175,7 +177,7 @@ Item
             iconSource: control.iconSource
             imageSource: control.imageSource
 
-            highlighted: control.isCurrentItem
+            highlighted: control.isCurrentItem || control.highlighted
             hovered: control.hovered
 
             iconSizeHint: control.iconSizeHint
@@ -252,7 +254,7 @@ Item
                 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
             }
 
             Label
@@ -267,7 +269,7 @@ Item
                 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
@@ -295,7 +297,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
@@ -314,7 +316,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }

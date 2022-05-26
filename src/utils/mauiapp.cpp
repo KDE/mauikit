@@ -57,9 +57,6 @@ MauiApp::MauiApp()
         m_instance = nullptr;
     });
 
-    m_darkMode = UTIL::loadSettings("DARK_MODE", "GLOBAL", m_darkMode, true).toBool();
-    m_darkMode = UTIL::loadSettings("DARK_MODE", "UI", m_darkMode, false).toBool();
-    
     setDefaultMauiStyle();
 }
 
@@ -140,31 +137,6 @@ void MauiApp::setTranslucencyAvailable(const bool &value)
 
     m_translucencyAvailable = value;
     emit this->translucencyAvailableChanged(m_translucencyAvailable);
-}
-
-bool MauiApp::darkMode() const
-{
-    return m_darkMode;
-}
-
-bool MauiApp::bundledStyle() const
-{
-#if defined BUNDLE_MAUI_STYLE
-    return true;
-#else
-    return false;
-#endif
-}
-
-void MauiApp::setDarkMode(bool darkMode)
-{
-    if (m_darkMode == darkMode)
-        return;
-
-    m_darkMode = darkMode;
-    emit darkModeChanged(m_darkMode);
-
-    UTIL::saveSettings("DARK_MODE", m_darkMode, "UI", false);
 }
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)

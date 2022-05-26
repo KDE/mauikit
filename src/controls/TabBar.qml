@@ -45,6 +45,11 @@ T.TabBar
     {
         color: Kirigami.Theme.backgroundColor
        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
         Loader
         {
             z: 999

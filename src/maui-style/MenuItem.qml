@@ -34,15 +34,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick 2.15
 import QtQuick.Layouts 1.10
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.15
 
-import QtQuick.Controls.impl 2.12
-import QtQuick.Templates 2.12 as T
+import QtQuick.Controls.impl 2.15
+import QtQuick.Templates 2.15 as T
 
 import org.kde.kirigami 2.7 as Kirigami
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 T.MenuItem
 {
@@ -89,6 +89,11 @@ T.MenuItem
         height: 10
         width: 10
         source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/arrow-indicator.png"
+        
+         Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     contentItem: IconLabel
@@ -110,6 +115,11 @@ T.MenuItem
         text: control.text
         font: control.font
         color: control.icon.color
+        
+         Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     background: Rectangle
@@ -123,13 +133,9 @@ T.MenuItem
 
         color: control.pressed || control.down ? control.Kirigami.Theme.highlightColor : (control.highlighted || control.hovered ? control.Kirigami.Theme.hoverColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3))
         
-        Behavior on color
+         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+            Maui.ColorTransition{}
         }
     }
 }

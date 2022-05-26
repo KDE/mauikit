@@ -17,10 +17,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.7 as Kirigami
 
 /*!
@@ -106,6 +106,11 @@ Rectangle
     radius: Math.min(width, height)
     color: Kirigami.Theme.backgroundColor
 
+   Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+    
     Loader
     {
         id: loader
@@ -141,6 +146,11 @@ Rectangle
             width: control.size
             height: width
             isMask: true
+            
+            Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
         }
     }
 

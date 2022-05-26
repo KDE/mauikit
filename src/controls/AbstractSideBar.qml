@@ -153,7 +153,10 @@ T.Drawer
                 bottomRightRadius: 0
             }        
             
-                  
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }    
         }    
         
         //Label
@@ -186,6 +189,11 @@ T.Drawer
             anchors.right: parent.right
             width: 0.5
             weight: Kirigami.Separator.Weight.Light
+            
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }   
         } 
         
         Component.onCompleted:

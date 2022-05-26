@@ -17,7 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
+import QtQuick 2.15
 import QtQuick.Layouts 1.3
 
 import org.mauikit.controls 1.3 as Maui
@@ -39,7 +39,7 @@ Maui.FlexListItem
     {
         readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
         
-        color: control.enabled ? (( control.hovered ? control.Kirigami.Theme.hoverColor : (control.flat ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)))) : "transparent"
+        color: control.enabled ? ( control.pressed ? control.Kirigami.Theme.hoverColor :  Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)) : "transparent"
         
         
         //readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.85))         
@@ -48,12 +48,9 @@ Maui.FlexListItem
 
         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+            Maui.ColorTransition{}
         }
+        
     }
     
     onClicked:

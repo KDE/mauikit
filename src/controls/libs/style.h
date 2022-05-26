@@ -6,6 +6,7 @@
 #include <QVariant>
 #include <QQmlEngine>
 
+
 class GroupSizes : public QObject
 {
   Q_OBJECT
@@ -55,6 +56,10 @@ class Style : public QObject
   Q_PROPERTY(QVariant adaptiveColorSchemeSource READ adaptiveColorSchemeSource WRITE setAdaptiveColorSchemeSource NOTIFY adaptiveColorSchemeSourceChanged)
   Q_PROPERTY(bool adaptiveColorScheme READ adaptiveColorScheme WRITE setAdaptiveColorScheme NOTIFY adaptiveColorSchemeChanged)
   
+      Q_PROPERTY(bool darkMode READ darkMode WRITE setDarkMode NOTIFY darkModeChanged)
+      
+      Q_PROPERTY(bool bundledStyle READ bundledStyle CONSTANT FINAL)
+
 public:
     static Style *qmlAttachedProperties(QObject *object);
     
@@ -76,6 +81,11 @@ public:
   QColor accentColor() const;
   void setAccentColor(const QColor &color);
   
+    bool darkMode() const;
+  void setDarkMode(bool darkMode);
+
+    bool bundledStyle() const;
+
 public slots:
   int mapToIconSizes(const int &size);
 
@@ -102,13 +112,15 @@ private:
   QVariant m_adaptiveColorSchemeSource;
   bool m_adaptiveColorScheme = false;
   
+    bool m_darkMode;  
+  
 signals:
   void defaultFontChanged();
   void adaptiveColorSchemeSourceChanged();
   void adaptiveColorSchemeChanged();
   void accentColorChanged();
   void colorSchemeChanged();
-  
+    void darkModeChanged(bool darkMode);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

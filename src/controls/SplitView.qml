@@ -34,19 +34,27 @@ T.SplitView
             
             color: Kirigami.Theme.backgroundColor
 
-          
+           Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
             Rectangle
             {
                 property int length: pressed ? 80 : 48
                 
-                Behavior on length {
-                    NumberAnimation {
+                Behavior on length
+                {
+                    NumberAnimation 
+                    {
                         duration: 100
                     }
                 }                
                       
-                      Behavior on opacity {
-                          NumberAnimation {
+                      Behavior on opacity 
+                      {
+                          NumberAnimation
+                          {
                               duration: 100
                           }
                       }  
@@ -59,6 +67,12 @@ T.SplitView
                 radius: height
                
                 color: pressed || control.SplitHandle.hovered  ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                
+Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
             }
         }
     }
@@ -74,22 +88,36 @@ T.SplitView
 
             color: Kirigami.Theme.backgroundColor
             
+ Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
 
             Rectangle
             {
                 property int length: pressed ? 80 : 48
                 
-                Behavior on length {
-                    NumberAnimation {
+                Behavior on length
+                {
+                    NumberAnimation 
+                    {
                         duration: 100
                     }
                 }    
                 
-                Behavior on opacity {
-                    NumberAnimation {
+                Behavior on opacity 
+                {
+                    NumberAnimation
+                    {
                         duration: 100
                     }
                 }  
+                
+                Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
                 
                 opacity: pressed ? 1 : 0.2
                 anchors.centerIn: parent

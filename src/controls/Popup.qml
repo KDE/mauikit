@@ -176,11 +176,12 @@ T.Popup
         property color borderColor: control.Kirigami.Theme.textColor
         Behavior on color
         {
-            ColorAnimation
-            {
-                easing.type: Easing.InQuad
-                duration: Kirigami.Units.shortDuration
-            }
+            Maui.ColorTransition{}
+        }
+        
+         Behavior on border.color
+        {
+            Maui.ColorTransition{}
         }
         
         layer.enabled: !control.filling

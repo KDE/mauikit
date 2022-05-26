@@ -148,6 +148,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
     qmlRegisterType(componentUrl(QStringLiteral("ScrollView.qml")), uri, 1, 0, "ScrollView");
     qmlRegisterType(componentUrl(QStringLiteral("labs/StackView.qml")), uri, 1, 0, "StackView");
+    qmlRegisterType(componentUrl(QStringLiteral("labs/ColorTransition.qml")), uri, 1, 0, "ColorTransition");
     
     /// NON UI CONTROLS
     qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");

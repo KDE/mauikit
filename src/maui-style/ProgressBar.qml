@@ -20,13 +20,11 @@
  */
 
 
-import QtQuick 2.14
+import QtQuick 2.15
 import QtQuick.Templates 2.14 as T
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 
-
-import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
 import QtQuick.Controls.Material 2.12
 import QtQuick.Controls.Material.impl 2.12
@@ -39,7 +37,8 @@ T.ProgressBar {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    contentItem: ProgressBarImpl {
+    contentItem: ProgressBarImpl 
+    {
         implicitHeight: 4
 
         scale: control.mirrored ? -1 : 1
@@ -48,13 +47,19 @@ T.ProgressBar {
         indeterminate: control.visible && control.indeterminate
     }
 
-    background: Rectangle {
+    background: Rectangle 
+    {
         implicitWidth: 200
         implicitHeight: 4
         y: (control.height - height) / 2
         height: 4
 
         color: Qt.rgba(control.Material.accentColor.r, control.Material.accentColor.g, control.Material.accentColor.b, 0.25)
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
     }
 }
 
