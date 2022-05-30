@@ -34,7 +34,7 @@ T.Control
     topPadding: padding
     bottomPadding: padding
     
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.View
     
     /**
      * actions : list<Action>
@@ -100,10 +100,10 @@ T.Control
      * defaultIconName : string
      */
     property string defaultIconName: "application-menu"
-    //     border.color: control.flat ? "transparent" : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+    //     border.color: control.flat ? "transparent" : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
     
     //radius: Maui.Style.radiusV
-    //color: !control.enabled || control.flat ? "transparent" : Kirigami.Theme.backgroundColor
+    //color: !control.enabled || control.flat ? "transparent" : Maui.Theme.backgroundColor
     
     Component.onCompleted:
     {
@@ -151,7 +151,7 @@ T.Control
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.longDuration
+                    duration: Maui.Style.units.longDuration
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -195,7 +195,7 @@ T.Control
                     
                     background: Kirigami.ShadowedRectangle
                     {
-                        color: checked || down ? Kirigami.Theme.highlightColor : ( hovered ? Kirigami.Theme.hoverColor : Qt.lighter(Kirigami.Theme.backgroundColor))
+                        color: checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Qt.lighter(Maui.Theme.backgroundColor))
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0
@@ -351,7 +351,7 @@ T.Control
                     
                     icon.width:  Maui.Style.iconSizes.small
                     icon.height: Maui.Style.iconSizes.small
-                    icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : ( _defaultButtonMouseArea.containsPress ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.textColor)) :  control.Kirigami.Theme.textColor
+                    icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : ( _defaultButtonMouseArea.containsPress ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
                     
                     icon.name: m_action ? m_action.icon.name : control.defaultIconName
                     
@@ -365,7 +365,7 @@ T.Control
                     
                     background: Kirigami.ShadowedRectangle
                     {
-                        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+                        color: Qt.lighter(Maui.Theme.backgroundColor)
                         
                         corners
                         {
@@ -389,7 +389,7 @@ T.Control
                     Layout.fillHeight: true
                     Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
                     
-                    color: Qt.lighter(Kirigami.Theme.backgroundColor)
+                    color: Qt.lighter(Maui.Theme.backgroundColor)
                     
                     corners
                     {

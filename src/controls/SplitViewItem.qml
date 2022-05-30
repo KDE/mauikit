@@ -49,7 +49,7 @@ Item
         sourceComponent: Rectangle
         {
             
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             opacity: (control.minimumWidth) / control.width
         }
     }
@@ -66,7 +66,7 @@ Item
         sourceComponent: Rectangle
         {
             
-            color: Kirigami.Theme.highlightColor
+            color: Maui.Theme.highlightColor
         }
     }
     
@@ -80,7 +80,7 @@ Item
         {
             opacity: (control.minimumWidth) / control.width
             
-            Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeTextColor
+            Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
             label.text: i18n("Close Split")
         }
     }
@@ -95,7 +95,7 @@ Item
         {
             opacity: (control.minimumHeight) / control.height
             
-            Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeTextColor
+            Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
             label.text: i18n("Close Split")
         }
     }

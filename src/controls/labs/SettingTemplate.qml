@@ -37,12 +37,12 @@ Maui.FlexListItem
         
     background: Rectangle
     {
-        readonly property color m_color : Qt.tint(Qt.lighter(control.Kirigami.Theme.textColor), Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        readonly property color m_color : Qt.tint(Qt.lighter(control.Maui.Theme.textColor), Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
         
-        color: control.enabled ? ( control.pressed ? control.Kirigami.Theme.hoverColor :  Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)) : "transparent"
+        color: control.enabled ? ( control.pressed ? control.Maui.Theme.hoverColor :  Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4)) : "transparent"
         
         
-        //readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.85))         
+        //readonly property color m_color : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.85))         
         radius: Maui.Style.radiusV
         //color: control.enabled ? Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4) :  "transparent"
 

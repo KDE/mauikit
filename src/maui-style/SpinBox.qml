@@ -76,9 +76,9 @@ T.SpinBox
         opacity: control.enabled ? 1 : 0.3
 
         font: control.font
-        color: Kirigami.Theme.textColor
-        selectionColor: Kirigami.Theme.highlightColor
-        selectedTextColor: Kirigami.Theme.highlightedTextColor
+        color: Maui.Theme.textColor
+        selectionColor: Maui.Theme.highlightColor
+        selectedTextColor: Maui.Theme.highlightedTextColor
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
 
@@ -124,7 +124,7 @@ T.SpinBox
             anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
-            color: Kirigami.Theme.textColor
+            color: Maui.Theme.textColor
         }
     }
 
@@ -140,7 +140,7 @@ T.SpinBox
             anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
-            color: Kirigami.Theme.textColor
+            color: Maui.Theme.textColor
         }
     }
 
@@ -151,6 +151,6 @@ T.SpinBox
 
         radius: Maui.Style.radiusV
 
-        color: Qt.lighter(Kirigami.Theme.backgroundColor)
+        color: Qt.lighter(Maui.Theme.backgroundColor)
     }
 }

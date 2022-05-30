@@ -10,7 +10,7 @@ Maui.ApplicationWindow
 {
     id: root
 
-//    isWide : root.width >= Kirigami.Units.gridUnit * 10
+//    isWide : root.width >= Maui.Style.units.gridUnit * 10
 
     property int currentPageIndex : 0
     //    about.appDescription: "MauiDemo is a gallery app displaying the MauiKit controls in conjuction with Kirigami and QQC2 controls."
@@ -45,7 +45,7 @@ Maui.ApplicationWindow
         {
 //            Layout.fillHeight: true
             icon.name: "nx-home"
-            Kirigami.Theme.textColor : root.headBarFGColor
+            Maui.Theme.textColor : root.headBarFGColor
             spacing: space.medium
             checked: currentPageIndex === 0
             onClicked: currentPageIndex = 0
@@ -57,7 +57,7 @@ Maui.ApplicationWindow
         {
 //            Layout.fillHeight: true
             icon.name: "view-list-icons"
-			Kirigami.Theme.textColor: root.headBarFGColor
+			Maui.Theme.textColor: root.headBarFGColor
             spacing: space.medium
             checked: currentPageIndex === 1
             onClicked: currentPageIndex = 1
@@ -68,7 +68,7 @@ Maui.ApplicationWindow
         {
 //            Layout.fillHeight: true
             icon.name: "view-media-genre"
-			Kirigami.Theme.textColor: root.headBarFGColor
+			Maui.Theme.textColor: root.headBarFGColor
             spacing: space.medium
             checked: currentPageIndex === 2
             onClicked: currentPageIndex = 2
@@ -79,7 +79,7 @@ Maui.ApplicationWindow
         {
 //            Layout.fillHeight: true
             icon.name: "nx-software-center"
-			Kirigami.Theme.textColor: root.headBarFGColor
+			Maui.Theme.textColor: root.headBarFGColor
             spacing: space.medium
             checked: currentPageIndex === 3
             onClicked: currentPageIndex = 3
@@ -140,7 +140,7 @@ Maui.ApplicationWindow
     globalDrawer: Maui.GlobalDrawer
     {
         id: _drawer
-        width: Kirigami.Units.gridUnit * 14
+        width: Maui.Style.units.gridUnit * 14
         modal: !root.isWide
 
         actions: [

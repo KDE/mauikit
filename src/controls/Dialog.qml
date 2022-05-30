@@ -23,7 +23,6 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Templates 2.15 as T
 
 import QtGraphicalEffects 1.0
@@ -224,14 +223,14 @@ Maui.Popup
         {
             id: _page
             clip: true
-            Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+            Maui.Theme.colorSet: control.Maui.Theme.colorSet
             Layout.fillWidth: true
             Layout.fillHeight: true
             implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.margins*2) + _page.headerContainer.implicitHeight + (_page.padding * 2) + parent.spacing
             headerPositioning: ListView.InlineHeader
             padding: 0
             headBar.visible: control.persistent
-            headerColorSet: Kirigami.Theme.Header
+            headerColorSet: Maui.Theme.Header
             headBar.background: null
             background: null
 
@@ -322,7 +321,7 @@ Maui.Popup
                             label2.text: message
                             label2.textFormat : TextEdit.AutoText
                             label2.wrapMode: TextEdit.WordWrap
-                            iconVisible: control.width > Kirigami.Units.gridUnit * 20
+                            iconVisible: control.width > Maui.Style.units.gridUnit * 20
 
                             iconSizeHint: Maui.Style.iconSizes.large
                             spacing: Maui.Style.space.big
@@ -349,9 +348,9 @@ Maui.Popup
 
                             color: switch(level)
                                    {
-                                   case 0: return Kirigami.Theme.positiveTextColor
-                                   case 1: return Kirigami.Theme.neutralTextColor
-                                   case 2: return Kirigami.Theme.negativeTextColor
+                                   case 0: return Maui.Theme.positiveTextColor
+                                   case 1: return Maui.Theme.neutralTextColor
+                                   case 2: return Maui.Theme.negativeTextColor
                                    }
 
                             SequentialAnimation on x
@@ -382,8 +381,8 @@ Maui.Popup
             T.Button
             {
                 id: _rejectButton
-                Kirigami.Theme.inherit: true
-                Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                Maui.Theme.inherit: true
+                Maui.Theme.colorSet: control.Maui.Theme.colorSet
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -395,7 +394,7 @@ Maui.Popup
                 text: i18n("Cancel")
                 background: Rectangle
                 {
-                    color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? "#da4453" : Qt.lighter(Kirigami.Theme.backgroundColor)
+                    color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? "#da4453" : Qt.lighter(Maui.Theme.backgroundColor)
                     
                     Behavior on color
         {
@@ -406,7 +405,7 @@ Maui.Popup
                 contentItem: Label
                 {
                     text: _rejectButton.text
-                    color:  _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ?  "#fafafa" : Kirigami.Theme.textColor
+                    color:  _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ?  "#fafafa" : Maui.Theme.textColor
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                 }
@@ -417,8 +416,8 @@ Maui.Popup
             T.Button
             {
                 id: _acceptButton
-                Kirigami.Theme.inherit: true
-                Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                Maui.Theme.inherit: true
+                Maui.Theme.colorSet: control.Maui.Theme.colorSet
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -428,7 +427,7 @@ Maui.Popup
                 visible: control.defaultButtons
                 background: Rectangle
                 {
-                    color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? "#26c6da" : Qt.lighter(Kirigami.Theme.backgroundColor)
+                    color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? "#26c6da" : Qt.lighter(Maui.Theme.backgroundColor)
                     Behavior on color
         {
             Maui.ColorTransition{}
@@ -438,7 +437,7 @@ Maui.Popup
                 contentItem: Label
                 {
                     text: _acceptButton.text
-                    color:  _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ?  "#fafafa" : Kirigami.Theme.textColor
+                    color:  _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ?  "#fafafa" : Maui.Theme.textColor
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                 }
@@ -453,8 +452,8 @@ Maui.Popup
                 T.Button
                 {
                     id: _actionButton
-                    Kirigami.Theme.inherit: true
-                    Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+                    Maui.Theme.inherit: true
+                    Maui.Theme.colorSet: control.Maui.Theme.colorSet
 
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -464,7 +463,7 @@ Maui.Popup
 
                     background: Rectangle
                     {
-                        color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? "#26c6da" : Qt.lighter(Kirigami.Theme.backgroundColor)
+                        color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? "#26c6da" : Qt.lighter(Maui.Theme.backgroundColor)
                         
                         Behavior on color
         {
@@ -475,7 +474,7 @@ Maui.Popup
                     contentItem: Label
                     {
                         text: _actionButton.text
-                        color:  _actionButton.hovered || _actionButton.down || _actionButton.pressed ?  "#fafafa" : Kirigami.Theme.textColor
+                        color:  _actionButton.hovered || _actionButton.down || _actionButton.pressed ?  "#fafafa" : Maui.Theme.textColor
                         horizontalAlignment: Qt.AlignHCenter
                         verticalAlignment: Qt.AlignVCenter
                     }

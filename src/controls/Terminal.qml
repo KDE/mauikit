@@ -418,8 +418,8 @@ Maui.Page
             }        
             sourceComponent: ScrollBar 
             {
-                Kirigami.Theme.colorSet: Kirigami.Theme.Complementary // text color of terminal is also complementary
-                Kirigami.Theme.inherit: false
+                Maui.Theme.colorSet: Maui.Theme.Complementary // text color of terminal is also complementary
+                Maui.Theme.inherit: false
                 
                 active: hovered || pressed
                 visible: true

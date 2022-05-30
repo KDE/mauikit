@@ -25,6 +25,8 @@ set(mauikit_SRCS
     utils/notify.cpp
     utils/platformtheme.cpp
     utils/basictheme.cpp
+    utils/imagecolors.cpp
+    utils/colorutils.cpp
     utils/model_template/mauilist.cpp
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
@@ -41,6 +43,8 @@ set(mauikit_HDRS
     utils/mauiapp.h
     utils/platformtheme.h
     utils/basictheme_p.h
+    utils/imagecolors.h
+    utils/colorutils.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
     controls/libs/appview.h
@@ -278,6 +282,7 @@ target_link_libraries(MauiKit
     Qt5::Qml
     Qt5::Svg
     Qt5::Widgets
+    Qt5::Concurrent
     Qt5::QuickControls2
     )
 

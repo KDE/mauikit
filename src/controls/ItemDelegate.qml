@@ -239,7 +239,7 @@ T.Control
            Maui.ColorTransition{}
         }
        
-        color: control.isCurrentItem || control.containsPress ? control.Kirigami.Theme.highlightColor : ( control.hovered ? control.Kirigami.Theme.hoverColor : "transparent")
+        color: control.isCurrentItem || control.containsPress ? control.Maui.Theme.highlightColor : ( control.hovered ? control.Maui.Theme.hoverColor : "transparent")
         
         radius: control.radius
     }

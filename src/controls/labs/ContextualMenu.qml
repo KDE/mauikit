@@ -15,7 +15,7 @@ import org.mauikit.controls 1.3 as Maui
 T.Menu
 {
     id: control
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.View
     
     property bool responsive: Kirigami.Settings.hasTransientTouchInput
     
@@ -71,7 +71,7 @@ T.Menu
             
             //            background: Item
             //            {
-            //                Kirigami.Separator
+            //                Maui.Separator
             //                {
             //                    width: parent.width
             //                    anchors.bottom: parent.bottom
@@ -113,10 +113,10 @@ T.Menu
     background: Rectangle
     {
         id: _bg
-        implicitWidth: Kirigami.Units.gridUnit * 8
-        color: control.Kirigami.Theme.backgroundColor
+        implicitWidth: Maui.Style.units.gridUnit * 8
+        color: control.Maui.Theme.backgroundColor
         radius: control.responsive ? 0 : Maui.Style.radiusV
-        property color borderColor: Kirigami.Theme.textColor
+        property color borderColor: Maui.Theme.textColor
         
         border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
@@ -130,14 +130,14 @@ T.Menu
             Maui.ColorTransition{}
         }
         
-        Kirigami.Separator
+        Maui.Separator
         {
             visible: control.responsive
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
             height: 0.5
-            weight: Kirigami.Separator.Weight.Light
+            weight: Maui.Separator.Weight.Light
              Behavior on color
         {
             Maui.ColorTransition{}
@@ -164,7 +164,7 @@ T.Menu
     //YAnimator {
     //from: ApplicationWindow.overlay.height
     //to: ApplicationWindow.overlay.height - _menu.height
-    //duration: Kirigami.Units.shortDuration
+    //duration: Maui.Style.units.shortDuration
     //easing.type: Easing.OutCubic
     //}
     //}
@@ -176,7 +176,7 @@ T.Menu
     //YAnimator {
     //from: _menu.y
     //to: ApplicationWindow.overlay.height
-    //duration: Kirigami.Units.shortDuration
+    //duration: Maui.Style.units.shortDuration
     
     //easing.type: Easing.OutCubic
     //}

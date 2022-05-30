@@ -26,9 +26,9 @@ T.TabBar
     implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
     padding: Maui.Style.space.tiny
 
-   palette: Kirigami.Theme.palette
-   Kirigami.Theme.colorSet: Kirigami.Theme.Window
-   Kirigami.Theme.inherit: false
+   palette: Maui.Theme.palette
+   Maui.Theme.colorSet: Maui.Theme.Window
+   Maui.Theme.inherit: false
    
    spacing: Maui.Style.space.tiny
     /**
@@ -43,7 +43,7 @@ T.TabBar
     
     background: Rectangle
     {
-        color: Kirigami.Theme.backgroundColor
+        color: Maui.Theme.backgroundColor
        
         Behavior on color
         {
@@ -150,7 +150,7 @@ T.TabBar
                         height: Maui.Style.iconSizes.tiny
                         width: height
                         anchors.centerIn: parent
-                        color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.highlightColor : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+                        color: parent.containsMouse || parent.containsPress ? Maui.Theme.highlightColor : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
                     }
                 }
             }

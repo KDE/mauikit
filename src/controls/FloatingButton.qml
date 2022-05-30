@@ -58,22 +58,22 @@ MouseArea
       */
     signal clicked()
 
-    Kirigami.Theme.backgroundColor: Kirigami.Theme.highlightColor
-    Kirigami.Theme.textColor:  Kirigami.Theme.highlightedTextColor
+    Maui.Theme.backgroundColor: Maui.Theme.highlightColor
+    Maui.Theme.textColor:  Maui.Theme.highlightedTextColor
 
     Rectangle
     {
         id: _rec
         anchors.fill: parent
         radius: Maui.Style.radiusV
-        color: control.Kirigami.Theme.backgroundColor
+        color: control.Maui.Theme.backgroundColor
 
         Rectangle
         {
             anchors.fill: parent
             color: "transparent"
             radius: parent.radius
-            border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+            border.color: Qt.darker(Maui.Theme.backgroundColor, 2.2)
             opacity: 0.8
 
             Rectangle
@@ -81,7 +81,7 @@ MouseArea
                 anchors.fill: parent
                 color: "transparent"
                 radius: parent.radius - 0.5
-                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
                 opacity: 0.3
                 anchors.margins: 1
             }
@@ -93,7 +93,7 @@ MouseArea
             anchors.fill: parent
             icon.height: Maui.Style.iconSizes.medium
             icon.width: Maui.Style.iconSizes.medium
-            Kirigami.Theme.textColor: control.Kirigami.Theme.textColor
+            Maui.Theme.textColor: control.Maui.Theme.textColor
             onClicked: control.clicked()
         }
     }

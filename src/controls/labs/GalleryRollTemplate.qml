@@ -115,7 +115,7 @@ ListView
                 {
                     NumberAnimation
                     {
-                        duration: Kirigami.Units.shortDuration
+                        duration: Maui.Style.units.shortDuration
                         easing.type: Easing.InOutQuad
                     }
                 }

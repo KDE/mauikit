@@ -21,8 +21,8 @@ one could use the viewType property binded to a size condition.
 Maui.Page
 {
     id: control
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: false
 
     focus: true
     clip: true

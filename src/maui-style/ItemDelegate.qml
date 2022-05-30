@@ -43,7 +43,7 @@ T.ItemDelegate {
 
         text: controlRoot.text
         font: controlRoot.font
-        color: controlRoot.highlighted || controlRoot.checked || (controlRoot.pressed && !controlRoot.checked && !controlRoot.sectionDelegate) ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+        color: controlRoot.highlighted || controlRoot.checked || (controlRoot.pressed && !controlRoot.checked && !controlRoot.sectionDelegate) ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
         elide: Text.ElideRight
         visible: controlRoot.text
         horizontalAlignment: Text.AlignLeft

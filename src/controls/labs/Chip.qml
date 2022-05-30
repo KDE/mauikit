@@ -29,7 +29,7 @@ T.ItemDelegate
 
     property bool showCloseButton : false
     
-    property color color : control.Kirigami.Theme.backgroundColor
+    property color color : control.Maui.Theme.backgroundColor
 
     ToolTip.visible: hovered
     ToolTip.text: label.text
@@ -41,7 +41,7 @@ T.ItemDelegate
         id: _background
 //         opacity: 0.5
                
-        color: Qt.lighter( control.pressed ? control.Kirigami.Theme.highlightColor : (control.hovered ? control.Kirigami.Theme.hoverColor : control.color))
+        color: Qt.lighter( control.pressed ? control.Maui.Theme.highlightColor : (control.hovered ? control.Maui.Theme.hoverColor : control.color))
         radius:  Maui.Style.radiusV   
         
  Behavior on color
@@ -107,7 +107,7 @@ Behavior on color
                     height: Maui.Style.iconSizes.tiny
                     width: height
                     anchors.centerIn: parent
-                    color: parent.containsMouse || parent.containsPress ? Kirigami.Theme.negativeTextColor : _label1.color
+                    color: parent.containsMouse || parent.containsPress ? Maui.Theme.negativeTextColor : _label1.color
                 }
             }
         }     

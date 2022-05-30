@@ -69,6 +69,6 @@ T.SwipeView
     
     background: Rectangle
     {
-        color: Kirigami.Theme.backgroundColor
+        color: Maui.Theme.backgroundColor
     }
 }

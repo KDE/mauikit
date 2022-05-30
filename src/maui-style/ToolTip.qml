@@ -24,13 +24,13 @@ import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.3 as Controls
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 T.ToolTip {
     id: controlRoot
 
-    Kirigami.Theme.colorSet: Kirigami.Theme.Tooltip
-    Kirigami.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Tooltip
+    Maui.Theme.inherit: false
 
     x: parent ? (parent.width - implicitWidth) / 2 : 0
     y: -implicitHeight - 3
@@ -46,16 +46,16 @@ T.ToolTip {
     contentItem: Controls.Label {
         text: controlRoot.text
         font: controlRoot.font
-        Kirigami.Theme.colorSet: Kirigami.Theme.Tooltip
-        color: Kirigami.Theme.textColor
+        Maui.Theme.colorSet: Maui.Theme.Tooltip
+        color: Maui.Theme.textColor
     }
 
 
     background: Rectangle {
         radius: 3
         opacity: 0.95
-        color: Kirigami.Theme.backgroundColor
-        Kirigami.Theme.colorSet: Kirigami.Theme.Tooltip
+        color: Maui.Theme.backgroundColor
+        Maui.Theme.colorSet: Maui.Theme.Tooltip
         layer.enabled: true
         layer.effect: DropShadow {
             transparentBorder: true

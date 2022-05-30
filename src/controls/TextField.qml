@@ -40,12 +40,12 @@ T.TextField
 {
     id: control
     
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-//     Kirigami.Theme.inherit: true
+    Maui.Theme.colorSet: Maui.Theme.View
+    //     Maui.Theme.inherit: true
     
-    color: Kirigami.Theme.textColor
-    selectionColor: Kirigami.Theme.highlightColor
-    selectedTextColor: Kirigami.Theme.highlightedTextColor
+    color: Maui.Theme.textColor
+    selectionColor: Maui.Theme.highlightColor
+    selectedTextColor: Maui.Theme.highlightedTextColor
     focus: true
     implicitHeight: Math.max(_actionsLayoutLoader.implicitHeight, Maui.Style.rowHeight + topPadding + bottomPadding)
     implicitWidth: 100 + leftPadding + rightPadding
@@ -100,6 +100,7 @@ T.TextField
             entryMenu.show()
     }
     
+    Keys.enabled: true
     Keys.onBackPressed:
     {
         goBackTriggered();
@@ -132,8 +133,9 @@ T.TextField
     
     Behavior on leftPadding 
     {
-        NumberAnimation {
-            duration: Kirigami.Units.longDuration
+        NumberAnimation 
+        {
+            duration: Maui.Style.units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -142,7 +144,7 @@ T.TextField
     {
         NumberAnimation
         {
-            duration: Kirigami.Units.longDuration
+            duration: Maui.Style.units.longDuration
             easing.type: Easing.InOutQuad
         }
     }    
@@ -160,7 +162,7 @@ T.TextField
         {
             NumberAnimation
             {
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }        
@@ -173,11 +175,11 @@ T.TextField
             implicitWidth: height
             color: control.color   
             
-Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
-        
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
+            
         }    
         
         Label
@@ -202,7 +204,7 @@ Behavior on color
         anchors.bottom: parent.bottom
         anchors.margins: 2
         anchors.right: control.right
-//         anchors.verticalCenter: parent.verticalCenter
+        //         anchors.verticalCenter: parent.verticalCenter
         asynchronous: true
         
         sourceComponent: Row
@@ -321,8 +323,8 @@ Behavior on color
     
     background: Rectangle 
     {       
-        color: control.enabled ? Qt.lighter(Kirigami.Theme.backgroundColor) : "transparent"
-//         border.color: control.activeFocus ? Kirigami.Theme.highlightColor : "transparent"
+        color: control.enabled ? Qt.lighter(Maui.Theme.backgroundColor) : "transparent"
+        //         border.color: control.activeFocus ? Maui.Theme.highlightColor : "transparent"
         
         radius: Maui.Style.radiusV
         

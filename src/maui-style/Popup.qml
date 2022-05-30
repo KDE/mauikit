@@ -68,8 +68,8 @@ T.Popup
     background: Rectangle
     {
         radius: Maui.Style.radiusV
-        color: Kirigami.Theme.backgroundColor
-        border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+        color: Maui.Theme.backgroundColor
+        border.color: Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
         layer.enabled: true
         
         layer.effect: DropShadow {
@@ -84,14 +84,14 @@ T.Popup
     
     T.Overlay.modal: Rectangle 
     {
-        color: Qt.rgba( control.Kirigami.Theme.backgroundColor.r,  control.Kirigami.Theme.backgroundColor.g,  control.Kirigami.Theme.backgroundColor.b, 0.7)
+        color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
 
         Behavior on opacity { NumberAnimation { duration: 150 } }
     }
 
     T.Overlay.modeless: Rectangle
     {
-        color: Qt.rgba( control.Kirigami.Theme.backgroundColor.r,  control.Kirigami.Theme.backgroundColor.g,  control.Kirigami.Theme.backgroundColor.b, 0.7)
+        color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
         Behavior on opacity { NumberAnimation { duration: 150 } }
     }
 }

@@ -60,7 +60,7 @@ Maui.ItemDelegate
     /**
       * collapse : bool
       */
-    property bool collapse : width < Kirigami.Units.gridUnit * 26 || Kirigami.Settings.isMobile
+    property bool collapse : width < Maui.Style.units.gridUnit * 26 || Kirigami.Settings.isMobile
 
     onCollapseChanged:
     {
@@ -94,7 +94,7 @@ Maui.ItemDelegate
             id: _bg
 //             anchors.fill: _swipeDelegate.background
             //z: _swipeDelegate.background.z -1
-            color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.95))
+            color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.95))
             radius: Maui.Style.radiusV
             // 				opacity: Math.abs( _swipeDelegate.swipe.position)
         }
@@ -128,7 +128,7 @@ Maui.ItemDelegate
                 {
                     NumberAnimation
                     {
-                        duration: Kirigami.Units.longDuration
+                        duration: Maui.Style.units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -176,7 +176,7 @@ Maui.ItemDelegate
             //                {
             //                    NumberAnimation
             //                    {
-            //                        duration: Kirigami.Units.longDuration
+            //                        duration: Maui.Style.units.longDuration
             //                        easing.type: Easing.InOutQuad
             //                    }
             //                }

@@ -34,11 +34,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 T.Page {
     id: control
@@ -64,6 +64,6 @@ T.Page {
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
     background: Rectangle {
-        color: Kirigami.Theme.viewBackgroundColor
+        color: Maui.Theme.viewBackgroundColor
     }
 }

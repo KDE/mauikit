@@ -22,27 +22,30 @@
 
 import QtQuick 2.6
 import QtQuick.Templates 2.5 as T
-import org.kde.kirigami 2.4 as Kirigami
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls 1.3 as Maui
 
-T.ToolBar {
+T.ToolBar 
+{
     id: controlRoot
 
-    palette: Kirigami.Theme.palette
+    palette: Maui.Theme.palette
     implicitWidth: Math.max(background ? background.implicitWidth : 0, contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0, contentHeight + topPadding + bottomPadding)
 
     contentWidth: contentChildren[0].implicitWidth
     contentHeight: contentChildren[0].implicitHeight
 
-    padding: Kirigami.Units.smallSpacing
+    padding: Maui.Style.space.small
     contentItem: Item {}
 //    position: controlRoot.parent.footer == controlRoot ? ToolBar.Footer : ToolBar.Header
-    background: Rectangle {
+    background: Rectangle
+    {
         implicitHeight: Maui.Style.toolBarHeight
-        color: Kirigami.Theme.backgroundColor
-        Kirigami.Separator {
-            anchors {
+        color: Maui.Theme.backgroundColor
+        Maui.Separator 
+        {
+            anchors 
+            {
                 left: parent.left
                 right: parent.right
                 top: controlRoot.position == T.ToolBar.Footer || (controlRoot.parent.footer && controlRoot.parent.footer == controlRoot) ? parent.top : undefined

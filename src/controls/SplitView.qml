@@ -32,7 +32,7 @@ T.SplitView
             implicitWidth: Maui.Handy.isTouch ? 20 : 12
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
             
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
 
            Behavior on color
         {
@@ -66,7 +66,7 @@ T.SplitView
                 width: length
                 radius: height
                
-                color: pressed || control.SplitHandle.hovered  ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                color: pressed || control.SplitHandle.hovered  ? Maui.Theme.highlightColor : Maui.Theme.textColor
                 
 Behavior on color
         {
@@ -86,7 +86,7 @@ Behavior on color
             implicitWidth: Maui.Handy.isTouch ? 20 : 12
             implicitHeight: Maui.Handy.isTouch ? 20 : 12
 
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             
  Behavior on color
         {
@@ -124,7 +124,7 @@ Behavior on color
                 height: length
                 width: 8
                 radius: width
-                color: pressed || control.SplitHandle.hovered ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+                color: pressed || control.SplitHandle.hovered ? Maui.Theme.highlightColor : Maui.Theme.textColor
             }
         }
     }

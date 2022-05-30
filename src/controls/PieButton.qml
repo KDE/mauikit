@@ -21,8 +21,6 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 
 import org.mauikit.controls 1.2 as Maui
-import org.kde.kirigami 2.7 as Kirigami
-
 
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
@@ -77,7 +75,7 @@ Item
     {
         NumberAnimation
         {
-            duration: Kirigami.Units.longDuration
+            duration: Maui.Style.units.longDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -96,13 +94,13 @@ Item
         {
             NumberAnimation
             {
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }
         Rectangle
         {
-            color: Qt.rgba(control.Kirigami.Theme.backgroundColor.r,control.Kirigami.Theme.backgroundColor.g,control.Kirigami.Theme.backgroundColor.b, 0.5)
+            color: Qt.rgba(control.Maui.Theme.backgroundColor.r,control.Maui.Theme.backgroundColor.g,control.Maui.Theme.backgroundColor.b, 0.5)
             anchors.fill: parent
         }
 
@@ -118,7 +116,7 @@ Item
         id: _background
         visible: control.implicitWidth > height
         anchors.fill: parent
-        color: control.Kirigami.Theme.backgroundColor
+        color: control.Maui.Theme.backgroundColor
         radius: Maui.Style.radiusV
     }
 

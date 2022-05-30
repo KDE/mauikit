@@ -41,6 +41,11 @@
 
 #include "platform.h"
 
+#include "utils/basictheme_p.h"
+#include "utils/platformtheme.h"
+#include "utils/colorutils.h"
+#include "utils/imagecolors.h"
+
 #include <KI18n/KLocalizedContext>
 #include <KI18n/KLocalizedString>
 
@@ -102,6 +107,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("private/shapes/Triangle.qml")), uri, 1, 0, "Triangle");
     qmlRegisterType(componentUrl(QStringLiteral("private/shapes/CheckMark.qml")), uri, 1, 0, "CheckMark");
     qmlRegisterType(componentUrl(QStringLiteral("private/shapes/Rectangle.qml")), uri, 1, 0, "Rectangle");
+    qmlRegisterType(componentUrl(QStringLiteral("private/CheckBoxItem.qml")), uri, 1, 0, "CheckBoxItem");
 
     /** 1.1 **/
     qmlRegisterType(componentUrl(QStringLiteral("labs/ShareDialog.qml")), uri, 1, 1, "ShareDialog");
@@ -162,7 +168,15 @@ void MauiKit::registerTypes(const char *uri)
         engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
         return platform;
     });
-
+    
+    
+    qmlRegisterUncreatableType<Maui::PlatformTheme>(uri, 1, 0, "Theme", QStringLiteral("Cannot create objects of type Theme, use it as an attached property"));
+    qmlRegisterSingletonType<ColorUtils>(uri, 1, 3, "ColorUtils", [](QQmlEngine *, QJSEngine *) -> QObject*
+    {
+        return new ColorUtils;
+    });
+    qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
+    
     /** Experimental **/
 #ifdef Q_OS_WIN32
     qmlRegisterType(componentUrl(QStringLiteral("labs/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");

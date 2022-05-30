@@ -70,14 +70,14 @@ T.InlineMessage {
 
         color: {
             if (root.type == Kirigami.MessageType.Positive) {
-                return Kirigami.Theme.positiveTextColor;
+                return Maui.Theme.positiveTextColor;
             } else if (root.type == Kirigami.MessageType.Warning) {
-                return Kirigami.Theme.neutralTextColor;
+                return Maui.Theme.neutralTextColor;
             } else if (root.type == Kirigami.MessageType.Error) {
-                return Kirigami.Theme.negativeTextColor;
+                return Maui.Theme.negativeTextColor;
             }
 
-            return Kirigami.Theme.activeTextColor;
+            return Maui.Theme.activeTextColor;
         }
 
         radius: Kirigami.Units.smallSpacing / 2
@@ -88,7 +88,7 @@ T.InlineMessage {
             anchors.fill: parent
             anchors.margins: 1
 
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
 
             radius: bgBorderRect.radius * 0.60
         }

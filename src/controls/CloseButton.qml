@@ -7,7 +7,7 @@ import org.mauikit.controls 1.3 as Maui
 AbstractButton
 {
     id: control
-    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    Maui.Theme.colorSet: Maui.Theme.Button
     
     implicitWidth: (icon.width)+ leftPadding + rightPadding
     implicitHeight: (icon.height) + topPadding + bottomPadding
@@ -26,7 +26,7 @@ AbstractButton
             height: control.icon.height
             width: control.icon.width
             anchors.centerIn: parent
-            color: control.hovered || control.containsPress ? control.Kirigami.Theme.negativeTextColor : control.Kirigami.Theme.textColor
+            color: control.hovered || control.containsPress ? control.Maui.Theme.negativeTextColor : control.Maui.Theme.textColor
             isMask: true
             
             Behavior on color
@@ -39,7 +39,7 @@ AbstractButton
     background: Rectangle
     {
         radius: height/2
-        color: control.hovered || control.containsPress ? Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"     
+        color: control.hovered || control.containsPress ? Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9)) : "transparent"     
         
          Behavior on color
         {

@@ -332,11 +332,11 @@ T.Container
                             }
                         }
                         
-                        //Kirigami.Separator
+                        //Maui.Separator
                         //{
                         
                         //height: 0.5
-                        //weight: Kirigami.Separator.Weight.Light
+                        //weight: Maui.Separator.Weight.Light
                         //visible: index < control.count
                         //anchors
                         //{
@@ -360,8 +360,8 @@ T.Container
             
             sourceComponent: Maui.TabBar
             {
-                Kirigami.Theme.colorSet: Kirigami.Theme.Header
-                Kirigami.Theme.inherit: false
+                Maui.Theme.colorSet: Maui.Theme.Header
+                Maui.Theme.inherit: false
                 showNewTabButton: false
                 position: ToolBar.Header
                 
@@ -444,7 +444,7 @@ T.Container
                 {
                     NumberAnimation
                     {
-                        duration: Kirigami.Units.longDuration
+                        duration: Maui.Style.units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -453,7 +453,7 @@ T.Container
                 {
                     NumberAnimation
                     {
-                        duration: Kirigami.Units.longDuration
+                        duration: Maui.Style.units.longDuration
                         easing.type: Easing.InOutQuad
                     }
                 }
@@ -468,10 +468,10 @@ T.Container
 
                 sourceComponent: Rectangle
                 {
-                    Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                    Kirigami.Theme.inherit: false
+                    Maui.Theme.colorSet: Maui.Theme.Window
+                    Maui.Theme.inherit: false
 
-                    color: Kirigami.Theme.backgroundColor
+                    color: Maui.Theme.backgroundColor
 
                     Maui.GridView
                     {
@@ -549,9 +549,9 @@ T.Container
 
                                 background: Kirigami.ShadowedRectangle
                                 {
-                                    color: _delegate.isCurrentItem ? Kirigami.Theme.highlightColor : Qt.lighter(Kirigami.Theme.backgroundColor)
+                                    color: _delegate.isCurrentItem ? Maui.Theme.highlightColor : Qt.lighter(Maui.Theme.backgroundColor)
                                     property int radius : Maui.Style.radiusV
-                                    border.color: _delegate.hovered || _delegate.containsPress? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor
+                                    border.color: _delegate.hovered || _delegate.containsPress? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
                                     border.width: 1
                                     corners
                                     {

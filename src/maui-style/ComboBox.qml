@@ -73,7 +73,7 @@ T.ComboBox
     {
         x: control.mirrored ? control.padding : control.width - width - control.padding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2
-        color: control.enabled ? control.Kirigami.Theme.textColor : control.Kirigami.Theme.highlightColor
+        color: control.enabled ? control.Maui.Theme.textColor : control.Maui.Theme.highlightColor
         source: "go-down"
         height: Maui.Style.iconSizes.small
         width: height
@@ -94,9 +94,9 @@ T.ComboBox
         validator: control.validator
 
         font: control.font
-        color: control.enabled ? control.Kirigami.Theme.textColor : control.Kirigami.Theme.highlightColor
-        selectionColor:  control.Kirigami.Theme.highlightColor
-        selectedTextColor: control.Kirigami.Theme.highlightedTextColor
+        color: control.enabled ? control.Maui.Theme.textColor : control.Maui.Theme.highlightColor
+        selectionColor:  control.Maui.Theme.highlightColor
+        selectedTextColor: control.Maui.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
 
 //        cursorDelegate: CursorDelegate { }
@@ -109,9 +109,9 @@ T.ComboBox
 
         radius: Maui.Style.radiusV
 
-        color: !control.editable ? control.Kirigami.Theme.backgroundColor : "transparent"
+        color: !control.editable ? control.Maui.Theme.backgroundColor : "transparent"
 
-        border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+        border.color: Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
 
 
         Rectangle {
@@ -119,7 +119,7 @@ T.ComboBox
             y: parent.y + control.baselineOffset
             width: parent.width
             height: control.activeFocus ? 2 : 1
-            color: control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : control.Kirigami.Theme.highlightedTextColor
+            color: control.editable && control.activeFocus ? control.Maui.Theme.highlightColor : control.Maui.Theme.highlightedTextColor
         }
     }
 
@@ -167,15 +167,15 @@ T.ComboBox
             implicitHeight: Maui.Style.rowHeight
 
             radius: Maui.Style.radiusV
-            color: control.Kirigami.Theme.backgroundColor
-            border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+            color: control.Maui.Theme.backgroundColor
+            border.color: Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
 
             Rectangle
              {
                  anchors.fill: parent
                  radius: Maui.Style.radiusV
                  color: "transparent"
-                 border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.7)
+                 border.color: Qt.darker(Maui.Theme.backgroundColor, 2.7)
                  opacity: 0.8
 
                  Rectangle
@@ -184,7 +184,7 @@ T.ComboBox
                      anchors.margins: 1
                      color: "transparent"
                      radius: parent.radius - 0.5
-                     border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                     border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
                      opacity: 0.8
                  }
 

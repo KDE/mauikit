@@ -7,8 +7,8 @@ Item
 {
     id: control
 
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+    Maui.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Complementary
     
     implicitHeight: Maui.Style.iconSizes.medium
     implicitWidth: implicitHeight
@@ -22,14 +22,14 @@ Item
     Rectangle
     {
         anchors.fill: parent
-        color: control.checked ? Kirigami.Theme.highlightColor : Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.5)
+        color: control.checked ? Maui.Theme.highlightColor : Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.5)
         radius: height/2
-        border.color: Kirigami.Theme.highlightedTextColor
+        border.color: Maui.Theme.highlightedTextColor
         
         Kirigami.Icon
         {
             visible: opacity > 0
-            color: Kirigami.Theme.highlightedTextColor
+            color: Maui.Theme.highlightedTextColor
             anchors.centerIn: parent
             height: control.checked ? Math.round(parent.height * 0.9) : 0
             width: height
@@ -42,7 +42,7 @@ Item
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Maui.Style.units.shortDuration
                     easing.type: Easing.InOutQuad
                 }
             }
@@ -89,7 +89,7 @@ Item
         property: "scale"
         from: 1.3
         to: 1
-        duration: Kirigami.Units.longDuration
+        duration: Maui.Style.units.longDuration
         easing.type: Easing.OutBack
     }
 
@@ -100,7 +100,7 @@ Item
         property: "scale"
         from: 0.7
         to: 1
-        duration: Kirigami.Units.longDuration
+        duration: Maui.Style.units.longDuration
         easing.type: Easing.InBack
     }
 }

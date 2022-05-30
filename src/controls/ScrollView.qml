@@ -21,8 +21,8 @@ T.ScrollView
     implicitWidth: Math.max(background ? background.implicitWidth : 0, contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0, contentHeight + topPadding + bottomPadding)
 
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: !background || !background.visible
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: !background || !background.visible
     
     padding: 0
     rightPadding: padding
@@ -34,15 +34,7 @@ T.ScrollView
     data: [
     Kirigami.WheelHandler {
         target: control.contentItem
-    },    
-    
-    QtObject 
-    {
-        id: internal
-        
-        readonly property real verticalScrollBarWidth: control.ScrollBar.vertical.visible && !Kirigami.Settings.tabletMode ? control.ScrollBar.vertical.width : 0
-        readonly property real horizontalScrollBarHeight: control.ScrollBar.horizontal.visible && !Kirigami.Settings.tabletMode ? control.ScrollBar.horizontal.height : 0
-    }    
+    }
     ]
     
     ScrollBar.vertical: ScrollBar

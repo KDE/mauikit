@@ -50,7 +50,7 @@ set(BUNDLE_MAUI_STYLE ON)
 set(BUNDLE_LUV_ICONS ON)
 endif()
 
-find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
+find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Concurrent Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
     
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)

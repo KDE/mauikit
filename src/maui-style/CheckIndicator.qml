@@ -44,8 +44,8 @@ Rectangle
     implicitWidth: 18
     implicitHeight: 18
     color: !control.enabled ? "transparent"
-                            :(checked ? Kirigami.Theme.highlightColor : Kirigami.Theme.backgroundColor)
-     border.color: enabled ? "transparent" : Kirigami.Theme.textColor
+                            :(checked ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor)
+     border.color: enabled ? "transparent" : Maui.Theme.textColor
 
 //     border.width: control.checked ? 1 : 1
     radius: control.autoExclusive ? Math.min(height, width) : Maui.Style.radiusV
@@ -84,7 +84,7 @@ Rectangle
         width: 16
         height: 16
         source: "qrc:/assets/checkmark.svg"
-        color: control.checked ? Kirigami.Theme.highlightedTextColor : "transparent"
+        color: control.checked ? Maui.Theme.highlightedTextColor : "transparent"
 
         scale: checked ? 1 : 0
         Behavior on scale { NumberAnimation { duration: 100 } }
@@ -103,7 +103,7 @@ Rectangle
         y: (parent.height - height) / 2
         width: 10
         height: 10
-        color: control.checked ? Kirigami.Theme.highlightedTextColor : "transparent"
+        color: control.checked ? Maui.Theme.highlightedTextColor : "transparent"
         radius: height
         scale: checked ? 1 : 0
         Behavior on scale { NumberAnimation { duration: 100 } }

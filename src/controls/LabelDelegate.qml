@@ -38,7 +38,7 @@ import QtQuick.Templates 2.15 as T
 T.ItemDelegate
 {
   id: control
-  Kirigami.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Kirigami.Theme.backgroundColor) : "transparent")
+  Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
   implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
   padding: Maui.Style.contentMargins
   
@@ -74,7 +74,7 @@ T.ItemDelegate
     text: labelTxt.text
     elide: Text.ElideRight
     wrapMode: Text.NoWrap
-    color: control.isCurrentListItem ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+    color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
     font.bold: control.isSection
     font.weight : control.isSection ? Font.Bold : Font.Normal
   }

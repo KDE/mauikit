@@ -30,8 +30,8 @@ import org.mauikit.controls 1.0 as Maui
 T.TextField
 {
     id: control
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: false
 
     implicitWidth: Math.max(200,
                             placeholderText ? placeholder.implicitWidth + leftPadding + rightPadding : 0)
@@ -42,9 +42,9 @@ T.TextField
 
     padding: Maui.Style.space.medium
 
-    color: Kirigami.Theme.textColor
-    selectionColor: Kirigami.Theme.highlightColor
-    selectedTextColor: Kirigami.Theme.highlightedTextColor
+    color: Maui.Theme.textColor
+    selectionColor: Maui.Theme.highlightColor
+    selectedTextColor: Maui.Theme.highlightedTextColor
 	
 	verticalAlignment: TextInput.AlignVCenter
     horizontalAlignment: Text.AlignLeft
@@ -61,7 +61,7 @@ T.TextField
 		
 		text: control.placeholderText
 		font: control.font
-        color: Kirigami.Theme.textColor
+        color: Maui.Theme.textColor
 		opacity: 0.4
         horizontalAlignment: !control.length ? Text.AlignHCenter : Text.AlignLeft
 		verticalAlignment: control.verticalAlignment
@@ -75,8 +75,8 @@ T.TextField
         implicitWidth: 200
         implicitHeight: Maui.Style.rowHeight
 
-        color: control.enabled ? (control.activeFocus ? Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)) : "transparent"
-        border.color: control.enabled ? (control.activeFocus ? Kirigami.Theme.highlightColor : color) : Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.7))
+        color: control.enabled ? (control.activeFocus ? Maui.Theme.backgroundColor : Qt.lighter(Maui.Theme.backgroundColor)) : "transparent"
+        border.color: control.enabled ? (control.activeFocus ? Maui.Theme.highlightColor : color) : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
 
         radius: Maui.Style.radiusV
 	}

@@ -34,13 +34,13 @@ T.TabButton
     signal closeClicked()
     signal rightClicked(var mouse)
     
-    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    Maui.Theme.colorSet: Maui.Theme.Button
     
     background: Rectangle
     {
         visible: control.checked || control.down || control.hovered
         opacity: control.hovered && !control.checked ? 0.2 : 1
-        color: control.hovered && !control.checked ? Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.4) : Qt.lighter(Kirigami.Theme.backgroundColor)
+        color: control.hovered && !control.checked ? Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, 0.4) : Qt.lighter(Maui.Theme.backgroundColor)
         radius: Maui.Style.radiusV
         
          Behavior on color
@@ -96,7 +96,7 @@ T.TabButton
                     
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
-                    color: Kirigami.Theme.textColor
+                    color: Maui.Theme.textColor
                     wrapMode: Text.NoWrap
                     elide: Text.ElideMiddle
                 }  
@@ -119,7 +119,7 @@ T.TabButton
                     {
                         NumberAnimation
                         {
-                            duration: Kirigami.Units.longDuration
+                            duration: Maui.Style.units.longDuration
                             easing.type: Easing.InOutQuad
                         }
                     }

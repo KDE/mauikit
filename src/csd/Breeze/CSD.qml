@@ -59,7 +59,7 @@ Item
                     height: 18
                     smooth: true
                     source: button.source
-                    color: Kirigami.Theme.textColor
+                    color: Maui.Theme.textColor
                     isMask: true
                     anchors.centerIn: parent
                 }

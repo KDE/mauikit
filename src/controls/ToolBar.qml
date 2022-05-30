@@ -147,7 +147,7 @@ T.ToolBar
         
         background: Rectangle
         {
-            color: control.Kirigami.Theme.backgroundColor
+            color: control.Maui.Theme.backgroundColor
             Behavior on color
             {
                 Maui.ColorTransition {}
@@ -201,13 +201,13 @@ T.ToolBar
                 }
             }
             
-            Kirigami.Separator
+            Maui.Separator
             {
                 id: _border
                 anchors.left: parent.left
                 anchors.right: parent.right
                 //                 height: 0.5
-                weight: Kirigami.Separator.Weight.Light
+                weight: Maui.Separator.Weight.Light
                 
                 Behavior on color
                 {

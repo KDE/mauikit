@@ -44,7 +44,7 @@ import org.mauikit.controls 1.3 as Maui
 T.ToolButton
 {
     id: control
-    Kirigami.Theme.colorSet: flat ? Kirigami.Theme.Window : Kirigami.Theme.Button
+    Maui.Theme.colorSet: flat ? Maui.Theme.Window : Maui.Theme.Button
    
    opacity: enabled ? 1 : 0.5
 
@@ -67,7 +67,7 @@ T.ToolButton
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
     
-    icon.color: control.down || control.checked ? (control.flat ? Kirigami.Theme.highlightColor : Kirigami.Theme.highlightedTextColor) : Kirigami.Theme.textColor
+    icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     flat: control.parent === T.ToolBar
 
@@ -98,7 +98,7 @@ T.ToolButton
 
         radius: Maui.Style.radiusV
 
-        color: control.pressed || control.down || control.checked ? control.Kirigami.Theme.highlightColor : (control.highlighted || control.hovered ? control.Kirigami.Theme.hoverColor : "transparent")
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
 
         Behavior on color
         {

@@ -149,7 +149,7 @@ Item
       font.bold: true
       font.weight: Font.Bold
       elide: Text.ElideRight
-      color: Kirigami.Theme.textColor
+      color: Maui.Theme.textColor
       wrapMode: Text.Wrap
     }
     
@@ -159,7 +159,7 @@ Item
       width: Math.min(control.width * 0.7, implicitWidth)
       opacity: 0.5
       elide: Text.ElideRight
-      color: Kirigami.Theme.textColor
+      color: Maui.Theme.textColor
       wrapMode: Text.Wrap
     }
     
@@ -188,7 +188,7 @@ Item
           implicitHeight: Maui.Style.rowHeight
           
           radius: Maui.Style.radiusV
-          color: _button.hovered || _button.down || _button.pressed ? "#26c6da" : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) 
+          color: _button.hovered || _button.down || _button.pressed ? "#26c6da" : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9)) 
           Behavior on color
           {
             Maui.ColorTransition{}
@@ -200,7 +200,7 @@ Item
         {
           text: _button.text
           opacity: 0.8
-          color:  _button.hovered || _button.down || _button.pressed ?  "#fafafa" : Kirigami.Theme.textColor
+          color:  _button.hovered || _button.down || _button.pressed ?  "#fafafa" : Maui.Theme.textColor
           horizontalAlignment: Qt.AlignHCenter
           verticalAlignment: Qt.AlignVCenter
         }

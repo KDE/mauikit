@@ -21,7 +21,6 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 /**
@@ -202,7 +201,7 @@ Item
             id: _iconContainer
             implicitHeight: control.headerSizeHint
 
-            visible: (control.width > Kirigami.Units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
+            visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
 
             Layout.alignment: Qt.AlignCenter
             Layout.fillHeight: true
@@ -219,7 +218,7 @@ Item
             //                width: height
             //                source:  control.iconSource || "folder-images"
             //                isMask: true
-            //                color: Kirigami.Theme.textColor
+            //                color: Maui.Theme.textColor
             //                opacity: 0.5
             //            }
 
@@ -254,7 +253,7 @@ Item
                 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
             }
 
             Label
@@ -269,7 +268,7 @@ Item
                 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
@@ -277,7 +276,7 @@ Item
         ColumnLayout
         {
             id: _rightLabels
-            visible: control.width >  Kirigami.Units.gridUnit * 15 && control.labelsVisible && control.height > 32
+            visible: control.width >  Maui.Style.units.gridUnit * 15 && control.labelsVisible && control.height > 32
             Layout.fillHeight: true
             Layout.fillWidth: true
             spacing: _leftLabels.spacing
@@ -297,7 +296,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem || control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
@@ -316,7 +315,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem || control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                color: control.isCurrentItem || control.highlighted ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }

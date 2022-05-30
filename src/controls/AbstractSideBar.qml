@@ -22,7 +22,7 @@ import QtQml 2.15
 import QtQuick.Controls 2.14
 
 import org.kde.kirigami 2.14 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
 /*!
@@ -86,7 +86,7 @@ T.Drawer
          *      preferredWidth : int
          *      The preferred width of the sidebar in the expanded state.
          */
-        property int preferredWidth : Kirigami.Units.gridUnit * 12
+        property int preferredWidth : Maui.Style.units.gridUnit * 12
         
         /*!
          *      \qmlproperty MouseArea AbstractSideBar::overlay
@@ -131,7 +131,7 @@ T.Drawer
         propagateComposedEvents: false
         Rectangle
         {
-        color: Qt.rgba(control.Kirigami.Theme.backgroundColor.r,control.Kirigami.Theme.backgroundColor.g,control.Kirigami.Theme.backgroundColor.b, 0.5)
+        color: Qt.rgba(Maui.Theme.backgroundColor.r,Maui.Theme.backgroundColor.g,Maui.Theme.backgroundColor.b, 0.5)
         opacity: control.position
         anchors.fill: parent
         }
@@ -142,7 +142,7 @@ T.Drawer
         
         background: Kirigami.ShadowedRectangle
         {
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
             opacity: Maui.App.translucencyAvailable ? 0.4 : 1
             corners
@@ -181,14 +181,14 @@ T.Drawer
             }        
         }
         
-        Kirigami.Separator
+        Maui.Separator
         {
             z: contentItem.z + 1
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             width: 0.5
-            weight: Kirigami.Separator.Weight.Light
+            weight: Maui.Separator.Weight.Light
             
             Behavior on color
             {
@@ -209,7 +209,7 @@ T.Drawer
             enabled: control.collapsible 
             NumberAnimation
             {
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }

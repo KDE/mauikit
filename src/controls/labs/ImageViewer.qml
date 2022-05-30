@@ -126,7 +126,7 @@ Flickable
                 property: "contentWidth"
                 from: flick.contentWidth
                 to: zoomAnim.width
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
             NumberAnimation {
@@ -134,7 +134,7 @@ Flickable
                 property: "contentHeight"
                 from: flick.contentHeight
                 to: zoomAnim.height
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
             NumberAnimation {
@@ -142,7 +142,7 @@ Flickable
                 property: "contentY"
                 from: flick.contentY
                 to: zoomAnim.y
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
             NumberAnimation {
@@ -150,7 +150,7 @@ Flickable
                 property: "contentX"
                 from: flick.contentX
                 to: zoomAnim.x
-                duration: Kirigami.Units.longDuration
+                duration: Maui.Style.units.longDuration
                 easing.type: Easing.InOutQuad
             }
         }

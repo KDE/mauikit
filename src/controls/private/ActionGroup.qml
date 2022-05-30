@@ -21,7 +21,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
@@ -74,7 +73,7 @@ T.Pane
     {
         NumberAnimation
         {
-            duration: Kirigami.Units.shortDuration
+            duration: Maui.Style.units.shortDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -91,8 +90,8 @@ T.Pane
         //padding: Maui.Style.space.medium
         leftPadding: Maui.Style.space.big
         rightPadding: Maui.Style.space.big
-        //Kirigami.Theme.backgroundColor: modelData.Kirigami.Theme.backgroundColor
-        //Kirigami.Theme.highlightColor: modelData.Kirigami.Theme.highlightColor
+        //Maui.Theme.backgroundColor: modelData.Maui.Theme.backgroundColor
+        //Maui.Theme.highlightColor: modelData.Maui.Theme.highlightColor
         icon.name: modelData.Maui.AppView.iconName
         text: modelData.Maui.AppView.title
         //         flat: display === ToolButton.IconOnly
@@ -109,10 +108,10 @@ T.Pane
             anchors.verticalCenterOffset: 10
             anchors.horizontalCenterOffset: -5
             
-            Kirigami.Theme.colorSet: Kirigami.Theme.View
-            Kirigami.Theme.backgroundColor: Kirigami.Theme.negativeBackgroundColor
-            Kirigami.Theme.textColor: Kirigami.Theme.negativeTextColor
-            border.color: Kirigami.Theme.textColor
+            Maui.Theme.colorSet: Maui.Theme.View
+            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            border.color: Maui.Theme.textColor
             
             mouseArea.enabled: false
         }
@@ -215,8 +214,8 @@ T.Pane
 
             text: obj ? obj.Maui.AppView.title : ""
 
-            //                Kirigami.Theme.backgroundColor: obj ? obj.Kirigami.Theme.backgroundColor : undefined
-            //                Kirigami.Theme.highlightColor: obj ? obj.Kirigami.Theme.highlightColor: undefined
+            //                Maui.Theme.backgroundColor: obj ? obj.Maui.Theme.backgroundColor : undefined
+            //                Maui.Theme.highlightColor: obj ? obj.Maui.Theme.highlightColor: undefined
         }
 
         Maui.ToolButtonMenu
@@ -234,7 +233,7 @@ T.Pane
             {
                 NumberAnimation
                 {
-                    duration: Kirigami.Units.shortDuration
+                    duration: Maui.Style.units.shortDuration
                     easing.type: Easing.InOutQuad
                 }
             }

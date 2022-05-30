@@ -9,11 +9,12 @@ Row
     id: control
     
     default property var colors : []
-    property string defaultColor : Kirigami.Theme.backgroundColor
+    property string defaultColor 
     property string currentColor
 
     spacing: Maui.Style.space.medium
 
+    property int size : Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
     signal colorPicked (string color)
     
     Repeater
@@ -23,7 +24,7 @@ Row
         AbstractButton
         {
             checked : control.currentColor === modelData
-            implicitHeight: Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
+            implicitHeight: control.size
             implicitWidth: implicitHeight
             hoverEnabled: true
             onClicked: control.colorPicked(modelData)
@@ -38,7 +39,7 @@ Row
                 Kirigami.Icon
                 {
                     visible: opacity > 0
-                    color: parent.border.color
+                    color: Maui.ColorUtils.brightnessForColor(parent.color) == Maui.ColorUtils.Light ? Qt.darker(parent.color, 2) :  Qt.lighter(parent.color, 2)
                     anchors.centerIn: parent
                     height: checked ? Math.round(parent.height * 0.9) : 0
                     width: height
@@ -51,7 +52,7 @@ Row
                     {
                         NumberAnimation
                         {
-                            duration: Kirigami.Units.shortDuration
+                            duration: Maui.Style.units.shortDuration
                             easing.type: Easing.InOutQuad
                         }
                     }
@@ -63,9 +64,10 @@ Row
     Loader
     {
         asynchronous: true
+        active: control.defaultColor.length
         sourceComponent: Item
         {
-            implicitHeight: Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
+            implicitHeight: control.size
             implicitWidth: implicitHeight
             
             ToolButton

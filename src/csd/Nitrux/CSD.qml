@@ -61,7 +61,7 @@ Item
                     height: control.iconSize
                     smooth: true
                     source: button.source
-                    color: Kirigami.Theme.textColor
+                    color: Maui.Theme.textColor
                     anchors.centerIn: parent
                     Behavior on color
         {

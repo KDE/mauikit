@@ -40,8 +40,8 @@ Maui.Dialog
     maxWidth: 360
     maxHeight: 200 + defaultButtonsLayout.height
 
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+    Maui.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Complementary
     verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
     /**
@@ -106,7 +106,7 @@ Maui.Dialog
         //                {
         //                    anchors.fill: parent
         //                    opacity: 0.8
-        //                    color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        //                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
         //                }
         //            }
 
@@ -351,7 +351,7 @@ Maui.Dialog
                 {
                     Layout.alignment: Qt.AlignCenter
                     source: "qrc:/assets/mauikit.svg"
-                    color: Kirigami.Theme.textColor
+                    color: Maui.Theme.textColor
                     isMask: true
                     implicitHeight: Maui.Style.iconSizes.big
                     implicitWidth: implicitHeight

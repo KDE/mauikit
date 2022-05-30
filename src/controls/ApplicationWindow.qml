@@ -90,7 +90,7 @@ Window
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.View
 
     /*!
       \qmlproperty Item ApplicationWindow::content
@@ -280,7 +280,7 @@ Window
       This property can be changed to any random condition.
       Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
     */
-    property bool isWide : root.width >= Kirigami.Units.gridUnit * 30
+    property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
 
     /***************************************************/
     /**************** READONLY PROPS ******************/
@@ -297,7 +297,7 @@ Window
     {
         id: _page
         anchors.fill: parent
-        Kirigami.Theme.colorSet: root.Kirigami.Theme.colorSet
+        Maui.Theme.colorSet: root.Maui.Theme.colorSet
         showCSDControls: true
 
         Item
@@ -317,7 +317,7 @@ Window
         {
             id: _pageBackground
             opacity: Maui.App.translucencyAvailable ? 0.7 : 1
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
             
             Behavior on color
@@ -350,7 +350,7 @@ Window
         {
             radius: _pageBackground.radius - 0.5
             color: "transparent"
-            border.color: Qt.darker(Kirigami.Theme.backgroundColor, 2.3)
+            border.color: Qt.darker(Maui.Theme.backgroundColor, 2.3)
             opacity: 0.5
             
             Behavior on color
@@ -364,7 +364,7 @@ Window
                 anchors.margins: 1
                 color: "transparent"
                 radius: parent.radius - 0.5
-                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
                 opacity: 0.7
                 
                 Behavior on color
@@ -438,7 +438,7 @@ Window
 
     Overlay.overlay.modal: Rectangle
     {
-        color: Qt.rgba( root.Kirigami.Theme.backgroundColor.r,  root.Kirigami.Theme.backgroundColor.g,  root.Kirigami.Theme.backgroundColor.b, 0.7)
+        color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
 
         Behavior on opacity { NumberAnimation { duration: 150 } }
 
@@ -454,7 +454,7 @@ Window
     {
         radius: _pageBackground.radius
 
-        color: Qt.rgba( root.Kirigami.Theme.backgroundColor.r,  root.Kirigami.Theme.backgroundColor.g,  root.Kirigami.Theme.backgroundColor.b, 0.7)
+        color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
         Behavior on opacity { NumberAnimation { duration: 150 } }
         
         Behavior on color
@@ -557,13 +557,13 @@ Window
         {
             if(headBar.position === ToolBar.Footer)
             {
-                Maui.Android.statusbarColor(Kirigami.Theme.backgroundColor, true)
-                Maui.Android.navBarColor(headBar.visible ? headBar.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor, true)
+                Maui.Android.statusbarColor(Maui.Theme.backgroundColor, true)
+                Maui.Android.navBarColor(headBar.visible ? headBar.Maui.Theme.backgroundColor : Maui.Theme.backgroundColor, true)
 
             } else
             {
-                Maui.Android.statusbarColor(headBar.Kirigami.Theme.backgroundColor, true)
-                Maui.Android.navBarColor(footBar.visible ? footBar.Kirigami.Theme.backgroundColor : Kirigami.Theme.backgroundColor, true)
+                Maui.Android.statusbarColor(headBar.Maui.Theme.backgroundColor, true)
+                Maui.Android.navBarColor(footBar.visible ? footBar.Maui.Theme.backgroundColor : Maui.Theme.backgroundColor, true)
             }
         }
     }

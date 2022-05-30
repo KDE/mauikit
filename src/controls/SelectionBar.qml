@@ -132,8 +132,8 @@ Item
         height: Maui.Style.rowHeight * 1.5
         width: ListView.view.width
         
-        Kirigami.Theme.backgroundColor: "transparent"
-        Kirigami.Theme.textColor: control.Kirigami.Theme.textColor
+        Maui.Theme.backgroundColor: "transparent"
+        Maui.Theme.textColor: control.Maui.Theme.textColor
         
         iconVisible: false
         label1.text: model.uri
@@ -284,7 +284,7 @@ Item
                 property: "y"
                 from: _imp.height
                 to: Maui.Style.space.big/2
-                duration: Kirigami.Units.longDuration*1
+                duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.OutBack
                 
             }
@@ -295,7 +295,7 @@ Item
                 property: "scale"
                 from: 0.5
                 to: 1
-                duration: Kirigami.Units.longDuration*1
+                duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.OutQuad
             }
             
@@ -305,7 +305,7 @@ Item
             //property: "opacity"
             //from: 0
             //to: 1
-            //duration: Kirigami.Units.longDuration*2
+            //duration: Maui.Style.units.longDuration*2
             //easing.type: Easing.InBack
             //}
         }
@@ -319,7 +319,7 @@ Item
                 property: "y"
                 from: Maui.Style.space.big/2
                 to: _imp.height
-                duration: Kirigami.Units.longDuration*1
+                duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.InBack
                 
             }
@@ -330,7 +330,7 @@ Item
                 property: "scale"
                 from: 1
                 to: 0.5
-                duration: Kirigami.Units.longDuration*1
+                duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.InQuad
                 
             }
@@ -341,7 +341,7 @@ Item
             //property: "opacity"
             //from: 1
             //to: 0
-            //duration: Kirigami.Units.longDuration*2
+            //duration: Maui.Style.units.longDuration*2
             //easing.type: Easing.OutBack
 
             //}
@@ -354,7 +354,7 @@ Item
         background: Rectangle
         {
             id: bg
-            color: Kirigami.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             radius: control.radius
 
             Behavior on color
@@ -362,7 +362,7 @@ Item
                 ColorAnimation
                 {
                     easing.type: Easing.InQuad
-                    duration: Kirigami.Units.shortDuration
+                    duration: Maui.Style.units.shortDuration
                 }
             }
 
@@ -395,7 +395,7 @@ Item
                 anchors.margins: 4
                 visible: _dropArea.containsDrag
                 color: "transparent"
-                borderColor: Kirigami.Theme.textColor
+                borderColor: Maui.Theme.textColor
                 solidBorder: false
             }
             
@@ -440,9 +440,9 @@ Item
                 text: control.count
                 radius: Maui.Style.radiusV
                 font.pointSize: Maui.Style.fontSizes.big
-                Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
-                Kirigami.Theme.backgroundColor: _loader.item && _loader.item.visible ?
-                                                    Kirigami.Theme.highlightColor : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                Maui.Theme.colorSet: control.Maui.Theme.colorSet
+                Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
+                                                    Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
                 border.color: "transparent"
 
                 //                 onTextChanged: _counterAnimation.start()
@@ -451,8 +451,8 @@ Item
                 //                     {
                 //                         id:  _counterAnimation
                 //
-                //                         from: Kirigami.Theme.highlightColor
-                //                         to: Kirigami.Theme.backgroundColor
+                //                         from: Maui.Theme.highlightColor
+                //                         to: Maui.Theme.backgroundColor
                 //                         loops:3
                 //                         easing {
                 //                             type: Easing.OutElastic

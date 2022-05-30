@@ -22,7 +22,6 @@ import QtQml 2.14
 
 import QtQuick.Controls 2.15
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
@@ -128,9 +127,9 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-         readonly property color m_color : Qt.tint(Qt.lighter(Kirigami.Theme.textColor), Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.9))
+         readonly property color m_color : Qt.tint(Qt.lighter(Maui.Theme.textColor), Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
 
-        color: control.flat ? "transparent" : (control.isCurrentItem || control.containsPress ? Kirigami.Theme.highlightColor : ( control.hovered ? Kirigami.Theme.hoverColor : ( Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))))
+        color: control.flat ? "transparent" : (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : ( Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))))
 
         
         radius: control.radius
@@ -150,8 +149,8 @@ Maui.ItemDelegate
         {
             anchors.fill: parent
             radius: control.radius
-            color:  control.Kirigami.Theme.backgroundColor
-            border.color: control.Kirigami.Theme.highlightColor
+            color:  control.Maui.Theme.backgroundColor
+            border.color: control.Maui.Theme.highlightColor
             visible: parent.containsDrag
         }
 
@@ -190,7 +189,7 @@ Maui.ItemDelegate
         {
             NumberAnimation
             {
-                duration: Kirigami.Units.longDuration*2
+                duration: Maui.Style.units.longDuration*2
                 easing.type: Easing.OutBack
             }
         }

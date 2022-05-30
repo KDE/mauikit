@@ -56,7 +56,7 @@ T.Switch
     
     indicator: SwitchIndicator
     {
-        Kirigami.Theme.colorSet: control.Kirigami.Theme.colorSet
+        Maui.Theme.colorSet: control.Maui.Theme.colorSet
         x: control.leftPadding
         y: parent.height / 2 - height / 2
         control: control
@@ -90,7 +90,7 @@ T.Switch
             visible: control.text.length
             text: control.text
             font: control.font
-            color:  control.Kirigami.Theme.textColor
+            color:  control.Maui.Theme.textColor
             verticalAlignment: Text.AlignVCenter
             
             Behavior on color

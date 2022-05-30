@@ -15,16 +15,16 @@ Kirigami.BasicThemeDefinition
     id: theme
     
     
-    textColor: isDark ? "#f4f5f6" : "#31363b"
+    textColor: theme.txtColor
     disabledTextColor: "#9931363b"
     
     highlightColor: theme.accentColor
     //FIXME: something better?
     highlightedTextColor: isDark ? "#eff0f1" : "#eff0f1"
-    backgroundColor: isDark ? "#3a3f41" : "#efefef"
-    alternateBackgroundColor: Qt.darker(theme.backgroundColor, 1.05)
+    backgroundColor: theme.bgColor
+    alternateBackgroundColor: Qt.darker(theme.bgColor, 1.05)
     
-    hoverColor: isDark ? Qt.lighter(theme.backgroundColor, 1.2) : Qt.darker(theme.backgroundColor, 1.1)
+    hoverColor: isDark ? Qt.lighter(theme.bgColor, 1.2) : Qt.darker(theme.bgColor, 1.1)
     focusColor: theme.accentColor
     
     activeTextColor: theme.accentColor
@@ -40,13 +40,13 @@ Kirigami.BasicThemeDefinition
     positiveTextColor: "#27AE60"
     positiveBackgroundColor: "#27AE60"
     
-    buttonTextColor: theme.textColor
-    buttonBackgroundColor: isDark ? Qt.lighter(theme.backgroundColor, 1.05) : Qt.darker(theme.backgroundColor, 1.1)
+    buttonTextColor: theme.txtColor
+    buttonBackgroundColor: isDark ? Qt.lighter(theme.bgColor, 1.05) : Qt.darker(theme.bgColor, 1.1)
     buttonAlternateBackgroundColor: Qt.darker(theme.buttonBackgroundColor, 1.05)
     buttonHoverColor: Qt.darker(theme.accentColor, 1.1)
     buttonFocusColor: theme.accentColor
     
-    viewTextColor: theme.textColor
+    viewTextColor: theme.txtColor
     viewBackgroundColor: isDark ? Qt.darker(theme.backgroundColor, 1.1) : Qt.lighter(theme.backgroundColor, 1.1)
     viewAlternateBackgroundColor: Qt.darker(theme.viewBackgroundColor, 1.05)
     viewHoverColor: theme.hoverColor
@@ -78,64 +78,28 @@ Kirigami.BasicThemeDefinition
     
     defaultFont: fontMetrics.font
         
-        property color bgColor :  isDark ? "#3a3f41" : "#fafafa"
-        property bool adaptive : Maui.Style.adaptiveColorScheme
-        property color txtColor : isDark ? "#f4f5f6" : "#31363b"
+        property color bgColor :  isDark ? "#3a3f41" : "#efefef"
+        property color txtColor :  isDark ? "#f4f5f6" : "#31363b"
         property color accentColor : Maui.Style.accentColor 
-        property bool isDark : Maui.Style.darkMode
-        onAdaptiveChanged:
-        {
-            console.log("APDATIVE COLOR SCHEME VALUE CHANGED ")
-            if(!Maui.Style.adaptiveColorScheme)
-            {
-                                    isDark =Qt.binding( function() { return Maui.Style.darkMode})
-                theme.accentColor = Maui.Style.accentColor
-                theme.highlightedTextColor = Qt.binding( function() { return (isDark ? "#eff0f1" : "#eff0f1")})
-                theme.backgroundColor = Qt.binding(function() { return (isDark ? "#3a3f41" : "#fafafa") })
-                theme.textColor = Qt.binding( function() { return (isDark ? "#f4f5f6" : "#31363b")})
-            }else
-            {
-                _imageColors.update()
-            }
-        }
+        property bool isDark : Maui.Style.styleType === Maui.Style.Dark
         
         property list<QtObject> children: [
         TextMetrics {
             id: fontMetrics
-        },       
-                
-        Kirigami.ImageColors
-        {
-            id: _imageColors
-            source: Maui.Style.adaptiveColorSchemeSource
-            onPaletteChanged:
-            {
-                if(Maui.Style.adaptiveColorScheme)
-                {
-                    isDark = _imageColors.paletteBrightness === Kirigami.ColorUtils.Dark
-                    theme.accentColor = _imageColors.highlight
-                    theme.highlightedTextColor = Kirigami.ColorUtils.brightnessForColor(_imageColors.highlight) == Kirigami.ColorUtils.Light ? _imageColors.closestToBlack :  _imageColors.closestToWhite
-                    theme.backgroundColor = Qt.tint(_imageColors.background, Qt.rgba(bgColor.r,bgColor.g,bgColor.b, 0.8))
-                    theme.textColor =  _imageColors.foreground
-                }
-                
-                Maui.Style.colorSchemeChanged()
-            }
         }
-        
         ]
         
         //    onSync: {
         //        //TODO: actually check if it's a dark or light color
-        //        if (object.Kirigami.Theme.colorSet === Kirigami.Theme.Complementary) {
+        //        if (object.Maui.Theme.colorSet === Maui.Theme.Complementary) {
         //            object.Material.theme = Material.Dark
         //        } else {
         //            object.Material.theme = Material.Light
         //        }
         
-        //        object.Material.foreground = object.Kirigami.Theme.textColor
-        //        object.Material.background = object.Kirigami.Theme.backgroundColor
-        //        object.Material.primary = object.Kirigami.Theme.highlightColor
-        //        object.Material.accent = object.Kirigami.Theme.highlightColor
+        //        object.Material.foreground = object.Maui.Theme.textColor
+        //        object.Material.background = object.Maui.Theme.backgroundColor
+        //        object.Material.primary = object.Maui.Theme.highlightColor
+        //        object.Material.accent = object.Maui.Theme.highlightColor
         //    }
 }

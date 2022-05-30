@@ -24,7 +24,6 @@ import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.14 as Kirigami
 
 /*!
  * \since org.mauikit.controls 1.0
@@ -50,8 +49,8 @@ T.Pane
     topPadding: control.padding
     bottomPadding: control.padding
     
-    //     Kirigami.Theme.inherit: true
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    //     Maui.Theme.inherit: true
+    Maui.Theme.colorSet: Maui.Theme.View
     
     /*!
      *      \qmlproperty list<Object> Item::content
@@ -97,7 +96,7 @@ T.Pane
          */
     property int headerPositioning : flickable ? ListView.PullBackHeader : ListView.InlineHeader
 
-    property int headerColorSet : altHeader ? Kirigami.Theme.Window : Kirigami.Theme.Header
+    property int headerColorSet : altHeader ? Maui.Theme.Window : Maui.Theme.Header
 
     /*!
          *      A title for the page.
@@ -247,7 +246,7 @@ T.Pane
 
     background: Rectangle
     {
-        color: Kirigami.Theme.backgroundColor
+        color: Maui.Theme.backgroundColor
          Behavior on color
         {
             Maui.ColorTransition{}
@@ -382,8 +381,8 @@ T.Pane
         width: visible ? parent.width : 0
         height: visible ? implicitHeight : 0
 
-        Kirigami.Theme.inherit: false
-        Kirigami.Theme.colorSet: control.headerColorSet
+        Maui.Theme.inherit: false
+        Maui.Theme.colorSet: control.headerColorSet
 
         //             Label
         //             {
@@ -398,7 +397,7 @@ T.Pane
             enabled: false
             NumberAnimation
             {
-                duration: Kirigami.Units.shortDuration
+                duration: Maui.Style.units.shortDuration
                 easing.type: Easing.InOutQuad
             }
         }
@@ -416,7 +415,7 @@ T.Pane
                     elide : Text.ElideRight
                     font.bold : true
                     font.weight: Font.Bold
-                    color : Kirigami.Theme.textColor
+                    color : Maui.Theme.textColor
                     font.pointSize: Maui.Style.fontSizes.large
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
@@ -461,7 +460,7 @@ T.Pane
             enabled: false
             NumberAnimation
             {
-                duration: Kirigami.Units.shortDuration
+                duration: Maui.Style.units.shortDuration
                 easing.type: Easing.InOutQuad
             }
         }

@@ -49,11 +49,11 @@ T.ComboBox
 {
     id: control
 
-    palette: Kirigami.Theme.palette
+    palette: Maui.Theme.palette
     enabled: control.count > 0
        //NOTE: typeof necessary to not have warnings on Qt 5.7
-       Kirigami.Theme.colorSet: typeof(editable) != "undefined" && editable ? Kirigami.Theme.View : Kirigami.Theme.Button
-       Kirigami.Theme.inherit: false
+       Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
+       Maui.Theme.inherit: false
 
     property bool responsive: Kirigami.Settings.hasTransientTouchInput
 
@@ -78,8 +78,8 @@ T.ComboBox
         //        Material.foreground: control.currentIndex === index ? parent.Material.accent : parent.Material.foreground
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
-        Kirigami.Theme.colorSet: control.Kirigami.Theme.inherit ? control.Kirigami.Theme.colorSet : Kirigami.Theme.View
-        Kirigami.Theme.inherit: control.Kirigami.Theme.inherit
+        Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
+        Maui.Theme.inherit: control.Maui.Theme.inherit
 
     }
 
@@ -87,7 +87,7 @@ T.ComboBox
     {
         x: control.mirrored ? control.padding : control.width - width - control.padding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2
-        color: control.enabled ? control.Kirigami.Theme.textColor : control.Kirigami.Theme.highlightColor
+        color: control.enabled ? control.Maui.Theme.textColor : control.Maui.Theme.highlightColor
         source: "go-down"
         height: Maui.Style.iconSizes.small
         width: height
@@ -109,9 +109,9 @@ T.ComboBox
         selectByMouse: !Kirigami.Settings.tabletMode
 
         font: control.font
-        color: control.Kirigami.Theme.textColor
-        selectionColor:  control.Kirigami.Theme.highlightColor
-        selectedTextColor: control.Kirigami.Theme.highlightedTextColor
+        color: control.Maui.Theme.textColor
+        selectionColor:  control.Maui.Theme.highlightColor
+        selectedTextColor: control.Maui.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
         opacity: control.enabled ? 1 : 0.5
         //        cursorDelegate: CursorDelegate { }
@@ -124,9 +124,9 @@ T.ComboBox
 
         radius: Maui.Style.radiusV
 
-        color: control.enabled ? (control.editable ? control.Kirigami.Theme.backgroundColor : Qt.lighter(Kirigami.Theme.backgroundColor)) : "transparent"
+        color: control.enabled ? (control.editable ? control.Maui.Theme.backgroundColor : Qt.lighter(Maui.Theme.backgroundColor)) : "transparent"
 
-        border.color: control.enabled ? ( control.editable && control.activeFocus ? control.Kirigami.Theme.highlightColor : color) : control.Kirigami.Theme.backgroundColor
+        border.color: control.enabled ? ( control.editable && control.activeFocus ? control.Maui.Theme.highlightColor : color) : control.Maui.Theme.backgroundColor
 
         MouseArea
         {
@@ -216,11 +216,11 @@ T.ComboBox
         background: Rectangle
         {
             id: _bg
-            implicitWidth: Kirigami.Units.gridUnit * 8
-            color: control.Kirigami.Theme.backgroundColor
+            implicitWidth: Maui.Style.units.gridUnit * 8
+            color: control.Maui.Theme.backgroundColor
             radius: control.responsive ? 0 : Maui.Style.radiusV
 
-            readonly property color m_color : Qt.darker(Kirigami.Theme.backgroundColor, 2.2)
+            readonly property color m_color : Qt.darker(Maui.Theme.backgroundColor, 2.2)
             border.color: control.responsive ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
 
             Rectangle
@@ -230,24 +230,24 @@ T.ComboBox
                 anchors.margins: 1
                 color: "transparent"
                 radius: parent.radius - 0.5
-                border.color: Qt.lighter(Kirigami.Theme.backgroundColor, 2)
+                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
                 opacity: 0.7
             }
 
-            Kirigami.Separator
+            Maui.Separator
             {
                 visible: control.responsive
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: 0.5
-                weight: Kirigami.Separator.Weight.Light
+                weight: Maui.Separator.Weight.Light
             }
 
             layer.enabled: control.responsive
             layer.effect: Kirigami.ShadowedRectangle
             {
-                color: Kirigami.Theme.backgroundColor
+                color: Maui.Theme.backgroundColor
                 shadow.xOffset: 0
                 shadow.yOffset: -2
                 shadow.color: Qt.rgba(0, 0, 0, 0.3)

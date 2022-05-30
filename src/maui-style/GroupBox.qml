@@ -43,7 +43,7 @@ T.GroupBox {
 
         text: control.title
         font: control.font
-        color: Kirigami.Theme.textColor
+        color: Maui.Theme.textColor
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
@@ -51,7 +51,7 @@ T.GroupBox {
 
     background: Rectangle {
         color: "transparent"
-        property color borderColor: Kirigami.Theme.textColor
+        property color borderColor: Maui.Theme.textColor
         border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
     }
 }

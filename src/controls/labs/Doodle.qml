@@ -13,8 +13,8 @@ Maui.Dialog
 {
     id: control
 
-    Kirigami.Theme.backgroundColor: Qt.rgba(bgColor.r, bgColor.g, bgColor.b, 0.85)
-    Kirigami.Theme.textColor:"#fefefe"
+    Maui.Theme.backgroundColor: Qt.rgba(bgColor.r, bgColor.g, bgColor.b, 0.85)
+    Maui.Theme.textColor:"#fefefe"
     //     deafultButtons: false
 
     maxHeight: img.height + footer.height + Maui.Style.toolBarHeight + Maui.Style.space.medium
@@ -204,13 +204,13 @@ Maui.Dialog
             leftContent: Label
             {
                 text: i18n("Size")
-                color: Kirigami.Theme.textColor
+                color: Maui.Theme.textColor
             }
 
             rightContent: Label
             {
                 text: _sizeSlider.value
-                color: Kirigami.Theme.textColor
+                color: Maui.Theme.textColor
             }
 
             middleContent: Slider
@@ -234,7 +234,7 @@ Maui.Dialog
             leftContent: Label
             {
                 text: i18n("Opacity")
-                color: Kirigami.Theme.textColor
+                color: Maui.Theme.textColor
             }
 
             middleContent: Slider
@@ -249,7 +249,7 @@ Maui.Dialog
             rightContent: Label
             {
                 text: _opacitySlider.value
-                color: Kirigami.Theme.textColor
+                color: Maui.Theme.textColor
             }
         },
 

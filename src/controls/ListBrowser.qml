@@ -373,10 +373,10 @@ Item
                 x: 0
                 y: 0
                 visible: false
-                color: Qt.rgba(control.Kirigami.Theme.highlightColor.r,control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.2)
+                color: Qt.rgba(control.Maui.Theme.highlightColor.r,control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.2)
                 opacity: 0.7
                 
-                borderColor: control.Kirigami.Theme.highlightColor
+                borderColor: control.Maui.Theme.highlightColor
                 borderWidth: 2
                 solidBorder: false
                 

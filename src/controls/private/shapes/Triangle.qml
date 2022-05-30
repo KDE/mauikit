@@ -12,7 +12,7 @@ Shape
     /**
       * color : color
       */
-    property color color : Kirigami.Theme.backgroundColor
+    property color color : Maui.Theme.backgroundColor
 
     ShapePath
     {

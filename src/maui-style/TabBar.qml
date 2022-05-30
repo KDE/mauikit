@@ -30,8 +30,8 @@ import org.mauikit.controls 1.0 as Maui
 T.TabBar {
     id: controlRoot
 
-    Kirigami.Theme.colorSet: Kirigami.Theme.Button
-    Kirigami.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
 
     implicitWidth: contentItem.implicitWidth
     implicitHeight: contentItem.implicitHeight
@@ -66,7 +66,7 @@ T.TabBar {
                 top : controlRoot.position == T.TabBar.Header ? undefined : parent.top
             }
             height: 1
-            color: Kirigami.Theme.textColor
+            color: Maui.Theme.textColor
             opacity: 0.4
         }
     }

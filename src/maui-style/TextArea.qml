@@ -28,7 +28,7 @@ import org.kde.kirigami 2.5 as Kirigami
 
 T.TextArea {
     id: control
-    palette: Kirigami.Theme.palette
+    palette: Maui.Theme.palette
 
 
     implicitWidth: Math.max(contentWidth + leftPadding + rightPadding,
@@ -40,9 +40,9 @@ T.TextArea {
 
     padding: 6
 
-    color: Kirigami.Theme.textColor
-    selectionColor: Kirigami.Theme.highlightColor
-    selectedTextColor: Kirigami.Theme.textColor
+    color: Maui.Theme.textColor
+    selectionColor: Maui.Theme.highlightColor
+    selectedTextColor: Maui.Theme.textColor
     opacity: control.enabled ? 1 : 0.6
     wrapMode: Text.WordWrap
 //    verticalAlignment: TextEdit.AlignTop
@@ -77,6 +77,6 @@ T.TextArea {
 //        y: parent.height - height - control.bottomPadding / 2
         implicitWidth: 120
 //        height: control.activeFocus ? 2 : 1
-        color: control.Kirigami.Theme.backgroundColor
+        color: control.Maui.Theme.backgroundColor
     }
 }

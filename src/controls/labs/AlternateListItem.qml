@@ -1,6 +1,5 @@
 import QtQuick 2.15
 
-import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
@@ -34,7 +33,7 @@ T.Control
 
     background: Rectangle
     {
-        color: control.hovered ? Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9)) : "transparent"
+        color: control.hovered ? Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9)) : "transparent"
         opacity: control.hovered ? 0.5 : 1
 
          Behavior on color
@@ -42,10 +41,10 @@ T.Control
             Maui.ColorTransition{}
         }
         
-        //Kirigami.Separator
+        //Maui.Separator
         //{
             //visible: !control.lastOne
-            //weight: Kirigami.Separator.Weight.Light
+            //weight: Maui.Separator.Weight.Light
             //height: 0.5
             //anchors.left: parent.left
             //anchors.right: parent.right

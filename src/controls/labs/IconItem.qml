@@ -92,7 +92,7 @@ Item
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
-        color: isMask ? (control.highlighted ? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor) : "transparent"
+        color: isMask ? (control.highlighted ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor) : "transparent"
         isMask: (height <= Maui.Style.iconSizes.small)
 //         selected: control.highlighted
         

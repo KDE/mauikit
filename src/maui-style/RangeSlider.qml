@@ -44,9 +44,9 @@ T.RangeSlider {
         implicitWidth: 18
         implicitHeight: 18
         radius: width / 2
-        property color borderColor: Kirigami.Theme.textColor
-        border.color: control.activeFocus ? Kirigami.Theme.highlightColor : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
-        color: Kirigami.Theme.backgroundColor
+        property color borderColor: Maui.Theme.textColor
+        border.color: control.activeFocus ? Maui.Theme.highlightColor : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
+        color: Maui.Theme.backgroundColor
         Rectangle {
             z: -1
             x: 1
@@ -65,9 +65,9 @@ T.RangeSlider {
         implicitWidth: 18
         implicitHeight: 18
         radius: width / 2
-        property color borderColor: Kirigami.Theme.textColor
-        border.color: control.activeFocus ? Kirigami.Theme.highlightColor : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
-        color: Kirigami.Theme.backgroundColor
+        property color borderColor: Maui.Theme.textColor
+        border.color: control.activeFocus ? Maui.Theme.highlightColor : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
+        color: Maui.Theme.backgroundColor
         Rectangle {
             z: -1
             x: 1
@@ -86,7 +86,7 @@ T.RangeSlider {
         width: horizontal ? control.availableWidth : implicitWidth
         height: horizontal ? implicitHeight : control.availableHeight
         radius: Math.round(Math.min(width/2, height/2))
-        property color bgColor: Kirigami.Theme.textColor
+        property color bgColor: Maui.Theme.textColor
         color: Qt.rgba(bgColor.r, bgColor.g, bgColor.b, 0.3)
         anchors.centerIn: parent
 
@@ -95,7 +95,7 @@ T.RangeSlider {
             y: parent.horizontal ? 0 : control.second.visualPosition * parent.height + 6
             width: parent.horizontal ? control.second.position * parent.width - control.first.position * parent.width - 6 : 6
             height: parent.horizontal ? 6 : control.second.position * parent.height - control.first.position * parent.height - 6
-            color: Kirigami.Theme.highlightColor
+            color: Maui.Theme.highlightColor
         }
     }
 }

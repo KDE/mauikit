@@ -21,7 +21,6 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.15
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 /**
@@ -190,7 +189,7 @@ Item
                 {
                     NumberAnimation
                     {
-                        duration: Kirigami.Units.longDuration
+                        duration: Maui.Style.units.longDuration
                         easing.type: Easing.OutBack
 
                     }
@@ -202,7 +201,7 @@ Item
                 //                    height: Maui.Style.iconSizes.small
                 //                    width: height
                 //                    source:  control.iconSource || "folder-images"
-                //                    color: Kirigami.Theme.textColor
+                //                    color: Maui.Theme.textColor
                 //                    opacity: 0.5
                 //                }
             }
@@ -239,7 +238,7 @@ Item
 
                         elide: Qt.ElideRight
                         wrapMode: Text.Wrap
-                        color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                        color: control.isCurrentItem || control.highlighted? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
                     }
 
                     Label
@@ -256,7 +255,7 @@ Item
 
                         elide: Qt.ElideRight
                         wrapMode: Text.NoWrap
-                        color: control.isCurrentItem || control.highlighted? control.Kirigami.Theme.highlightedTextColor : control.Kirigami.Theme.textColor
+                        color: control.isCurrentItem || control.highlighted? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
                         opacity: control.isCurrentItem ? 0.8 : 0.6
                     }
                 }
@@ -266,7 +265,7 @@ Item
                 //visible: (control.hovered ) && _label1.implicitHeight > _label1.height
                 //height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
                 //width: parent.width
-                //color: Kirigami.Theme.backgroundColor
+                //color: Maui.Theme.backgroundColor
                 //anchors.bottom: parent.bottom
                 //radius: Maui.Style.radiusV
                 //clip: true

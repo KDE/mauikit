@@ -53,8 +53,8 @@ Maui.SideBar
     delegate: Maui.ListDelegate
     {
         id: itemDelegate
-        Kirigami.Theme.textColor: control.Kirigami.Theme.textColor
-        Kirigami.Theme.backgroundColor: control.Kirigami.Theme.backgroundColor
+        Maui.Theme.textColor: control.Maui.Theme.textColor
+        Maui.Theme.backgroundColor: control.Maui.Theme.backgroundColor
 
         readonly property QtObject action : modelData
         // 					action : modelData

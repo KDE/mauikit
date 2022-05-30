@@ -28,7 +28,7 @@ import org.mauikit.controls 1.3 as Maui
 T.Slider
 {
     id: control
-    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    Maui.Theme.colorSet: Maui.Theme.Button
 
     implicitWidth: background.implicitWidth
     implicitHeight: background.implicitHeight
@@ -45,8 +45,8 @@ T.Slider
         width: Maui.Style.iconSizes.medium
         height: width
         radius: width /2
-        color: Kirigami.Theme.highlightColor
-        border.color: Kirigami.Theme.highlightColor
+        color: Maui.Theme.highlightColor
+        border.color: Maui.Theme.highlightColor
 
         Behavior on scale
         {
@@ -76,7 +76,7 @@ T.Slider
         width: control.horizontal ? control.availableWidth : 8
         height: control.horizontal ? 8 : control.availableHeight
 
-        color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
         scale: control.horizontal && control.mirrored ? -1 : 1
         radius: 4
         
@@ -101,8 +101,8 @@ Behavior on color
                 bottomRightRadius: 0
             }
 
-            color: Qt.rgba(control.Kirigami.Theme.highlightColor.r, control.Kirigami.Theme.highlightColor.g, control.Kirigami.Theme.highlightColor.b, 0.7)
-//            border.color: control.Kirigami.Theme.highlightColor
+            color: Qt.rgba(control.Maui.Theme.highlightColor.r, control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.7)
+//            border.color: control.Maui.Theme.highlightColor
             
             Behavior on color
         {

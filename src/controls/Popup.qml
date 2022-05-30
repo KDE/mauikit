@@ -20,7 +20,6 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 import QtQuick.Templates 2.15 as T
 
@@ -41,7 +40,7 @@ T.Popup
     id: control
     
     parent: ApplicationWindow.overlay
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.View
     
     width: filling ? parent.width : mWidth
     height: filling ? parent.height : mHeight
@@ -54,7 +53,7 @@ T.Popup
         
         NumberAnimation
         {
-            duration: Kirigami.Units.shortDuration
+            duration: Maui.Style.units.shortDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -65,7 +64,7 @@ T.Popup
         
         NumberAnimation
         {
-            duration: Kirigami.Units.shortDuration
+            duration: Maui.Style.units.shortDuration
             easing.type: Easing.InOutQuad
         }
     }
@@ -155,7 +154,7 @@ T.Popup
             //border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
             
             
-            //property color borderColor: control.Kirigami.Theme.textColor
+            //property color borderColor: control.Maui.Theme.textColor
             ////                        opacity: 0.7
         //}
 
@@ -166,14 +165,14 @@ T.Popup
     
     background: Rectangle
     {
-        color: control.Kirigami.Theme.backgroundColor
+        color: control.Maui.Theme.backgroundColor
         
         radius: control.filling ? 0 : Maui.Style.radiusV
-        //        border.color: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.backgroundColor, Kirigami.Theme.textColor, 0.15);
+        //        border.color: Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, 0.15);
         border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
         
-        property color borderColor: control.Kirigami.Theme.textColor
+        property color borderColor: control.Maui.Theme.textColor
         Behavior on color
         {
             Maui.ColorTransition{}

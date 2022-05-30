@@ -68,7 +68,7 @@ T.MenuItem
     leftInset: Maui.Style.space.small
     rightInset: Maui.Style.space.small
     
-    icon.color: control.down || control.pressed ? (control.flat ? Kirigami.Theme.highlightColor : Kirigami.Theme.highlightedTextColor) : Kirigami.Theme.textColor
+    icon.color: control.down || control.pressed ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     indicator: CheckIndicator
     {
@@ -129,9 +129,9 @@ T.MenuItem
         implicitHeight: control.visible ? (Kirigami.Settings.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) : 0
         radius: Maui.Style.radiusV
 
-        readonly property color m_color : Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+        readonly property color m_color : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
 
-        color: control.pressed || control.down ? control.Kirigami.Theme.highlightColor : (control.highlighted || control.hovered ? control.Kirigami.Theme.hoverColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3))
+        color: control.pressed || control.down ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3))
         
          Behavior on color
         {

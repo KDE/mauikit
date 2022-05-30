@@ -58,8 +58,8 @@ Maui.ComboBox
         font.family: text      
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
-        Kirigami.Theme.colorSet: control.Kirigami.Theme.inherit ? control.Kirigami.Theme.colorSet : Kirigami.Theme.View
-        Kirigami.Theme.inherit: control.Kirigami.Theme.inherit
+        Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
+        Maui.Theme.inherit: control.Maui.Theme.inherit
 
     }
     
@@ -79,9 +79,9 @@ Maui.ComboBox
         selectByMouse: !Kirigami.Settings.tabletMode
 
         font: control.font
-        color: control.Kirigami.Theme.textColor
-        selectionColor:  control.Kirigami.Theme.highlightColor
-        selectedTextColor: control.Kirigami.Theme.highlightedTextColor
+        color: control.Maui.Theme.textColor
+        selectionColor:  control.Maui.Theme.highlightColor
+        selectedTextColor: control.Maui.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
         opacity: control.enabled ? 1 : 0.5
         //        cursorDelegate: CursorDelegate { }

@@ -37,18 +37,18 @@ T.Label
     renderType: Window.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
     
 
-    font.capitalization: Kirigami.Theme.defaultFont.capitalization
-    font.family: Kirigami.Theme.defaultFont.family
-    font.italic: Kirigami.Theme.defaultFont.italic
-    font.letterSpacing: Kirigami.Theme.defaultFont.letterSpacing
-    font.pointSize: Kirigami.Theme.defaultFont.pointSize
-    font.strikeout: Kirigami.Theme.defaultFont.strikeout
-    font.underline: Kirigami.Theme.defaultFont.underline
-    font.weight: Kirigami.Theme.defaultFont.weight
-    font.wordSpacing: Kirigami.Theme.defaultFont.wordSpacing
+    font.capitalization: Maui.Theme.defaultFont.capitalization
+    font.family: Maui.Theme.defaultFont.family
+    font.italic: Maui.Theme.defaultFont.italic
+    font.letterSpacing: Maui.Theme.defaultFont.letterSpacing
+    font.pointSize: Maui.Theme.defaultFont.pointSize
+    font.strikeout: Maui.Theme.defaultFont.strikeout
+    font.underline: Maui.Theme.defaultFont.underline
+    font.weight: Maui.Theme.defaultFont.weight
+    font.wordSpacing: Maui.Theme.defaultFont.wordSpacing
     
-    color: Kirigami.Theme.textColor
-    linkColor: Kirigami.Theme.linkColor
+    color: Maui.Theme.textColor
+    linkColor: Maui.Theme.linkColor
 
     opacity: enabled? 1 : 0.6
 

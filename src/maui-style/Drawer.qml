@@ -23,9 +23,10 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.3
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
-T.Drawer {
+T.Drawer
+{
     id: control
 
     parent: T.ApplicationWindow.overlay
@@ -43,8 +44,8 @@ T.Drawer {
 
     background: Rectangle 
     {
-        color: Kirigami.Theme.backgroundColor
-         Kirigami.Separator 
+        color: Maui.Theme.backgroundColor
+         Maui.Separator 
         {
             anchors 
             {

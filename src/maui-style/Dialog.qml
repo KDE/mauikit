@@ -24,6 +24,7 @@ import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import QtQuick.Templates 2.3 as T
 import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.2 as Maui
 
 T.Dialog
 {
@@ -37,7 +38,7 @@ T.Dialog
     contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0) + header.implicitHeight + footer.implicitHeight
 
-    padding: Kirigami.Units.gridUnit
+    padding: Maui.Style.units.gridUnit
 
     enter: Transition {
         NumberAnimation {
@@ -63,8 +64,8 @@ T.Dialog
 
     background: Rectangle {
         radius: height * 0.005
-        color: Kirigami.Theme.viewBackgroundColor
-        property color borderColor: Kirigami.Theme.textColor
+        color: Maui.Theme.viewBackgroundColor
+        property color borderColor: Maui.Theme.textColor
         border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
 
         layer.enabled: true

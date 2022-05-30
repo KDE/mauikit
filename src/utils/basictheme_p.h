@@ -9,6 +9,8 @@
 
 #include "platformtheme.h"
 
+class ImageColors;
+
 namespace Maui
 {
 class BasicTheme;
@@ -150,6 +152,12 @@ public:
 
     Q_SIGNAL void changed();
     Q_SIGNAL void sync(QQuickItem *object);
+    
+private:
+    ImageColors *m_imgColors;
+    void setDarkColors();
+    void setLightColors();
+    void setAdaptiveColors();
 };
 
 class BasicThemeInstance : public QObject

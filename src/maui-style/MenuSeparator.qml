@@ -37,8 +37,7 @@
 import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
 
-import org.mauikit.controls 1.2 as Maui
-import org.kde.kirigami 2.14 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 T.MenuSeparator
 {
@@ -51,9 +50,9 @@ T.MenuSeparator
 
     verticalPadding: Maui.Style.space.medium
 
-    contentItem: Kirigami.Separator
+    contentItem: Maui.Separator
     {
         height: 0.5
-        weight: Kirigami.Separator.Weight.Light        
+        weight: Maui.Separator.Weight.Light        
     }
 }

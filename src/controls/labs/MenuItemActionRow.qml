@@ -24,7 +24,7 @@ T.MenuItem
     spacing: Maui.Style.space.medium
     padding: Maui.Style.space.small
     
-    display : width > Kirigami.Units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
+    display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Kirigami.Settings.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     
     contentItem: RowLayout
     {

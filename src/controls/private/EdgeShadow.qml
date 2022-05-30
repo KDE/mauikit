@@ -17,9 +17,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.1
+import QtQuick 2.15
 import QtGraphicalEffects 1.0
-import org.kde.kirigami 2.8 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 LinearGradient
 {
@@ -39,10 +39,10 @@ LinearGradient
     /**
       *
       */
-    property color color: Kirigami.Theme.textColor
+    property color color: Maui.Theme.textColor
 
-    implicitWidth: Kirigami.Units.gridUnit/2
-    implicitHeight: Kirigami.Units.gridUnit/2
+    implicitWidth: Maui.Style.units.gridUnit/2
+    implicitHeight: Maui.Style.units.gridUnit/2
 
     start: Qt.point((edge !== Qt.RightEdge ? 0 : width), (edge !== Qt.BottomEdge ? 0 : height))
     end: Qt.point((edge !== Qt.LeftEdge ? 0 : width), (edge !== Qt.TopEdge ? 0 : height))

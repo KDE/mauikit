@@ -32,8 +32,8 @@ Rectangle
 {
     id: control
 
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
+    Maui.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Complementary
 
     /*!
       \qmlproperty bool ApplicationWindow::item
@@ -104,7 +104,7 @@ Rectangle
     implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.implicitWidth, size) : size
 
     radius: Math.min(width, height)
-    color: Kirigami.Theme.backgroundColor
+    color: Maui.Theme.backgroundColor
 
    Behavior on color
         {
@@ -129,7 +129,7 @@ Rectangle
             width: parent.width
             text: control.text
             font: control.font
-            color: Kirigami.Theme.textColor
+            color: Maui.Theme.textColor
             verticalAlignment: Qt.AlignVCenter
             horizontalAlignment: Qt.AlignHCenter
         }
@@ -142,7 +142,7 @@ Rectangle
         {
             anchors.centerIn: parent
             source: control.iconName
-            color: Kirigami.Theme.textColor
+            color: Maui.Theme.textColor
             width: control.size
             height: width
             isMask: true

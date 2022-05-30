@@ -109,8 +109,8 @@ Maui.Dialog
                 anchors.leftMargin: Maui.Style.space.small
                 anchors.rightMargin: Maui.Style.space.small
                 radius: Maui.Style.radiusV
-                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-                border.color: Kirigami.Theme.backgroundColor
+                color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                border.color: Maui.Theme.backgroundColor
             }
 
             Rectangle
@@ -121,18 +121,18 @@ Maui.Dialog
                 anchors.leftMargin: Maui.Style.space.tiny
                 anchors.rightMargin: Maui.Style.space.tiny
                 radius: Maui.Style.radiusV
-                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
-                border.color: Kirigami.Theme.backgroundColor
+                color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                border.color: Maui.Theme.backgroundColor
             }
 
             Rectangle
             {
                 anchors.fill: parent
                 anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
-                border.color: Kirigami.Theme.backgroundColor
+                border.color: Maui.Theme.backgroundColor
 
                 radius: Maui.Style.radiusV
-                color: Qt.tint(control.Kirigami.Theme.textColor, Qt.rgba(control.Kirigami.Theme.backgroundColor.r, control.Kirigami.Theme.backgroundColor.g, control.Kirigami.Theme.backgroundColor.b, 0.9))
+                color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
 
                 Maui.GridItemTemplate
                 {
@@ -149,11 +149,9 @@ Maui.Dialog
 
     Maui.Separator
     {
-        edge: Qt.TopEdge
         visible: _listViewLoader.active
         Layout.preferredWidth: 100
         Layout.alignment: Qt.AlignCenter
-        radius: 1
         Layout.margins: Maui.Style.space.medium
     }
 

@@ -39,8 +39,10 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
 import org.kde.kirigami 2.9 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
-T.ScrollView {
+T.ScrollView 
+{
     id: control
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -48,8 +50,8 @@ T.ScrollView {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding)
 
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
-    Kirigami.Theme.inherit: !background || !background.visible
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: !background || !background.visible
 
     data: Kirigami.WheelHandler {
         target: control.contentItem

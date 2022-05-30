@@ -34,12 +34,12 @@ T.Button
     implicitHeight: background.implicitHeight + topPadding + bottomPadding
     hoverEnabled: true
 
-    Kirigami.Theme.colorSet: Kirigami.Theme.Button
+    Maui.Theme.colorSet: Maui.Theme.Button
 
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
 
-    icon.color: control.down || control.checked ? (control.flat ? Kirigami.Theme.highlightColor : Kirigami.Theme.highlightedTextColor) : Kirigami.Theme.textColor
+    icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     spacing: Maui.Style.space.small
     padding: Maui.Style.space.tiny
@@ -68,7 +68,7 @@ T.Button
         visible: !control.flat
         implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
         implicitHeight: Maui.Style.rowHeight
-        color: control.pressed || control.down || control.checked ? control.Kirigami.Theme.highlightColor : (control.highlighted || control.hovered ? control.Kirigami.Theme.hoverColor : (Maui.Style.darkMode ? Qt.lighter(Kirigami.Theme.backgroundColor,1.1) : Qt.darker(Kirigami.Theme.backgroundColor, 1.1)))
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : (Maui.Style.darkMode ? Qt.lighter(Maui.Theme.backgroundColor,1.1) : Qt.darker(Maui.Theme.backgroundColor, 1.1)))
         
         radius: Maui.Style.radiusV
         
