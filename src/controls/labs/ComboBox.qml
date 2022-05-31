@@ -49,11 +49,10 @@ T.ComboBox
 {
     id: control
 
-    palette: Maui.Theme.palette
     enabled: control.count > 0
        //NOTE: typeof necessary to not have warnings on Qt 5.7
        Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
-       Maui.Theme.inherit: false
+//        Maui.Theme.inherit: false
 
     property bool responsive: Kirigami.Settings.hasTransientTouchInput
 
