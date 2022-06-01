@@ -31,7 +31,9 @@ AbstractButton
 {
     id: control
     
-    Maui.Theme.colorSet: flat ? Maui.Theme.Window : Maui.Theme.Button
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
     spacing: Maui.Style.space.small
     
     padding: Maui.Style.space.small
@@ -67,7 +69,7 @@ AbstractButton
     
     focusPolicy: Qt.NoFocus
     
-    hoverEnabled: !Kirigami.Settings.isMobile
+    hoverEnabled: !Maui.Handy.isMobile
     implicitHeight: _layoutButton.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layoutButton.implicitWidth + leftPadding + rightPadding
     

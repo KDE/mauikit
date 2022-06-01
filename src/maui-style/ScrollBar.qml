@@ -37,8 +37,7 @@
 import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
 import QtQuick.Controls.Material 2.12
-import org.mauikit.controls 1.2 as Maui
-import org.kde.kirigami 2.7 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 T.ScrollBar
 {
@@ -53,7 +52,7 @@ T.ScrollBar
     visible: control.policy !== T.ScrollBar.AlwaysOff
     minimumSize: orientation == Qt.Horizontal ? height / width : width / height
 
-    interactive: !Kirigami.Settings.isMobile
+    interactive: !Maui.Handy.isMobile
     contentItem: Rectangle
     {
         

@@ -38,7 +38,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
 import QtQuick.Window 2.12
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.0 as Maui
 import QtGraphicalEffects 1.0
 
@@ -58,7 +57,7 @@ T.Menu
     verticalPadding: 8
     spacing: Maui.Style.space.tiny
     transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
-    modal: Kirigami.Settings.isMobile
+    modal: Maui.Handy.isMobile
 
     delegate: MenuItem { }
 

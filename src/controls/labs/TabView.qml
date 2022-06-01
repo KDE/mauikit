@@ -16,7 +16,7 @@ T.Container
     spacing: 0
     
     property alias holder : _holder
-    property bool mobile : Kirigami.Settings.isMobile
+    property bool mobile : Maui.Handy.isMobile
     
     property bool overviewMode : false
     

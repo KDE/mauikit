@@ -17,10 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef HANDY_H
-#define HANDY_H
-
-#include "mauikit_export.h"
+#pragma once
 #include <QObject>
 
 #include <QVariantMap>
@@ -29,10 +26,11 @@
  * \brief The Handy class
  * Contains useful static methods to be used as an attached property to the Maui application
  */
-class MAUIKIT_EXPORT Handy : public QObject
+class Handy : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Handy)
+    Q_DISABLE_MOVE(Handy)
     
     Q_PROPERTY(bool isMobile READ isMobile NOTIFY isMobileChanged)
     Q_PROPERTY(bool isTouch MEMBER m_isTouch CONSTANT FINAL)
@@ -48,13 +46,25 @@ class MAUIKIT_EXPORT Handy : public QObject
     Q_PROPERTY(bool singleClick MEMBER m_singleClick NOTIFY singleClickChanged)
 
 public:
-    Handy(QObject *parent = nullptr);
+    static Handy *qmlAttachedProperties(QObject *object);
+    
+    static Handy *instance()
+    {
+        if (m_instance)
+            return m_instance;
+        
+        m_instance = new Handy;
+        return m_instance;
+    }
 
 private:
+    static Handy *m_instance;
+    Handy(QObject *parent = nullptr);
+    
     bool m_isTouch = false;
     bool m_singleClick = true;
-    bool m_mobile : 1;
-    bool m_hasTransientTouchInput : 1;
+    bool m_mobile = 1;
+    bool m_hasTransientTouchInput = 1;
 
 public slots:
     /*!
@@ -194,4 +204,3 @@ signals:
     void isMobileChanged();
 };
 
-#endif // HANDY_H

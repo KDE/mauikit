@@ -146,24 +146,23 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 }
 
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
-{
-#if !defined Q_OS_ANDROID || defined Q_OS_LINUX || defined Q_OS_FREEBSD // ignore csd for those
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
-    {
-        if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
-        {
-                        this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
-        }
-    }else
-    {
-        this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
-    }
-#endif
+{   
+    getWindowControlsSettings();   
 }
 
 void CSDControls::getWindowControlsSettings()
 {    
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
+    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
+    {
+        if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
+        {
+            this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
+        }
+    }else
+    {
+        this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
+    }
     
     m_styleName = UTIL::loadSettings("CSDStyle", "GLOBAL", "Nitrux", true).toString();
     auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_styleName));
@@ -212,17 +211,12 @@ bool CSDControls::enableCSD() const
 
 void CSDControls::setEnableCSD(const bool &value)
 {
-        if (m_enableCSD == value)
-            return;
+    if (m_enableCSD == value)
+        return;
+    
+    m_enableCSD = value;
         
-        m_enableCSD = value;
-    
-    
     emit enableCSDChanged();
-    
-    if (m_enableCSD) {
-        getWindowControlsSettings();
-    }
 }
 
 QUrl CSDControls::source() const

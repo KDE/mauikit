@@ -22,7 +22,6 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.15
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import QtGraphicalEffects 1.0
@@ -375,7 +374,7 @@ Item
                 
                 onClicked:
                 {
-                    if(!Kirigami.Settings.isMobile && mouse.button === Qt.RightButton)
+                    if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
                         control.rightClicked(mouse)
                     else
                         control.clicked(mouse)
@@ -383,7 +382,7 @@ Item
                 
                 onPressAndHold :
                 {
-                    if(Kirigami.Settings.isMobile)
+                    if(Maui.Handy.isMobile)
                         control.rightClicked(mouse)
                 }
             }

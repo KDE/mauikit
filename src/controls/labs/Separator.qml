@@ -16,7 +16,8 @@ import org.mauikit.controls 1.3 as Maui
  *
  * @inherit QtQuick.Rectangle
  */
-Rectangle {
+Rectangle
+{
     id: root
     implicitHeight: 1
     implicitWidth: 1
@@ -46,5 +47,11 @@ Rectangle {
      * and mix weights higher than Normal with the text color.
      */
     color: Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, weight == Separator.Weight.Light ? 0.07 : 0.15);
+    
+    Behavior on color
+    {
+        Maui.ColorTransition{}
+    }
+    
 }
 

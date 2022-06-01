@@ -34,8 +34,8 @@ T.Control
     topPadding: padding
     bottomPadding: padding
     
-    Maui.Theme.colorSet: Maui.Theme.View
-    
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
     /**
      * actions : list<Action>
      */
@@ -195,7 +195,7 @@ T.Control
                     
                     background: Kirigami.ShadowedRectangle
                     {
-                        color: checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Qt.lighter(Maui.Theme.backgroundColor))
+                        color: checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0

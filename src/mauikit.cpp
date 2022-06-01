@@ -168,8 +168,7 @@ void MauiKit::registerTypes(const char *uri)
         engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
         return platform;
     });
-    
-    
+        
     qmlRegisterUncreatableType<Maui::PlatformTheme>(uri, 1, 0, "Theme", QStringLiteral("Cannot create objects of type Theme, use it as an attached property"));
     qmlRegisterSingletonType<ColorUtils>(uri, 1, 3, "ColorUtils", [](QQmlEngine *, QJSEngine *) -> QObject*
     {
@@ -229,11 +228,14 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType<NotifyAction>(uri, 1, 3, "NotifyAction");
 
     qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
-    qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
-    qmlRegisterSingletonType<Handy>(uri, 1, 0, "Handy", [](QQmlEngine *, QJSEngine *)
-    {
-        return new Handy;
+    qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");    
+    qmlRegisterSingletonType<Handy>(uri, 1, 2, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+        Q_UNUSED(scriptEngine)
+        auto handy = Handy::instance();
+        engine->setObjectOwnership(handy, QQmlEngine::CppOwnership);
+        return handy;
     });
+    
 
     /** MAUI PLUGIN SUPPORT **/
 #ifdef SUPPORT_PLUGINS

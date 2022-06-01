@@ -7,14 +7,14 @@ import org.mauikit.controls 1.3 as Maui
 import org.kde.kirigami 2.14 as Kirigami
 
 /*!
-  \since org.mauikit.controls.labs 1.0
-  \inqmlmodule org.mauikit.controls.labs
-*/
+ \ since org.mauikit.controls.*labs 1.0
+ \inqmlmodule org.mauikit.controls.labs
+ */
 T.ItemDelegate
 {
     id: control
-
-    hoverEnabled: !Kirigami.Settings.isMobile
+    
+    hoverEnabled: !Maui.Handy.isMobile
     implicitHeight: Maui.Style.iconSizes.big
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     padding: spacing
@@ -26,30 +26,30 @@ T.ItemDelegate
     
     property alias label : _label1
     property alias iconSource : _icon.source
-
+    
     property bool showCloseButton : false
     
     property color color : control.Maui.Theme.backgroundColor
-
+    
     ToolTip.visible: hovered
     ToolTip.text: label.text
-
+    
     signal close()
-
+    
     background: Rectangle
     {
         id: _background
-//         opacity: 0.5
-               
-        color: Qt.lighter( control.pressed ? control.Maui.Theme.highlightColor : (control.hovered ? control.Maui.Theme.hoverColor : control.color))
+        //         opacity: 0.5
+        
+        color: Qt.lighter( control.pressed ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor : control.color))
         radius:  Maui.Style.radiusV   
         
- Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
     }
-
+    
     contentItem: RowLayout
     {
         id: _layout
@@ -69,13 +69,13 @@ T.ItemDelegate
                 implicitHeight: implicitWidth
                 color: _label1.color
                 
-Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
             }            
         }
-    
+        
         Label
         {
             id: _label1
@@ -83,9 +83,9 @@ Behavior on color
             Layout.fillHeight: true
             Layout.fillWidth: true
             verticalAlignment: Qt.AlignVCenter
-            color: Kirigami.ColorUtils.brightnessForColor(_background.color) === Kirigami.ColorUtils.Light ? Qt.darker(_background.color) : Qt.lighter(_background.color)
+            color: Maui.ColorUtils.brightnessForColor(_background.color) === Maui.ColorUtils.Light ? Qt.darker(_background.color) : Qt.lighter(_background.color)
         }
-
+        
         Loader
         {
             active: control.showCloseButton

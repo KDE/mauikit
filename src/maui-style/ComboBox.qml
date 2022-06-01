@@ -128,7 +128,7 @@ T.ComboBox
         y: control.editable ? control.height - 5 : 0
 
         width: Math.max(control.width, 150)
-        implicitHeight: Math.min(contentItem.implicitHeight, control.Window.height - topMargin - bottomMargin)
+        implicitHeight: Math.min(contentItem.implicitHeight, control.Window.window.height - topMargin - bottomMargin)
         transformOrigin: Item.Top
         padding: 0
     //    topPadding: 0

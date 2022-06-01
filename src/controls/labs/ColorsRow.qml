@@ -14,7 +14,7 @@ Row
 
     spacing: Maui.Style.space.medium
 
-    property int size : Kirigami.Settings.isMobile ? 26 : Maui.Style.iconSizes.medium
+    property int size : Maui.Handy.isMobile ? 26 : Maui.Style.iconSizes.medium
     signal colorPicked (string color)
     
     Repeater

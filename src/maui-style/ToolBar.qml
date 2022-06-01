@@ -27,17 +27,26 @@ import org.mauikit.controls 1.3 as Maui
 T.ToolBar 
 {
     id: controlRoot
-
-    palette: Maui.Theme.palette
+    Maui.Theme.colorSet: Maui.Theme.Header
+    Maui.Theme.inherit: false
+    
     implicitWidth: Math.max(background ? background.implicitWidth : 0, contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0, contentHeight + topPadding + bottomPadding)
-
+    
     contentWidth: contentChildren[0].implicitWidth
     contentHeight: contentChildren[0].implicitHeight
-
+    
+    spacing: Maui.Style.space.small
+    
     padding: Maui.Style.space.small
+    topPadding: Maui.Style.space.tiny
+    bottomPadding: Maui.Style.space.tiny
+    
+    leftPadding: padding
+    rightPadding: padding
+    
     contentItem: Item {}
-//    position: controlRoot.parent.footer == controlRoot ? ToolBar.Footer : ToolBar.Header
+    //    position: controlRoot.parent.footer == controlRoot ? ToolBar.Footer : ToolBar.Header
     background: Rectangle
     {
         implicitHeight: Maui.Style.toolBarHeight

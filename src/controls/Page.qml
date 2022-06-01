@@ -381,8 +381,8 @@ T.Pane
         width: visible ? parent.width : 0
         height: visible ? implicitHeight : 0
 
-        Maui.Theme.inherit: false
-        Maui.Theme.colorSet: control.headerColorSet
+        //Maui.Theme.inherit: false
+        //Maui.Theme.colorSet: control.headerColorSet
 
         //             Label
         //             {
@@ -830,7 +830,6 @@ T.Pane
         id: _csdRightControlsComponent
         Maui.WindowControls
         {
-            side: Qt.RightEdge
         }
     }
 

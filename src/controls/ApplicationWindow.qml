@@ -25,7 +25,6 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 import Qt.labs.settings 1.0
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
@@ -61,8 +60,8 @@ Window
 
     visible: true
 
-    width: Screen.desktopAvailableWidth * (Kirigami.Settings.isMobile ? 1 : 0.4)
-    height: Screen.desktopAvailableHeight * (Kirigami.Settings.isMobile ? 1 : 0.4)
+    width: Screen.desktopAvailableWidth * (Maui.Handy.isMobile ? 1 : 0.4)
+    height: Screen.desktopAvailableHeight * (Maui.Handy.isMobile ? 1 : 0.4)
 
     color: "transparent"
     flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
@@ -78,7 +77,7 @@ Window
     // Window shadows for CSD
     Loader
     {
-        active: Maui.App.controls.enableCSD && !Kirigami.Settings.isMobile && Maui.Handy.isLinux
+        active: Maui.App.controls.enableCSD && !Maui.Handy.isMobile && Maui.Handy.isLinux
         asynchronous: true
         sourceComponent: Maui.WindowShadow
         {

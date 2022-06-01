@@ -38,14 +38,15 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.15 as T
-import org.kde.kirigami 2.14 as Kirigami
+
 import org.mauikit.controls 1.3 as Maui
 
 T.ToolButton
 {
     id: control
-    Maui.Theme.colorSet: flat ? Maui.Theme.Window : Maui.Theme.Button
-   
+    Maui.Theme.colorSet:  Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
    opacity: enabled ? 1 : 0.5
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
@@ -54,7 +55,7 @@ T.ToolButton
                              contentItem.implicitHeight + topPadding + bottomPadding)
 //    baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    hoverEnabled: !Kirigami.Settings.isMobile
+    hoverEnabled: !Maui.Handy.isMobile
 
     spacing: Maui.Style.space.small
 

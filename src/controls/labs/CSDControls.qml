@@ -12,15 +12,14 @@ Loader
 {
     id: control
     asynchronous: true
-    active: Maui.App.controls.enableCSD && buttonsModel.length
-    visible: active
+    //active: buttonsModel.length
+    //visible: active
 
-    property int side
-    
+   
     property bool maximized : Window.window.visibility === Window.Maximized
     property bool isActiveWindow : Window.window.active
     
-    readonly property var buttonsModel : control.side === Qt.LeftEdge ?  Maui.App.controls.leftWindowControls :  Maui.App.controls.rightWindowControls
+    readonly property var buttonsModel : Maui.App.controls.rightWindowControls
 
 
     /**

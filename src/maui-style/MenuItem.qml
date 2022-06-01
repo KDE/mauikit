@@ -49,8 +49,9 @@ T.MenuItem
     id: control
 
     opacity: control.enabled ? 1 : 0.5
-
-    hoverEnabled: !Kirigami.Settings.isMobile
+    Maui.Theme.colorSet: Maui.Theme.Button
+    
+    hoverEnabled: !Maui.Handy.isMobile
 
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: visible ? Math.max(implicitBackgroundHeight + topInset + bottomInset,
@@ -61,7 +62,7 @@ T.MenuItem
     padding: Maui.Style.space.small
     verticalPadding: Maui.Style.space.small
 
-    spacing: Kirigami.Settings.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
+    spacing: Maui.Handy.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
 
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
@@ -126,12 +127,12 @@ T.MenuItem
     {
         visible: control.enabled
         implicitWidth: 200
-        implicitHeight: control.visible ? (Kirigami.Settings.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) : 0
+        implicitHeight: control.visible ? (Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) : 0
         radius: Maui.Style.radiusV
 
-        readonly property color m_color : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+        readonly property color m_color : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
 
-        color: control.pressed || control.down ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3))
+        color: control.pressed || control.down ? Maui.Theme.highlightColor : (control.highlighted || control.hovered ? Maui.Theme.hoverColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3))
         
          Behavior on color
         {

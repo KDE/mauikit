@@ -45,6 +45,8 @@
 #include <QFileSystemWatcher>
 #endif
 
+Handy *Handy::m_instance = nullptr;
+
 static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/kdeglobals";
 
 #ifdef KSHAREDCONFIG_H
@@ -90,6 +92,15 @@ Handy::Handy(QObject *parent)
         m_mobile = false;
     }
 #endif
+
+qDebug() << "CREATING INSTANCE OF MAUI HANDY";
+connect(qApp, &QCoreApplication::aboutToQuit, []()
+{
+    qDebug() << "Lets remove MauiApp singleton instance";
+    delete m_instance;
+    m_instance = nullptr;
+});
+
 
 }
 

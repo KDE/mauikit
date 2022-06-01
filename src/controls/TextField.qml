@@ -56,7 +56,7 @@ T.TextField
     leftPadding: Maui.Style.space.small
     rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.small
     
-    selectByMouse: !Kirigami.Settings.isMobile
+    selectByMouse: !Maui.Handy.isMobile
     
     persistentSelection: true
     
@@ -77,60 +77,31 @@ T.TextField
      * cleared
      */
     signal cleared()
-    
-    /**
-     * goBackTriggered :
-     */
-    signal goBackTriggered()
-    
-    /**
-     * goFowardTriggered :
-     */
-    signal goFowardTriggered()
-    
+        
     /**
      * contentDropped :
      */
     signal contentDropped(var drop)
     
-    onPressAndHold: !Kirigami.Settings.isMobile ? entryMenu.show() : undefined
+    onPressAndHold: !Maui.Handy.isMobile ? entryMenu.show() : undefined
     onPressed:
     {
-        if(!Kirigami.Settings.isMobile && event.button === Qt.RightButton)
+        if(!Maui.Handy.isMobile && event.button === Qt.RightButton)
             entryMenu.show()
     }
     
-    Keys.enabled: true
-    Keys.onBackPressed:
-    {
-        goBackTriggered();
-    }
+    Keys.enabled: true  
     
     Shortcut
     {
-        sequence: StandardKey.Quit
-        context: Qt.ApplicationShortcut
-        onActivated: control.clear()
+        sequence: StandardKey.Escape
+        onActivated: 
+        {
+            control.clear()
+            control.cleared()
+        }
     }
-    
-    Shortcut
-    {
-        sequence: "Forward"
-        onActivated: goFowardTriggered();
-    }
-    
-    Shortcut
-    {
-        sequence: StandardKey.Forward
-        onActivated: goFowardTriggered();
-    }
-    
-    Shortcut
-    {
-        sequence: StandardKey.Back
-        onActivated: goBackTriggered();
-    }
-    
+
     Behavior on leftPadding 
     {
         NumberAnimation 

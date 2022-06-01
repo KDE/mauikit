@@ -9,28 +9,31 @@ import QtQuick.Window 2.15
 import QtQuick.Templates 2.15 as T
 import QtGraphicalEffects 1.0
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 T.Menu
 {
     id: control
-    Maui.Theme.colorSet: Maui.Theme.View
     
-    property bool responsive: Kirigami.Settings.hasTransientTouchInput
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: false
+    
+    property bool responsive: Maui.Handy.isMobile
     
     property string subtitle
     property string titleImageSource
     property string titleIconSource
     
-    parent: control.responsive ?  ApplicationWindow.overlay : undefined
+    readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
+    
+    //parent: control.responsive ?  parent.Window.window : undefined
     
     //     x: control.responsive ? 0 : 0
-    y: control.responsive ? ApplicationWindow.overlay.height - height : 0
+    y: control.responsive ? parentWindow.height - height : 0
     
-    implicitWidth: control.responsive ? ApplicationWindow.overlay.width :  Math.min(ApplicationWindow.overlay.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
+    implicitWidth: control.responsive ? parentWindow.width :  Math.min(parentWindow.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
     
-    implicitHeight: control.responsive ? Math.min(ApplicationWindow.overlay.height * 0.8, contentHeight + Maui.Style.space.huge) :  Math.min(implicitContentHeight + topPadding + bottomPadding, ApplicationWindow.overlay.height * 0.9)
+    implicitHeight: control.responsive ? Math.min(parentWindow.height * 0.8, contentHeight + Maui.Style.space.huge) : implicitContentHeight + topPadding + bottomPadding
     
     focus: true
     modal: control.responsive
@@ -50,64 +53,70 @@ T.Menu
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem {}
     
-    Keys.forwardTo: _listView
+    //Keys.forwardTo: _listView    
     
-    
-    contentItem: Maui.ListBrowser
+    contentItem: ScrollView
     {
-        id: _listView
-        clip: true       
-        focus: true 
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
         
-        flickable.header: T.Control
+        ListView
         {
-            visible: control.title && control.title.length
-            height: visible ?  48 + topPadding + bottomPadding : 0
-            padding: Maui.Style.space.tiny
-            topPadding: 0
-            bottomPadding: control.bottomPadding
+            id: _listView
+            clip: true       
+            focus: true 
+            implicitHeight: contentHeight
             
-            width: parent.width
+            headerPositioning: ListView.InlineHeader
             
-            //            background: Item
-            //            {
-            //                Maui.Separator
-            //                {
-            //                    width: parent.width
-            //                    anchors.bottom: parent.bottom
-            //                }
-            //            }
+            model: control.contentModel
+            spacing: control.spacing
+            currentIndex: control.currentIndex 
             
-            contentItem: Maui.ListItemTemplate
+            snapMode: ListView.NoSnap
+            
+            boundsBehavior: Flickable.StopAtBounds
+            boundsMovement: Flickable.StopAtBounds
+            highlightFollowsCurrentItem: true
+            highlightMoveDuration: 0
+            highlightResizeDuration : 0
+            
+            keyNavigationEnabled : true
+            keyNavigationWraps : true
+            
+            header: T.Control
             {
-                label1.font.bold: true
-                label1.text: control.title
-                label2.text: control.subtitle
-                label1.font.pointSize: Maui.Style.fontSizes.large
-                imageSource: control.titleImageSource
-                iconSource: control.titleIconSource
-                maskRadius: Maui.Style.radiusV
-                imageSizeHint: 42
-                iconSizeHint: 32                
+                visible: control.title && control.title.length
+                height: visible ?  48 + topPadding + bottomPadding : 0
+                padding: Maui.Style.space.tiny
+                topPadding: 0
+                bottomPadding: control.bottomPadding
+                
+                width: parent.width
+                
+                //            background: Item
+                //            {
+                //                Maui.Separator
+                //                {
+                //                    width: parent.width
+                //                    anchors.bottom: parent.bottom
+                //                }
+                //            }
+                
+                contentItem: Maui.ListItemTemplate
+                {
+                    label1.font.bold: true
+                    label1.text: control.title
+                    label2.text: control.subtitle
+                    label1.font.pointSize: Maui.Style.fontSizes.large
+                    imageSource: control.titleImageSource
+                    iconSource: control.titleIconSource
+                    maskRadius: Maui.Style.radiusV
+                    imageSizeHint: 42
+                    iconSizeHint: 32                
+                }
             }
         }
-        
-        flickable.headerPositioning: ListView.InlineHeader
-        
-        //         implicitWidth: 
-        //         {
-        //             var maxWidth = 0;
-        //             for (var i = 0; i < control.contentItem.children.length; ++i) {
-        //                 maxWidth = Math.max(maxWidth, control.contentItem.children[i].implicitWidth);
-        //             }
-        //             return Math.min(250, maxWidth);
-        //         }
-        
-        implicitHeight: contentHeight
-        model: control.contentModel
-        spacing: control.spacing
-        padding: 0
-        currentIndex: control.currentIndex || 0
     }
     
     background: Rectangle
@@ -120,12 +129,12 @@ T.Menu
         
         border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
-         Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
         
-         Behavior on border.color
+        Behavior on border.color
         {
             Maui.ColorTransition{}
         }
@@ -138,10 +147,10 @@ T.Menu
             anchors.right: parent.right
             height: 0.5
             weight: Maui.Separator.Weight.Light
-             Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
         }
         
         layer.enabled: true

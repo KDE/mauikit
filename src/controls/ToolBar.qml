@@ -23,11 +23,11 @@ import QtQuick.Window 2.15
 
 import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
 
 import QtQuick.Layouts 1.3
 
 import "private" as Private
+import QtQuick.Templates 2.5 as T
 
 /**
  * ToolBar
@@ -42,9 +42,13 @@ import "private" as Private
 T.ToolBar
 {
     id: control
+    
+    Maui.Theme.colorSet: Maui.Theme.Header
+    Maui.Theme.inherit: false
+    
     implicitHeight: preferredHeight + topPadding + bottomPadding
     
-    implicitWidth: _mainLayout.implicitWidth + leftPadding + rightPadding
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
     spacing: Maui.Style.space.small
     
     padding: Maui.Style.space.small
@@ -142,12 +146,11 @@ T.ToolBar
         
         property bool draggable : true
         
-        
         //}
         
         background: Rectangle
         {
-            color: control.Maui.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             Behavior on color
             {
                 Maui.ColorTransition {}
@@ -243,6 +246,7 @@ T.ToolBar
         
         contentItem: Item
         {
+            implicitWidth: _mainLayout.implicitWidth 
             Item
             {
                 id: _container

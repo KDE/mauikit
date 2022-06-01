@@ -174,11 +174,10 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = QColor{"#2b2c31"};
+        headerBackgroundColor = cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.05);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
         headerHoverColor = headerBackgroundColor.lighter();
-        headerFocusColor = highlightColor;
-        
+        headerFocusColor = highlightColor;        
     }
     
     void BasicThemeDefinition::setLightColors()
@@ -190,7 +189,7 @@ namespace Maui
         
         highlightColor = Style::instance()->accentColor();
         //         backgroundColor = QColor{"#efefef"};
-        backgroundColor =  cu.tintWithAlpha(QColor{"#efefef"}, highlightColor, 0.05);
+        backgroundColor =  cu.tintWithAlpha(QColor{"#efefef"}, highlightColor, 0.02);
         
         alternateBackgroundColor = backgroundColor.darker();
         
@@ -200,33 +199,33 @@ namespace Maui
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
-        buttonBackgroundColor = backgroundColor.darker();
-        buttonAlternateBackgroundColor = buttonBackgroundColor.darker();
-        buttonHoverColor = buttonBackgroundColor.lighter();
+        buttonBackgroundColor = backgroundColor.lighter(120);
+        buttonAlternateBackgroundColor = buttonBackgroundColor.darker(120);
+        buttonHoverColor = buttonBackgroundColor.darker(110);
         buttonFocusColor = highlightColor;
         
         viewTextColor = textColor;
-        viewBackgroundColor = backgroundColor.lighter();
-        viewAlternateBackgroundColor = viewBackgroundColor.darker();
-        viewHoverColor = viewBackgroundColor.lighter();
+        viewBackgroundColor = backgroundColor.lighter(120);
+        viewAlternateBackgroundColor = viewBackgroundColor.darker(120);
+        viewHoverColor = viewBackgroundColor.lighter(120);
         viewFocusColor = highlightColor;
         
         selectionTextColor = QColor{"#eff0f1"};
         selectionBackgroundColor = highlightColor;
-        selectionAlternateBackgroundColor = selectionBackgroundColor.darker();
-        selectionHoverColor = selectionBackgroundColor.lighter();
+        selectionAlternateBackgroundColor = selectionBackgroundColor.darker(120);
+        selectionHoverColor = selectionBackgroundColor.lighter(120);
         selectionFocusColor = highlightColor;
         
         complementaryTextColor = QColor{"#fafafa"};
         complementaryBackgroundColor = QColor{"#333"};
-        complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker();
-        complementaryHoverColor = complementaryBackgroundColor.lighter();
+        complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker(120);
+        complementaryHoverColor = complementaryBackgroundColor.lighter(120);
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = QColor{"#eceff1"};
-        headerAlternateBackgroundColor = headerBackgroundColor.darker();
-        headerHoverColor = headerBackgroundColor.lighter();
+        headerBackgroundColor = cu.tintWithAlpha(QColor{"#efefef"}.darker(110), highlightColor, 0.02);
+        headerAlternateBackgroundColor = headerBackgroundColor.darker(120);
+        headerHoverColor = headerBackgroundColor.lighter(120);
         headerFocusColor = highlightColor;
     }
     
@@ -234,13 +233,13 @@ namespace Maui
     {
         ColorUtils cu;
         const auto isDark = m_imgColors->paletteBrightness() == ColorUtils::Dark;
-        const auto bgColor = isDark ?  QColor{"#3a3f41"} : QColor{"#efefef"};
+        const auto bgColor = cu.tintWithAlpha(isDark ?  QColor{"#3a3f41"} : QColor{"#efefef"}, m_imgColors->background(), 0.1);
         textColor = m_imgColors->foreground();
         
         highlightColor = m_imgColors->highlight();
         highlightedTextColor = cu.brightnessForColor(m_imgColors->highlight()) ==  ColorUtils::Dark ? m_imgColors->closestToWhite() : m_imgColors->closestToBlack();
 //         backgroundColor = cu.tintWithAlpha(m_imgColors->background(), bgColor, 0.8);
-                backgroundColor =  cu.tintWithAlpha(bgColor, m_imgColors->background(), 0.1);
+                backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.05);
 
         alternateBackgroundColor = backgroundColor.darker();
         
@@ -274,7 +273,7 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = QColor{"#2b2c31"};
+        headerBackgroundColor = cu.tintWithAlpha(bgColor, highlightColor, 0.05);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
         headerHoverColor = headerBackgroundColor.lighter();
         headerFocusColor = highlightColor;
@@ -367,6 +366,13 @@ namespace Maui
                 setAlternateBackgroundColor(tint(definition.complementaryAlternateBackgroundColor));
                 setHoverColor(tint(definition.complementaryHoverColor));
                 setFocusColor(tint(definition.complementaryFocusColor));
+                break;
+            case BasicTheme::Header:
+                setTextColor(tint(definition.headerTextColor));
+                setBackgroundColor(tint(definition.headerBackgroundColor));
+                setAlternateBackgroundColor(tint(definition.headerAlternateBackgroundColor));
+                setHoverColor(tint(definition.headerHoverColor));
+                setFocusColor(tint(definition.headerFocusColor));
                 break;
             case BasicTheme::Window:
             default:

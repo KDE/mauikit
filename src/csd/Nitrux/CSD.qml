@@ -64,12 +64,12 @@ Item
                     color: Maui.Theme.textColor
                     anchors.centerIn: parent
                     Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+                    {
+                        Maui.ColorTransition{}
+                    }
                 }
             }
-
+            
             onClicked: 
             {
                 console.log("NITRUX CSD BUTTON CLICKED", button.type)

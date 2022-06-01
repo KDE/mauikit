@@ -35,7 +35,8 @@ T.Button
     hoverEnabled: true
 
     Maui.Theme.colorSet: Maui.Theme.Button
-
+    Maui.Theme.inherit: false
+    
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
 
@@ -68,7 +69,7 @@ T.Button
         visible: !control.flat
         implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
         implicitHeight: Maui.Style.rowHeight
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : (Maui.Style.darkMode ? Qt.lighter(Maui.Theme.backgroundColor,1.1) : Qt.darker(Maui.Theme.backgroundColor, 1.1)))
+        color: control.pressed || control.down || control.checked ? Maui.Theme.highlightColor : (control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
         
         radius: Maui.Style.radiusV
         

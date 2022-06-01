@@ -161,7 +161,7 @@ Item
     /**
      * leftMargin : int
      */
-    property int verticalScrollBarPolicy:  ScrollBar.AsNeeded
+    property int verticalScrollBarPolicy: ScrollBar.AsNeeded
     
     /**
      * horizontalScrollBarPolicy : ScrollBar.policy
@@ -254,7 +254,7 @@ Item
                 asynchronous: true
                 z: -1
                 anchors.fill: parent
-                active: !Kirigami.Settings.hasTransientTouchInput && !Kirigami.Settings.isMobile
+                active: !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isMobile
                 
                 sourceComponent: MouseArea
                 {
