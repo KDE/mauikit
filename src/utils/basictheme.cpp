@@ -136,9 +136,12 @@ namespace Maui
         ColorUtils cu;
         
         textColor = QColor{"#f4f5f6"};
-        highlightedTextColor = QColor{"#eff0f1"};
         
-        highlightColor = Style::instance()->accentColor();
+        highlightColor = Style::instance()->accentColor();        
+        const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;
+        
+        highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};
+        
         
         backgroundColor =  cu.tintWithAlpha(QColor{"#3a3f41"}, highlightColor, 0.05);
         //         backgroundColor = QColor{"#3a3f41"};
@@ -185,10 +188,12 @@ namespace Maui
         ColorUtils cu;
         
         textColor = QColor{"#31363b"};
-        highlightedTextColor = QColor{"#eff0f1"};
         
         highlightColor = Style::instance()->accentColor();
-        //         backgroundColor = QColor{"#efefef"};
+        //         backgroundColor = QColor{"#efefef"};        
+        const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;        
+        highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};       
+        
         backgroundColor =  cu.tintWithAlpha(QColor{"#efefef"}, highlightColor, 0.02);
         
         alternateBackgroundColor = backgroundColor.darker();
@@ -237,9 +242,9 @@ namespace Maui
         textColor = m_imgColors->foreground();
         
         highlightColor = m_imgColors->highlight();
-        highlightedTextColor = cu.brightnessForColor(m_imgColors->highlight()) ==  ColorUtils::Dark ? m_imgColors->closestToWhite() : m_imgColors->closestToBlack();
+        highlightedTextColor = cu.brightnessForColor(highlightColor) ==  ColorUtils::Dark ? m_imgColors->closestToWhite() : m_imgColors->closestToBlack();
 //         backgroundColor = cu.tintWithAlpha(m_imgColors->background(), bgColor, 0.8);
-                backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.05);
+        backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.05);
 
         alternateBackgroundColor = backgroundColor.darker();
         

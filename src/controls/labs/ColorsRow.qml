@@ -4,7 +4,7 @@ import QtQuick.Controls 2.14
 import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
-Row
+Flow
 {
     id: control
     

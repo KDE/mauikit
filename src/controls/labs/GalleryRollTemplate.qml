@@ -10,7 +10,9 @@ Kirigami.ShadowedRectangle
     id: control
     color: "#333"
     
-    property int orientation : Qt.Horizontal
+    property alias interactive : _featuredRoll.interactive
+    
+    property alias orientation : _featuredRoll.orientation
     
     /**
      * cached
@@ -52,9 +54,13 @@ ListView
             anchors.fill: parent
             
             interactive: false
-            orientation: control.orientation
+            orientation: Qt.Horizontal
             snapMode: ListView.SnapOneItem
             clip: true
+            
+            boundsBehavior: Flickable.StopAtBounds
+            boundsMovement: Flickable.StopAtBounds
+                   
             
             model: control.images
             
@@ -69,8 +75,11 @@ ListView
             }
           
             function cycleSlideForward()
-            {
-                _featuredTimer.restart()
+            {        
+                if(_featuredRoll.dragging)
+                {
+                    return
+                }
                 
                 if (_featuredRoll.currentIndex === _featuredRoll.count - 1)
                 {
@@ -79,11 +88,15 @@ ListView
                 {
                     _featuredRoll.incrementCurrentIndex()
                 }
+                _featuredTimer.restart()                
             }
             
             function cycleSlideBackward()
             {
-                _featuredTimer.restart()
+                if(_featuredRoll.dragging)
+                {
+                    return
+                }
                 
                 if (_featuredRoll.currentIndex === 0)
                 {
@@ -92,6 +105,8 @@ ListView
                 {
                     _featuredRoll.decrementCurrentIndex();
                 }
+                
+                _featuredTimer.restart()                
             }
             
             delegate: Item

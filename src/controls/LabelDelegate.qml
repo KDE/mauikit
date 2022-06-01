@@ -35,18 +35,18 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.ItemDelegate
+T.Control
 {
   id: control
   Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
   implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
   padding: Maui.Style.contentMargins
   
-  highlighted:  ListView.isCurrentItem
+//   highlighted:  ListView.isCurrentItem
   /**
    * isCurrentListItem : bool
    */
-  property alias isCurrentListItem : control.highlighted
+  //property alias isCurrentListItem : control.highlighted
   
   /**
    * isSection : bool
