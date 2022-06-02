@@ -46,6 +46,7 @@ Item
             Maui.CSDButton
             {
                 id: button
+                style: "Nitrux"
                 type: mapType(modelData)
                 isHovered: _button.hovered
                 isPressed: _button.pressed

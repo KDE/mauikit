@@ -828,8 +828,15 @@ T.Pane
     Component
     {
         id: _csdRightControlsComponent
-        Maui.WindowControls
+        Loader
         {
+            active: Maui.App.controls.enableCSD  && Maui.Handy.isLinux && control.showCSDControls
+            visible: active
+            width: visible ? implicitWidth:  0
+            sourceComponent: Maui.WindowControls
+            {
+                
+            }
         }
     }
 
@@ -845,11 +852,9 @@ T.Pane
             _headerContent.data.push(header)
         }
 
-        if(Maui.App.controls.enableCSD && Maui.Handy.isLinux && control.showCSDControls)
-        {
-            var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
-            control.headBar.farRightContent.push(obj)
-        }
+        var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
+        control.headBar.farRightContent.push(obj)
+        
     }
 
     /*!

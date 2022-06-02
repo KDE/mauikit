@@ -47,6 +47,12 @@
 
 class QQuickWindow;
 class QQuickItem;
+
+namespace MauiMan
+{
+  class ThemeManager;
+}
+
 class CSDButton : public QObject
 {
   Q_OBJECT
@@ -58,6 +64,7 @@ class CSDButton : public QObject
   Q_PROPERTY(bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
   Q_PROPERTY(CSDButtonType type READ type WRITE setType NOTIFY typeChanged)
   Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
+  Q_PROPERTY(QString style READ style WRITE setStyle NOTIFY styleChanged)
   
 public:
   enum CSDButtonState
@@ -102,6 +109,9 @@ public:
   CSDButton::CSDButtonType type() const;
   void setType(CSDButton::CSDButtonType newType);
 
+  QString style() const;
+  void setStyle(const QString &style);
+  
 public slots:
   CSDButton::CSDButtonType mapType(const QString &value);
 
@@ -112,7 +122,8 @@ private:
   CSDButtonState m_state = CSDButtonState::Normal;
 
   CSDButtonSources m_sources; //the state and the source associated
-
+  QString m_style;
+  
   bool m_isHovered;
 
   bool m_isMaximized;
@@ -127,7 +138,6 @@ private:
   void setSources();
   void requestCurrentSource();
 
-  QString m_style;
 
 signals:
   void stateChanged();
@@ -137,6 +147,7 @@ signals:
   void isPressedChanged();
   void isFocusedChanged();
   void typeChanged();
+  void styleChanged();
 };
 
 class CSDControls : public QObject
@@ -145,9 +156,9 @@ class CSDControls : public QObject
   Q_DISABLE_COPY(CSDControls)
   
   Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
-  Q_PROPERTY(QUrl source READ source CONSTANT FINAL)
-  Q_PROPERTY(int borderRadius READ borderRadius CONSTANT FINAL)
-  Q_PROPERTY(QString styleName READ styleName CONSTANT FINAL)
+  Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
+  Q_PROPERTY(int borderRadius READ borderRadius NOTIFY borderRadiusChanged FINAL)
+  Q_PROPERTY(QString styleName READ styleName NOTIFY styleNameChanged FINAL)
   Q_PROPERTY(QStringList leftWindowControls MEMBER m_leftWindowControls NOTIFY leftWindowControlsChanged FINAL)
   Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls NOTIFY rightWindowControlsChanged FINAL)
 
@@ -175,7 +186,11 @@ public:
   QString styleName() const;
 
 private:
+  MauiMan::ThemeManager *m_themeSettings;
+  
   bool m_enableCSD = false;
+  bool m_enabledCSD_blocked = false;
+  
   QUrl m_source;
   int m_borderRadius;
   QString m_styleName = "Nitrux";
@@ -183,12 +198,15 @@ private:
   QStringList m_rightWindowControls;
 
   void getWindowControlsSettings();
+  void setStyle();
 
 signals:
   void leftWindowControlsChanged();
   void rightWindowControlsChanged();
   void enableCSDChanged();
-
+  void styleNameChanged();
+void borderRadiusChanged();
+void sourceChanged();
 };
 
 class Notify;

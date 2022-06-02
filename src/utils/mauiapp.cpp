@@ -18,8 +18,6 @@
 
 #include "mauiapp.h"
 #include "fmh.h"
-#include "handy.h"
-#include "utils.h"
 
 #include <QDir>
 #include <QStandardPaths>
@@ -41,6 +39,8 @@
 #include <QQuickStyle>
 #endif
 
+#include <MauiMan/thememanager.h>
+
 #include "../mauikit_version.h"
 
 MauiApp *MauiApp::m_instance = nullptr;
@@ -55,6 +55,11 @@ MauiApp::MauiApp()
         qDebug() << "Lets remove MauiApp singleton instance";
         delete m_instance;
         m_instance = nullptr;
+    });
+    
+    connect(m_controls, &CSDControls::enableCSDChanged, [this]()
+    {
+       qDebug() << "CSD ENABLED CHANGED<<<<" << m_controls->enableCSD(); 
     });
 
     setDefaultMauiStyle();
@@ -109,7 +114,6 @@ void MauiApp::setDefaultMauiStyle()
 #if defined BUNDLE_MAUI_STYLE
     Q_INIT_RESOURCE(style);
     QQuickStyle::setStyle("maui-style");
-    qDebug() << QQuickStyle::name();
 #endif
 }
 
@@ -146,25 +150,38 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 }
 
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
-{   
-    getWindowControlsSettings();   
+,m_themeSettings( new MauiMan::ThemeManager(this))
+
+{       
+    connect(m_themeSettings, &MauiMan::ThemeManager::enableCSDChanged, [this](bool enabled)
+    {        
+        qDebug() << "CSD ENABLED CHANGED<<<<" << enabled; 
+        
+        if(m_enabledCSD_blocked)
+            return;
+        
+        m_enableCSD = enabled;
+        Q_EMIT enableCSDChanged();
+    });
+    
+    connect(m_themeSettings, &MauiMan::ThemeManager::windowControlsThemeChanged, [this](QString style)
+    {        
+        m_styleName = style;
+        setStyle(); 
+        Q_EMIT styleNameChanged();
+        Q_EMIT sourceChanged();
+        Q_EMIT borderRadiusChanged();
+    });
+    
+//     connect(this, &CSDControls::styleNameChanged, [this]()
+//     {
+//     });
+    
+    getWindowControlsSettings();     
 }
 
-void CSDControls::getWindowControlsSettings()
-{    
-#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
-    {
-        if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
-        {
-            this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
-        }
-    }else
-    {
-        this->setEnableCSD(UTIL::loadSettings("CSD", "GLOBAL", m_enableCSD, true).toBool());
-    }
-    
-    m_styleName = UTIL::loadSettings("CSDStyle", "GLOBAL", "Nitrux", true).toString();
+void CSDControls::setStyle()
+{
     auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_styleName));
     QFileInfo file(confFile);
     if(file.exists ())
@@ -180,28 +197,37 @@ void CSDControls::getWindowControlsSettings()
     
     qDebug() << "CSD QML SOURCXE" << m_source;
     m_rightWindowControls =  QStringList {"I", "A", "X"};
-    emit this->rightWindowControlsChanged();
-//     auto kconf = KSharedConfig::openConfig("kwinrc");
-//     const auto group = kconf->group("org.kde.kdecoration2");
-//     
-//     if (group.hasKey("ButtonsOnLeft")) {
-//         m_leftWindowControls = group.readEntry("ButtonsOnLeft", "").split("", Qt::SkipEmptyParts);
-//         emit this->leftWindowControlsChanged();
-//     }
-//     
-//     if (group.hasKey("ButtonsOnRight")) {
-//         m_rightWindowControls = group.readEntry("ButtonsOnRight", "").split("", Qt::SkipEmptyParts);
-//         emit this->rightWindowControlsChanged();
-//     }
+    emit this->rightWindowControlsChanged();    
+}
+
+void CSDControls::getWindowControlsSettings()
+{    
+    #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
+    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
+    {
+        if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
+        {
+            m_enableCSD = m_themeSettings->enableCSD();
+        }else
+        {
+            return;    
+        }
+    }else
+    {
+        m_enableCSD = m_themeSettings->enableCSD();
+    }
     
-#elif defined Q_OS_MACOS || defined Q_OS_ANDROID
+    m_styleName = m_themeSettings->windowControlsTheme();
+    setStyle();
+    
+    #elif defined Q_OS_MACOS || defined Q_OS_ANDROID
     m_leftWindowControls = QStringList {"X", "I", "A"};
     emit this->leftWindowControlsChanged();
     
-#elif defined Q_OS_WIN32
+    #elif defined Q_OS_WIN32
     //   m_rightWindowControls = QStringList {"I", "A", "X"};
     emit this->rightWindowControlsChanged();
-#endif
+    #endif
 }
 
 bool CSDControls::enableCSD() const
@@ -211,12 +237,12 @@ bool CSDControls::enableCSD() const
 
 void CSDControls::setEnableCSD(const bool &value)
 {
+    m_enabledCSD_blocked = true;
     if (m_enableCSD == value)
         return;
     
-    m_enableCSD = value;
-        
-    emit enableCSDChanged();
+    m_enableCSD = value;        
+    Q_EMIT enableCSDChanged();
 }
 
 QUrl CSDControls::source() const
@@ -237,8 +263,25 @@ int CSDControls::borderRadius() const
 CSDButton::CSDButton(QObject *parent): QObject(parent)
 {
     connect(this, &CSDButton::typeChanged, this, &CSDButton::setSources);
+    connect(this, &CSDButton::styleChanged, this, &CSDButton::setSources);
     connect(this, &CSDButton::stateChanged, this, &CSDButton::requestCurrentSource);
     m_style = MauiApp::instance()->controls()->styleName();
+}
+
+void CSDButton::setStyle(const QString& style)
+{
+    if(m_style == style)
+    {
+        return;
+    }
+    
+    m_style = style;
+    Q_EMIT styleChanged();
+}
+
+QString CSDButton::style() const
+{
+    return m_style;
 }
 
 QUrl CSDButton::source() const

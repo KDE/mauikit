@@ -22,10 +22,12 @@
 
 import QtQuick 2.5
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.3 as Maui
+
 import "private"
 
-T.ItemDelegate {
+T.ItemDelegate
+{
     id: controlRoot
 
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
@@ -37,7 +39,8 @@ T.ItemDelegate {
     spacing: 4
     rightPadding: 20
 
-    contentItem: Label {
+    contentItem: Label 
+    {
         leftPadding: controlRoot.mirrored ? (controlRoot.indicator ? controlRoot.indicator.width : 0) + controlRoot.spacing : 0
         rightPadding: !controlRoot.mirrored ? (controlRoot.indicator ? controlRoot.indicator.width : 0) + controlRoot.spacing : 0
 

@@ -22,8 +22,10 @@
 
 import QtQuick 2.1
 import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
-Rectangle {
+Rectangle 
+{
     id: background
     color: highlighted || (controlRoot.pressed && !controlRoot.checked && !controlRoot.sectionDelegate) ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
 

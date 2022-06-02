@@ -44,6 +44,7 @@ Item
             Maui.CSDButton
             {
                 id: button
+                style: "Breeze"
                 type: mapType(modelData)
                 isHovered: _button.hovered
                 isPressed: _button.pressed

@@ -64,7 +64,7 @@ Window
     height: Screen.desktopAvailableHeight * (Maui.Handy.isMobile ? 1 : 0.4)
 
     color: "transparent"
-    flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint : Qt.Window
+    flags: Maui.App.controls.enableCSD ? Qt.Window | Qt.FramelessWindowHint : Qt.Window & ~Qt.FramelessWindowHint
     
     Settings 
     {
