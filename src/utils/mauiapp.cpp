@@ -170,10 +170,8 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
         m_styleName = style;
         setStyle(); 
         
-        Style::instance()->setRadiusV(m_borderRadius);
         Q_EMIT styleNameChanged();
         Q_EMIT sourceChanged();
-        Q_EMIT borderRadiusChanged();
     });
     
 //     connect(this, &CSDControls::styleNameChanged, [this]()
@@ -194,7 +192,6 @@ void CSDControls::setStyle()
         QSettings conf (confFile, QSettings::IniFormat);
         conf.beginGroup ("Decoration");
         m_source = dir.toString()+"/"+ conf.value("Source").toString();
-        m_borderRadius = conf.value ("BorderRadius", 8).toInt();
         conf.endGroup ();
     }
     
@@ -256,11 +253,6 @@ QUrl CSDControls::source() const
 QString CSDControls::styleName() const
 {
     return m_styleName;
-}
-
-int CSDControls::borderRadius() const
-{
-    return m_borderRadius;
 }
 
 CSDButton::CSDButton(QObject *parent): QObject(parent)

@@ -168,42 +168,13 @@ Item
     {
       model: control.actions
       
-      T.Button
+      Button
       {
         id: _button
-        implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) +leftPadding + rightPadding
-        implicitHeight: background.implicitHeight+ topPadding + bottomPadding 
+       
         
-        leftPadding: Maui.Style.space.medium
-        rightPadding: leftPadding
-        topPadding: 0
-        bottomPadding: 0
-        
-        flat: true
         action: modelData
-        
-        background: Rectangle
-        {
-          implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
-          implicitHeight: Maui.Style.rowHeight
-          
-          radius: Maui.Style.radiusV
-          color: _button.hovered || _button.down || _button.pressed ? "#26c6da" : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9)) 
-          Behavior on color
-          {
-            Maui.ColorTransition{}
-          }
-          
-        }
-        
-        contentItem: Label
-        {
-          text: _button.text
-          opacity: 0.8
-          color:  _button.hovered || _button.down || _button.pressed ?  "#fafafa" : Maui.Theme.textColor
-          horizontalAlignment: Qt.AlignHCenter
-          verticalAlignment: Qt.AlignVCenter
-        }
+       
       }
     }
   }

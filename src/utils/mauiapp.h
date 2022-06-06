@@ -153,7 +153,6 @@ class CSDControls : public QObject
   
   Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
   Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
-  Q_PROPERTY(int borderRadius READ borderRadius NOTIFY borderRadiusChanged FINAL)
   Q_PROPERTY(QString styleName READ styleName NOTIFY styleNameChanged FINAL)
   Q_PROPERTY(QStringList leftWindowControls MEMBER m_leftWindowControls NOTIFY leftWindowControlsChanged FINAL)
   Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls NOTIFY rightWindowControlsChanged FINAL)
@@ -177,7 +176,6 @@ public:
      * @param value
      */
   void setEnableCSD(const bool &value);
-  int borderRadius() const;
   QUrl source() const;
   QString styleName() const;
 
@@ -188,7 +186,6 @@ private:
   bool m_enabledCSD_blocked = false;
   
   QUrl m_source;
-  int m_borderRadius;
   QString m_styleName = "Nitrux";
   QStringList m_leftWindowControls;
   QStringList m_rightWindowControls;
@@ -201,8 +198,7 @@ signals:
   void rightWindowControlsChanged();
   void enableCSDChanged();
   void styleNameChanged();
-void borderRadiusChanged();
-void sourceChanged();
+  void sourceChanged();
 };
 
 class Notify;

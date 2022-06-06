@@ -141,8 +141,7 @@ namespace Maui
         const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;
         
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};
-        
-        
+                
         backgroundColor =  cu.tintWithAlpha(QColor{"#3a3f41"}, highlightColor, 0.05);
         //         backgroundColor = QColor{"#3a3f41"};
         alternateBackgroundColor = backgroundColor.darker();

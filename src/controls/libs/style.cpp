@@ -39,12 +39,19 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT this->accentColorChanged(m_accentColor);
     });
     
+        connect(m_themeSettings, &MauiMan::ThemeManager::borderRadiusChanged, [this](uint radius)
+    {
+        m_radiusV = radius;
+        Q_EMIT this->radiusVChanged(m_radiusV);
+    });
+    
     connect(m_backgroundSettings, &MauiMan::BackgroundManager::wallpaperSourceChanged, [this](QString source)
     {
         m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
         Q_EMIT this->adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
     }); 
     
+    m_radiusV = m_themeSettings->borderRadius();
     m_accentColor = m_themeSettings->accentColor();
     m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
@@ -58,7 +65,7 @@ void Style::setRadiusV(const uint& radius)
     }
     
     m_radiusV = radius;
-    Q_EMIT radiusVChanged();
+    Q_EMIT radiusVChanged(m_radiusV);
 }
 
 

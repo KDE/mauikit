@@ -143,7 +143,7 @@ T.Drawer
         background: Kirigami.ShadowedRectangle
         {
             color: Maui.Theme.backgroundColor
-            property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
+            property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.Style.radiusV
             opacity: Maui.App.translucencyAvailable ? 0.4 : 1
             corners
             {

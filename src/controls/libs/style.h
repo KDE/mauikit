@@ -163,7 +163,7 @@ signals:
   void accentColorChanged(QColor color);
   void colorSchemeChanged();
   void styleTypeChanged(StyleType type);
-  void radiusVChanged();
+  void radiusVChanged(uint radius);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

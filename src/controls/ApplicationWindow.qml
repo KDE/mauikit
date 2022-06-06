@@ -317,7 +317,7 @@ Window
             id: _pageBackground
             opacity: Maui.App.translucencyAvailable ? 0.7 : 1
             color: Maui.Theme.backgroundColor
-            radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.App.controls.borderRadius
+            radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.Style.radiusV
             
             Behavior on color
         {
