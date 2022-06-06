@@ -227,7 +227,7 @@ Maui.ItemDelegate
             }
             sourceComponent: Item
             {
-                Private.CheckBoxItem
+                CheckBox
                 {
                     anchors.centerIn: parent
                     height: Maui.Style.iconSizes.medium
@@ -238,10 +238,8 @@ Maui.ItemDelegate
                         restoreMode: Binding.RestoreBinding
                     }
                     onToggled: control.toggled(state)
-                }
-                
-            }
-            
+                }                
+            }            
         }
 
         Maui.ListItemTemplate

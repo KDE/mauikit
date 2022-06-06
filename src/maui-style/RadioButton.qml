@@ -25,12 +25,10 @@ import QtQuick.Templates 2.3 as T
 import QtQuick.Controls 2.3
 import org.mauikit.controls 1.3 as Maui
 
-import "private"
-
-T.CheckBox 
+T.RadioButton 
 {
-    id: controlRoot
-
+    id: control
+property alias m_control: control
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
@@ -43,20 +41,27 @@ T.CheckBox
 
     hoverEnabled: true
 
-    indicator: CheckIndicator
+    indicator: RadioIndicator
     {
-        control: controlRoot
+        LayoutMirroring.enabled: control.mirrored
+        LayoutMirroring.childrenInherit: true
+        anchors {
+            left: parent.left
+            verticalCenter: parent.verticalCenter
+        }
+        control: m_control
     }
 
-    contentItem: Label
+    contentItem: Label 
     {
-        leftPadding: controlRoot.indicator && !controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        rightPadding: controlRoot.indicator && controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        opacity: controlRoot.enabled ? 1 : 0.6
-        text: controlRoot.text
-        font: controlRoot.font
+        leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
+        rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
+        opacity: control.enabled ? 1 : 0.6
+        text: control.text
+        font: control.font
+        color: Maui.Theme.textColor
         elide: Text.ElideRight
-        visible: controlRoot.text
+        visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }

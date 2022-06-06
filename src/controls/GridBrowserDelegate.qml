@@ -194,7 +194,7 @@ Maui.ItemDelegate
             }
         }
 
-        sourceComponent: Private.CheckBoxItem
+        sourceComponent: CheckBox
         {
             checkable: control.checkable
             Binding on checked

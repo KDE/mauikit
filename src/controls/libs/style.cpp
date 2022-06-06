@@ -23,8 +23,7 @@ Style::Style(QObject *parent) : QObject(parent)
         delete m_instance;
         m_instance = nullptr;
     });    
-    
-    
+        
     connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
     {
         if(m_styleType_blocked)
@@ -37,19 +36,31 @@ Style::Style(QObject *parent) : QObject(parent)
     connect(m_themeSettings, &MauiMan::ThemeManager::accentColorChanged, [this](QString color)
     {
         m_accentColor = color;
-        emit this->accentColorChanged(m_accentColor);
+        Q_EMIT this->accentColorChanged(m_accentColor);
     });
     
     connect(m_backgroundSettings, &MauiMan::BackgroundManager::wallpaperSourceChanged, [this](QString source)
     {
         m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
-        emit this->adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
+        Q_EMIT this->adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
     }); 
     
     m_accentColor = m_themeSettings->accentColor();
     m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
 }
+
+void Style::setRadiusV(const uint& radius)
+{
+    if(m_radiusV == radius)
+    {
+        return;
+    }
+    
+    m_radiusV = radius;
+    Q_EMIT radiusVChanged();
+}
+
 
 Style *Style::qmlAttachedProperties(QObject *object)
 {

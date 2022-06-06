@@ -24,9 +24,9 @@ import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.6
 import QtQuick.Templates 2.6 as T
-import org.kde.kirigami 2.5 as Kirigami
 
-T.TextArea {
+T.TextArea 
+{
     id: control
     palette: Maui.Theme.palette
 
@@ -52,7 +52,7 @@ T.TextArea {
     // https://bugreports.qt.io/browse/QTBUG-67007
 //    renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
 
-    selectByMouse: !Kirigami.Settings.tabletMode
+    selectByMouse: !Maui.Settings.isMobile
 
     Label {
         id: placeholder

@@ -38,7 +38,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Templates 2.12 as T
 import QtQuick.Window 2.12
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls 1.3 as Maui
 import QtGraphicalEffects 1.0
 
 T.Menu

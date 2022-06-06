@@ -20,18 +20,19 @@
  */
 
 
-import QtQuick 2.6
-import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
+import org.mauikit.controls 1.3 as Maui
 
-T.DialogButtonBox {
+T.DialogButtonBox
+{
     id: control
 
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
 
-    spacing: Kirigami.Units.smallSpacing
-    padding: Kirigami.Units.smallSpacing
+    spacing: Maui.Style.space.medium
+    padding: Maui.Style.space.medium
     alignment: Qt.AlignRight
 
     delegate: Button {

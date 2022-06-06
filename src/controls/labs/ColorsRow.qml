@@ -12,7 +12,7 @@ Flow
     property string defaultColor 
     property string currentColor
 
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.space.big
 
     property int size : Maui.Handy.isMobile ? 26 : Maui.Style.iconSizes.medium
     signal colorPicked (string color)

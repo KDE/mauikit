@@ -20,44 +20,44 @@
  */
 
 
-import QtQuick 2.6
-import QtQuick.Templates 2.3 as T
-import QtQuick.Controls 2.3
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
 
 import "private"
 
-T.CheckBox 
-{
+T.RadioDelegate {
     id: controlRoot
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             Math.max(contentItem.implicitHeight,
-                                      indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
-    baselineOffset: contentItem.y + contentItem.baselineOffset
-
-    padding: 1
-    spacing: Maui.Style.units.smallSpacing
-
+    implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
+    implicitHeight: Math.max(contentItem.implicitHeight,
+                                      indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
     hoverEnabled: true
 
-    indicator: CheckIndicator
-    {
-        control: controlRoot
-    }
+    padding: 4
+    spacing: 4
+    rightPadding: 20
 
-    contentItem: Label
+    contentItem: Label 
     {
-        leftPadding: controlRoot.indicator && !controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        rightPadding: controlRoot.indicator && controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        opacity: controlRoot.enabled ? 1 : 0.6
+        leftPadding: controlRoot.mirrored ? (controlRoot.indicator ? controlRoot.indicator.width : 0) + controlRoot.spacing : 0
+        rightPadding: !controlRoot.mirrored ? (controlRoot.indicator ? controlRoot.indicator.width : 0) + controlRoot.spacing : 0
+
         text: controlRoot.text
         font: controlRoot.font
+        color: (controlRoot.pressed && !controlRoot.checked && !controlRoot.sectionDelegate) ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
         elide: Text.ElideRight
         visible: controlRoot.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
+
+    indicator: RadioIndicator {
+        x: controlRoot.mirrored ? controlRoot.leftPadding : controlRoot.width - width - controlRoot.rightPadding
+        y: controlRoot.topPadding + (controlRoot.availableHeight - height) / 2
+
+        control: controlRoot
+    }
+
+    background: DefaultListItemBackground {}
 }

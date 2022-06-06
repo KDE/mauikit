@@ -165,14 +165,14 @@ T.Popup
     
     background: Rectangle
     {
-        color: control.Maui.Theme.backgroundColor
+        color: Maui.Theme.backgroundColor
         
         radius: control.filling ? 0 : Maui.Style.radiusV
         //        border.color: Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, 0.15);
         border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
         
-        property color borderColor: control.Maui.Theme.textColor
+        property color borderColor: Maui.Theme.textColor
         Behavior on color
         {
             Maui.ColorTransition{}

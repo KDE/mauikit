@@ -23,8 +23,7 @@
 import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.2 as Kirigami
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 T.Dialog
 {
@@ -79,17 +78,17 @@ T.Dialog
         }
     }
 
-    header: Kirigami.Heading {
-        text: control.title
-        level: 2
-        visible: control.title
-        elide: Label.ElideRight
-        padding: Kirigami.Units.largeSpacing
-        bottomPadding: 0
-    }
+    //header: Kirigami.Heading {
+        //text: control.title
+        //level: 2
+        //visible: control.title
+        //elide: Label.ElideRight
+        //padding: Maui.Style.space.medium
+        //bottomPadding: 0
+    //}
 
     footer: DialogButtonBox {
         visible: count > 0
-        padding: Kirigami.Units.largeSpacing * 2
+        padding: Maui.Style.space.medium
     }
 }

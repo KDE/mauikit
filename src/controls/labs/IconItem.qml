@@ -92,8 +92,8 @@ Item
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
-        color: isMask ? (control.highlighted ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor) : "transparent"
-        isMask: (height <= Maui.Style.iconSizes.small)
+        color: isMask ? (control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor) : "transparent"
+        isMask: (height <= Maui.Style.iconSizes.small) || control.isMask
 //         selected: control.highlighted
         
         Behavior on color

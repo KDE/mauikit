@@ -18,6 +18,7 @@
 
 #include "mauiapp.h"
 #include "fmh.h"
+#include "style.h"
 
 #include <QDir>
 #include <QStandardPaths>
@@ -168,6 +169,8 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
     {        
         m_styleName = style;
         setStyle(); 
+        
+        Style::instance()->setRadiusV(m_borderRadius);
         Q_EMIT styleNameChanged();
         Q_EMIT sourceChanged();
         Q_EMIT borderRadiusChanged();

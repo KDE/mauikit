@@ -6,25 +6,23 @@ import org.mauikit.controls 1.2 as Maui
 Item 
 {
     id: control
-
-    Maui.Theme.inherit: false
-    Maui.Theme.colorSet: Maui.Theme.Complementary
-    
+        
     implicitHeight: Maui.Style.iconSizes.medium
     implicitWidth: implicitHeight
     
     property bool checked : false
     property bool checkable: false
-
-    signal toggled(bool state)
+    property bool autoExclusive: false
     
-  
+    //     signal toggled(bool state)    
+    
     Rectangle
     {
+        id: _rec
         anchors.fill: parent
-        color: control.checked ? Maui.Theme.highlightColor : Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.5)
-        radius: height/2
-        border.color: Maui.Theme.highlightedTextColor
+        color: control.checked ? Maui.Theme.highlightColor : "transparent"
+        radius: control.autoExclusive ? height/2 : 4
+        border.color: control.checked ?  Maui.Theme.highlightedTextColor :  Maui.Theme.textColor 
         
         Kirigami.Icon
         {
@@ -46,31 +44,36 @@ Item
                     easing.type: Easing.InOutQuad
                 }
             }
+            
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
         }
         
-         Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
     }
-
-    MouseArea
-    {
-        //enabled: control.checkable
-        hoverEnabled: true
-
-        readonly property int targetMargin:  Kirigami.Settings.hasTransientTouchInput ? Maui.Style.space.big : 0
-
-        height: parent.height + targetMargin
-        width: parent.width + targetMargin
-
-        onClicked:
-        {
-            control.checked = !control.checked
-            control.toggled(control.checked)
-        }
-    }
-
+    
+    //MouseArea
+    //{
+    ////enabled: control.checkable
+    //hoverEnabled: true
+    
+    //readonly property int targetMargin:  Kirigami.Settings.hasTransientTouchInput ? Maui.Style.space.big : 0
+    
+    //height: parent.height + targetMargin
+    //width: parent.width + targetMargin
+    
+    //onClicked:
+    //{
+    //control.checked = !control.checked
+    //control.toggled(control.checked)
+    //}
+    //}
+    
     onCheckedChanged:
     {
         if(checked)
@@ -81,7 +84,7 @@ Item
             _uncheckAnimation.start()
         }
     }
-
+    
     NumberAnimation
     {
         id: _checkAnimation
@@ -92,7 +95,7 @@ Item
         duration: Maui.Style.units.longDuration
         easing.type: Easing.OutBack
     }
-
+    
     NumberAnimation
     {
         id: _uncheckAnimation

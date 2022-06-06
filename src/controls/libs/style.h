@@ -70,7 +70,7 @@ class Style : public QObject
   
   Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
   Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
-  Q_PROPERTY(uint radiusV MEMBER m_radiusV CONSTANT FINAL)
+  Q_PROPERTY(uint radiusV MEMBER m_radiusV NOTIFY radiusVChanged FINAL)
   Q_PROPERTY(uint rowHeight MEMBER m_rowHeight CONSTANT FINAL)
   Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
   Q_PROPERTY(uint contentMargins MEMBER m_contentMargins CONSTANT FINAL)
@@ -121,6 +121,8 @@ public:
   void setStyleType(const StyleType &type);
   void unsetStyeType();
   
+  void setRadiusV(const uint &radius);
+  
 public slots:
   int mapToIconSizes(const int &size);
   
@@ -161,6 +163,7 @@ signals:
   void accentColorChanged(QColor color);
   void colorSchemeChanged();
   void styleTypeChanged(StyleType type);
+  void radiusVChanged();
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

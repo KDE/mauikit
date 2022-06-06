@@ -76,7 +76,7 @@ Maui.ComboBox
         inputMethodHints: control.inputMethodHints
         validator: control.validator
         renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
-        selectByMouse: !Kirigami.Settings.tabletMode
+        selectByMouse: !Maui.Handy.isMobile
 
         font: control.font
         color: control.Maui.Theme.textColor

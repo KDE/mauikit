@@ -264,9 +264,6 @@ Maui.Popup
 
                 sourceComponent: Maui.CloseButton
                 {
-                    icon.width: Maui.Style.iconSizes.small
-                    icon.height: Maui.Style.iconSizes.small
-
                     onClicked:
                      {
                         if(control.autoClose)

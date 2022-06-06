@@ -253,7 +253,7 @@ Item
                 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem || control.highlighted? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
+                color: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
             }
 
             Label
@@ -268,7 +268,7 @@ Item
                 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
 
-                color: control.isCurrentItem || control.highlighted? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
+                color: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
@@ -296,7 +296,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem || control.highlighted ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
+                color: control.isCurrentItem || control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
@@ -315,7 +315,7 @@ Item
                 font.weight: Font.Light
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem || control.highlighted ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
+                color: control.isCurrentItem || control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }

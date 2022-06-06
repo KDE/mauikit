@@ -27,11 +27,7 @@
 
 #include <QSettings>
 
-#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-#include <KAboutData>
-#else
 #include <KCoreAddons/KAboutData>
-#endif
 
 /**
  * @brief The MauiApp class

@@ -22,6 +22,8 @@
 
 import QtQuick 2.6
 import org.kde.kirigami 2.2 as Kirigami
+import org.mauikit.controls 1.3 as Maui
+
 import QtQuick.Templates 2.3 as T
 
 T.BusyIndicator 
@@ -32,7 +34,7 @@ T.BusyIndicator
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
 
     padding: 6
-    spacing: Kirigami.Units.smallSpacing
+    spacing: Maui.Style.space.medium
 
     hoverEnabled: true
 

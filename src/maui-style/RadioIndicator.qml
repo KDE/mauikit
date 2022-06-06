@@ -34,9 +34,8 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.13
+import QtQuick 2.15
 import org.mauikit.controls 1.3 as Maui
-
 
 Maui.CheckBoxItem 
 {
@@ -47,6 +46,6 @@ Maui.CheckBoxItem
     checked: control.checked
     checkable: control.checkable
     autoExclusive: control.autoExclusive
+    property Item control
     
-    property Item control    
 }

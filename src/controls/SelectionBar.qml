@@ -355,7 +355,9 @@ Item
             id: bg
             color: Maui.Theme.backgroundColor
             radius: control.radius
-
+            border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+            property color borderColor: Maui.Theme.textColor
+            
             Behavior on color
             {
                 ColorAnimation

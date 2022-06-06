@@ -75,6 +75,7 @@ AbstractButton
     
     icon.width: Maui.Style.iconSizes.medium
     icon.height: Maui.Style.iconSizes.medium
+    icon.color: control.enabled ? ((control.checked || control.down) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
     
     opacity: enabled ? 1 : 0.5
     
@@ -114,7 +115,7 @@ AbstractButton
                 id: _icon
                 anchors.fill: parent
                 
-                color: enabled ? (control.icon.color && control.icon.color.length ) ? control.icon.color : ((control.checked || control.down) ? (control.flat ? control.Maui.Theme.highlightColor : control.Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
+                color: control.icon.color
                 
                 source: control.icon.name
                 isMask: true
@@ -137,8 +138,7 @@ AbstractButton
             horizontalAlignment: Qt.AlignHCenter
             Layout.fillWidth: visible
             Layout.preferredWidth: visible ? implicitWidth : 0
-            color: control.hovered ? (control.down || control.pressed || control.checked ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor) : (control.down || control.pressed || control.checked ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor)
-            
+            color: control.icon.color
             font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium
             
             Behavior on Layout.preferredWidth

@@ -34,12 +34,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Templates 2.12 as T
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
 
-T.MenuSeparator
+T.ToolSeparator
 {
     id: control
 
@@ -48,14 +48,9 @@ T.MenuSeparator
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    verticalPadding: Maui.Style.space.small
-    hoverEnabled: false
-    focusPolicy: Qt.NoFocus
-    
     contentItem: Maui.Separator
     {
-        implicitWidth: Maui.Style.units.gridUnit * 8
-        weight: Maui.Separator.Weight.Light        
-        
+        implicitHeight: horizontal ? 1 : 40 - (Maui.Style.units.smallSpacing * 2)
+        implicitWidth: !horizontal ? 1 : 40 - (Maui.Style.units.smallSpacing * 2)
     }
 }

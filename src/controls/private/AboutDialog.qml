@@ -215,6 +215,7 @@ Maui.Dialog
                         label1.text: modelData.name
                         label2.text: String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress)
                         label3.text: modelData.task
+                        isMask: true
 
                         Connections
                         {
@@ -252,7 +253,8 @@ Maui.Dialog
                     {
                         iconSource: "license"
                         width: parent.width
-
+                        isMask: true
+                        
                         iconSizeHint: Maui.Style.iconSizes.medium
                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
 
@@ -277,7 +279,8 @@ Maui.Dialog
                 id: _poweredBy
                 anchors.centerIn: parent
                 width: parent.width
-
+                isMask: true
+                
                 iconSource: "code-context"
                 iconSizeHint: Maui.Style.iconSizes.medium
                 headerSizeHint: iconSizeHint + Maui.Style.space.medium
@@ -319,7 +322,8 @@ Maui.Dialog
                     {
                         iconSource: "plugins"
                         width: parent.width
-
+                        isMask: true
+                        
                         iconSizeHint: Maui.Style.iconSizes.medium
                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
 
@@ -361,7 +365,8 @@ Maui.Dialog
                 {
                     id: _copyRight
                     Layout.fillWidth: true
-
+                    isMask: true
+                    
                     iconSizeHint: Maui.Style.iconSizes.medium
                     headerSizeHint: iconSizeHint + Maui.Style.space.medium
 

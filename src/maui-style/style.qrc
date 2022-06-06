@@ -15,14 +15,12 @@
         <file>GroupBox.qml</file>
         <file>ItemDelegate.qml</file>
         <file>Label.qml</file>
-        <file>LICENSE</file>
         <file>Menu.qml</file>
         <file>MenuItem.qml</file>
         <file>Page.qml</file>
         <file>Popup.qml</file>
         <file>ProgressBar.qml</file>
         <file>RangeSlider.qml</file>
-        <file>README.md</file>
         <file>ScrollBar.qml</file>
         <file>ScrollView.qml</file>
         <file>Slider.qml</file>
@@ -41,5 +39,10 @@
         <file>private/DefaultListItemBackground.qml</file>
         <file>CheckIndicator.qml</file>
         <file>MenuSeparator.qml</file>
+        <file>ToolSeparator.qml</file>
+        <file>StackView.qml</file>
+        <file>RadioButton.qml</file>
+        <file>RadioDelegate.qml</file>
+        <file>RadioIndicator.qml</file>
     </qresource>
 </RCC>
