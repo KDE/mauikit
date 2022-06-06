@@ -59,6 +59,7 @@ T.Menu
     {
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        focus: true
         
         ListView
         {
@@ -204,6 +205,6 @@ T.Menu
         }
     }
     
-    onOpened: control.forceActiveFocus()
+    onOpened: _listView.forceActiveFocus()
 }
 
