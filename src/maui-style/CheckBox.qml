@@ -39,7 +39,7 @@ T.CheckBox
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     padding: 1
-    spacing: Maui.Style.units.smallSpacing
+    spacing: Maui.Style.space.medium
 
     hoverEnabled: true
 

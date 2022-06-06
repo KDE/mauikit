@@ -130,42 +130,25 @@ T.Popup
     {
         Item
         {
-        id: _content
-        anchors.fill: parent
-        layer.enabled: !control.filling
-        layer.effect: OpacityMask
-        {
-            cached: true
-            maskSource: Rectangle
+            id: _content
+            anchors.fill: parent
+            layer.enabled: !control.filling
+            layer.effect: OpacityMask
             {
-                width: _content.width
-                height: _content.height
-                radius: control.background.radius
-            }            
+                cached: true
+                maskSource: Rectangle
+                {
+                    width: _content.width
+                    height: _content.height
+                    radius: control.background.radius
+                }            
+            }
         }
-        }
-        
-        //Rectangle
-        //{
-            //visible: !control.filling
-            //anchors.fill: parent
-            //color: "transparent"
-            //radius: Maui.Style.radiusV - 0.5
-            //border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-            
-            
-            //property color borderColor: control.Maui.Theme.textColor
-            ////                        opacity: 0.7
-        //}
-
-    }
-
-    
-  
+    }       
     
     background: Rectangle
     {
-        color: Maui.Theme.backgroundColor
+        color: control.Maui.Theme.backgroundColor
         
         radius: control.filling ? 0 : Maui.Style.radiusV
         //        border.color: Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, 0.15);

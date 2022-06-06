@@ -42,6 +42,7 @@ Maui.Dialog
 
     Maui.Theme.inherit: false
     Maui.Theme.colorSet: Maui.Theme.Complementary
+    
     verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
     /**
@@ -72,6 +73,10 @@ Maui.Dialog
         }
     ]
 
+//     background: Rectangle
+//     {
+//         color: "red"
+//     }
 
     Item
     {

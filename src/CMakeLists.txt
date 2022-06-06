@@ -203,10 +203,8 @@ if(QUICK_COMPILER)
     target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
 endif()
 
-if(BUNDLE_MAUI_STYLE)
     add_definitions(-DBUNDLE_MAUI_STYLE)
     target_compile_definitions(MauiKit PUBLIC BUNDLE_MAUI_STYLE)
-endif()
 
 if(BUNDLE_LUV_ICONS)
     add_definitions(-DBUNDLE_LUV_ICONS)
@@ -315,13 +313,6 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core
     COMPONENT Devel)
-
-##INSTALL MAUI STYLE
-if(NOT BUNDLE_MAUI_STYLE)
-    install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
-else()
-    install(DIRECTORY styles/maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/kirigami.2/styles)
-endif()
 
 ##INSTALL THE DECO FOR CSD
 install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/org.mauikit.controls)

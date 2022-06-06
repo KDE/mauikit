@@ -36,9 +36,7 @@
 #include <QIcon>
 #endif
 
-#if defined BUNDLE_MAUI_STYLE
 #include <QQuickStyle>
-#endif
 
 #include <MauiMan/thememanager.h>
 
@@ -112,10 +110,8 @@ void MauiApp::setDefaultMauiStyle()
     QIcon::setThemeName("Luv");
 #endif
     
-#if defined BUNDLE_MAUI_STYLE
     Q_INIT_RESOURCE(style);
     QQuickStyle::setStyle("maui-style");
-#endif
 }
 
 QQuickWindow * MauiApp::window() const

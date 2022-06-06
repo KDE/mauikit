@@ -218,7 +218,7 @@ T.Control
     {
         id: _buttonComponent
         
-        AbstractButton
+        T.Control
         {
             id: _defaultButtonMouseArea
             hoverEnabled: true
@@ -297,7 +297,7 @@ T.Control
                 }
             }
             
-            onClicked: _defaultButtonMouseArea.triggerAction()
+            //onClicked: _defaultButtonMouseArea.triggerAction()
             
             data: Maui.ContextualMenu
             {
@@ -365,7 +365,7 @@ T.Control
                     
                     background: Kirigami.ShadowedRectangle
                     {
-                        color: Qt.lighter(Maui.Theme.backgroundColor)
+                        color: Maui.Theme.backgroundColor
                         
                         corners
                         {
@@ -389,7 +389,7 @@ T.Control
                     Layout.fillHeight: true
                     Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
                     
-                    color: Qt.lighter(Maui.Theme.backgroundColor)
+                    color: Maui.Theme.backgroundColor
                     
                     corners
                     {
@@ -414,8 +414,6 @@ T.Control
                     }
                 }
             }
-            
-            
         }
     }
 }

@@ -220,8 +220,8 @@ namespace Maui
         selectionHoverColor = selectionBackgroundColor.lighter(120);
         selectionFocusColor = highlightColor;
         
-        complementaryTextColor = QColor{"#fafafa"};
-        complementaryBackgroundColor = QColor{"#333"};
+        complementaryTextColor = QColor{"#eff0f1"};
+        complementaryBackgroundColor = QColor{"#31363b"};
         complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker(120);
         complementaryHoverColor = complementaryBackgroundColor.lighter(120);
         complementaryFocusColor = highlightColor;

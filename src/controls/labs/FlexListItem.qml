@@ -101,8 +101,8 @@ T.ItemDelegate
     contentItem: GridLayout
     {
         id: _layout
-        rowSpacing: Maui.Style.space.medium
-        columnSpacing: Maui.Style.space.medium
+        rowSpacing: Maui.Style.space.big
+        columnSpacing: Maui.Style.space.big
         rows: 2
         columns:2
 

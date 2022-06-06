@@ -135,8 +135,7 @@ T.SpinBox
             Behavior on color
             {
                 Maui.ColorTransition{}
-            }
-            
+            }            
         }
     }
     
