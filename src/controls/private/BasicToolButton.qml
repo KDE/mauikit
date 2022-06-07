@@ -75,7 +75,7 @@ AbstractButton
     
     icon.width: Maui.Style.iconSizes.small
     icon.height: Maui.Style.iconSizes.small
-    icon.color: control.enabled ? ((control.checked || control.down) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
+    icon.color: control.enabled ? ((control.checked || control.pressed) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
     
     opacity: enabled ? 1 : 0.5
     

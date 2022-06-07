@@ -221,9 +221,7 @@ T.Pane
         Maui.ToolButtonMenu
         {
             id: _menuButton
-            icon.name: "overflow-menu"
-            icon.width: Maui.Style.iconSizes.medium
-            icon.height: Maui.Style.iconSizes.medium
+            icon.name: "overflow-menu"           
             visible: control.hiddenItems.length > 0
 
             Layout.alignment: Qt.AlignCenter
