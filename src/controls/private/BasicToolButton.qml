@@ -73,8 +73,8 @@ AbstractButton
     implicitHeight: _layoutButton.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layoutButton.implicitWidth + leftPadding + rightPadding
     
-    icon.width: Maui.Style.iconSizes.medium
-    icon.height: Maui.Style.iconSizes.medium
+    icon.width: Maui.Style.iconSizes.small
+    icon.height: Maui.Style.iconSizes.small
     icon.color: control.enabled ? ((control.checked || control.down) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
     
     opacity: enabled ? 1 : 0.5
