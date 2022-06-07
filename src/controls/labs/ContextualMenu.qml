@@ -42,7 +42,7 @@ T.Menu
     
     spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
     
-    margins: Maui.Style.space.medium
+    margins: 0
     rightMargin: leftMargin
     leftMargin: control.responsive ? Maui.Style.space.medium : control.margins
     topMargin: control.margins
@@ -133,17 +133,17 @@ T.Menu
         {
             topLeftRadius:  control.responsive ? Maui.Style.radiusV : Maui.Style.radiusV
             topRightRadius:  control.responsive ? Maui.Style.radiusV : Maui.Style.radiusV
-            bottomLeftRadius:  control.responsive ?Maui.Style.radiusV :  Maui.Style.radiusV
-            bottomRightRadius: control.responsive ? Maui.Style.radiusV :  Maui.Style.radiusV
+            bottomLeftRadius:  control.responsive ? 0 :  Maui.Style.radiusV
+            bottomRightRadius: control.responsive ? 0 :  Maui.Style.radiusV
         }      
         
         property color borderColor: Maui.Theme.textColor
         
-        border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+        border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
         
         shadow.xOffset: 0
         shadow.yOffset: 0
-        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.color: Qt.rgba(0, 0, 0, 0.5)
         shadow.size: 10
         
         Behavior on color
