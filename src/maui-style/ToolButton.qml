@@ -65,8 +65,8 @@ T.ToolButton
     topPadding: padding
     bottomPadding: padding
     
-    icon.width: Maui.Style.iconSizes.small
-    icon.height: Maui.Style.iconSizes.small
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
     
     icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     

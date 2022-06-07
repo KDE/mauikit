@@ -23,7 +23,7 @@ Style::Style(QObject *parent) : QObject(parent)
         delete m_instance;
         m_instance = nullptr;
     });    
-        
+    
     connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
     {
         if(m_styleType_blocked)
@@ -39,10 +39,16 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT this->accentColorChanged(m_accentColor);
     });
     
-        connect(m_themeSettings, &MauiMan::ThemeManager::borderRadiusChanged, [this](uint radius)
+    connect(m_themeSettings, &MauiMan::ThemeManager::borderRadiusChanged, [this](uint radius)
     {
         m_radiusV = radius;
         Q_EMIT this->radiusVChanged(m_radiusV);
+    });
+    
+    connect(m_themeSettings, &MauiMan::ThemeManager::iconSizeChanged, [this](uint size)
+    {
+        m_iconSize = size;
+        Q_EMIT this->iconSizeChanged(m_iconSize);
     });
     
     connect(m_backgroundSettings, &MauiMan::BackgroundManager::wallpaperSourceChanged, [this](QString source)
@@ -52,6 +58,7 @@ Style::Style(QObject *parent) : QObject(parent)
     }); 
     
     m_radiusV = m_themeSettings->borderRadius();
+    m_iconSize = m_themeSettings->iconSize();
     m_accentColor = m_themeSettings->accentColor();
     m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
@@ -231,13 +238,13 @@ void Style::unsetStyeType()
 
 Units::Units(QObject *parent) : QObject(parent)
 , m_fontMetrics(QFontMetricsF(QGuiApplication::font()))
-        , m_gridUnit(m_fontMetrics.height())    
-        , m_veryLongDuration(400)
-        , m_longDuration(200)
-        , m_shortDuration(100)
-        , m_veryShortDuration(50)
-        , m_humanMoment(2000)
-        , m_toolTipDelay(700)
+, m_gridUnit(m_fontMetrics.height())    
+, m_veryLongDuration(400)
+, m_longDuration(200)
+, m_shortDuration(100)
+, m_veryShortDuration(50)
+, m_humanMoment(2000)
+, m_toolTipDelay(700)
 {
     
 }

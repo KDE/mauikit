@@ -71,6 +71,8 @@ class Style : public QObject
   Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
   Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
   Q_PROPERTY(uint radiusV MEMBER m_radiusV NOTIFY radiusVChanged FINAL)
+  Q_PROPERTY(uint iconSize MEMBER m_iconSize NOTIFY iconSizeChanged FINAL)
+
   Q_PROPERTY(uint rowHeight MEMBER m_rowHeight CONSTANT FINAL)
   Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
   Q_PROPERTY(uint contentMargins MEMBER m_contentMargins CONSTANT FINAL)
@@ -141,6 +143,7 @@ private:
   uint m_toolBarHeight = 48;
   uint m_toolBarHeightAlt = 40;
   uint m_radiusV = 4;
+  uint m_iconSize = 22;
   uint m_rowHeight = 32;
   uint m_rowHeightAlt = 28;
   uint m_contentMargins = 8;
@@ -164,6 +167,7 @@ signals:
   void colorSchemeChanged();
   void styleTypeChanged(StyleType type);
   void radiusVChanged(uint radius);
+  void iconSizeChanged(uint size);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

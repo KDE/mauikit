@@ -15,7 +15,7 @@ T.MenuItem
     id: control
     default property list<Action> actions
     
-    implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight) + topPadding + bottomPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
     background: null
@@ -39,7 +39,7 @@ T.MenuItem
             {
                 id: _delegate
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: Math.max(implicitHeight, Maui.Style.rowHeight)
                 action: modelData
                 display: control.display
                 

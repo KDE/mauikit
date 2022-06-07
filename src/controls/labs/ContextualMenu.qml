@@ -10,6 +10,8 @@ import QtQuick.Templates 2.15 as T
 import QtGraphicalEffects 1.0
 
 import org.mauikit.controls 1.3 as Maui
+import org.kde.kirigami 2.14 as Kirigami
+
 
 T.Menu
 {
@@ -18,7 +20,7 @@ T.Menu
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
     
-    property bool responsive: Maui.Handy.isMobile
+    property bool responsive: true
     
     property string subtitle
     property string titleImageSource
@@ -40,9 +42,9 @@ T.Menu
     
     spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
     
-    margins: 0
-    rightMargin: control.margins
-    leftMargin: control.margins
+    margins: Maui.Style.space.medium
+    rightMargin: leftMargin
+    leftMargin: control.responsive ? Maui.Style.space.medium : control.margins
     topMargin: control.margins
     bottomMargin: control.margins
     
@@ -52,6 +54,7 @@ T.Menu
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem {}
+    
     
     //Keys.forwardTo: _listView    
     
@@ -120,15 +123,28 @@ T.Menu
         }
     }
     
-    background: Rectangle
+    background: Kirigami.ShadowedRectangle
     {
         id: _bg
         implicitWidth: Maui.Style.units.gridUnit * 8
         color: control.Maui.Theme.backgroundColor
-        radius: control.responsive ? 0 : Maui.Style.radiusV
+        
+        corners
+        {
+            topLeftRadius:  control.responsive ? Maui.Style.radiusV : Maui.Style.radiusV
+            topRightRadius:  control.responsive ? Maui.Style.radiusV : Maui.Style.radiusV
+            bottomLeftRadius:  control.responsive ?Maui.Style.radiusV :  Maui.Style.radiusV
+            bottomRightRadius: control.responsive ? Maui.Style.radiusV :  Maui.Style.radiusV
+        }      
+        
         property color borderColor: Maui.Theme.textColor
         
         border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+        
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.3)
+        shadow.size: 10
         
         Behavior on color
         {
@@ -138,32 +154,6 @@ T.Menu
         Behavior on border.color
         {
             Maui.ColorTransition{}
-        }
-        
-        Maui.Separator
-        {
-            visible: control.responsive
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: 0.5
-            weight: Maui.Separator.Weight.Light
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-        }
-        
-        layer.enabled: true
-        layer.effect: DropShadow
-        {
-            cached: true
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8.0
-            samples: 16
-            color:  "#80000000"
-            smooth: true
         }
     }
     

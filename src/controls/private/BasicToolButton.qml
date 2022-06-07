@@ -70,11 +70,12 @@ AbstractButton
     focusPolicy: Qt.NoFocus
     
     hoverEnabled: !Maui.Handy.isMobile
-    implicitHeight: _layoutButton.implicitHeight + topPadding + bottomPadding
-    implicitWidth: _layoutButton.implicitWidth + leftPadding + rightPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+         
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
     
-    icon.width: Maui.Style.iconSizes.small
-    icon.height: Maui.Style.iconSizes.small
     icon.color: control.enabled ? ((control.checked || control.pressed) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
     
     opacity: enabled ? 1 : 0.5
@@ -101,9 +102,9 @@ AbstractButton
         
         Item
         {
-            implicitWidth: implicitHeight
-            implicitHeight: Math.max(control.icon.height, control.icon.width)
-            Layout.fillHeight: true
+            implicitWidth: control.icon.width
+            implicitHeight: control.icon.height
+//             Layout.fillHeight: true
             Layout.column: 0
             Layout.row: 0
             Layout.alignment: Qt.AlignCenter
@@ -113,7 +114,9 @@ AbstractButton
             Kirigami.Icon
             {
                 id: _icon
-                anchors.fill: parent
+                height: control.icon.height
+                width: control.icon.width
+                anchors.centerIn: parent
                 
                 color: control.icon.color
                 

@@ -23,7 +23,7 @@ T.Control
 {
     id: control
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
-    implicitHeight: Math.max(implicitContentHeight, Maui.Style.rowHeight) + topPadding + bottomPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     opacity: enabled ? 1 : 0.5
     
     spacing: 2
@@ -76,7 +76,7 @@ T.Control
     /**
      * currentAction : Action
      */
-    readonly property Action currentAction : control.autoExclusive ? actions[Math.max(0, control.currentIndex)] : null
+    property Action currentAction : control.autoExclusive ? actions[Math.max(0, control.currentIndex)] : null
     
     /**
      * currentIndex : int
@@ -129,7 +129,7 @@ T.Control
         }
     }
     
-    contentItem : Loader
+    contentItem: Loader
     {
         id: _loader
         asynchronous: true
@@ -169,6 +169,7 @@ T.Control
                     checked: action.checked
                     leftPadding: Maui.Style.space.big
                     rightPadding: Maui.Style.space.big
+                    
                     Binding on checked
                     {
                         when: autoExclusive
@@ -176,7 +177,8 @@ T.Control
                     }
                     
                     autoExclusive: control.autoExclusive
-                    height: Math.max(parent.height, implicitHeight)
+                    
+                    height: Math.max(Maui.Style.rowHeight, implicitHeight)
                     width : Math.max(implicitWidth, 48)
                     
                     enabled: action.enabled
@@ -184,8 +186,8 @@ T.Control
                     display: control.autoExclusive ? (checked && control.enabled ? control.display : ToolButton.IconOnly) : control.display
                     
                     icon.name: action.icon.name
-                    icon.width:  action.icon.width ?  action.icon.width : Maui.Style.iconSizes.small
-                    icon.height:  action.icon.height ?  action.icon.height : Maui.Style.iconSizes.small
+                    icon.width:  action.icon.width ?  action.icon.width : Maui.Style.iconSize
+                    icon.height:  action.icon.height ?  action.icon.height : Maui.Style.iconSize
                     
                     onClicked:
                     {
@@ -223,7 +225,8 @@ T.Control
             id: _defaultButtonMouseArea
             hoverEnabled: true
             implicitWidth: implicitContentWidth + leftPadding + rightPadding
-            
+                implicitHeight: implicitContentHeight + topPadding + bottomPadding
+
             function triggerAction()
             {
                 if(control.canCyclic)
@@ -342,15 +345,15 @@ T.Control
                 Private.BasicToolButton
                 {
                     id: _defaultButtonIcon
-                    Layout.fillHeight: true
+                    Layout.preferredHeight: Math.max(Maui.Style.rowHeight, implicitHeight)
                     Layout.minimumWidth: 48
                     property var m_item : _defaultButtonMouseArea.buttonAction()
                     property Action m_action : m_item.action
                     
                     onClicked: _defaultButtonMouseArea.triggerAction()
                     
-                    icon.width:  Maui.Style.iconSizes.small
-                    icon.height: Maui.Style.iconSizes.small
+                    icon.width:  Maui.Style.iconSize
+                    icon.height: Maui.Style.iconSize
                     icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : ( _defaultButtonMouseArea.containsPress ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
                     
                     icon.name: m_action ? m_action.icon.name : control.defaultIconName

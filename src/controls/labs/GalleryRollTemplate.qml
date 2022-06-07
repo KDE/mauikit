@@ -42,11 +42,6 @@ Kirigami.ShadowedRectangle
         bottomRightRadius: control.radius
     }
     
-//    shadow.xOffset: 0
-//    shadow.yOffset: 0
-//    shadow.color: Qt.rgba(0, 0, 0, 0.3)
-//    shadow.size: 10
-
 
 ListView
         {

@@ -193,8 +193,7 @@ T.TextField
                 visible: control.text.length || control.activeFocus
                 icon.name: "edit-clear"
                 icon.color: control.color
-                icon.height: Maui.Style.iconSizes.medium
-                icon.width: Maui.Style.iconSizes.medium
+               
                 onClicked:
                 {
                     control.clear()
@@ -213,8 +212,6 @@ T.TextField
                     focusPolicy: Qt.NoFocus
                     action: modelData
                     icon.color: control.color
-                    icon.height: Maui.Style.iconSizes.medium
-                    icon.width: Maui.Style.iconSizes.medium
                 }
             }
         }
