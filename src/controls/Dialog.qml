@@ -47,7 +47,7 @@ Maui.Popup
 
     maxWidth: 300
     maxHeight: implicitHeight
-    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding + topMargin + bottomMargin
 
     hint: 0.9
     heightHint: 0.9
@@ -227,15 +227,13 @@ Maui.Popup
             Maui.Theme.colorSet: control.Maui.Theme.colorSet
             Layout.fillWidth: true
             Layout.fillHeight: true
-            implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.margins*2) + _page.headerContainer.implicitHeight + (_page.padding * 2) + parent.spacing
+            implicitHeight: Math.max(_scrollView.contentHeight, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.topPadding + _page.bottomPadding) + _page.headerContainer.implicitHeight + (_page.topMargin + _page.bottomMargin)
             headerPositioning: ListView.InlineHeader
             padding: 0
             headBar.visible: control.persistent
             headerColorSet: Maui.Theme.Header
             headBar.background: null
             background: null
-
-          
 
             headBar.farRightContent: Loader
             {
@@ -305,7 +303,7 @@ Maui.Popup
                             spacing: Maui.Style.space.big
 
                             leftLabels.spacing: control.spacing
-                            leftLabels.data:  Maui.TextField
+                            leftLabels.data: Maui.TextField
                             {
                                 id: _textEntry
                                 visible: control.entryField

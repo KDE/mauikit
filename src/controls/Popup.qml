@@ -77,13 +77,13 @@ T.Popup
     x: filling ? control.leftMargin : Math.round( parent.width / 2 - width / 2 )
     y: filling ? control.parent.height - control.height : Math.round( positionY() )
     
-    modal: !filling
+    modal: true
     
     margins:  0
     padding: 1
     
     topPadding: control.padding
-    bottomPadding: control.padding
+    bottomPadding: control.padding + bottomInset
     leftPadding: control.padding
     rightPadding: control.padding
     

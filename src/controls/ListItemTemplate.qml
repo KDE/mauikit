@@ -192,8 +192,7 @@ Item
     RowLayout
     {
         id: _layout
-        height: parent.height
-        width: parent.width
+        anchors.fill: parent
         spacing: Maui.Style.space.medium
 
         Item
