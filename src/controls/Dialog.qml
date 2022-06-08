@@ -53,7 +53,7 @@ Maui.Popup
     heightHint: 0.9
 
 //     filling: mWidth === control.parent.width
-    filling: Maui.Handy.isMobile
+    filling: control.persistent && Maui.Handy.isMobile
 
     /*!
       \qmlproperty list<Item> ApplicationWindow::scrollable

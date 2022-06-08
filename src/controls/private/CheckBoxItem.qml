@@ -20,7 +20,7 @@ Item
     {
         id: _rec
         anchors.fill: parent
-        color: control.checked ? Maui.Theme.highlightColor : "transparent"
+        color: control.checked ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
         radius: control.autoExclusive ? height/2 : 4
         border.color: control.checked ?  Maui.Theme.highlightedTextColor :  Maui.Theme.textColor 
         
