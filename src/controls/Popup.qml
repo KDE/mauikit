@@ -99,106 +99,112 @@ T.Popup
      * content : Item.data
      */
     default property alias content : _content.data
-
-    /**
+        
+        /**
          * maxWidth : int
          */
-    property int maxWidth : 700
-
-    /**
+        property int maxWidth : 700
+        
+        /**
          * maxHeight : int
          */
-    property int maxHeight : 400
-
-    /**
+        property int maxHeight : 400
+        
+        /**
          * hint : double
          */
-    property double hint : 0.9
-
-    /**
+        property double hint : 0.9
+        
+        /**
          * heightHint : double
          */
-    property double heightHint : hint
-
-    /**
+        property double heightHint : hint
+        
+        /**
          * widthHint : double
          */
-    property double widthHint : hint
-
-    /**
+        property double widthHint : hint
+        
+        /**
          * verticalAlignment : int
          */
-    property int verticalAlignment : Qt.AlignVCenter
-
-    contentItem:  Item  
-    {
+        property int verticalAlignment : Qt.AlignVCenter
+        
+        contentItem:  Item  
+        {
             id: _content
             layer.enabled: true
             layer.effect: OpacityMask
             {
                 cached: true
-                maskSource: Rectangle
+                maskSource:  Kirigami.ShadowedRectangle
                 {
                     width: _content.width
                     height: _content.height
-                    radius: Maui.Style.radiusV
+                    corners
+                    {
+                        topLeftRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+                        topRightRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+                        bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
+                        bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
+                    }   
                 }            
             }
         }
         
-    
-    background: Kirigami.ShadowedRectangle
-    {
-        color: control.Maui.Theme.backgroundColor
         
-        corners
+        background: Kirigami.ShadowedRectangle
         {
-            topLeftRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
-            topRightRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
-            bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
-            bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
-        }     
-        
-             property color borderColor: Maui.Theme.textColor
-        
-        border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-        border.width: 1
-        shadow.xOffset: 0
-        shadow.yOffset: 0
-        shadow.color: Qt.rgba(0, 0, 0, 0.5)
-        shadow.size: 10
-        Behavior on color
-        {
-            Maui.ColorTransition{}
+            color: control.Maui.Theme.backgroundColor
+            
+            corners
+            {
+                topLeftRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+                topRightRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+                bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
+                bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
+            }     
+            
+            property color borderColor: Maui.Theme.textColor
+            
+            border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+            border.width: 1
+            shadow.xOffset: 0
+            shadow.yOffset: 0
+            shadow.color: "red"
+            shadow.size: 10
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
+            
+            Behavior on border.color
+            {
+                Maui.ColorTransition{}
+            }
+            
         }
         
-         Behavior on border.color
-        {
-            Maui.ColorTransition{}
-        }
-       
-    }
-
-    /**
-         *
+        /**
+         * 
          */
-    function positionY()
-    {
-        if(verticalAlignment === Qt.AlignVCenter)
+        function positionY()
         {
-            return parent.height / 2 - height / 2
+            if(verticalAlignment === Qt.AlignVCenter)
+            {
+                return parent.height / 2 - height / 2
+            }
+            else if(verticalAlignment === Qt.AlignTop)
+            {
+                return (height + Maui.Style.space.huge)
+            }
+            else if(verticalAlignment === Qt.AlignBottom)
+            {
+                return (parent.height) - (height + Maui.Style.space.huge)
+                
+            }else
+            {
+                return parent.height / 2 - height / 2
+            }
         }
-        else if(verticalAlignment === Qt.AlignTop)
-        {
-            return (height + Maui.Style.space.huge)
-        }
-        else if(verticalAlignment === Qt.AlignBottom)
-        {
-            return (parent.height) - (height + Maui.Style.space.huge)
-
-        }else
-        {
-            return parent.height / 2 - height / 2
-        }
-    }
 }
