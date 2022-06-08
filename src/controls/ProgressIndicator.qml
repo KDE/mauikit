@@ -5,7 +5,7 @@ import org.mauikit.controls 1.3 as Maui
 ProgressBar
 {
     id: control
-   
+    
     indeterminate: true
     
     contentItem: Item 
@@ -30,13 +30,13 @@ ProgressBar
                 width: offset * (parent.width - x)
                 height: 4
                 
-                color: "violet"
+                color: Maui.Theme.highlightColor
                 
-                  Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
-        
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
+                
                 SequentialAnimation on offset
                 {
                     loops: Animation.Infinite

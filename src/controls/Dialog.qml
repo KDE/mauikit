@@ -52,7 +52,8 @@ Maui.Popup
     hint: 0.9
     heightHint: 0.9
 
-    filling: persistent && mWidth === control.parent.width
+//     filling: mWidth === control.parent.width
+    filling: Maui.Handy.isMobile
 
     /*!
       \qmlproperty list<Item> ApplicationWindow::scrollable
@@ -234,33 +235,13 @@ Maui.Popup
             headBar.background: null
             background: null
 
-            headBar.farLeftContent:  Loader
-            {
-                asynchronous: true
-                visible: active
-                active: control.filling && control.persistent && closeButtonVisible
-
-                sourceComponent: ToolButton
-                {
-                    icon.name: "go-previous"
-                    onClicked:
-                    {
-                        if(control.autoClose)
-                        {
-                            control.close()
-                        }else
-                        {
-                            control.closeTriggered()
-                        }
-                    }
-                }
-            }
+          
 
             headBar.farRightContent: Loader
             {
                 asynchronous: true
                 visible: active
-                active: control.persistent && !control.filling && closeButtonVisible
+                active: control.persistent && closeButtonVisible
 
                 sourceComponent: Maui.CloseButton
                 {

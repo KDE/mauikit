@@ -198,16 +198,15 @@ T.Pane
         {
             Layout.alignment: Qt.AlignCenter
 //             padding: Maui.Style.space.medium
-//             leftPadding: Maui.Style.space.big
-//             rightPadding: Maui.Style.space.big
+            leftPadding: Maui.Style.space.big
+            rightPadding: Maui.Style.space.big
             readonly property QtObject obj : control.currentIndex >= control.items.length && control.currentIndex < control.count? control.hiddenItems[control.currentIndex - control.items.length] : null
 
             visible: obj && obj.visible
             checked: visible
             autoExclusive: true
             icon.name: obj ? obj.Maui.AppView.iconName : ""
-            icon.width: Maui.Style.iconSizes.medium
-            icon.height: Maui.Style.iconSizes.medium
+        
             //                flat: display === ToolButton.IconOnly
 
             display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly

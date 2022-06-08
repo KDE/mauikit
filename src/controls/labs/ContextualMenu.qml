@@ -39,6 +39,7 @@ T.Menu
     
     focus: true
     modal: control.responsive
+    overlap: 0-Maui.Style.space.medium
     
     spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
     
@@ -47,6 +48,8 @@ T.Menu
     leftMargin: control.responsive ? Maui.Style.space.medium : control.margins
     topMargin: control.margins
     bottomMargin: control.margins
+    
+    bottomInset: control.responsive ? -1 : 0
     
     padding: 1
     topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium

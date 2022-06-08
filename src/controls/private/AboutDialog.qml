@@ -29,7 +29,7 @@ import org.mauikit.controls 1.2 as Maui
 Maui.Dialog
 {
     id: control
-    
+    implicitHeight: 200 + defaultButtonsLayout.height
     defaultButtons: false
     persistent: false
     widthHint: 0.9
@@ -38,7 +38,7 @@ Maui.Dialog
     page.padding: 0
 
     maxWidth: 360
-    maxHeight: 200 + defaultButtonsLayout.height
+    maxHeight: implicitHeight
 
     Maui.Theme.inherit: false
     Maui.Theme.colorSet: Maui.Theme.Complementary

@@ -82,30 +82,29 @@ T.MenuItem
 
     arrow: Kirigami.Icon
     {
-        x: control.mirrored ? control.padding : control.width - width - control.padding
+        x: control.mirrored ? control.padding : control.width - width - control.rightPadding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2
 
         visible: control.subMenu
-//        mirror: control.mirrored
+        //        mirror: control.mirrored
         color: control.icon.color
         height: 10
         width: 10
         source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/arrow-indicator.png"
         
-         Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
     }
-
+    
     contentItem: IconLabel
     {
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
 
-        leftPadding: arrowPadding + Maui.Style.space.medium
-        rightPadding: indicatorPadding + Maui.Style.space.medium
-
+        leftPadding: Maui.Style.space.medium
+        rightPadding: indicatorPadding + Maui.Style.space.medium + arrowPadding 
         spacing: control.spacing
 
         mirrored: control.mirrored

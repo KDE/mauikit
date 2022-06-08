@@ -20,7 +20,9 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
+import org.kde.kirigami 2.14 as Kirigami
+
 import QtQuick.Templates 2.15 as T
 
 import QtGraphicalEffects 1.0
@@ -42,8 +44,8 @@ T.Popup
     parent: ApplicationWindow.overlay
     Maui.Theme.colorSet: Maui.Theme.View
     
-    width: filling ? parent.width : mWidth
-    height: filling ? parent.height : mHeight
+    width: (filling ? parent.width  : mWidth) - leftMargin - rightMargin
+    height: (filling ? Math.min(parent.height , implicitHeight): mHeight) - topMargin - bottomMargin
     
     //     anchors.centerIn: Overlay.overlay
     
@@ -72,12 +74,12 @@ T.Popup
     readonly property int mWidth:  Math.round(Math.min(control.parent.width * widthHint, maxWidth))
     readonly property int mHeight: Math.round(Math.min(control.parent.height * heightHint, maxHeight))
     
-    x: filling ? 0 : Math.round( parent.width / 2 - width / 2 )
-    y: filling ? 0 : Math.round( positionY() )
+    x: filling ? control.leftMargin : Math.round( parent.width / 2 - width / 2 )
+    y: filling ? control.parent.height - control.height : Math.round( positionY() )
     
     modal: !filling
     
-    margins: 0
+    margins:  0
     padding: 1
     
     topPadding: control.padding
@@ -85,9 +87,11 @@ T.Popup
     leftPadding: control.padding
     rightPadding: control.padding
     
-    rightMargin: control.margins
-    leftMargin: control.margins
-    topMargin: control.margins
+    bottomInset: control.filling ? -1 : 0
+    
+    rightMargin: filling ? Maui.Style.space.medium : control.margins
+    leftMargin: filling ? Maui.Style.space.medium : control.margins
+    topMargin: filling ? Maui.Style.space.medium : control.margins
     bottomMargin: control.margins
     
     property bool filling : false
@@ -126,13 +130,10 @@ T.Popup
          */
     property int verticalAlignment : Qt.AlignVCenter
 
-    contentItem: Item
+    contentItem:  Item  
     {
-        Item
-        {
             id: _content
-            anchors.fill: parent
-            layer.enabled: !control.filling
+            layer.enabled: true
             layer.effect: OpacityMask
             {
                 cached: true
@@ -140,22 +141,32 @@ T.Popup
                 {
                     width: _content.width
                     height: _content.height
-                    radius: control.background.radius
+                    radius: Maui.Style.radiusV
                 }            
             }
         }
-    }       
+        
     
-    background: Rectangle
+    background: Kirigami.ShadowedRectangle
     {
         color: control.Maui.Theme.backgroundColor
         
-        radius: control.filling ? 0 : Maui.Style.radiusV
-        //        border.color: Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, 0.15);
-        border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+        corners
+        {
+            topLeftRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+            topRightRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+            bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
+            bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
+        }     
         
+             property color borderColor: Maui.Theme.textColor
         
-        property color borderColor: Maui.Theme.textColor
+        border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+        border.width: 1
+        shadow.xOffset: 0
+        shadow.yOffset: 0
+        shadow.color: Qt.rgba(0, 0, 0, 0.5)
+        shadow.size: 10
         Behavior on color
         {
             Maui.ColorTransition{}
@@ -165,18 +176,7 @@ T.Popup
         {
             Maui.ColorTransition{}
         }
-        
-        layer.enabled: !control.filling
-        layer.effect: DropShadow
-        {
-            cached: true
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8.0
-            samples: 16
-            color:  "#80000000"
-            smooth: true
-        }
+       
     }
 
     /**
