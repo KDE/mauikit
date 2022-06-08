@@ -41,7 +41,8 @@ T.Control
   Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
   implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
   padding: Maui.Style.contentMargins
-  
+  focusPolicy: Qt.NoFocus
+  hoverEnabled: false
 //   highlighted:  ListView.isCurrentItem
   /**
    * isCurrentListItem : bool

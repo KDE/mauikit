@@ -47,7 +47,7 @@ Maui.Popup
 
     maxWidth: 300
     maxHeight: implicitHeight
-    implicitHeight: _layout.implicitHeight
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
     hint: 0.9
     heightHint: 0.9
