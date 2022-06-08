@@ -20,7 +20,7 @@ T.Menu
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
     
-    property bool responsive: true
+    property bool responsive: Maui.Handy.isMobile
     
     property string subtitle
     property string titleImageSource
@@ -140,7 +140,7 @@ T.Menu
         property color borderColor: Maui.Theme.textColor
         
         border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-        
+        border.width: 1
         shadow.xOffset: 0
         shadow.yOffset: 0
         shadow.color: Qt.rgba(0, 0, 0, 0.5)
