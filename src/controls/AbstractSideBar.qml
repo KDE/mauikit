@@ -37,7 +37,8 @@ T.Drawer
 {
     id: control
     edge: Qt.LeftEdge
-    
+    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
     position: visible ? 1 : 0
     visible: enabled    
     
@@ -142,7 +143,7 @@ T.Drawer
         
         background: Kirigami.ShadowedRectangle
         {
-            color: Maui.Theme.backgroundColor
+            color: control.Maui.Theme.backgroundColor
             property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.Style.radiusV
             opacity: Maui.App.translucencyAvailable ? 0.4 : 1
             corners
@@ -187,7 +188,6 @@ T.Drawer
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right
-            width: 0.5
             weight: Maui.Separator.Weight.Light
             
             Behavior on color

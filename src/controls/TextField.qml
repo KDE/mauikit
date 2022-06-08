@@ -40,14 +40,15 @@ T.TextField
 {
     id: control
     
-    Maui.Theme.colorSet: Maui.Theme.View
-    //     Maui.Theme.inherit: true
+    Maui.Theme.colorSet: Maui.Theme.Button
+        Maui.Theme.inherit: false
     
     color: Maui.Theme.textColor
     selectionColor: Maui.Theme.highlightColor
     selectedTextColor: Maui.Theme.highlightedTextColor
     focus: true
-    implicitHeight: Math.max(_actionsLayoutLoader.implicitHeight, Maui.Style.rowHeight + topPadding + bottomPadding)
+    
+    implicitHeight: Math.max(_actionsLayoutLoader.implicitHeight, Maui.Style.rowHeight)  + topPadding + bottomPadding
     implicitWidth: 100 + leftPadding + rightPadding
     
     verticalAlignment: TextInput.AlignVCenter
@@ -291,7 +292,7 @@ T.TextField
     
     background: Rectangle 
     {       
-        color: control.enabled ? Qt.lighter(Maui.Theme.backgroundColor) : "transparent"
+        color: control.enabled ? Maui.Theme.backgroundColor : "transparent"
         //         border.color: control.activeFocus ? Maui.Theme.highlightColor : "transparent"
         
         radius: Maui.Style.radiusV

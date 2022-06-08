@@ -34,9 +34,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Templates 2.12 as T
-import QtQuick.Controls.Material 2.12
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
 
 T.ScrollBar
@@ -60,8 +59,8 @@ T.ScrollBar
         implicitWidth: control.interactive ? 10 : 4
         implicitHeight: control.interactive ? 10 : 4
 
-        color: control.pressed ? control.Material.scrollBarPressedColor :
-               control.interactive && control.hovered ? control.Material.scrollBarHoveredColor : control.Material.scrollBarColor
+        color: control.pressed ? Maui.Theme.highlightColor :
+               control.interactive && control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
         opacity: 0.0
         
         Behavior on color
@@ -71,15 +70,15 @@ T.ScrollBar
         
     }
 
-    background: Item
+    background: Rectangle
     {
-        //radius: Maui.Style.radiusV
+        radius: Maui.Style.radiusV
         
         implicitWidth: control.interactive ? 14 : 4
         implicitHeight: control.interactive ? 14 : 4
-//         color: "#0e000000"
-//         opacity: 0.0
-        visible: control.interactive
+        color: Maui.Theme.alternateBackgroundColor
+        opacity: 0.0
+        visible: control.interactive && control.pressed
     }
 
     states: State {

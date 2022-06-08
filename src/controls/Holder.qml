@@ -51,12 +51,12 @@ Item
   /**
    * title : string
    */
-  property alias title : _label1.text
+  property alias title : _template.text1
   
   /**
    * body : string
    */
-  property alias body : _label2.text
+  property alias body : _template.text2
   
   /**
    * isMask : bool
@@ -78,8 +78,8 @@ Item
    */
   property bool enabled: true
   
-  property alias label1 : _label1
-  property alias label2 : _label2
+  property alias label1 : _template.label1
+  property alias label2 : _template.label2
   
   /**
    * actionTriggered :
@@ -94,9 +94,9 @@ Item
     {
       id: imageHolder
       
-      color: _label1.color
+      color: Maui.Theme.textColor
       isMask: control.isMask
-      opacity: isMask ? _label1.opacity : 1
+      opacity: isMask ? _template.opacity : 1
       source: emoji
       
       Behavior on color
@@ -126,7 +126,7 @@ Item
     Loader
     {
       visible: active
-      active: control.height > (_label1.implicitHeight + _label2.implicitHeight + emojiSize) && control.emoji
+      active: control.height > (_template.implicitHeight + emojiSize) && control.emoji
       height: control.emoji && visible ? emojiSize : 0
       width: height
       asynchronous: true
@@ -139,30 +139,39 @@ Item
      *    height: Maui.Style.space.medium
   }
   */
-    Label
+    
+    Maui.ListItemTemplate
     {
-      id: _label1
-      width: Math.min(control.width * 0.7, implicitWidth)
-      opacity: 0.7
+      id: _template
+      width: Math.min(control.width * 0.7, layout.implicitWidth)
       
-      font.pointSize: Maui.Style.fontSizes.enormous* 1.2            
-      font.bold: true
-      font.weight: Font.Bold
-      elide: Text.ElideRight
-      color: Maui.Theme.textColor
-      wrapMode: Text.Wrap
+      label1.font.pointSize: Maui.Style.fontSizes.enormous* 1.2            
+      label1.font.bold: true
+      label1.font.weight: Font.Bold
     }
+    //Label
+    //{
+      //id: _label1
+      //width: Math.min(control.width * 0.7, implicitWidth)
+      //opacity: 0.7
+      
+      
+      //elide: Text.ElideRight
+      //color: Maui.Theme.textColor
+      //wrapMode: Text.Wrap
+    //}
     
-    Label
-    {
-      id: _label2
-      width: Math.min(control.width * 0.7, implicitWidth)
-      opacity: 0.5
-      elide: Text.ElideRight
-      color: Maui.Theme.textColor
-      wrapMode: Text.Wrap
-    }
+    //Label
+    //{
+      //id: _label2
+      //width: Math.min(control.width * 0.7, implicitWidth)
+      //opacity: 0.5
+      //elide: Text.ElideRight
+      //color: Maui.Theme.textColor
+      //wrapMode: Text.Wrap
+    //}
     
+    Item{height: Maui.Style.space.medium; width: height}
     
     Repeater
     {

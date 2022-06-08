@@ -33,8 +33,8 @@ Maui.Dialog
         control.close()
     }
 
-    page.margins: Maui.Style.space.big
-    spacing: Maui.Style.space.medium
+    //page.margins: Maui.Style.space.big
+    //spacing: Maui.Style.space.medium
     
     onOpened: textEntry.selectAll()
     

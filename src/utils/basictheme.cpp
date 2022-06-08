@@ -152,7 +152,7 @@ namespace Maui
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
-        buttonBackgroundColor = backgroundColor.lighter();
+        buttonBackgroundColor = cu.tintWithAlpha(QColor{"#3a3f41"}, highlightColor, 0.03);
         buttonAlternateBackgroundColor = buttonBackgroundColor.darker();
         buttonHoverColor = buttonBackgroundColor.lighter();
         buttonFocusColor = highlightColor;
@@ -170,7 +170,7 @@ namespace Maui
         selectionFocusColor = highlightColor;
         
         complementaryTextColor = QColor{"#eff0f1"};
-        complementaryBackgroundColor = QColor{"#31363b"};
+        complementaryBackgroundColor = cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03); 
         complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker();
         complementaryHoverColor = complementaryBackgroundColor.lighter();
         complementaryFocusColor = highlightColor;
@@ -193,7 +193,7 @@ namespace Maui
         const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;        
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};       
         
-        backgroundColor =  cu.tintWithAlpha(QColor{"#efefef"}, highlightColor, 0.02);
+        backgroundColor = cu.tintWithAlpha(QColor{"#efefef"}, highlightColor, 0.02);
         
         alternateBackgroundColor = backgroundColor.darker();
         
@@ -203,7 +203,7 @@ namespace Maui
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
-        buttonBackgroundColor = backgroundColor.lighter(120);
+        buttonBackgroundColor = cu.tintWithAlpha(QColor{"#fcfdfd"}, highlightColor, 0.03);
         buttonAlternateBackgroundColor = buttonBackgroundColor.darker(120);
         buttonHoverColor = buttonBackgroundColor.darker(110);
         buttonFocusColor = highlightColor;
@@ -221,7 +221,7 @@ namespace Maui
         selectionFocusColor = highlightColor;
         
         complementaryTextColor = QColor{"#eff0f1"};
-        complementaryBackgroundColor = QColor{"#31363b"};
+        complementaryBackgroundColor = cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03);
         complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker(120);
         complementaryHoverColor = complementaryBackgroundColor.lighter(120);
         complementaryFocusColor = highlightColor;
@@ -236,11 +236,14 @@ namespace Maui
     void BasicThemeDefinition::setAdaptiveColors()
     {
         ColorUtils cu;
+        
+        textColor = m_imgColors->foreground();        
+        highlightColor = m_imgColors->highlight();
+        
         const auto isDark = m_imgColors->paletteBrightness() == ColorUtils::Dark;
         const auto bgColor = cu.tintWithAlpha(isDark ?  QColor{"#3a3f41"} : QColor{"#efefef"}, m_imgColors->background(), 0.1);
-        textColor = m_imgColors->foreground();
+       const auto btnColor =  cu.tintWithAlpha(isDark ? QColor{"#3a3f41"} : QColor{"#fcfdfd"}, highlightColor, 0.06);
         
-        highlightColor = m_imgColors->highlight();
         highlightedTextColor = cu.brightnessForColor(highlightColor) ==  ColorUtils::Dark ? m_imgColors->closestToWhite() : m_imgColors->closestToBlack();
 //         backgroundColor = cu.tintWithAlpha(m_imgColors->background(), bgColor, 0.8);
         backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.05);
@@ -253,7 +256,7 @@ namespace Maui
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
-        buttonBackgroundColor =  isDark ? backgroundColor.darker() :  backgroundColor.lighter();
+        buttonBackgroundColor = btnColor;
         buttonAlternateBackgroundColor = buttonBackgroundColor.darker();
         buttonHoverColor = buttonBackgroundColor.lighter();
         buttonFocusColor = highlightColor;
@@ -271,7 +274,7 @@ namespace Maui
         selectionFocusColor = highlightColor;
         
         complementaryTextColor = QColor{"#eff0f1"};
-        complementaryBackgroundColor = QColor{"#31363b"};
+        complementaryBackgroundColor = cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03); 
         complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker();
         complementaryHoverColor = complementaryBackgroundColor.lighter();
         complementaryFocusColor = highlightColor;

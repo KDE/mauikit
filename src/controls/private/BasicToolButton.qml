@@ -26,8 +26,9 @@ import QtQuick.Layouts 1.3
 
 import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Templates 2.15 as T
 
-AbstractButton
+T.ToolButton
 {
     id: control
     
@@ -42,7 +43,7 @@ AbstractButton
     topPadding: padding
     bottomPadding: padding
     
-    property bool flat : false
+//     property bool flat : false
     
     /**
      * 
@@ -76,7 +77,7 @@ AbstractButton
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
     
-    icon.color: control.enabled ? ((control.checked || control.pressed) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor) : Maui.Theme.disabledTextColor
+    icon.color: ((control.checked || control.pressed) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor)
     
     opacity: enabled ? 1 : 0.5
     
@@ -104,7 +105,8 @@ AbstractButton
         {
             implicitWidth: control.icon.width
             implicitHeight: control.icon.height
-//             Layout.fillHeight: true
+            Layout.fillHeight: true
+            
             Layout.column: 0
             Layout.row: 0
             Layout.alignment: Qt.AlignCenter
@@ -123,6 +125,24 @@ AbstractButton
                 source: control.icon.name
                 isMask: true
                 
+//                 Behavior on height
+//                 {
+//                     NumberAnimation
+//                     {
+//                         duration: Maui.Style.units.shortDuration
+//                         easing.type: Easing.InQuad
+//                     }
+//                 }
+//                 
+//                 Behavior on width
+//                 {
+//                     NumberAnimation
+//                     {
+//                         duration: Maui.Style.units.shortDuration
+//                         easing.type: Easing.InQuad
+//                     }
+//                 }
+
                 Behavior on color
                 {
                     Maui.ColorTransition{}

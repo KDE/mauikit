@@ -37,7 +37,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Templates 2.3 as T
-import org.kde.kirigami 2.14 as Kirigami
+import org.mauikit.controls 1.3 as Maui
 
 T.SwipeView 
 {

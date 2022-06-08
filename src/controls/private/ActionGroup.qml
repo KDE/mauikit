@@ -28,8 +28,8 @@ T.Pane
 {
     id: control
     
-    implicitWidth: _layout.implicitWidth +leftPadding + rightPadding
-    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+    implicitWidth: implicitContentWidth +leftPadding + rightPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
     spacing: Maui.Style.space.medium
     padding: 0
@@ -54,6 +54,7 @@ T.Pane
      */
     readonly property int count : control.items.length + control.hiddenItems.length
     
+    property int display: ToolButton.TextBesideIcon
     /**
      *
      */
@@ -96,8 +97,9 @@ T.Pane
         text: modelData.Maui.AppView.title
         //         flat: display === ToolButton.IconOnly
         font.bold: true
+//         display: control.display
         display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
-
+        
         Maui.Badge
         {
             visible: modelData.Maui.AppView.badgeText

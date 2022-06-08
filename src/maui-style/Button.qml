@@ -31,21 +31,26 @@ T.Button
     opacity: control.enabled ? 1 : 0.5
 
     implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) + Maui.Style.space.big + leftPadding + rightPadding
-    implicitHeight: background.implicitHeight + topPadding + bottomPadding
-    hoverEnabled: true
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                             contentItem.implicitHeight + topPadding + bottomPadding)
+    
+    hoverEnabled: !Maui.Handy.isMobile
 
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
-    icon.width: Maui.Style.iconSizes.small
-    icon.height: Maui.Style.iconSizes.small
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
 
     icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     spacing: Maui.Style.space.small
-    padding: Maui.Style.space.tiny
-    topPadding: 0
-    bottomPadding: 0
+    
+    padding: Maui.Style.space.small
+    rightPadding: padding
+    leftPadding: padding
+    topPadding: padding
+    bottomPadding: padding
     
     contentItem: IconLabel
     {

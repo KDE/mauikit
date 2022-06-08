@@ -27,7 +27,7 @@ import org.mauikit.controls 1.3 as Maui
 import QtQuick.Layouts 1.3
 
 import "private" as Private
-import QtQuick.Templates 2.5 as T
+import QtQuick.Templates 2.15 as T
 
 /**
  * ToolBar
@@ -52,9 +52,9 @@ T.ToolBar
     spacing: Maui.Style.space.small
     
     padding: Maui.Style.space.small
-    topPadding: Maui.Style.space.tiny
-    bottomPadding: Maui.Style.space.tiny
-    
+//     topPadding: Maui.Style.space.tiny
+//     bottomPadding: Maui.Style.space.tiny
+//     
     leftPadding: padding
     rightPadding: padding
     /**
@@ -65,7 +65,7 @@ T.ToolBar
         /**
          * preferredHeight : int
          */
-        property int preferredHeight: Math.max(Maui.Style.toolBarHeight, _mainLayout.implicitHeight )
+        property int preferredHeight: Math.max(Maui.Style.toolBarHeight, implicitContentHeight)
         
         /**
          * forceCenterMiddleContent : bool
@@ -196,11 +196,9 @@ T.ToolBar
                 }
                 
                 sourceComponent: Private.EdgeShadow
-                {
-                    
+                {                    
                     opacity: 0.7
-                    edge: Qt.LeftEdge
-                    
+                    edge: Qt.LeftEdge                    
                 }
             }
             
@@ -209,7 +207,6 @@ T.ToolBar
                 id: _border
                 anchors.left: parent.left
                 anchors.right: parent.right
-                //                 height: 0.5
                 weight: Maui.Separator.Weight.Light
                 
                 Behavior on color
@@ -247,6 +244,7 @@ T.ToolBar
         contentItem: Item
         {
             implicitWidth: _mainLayout.implicitWidth 
+            implicitHeight: _mainLayout.implicitHeight 
             Item
             {
                 id: _container

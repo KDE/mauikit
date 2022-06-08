@@ -21,7 +21,7 @@ T.Control
     
     hoverEnabled: false
 
-    padding: Maui.Style.space.big
+//     padding: Maui.Style.space.big
 //     rightPadding: Maui.Style.space.big
     
     contentItem: MouseArea

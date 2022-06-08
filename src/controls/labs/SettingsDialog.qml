@@ -13,7 +13,8 @@ Maui.Dialog
     hint: 1
     page.title: i18n("Settings")
     headBar.visible: true
-
+    spacing: Maui.Style.space.huge
+    
 //     Component.onCompleted:
 //     {
 //         for(var i = 0; i < control.scrollable.length; i++)

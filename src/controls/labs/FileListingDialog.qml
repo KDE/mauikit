@@ -40,7 +40,6 @@ Maui.Dialog
 
     maxWidth: 400
     closeButtonVisible: false
-    page.margins: Maui.Style.space.big
 
     spacing: Maui.Style.space.medium
 

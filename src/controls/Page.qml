@@ -379,8 +379,14 @@ T.Pane
         id: _headBar
         visible: count > 0
         width: visible ? parent.width : 0
-        height: visible ? implicitHeight : 0
 
+        Binding on height
+        {
+            //when: _headBar.height > 0
+            value: visible ? _headBar.implicitHeight : 0
+            restoreMode: Binding.RestoreBindingOrValue
+        }
+        
         //Maui.Theme.inherit: false
         //Maui.Theme.colorSet: control.headerColorSet
 

@@ -68,12 +68,12 @@ Maui.Page
     {
         asynchronous: true
         Layout.alignment: Qt.AlignCenter
-
+//height: 190
         sourceComponent: Private.ActionGroup
         {
             id: _actionGroup
             currentIndex : _swipeView.currentIndex
-
+display: ToolButton.TextUnderIcon
             Binding on currentIndex 
             {
                 value: _swipeView.currentIndex

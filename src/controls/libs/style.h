@@ -140,7 +140,7 @@ private:
   
   uint m_defaultFontSize;
   
-  uint m_toolBarHeight = 48;
+  uint m_toolBarHeight = 46;
   uint m_toolBarHeightAlt = 40;
   uint m_radiusV = 4;
   uint m_iconSize = 22;

@@ -150,8 +150,7 @@ T.Popup
                     }   
                 }            
             }
-        }
-        
+        }        
         
         background: Kirigami.ShadowedRectangle
         {
@@ -171,7 +170,7 @@ T.Popup
             border.width: 1
             shadow.xOffset: 0
             shadow.yOffset: 0
-            shadow.color: "red"
+            shadow.color: Qt.rgba(0,0,0,0.5)
             shadow.size: 10
             Behavior on color
             {
@@ -181,8 +180,7 @@ T.Popup
             Behavior on border.color
             {
                 Maui.ColorTransition{}
-            }
-            
+            }            
         }
         
         /**
