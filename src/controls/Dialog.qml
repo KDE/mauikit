@@ -54,8 +54,7 @@ Maui.Popup
   spacing: Maui.Style.space.big
   
   //     filling: mWidth === control.parent.width
-  filling: control.persistent && Maui.Handy.isMobile
-  
+    filling: persistent && mWidth === control.parent.width
   /*!
    *    \qmlproperty list<Item> ApplicationWindow::scrollable
    * 

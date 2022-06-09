@@ -45,7 +45,7 @@ T.Menu
     
     margins: 0
     rightMargin: leftMargin
-    leftMargin: control.responsive ? Maui.Style.space.medium : control.margins
+    leftMargin: control.margins
     topMargin: control.margins
     bottomMargin: control.margins
     

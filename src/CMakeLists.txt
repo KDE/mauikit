@@ -261,7 +261,6 @@ elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
         target_link_libraries(MauiKit 
         PRIVATE 
-        MauiMan
         KF5::WindowSystem
         Qt5::X11Extras
         )
@@ -276,6 +275,7 @@ target_link_libraries(MauiKit
     KF5::CoreAddons
 
     PRIVATE
+    MauiMan::MauiMan
     KF5::Notifications
     Qt5::Qml
     Qt5::Svg

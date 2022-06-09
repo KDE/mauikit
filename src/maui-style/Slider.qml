@@ -22,8 +22,8 @@
 
 import QtQuick 2.15
 import QtQuick.Templates 2.15 as T
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
+import QtGraphicalEffects 1.0
 
 T.Slider
 {
@@ -67,6 +67,7 @@ T.Slider
 
     background: Rectangle
     {
+        id: bg
         x: control.leftPadding + (control.horizontal ? 0 : (control.availableWidth - width) / 2)
         y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : 0)
 
@@ -78,37 +79,37 @@ T.Slider
 
         color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
         scale: control.horizontal && control.mirrored ? -1 : 1
-        radius: 4
         
-Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
-        
 
-        Kirigami.ShadowedRectangle
+        Rectangle
         {
             x: control.horizontal ? 0 : (parent.width - width) / 2
             y: control.horizontal ? (parent.height - height) / 2 : control.visualPosition * parent.height
             width: control.horizontal ? control.position * parent.width : 8
             height: control.horizontal ? 8 : control.position * parent.height
 
-            corners
-            {
-                topLeftRadius: 4
-                topRightRadius: 0
-                bottomLeftRadius:  4
-                bottomRightRadius: 0
-            }
-
             color: Qt.rgba(control.Maui.Theme.highlightColor.r, control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.7)
-//            border.color: control.Maui.Theme.highlightColor
+            //            border.color: control.Maui.Theme.highlightColor
             
             Behavior on color
-        {
-            Maui.ColorTransition{}
+            {
+                Maui.ColorTransition{}
+            }
         }
-        
+
+        layer.enabled: true
+        layer.effect: OpacityMask
+        {
+            maskSource: Rectangle
+            {
+                width: bg.width
+                height: bg.height
+                radius:  Maui.Style.radiusV
+            }
         }
     }
 }

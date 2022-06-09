@@ -38,18 +38,19 @@ T.BusyIndicator
 
     hoverEnabled: true
 
-    contentItem: Kirigami.Icon 
+    contentItem: Kirigami.Icon
     {
         source: "view-refresh"
         opacity: controlRoot.running ? 1 : 0
-
+        color: Maui.Theme.textColor
         // appearing/fading opacity change
         Behavior on opacity {
             OpacityAnimator { duration: 250 }
         }
 
         // rotating loading icon
-        RotationAnimator {
+        RotationAnimator
+        {
             target: controlRoot
             running: controlRoot.visible && controlRoot.running
             from: 0

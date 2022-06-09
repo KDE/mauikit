@@ -29,13 +29,13 @@ import org.mauikit.controls 1.2 as Maui
 Maui.Dialog
 {
     id: control
-//     implicitHeight: 200 + defaultButtonsLayout.height
+    //     implicitHeight: 200 + defaultButtonsLayout.height
     defaultButtons: false
     persistent: false
     widthHint: 0.9
     heightHint: 0.8
 
-//     scrollView.padding: 0
+    //     scrollView.padding: 0
 
     maxWidth: 360
     maxHeight: implicitHeight
@@ -43,7 +43,7 @@ Maui.Dialog
     Maui.Theme.inherit: false
     Maui.Theme.colorSet: Maui.Theme.Complementary
     
-//     verticalScrollBarPolicy: ScrollBar.AlwaysOff
+    //     verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
     /**
          * mainHeader : AlternateListItem
@@ -73,10 +73,10 @@ Maui.Dialog
         }
     ]
 
-//     background: Rectangle
-//     {
-//         color: "red"
-//     }
+    //     background: Rectangle
+    //     {
+    //         color: "red"
+    //     }
 
     Item
     {
@@ -127,98 +127,49 @@ Maui.Dialog
         }
 
     }
-    
-    
-    Loader
+
+    Maui.Separator
     {
-        asynchronous: true
         Layout.fillWidth: true
-        sourceComponent: Maui.AlternateListItem
+    }
+    
+    Maui.AlternateListItem
+    {
+        implicitHeight: _credits.implicitHeight + Maui.Style.space.huge
+        Layout.fillWidth: true
+
+        Column
         {
-            implicitHeight: _footerColumn.implicitHeight + Maui.Style.space.huge
-            lastOne: true
-            
-            ColumnLayout
+            id: _credits
+            spacing: Maui.Style.space.big
+            width: parent.width
+            anchors.centerIn: parent
+
+            Repeater
             {
-                id: _footerColumn
-                width: parent.width
-                spacing: Maui.Style.space.medium
-                anchors.centerIn: parent
-                
-                Kirigami.Icon
-                {
-                    Layout.alignment: Qt.AlignCenter
-                    source: "qrc:/assets/mauikit.svg"
-                    color: Maui.Theme.textColor
-                    isMask: true
-                    implicitHeight: Maui.Style.iconSizes.big
-                    implicitWidth: implicitHeight
-                }
-                
+                model: Maui.App.about.authors
+
                 Maui.ListItemTemplate
                 {
-                    id: _copyRight
-                    Layout.fillWidth: true
-                    isMask: true
-                    
+                    id: _credits
+                    iconSource: "view-media-artist"
+
                     iconSizeHint: Maui.Style.iconSizes.medium
                     headerSizeHint: iconSizeHint + Maui.Style.space.medium
-                    
+
+                    width: parent.width
                     spacing: Maui.Style.space.medium
-                    label1.text: Maui.App.about.copyrightStatement
-                    label1.horizontalAlignment: Qt.AlignHCenter
-                    label1.font.family: "Monospace"
-                }
-            }
-        }
-    }
+                    label1.text: modelData.name
+                    label2.text: String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress)
+                    label3.text: modelData.task
+                    isMask: true
 
-    Maui.Separator 
-    {
-        Layout.fillWidth: true
-    }
-    
-    Loader
-    {
-        asynchronous: true
-        Layout.fillWidth: true
-        sourceComponent: Maui.AlternateListItem
-        {
-            implicitHeight: _credits.implicitHeight + Maui.Style.space.huge
-
-            Column
-            {
-                id: _credits
-                spacing: Maui.Style.space.big
-                width: parent.width
-                anchors.centerIn: parent
-
-                Repeater
-                {
-                    model: Maui.App.about.authors
-
-                    Maui.ListItemTemplate
+                    Connections
                     {
-                        id: _credits
-                        iconSource: "view-media-artist"
-
-                        iconSizeHint: Maui.Style.iconSizes.medium
-                        headerSizeHint: iconSizeHint + Maui.Style.space.medium
-
-                        width: parent.width
-                        spacing: Maui.Style.space.medium
-                        label1.text: modelData.name
-                        label2.text: String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress)
-                        label3.text: modelData.task
-                        isMask: true
-
-                        Connections
+                        target: _credits.label2
+                        function onLinkActivated(link)
                         {
-                            target: _credits.label2
-                            function onLinkActivated(link)
-                            {
-                                Qt.openUrlExternally(link)
-                            }
+                            Qt.openUrlExternally(link)
                         }
                     }
                 }
@@ -226,186 +177,216 @@ Maui.Dialog
         }
     }
 
-    Loader
+    Maui.AlternateListItem
     {
-        asynchronous: true
+        implicitHeight: _licenses.implicitHeight + Maui.Style.space.huge
         Layout.fillWidth: true
-        sourceComponent: Maui.AlternateListItem
+
+        Column
         {
-            implicitHeight: _licenses.implicitHeight + Maui.Style.space.huge
+            id: _licenses
+            spacing: Maui.Style.space.big
+            width: parent.width
+            anchors.centerIn: parent
 
-            Column
+            Repeater
             {
-                id: _licenses
-                spacing: Maui.Style.space.big
-                width: parent.width
-                anchors.centerIn: parent
-
-                Repeater
+                model: Maui.App.about.licenses
+                Maui.ListItemTemplate
                 {
-                    model: Maui.App.about.licenses
-                    Maui.ListItemTemplate
-                    {
-                        iconSource: "license"
-                        width: parent.width
-                        isMask: true
-                        
-                        iconSizeHint: Maui.Style.iconSizes.medium
-                        headerSizeHint: iconSizeHint + Maui.Style.space.medium
+                    iconSource: "license"
+                    width: parent.width
+                    isMask: true
 
-                        spacing: Maui.Style.space.medium
-                        label1.text: modelData.name
-                    }
+                    iconSizeHint: Maui.Style.iconSizes.medium
+                    headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
+                    spacing: Maui.Style.space.medium
+                    label1.text: modelData.name
                 }
             }
         }
     }
-    Loader
-    {
-        asynchronous: true
-        Layout.fillWidth: true
-        sourceComponent: Maui.AlternateListItem
-        {
 
-            implicitHeight: _poweredBy.implicitHeight + Maui.Style.space.huge
+    Maui.AlternateListItem
+    {
+        Layout.fillWidth: true
+
+        implicitHeight: _poweredBy.implicitHeight + Maui.Style.space.huge
+
+        Maui.ListItemTemplate
+        {
+            id: _poweredBy
+            anchors.centerIn: parent
+            width: parent.width
+            isMask: true
+
+            iconSource: "code-context"
+            iconSizeHint: Maui.Style.iconSizes.medium
+            headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
+            spacing: Maui.Style.space.medium
+            label1.text: i18n("Powered by")
+            label2.text: "MauiKit Frameworks " + Maui.App.mauikitVersion
+            Connections
+            {
+                target: _poweredBy.label2
+                function onLinkActivated(link)
+                {
+                    Qt.openUrlExternally(link)
+                }
+            }
+        }
+
+    }
+
+    Maui.AlternateListItem
+    {
+        implicitHeight: _libraries.implicitHeight + Maui.Style.space.huge
+        Layout.fillWidth: true
+
+        Column
+        {
+            id: _libraries
+            spacing: Maui.Style.space.big
+            width: parent.width
+            anchors.centerIn: parent
+
+            Repeater
+            {
+                model: Kirigami.Settings.information
+                Maui.ListItemTemplate
+                {
+                    iconSource: "plugins"
+                    width: parent.width
+                    isMask: true
+
+                    iconSizeHint: Maui.Style.iconSizes.medium
+                    headerSizeHint: iconSizeHint + Maui.Style.space.medium
+
+                    spacing: Maui.Style.space.medium
+                    label1.text: modelData
+                }
+            }
+        }
+    }
+
+
+    Maui.AlternateListItem
+    {
+        Layout.fillWidth: true
+
+        implicitHeight: _footerColumn.implicitHeight + Maui.Style.space.huge
+        lastOne: true
+
+        ColumnLayout
+        {
+            id: _footerColumn
+            width: parent.width
+            spacing: Maui.Style.space.medium
+            anchors.centerIn: parent
+
+            Kirigami.Icon
+            {
+                Layout.alignment: Qt.AlignCenter
+                source: "qrc:/assets/mauikit.svg"
+                color: Maui.Theme.textColor
+                isMask: true
+                implicitHeight: Maui.Style.iconSizes.big
+                implicitWidth: implicitHeight
+            }
 
             Maui.ListItemTemplate
             {
-                id: _poweredBy
-                anchors.centerIn: parent
-                width: parent.width
+                id: _copyRight
+                Layout.fillWidth: true
                 isMask: true
-                
-                iconSource: "code-context"
+
                 iconSizeHint: Maui.Style.iconSizes.medium
                 headerSizeHint: iconSizeHint + Maui.Style.space.medium
 
                 spacing: Maui.Style.space.medium
-                label1.text: i18n("Powered by")
-                label2.text: "MauiKit Frameworks " + Maui.App.mauikitVersion
-                Connections
-                {
-                    target: _poweredBy.label2
-                    function onLinkActivated(link)
-                    {
-                        Qt.openUrlExternally(link)
-                    }
-                }
+                label1.text: Maui.App.about.copyrightStatement
+                label1.horizontalAlignment: Qt.AlignHCenter
+                label1.font.family: "Monospace"
             }
         }
     }
 
-    Loader
+    Item
     {
-        asynchronous: true
-        Layout.fillWidth: true
-        sourceComponent: Maui.AlternateListItem
+        id: _iconItem
+        parent: control.background
+        clip: true
+        anchors.fill: parent
+        anchors.margins: 1
+        layer.enabled: true
+        layer.effect: OpacityMask
         {
-            implicitHeight: _libraries.implicitHeight + Maui.Style.space.huge
-
-            Column
+            cached: true
+            maskSource:  Rectangle
             {
-                id: _libraries
-                spacing: Maui.Style.space.big
-                width: parent.width
-                anchors.centerIn: parent
-
-                Repeater
-                {
-                    model: Kirigami.Settings.information
-                    Maui.ListItemTemplate
-                    {
-                        iconSource: "plugins"
-                        width: parent.width
-                        isMask: true
-                        
-                        iconSizeHint: Maui.Style.iconSizes.medium
-                        headerSizeHint: iconSizeHint + Maui.Style.space.medium
-
-                        spacing: Maui.Style.space.medium
-                        label1.text: modelData
-                    }
-                }
+                width: control.width
+                height: control.height
+                radius: Maui.Style.radiusV
             }
         }
-    }
-
-    
-   
+        
         Item
         {
-            id: _iconItem
-            parent: control.background
-            clip: true
+            id: _iconRec
             anchors.fill: parent
-            anchors.margins: 1
-            layer.enabled: true
-            layer.effect: OpacityMask
+
+            FastBlur
             {
-                cached: true
-                maskSource:  Rectangle
-                {
-                    width: control.width
-                    height: control.height
-                   radius: Maui.Style.radiusV
-                }            
-            }           
-        
-            Item
+                rotation: 45
+
+                id: fastBlur
+                height: parent.height * 3
+                width: parent.width * 4
+                anchors.centerIn: parent
+                source: _div1.iconItem
+                radius: 64
+                transparentBorder: false
+            }
+
+            Rectangle
             {
-                id: _iconRec
                 anchors.fill: parent
-                
-                FastBlur
-                {
-                    rotation: 45
-                    
-                    id: fastBlur
-                    height: parent.height * 3
-                    width: parent.width * 4
-                    anchors.centerIn: parent
-                    source: _div1.iconItem
-                    radius: 64
-                    transparentBorder: false
-                }
-                
-                Rectangle
-                {
-                    anchors.fill: parent
-                    opacity: 0.8
-                    color: control.Maui.Theme.backgroundColor
-                }
-            }
-            
-            HueSaturation
-            {
-                anchors.fill: _iconRec
-                source: _iconRec
-                hue: 0
-                saturation: 1
-                lightness: 0
-            }
-            
-            OpacityMask
-            {
-                source: mask
-                maskSource: _iconRec
-            }
-            
-            LinearGradient
-            {
-                id: mask
-                anchors.fill: parent
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "transparent"}
-                    GradientStop { position: 0.3; color: control.background.color}
-                }
-                
-                start: Qt.point(0, 0)
-                end: Qt.point(_iconRec.width, _iconRec.height)
+                opacity: 0.8
+                color: control.Maui.Theme.backgroundColor
             }
         }
-        
+
+        HueSaturation
+        {
+            anchors.fill: _iconRec
+            source: _iconRec
+            hue: 0
+            saturation: 1
+            lightness: 0
+        }
+
+        OpacityMask
+        {
+            source: mask
+            maskSource: _iconRec
+        }
+
+        LinearGradient
+        {
+            id: mask
+            anchors.fill: parent
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "transparent"}
+                GradientStop { position: 0.3; color: control.background.color}
+            }
+
+            start: Qt.point(0, 0)
+            end: Qt.point(_iconRec.width, _iconRec.height)
+        }
+    }
+
     
 
 }

@@ -45,7 +45,7 @@ T.Popup
     Maui.Theme.colorSet: Maui.Theme.View
     
     width: (filling ? parent.width  : mWidth) - leftMargin - rightMargin
-    height: (filling ? Math.min(parent.height , implicitHeight): mHeight) - topMargin - bottomMargin
+    height: (filling ? parent.height : mHeight) - topMargin - bottomMargin
     
     //     anchors.centerIn: Overlay.overlay
     
@@ -75,11 +75,10 @@ T.Popup
     readonly property int mHeight: Math.round(Math.min(control.parent.height * heightHint, maxHeight))
     
     x: filling ? control.leftMargin : Math.round( parent.width / 2 - width / 2 )
-    y: filling ? control.parent.height - control.height : Math.round( positionY() )
+    y: filling ? control.parent.height - control.height : Math.round( positionY() ) + bottomInset
     
     modal: true
     
-    margins:  0
     padding: 1
     
     topPadding: control.padding
@@ -87,11 +86,12 @@ T.Popup
     leftPadding: control.padding
     rightPadding: control.padding
     
-    bottomInset: control.filling ? -1 : 0
-    
-    rightMargin: filling ? Maui.Style.space.medium : control.margins
-    leftMargin: filling ? Maui.Style.space.medium : control.margins
-    topMargin: filling ? Maui.Style.space.medium : control.margins
+    bottomInset: 0
+
+    margins:  0
+    rightMargin: control.margins
+    leftMargin: control.margins
+    topMargin: control.margins
     bottomMargin: control.margins
     
     property bool filling : false
@@ -158,8 +158,8 @@ T.Popup
             
             corners
             {
-                topLeftRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
-                topRightRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
+                topLeftRadius:  control.filling ? 0 : Maui.Style.radiusV
+                topRightRadius:  control.filling ? 0 : Maui.Style.radiusV
                 bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
                 bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
             }     
@@ -167,10 +167,10 @@ T.Popup
             property color borderColor: Maui.Theme.textColor
             
             border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-            border.width: 1
+            border.width: control.filling ? 0 : 1
             shadow.xOffset: 0
             shadow.yOffset: 0
-            shadow.color: Qt.rgba(0,0,0,0.5)
+            shadow.color: control.filling ?  "transparent"  : Qt.rgba(0,0,0,0.5)
             shadow.size: 10
             Behavior on color
             {

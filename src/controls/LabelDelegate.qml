@@ -37,46 +37,51 @@ import QtQuick.Templates 2.15 as T
  */
 T.Control
 {
-  id: control
-  Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
-  implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
-  padding: Maui.Style.contentMargins
-  focusPolicy: Qt.NoFocus
-  hoverEnabled: false
-//   highlighted:  ListView.isCurrentItem
-  /**
+    id: control
+    Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
+    implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
+    padding: Maui.Style.contentMargins
+    focusPolicy: Qt.NoFocus
+    hoverEnabled: false
+    //   highlighted:  ListView.isCurrentItem
+    /**
    * isCurrentListItem : bool
    */
-  //property alias isCurrentListItem : control.highlighted
-  
-  /**
+    //property alias isCurrentListItem : control.highlighted
+
+    /**
    * isSection : bool
    */
-  property bool isSection : false
-  
-  /**
+    property bool isSection : false
+
+    /**
    * label : string
    */
-  property alias label: labelTxt.text
-  
-  /**
+    property alias label: labelTxt.text
+
+    /**
    * labelTxt : Label
    */
-  property alias labelTxt : labelTxt
-  
-  background: Item{}
-  
- contentItem: Label
-  {
-    id: labelTxt
-    font.pointSize: control.isSection ? Maui.Style.fontSizes.large : Maui.Style.fontSizes.medium
-    horizontalAlignment: Qt.AlignLeft
-    verticalAlignment: Qt.AlignVCenter
-    text: labelTxt.text
-    elide: Text.ElideRight
-    wrapMode: Text.NoWrap
-    color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
-    font.bold: control.isSection
-    font.weight : control.isSection ? Font.Bold : Font.Normal
-  }
+    property alias labelTxt : labelTxt
+
+    background: Item{}
+
+    contentItem: MouseArea
+    {
+        propagateComposedEvents: true
+        Label
+        {
+            anchors.fill: parent
+            id: labelTxt
+            font.pointSize: control.isSection ? Maui.Style.fontSizes.large : Maui.Style.fontSizes.medium
+            horizontalAlignment: Qt.AlignLeft
+            verticalAlignment: Qt.AlignVCenter
+            text: labelTxt.text
+            elide: Text.ElideRight
+            wrapMode: Text.NoWrap
+            color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
+            font.bold: control.isSection
+            font.weight : control.isSection ? Font.Bold : Font.Normal
+        }
+    }
 }

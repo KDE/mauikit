@@ -32,7 +32,7 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(CMakePackageConfigHelpers)
 include(ECMPoQmTools)
-include(ECMQMLModules)
+include(ECMFindQmlModule)
 include(KDEClangFormat)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -49,7 +49,8 @@ set(BUNDLE_LUV_ICONS ON)
 endif()
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Concurrent Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
-    
+find_package(MauiMan REQUIRED COMPONENTS)
+
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 
@@ -61,7 +62,6 @@ elseif(UNIX AND NOT ANDROID)
         # Do not find X11 on macOS
         find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS X11Extras)
         find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS WindowSystem)
-        find_package(MauiMan)
     endif()
     find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
 endif()

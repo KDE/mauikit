@@ -15,8 +15,8 @@ AbstractButton
     hoverEnabled: true
     
     padding: Maui.Style.space.small
-    icon.width: Maui.Style.iconSizes.small
-    icon.height: Maui.Style.iconSizes.small
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
     
 //     Maui.CSDButton
 //     {
