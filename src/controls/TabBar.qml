@@ -122,13 +122,27 @@ T.TabBar
                     id: _content
                     clip: true
                     orientation: ListView.Horizontal
+                    
                     width: _scrollView.width
                     height: _scrollView.height
+                    
                     spacing: control.spacing
+                    
                     model: control.contentModel
-                    interactive: Maui.Handy.isTouch
                     currentIndex: control.currentIndex
+
+                    interactive: Maui.Handy.isTouch
                     snapMode: ListView.SnapOneItem  
+                    
+                    highlightFollowsCurrentItem: true
+                    highlightMoveDuration: 0
+                    highlightResizeDuration : 0
+                                        
+                    boundsBehavior: Flickable.StopAtBounds
+                    boundsMovement: Flickable.StopAtBounds
+                    
+                    keyNavigationEnabled : true
+                    keyNavigationWraps : true
                 }                
             }
             
