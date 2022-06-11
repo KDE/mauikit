@@ -21,7 +21,6 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtGraphicalEffects 1.0
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 /*!
@@ -83,7 +82,7 @@ Item
     property alias image : img
     property alias icon: icon
     
-    Kirigami.Icon
+    Maui.Icon
     {
         id: icon
         visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
@@ -94,12 +93,7 @@ Item
         width: height
         color: isMask ? (control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor) : "transparent"
         isMask: (height <= Maui.Style.iconSizes.small) || control.isMask
-//         selected: control.highlighted
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+//         selected: control.highlighted        
     }
 
     Image

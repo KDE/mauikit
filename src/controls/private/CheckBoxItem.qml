@@ -24,7 +24,7 @@ Item
         radius: control.autoExclusive ? height/2 : 4
         border.color: control.checked ?  Maui.Theme.highlightedTextColor :  Maui.Theme.textColor 
         
-        Kirigami.Icon
+        Maui.Icon
         {
             visible: opacity > 0
             color: Maui.Theme.highlightedTextColor

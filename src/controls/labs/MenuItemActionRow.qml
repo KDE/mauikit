@@ -15,6 +15,14 @@ T.MenuItem
     id: control
     default property list<Action> actions
     
+    opacity: control.enabled ? 1 : 0.5
+    
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
+    hoverEnabled: !Maui.Handy.isMobile
+    
+    width: implicitWidth
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
@@ -25,39 +33,46 @@ T.MenuItem
     
     display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Maui.Handy.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     
-    contentItem: RowLayout
+    contentItem: Item
     {
-        id: _layout
-        spacing: control.spacing
+        implicitHeight: _layout.implicitHeight
+        implicitWidth: _layout.implicitWidth
         
-        Repeater
+        RowLayout
         {
-            id: _repeater
-            model: control.actions
+            id: _layout
+//            anchors.centerIn: parent
+            spacing: control.spacing
             
-            delegate: ToolButton
+            Repeater
             {
-                id: _delegate
-                Layout.fillWidth: true
-                Layout.preferredHeight: Math.max(implicitHeight, Maui.Style.rowHeight)
-                action: modelData
-                display: control.display
+                id: _repeater
+                model: control.actions
                 
-                ToolTip.delay: 1000
-                ToolTip.timeout: 5000
-                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
-                ToolTip.text: modelData.text
-                
-                Connections
+                delegate: ToolButton
                 {
-                    target: _delegate.action
-                    ignoreUnknownSignals: true
-                    function onTriggered()
+                    id: _delegate
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Math.max(implicitHeight, Maui.Style.rowHeight)
+                    action: modelData
+                    display: control.display
+                    
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
+                    ToolTip.text: modelData.text
+                    
+                    Connections
                     {
-                        control.triggered()
+                        target: _delegate.action
+                        ignoreUnknownSignals: true
+                        function onTriggered()
+                        {
+                            control.triggered()
+                        }
                     }
                 }
-            }
-        }        
+            }  
+        }
     }
 }

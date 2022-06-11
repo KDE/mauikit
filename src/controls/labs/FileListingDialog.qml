@@ -137,7 +137,7 @@ Maui.Dialog
                 {
                     anchors.fill: parent
                     anchors.margins: Maui.Style.space.tiny
-                    iconSizeHint: height
+                    iconSizeHint: Math.min(height, width)
 
                     iconSource: control.template.iconSource
                     imageSource:  control.template.imageSource

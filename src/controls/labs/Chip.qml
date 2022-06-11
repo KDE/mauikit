@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.14 as Kirigami
 
 /*!
  \ since org.mauikit.controls.*labs 1.0
@@ -43,11 +42,6 @@ T.ItemDelegate
         
         color: Qt.lighter( control.pressed ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor : control.color))
         radius:  Maui.Style.radiusV   
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
     }
     
     contentItem: RowLayout
@@ -61,7 +55,7 @@ T.ItemDelegate
             Layout.fillHeight: true
             Layout.preferredWidth: visible ? Maui.Style.iconSizes.medium : 0
             
-            Kirigami.Icon
+            Maui.Icon
             {
                 id: _icon
                 anchors.centerIn: parent

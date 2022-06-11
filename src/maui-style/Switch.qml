@@ -38,12 +38,16 @@ import QtQuick 2.15
 
 import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.14 as Kirigami
-
 
 T.Switch
 {
     id: control
+    opacity: control.enabled ? 1 : 0.5
+    
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
+    hoverEnabled: !Maui.Handy.isMobile
     
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -75,7 +79,7 @@ T.Switch
             visible: control.icon.name.length
             height: visible ? parent.height : 0
             width: height
-            Kirigami.Icon
+            Maui.Icon
             {
                 source: control.icon.name
                 height: control.icon.height

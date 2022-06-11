@@ -21,7 +21,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Templates 2.15 as T
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 /**
@@ -90,20 +89,14 @@ Item
   {
     id: imgComponent
     
-    Kirigami.Icon
+    Maui.Icon
     {
       id: imageHolder
       
       color: Maui.Theme.textColor
       isMask: control.isMask
       opacity: isMask ? _template.opacity : 1
-      source: emoji
-      
-      Behavior on color
-      {
-        Maui.ColorTransition{}
-      }
-      
+      source: emoji      
     }
   }
   
@@ -148,27 +141,28 @@ Item
       label1.font.pointSize: Maui.Style.fontSizes.enormous* 1.2            
       label1.font.bold: true
       label1.font.weight: Font.Bold
+      label2.wrapMode: Text.Wrap
     }
     //Label
     //{
-      //id: _label1
-      //width: Math.min(control.width * 0.7, implicitWidth)
-      //opacity: 0.7
-      
-      
-      //elide: Text.ElideRight
-      //color: Maui.Theme.textColor
-      //wrapMode: Text.Wrap
+    //id: _label1
+    //width: Math.min(control.width * 0.7, implicitWidth)
+    //opacity: 0.7
+    
+    
+    //elide: Text.ElideRight
+    //color: Maui.Theme.textColor
+    //wrapMode: Text.Wrap
     //}
     
     //Label
     //{
-      //id: _label2
-      //width: Math.min(control.width * 0.7, implicitWidth)
-      //opacity: 0.5
-      //elide: Text.ElideRight
-      //color: Maui.Theme.textColor
-      //wrapMode: Text.Wrap
+    //id: _label2
+    //width: Math.min(control.width * 0.7, implicitWidth)
+    //opacity: 0.5
+    //elide: Text.ElideRight
+    //color: Maui.Theme.textColor
+    //wrapMode: Text.Wrap
     //}
     
     Item{height: Maui.Style.space.medium; width: height}
@@ -180,10 +174,10 @@ Item
       Button
       {
         id: _button
-       
+        
         
         action: modelData
-       
+        
       }
     }
   }

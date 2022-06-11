@@ -24,7 +24,6 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
@@ -113,7 +112,7 @@ T.ToolButton
             
             visible: _icon.source && _icon.source.length && (control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || control.display === ToolButton.IconOnly)
             
-            Kirigami.Icon
+            Maui.Icon
             {
                 id: _icon
                 height: control.icon.height
@@ -142,11 +141,6 @@ T.ToolButton
 //                         easing.type: Easing.InQuad
 //                     }
 //                 }
-
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
             }
         }
         

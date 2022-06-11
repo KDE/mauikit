@@ -232,13 +232,8 @@ T.Control
 
 
     background: Rectangle
-    {
-        Behavior on color
-        {
-           Maui.ColorTransition{}
-        }
-       
-        color: control.isCurrentItem || control.containsPress ? control.Maui.Theme.highlightColor : ( control.hovered ? control.Maui.Theme.hoverColor : "transparent")
+    {        
+        color: control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : "transparent")
         
         radius: control.radius
     }

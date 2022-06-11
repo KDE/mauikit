@@ -93,5 +93,6 @@
         <file alias="ScrollView.qml">controls/ScrollView.qml</file>
         <file alias="labs/StackView.qml">controls/labs/StackView.qml</file>
         <file alias="labs/ColorTransition.qml">controls/labs/ColorTransition.qml</file>
+        <file alias="Icon.qml">controls/Icon.qml</file>
     </qresource>
 </RCC>

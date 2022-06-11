@@ -101,15 +101,13 @@ namespace Maui
         neutralTextColor = QColor{"#F67400"};
         neutralBackgroundColor = QColor{"#F67400"};
         positiveTextColor = QColor{"#27AE60"};
-        positiveBackgroundColor = QColor{"#27AE60"};
-        
+        positiveBackgroundColor = QColor{"#27AE60"};        
         
         tooltipTextColor = QColor{"#fafafa"};
         tooltipBackgroundColor = QColor{"#333"};
         tooltipAlternateBackgroundColor = tooltipBackgroundColor.darker();
         tooltipHoverColor = QColor{"#000"};
-        tooltipFocusColor = QColor{"#000"};
-        
+        tooltipFocusColor = QColor{"#000"};        
         
         switch(style->styleType())
         {
@@ -142,25 +140,23 @@ namespace Maui
         
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};
                 
-        backgroundColor =  cu.tintWithAlpha(QColor{"#3a3f41"}, highlightColor, 0.05);
-        //         backgroundColor = QColor{"#3a3f41"};
-        alternateBackgroundColor = backgroundColor.darker();
-        
+        backgroundColor =  cu.tintWithAlpha(DarkColor::backgroundColor, highlightColor, 0.02);
+        alternateBackgroundColor = cu.tintWithAlpha(DarkColor::alternateBackgroundColor, highlightColor, 0.02);
+        hoverColor = cu.tintWithAlpha(DarkColor::hoverColor, highlightColor, 0.02);      
         focusColor = highlightColor;
-        hoverColor = backgroundColor.lighter();
         
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
-        buttonBackgroundColor = cu.tintWithAlpha(QColor{"#3a3f41"}, highlightColor, 0.03);
-        buttonAlternateBackgroundColor = buttonBackgroundColor.darker();
-        buttonHoverColor = buttonBackgroundColor.lighter();
+        buttonBackgroundColor = cu.tintWithAlpha(DarkColor::buttonBackgroundColor, highlightColor, 0.02);
+        buttonAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::buttonAlternateBackgroundColor, highlightColor, 0.02);
+        buttonHoverColor =  cu.tintWithAlpha(DarkColor::buttonHoverColor, highlightColor, 0.02);
         buttonFocusColor = highlightColor;
         
         viewTextColor = textColor;
-        viewBackgroundColor = backgroundColor.darker();
-        viewAlternateBackgroundColor = viewBackgroundColor.darker();
-        viewHoverColor = viewBackgroundColor.lighter();
+        viewBackgroundColor =  cu.tintWithAlpha(DarkColor::viewBackgroundColor, highlightColor, 0.02); 
+        viewAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::viewAlternateBackgroundColor, highlightColor, 0.02);
+        viewHoverColor =  cu.tintWithAlpha(DarkColor::viewHoverColor, highlightColor, 0.02);
         viewFocusColor = highlightColor;
         
         selectionTextColor = QColor{"#fcfcfc"};
@@ -176,7 +172,7 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.05);
+        headerBackgroundColor = cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.04);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
         headerHoverColor = headerBackgroundColor.lighter();
         headerFocusColor = highlightColor;        
@@ -193,25 +189,23 @@ namespace Maui
         const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;        
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};       
         
-        backgroundColor = cu.tintWithAlpha(QColor{"#efefef"}, highlightColor, 0.02);
-        
-        alternateBackgroundColor = backgroundColor.darker();
-        
+        backgroundColor = cu.tintWithAlpha(LightColor::backgroundColor, highlightColor, 0.02);        
+        alternateBackgroundColor = cu.tintWithAlpha(LightColor::alternateBackgroundColor, highlightColor, 0.02);
+        hoverColor = LightColor::hoverColor;        
         focusColor = highlightColor;
-        hoverColor = backgroundColor.lighter();
         
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
-        buttonBackgroundColor = cu.tintWithAlpha(QColor{"#fcfdfd"}, highlightColor, 0.03);
-        buttonAlternateBackgroundColor = buttonBackgroundColor.darker(120);
-        buttonHoverColor = buttonBackgroundColor.darker(110);
+        buttonBackgroundColor = cu.tintWithAlpha(LightColor::buttonBackgroundColor, highlightColor, 0.03);
+        buttonAlternateBackgroundColor = LightColor::buttonAlternateBackgroundColor;
+        buttonHoverColor = cu.tintWithAlpha(LightColor::buttonHoverColor, highlightColor, 0.02); 
         buttonFocusColor = highlightColor;
         
-        viewTextColor = textColor;
-        viewBackgroundColor = backgroundColor.lighter(120);
-        viewAlternateBackgroundColor = viewBackgroundColor.darker(120);
-        viewHoverColor = viewBackgroundColor.lighter(120);
+        viewTextColor = QColor{"#333333"};
+        viewBackgroundColor = cu.tintWithAlpha(LightColor::viewBackgroundColor, highlightColor, 0.02);
+        viewAlternateBackgroundColor =cu.tintWithAlpha(LightColor::viewAlternateBackgroundColor, highlightColor, 0.02);
+        viewHoverColor = cu.tintWithAlpha(LightColor::viewHoverColor, highlightColor, 0.02);
         viewFocusColor = highlightColor;
         
         selectionTextColor = QColor{"#eff0f1"};
@@ -241,30 +235,29 @@ namespace Maui
         highlightColor = m_imgColors->highlight();
         
         const auto isDark = m_imgColors->paletteBrightness() == ColorUtils::Dark;
-        const auto bgColor = cu.tintWithAlpha(isDark ?  QColor{"#3a3f41"} : QColor{"#efefef"}, m_imgColors->background(), 0.1);
-       const auto btnColor =  cu.tintWithAlpha(isDark ? QColor{"#3a3f41"} : QColor{"#fcfdfd"}, highlightColor, 0.06);
+        const auto bgColor = cu.tintWithAlpha(isDark ? DarkColor::backgroundColor : LightColor::backgroundColor, m_imgColors->background(), 0.1);
+       const auto btnColor =  cu.tintWithAlpha(isDark ? DarkColor::buttonBackgroundColor : LightColor::buttonBackgroundColor, highlightColor, 0.06);
         
         highlightedTextColor = cu.brightnessForColor(highlightColor) ==  ColorUtils::Dark ? m_imgColors->closestToWhite() : m_imgColors->closestToBlack();
 //         backgroundColor = cu.tintWithAlpha(m_imgColors->background(), bgColor, 0.8);
-        backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.05);
-
-        alternateBackgroundColor = backgroundColor.darker();
+        backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.03);
+        alternateBackgroundColor = cu.tintWithAlpha(isDark ? DarkColor::alternateBackgroundColor : LightColor::alternateBackgroundColor, highlightColor, 0.03);
+        hoverColor =  cu.tintWithAlpha(isDark ? DarkColor::hoverColor : LightColor::hoverColor, highlightColor, 0.02);
         
         focusColor = highlightColor;
-        hoverColor = backgroundColor.lighter();
         
         activeTextColor = highlightColor;    
         
         buttonTextColor = textColor;
         buttonBackgroundColor = btnColor;
-        buttonAlternateBackgroundColor = buttonBackgroundColor.darker();
-        buttonHoverColor = buttonBackgroundColor.lighter();
+        buttonAlternateBackgroundColor = cu.tintWithAlpha(isDark ? DarkColor::buttonBackgroundColor : LightColor::buttonBackgroundColor, highlightColor, 0.03);
+        buttonHoverColor = cu.tintWithAlpha(isDark ? DarkColor::buttonHoverColor : LightColor::buttonHoverColor, highlightColor, 0.03);
         buttonFocusColor = highlightColor;
         
         viewTextColor = textColor;
-        viewBackgroundColor = isDark ? backgroundColor.darker() :  backgroundColor.lighter();
-        viewAlternateBackgroundColor = viewBackgroundColor.darker();
-        viewHoverColor = viewBackgroundColor.lighter();
+        viewBackgroundColor = cu.tintWithAlpha(isDark ? DarkColor::viewBackgroundColor : LightColor::viewBackgroundColor, highlightColor, 0.03);
+        viewAlternateBackgroundColor =  cu.tintWithAlpha(isDark ? DarkColor::viewAlternateBackgroundColor : LightColor::viewAlternateBackgroundColor, highlightColor, 0.03);
+        viewHoverColor = cu.tintWithAlpha(isDark ? DarkColor::viewHoverColor : LightColor::viewHoverColor, highlightColor, 0.03);
         viewFocusColor = highlightColor;
         
         selectionTextColor = QColor{"#fcfcfc"};

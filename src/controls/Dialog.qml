@@ -42,6 +42,9 @@ import QtGraphicalEffects 1.0
 Maui.Popup
 {
   id: control
+    
+  Maui.Theme.colorSet: Maui.Theme.Window
+  Maui.Theme.inherit: false
   
   closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
   

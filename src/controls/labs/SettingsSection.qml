@@ -59,6 +59,8 @@ Maui.AlternateListItem
                 padding: Maui.Style.space.medium
                 label1.text: control.title
                 label2.text: control.description
+                template.iconSizeHint: Maui.Style.iconSizes.medium
+
                 checked: true
             }            
             

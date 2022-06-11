@@ -21,6 +21,9 @@ T.TabButton
     id: control
     implicitWidth: 200    
     
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
     property alias content: _content.data
     property alias leftContent: _leftContent.data
     
@@ -32,14 +35,11 @@ T.TabButton
      */
     signal closeClicked()
     signal rightClicked(var mouse)
-    
-    Maui.Theme.colorSet: Maui.Theme.Button
-    
+        
     background: Rectangle
     {
-        visible: control.checked || control.down || control.hovered
         opacity: control.hovered && !control.checked ? 0.2 : 1
-        color: control.hovered && !control.checked ? Maui.ColorUtils.linearInterpolation(Maui.Theme.backgroundColor, Maui.Theme.textColor, 0.4) : Qt.lighter(Maui.Theme.backgroundColor)
+        color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
         
          Behavior on color

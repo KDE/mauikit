@@ -20,7 +20,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Layouts 1.3
 
@@ -139,19 +138,13 @@ T.TextField
             }
         }        
         
-        Kirigami.Icon
+        Maui.Icon
         {
             id: _icon
             visible: String(_icon.source).length > 0
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color   
-            
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-            
         }    
         
         Label

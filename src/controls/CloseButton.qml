@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 AbstractButton
@@ -31,7 +30,7 @@ AbstractButton
     
     contentItem: Item
     {
-        Kirigami.Icon
+        Maui.Icon
         {
             source: "qrc:/assets/close.svg"
             //source: button.source
@@ -40,11 +39,6 @@ AbstractButton
             anchors.centerIn: parent
                         color: control.hovered || control.containsPress ? control.Maui.Theme.negativeTextColor : control.Maui.Theme.textColor
                         isMask: true
-            
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
         }
     }
     

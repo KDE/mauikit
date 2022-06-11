@@ -82,7 +82,7 @@ T.ComboBox
         
     }
     
-    indicator: Kirigami.Icon
+    indicator: Maui.Icon
     {
         x: control.mirrored ? control.padding : control.width - width - control.padding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2

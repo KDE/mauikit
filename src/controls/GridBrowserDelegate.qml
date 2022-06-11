@@ -127,9 +127,7 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-         readonly property color m_color : Qt.tint(Qt.lighter(Maui.Theme.textColor), Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
-
-        color: control.flat ? "transparent" : (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : ( Qt.rgba(m_color.r, m_color.g, m_color.b, 0.4))))
+        color: control.flat ? "transparent" : (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor))
 
         
         radius: control.radius

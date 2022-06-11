@@ -34,6 +34,8 @@ T.ItemDelegate
         label1.font.weight: Font.Bold
         label2.wrapMode: Text.WordWrap
         label1.color: Maui.Theme.textColor
+        isMask: true
+
         //         leftMargin: 0
         //         rightMargin: 0
         //

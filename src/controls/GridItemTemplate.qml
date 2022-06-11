@@ -194,7 +194,7 @@ Item
 
                     }
                 }
-                //                Kirigami.Icon
+                //                Maui.Icon
                 //                {
                 //                    visible: _iconLoader.status !== Loader.Ready
                 //                    anchors.centerIn: parent

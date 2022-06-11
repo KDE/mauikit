@@ -41,7 +41,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.impl 2.15
 import QtQuick.Templates 2.15 as T
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 T.MenuItem
@@ -49,26 +48,28 @@ T.MenuItem
     id: control
 
     opacity: control.enabled ? 1 : 0.5
+    
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
     hoverEnabled: !Maui.Handy.isMobile
-
+    
+    width: implicitWidth
+    height: implicitHeight
+    
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: visible ? Math.max(implicitBackgroundHeight + topInset + bottomInset,
+    implicitHeight: Math.floor(Math.max(implicitBackgroundHeight + topInset + bottomInset,
                                        implicitContentHeight + topPadding + bottomPadding,
-                                       implicitIndicatorHeight + topPadding + bottomPadding) : 0
-    Layout.fillWidth: true
+                                       implicitIndicatorHeight + topPadding + bottomPadding) )
+    //Layout.fillWidth: true
 
     padding: Maui.Style.space.small
-    verticalPadding: Maui.Style.space.small
+//     verticalPadding: Maui.Style.space.small
 
     spacing: Maui.Handy.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
 
-    icon.width: Maui.Style.iconSizes.small
-    icon.height: Maui.Style.iconSizes.small
-    leftInset: Maui.Style.space.small
-    rightInset: Maui.Style.space.small
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
     
     icon.color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
     
@@ -80,7 +81,7 @@ T.MenuItem
         control: control
     }
 
-    arrow: Kirigami.Icon
+    arrow: Maui.Icon
     {
         x: control.mirrored ? control.padding : control.width - width - control.rightPadding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2
@@ -102,22 +103,22 @@ T.MenuItem
     {
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
-
-        leftPadding: Maui.Style.space.medium
-        rightPadding: indicatorPadding + Maui.Style.space.medium + arrowPadding 
+        
+        leftPadding: Maui.Style.space.small
+        rightPadding: indicatorPadding + Maui.Style.space.small + arrowPadding 
         spacing: control.spacing
-
+        
         mirrored: control.mirrored
         display: control.display
-
+        
         alignment: Qt.AlignLeft
-
+        
         icon: control.icon
         text: control.text
         font: control.font
         color: control.icon.color
         
-         Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
@@ -126,8 +127,9 @@ T.MenuItem
     background: Rectangle
     {
         visible: control.enabled
-        implicitWidth: 200
-        implicitHeight: control.visible ? (Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) : 0
+       
+        implicitHeight: Math.floor(Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) 
+        
         radius: Maui.Style.radiusV
 
         readonly property color m_color : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))

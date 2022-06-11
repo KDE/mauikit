@@ -45,7 +45,7 @@ Item
     
     property Item control
     property alias handle: handle
-    property color m_color : control.checked ? Maui.Theme.highlightColor : Maui.Theme.textColor
+    property color m_color : control.checked ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
     
     Rectangle
     {
@@ -55,7 +55,7 @@ Item
         y: parent.height / 2 - height / 2
         border.color: control.enabled ? "transparent" : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
         color: control.enabled ? m_color : "transparent"
-        opacity: control.checked ? 1 : 0.5
+//         opacity: control.checked ? 1 : 0.5
         
         Behavior on color
         {
@@ -80,7 +80,7 @@ Item
         width: 16
         height: 16
         radius: width / 2
-        color: control.enabled ? (control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.backgroundColor)
+        color: control.enabled ? (control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor)
         : "transparent"
         border.color: control.enabled ? "transparent" : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
         

@@ -34,7 +34,7 @@ Maui.Dialog
     persistent: false
     widthHint: 0.9
     heightHint: 0.8
-
+spacing: Maui.Style.space.medium
     //     scrollView.padding: 0
 
     maxWidth: 360
@@ -286,7 +286,7 @@ Maui.Dialog
             spacing: Maui.Style.space.medium
             anchors.centerIn: parent
 
-            Kirigami.Icon
+            Maui.Icon
             {
                 Layout.alignment: Qt.AlignCenter
                 source: "qrc:/assets/mauikit.svg"

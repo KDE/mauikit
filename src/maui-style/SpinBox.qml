@@ -36,7 +36,7 @@
 
 import QtQuick 2.12
 import QtQuick.Templates 2.12 as T
-import org.kde.kirigami 2.14 as Kirigami
+
 import org.mauikit.controls 1.2 as Maui
 import QtQuick.Window 2.1
 
@@ -125,17 +125,13 @@ T.SpinBox
         height: parent.height
         width: height
         
-        Kirigami.Icon
+        Maui.Icon
         {
             source: "list-add"
             anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
-            color: Maui.Theme.textColor
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }            
+            color: Maui.Theme.textColor            
         }
     }
     
@@ -145,7 +141,7 @@ T.SpinBox
         height: parent.height
         width: height
         
-        Kirigami.Icon
+        Maui.Icon
         {
             source: "list-remove"
             anchors.centerIn: parent

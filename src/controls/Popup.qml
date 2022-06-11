@@ -152,26 +152,30 @@ T.Popup
             }
         }        
         
-        background: Kirigami.ShadowedRectangle
+        background: Rectangle
         {
             color: control.Maui.Theme.backgroundColor
             
-            corners
-            {
-                topLeftRadius:  control.filling ? 0 : Maui.Style.radiusV
-                topRightRadius:  control.filling ? 0 : Maui.Style.radiusV
-                bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
-                bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
-            }     
+           radius:  control.filling ? 0 : Maui.Style.radiusV
             
-            property color borderColor: Maui.Theme.textColor
             
-            border.color:  Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+            property color borderColor: control.Maui.Theme.textColor
+            
+            border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
             border.width: control.filling ? 0 : 1
-            shadow.xOffset: 0
-            shadow.yOffset: 0
-            shadow.color: control.filling ?  "transparent"  : Qt.rgba(0,0,0,0.5)
-            shadow.size: 10
+            
+            layer.enabled: !control.filling
+            layer.effect: DropShadow
+            {
+                cached: true
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
+            }            
+            
             Behavior on color
             {
                 Maui.ColorTransition{}

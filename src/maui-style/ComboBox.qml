@@ -39,7 +39,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
-import org.kde.kirigami 2.7 as Kirigami
+
 import org.mauikit.controls 1.2 as Maui
 import QtGraphicalEffects 1.0
 
@@ -69,7 +69,7 @@ T.ComboBox
         hoverEnabled: control.hoverEnabled
     }
 
-    indicator: Kirigami.Icon
+    indicator: Maui.Icon
     {
         x: control.mirrored ? control.padding : control.width - width - control.padding - Maui.Style.space.small
         y: control.topPadding + (control.availableHeight - height) / 2

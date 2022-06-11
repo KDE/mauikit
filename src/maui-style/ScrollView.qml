@@ -52,7 +52,15 @@ T.ScrollView
 
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: !background || !background.visible
-
+    clip: true
+    
+    
+    padding: 0
+    rightPadding: padding
+    leftPadding: padding 
+    topPadding: padding
+    bottomPadding: padding
+    
     data: Kirigami.WheelHandler {
         target: control.contentItem
     }
@@ -72,4 +80,6 @@ T.ScrollView
         width: control.availableWidth
         active: control.ScrollBar.vertical.active
     }
+    
+    background: null
 }

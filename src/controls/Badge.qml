@@ -21,7 +21,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.7 as Kirigami
 
 /*!
 \since org.mauikit.controls 1.0
@@ -78,9 +77,9 @@ Rectangle
 
     property font font
 
-        font.weight: Font.Bold
-        font.bold: true
-        font.pointSize: Maui.Style.fontSizes.small
+    font.weight: Font.Bold
+    font.bold: true
+    font.pointSize: Maui.Style.fontSizes.small
 
 
     /**
@@ -101,15 +100,15 @@ Rectangle
     z: parent.z+1
 
     implicitHeight: size
-    implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.implicitWidth, size) : size
+    implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.implicitWidth, size) + Maui.Style.space.big : size
 
     radius: Math.min(width, height)
     color: Maui.Theme.backgroundColor
 
-   Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+    Behavior on color
+    {
+        Maui.ColorTransition{}
+    }
     
     Loader
     {
@@ -125,8 +124,6 @@ Rectangle
         
         Label
         {
-            height: parent.height
-            width: parent.width
             text: control.text
             font: control.font
             color: Maui.Theme.textColor
@@ -138,7 +135,7 @@ Rectangle
     Component
     {
         id: iconComponent
-        Kirigami.Icon
+        Maui.Icon
         {
             anchors.centerIn: parent
             source: control.iconName
@@ -146,11 +143,6 @@ Rectangle
             width: control.size
             height: width
             isMask: true
-            
-            Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
         }
     }
 
@@ -159,7 +151,7 @@ Rectangle
         id: mouseArea
         hoverEnabled: true
 
-        readonly property int targetMargin:  Kirigami.Settings.hasTransientTouchInput ? Maui.Style.space.big : 0
+        readonly property int targetMargin:  Maui.Handy.isTouch ? Maui.Style.space.big : 0
 
         height: parent.height + targetMargin
         width: parent.width + targetMargin

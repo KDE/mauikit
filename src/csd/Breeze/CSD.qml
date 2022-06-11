@@ -3,7 +3,6 @@ import QtQuick.Controls 2.3
 import QtQuick.Window 2.3
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.7 as Kirigami
 
 Item
 {
@@ -54,7 +53,7 @@ Item
             
             contentItem: Item
             {
-                Kirigami.Icon
+                Maui.Icon
                 {
                     width: 18
                     height: 18

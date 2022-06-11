@@ -36,7 +36,7 @@ Flow
                 border.color: Qt.darker(modelData, 2)
                 border.width: parent.hovered ?  2 : 1
                 
-                Kirigami.Icon
+                Maui.Icon
                 {
                     visible: opacity > 0
                     color: Maui.ColorUtils.brightnessForColor(parent.color) == Maui.ColorUtils.Light ? Qt.darker(parent.color, 2) :  Qt.lighter(parent.color, 2)
