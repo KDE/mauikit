@@ -149,6 +149,8 @@ T.Control
             
             Behavior on width
             {
+                enabled: Maui.Style.enableEffects
+                
                 NumberAnimation
                 {
                     duration: Maui.Style.units.longDuration
@@ -225,8 +227,8 @@ T.Control
             id: _defaultButtonMouseArea
             hoverEnabled: true
             implicitWidth: implicitContentWidth + leftPadding + rightPadding
-                implicitHeight: implicitContentHeight + topPadding + bottomPadding
-
+            implicitHeight: implicitContentHeight + topPadding + bottomPadding
+            
             function triggerAction()
             {
                 if(control.canCyclic)

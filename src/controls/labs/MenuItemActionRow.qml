@@ -33,12 +33,7 @@ T.MenuItem
     
     display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Maui.Handy.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     
-    contentItem: Item
-    {
-        implicitHeight: _layout.implicitHeight
-        implicitWidth: _layout.implicitWidth
-        
-        RowLayout
+    contentItem: Flow
         {
             id: _layout
 //            anchors.centerIn: parent
@@ -51,9 +46,10 @@ T.MenuItem
                 
                 delegate: ToolButton
                 {
-                    id: _delegate
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: Math.max(implicitHeight, Maui.Style.rowHeight)
+                    id: _delegate      
+                    width: Math.max(height, implicitWidth)
+                   height: Math.max(implicitHeight, Maui.Style.rowHeight)
+                   
                     action: modelData
                     display: control.display
                     
@@ -74,5 +70,5 @@ T.MenuItem
                 }
             }  
         }
-    }
+    
 }

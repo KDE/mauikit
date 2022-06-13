@@ -75,6 +75,11 @@ void Style::setRadiusV(const uint& radius)
     Q_EMIT radiusVChanged(m_radiusV);
 }
 
+bool Style::enableEffects() const
+{
+    return m_enableEffects;
+}
+
 
 Style *Style::qmlAttachedProperties(QObject *object)
 {

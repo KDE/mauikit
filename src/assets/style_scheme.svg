@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.20409673"
-     inkscape:cx="-2026.0001"
-     inkscape:cy="3662.4791"
+     inkscape:zoom="0.57727273"
+     inkscape:cx="354.25197"
+     inkscape:cy="534.40945"
      inkscape:window-width="2560"
      inkscape:window-height="1367"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g44506-6-1" />
+     inkscape:current-layer="g33512-1" />
   <defs
      id="defs2" />
   <g
@@ -74,7 +74,7 @@
          y="194.48245"
          ry="6.2530084" />
       <rect
-         style="fill:#f5f5f5;fill-opacity:1;stroke:none;stroke-width:0.527922;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#f7f7f7;fill-opacity:1;stroke:none;stroke-width:0.527922;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-9-2"
          width="116.13277"
          height="275.32764"
@@ -285,6 +285,14 @@
     <g
        id="g33512-1"
        transform="translate(-143.26439)">
+      <rect
+         style="fill:#d9d9d9;fill-opacity:1;stroke:none;stroke-width:0.527648;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect54310"
+         width="116.13277"
+         height="275.04245"
+         x="65.311562"
+         y="24.063755"
+         ry="13.124816" />
       <rect
          style="fill:#e8e8e8;fill-opacity:1;stroke:none;stroke-width:0.527648;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-9-0"
@@ -566,7 +574,7 @@
        id="g33512-70"
        transform="translate(16.171966,497.19881)">
       <rect
-         style="fill:#3a3f41;fill-opacity:1;stroke:none;stroke-width:0.527922;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#0a0b0b;fill-opacity:1;stroke:none;stroke-width:0.527922;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-9-4"
          width="116.13277"
          height="275.32764"
@@ -574,7 +582,7 @@
          y="38.351269"
          ry="13.138425" />
       <rect
-         style="fill:#464c4e;fill-opacity:1;stroke:none;stroke-width:0.359574;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#1a1e1e;fill-opacity:1;stroke:none;stroke-width:0.359574;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-3-2-8"
          width="116.13277"
          height="127.72861"
@@ -582,7 +590,7 @@
          y="109.97992"
          ry="6.0951123" />
       <rect
-         style="fill:#3f4646;fill-opacity:1;stroke:none;stroke-width:0.364202;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#202727;fill-opacity:1;stroke:none;stroke-width:0.364202;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-30-5-0"
          width="116.13277"
          height="131.03748"
@@ -667,7 +675,7 @@
        id="g44506-6-1"
        transform="matrix(0,-0.48322317,0.48322317,0,-36.348157,783.8653)">
       <rect
-         style="fill:#3b4445;fill-opacity:1;stroke:none;stroke-width:0.566219;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#4c5052;fill-opacity:1;stroke:none;stroke-width:0.566219;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-9-6-9-0-1-9"
          width="116.13277"
          height="316.72299"
@@ -675,7 +683,7 @@
          y="65.612221"
          ry="15.11378" />
       <rect
-         style="fill:#f8f7f7;fill-opacity:1;stroke:none;stroke-width:0.491063;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#353637;fill-opacity:1;stroke:none;stroke-width:0.491063;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-3-2-4-1-0-0-6"
          width="116.13277"
          height="238.22476"
@@ -683,7 +691,7 @@
          y="104.86134"
          ry="11.367906" />
       <rect
-         style="fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:0.364202;stroke-linecap:round;stroke-linejoin:bevel"
+         style="fill:#7d8487;fill-opacity:1;stroke:none;stroke-width:0.364202;stroke-linecap:round;stroke-linejoin:bevel"
          id="rect846-30-5-6-9-4-4-2"
          width="116.13277"
          height="131.03748"

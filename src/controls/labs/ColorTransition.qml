@@ -6,7 +6,7 @@ ColorAnimation
     easing.type: Easing.InQuad
                         //easing.type: Easing.OutCubic
 
-    duration: Maui.Style.units.veryShortDuration
+    duration: Maui.Style.enableEffects ? Maui.Style.units.shortDuration : 0
     //duration: 100
 }
 

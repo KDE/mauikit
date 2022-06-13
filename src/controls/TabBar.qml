@@ -22,14 +22,14 @@ T.TabBar
 {
     id: control
     
-//     implicitWidth: _content.contentWidth
+    //     implicitWidth: _content.contentWidth
     implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
     padding: Maui.Style.space.tiny
-
-   Maui.Theme.colorSet: Maui.Theme.Window
-   Maui.Theme.inherit: false
-   
-   spacing: Maui.Style.space.tiny
+    
+    Maui.Theme.colorSet: Maui.Theme.Header
+    Maui.Theme.inherit: false
+    
+    spacing: Maui.Style.space.tiny
     /**
      * showNewTabButton : bool
      */
@@ -43,7 +43,7 @@ T.TabBar
     background: Rectangle
     {
         color: Maui.Theme.backgroundColor
-       
+        
         Behavior on color
         {
             Maui.ColorTransition{}
@@ -100,7 +100,7 @@ T.TabBar
     contentItem: Item
     {        
         readonly property bool fits : _content.contentWidth <= width
-                        
+        
         RowLayout
         {
             anchors.fill: parent
@@ -111,11 +111,11 @@ T.TabBar
                 id: _scrollView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-             
+                
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 contentWidth: availableWidth
-               
+                
                 ListView
                 {
                     id: _content
@@ -129,14 +129,14 @@ T.TabBar
                     
                     model: control.contentModel
                     currentIndex: control.currentIndex
-
+                    
                     interactive: Maui.Handy.isTouch
                     snapMode: ListView.SnapOneItem  
                     
                     highlightFollowsCurrentItem: true
                     highlightMoveDuration: 0
                     highlightResizeDuration : 0
-                                        
+                    
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
                     

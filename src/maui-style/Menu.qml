@@ -85,12 +85,13 @@ T.Menu
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem { }
     
-    enter: control.responsive ? _responsiveEnterTransition : _enterTransition
-    exit: control.responsive ? _responsiveExitTransition : _exitTransition
+    enter:  Maui.Style.enableEffects ? (control.responsive ? _responsiveEnterTransition : _enterTransition) : null
+    exit: Maui.Style.enableEffects ? (control.responsive ? _responsiveExitTransition : _exitTransition) : null
     
     Transition
     {
         id: _enterTransition
+        enabled: Maui.Style.enableEffects
         // grow_fade_in
         NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
         NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
@@ -100,6 +101,8 @@ T.Menu
     Transition
     {
         id: _exitTransition
+        enabled: Maui.Style.enableEffects
+        
         // shrink_fade_out
         NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
         NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
@@ -108,9 +111,11 @@ T.Menu
     Transition
     {
         id: _responsiveEnterTransition
+        enabled: Maui.Style.enableEffects
+        
         ParallelAnimation
         {
-            NumberAnimation { property: "y"; from: control.parentWindow.height; to: control.finalY; easing.type: Easing.OutQuint; duration: 220 }
+            //NumberAnimation { property: "y"; from: control.parentWindow.height; to: control.finalY; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
         }
     }
@@ -118,9 +123,11 @@ T.Menu
     Transition
     {
         id: _responsiveExitTransition
+        enabled: Maui.Style.enableEffects
+        
         ParallelAnimation
         {
-            NumberAnimation { property: "y"; from: control.finalY; to: control.parentWindow.height; easing.type: Easing.OutQuint; duration: 220 }
+            //NumberAnimation { property: "y"; from: control.finalY; to: control.parentWindow.height; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
         }
     }

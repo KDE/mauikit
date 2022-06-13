@@ -360,11 +360,7 @@ Item
             
             Behavior on color
             {
-                ColorAnimation
-                {
-                    easing.type: Easing.InQuad
-                    duration: Maui.Style.units.shortDuration
-                }
+                Maui.ColorTransition {  }
             }
 
             MouseArea

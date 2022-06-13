@@ -116,29 +116,29 @@ T.Drawer
         
         Loader
         {
-        id: _overlayLoader
-        
-        active: control.visible
-        asynchronous: true 
-        anchors.fill: parent
-        anchors.margins: 0
-        anchors.leftMargin: (control.width * control.position)
-        visible: (control.collapsed && control.position > 0 && control.visible)
-        parent: window().pageContent
-        
-        sourceComponent: MouseArea
-        {           
-        preventStealing: true
-        propagateComposedEvents: false
-        Rectangle
-        {
-        color: Qt.rgba(Maui.Theme.backgroundColor.r,Maui.Theme.backgroundColor.g,Maui.Theme.backgroundColor.b, 0.5)
-        opacity: control.position
-        anchors.fill: parent
-        }
-        
-        onClicked: control.close()
-        }
+            id: _overlayLoader
+            
+            active: control.visible
+            asynchronous: true 
+            anchors.fill: parent
+            anchors.margins: 0
+            anchors.leftMargin: (control.width * control.position)
+            visible: (control.collapsed && control.position > 0 && control.visible)
+            parent: window().pageContent
+            
+            sourceComponent: MouseArea
+            {           
+                preventStealing: true
+                propagateComposedEvents: false
+                Rectangle
+                {
+                    color: Qt.rgba(Maui.Theme.backgroundColor.r,Maui.Theme.backgroundColor.g,Maui.Theme.backgroundColor.b, 0.5)
+                    opacity: control.position
+                    anchors.fill: parent
+                }
+                
+                onClicked: control.close()
+            }
         }    
         
         background: Kirigami.ShadowedRectangle
@@ -162,9 +162,9 @@ T.Drawer
         
         //Label
         //{
-            //parent: ApplicationWindow.overlay
-            //color: "orange"
-            //text: control.height + " /" + window().internalHeight
+        //parent: ApplicationWindow.overlay
+        //color: "orange"
+        //text: control.height + " /" + window().internalHeight
         //}
         
         contentItem: Item
@@ -206,7 +206,8 @@ T.Drawer
         
         Behavior on position
         {
-            enabled: control.collapsible 
+            enabled: control.collapsible && Maui.Style.enableEffects
+            
             NumberAnimation
             {
                 duration: Maui.Style.units.longDuration

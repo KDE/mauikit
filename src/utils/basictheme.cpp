@@ -221,8 +221,8 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = cu.tintWithAlpha(QColor{"#efefef"}.darker(110), highlightColor, 0.02);
-        headerAlternateBackgroundColor = headerBackgroundColor.darker(120);
+        headerBackgroundColor = cu.tintWithAlpha(LightColor::headerBackgroundColor, highlightColor, 0.03);
+        headerAlternateBackgroundColor = cu.tintWithAlpha(LightColor::headerAlternateBackgroundColor, highlightColor, 0.02);
         headerHoverColor = headerBackgroundColor.lighter(120);
         headerFocusColor = highlightColor;
     }
