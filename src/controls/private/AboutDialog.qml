@@ -160,7 +160,7 @@ spacing: Maui.Style.space.medium
                     width: parent.width
                     spacing: Maui.Style.space.medium
                     label1.text: modelData.name
-                    label2.text: String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress)
+                    label2.text: modelData.emailAddress.length ? String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress) :  String("<a href='%1'>%1</a>").arg(modelData.webAddress)
                     label3.text: modelData.task
                     isMask: true
 
@@ -240,36 +240,36 @@ spacing: Maui.Style.space.medium
 
     }
 
-    Maui.AlternateListItem
-    {
-        implicitHeight: _libraries.implicitHeight + Maui.Style.space.huge
-        Layout.fillWidth: true
+    //Maui.AlternateListItem
+    //{
+        //implicitHeight: _libraries.implicitHeight + Maui.Style.space.huge
+        //Layout.fillWidth: true
 
-        Column
-        {
-            id: _libraries
-            spacing: Maui.Style.space.big
-            width: parent.width
-            anchors.centerIn: parent
+        //Column
+        //{
+            //id: _libraries
+            //spacing: Maui.Style.space.big
+            //width: parent.width
+            //anchors.centerIn: parent
 
-            Repeater
-            {
-                model: Kirigami.Settings.information
-                Maui.ListItemTemplate
-                {
-                    iconSource: "plugins"
-                    width: parent.width
-                    isMask: true
+            //Repeater
+            //{
+                //model: Kirigami.Settings.information
+                //Maui.ListItemTemplate
+                //{
+                    //iconSource: "plugins"
+                    //width: parent.width
+                    //isMask: true
 
-                    iconSizeHint: Maui.Style.iconSizes.medium
-                    headerSizeHint: iconSizeHint + Maui.Style.space.medium
+                    //iconSizeHint: Maui.Style.iconSizes.medium
+                    //headerSizeHint: iconSizeHint + Maui.Style.space.medium
 
-                    spacing: Maui.Style.space.medium
-                    label1.text: modelData
-                }
-            }
-        }
-    }
+                    //spacing: Maui.Style.space.medium
+                    //label1.text: modelData
+                //}
+            //}
+        //}
+    //}
 
 
     Maui.AlternateListItem

@@ -137,9 +137,9 @@ T.ToolButton
 
         color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
 
-        Behavior on color
-        {
-           Maui.ColorTransition{}
-        }
+//         Behavior on color
+//         {
+//            Maui.ColorTransition{}
+//         }
     }
 }

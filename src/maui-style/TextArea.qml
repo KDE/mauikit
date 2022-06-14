@@ -43,7 +43,7 @@ T.TextArea
 
     color: Maui.Theme.textColor
     selectionColor: Maui.Theme.highlightColor
-    selectedTextColor: Maui.Theme.textColor
+    selectedTextColor: Maui.Theme.highlightedTextColor
     opacity: control.enabled ? 1 : 0.6
     wrapMode: Text.WordWrap
 //    verticalAlignment: TextEdit.AlignTop
@@ -55,7 +55,8 @@ T.TextArea
 
     selectByMouse: !Maui.Handy.isMobile
 
-    Label {
+    Label
+    {
         id: placeholder
 
         opacity: 0.5

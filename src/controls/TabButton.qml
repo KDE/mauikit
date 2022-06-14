@@ -42,10 +42,10 @@ T.TabButton
         color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
         
-         Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+//          Behavior on color
+//         {
+//             Maui.ColorTransition{}
+//         }
     }
     
     contentItem:  MouseArea
