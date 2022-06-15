@@ -114,6 +114,12 @@ if (ANDROID)
     #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
 
+set(kwin_XCB_LIBS   
+    XCB::ICCCM   
+    XCB::SHAPE   
+    XCB::XCB
+)
+
     set(mauikit_PLATFORM_SRCS
         platforms/linux/mauilinux.cpp
         )
@@ -275,6 +281,7 @@ target_link_libraries(MauiKit
     KF5::CoreAddons
 
     PRIVATE
+        ${kwin_XCB_LIBS}
     MauiMan::MauiMan
     KF5::Notifications
     Qt5::Qml

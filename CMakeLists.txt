@@ -62,6 +62,24 @@ elseif(UNIX AND NOT ANDROID)
         # Do not find X11 on macOS
         find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS X11Extras)
         find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS WindowSystem)
+        find_package(XCB 1.10 REQUIRED COMPONENTS
+    ICCCM
+    SHAPE
+    XCB
+)
+set_package_properties(XCB PROPERTIES TYPE REQUIRED)
+
+# and the optional XCB dependencies
+#if (XCB_ICCCM_VERSION VERSION_LESS "0.4")
+    #set(XCB_ICCCM_FOUND FALSE)
+#endif()
+#add_feature_info("XCB-ICCCM" XCB_ICCCM_FOUND "Required for building test applications for KWin")
+
+#find_package(X11_XCB)
+#set_package_properties(X11_XCB PROPERTIES
+    #PURPOSE "Required for building X11 windowed backend of kwin_wayland"
+    #TYPE OPTIONAL)
+    
     endif()
     find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
 endif()
