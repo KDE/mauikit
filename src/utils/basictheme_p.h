@@ -158,6 +158,7 @@ namespace Maui
         void setDarkColors();
         void setLightColors();
         void setAdaptiveColors();
+        void setSystemPaletteColors();
         
         struct LightColor
         {

@@ -156,17 +156,8 @@ T.ToolButton
             Layout.fillWidth: visible
             Layout.preferredWidth: visible ? implicitWidth : 0
             color: control.icon.color
-            font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium
-            
-            Behavior on Layout.preferredWidth
-            {
-                NumberAnimation
-                {
-                    duration: Maui.Style.units.shortDuration
-                    easing.type: Easing.InQuad
-                }
-            }
-            
+            font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium            
+                    
             Behavior on opacity
             {
                 NumberAnimation
@@ -175,6 +166,13 @@ T.ToolButton
                     easing.type: Easing.InQuad
                 }
             }
+        }
+    }
+    
+    Behavior on width {
+        NumberAnimation {
+            duration: 250
+            easing.type: Easing.OutBack
         }
     }
     

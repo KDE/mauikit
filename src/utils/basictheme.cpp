@@ -9,6 +9,8 @@
 
 #include <QFile>
 #include <QGuiApplication>
+#include <QPalette>
+
 #include "controls/libs/style.h"
 #include "imagecolors.h"
 
@@ -43,13 +45,19 @@ namespace Maui
                 {
                     m_imgColors->setSource(style->adaptiveColorSchemeSource());
                     break;                    
-                }                
+                }  
+                case Style::StyleType::Auto:
+                default:
+                {
+                    setSystemPaletteColors();
+                    break;                    
+                }  
             }
             
             Q_EMIT this->changed();
         });
         
-        connect(style, &Style::accentColorChanged, [this, style](QColor color)
+        connect(style, &Style::accentColorChanged, [this, style](QColor)
         {
             switch(style->styleType())
             {
@@ -63,10 +71,12 @@ namespace Maui
                     setDarkColors(); 
                     break;
                 }
+                case Style::StyleType::Auto:
                 case Style::StyleType::Adaptive:
+                default:                    
                 {
                     break;                    
-                }                
+                }  
             }
             
             Q_EMIT this->changed();
@@ -85,6 +95,15 @@ namespace Maui
             if(style->styleType() == Style::StyleType::Adaptive)
             {
                 setAdaptiveColors();
+                Q_EMIT this->changed();
+            }
+        });
+        
+        connect(qGuiApp, &QGuiApplication::paletteChanged, [this, style](QPalette)
+        {
+            if(style->styleType() == Style::StyleType::Auto)
+            {
+                setSystemPaletteColors();
                 Q_EMIT this->changed();
             }
         });
@@ -125,8 +144,61 @@ namespace Maui
             {
                 m_imgColors->setSource(style->adaptiveColorSchemeSource());
                 break;                    
-            }                
+            }  
+            case Style::StyleType::Auto:
+            default:
+            {
+                setSystemPaletteColors();
+                break;                    
+            }    
         }
+    }
+    
+    void BasicThemeDefinition::setSystemPaletteColors()
+    {
+        auto palette = QGuiApplication::palette();
+        textColor = palette.color(QPalette::ColorRole::WindowText);
+        
+        highlightColor = palette.color(QPalette::ColorRole::Highlight);
+        //         backgroundColor = QColor{"#efefef"};        
+        highlightedTextColor = palette.color(QPalette::ColorRole::HighlightedText);      
+        
+        backgroundColor = palette.color(QPalette::ColorRole::Window);        
+        alternateBackgroundColor = palette.color(QPalette::ColorRole::AlternateBase);
+        hoverColor = palette.color(QPalette::ColorRole::Midlight);        
+        focusColor = highlightColor;
+        
+        activeTextColor = highlightColor;    
+        
+        buttonTextColor = palette.color(QPalette::ColorRole::ButtonText);
+        buttonBackgroundColor = palette.color(QPalette::ColorRole::Button);
+        buttonAlternateBackgroundColor =palette.color(QPalette::ColorRole::Midlight);
+        buttonHoverColor = palette.color(QPalette::ColorRole::Mid); 
+        buttonFocusColor = highlightColor;
+        
+        viewTextColor = palette.color(QPalette::ColorRole::Text);
+        viewBackgroundColor = palette.color(QPalette::ColorRole::Base);
+        viewAlternateBackgroundColor =palette.color(QPalette::ColorRole::AlternateBase);
+        viewHoverColor = palette.color(QPalette::ColorRole::Midlight);
+        viewFocusColor = highlightColor;
+        
+        selectionTextColor = palette.color(QPalette::ColorRole::HighlightedText);
+        selectionBackgroundColor = highlightColor;
+        selectionAlternateBackgroundColor = highlightColor.lighter();
+        selectionHoverColor = highlightColor.darker();
+        selectionFocusColor = highlightColor;
+        
+        complementaryTextColor = palette.color(QPalette::ColorRole::BrightText);
+        complementaryBackgroundColor = palette.color(QPalette::ColorRole::Dark);
+        complementaryAlternateBackgroundColor = palette.color(QPalette::ColorRole::Mid);
+        complementaryHoverColor = palette.color(QPalette::ColorRole::Midlight);
+        complementaryFocusColor = highlightColor;
+        
+        headerTextColor = textColor;
+        headerBackgroundColor =palette.color(QPalette::ColorRole::Window);
+        headerAlternateBackgroundColor =palette.color(QPalette::ColorRole::AlternateBase);
+        headerHoverColor =palette.color(QPalette::ColorRole::Light);
+        headerFocusColor = highlightColor;
     }
     
     void BasicThemeDefinition::setDarkColors()
