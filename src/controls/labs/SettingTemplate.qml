@@ -23,38 +23,35 @@ import QtQuick.Layouts 1.3
 import org.mauikit.controls 1.3 as Maui
 
 /*!
-  \since org.mauikit.controls.labs 1.0
-  \inqmlmodule org.mauikit.controls.labs
-*/
+ \ since org.*mauikit.controls.labs 1.0
+ \inqmlmodule org.mauikit.controls.labs
+ */
 Maui.FlexListItem
 {
     id: control
     padding: Math.floor(Maui.Style.space.medium * 1.5)
     Layout.fillWidth: true
     hoverEnabled: !Maui.Handy.isMobile
-//    label2.opacity: 0.5
-        
+    //    label2.opacity: 0.5
+    readonly property bool childCheckable : control.content[0].hasOwnProperty("checkable") ? control.content[0].checkable : false
+    
     background: Rectangle
-    {
-        color: control.enabled ? ( control.pressed ? control.Maui.Theme.hoverColor :  Maui.Theme.alternateBackgroundColor) : "transparent"        
+    {       
+        color: control.enabled ? ( control.childCheckable && control.pressed ? control.Maui.Theme.hoverColor :  Maui.Theme.alternateBackgroundColor) : "transparent"        
         radius: Maui.Style.radiusV
-
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }        
+        
+        /* Behavior on color
+         {    *
+         Maui.ColorTransition{}
+    } */       
     }
     
     onClicked:
     {
-        const item = control.content[0]
-        if(item.hasOwnProperty("checkable"))
+        if(control.childCheckable)
         {
-            if(item.checkable)
-            {
-                //item.checked = !item.checked
-                item.toggled()
-            }
-        }
+            //item.checked = !item.checked
+            control.content[0].toggled()
+        }        
     }
 }
