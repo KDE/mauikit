@@ -379,18 +379,12 @@ T.Container
                         control.closeTabClicked(control.currentIndex)
                     }
                     
-                    leftContent: Item
-                    {
-                        height: parent.height
-                        implicitWidth: height
-                        
-                        Maui.Badge
+                    leftContent:  Maui.Badge
                         {
-                            anchors.centerIn: parent
                             text: control.count
                             radius: Maui.Style.radiusV
                         }
-                    }
+                    
                 }
             }
         }

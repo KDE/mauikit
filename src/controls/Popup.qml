@@ -156,8 +156,7 @@ T.Popup
         {
             color: control.Maui.Theme.backgroundColor
             
-           radius:  control.filling ? 0 : Maui.Style.radiusV
-            
+           radius:  control.filling ? 0 : Maui.Style.radiusV            
             
             property color borderColor: control.Maui.Theme.textColor
             

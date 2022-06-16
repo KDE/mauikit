@@ -21,7 +21,6 @@
 
 
 import QtQuick 2.1
-import org.kde.kirigami 2.2 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 Rectangle 
@@ -30,7 +29,8 @@ Rectangle
     color: highlighted || (controlRoot.pressed && !controlRoot.checked && !controlRoot.sectionDelegate) ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
 
     visible: controlRoot.ListView.view ? controlRoot.ListView.view.highlight === null : true
-    Rectangle {
+    Rectangle 
+    {
         anchors.fill: parent
         color: Maui.Theme.highlightColor
         opacity: controlRoot.hovered && !controlRoot.pressed ? 0.2 : 0

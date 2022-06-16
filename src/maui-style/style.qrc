@@ -23,6 +23,7 @@
         <file>RangeSlider.qml</file>
         <file>ScrollBar.qml</file>
         <file>ScrollView.qml</file>
+        <file>SplitView.qml</file>
         <file>Slider.qml</file>
         <file>SpinBox.qml</file>
         <file>SwipeView.qml</file>
