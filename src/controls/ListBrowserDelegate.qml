@@ -237,7 +237,7 @@ Maui.ItemDelegate
                     }
                     onToggled: control.toggled(state)
                 }                
-            }            
+            }           
         }
 
         Maui.ListItemTemplate

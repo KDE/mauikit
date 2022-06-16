@@ -164,7 +164,7 @@ namespace Maui
         highlightedTextColor = palette.color(QPalette::ColorRole::HighlightedText);      
         
         backgroundColor = palette.color(QPalette::ColorRole::Window);        
-        alternateBackgroundColor = palette.color(QPalette::ColorRole::AlternateBase);
+        alternateBackgroundColor = palette.color(QPalette::ColorRole::AlternateBase).lighter(104);
         hoverColor = palette.color(QPalette::ColorRole::Midlight);        
         focusColor = highlightColor;
         
@@ -379,7 +379,8 @@ namespace Maui
     
     void BasicThemeInstance::onDefinitionChanged()
     {
-        for (auto watcher : std::as_const(watchers)) {
+        for (auto watcher : std::as_const(watchers))
+        {
             watcher->sync();
         }
     }
@@ -511,8 +512,5 @@ namespace Maui
             default:
                 return color;
         }
-    }
-    
+    }    
 }
-
-#include "basictheme.moc"

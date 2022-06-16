@@ -30,13 +30,15 @@ import "private"
 T.CheckBox 
 {
     id: controlRoot
-
+    opacity: enabled ? 1 : 0.6
+    
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
+                            Math.max(contentItem.implicitWidth,
+                                     indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              Math.max(contentItem.implicitHeight,
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
-    baselineOffset: contentItem.y + contentItem.baselineOffset
+//     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     padding: 1
     spacing: Maui.Style.space.medium
@@ -45,6 +47,8 @@ T.CheckBox
 
     indicator: CheckIndicator
     {
+        x: controlRoot.text ? (controlRoot.mirrored ? controlRoot.width - width - controlRoot.rightPadding : controlRoot.leftPadding) : controlRoot.leftPadding + (controlRoot.availableWidth - width) / 2
+        y: controlRoot.topPadding + (controlRoot.availableHeight - height) / 2
         control: controlRoot
     }
 
@@ -52,7 +56,6 @@ T.CheckBox
     {
         leftPadding: controlRoot.indicator && !controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
         rightPadding: controlRoot.indicator && controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        opacity: controlRoot.enabled ? 1 : 0.6
         text: controlRoot.text
         font: controlRoot.font
         elide: Text.ElideRight
@@ -60,4 +63,6 @@ T.CheckBox
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
     }
+    
+    background: null
 }
