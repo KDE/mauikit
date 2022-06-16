@@ -18,7 +18,6 @@ Maui.GridBrowserDelegate
      * images : function
      */
     property var images : []
-    
     maskRadius: radius
     
     fillMode: Image.PreserveAspectCrop
@@ -39,7 +38,9 @@ Maui.GridBrowserDelegate
     
     label1.font.bold: true
     label1.font.weight: Font.Bold
-    label1.font.pointSize: Maui.Style.fontSizes.big
+//     label1.font.pointSize: Maui.Style.fontSizes.big
+    template.labelSizeHint: 40
+    template.alignment: Qt.AlignLeft
     
     template.iconComponent: Item
     {

@@ -82,7 +82,7 @@ Item
     property alias image : img
     property alias icon: icon
     
-    property int alignment: Qt.AlignCenter
+    property int alignment: Qt.AlignHCenter
     
     Maui.Icon
     {
@@ -95,7 +95,7 @@ anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
         {
             case Qt.AlignLeft: return 0
-            case Qt.AlignCenter: return control.width/2 - width/2
+            case Qt.AlignHCenter: return control.width/2 - width/2
             case Qt.AlignRight: return control.width - width
         }
         source: control.iconSource || "folder-images"
@@ -118,7 +118,7 @@ anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
         {
             case Qt.AlignLeft: return 0
-            case Qt.AlignCenter: return control.width/2 - width/2
+            case Qt.AlignHCenter: return control.width/2 - width/2
             case Qt.AlignRight: return control.width - width
         }
 
