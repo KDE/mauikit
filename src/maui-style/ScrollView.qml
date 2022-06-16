@@ -38,7 +38,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
-import org.kde.kirigami 2.9 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 T.ScrollView 
@@ -61,7 +60,7 @@ T.ScrollView
     topPadding: padding
     bottomPadding: padding
     
-    data: Kirigami.WheelHandler {
+    data: Maui.WheelHandler {
         target: control.contentItem
     }
 

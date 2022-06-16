@@ -69,6 +69,7 @@ T.Control
     contentItem: MouseArea
     {
         propagateComposedEvents: true
+        onPressed: mouse.accepted= false
         Label
         {
             anchors.fill: parent

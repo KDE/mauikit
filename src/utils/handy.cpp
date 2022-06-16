@@ -27,10 +27,17 @@
 #include <QIcon>
 #include <QMimeData>
 #include <QOperatingSystemVersion>
-#include <QTouchDevice>
 #include <QStandardPaths>
+#include <QWindow>
+#include <QMouseEvent>
 
 #include "platforms/platform.h"
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <QTouchDevice>
+#else
+#include <QInputDevice>
+#endif
 
 #ifdef Q_OS_ANDROID
 #include <QGuiApplication>
@@ -63,6 +70,7 @@ static const auto confCheck = [](QString key, QVariant defaultValue) -> QVariant
 Handy::Handy(QObject *parent)
     : QObject(parent)
     , m_isTouch(Handy::isTouch())
+    , m_hasTransientTouchInput(false)
 {
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 
@@ -70,14 +78,15 @@ Handy::Handy(QObject *parent)
 
     m_singleClick = confCheck("SingleClick", m_singleClick).toBool();
 
-    connect(configWatcher, &QFileSystemWatcher::fileChanged, [&](QString) {
+    connect(configWatcher, &QFileSystemWatcher::fileChanged, [&](QString)
+    {
         m_singleClick = confCheck("SingleClick", m_singleClick).toBool();
-        emit singleClickChanged();
+        Q_EMIT singleClickChanged();
     });
+    
 #elif defined Q_OS_MAC || defined Q_OS_WIN32
-
     m_singleClick = false;
-    emit singleClickChanged();
+    Q_EMIT singleClickChanged();
     
     #endif
     
@@ -86,14 +95,29 @@ Handy::Handy(QObject *parent)
     #else
     // Mostly for debug purposes and for platforms which are always mobile,
     // such as Plasma Mobile
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
+    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) 
+    {
         m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
-    } else {
+    } else 
+    {
         m_mobile = false;
     }
 #endif
 
 qDebug() << "CREATING INSTANCE OF MAUI HANDY";
+
+
+if (m_isTouch)
+{
+    connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win) 
+    {
+        if (win) 
+        {
+            win->installEventFilter(this);
+        }
+    });
+}
+
 connect(qApp, &QCoreApplication::aboutToQuit, []()
 {
     qDebug() << "Lets remove MauiApp singleton instance";
@@ -101,7 +125,46 @@ connect(qApp, &QCoreApplication::aboutToQuit, []()
     m_instance = nullptr;
 });
 
+}
 
+bool Handy::hasTransientTouchInput() const
+{
+    return m_hasTransientTouchInput;
+}
+
+
+void Handy::setTransientTouchInput(bool touch)
+{
+    if (touch == m_hasTransientTouchInput) {
+        return;
+    }
+    
+    m_hasTransientTouchInput = touch;
+     Q_EMIT hasTransientTouchInputChanged();    
+}
+
+bool Handy::eventFilter(QObject *watched, QEvent *event)
+{
+    Q_UNUSED(watched)
+    switch (event->type()) {
+        case QEvent::TouchBegin:
+            setTransientTouchInput(true);
+            break;
+        case QEvent::MouseButtonPress:
+        case QEvent::MouseMove: {
+            QMouseEvent *me = static_cast<QMouseEvent *>(event);
+            if (me->source() == Qt::MouseEventNotSynthesized) {
+                setTransientTouchInput(false);
+            }
+            break;
+        }
+        case QEvent::Wheel:
+            setTransientTouchInput(false);
+        default:
+            break;
+    }
+    
+    return false;
 }
 
 #ifdef Q_OS_ANDROID
@@ -237,12 +300,24 @@ bool Handy::isIOS()
 
 bool Handy::isTouch()
 {
-    const auto devices = QTouchDevice::devices();
-    for (const auto &device : devices) {
-        if (device->type() == QTouchDevice::TouchScreen)
-            return true;
-    }
-
+    #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
+   return true;
+    #else
+    
+   #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+   const auto touchDevices = QTouchDevice::devices();
+   const auto touchDeviceType = QTouchDevice::TouchScreen;
+   #else
+   const auto touchDevices = QInputDevice::devices();
+   const auto touchDeviceType = QInputDevice::DeviceType::TouchScreen;
+   #endif
+   
+   for (const auto &device : touchDevices) {
+       if (device->type() == touchDeviceType) {
+           return true;
+       }
+   }  
+#endif
     return false;
 }
 

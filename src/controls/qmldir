@@ -96,4 +96,6 @@ PasswordField 1.3 PasswordField.qml
 
 StackView 1.3 labs/StackView.qml
 ColorTransition 1.3 labs/ColorTransition.qml
+
 Icon 1.0 Icon.qml
+ShadowedRectangle 1.0 ShadowedRectangle.qml

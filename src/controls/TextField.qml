@@ -123,10 +123,9 @@ T.TextField
     RowLayout
     {
         clip: true
-        width: Math.min(implicitWidth, control.width)
-        anchors.centerIn: parent
+       anchors.fill: parent
+       anchors.leftMargin: Maui.Style.space.small
         visible: opacity > 0
-        anchors.verticalCenter: parent.verticalCenter  
         opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.4 : 0     
         
         Behavior on opacity 
@@ -154,7 +153,6 @@ T.TextField
             text: control.placeholderText
             font: control.font
             color: control.color
-            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: control.verticalAlignment
             elide: Text.ElideRight
             wrapMode: Text.NoWrap

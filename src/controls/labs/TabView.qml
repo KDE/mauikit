@@ -4,7 +4,6 @@ import QtQml 2.14
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.10
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import QtQuick.Templates 2.15 as T
@@ -541,7 +540,7 @@ T.Container
                                     }
                                 }
 
-                                background: Kirigami.ShadowedRectangle
+                                background: Maui.ShadowedRectangle
                                 {
                                     color: _delegate.isCurrentItem ? Maui.Theme.highlightColor : Qt.lighter(Maui.Theme.backgroundColor)
                                     property int radius : Maui.Style.radiusV

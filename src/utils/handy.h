@@ -36,7 +36,8 @@ class Handy : public QObject
     Q_PROPERTY(bool isTouch MEMBER m_isTouch CONSTANT FINAL)
     Q_PROPERTY(bool hasMouse READ hasMouse NOTIFY hasMouseChanged)
     Q_PROPERTY(bool hasKeyboard READ hasKeyboard NOTIFY hasKeyboardChanged)
-
+    Q_PROPERTY(bool hasTransientTouchInput READ hasTransientTouchInput NOTIFY hasTransientTouchInputChanged)
+        
     Q_PROPERTY(bool isAndroid READ isAndroid CONSTANT FINAL)
     Q_PROPERTY(bool isLinux READ isLinux CONSTANT FINAL)
     Q_PROPERTY(bool isWindows READ isWindows CONSTANT FINAL)
@@ -56,7 +57,13 @@ public:
         m_instance = new Handy;
         return m_instance;
     }
-
+    
+    void setTransientTouchInput(bool touch);
+    bool hasTransientTouchInput() const;    
+    
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+    
 private:
     static Handy *m_instance;
     Handy(QObject *parent = nullptr);
@@ -118,7 +125,7 @@ public slots:
      * @return
      */
     static bool hasKeyboard();
-
+    
     /**
      * @brief hasMouse
      * @return
@@ -202,5 +209,6 @@ signals:
     void hasKeyboardChanged();
     void hasMouseChanged();
     void isMobileChanged();
+    void hasTransientTouchInputChanged();
 };
 

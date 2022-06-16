@@ -21,7 +21,6 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.9 as Kirigami
 
 /**
  * ListBrowser
@@ -240,7 +239,7 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
             
-            interactive: Kirigami.Settings.hasTransientTouchInput /*&& (control.selectionMode ? _listView.position.x > 84 : true)*/
+            interactive: Maui.Handy.hasTransientTouchInput /*&& (control.selectionMode ? _listView.position.x > 84 : true)*/
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
@@ -254,7 +253,7 @@ Item
                 asynchronous: true
                 z: -1
                 anchors.fill: parent
-                active: !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isMobile
+                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
                 
                 sourceComponent: MouseArea
                 {
@@ -318,7 +317,7 @@ Item
                     
                     onPressAndHold:
                     {
-                        if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isAndroid)
+                        if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isAndroid)
                         {
                             selectLayer.visible = true;
                             selectLayer.x = mouseX;

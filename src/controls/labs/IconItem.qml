@@ -30,7 +30,7 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-    
+ 
 //     color: "transparent"
     
     /**
@@ -82,12 +82,22 @@ Item
     property alias image : img
     property alias icon: icon
     
+    property int alignment: Qt.AlignCenter
+    
     Maui.Icon
     {
         id: icon
         visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
         smooth: control.smooth
-        anchors.centerIn: parent
+//         anchors.centerIn: parent
+anchors.verticalCenter: parent.verticalCenter
+
+        x: switch(control.alignment)
+        {
+            case Qt.AlignLeft: return 0
+            case Qt.AlignCenter: return control.width/2 - width/2
+            case Qt.AlignRight: return control.width - width
+        }
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
@@ -100,10 +110,17 @@ Item
     {
         id: img
 
-        width: imageSizeHint >=0  ? imageSizeHint : parent.width
-        height: imageSizeHint >= 0 ? imageSizeHint : parent.height
+        width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
+        height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
 
-        anchors.centerIn: parent
+//         anchors.fill: parent
+        anchors.verticalCenter: parent.verticalCenter
+        x: switch(control.alignment)
+        {
+            case Qt.AlignLeft: return 0
+            case Qt.AlignCenter: return control.width/2 - width/2
+            case Qt.AlignRight: return control.width - width
+        }
 
         sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : width)
         sourceSize.height: (control.imageHeight > -1 ? control.imageHeight : height)
@@ -131,8 +148,8 @@ Item
                 Rectangle
                 {
                     anchors.centerIn: parent
-                    width: Math.min(parent.width, img.paintedWidth)
-                    height: Math.min(parent.height, img.paintedHeight)
+                    width: img.paintedWidth
+                    height: img.paintedHeight
                     radius: control.maskRadius
                 }
             }

@@ -39,7 +39,7 @@ Maui.GridBrowserDelegate
     maskRadius: radius
 
     template.iconComponent: Maui.GalleryRollTemplate
-    {
+    {      
         radius: control.radius
         cache: control.cache
         images: control.images

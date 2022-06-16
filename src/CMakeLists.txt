@@ -27,6 +27,7 @@ set(mauikit_SRCS
     utils/basictheme.cpp
     utils/imagecolors.cpp
     utils/colorutils.cpp
+    utils/wheelhandler.cpp
     utils/model_template/mauilist.cpp
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
@@ -45,6 +46,7 @@ set(mauikit_HDRS
     utils/basictheme_p.h
     utils/imagecolors.h
     utils/colorutils.h
+    utils/wheelhandler.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
     controls/libs/appview.h

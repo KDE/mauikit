@@ -137,6 +137,7 @@ Item
         
                 property bool highlighted: false
 
+                property int alignment: Qt.AlignCenter
         /**
          * iconComponent : Component
          */
@@ -165,6 +166,9 @@ Item
 
                 isMask: control.isMask
                 image.autoTransform: control.autoTransform
+                
+                alignment: control.alignment
+                
             }
         }
 
@@ -180,7 +184,10 @@ Item
 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-//                 Layout.margins: 2
+               /* 
+                Layout.maximumWidth:  Math.min(parent.width, implicitWidth)
+                Layout.maximumHeight: Math.min(parent.height-control.labelSizeHint, implicitHeight)*/
+                //                 Layout.margins: 2
 
                 asynchronous: true
                 sourceComponent: control.iconComponent
@@ -229,7 +236,7 @@ Item
                         id: _label1
                         visible: text && text.length
 
-                        horizontalAlignment: Qt.AlignHCenter
+                        horizontalAlignment: control.alignment
                         verticalAlignment: Qt.AlignVCenter
 
                         Layout.fillWidth: true
@@ -246,7 +253,7 @@ Item
                         id: _label2
                         visible: text.length
 
-                        horizontalAlignment: Qt.AlignHCenter
+                        horizontalAlignment: control.alignment
                         verticalAlignment: Qt.AlignVCenter
 
                         Layout.fillWidth: visible

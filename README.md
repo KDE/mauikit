@@ -10,7 +10,7 @@ It let you quickly create a Maui application and access utilities and widgets sh
 
 #### Maui.ApplicationWindow
 
-Based on Kirigami.ApplicationWindow. Contains a head and foot toolbar that are movable, so when using the app on mobile or touch devices the headbar moves to the bottom
+Contains a head and foot toolbar that are movable, so when using the app on mobile or touch devices the headbar moves to the bottom
 for reachability. It also contains a Kirigami PagaRow as the default contain layout, but any other type of content contol can be used instead.
 
 ### Maui.ToolBar

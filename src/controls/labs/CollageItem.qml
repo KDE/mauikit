@@ -44,7 +44,7 @@ Maui.GridBrowserDelegate
     template.iconComponent: Item
     {
         id: _collageLayout
-        
+       
         function spanColumn(index, count)
         {
             if(index === 0)

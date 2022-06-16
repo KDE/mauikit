@@ -13,6 +13,8 @@ T.ItemDelegate
 {
     id: control
     
+    Maui.Theme.colorSet: Maui.Theme.ToolTip 
+    
     hoverEnabled: !Maui.Handy.isMobile
     implicitHeight: Maui.Style.iconSizes.big
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
@@ -28,7 +30,7 @@ T.ItemDelegate
     
     property bool showCloseButton : false
     
-    property color color : control.Maui.Theme.backgroundColor
+    property color color : Maui.Theme.backgroundColor
     
     ToolTip.visible: hovered
     ToolTip.text: label.text
@@ -40,7 +42,7 @@ T.ItemDelegate
         id: _background
         //         opacity: 0.5
         
-        color: Qt.lighter( control.pressed ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor : control.color))
+        color:  control.pressed ? Qt.darker(control.color) : (control.hovered ? Qt.lighter(control.color): control.color)
         radius:  Maui.Style.radiusV   
     }
     
@@ -77,7 +79,7 @@ T.ItemDelegate
             Layout.fillHeight: true
             Layout.fillWidth: true
             verticalAlignment: Qt.AlignVCenter
-            color: Maui.ColorUtils.brightnessForColor(_background.color) === Maui.ColorUtils.Light ? Qt.darker(_background.color) : Qt.lighter(_background.color)
+            color: Maui.ColorUtils.brightnessForColor(_background.color) === Maui.ColorUtils.Light ? Qt.darker(_background.color, 4) : Qt.lighter(_background.color, 4)
         }
         
         Loader

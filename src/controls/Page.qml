@@ -48,9 +48,9 @@ T.Pane
     rightPadding: control.padding
     topPadding: control.padding
     bottomPadding: control.padding
-    
-    //     Maui.Theme.inherit: true
+        
     Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: false
     
     /*!
      *      \qmlproperty list<Object> Item::content

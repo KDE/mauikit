@@ -40,7 +40,6 @@ import QtQuick.Window 2.2
 
 import QtQuick.Templates 2.12 as T
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import QtGraphicalEffects 1.0
@@ -54,7 +53,7 @@ T.ComboBox
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
     
-    property bool responsive: Kirigami.Settings.hasTransientTouchInput
+    property bool responsive: Maui.Handy.hasTransientTouchInput
     
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -259,7 +258,7 @@ T.ComboBox
             }
             
             layer.enabled: control.responsive
-            layer.effect: Kirigami.ShadowedRectangle
+            layer.effect: Maui.ShadowedRectangle
             {
                 color: Maui.Theme.backgroundColor
                 shadow.xOffset: 0

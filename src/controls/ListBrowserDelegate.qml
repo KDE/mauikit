@@ -223,6 +223,7 @@ Maui.ItemDelegate
                     easing.type: Easing.InOutQuad
                 }
             }
+            
             sourceComponent: Item
             {
                 CheckBox

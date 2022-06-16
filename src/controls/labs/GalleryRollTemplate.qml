@@ -1,11 +1,10 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 import QtGraphicalEffects 1.0
 
-Kirigami.ShadowedRectangle
+Maui.ShadowedRectangle
 {
     id: control
     color: "#333"
@@ -134,7 +133,7 @@ ListView
             layer.enabled: control.radius
             layer.effect: OpacityMask
             {
-                maskSource: Kirigami.ShadowedRectangle
+                maskSource: Maui.ShadowedRectangle
                 {
                     width: control.width
                     height: control.height

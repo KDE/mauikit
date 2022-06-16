@@ -21,7 +21,6 @@ import QtQuick 2.15
 import QtQml 2.15
 import QtQuick.Controls 2.14
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
@@ -141,7 +140,7 @@ T.Drawer
             }
         }    
         
-        background: Kirigami.ShadowedRectangle
+        background: Maui.ShadowedRectangle
         {
             color: control.Maui.Theme.backgroundColor
             property int radius: !Maui.App.controls.enableCSD ? 0 : Maui.Style.radiusV
@@ -152,12 +151,7 @@ T.Drawer
                 topRightRadius: 0
                 bottomLeftRadius: radius
                 bottomRightRadius: 0
-            }        
-            
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }    
+            }     
         }    
         
         //Label

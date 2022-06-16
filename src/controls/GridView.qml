@@ -21,7 +21,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.9 as Kirigami
 
 /**
  * GridView
@@ -268,7 +267,7 @@ Item
             flickableDirection: Flickable.AutoFlickDirection
             snapMode: GridView.NoSnap
             highlightMoveDuration: 0
-            interactive: Kirigami.Settings.hasTransientTouchInput
+            interactive: Maui.Handy.hasTransientTouchInput
             onWidthChanged: if(adaptContent) control.adaptGrid()
             onCountChanged: if(adaptContent) control.adaptGrid()
             
@@ -304,7 +303,7 @@ Item
             {
                 asynchronous: true
                 z: -1
-                active: !Kirigami.Settings.hasTransientTouchInput && !Maui.Handy.isMobile
+                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
                 anchors.fill: parent
                 
                 sourceComponent: MouseArea

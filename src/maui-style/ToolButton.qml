@@ -90,24 +90,6 @@ T.ToolButton
             Maui.ColorTransition{}
         }
     }
-
-    //Behavior on icon.height
-    //{
-        //NumberAnimation
-        //{
-            //duration: Maui.Style.units.shortDuration
-            //easing.type: Easing.InQuad
-        //}
-    //}
-    
-    //Behavior on icon.width
-    //{
-        //NumberAnimation
-        //{
-            //duration: Maui.Style.units.shortDuration
-            //easing.type: Easing.InQuad
-        //}
-    //}
     
     Behavior on implicitHeight
     {

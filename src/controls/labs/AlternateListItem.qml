@@ -14,16 +14,8 @@ T.Control
     id: control
 
     default property alias content : _content.data
-    /*!
-      Whether or not this list item is the last list item in the view.
-    */
-    property bool lastOne : false
-    
+   
     hoverEnabled: false
-
-//     padding: Maui.Style.space.big
-//     rightPadding: Maui.Style.space.big
-    
     contentItem: MouseArea
     {
         id: _content
@@ -40,15 +32,5 @@ T.Control
         {
             Maui.ColorTransition{}
         }
-        
-        //Maui.Separator
-        //{
-            //visible: !control.lastOne
-            //weight: Maui.Separator.Weight.Light
-            //height: 0.5
-            //anchors.left: parent.left
-            //anchors.right: parent.right
-            //anchors.bottom: parent.bottom
-        //}
     }
 }

@@ -23,7 +23,6 @@ import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.12
 
-import org.kde.kirigami 2.8 as Kirigami
 import org.mauikit.controls 1.2 as Maui
 
 Maui.Dialog
@@ -237,47 +236,13 @@ spacing: Maui.Style.space.medium
                 }
             }
         }
-
     }
-
-    //Maui.AlternateListItem
-    //{
-        //implicitHeight: _libraries.implicitHeight + Maui.Style.space.huge
-        //Layout.fillWidth: true
-
-        //Column
-        //{
-            //id: _libraries
-            //spacing: Maui.Style.space.big
-            //width: parent.width
-            //anchors.centerIn: parent
-
-            //Repeater
-            //{
-                //model: Kirigami.Settings.information
-                //Maui.ListItemTemplate
-                //{
-                    //iconSource: "plugins"
-                    //width: parent.width
-                    //isMask: true
-
-                    //iconSizeHint: Maui.Style.iconSizes.medium
-                    //headerSizeHint: iconSizeHint + Maui.Style.space.medium
-
-                    //spacing: Maui.Style.space.medium
-                    //label1.text: modelData
-                //}
-            //}
-        //}
-    //}
-
 
     Maui.AlternateListItem
     {
         Layout.fillWidth: true
 
         implicitHeight: _footerColumn.implicitHeight + Maui.Style.space.huge
-        lastOne: true
 
         ColumnLayout
         {

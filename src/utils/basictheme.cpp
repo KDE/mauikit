@@ -160,7 +160,6 @@ namespace Maui
         textColor = palette.color(QPalette::ColorRole::WindowText);
         
         highlightColor = palette.color(QPalette::ColorRole::Highlight);
-        //         backgroundColor = QColor{"#efefef"};        
         highlightedTextColor = palette.color(QPalette::ColorRole::HighlightedText);      
         
         backgroundColor = palette.color(QPalette::ColorRole::Window);        

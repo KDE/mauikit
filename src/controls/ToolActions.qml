@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.3
 import QtQml 2.14
 import QtQuick.Templates 2.15 as T
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
@@ -197,7 +196,7 @@ T.Control
                             control.currentIndex = index
                     }
                     
-                    background: Kirigami.ShadowedRectangle
+                    background: Maui.ShadowedRectangle
                     {
                         color: checkable ? (checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)) : Maui.Theme.backgroundColor
                         corners
@@ -368,7 +367,7 @@ T.Control
                     
                     checkable: control.checkable && (m_action ? m_action.checkable : false)
                     
-                    background: Kirigami.ShadowedRectangle
+                    background: Maui.ShadowedRectangle
                     {
                         color: Maui.Theme.backgroundColor
                         
@@ -387,7 +386,7 @@ T.Control
                     }
                 }
                 
-                Kirigami.ShadowedRectangle
+                Maui.ShadowedRectangle
                 {
                     id: _dropArrowItem
                     visible: !control.canCyclic

@@ -47,7 +47,8 @@ Maui.ItemDelegate
      * template : GridItemTemplate
      */
     property alias template : _template
-
+    
+    
     /**
      * label1 : Label
      */
@@ -68,7 +69,8 @@ Maui.ItemDelegate
      * iconVisible : bool
      */
     property alias iconVisible : _template.iconVisible
-
+    property alias imageSizeHint : _template.imageSizeHint
+    
     /**
      * iconSizeHint : int
      */

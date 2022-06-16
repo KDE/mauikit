@@ -21,7 +21,6 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.14 as Kirigami
 
 import QtQuick.Templates 2.15 as T
 
@@ -137,17 +136,11 @@ T.Popup
             layer.effect: OpacityMask
             {
                 cached: true
-                maskSource:  Kirigami.ShadowedRectangle
+                maskSource:  Rectangle
                 {
                     width: _content.width
                     height: _content.height
-                    corners
-                    {
-                        topLeftRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
-                        topRightRadius:  control.filling ? Maui.Style.radiusV : Maui.Style.radiusV
-                        bottomLeftRadius:  control.filling ? 0 :  Maui.Style.radiusV
-                        bottomRightRadius: control.filling ? 0 :  Maui.Style.radiusV
-                    }   
+                    radius:  control.filling ? 0 : Maui.Style.radiusV  
                 }            
             }
         }        

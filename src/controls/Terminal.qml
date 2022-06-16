@@ -4,7 +4,6 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.3
 
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
@@ -291,7 +290,7 @@ Maui.Page
         Loader
         {
             asynchronous: true
-            active: Kirigami.Settings.hasTransientTouchInput
+            active: Maui.Handy.hasTransientTouchInput
             anchors.fill: parent
             
             sourceComponent: Private.TerminalInputArea
@@ -410,7 +409,7 @@ Maui.Page
         Loader
         {
             asynchronous: true
-            active: Kirigami.Settings.hasTransientTouchInput
+            active: Maui.Handy.hasTransientTouchInput
             anchors {
                 right: parent.right
                 top: parent.top

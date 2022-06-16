@@ -45,6 +45,7 @@
 #include "utils/platformtheme.h"
 #include "utils/colorutils.h"
 #include "utils/imagecolors.h"
+#include "utils/wheelhandler.h"
 
 #include <KI18n/KLocalizedContext>
 #include <KI18n/KLocalizedString>
@@ -99,7 +100,12 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("GridItemTemplate.qml")), uri, 1, 0, "GridItemTemplate");
 
     qmlRegisterType(componentUrl(QStringLiteral("FloatingButton.qml")), uri, 1, 0, "FloatingButton");
+    
+    
+    //Kirigami aliases to be replaced later on 
+    //TODO
     qmlRegisterType(componentUrl(QStringLiteral("Icon.qml")), uri, 1, 0, "Icon"); //to be remove later
+    qmlRegisterType(componentUrl(QStringLiteral("ShadowedRectangle.qml")), uri, 1, 0, "ShadowedRectangle"); //to be remove later
     
     /** Shapes **/
     qmlRegisterType(componentUrl(QStringLiteral("private/shapes/X.qml")), uri, 1, 0, "X");
@@ -176,6 +182,7 @@ void MauiKit::registerTypes(const char *uri)
         return new ColorUtils;
     });
     qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
+    qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
     
     /** Experimental **/
 #ifdef Q_OS_WIN32
