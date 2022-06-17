@@ -10,8 +10,6 @@ import QtQuick.Templates 2.15 as T
 import QtGraphicalEffects 1.0
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.14 as Kirigami
-
 
 Menu
 {

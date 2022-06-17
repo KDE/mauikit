@@ -1,7 +1,5 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import org.kde.kirigami 2.7 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Shapes 1.12
 

@@ -3,7 +3,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
-import org.kde.kirigami 2.7 as Kirigami
 
 import org.kde.appletdecoration 0.1 as AppletDecoration
 //import org.kde.plasma.plasmoid 2.0

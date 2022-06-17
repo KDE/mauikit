@@ -21,8 +21,10 @@
 
 
 import QtQuick 2.5
-import org.kde.kirigami 2.2 as Kirigami
 import QtQuick.Templates 2.3 as T
+
+import org.mauikit.controls 1.3 as Maui
+
 import "private"
 
 T.SwitchDelegate {

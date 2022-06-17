@@ -40,7 +40,6 @@ import QtQuick.Window 2.2
 
 import QtQuick.Templates 2.12 as T
 
-import org.kde.kirigami 2.14 as Kirigami
 import org.mauikit.controls 1.3 as Maui
 
 import QtGraphicalEffects 1.0
