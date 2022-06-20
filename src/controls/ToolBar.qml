@@ -38,24 +38,15 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.ToolBar
+ToolBar
 {
     id: control
     
-    Maui.Theme.colorSet: Maui.Theme.Header
-    Maui.Theme.inherit: false
     
     implicitHeight: preferredHeight + topPadding + bottomPadding
     
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
-    spacing: Maui.Style.space.small
-    
-    padding: Maui.Style.space.small
-//     topPadding: Maui.Style.space.tiny
-//     bottomPadding: Maui.Style.space.tiny
-//     
-    leftPadding: padding
-    rightPadding: padding
+  
     /**
      * content : RowLayout.data
      */
@@ -147,14 +138,7 @@ T.ToolBar
         
         //}
         
-        background: Rectangle
-        {
-            color: Maui.Theme.backgroundColor
-            Behavior on color
-            {
-                Maui.ColorTransition {}
-            }
-            
+        
             Loader
             {
                 asynchronous: true
@@ -171,7 +155,7 @@ T.ToolBar
                     bottom: parent.bottom
                 }
                 
-                sourceComponent: Private.EdgeShadow
+                sourceComponent: Maui.EdgeShadow
                 {
                     opacity: 0.7
                     edge: Qt.RightEdge
@@ -194,51 +178,13 @@ T.ToolBar
                     bottom: parent.bottom
                 }
                 
-                sourceComponent: Private.EdgeShadow
+                sourceComponent: Maui.EdgeShadow
                 {                    
                     opacity: 0.7
                     edge: Qt.LeftEdge                    
                 }
             }
-            
-            Maui.Separator
-            {
-                id: _border
-                anchors.left: parent.left
-                anchors.right: parent.right
-                weight: Maui.Separator.Weight.Light
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
-            }
-            
-            states: [  State
-            {
-                when: control.position === ToolBar.Header
-                
-                AnchorChanges
-                {
-                    target: _border
-                    anchors.top: undefined
-                    anchors.bottom: parent.bottom
-                }
-            },
-            
-            State
-            {
-                when: control.position === ToolBar.Footer
-                
-                AnchorChanges
-                {
-                    target: _border
-                    anchors.top: parent.top
-                    anchors.bottom: undefined                    
-                }
-            }
-            ]
-        }
+        
         
         contentItem: Item
         {

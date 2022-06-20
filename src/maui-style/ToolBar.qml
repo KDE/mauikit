@@ -26,7 +26,7 @@ import org.mauikit.controls 1.3 as Maui
 
 T.ToolBar 
 {
-    id: controlRoot
+    id: control
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
     
@@ -39,27 +39,56 @@ T.ToolBar
     spacing: Maui.Style.space.small
     
     padding: Maui.Style.space.small
-    topPadding: Maui.Style.space.tiny
-    bottomPadding: Maui.Style.space.tiny
-    
-    leftPadding: padding
-    rightPadding: padding
+  
     
     contentItem: Item {}
     //    position: controlRoot.parent.footer == controlRoot ? ToolBar.Footer : ToolBar.Header
-    background: Rectangle
-    {
-        implicitHeight: Maui.Style.toolBarHeight
-        color: Maui.Theme.backgroundColor
-        Maui.Separator 
+    
+        background: Rectangle
         {
-            anchors 
+            color: Maui.Theme.backgroundColor
+            Behavior on color
             {
-                left: parent.left
-                right: parent.right
-                top: controlRoot.position == T.ToolBar.Footer || (controlRoot.parent.footer && controlRoot.parent.footer == controlRoot) ? parent.top : undefined
-                bottom: controlRoot.position == T.ToolBar.Footer || (controlRoot.parent.footer && controlRoot.parent.footer == controlRoot) ? undefined : parent.bottom
+                Maui.ColorTransition {}
             }
+            
+            
+            Maui.Separator
+            {
+                id: _border
+                anchors.left: parent.left
+                anchors.right: parent.right
+                weight: Maui.Separator.Weight.Light
+                
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
+            }
+            
+            states: [  State
+            {
+                when: control.position === ToolBar.Header
+                
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                }
+            },
+            
+            State
+            {
+                when: control.position === ToolBar.Footer
+                
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: parent.top
+                    anchors.bottom: undefined                    
+                }
+            }
+            ]
         }
-    }
 }

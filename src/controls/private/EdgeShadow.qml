@@ -39,7 +39,7 @@ LinearGradient
     /**
       *
       */
-    property color color: Maui.Theme.textColor
+    property color color: "#333"
 
     implicitWidth: Maui.Style.units.gridUnit/2
     implicitHeight: Maui.Style.units.gridUnit/2
@@ -49,11 +49,11 @@ LinearGradient
     gradient: Gradient {
         GradientStop {
             position: 0.1
-            color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.2)
+            color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.4)
         }
         GradientStop {
             position: 0.3
-            color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.1)
+            color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.5)
         }
         GradientStop {
             position: 1.0
