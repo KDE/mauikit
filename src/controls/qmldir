@@ -16,6 +16,7 @@ ShareDialog 1.0 ShareDialog.qml
 OpenWithDialog 1.0 OpenWithDialog.qml
 PieButton 1.0 PieButton.qml
 SideBar 1.0 SideBar.qml
+SideBarView 1.0 SideBarView.qml
 AbstractSideBar 1.0 AbstractSideBar.qml
 ListDelegate 1.0 ListDelegate.qml
 ItemDelegate 1.0 ItemDelegate.qml

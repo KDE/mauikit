@@ -4,6 +4,7 @@
         <file alias="private/ToolBarSection.qml">controls/private/ToolBarSection.qml</file>
         <file alias="AbstractSideBar.qml">controls/AbstractSideBar.qml</file>
         <file alias="SideBar.qml">controls/SideBar.qml</file>
+        <file alias="SideBarView.qml">controls/SideBarView.qml</file>
         <file alias="ApplicationWindow.qml">controls/ApplicationWindow.qml</file>
         <file alias="ShareDialog.qml">controls/ShareDialog.qml</file>
         <file alias="labs/ShareDialog.qml">controls/labs/ShareDialog.qml</file>
