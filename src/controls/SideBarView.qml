@@ -26,10 +26,10 @@ Item
             clip: true
             transform: Translate
             {
-                x: control.sideBar && control.sideBar.collapsible && control.sideBar.collapsed ? control.sideBar.position * (control.sideBar.width) : 0
+                x: control.sideBar.collapsed ? control.sideBar.position * (control.sideBar.width) : 0
             }
             
-            anchors.leftMargin: control.sideBar ? ((control.sideBar.collapsible && control.sideBar.collapsed) ? 0 : (control.sideBar.width ) * control.sideBar.position) : 0        
+            anchors.leftMargin: control.sideBar.collapsed ? 0 : control.sideBar.width  * control.sideBar.position
         }
 }
 

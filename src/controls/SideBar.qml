@@ -36,9 +36,13 @@ import QtQuick.Templates 2.15 as T
 T.Control
 {
   id: control
+  
   Maui.Theme.colorSet: Maui.Theme.Window
   Maui.Theme.inherit: false
+  
   readonly property alias position : _private.position
+  readonly property bool peeking : control.collapsed && control.position > 0
+  readonly property bool resizing: _dragHandler.active
   
   visible: position > 0
   
@@ -58,6 +62,8 @@ T.Control
      */
     property bool collapsed: false
     
+    property bool resizeable : !Maui.Handy.isMobile
+    
     
     /*!
      *      preferredWidth : int
@@ -75,7 +81,6 @@ T.Control
      */
     //readonly property alias overlay : _overlayLoader.item
     
-    
     clip: true
     
     padding: 0
@@ -84,11 +89,9 @@ T.Control
     leftPadding: 0
     rightPadding: 0
     
-    readonly property bool resizing: _dragHandler.active
     
     signal opened()
-    signal closed()
-    
+    signal closed()    
     
     background: Rectangle
     {
@@ -154,7 +157,26 @@ T.Control
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right        
-      }      
+      }     
+      
+      MouseArea
+      {
+        id: _overlayMouseArea
+        
+        parent: control.parent
+        anchors.leftMargin: control.width
+        anchors.fill: parent
+        visible: control.collapsed && control.position > 0
+        
+        onClicked: control.close()
+        
+        Rectangle
+        {
+          anchors.fill: parent
+          color: "#333"
+          opacity : 0.5
+        }
+      }
       
       Rectangle
       {
@@ -194,6 +216,7 @@ T.Control
       
       Rectangle
       {
+        visible: control.resizeable
         height: parent.height
         width : 20
         anchors.right: parent.right
@@ -236,12 +259,10 @@ T.Control
         anchors.bottom: parent.bottom
         anchors.right: parent.right  
         
-      }
-      
-      
+      }           
     }
     
-   
+    
     
     function open()
     {

@@ -78,7 +78,7 @@ T.Popup
     
     modal: true
     
-    padding: 1
+    padding: 2
     
     topPadding: control.padding
     bottomPadding: control.padding + bottomInset
@@ -142,19 +142,29 @@ T.Popup
                     height: _content.height
                     radius:  control.filling ? 0 : Maui.Style.radiusV  
                 }            
-            }
-        }        
+            }            
+        }    
         
+       
         background: Rectangle
         {
             color: control.Maui.Theme.backgroundColor
             
-           radius:  control.filling ? 0 : Maui.Style.radiusV            
+           radius:  control.filling ? 0 : Maui.Style.radiusV    
             
-            property color borderColor: control.Maui.Theme.textColor
-            
-            border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+            property color borderColor : Qt.darker(Maui.Theme.backgroundColor, 2.3)
+            border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.5)
             border.width: control.filling ? 0 : 1
+            
+            Rectangle
+            {
+                anchors.fill: parent
+                anchors.margins: 1
+                color: "transparent"
+                radius: parent.radius - 0.5
+                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
+                opacity: 0.7       
+            }            
             
             layer.enabled: !control.filling
             layer.effect: DropShadow
