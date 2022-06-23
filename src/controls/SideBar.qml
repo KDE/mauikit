@@ -151,7 +151,6 @@ T.Control
     {
       Item
       {
-        visible: !control.resizing
         id: _content
         width: control.preferredWidth
         anchors.top: parent.top
@@ -166,7 +165,7 @@ T.Control
         parent: control.parent
         anchors.leftMargin: control.width
         anchors.fill: parent
-        visible: control.collapsed && control.position > 0
+        visible: control.collapsed && control.position === 1
         
         onClicked: control.close()
         
@@ -192,6 +191,12 @@ T.Control
           text:  _dragHandler.centroid.position.x
           color: "orange"
         }
+                
+        HoverHandler
+        {
+          cursorShape: Qt.SizeHorCursor
+        }
+        
         
         Maui.Separator
         {
@@ -221,6 +226,14 @@ T.Control
         width : 20
         anchors.right: parent.right
         color:  _dragHandler.active ? Maui.Theme.highlightColor : "transparent"
+        
+        
+        HoverHandler
+        {
+          cursorShape: Qt.SizeHorCursor     
+        }
+        
+        
         DragHandler
         {
           id: _dragHandler
@@ -229,6 +242,7 @@ T.Control
           xAxis.minimum: control.minimumWidth - control.preferredWidth
           xAxis.maximum: control.maximumWidth - control.preferredWidth
           target: null
+          cursorShape: Qt.SizeHorCursor
           
           onActiveChanged:
           {

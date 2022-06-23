@@ -36,7 +36,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Window 2.2
+import QtQuick.Window 2.15
 
 import QtQuick.Templates 2.12 as T
 
@@ -53,7 +53,8 @@ T.ComboBox
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
     
-    property bool responsive: Maui.Handy.hasTransientTouchInput
+    readonly property bool responsive: Maui.Handy.isMobile
+    readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
     
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -169,35 +170,71 @@ T.ComboBox
     
     popup: T.Popup
     {
-        parent: control.responsive ? window() : control
-        x: control.responsive ? 0 : 0
-        y: control.responsive ? window().height - height : ( control.editable ? control.height - 5 : 0)
+        parent: control.responsive ? control.parent.Window.window.contentItem : control
+        x: 0
+        y: control.responsive ? parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
         
-        implicitWidth: control.responsive ? window().width :  Math.min(window().width,  Math.max(250, contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0))
+        implicitWidth: control.responsive ? parentWindow.width :  Math.min(parentWindow.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
         
-        implicitHeight: control.responsive ? Math.min(window().height * 0.5, contentHeight + Maui.Style.space.huge) :  Math.min(contentHeight + topPadding + bottomPadding, window().height * 0.7)
+        implicitHeight: control.responsive ? Math.min(parentWindow.height * 0.8, contentHeight + Maui.Style.space.huge) : implicitContentHeight + topPadding + bottomPadding
         
         transformOrigin: Item.Top
         
         spacing: control.spacing
         modal: control.responsive
-        margins: 0
+        margins: 0        
         
-        padding: 1
+        padding: control.responsive ? 0 : 1
         topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
         bottomPadding: Maui.Style.space.medium
+
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
         
-        enter: Transition {
+        enter:  Maui.Style.enableEffects ? (control.responsive ? _responsiveEnterTransition : _enterTransition) : null
+        exit: Maui.Style.enableEffects ? (control.responsive ? _responsiveExitTransition : _exitTransition) : null
+        
+        Transition
+        {
+            id: _enterTransition
+            enabled: Maui.Style.enableEffects
             // grow_fade_in
             NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
         }
         
-        exit: Transition {
+        
+        Transition
+        {
+            id: _exitTransition
+            enabled: Maui.Style.enableEffects
+            
             // shrink_fade_out
             NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
+        }
+        
+        Transition
+        {
+            id: _responsiveEnterTransition
+            enabled: Maui.Style.enableEffects
+            
+            ParallelAnimation
+            {
+                //NumberAnimation { property: "y"; from: control.parentWindow.height; to: control.finalY; easing.type: Easing.OutQuint; duration: 220 }
+                NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
+            }
+        }
+        
+        Transition
+        {
+            id: _responsiveExitTransition
+            enabled: Maui.Style.enableEffects
+            
+            ParallelAnimation
+            {
+                //NumberAnimation { property: "y"; from: control.finalY; to: control.parentWindow.height; easing.type: Easing.OutQuint; duration: 220 }
+                NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
+            }
         }
         
         contentItem: Maui.ListBrowser
@@ -215,10 +252,8 @@ T.ComboBox
             implicitHeight: contentHeight
             model: control.delegateModel
             spacing: control.spacing
-            padding: control.margins
+            padding: Maui.Style.space.small
             currentIndex: control.highlightedIndex
-            topPadding: 0
-            bottomPadding: 0
         }
         
         background: Rectangle
@@ -258,21 +293,15 @@ T.ComboBox
             }
             
             layer.enabled: control.responsive
-            layer.effect: Maui.ShadowedRectangle
+            layer.effect: DropShadow
             {
-                color: Maui.Theme.backgroundColor
-                shadow.xOffset: 0
-                shadow.yOffset: -2
-                shadow.color: Qt.rgba(0, 0, 0, 0.3)
-                shadow.size: 8
-                
-                corners
-                {
-                    topLeftRadius: _bg.radius
-                    topRightRadius: _bg.radius
-                    bottomLeftRadius: _bg.radius
-                    bottomRightRadius: _bg.radius
-                }
+                cached: true
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
             }
         }
     }

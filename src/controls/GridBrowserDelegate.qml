@@ -129,13 +129,14 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-        color: control.flat ? "transparent" : (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor))
+        color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
 
         
         radius: control.radius
 
         Behavior on color
         {
+            enabled: !control.flat
             Maui.ColorTransition{}
         }
     }

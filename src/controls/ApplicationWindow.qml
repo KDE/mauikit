@@ -456,7 +456,7 @@ Window
      */
     function window()
     {
-      return _page;
+      return root.contentItem;
     }
     
     function about()
