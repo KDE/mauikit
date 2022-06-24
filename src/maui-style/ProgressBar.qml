@@ -25,9 +25,10 @@ import QtQuick.Templates 2.14 as T
 
 import org.mauikit.controls 1.3 as Maui
 
-import QtQuick.Templates 2.12 as T
 import QtQuick.Controls.Material 2.12
 import QtQuick.Controls.Material.impl 2.12
+
+import QtGraphicalEffects 1.0
 
 T.ProgressBar
 {
@@ -40,27 +41,40 @@ T.ProgressBar
 
     contentItem: ProgressBarImpl 
     {
-        implicitHeight: 4
+        implicitHeight: Maui.Style.iconSizes.tiny
 
         scale: control.mirrored ? -1 : 1
-        color: control.Material.accentColor
+        color: Maui.Theme.highlightColor
         progress: control.position
         indeterminate: control.visible && control.indeterminate
+//         radius: Maui.Style.radiusV
+        
     }
 
     background: Rectangle 
     {
+        id: bg
         implicitWidth: 200
         implicitHeight: 4
         y: (control.height - height) / 2
-        height: 4
+        height: Maui.Style.iconSizes.tiny
 
-        color: Maui.Theme.highlightColor
+        color: Maui.Theme.backgroundColor
         Behavior on color
         {
             Maui.ColorTransition{}
         }
         
+        layer.enabled: true
+        layer.effect: OpacityMask
+        {
+            maskSource: Rectangle
+            {
+                width: bg.width
+                height: bg.height
+                radius:  Maui.Style.radiusV
+            }
+        }
     }
 }
 

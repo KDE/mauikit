@@ -60,8 +60,7 @@ T.Control
      *      If the sidebar should be collapsed or not, this property can be used to dynamically collapse
      *      the sidebar on constrained spaces.
      */
-    property bool collapsed: false
-    
+    property bool collapsed: false    
     property bool resizeable : !Maui.Handy.isMobile
     
     
@@ -149,6 +148,7 @@ T.Control
     
     contentItem: Item
     {
+      
       Item
       {
         id: _content
@@ -158,85 +158,98 @@ T.Control
         anchors.right: parent.right        
       }     
       
-      MouseArea
+      Loader
       {
-        id: _overlayMouseArea
-        
         parent: control.parent
         anchors.leftMargin: control.width
         anchors.fill: parent
-        visible: control.collapsed && control.position === 1
+        active: control.collapsed && control.position === 1
+        asynchronous: true
         
-        onClicked: control.close()
-        
-        Rectangle
+        sourceComponent: MouseArea
         {
-          anchors.fill: parent
-          color: "#333"
-          opacity : 0.5
-        }
-      }
-      
-      Rectangle
-      {
-        parent: control.parent
-        id: _resizeTarget
-        width: Math.max(Math.min(_private.finalWidth, control.maximumWidth), control.minimumWidth)
-        height: parent.height
-        color: Maui.Theme.alternateBackgroundColor
-        visible: control.resizing
-        
-        Label
-        {
-          text:  _dragHandler.centroid.position.x
-          color: "orange"
-        }
-                
-        HoverHandler
-        {
-          cursorShape: Qt.SizeHorCursor
-        }
-        
-        
-        Maui.Separator
-        {
-          anchors.top: parent.top
-          anchors.bottom: parent.bottom
-          anchors.right: parent.right  
+          id: _overlayMouseArea
           
+          
+          onClicked: control.close()
+          
+          Rectangle
+          {
+            anchors.fill: parent
+            color: "#333"
+            opacity : 0.5
+          }
         }
       }
       
-      Rectangle
+      Loader
       {
-        parent: control.parent
-        id: _resizeTarget2
-        anchors.leftMargin:  _resizeTarget.width
-        width: parent.width
-        height: parent.height
-        color: Maui.Theme.backgroundColor
-        visible: control.resizing
+        
+        active: control.resizing       
+        sourceComponent: Item
+        {
+          Rectangle
+          {
+             parent: control.parent
+            id: _resizeTarget
+            width: Math.max(Math.min(_private.finalWidth, control.maximumWidth), control.minimumWidth)
+            height: parent.height
+            color: Maui.Theme.alternateBackgroundColor
+            
+            Label
+            {
+              text:  _dragHandler.centroid.position.x
+              color: "orange"
+            }
+            
+            HoverHandler
+            {
+              cursorShape: Qt.SizeHorCursor
+            }            
+            
+            Maui.Separator
+            {
+              anchors.top: parent.top
+              anchors.bottom: parent.bottom
+              anchors.right: parent.right  
+              weight: Maui.Separator.Weight.Light
+              
+              Behavior on color
+              {
+                Maui.ColorTransition{}
+              }
+            }
+          }
+          
+          Rectangle
+          {
+             parent: control.parent
+            id: _resizeTarget2
+            anchors.leftMargin:  _resizeTarget.width
+            width: parent.width
+            height: parent.height
+            color: Maui.Theme.backgroundColor
+          }
+        }
       }
-      
       
       Rectangle
       {
         visible: control.resizeable
         height: parent.height
-        width : 20
+        width : 10
         anchors.right: parent.right
         color:  _dragHandler.active ? Maui.Theme.highlightColor : "transparent"
-        
-        
+                
         HoverHandler
         {
           cursorShape: Qt.SizeHorCursor     
-        }
-        
+        }        
         
         DragHandler
         {
           id: _dragHandler
+          enabled: control.resizeable
           yAxis.enabled: false
           xAxis.enabled: true
           xAxis.minimum: control.minimumWidth - control.preferredWidth
@@ -262,8 +275,7 @@ T.Control
               }
               control.preferredWidth = value      
             }
-          }
-          
+          }          
         }
       }
       
@@ -272,7 +284,12 @@ T.Control
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right  
+        weight: Maui.Separator.Weight.Light
         
+        Behavior on color
+        {
+          Maui.ColorTransition{}
+        }
       }           
     }
     
