@@ -33,7 +33,7 @@ Maui.Dialog
         persistent: false
         widthHint: 0.9
         heightHint: 0.8
-        spacing: Maui.Style.space.small
+//         spacing: Maui.Style.space.medium
         //     scrollView.padding: 0
         
         maxWidth: 360
@@ -49,28 +49,28 @@ Maui.Dialog
          */
         property alias mainHeader : _header
         //         defaultButtonsLayout.visible: flickable.atYEnd
-        actions: [
-        Action
-        {
-            icon.name: "link"
-            text: i18n("Site")
-            onTriggered: Qt.openUrlExternally(Maui.App.about.homepage)
-        },
+        //actions: [
+        //Action
+        //{
+            //icon.name: "link"
+            //text: i18n("Site")
+            //onTriggered: Qt.openUrlExternally(Maui.App.about.homepage)
+        //},
         
-        Action
-        {
-            icon.name: "love"
-            text: i18n("Donate")
-            onTriggered: Qt.openUrlExternally(Maui.App.donationPage)
-        },
+        //Action
+        //{
+            //icon.name: "love"
+            //text: i18n("Donate")
+            //onTriggered: Qt.openUrlExternally(Maui.App.donationPage)
+        //},
         
-        Action
-        {
-            icon.name: "documentinfo"
-            text: i18n("Report")
-            onTriggered: Qt.openUrlExternally(Maui.App.about.bugAddress)
-        }
-        ]
+        //Action
+        //{
+            //icon.name: "documentinfo"
+            //text: i18n("Report")
+            //onTriggered: Qt.openUrlExternally(Maui.App.about.bugAddress)
+        //}
+        //]
         
         //     background: Rectangle
         //     {
@@ -126,23 +126,19 @@ Maui.Dialog
             }
             
         }
- /*       
-        Maui.Separator
+
+        
+        Item
         {
             Layout.fillWidth: true
+            implicitHeight: Maui.Style.space.big
         }
-        */
-        Maui.AlternateListItem
-        {
-            implicitHeight: _credits.implicitHeight + Maui.Style.space.huge
-            Layout.fillWidth: true
-            
+        
             Column
             {
                 id: _credits
                 spacing: Maui.Style.space.big
-                width: parent.width
-                anchors.centerIn: parent
+                Layout.fillWidth: true
                 
                 Repeater
                 {
@@ -157,7 +153,6 @@ Maui.Dialog
                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
                         
                         width: parent.width
-                        spacing: Maui.Style.space.medium
                         label1.text: modelData.name
                         label2.text: modelData.emailAddress.length ? String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress) :  String("<a href='%1'>%1</a>").arg(modelData.webAddress)
                         label3.text: modelData.task
@@ -174,19 +169,14 @@ Maui.Dialog
                     }
                 }
             }
-        }
         
-        Maui.AlternateListItem
-        {
-            implicitHeight: _licenses.implicitHeight + Maui.Style.space.huge
-            Layout.fillWidth: true
-            
+        
             Column
             {
                 id: _licenses
                 spacing: Maui.Style.space.big
-                width: parent.width
-                anchors.centerIn: parent
+                Layout.fillWidth: true
+                
                 
                 Repeater
                 {
@@ -200,33 +190,26 @@ Maui.Dialog
                         iconSizeHint: Maui.Style.iconSizes.medium
                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
                         
-                        spacing: Maui.Style.space.medium
                         label1.text: modelData.name
+                        label3.text: i18n("License")
                     }
                 }
             }
-        }
         
-        Maui.AlternateListItem
-        {
-            Layout.fillWidth: true
-            
-            implicitHeight: _poweredBy.implicitHeight + Maui.Style.space.huge
-            
+        
             Maui.ListItemTemplate
             {
                 id: _poweredBy
-                anchors.centerIn: parent
-                width: parent.width
+                 Layout.fillWidth: true
                 isMask: true
                 
                 iconSource: "code-context"
                 iconSizeHint: Maui.Style.iconSizes.medium
                 headerSizeHint: iconSizeHint + Maui.Style.space.medium
                 
-                spacing: Maui.Style.space.medium
                 label1.text: i18n("Powered by")
-                label2.text: "MauiKit Frameworks " + Maui.App.mauikitVersion
+                label2.text: "MauiKit Frameworks "
+                label3.text: Maui.App.mauikitVersion
                 Connections
                 {
                     target: _poweredBy.label2
@@ -236,20 +219,20 @@ Maui.Dialog
                     }
                 }
             }
-        }
         
-        Maui.AlternateListItem
+        
+        Item
         {
             Layout.fillWidth: true
-            
-            implicitHeight: _footerColumn.implicitHeight + Maui.Style.space.huge
-            
+            implicitHeight: Maui.Style.space.big
+        }
+        
             ColumnLayout
             {
                 id: _footerColumn
-                width: parent.width
+                Layout.fillWidth: true
+                
                 spacing: Maui.Style.space.medium
-                anchors.centerIn: parent
                 
                 Maui.Icon
                 {
@@ -277,7 +260,8 @@ Maui.Dialog
                     label1.font.family: "Monospace"
                 }
             }
-        }
+            
+          
         
         Item
         {
