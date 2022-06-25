@@ -110,11 +110,8 @@ namespace Maui
         
         disabledTextColor = QColor{"#9931363b"};
         
-        activeBackgroundColor = QColor{"#0176D3"};
-        linkColor = QColor{"#2980B9"};
-        linkBackgroundColor = QColor{"#2980B9"};
-        visitedLinkColor = QColor{"#7F8C8D"};
-        visitedLinkBackgroundColor = QColor{"#2196F3"};
+        activeBackgroundColor = QColor{"#0176D3"};        
+        
         negativeTextColor = QColor{"#DA4453"};
         negativeBackgroundColor = QColor{"#DA4453"};
         neutralTextColor = QColor{"#F67400"};
@@ -194,10 +191,16 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor =palette.color(QPalette::ColorRole::Window);
+        headerBackgroundColor = palette.color(QPalette::ColorRole::Window);
         headerAlternateBackgroundColor =palette.color(QPalette::ColorRole::AlternateBase);
         headerHoverColor =palette.color(QPalette::ColorRole::Light);
         headerFocusColor = highlightColor;
+                
+        linkColor = palette.color(QPalette::ColorRole::Link);
+        linkBackgroundColor =  palette.color(QPalette::ColorRole::Light);
+        visitedLinkColor =  palette.color(QPalette::ColorRole::LinkVisited);
+        visitedLinkBackgroundColor =  palette.color(QPalette::ColorRole::Light);
+        
     }
     
     void BasicThemeDefinition::setDarkColors()
@@ -246,7 +249,12 @@ namespace Maui
         headerBackgroundColor = cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.04);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
         headerHoverColor = headerBackgroundColor.lighter();
-        headerFocusColor = highlightColor;        
+        headerFocusColor = highlightColor;       
+                
+        linkColor = QColor{"#21b9ff"};
+        linkBackgroundColor = QColor{"#21b9ff"};
+        visitedLinkColor = QColor{"#ff17d4"};
+        visitedLinkBackgroundColor = QColor{"#ff17d4"};
     }
     
     void BasicThemeDefinition::setLightColors()
@@ -296,6 +304,11 @@ namespace Maui
         headerAlternateBackgroundColor = cu.tintWithAlpha(LightColor::headerAlternateBackgroundColor, highlightColor, 0.02);
         headerHoverColor = headerBackgroundColor.lighter(120);
         headerFocusColor = highlightColor;
+        
+        linkColor = QColor{"#21b9ff"};
+        linkBackgroundColor = QColor{"#21b9ff"};
+        visitedLinkColor = QColor{"#ff17d4"};
+        visitedLinkBackgroundColor = QColor{"#ff17d4"};
     }
     
     void BasicThemeDefinition::setAdaptiveColors()
@@ -347,7 +360,12 @@ namespace Maui
         headerBackgroundColor = cu.tintWithAlpha(bgColor, highlightColor, 0.05);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
         headerHoverColor = headerBackgroundColor.lighter();
-        headerFocusColor = highlightColor;
+        headerFocusColor = highlightColor;        
+        
+        linkColor = QColor{"#2980B9"};
+        linkBackgroundColor = QColor{"#2980B9"};
+        visitedLinkColor = QColor{"#7F8C8D"};
+        visitedLinkBackgroundColor = QColor{"#2196F3"};
     }
     
     void BasicThemeDefinition::syncToQml(PlatformTheme *object)

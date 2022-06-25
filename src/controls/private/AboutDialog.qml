@@ -231,7 +231,7 @@ Maui.Dialog
             {
                 id: _footerColumn
                 Layout.fillWidth: true
-                
+                opacity: 0.7
                 spacing: Maui.Style.space.medium
                 
                 Maui.Icon
