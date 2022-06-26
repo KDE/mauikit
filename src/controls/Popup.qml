@@ -158,7 +158,7 @@ T.Popup
             
             Rectangle
             {
-                visible: !control.responsive 
+                visible: !control.filling 
                 anchors.fill: parent
                 anchors.margins: 1
                 color: "transparent"
