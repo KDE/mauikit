@@ -352,79 +352,62 @@ Maui.Popup
         }
       }
       
-      RowLayout
+      GridLayout
       {
         id: _defaultButtonsLayout
-        spacing: 2
+        rowSpacing: 2
+        columnSpacing: 2
         Layout.fillWidth: true
-        Layout.preferredHeight: visible ? Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25) : 0
-        Layout.maximumHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
-        visible: control.defaultButtons || control.actions.length
         
-        T.Button
+        property bool isWide : control.width > Maui.Style.units.gridUnit*10
+        
+        visible: control.defaultButtons || control.actions.length
+        rows: isWide? 1 : count
+        columns: isWide ? count : 1
+        
+        Button
         {
           id: _rejectButton
-          Maui.Theme.inherit: true
-          Maui.Theme.colorSet: control.Maui.Theme.colorSet
-          
+         
           Layout.fillWidth: true
-          Layout.fillHeight: true
           
-          implicitWidth: width
-          implicitHeight: height
+          implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
+//           Maui.Theme.textColor: Maui.Theme.negativeTextColor
           
           visible: control.defaultButtons
           text: i18n("Cancel")
           background: Rectangle
           {
-            color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? "#da4453" : Qt.lighter(Maui.Theme.backgroundColor)
-            
+            color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
             Behavior on color
             {
               Maui.ColorTransition{}
             }
-          }
-          
-          contentItem: Label
-          {
-            text: _rejectButton.text
-            color:  _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ?  "#fafafa" : Maui.Theme.textColor
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-          }
+          }          
           
           onClicked: rejected()
         }
         
-        T.Button
+        Button
         {
           id: _acceptButton
-          Maui.Theme.inherit: true
-          Maui.Theme.colorSet: control.Maui.Theme.colorSet
-          
+        
           Layout.fillWidth: true
-          Layout.fillHeight: true
-          implicitWidth: width
+          implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
           
           text: i18n("Accept")
           visible: control.defaultButtons
+          
+//           Maui.Theme.textColor: Maui.Theme.positiveTextColor
+          
           background: Rectangle
           {
-            color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? "#26c6da" : Qt.lighter(Maui.Theme.backgroundColor)
+            color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? Maui.Theme.positiveBackgroundColor : Maui.Theme.backgroundColor
             Behavior on color
             {
               Maui.ColorTransition{}
             }
           }
-          
-          contentItem: Label
-          {
-            text: _acceptButton.text
-            color:  _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ?  "#fafafa" : Maui.Theme.textColor
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-          }
-          
           onClicked: accepted()
         }
         
@@ -432,34 +415,23 @@ Maui.Popup
         {
           model: control.actions
           
-          T.Button
+          Button
           {
             id: _actionButton
-            Maui.Theme.inherit: true
-            Maui.Theme.colorSet: control.Maui.Theme.colorSet
-            
+           
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            implicitWidth: width
+            implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
             
             action: modelData
             
             background: Rectangle
             {
-              color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? "#26c6da" : Qt.lighter(Maui.Theme.backgroundColor)
+              color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
               
               Behavior on color
               {
                 Maui.ColorTransition{}
               }
-            }
-            
-            contentItem: Label
-            {
-              text: _actionButton.text
-              color:  _actionButton.hovered || _actionButton.down || _actionButton.pressed ?  "#fafafa" : Maui.Theme.textColor
-              horizontalAlignment: Qt.AlignHCenter
-              verticalAlignment: Qt.AlignVCenter
             }
           }
         }
