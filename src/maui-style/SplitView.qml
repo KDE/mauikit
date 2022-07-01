@@ -38,6 +38,12 @@ T.SplitView
                 Maui.ColorTransition{}
             }
             
+            //Maui.Separator
+            //{
+                //width: parent.width
+                //anchors.centerIn: parent
+            //}
+            
             Rectangle
             {
                 property int length: pressed ? 80 : 48
@@ -70,9 +76,8 @@ T.SplitView
                 Behavior on color
                 {
                     Maui.ColorTransition{}
-                }
-                
-            }
+                }                
+            }            
         }
     }
     
@@ -90,7 +95,13 @@ T.SplitView
             Behavior on color
             {
                 Maui.ColorTransition{}
-            }
+            }                       
+            
+            //Maui.Separator
+            //{
+                //height: parent.height
+                //anchors.centerIn: parent
+            //}
             
             Rectangle
             {

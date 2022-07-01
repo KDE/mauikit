@@ -362,8 +362,8 @@ Maui.Popup
         property bool isWide : control.width > Maui.Style.units.gridUnit*10
         
         visible: control.defaultButtons || control.actions.length
-        rows: isWide? 1 : count
-        columns: isWide ? count : 1
+        rows: isWide? 1 : _defaultButtonsLayout.children.length
+        columns: isWide ? _defaultButtonsLayout.children.length : 1
         
         Button
         {

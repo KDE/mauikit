@@ -49,28 +49,28 @@ Maui.Dialog
          */
         property alias mainHeader : _header
         //         defaultButtonsLayout.visible: flickable.atYEnd
-        actions: [
-        Action
-        {
-            icon.name: "link"
-            text: i18n("Site")
-            onTriggered: Qt.openUrlExternally(Maui.App.about.homepage)
-        },
+        //actions: [
+        //Action
+        //{
+            //icon.name: "link"
+            //text: i18n("Site")
+            //onTriggered: Qt.openUrlExternally(Maui.App.about.homepage)
+        //},
         
-        Action
-        {
-            icon.name: "love"
-            text: i18n("Donate")
-            onTriggered: Qt.openUrlExternally(Maui.App.donationPage)
-        },
+        //Action
+        //{
+            //icon.name: "love"
+            //text: i18n("Donate")
+            //onTriggered: Qt.openUrlExternally(Maui.App.donationPage)
+        //},
         
-        Action
-        {
-            icon.name: "documentinfo"
-            text: i18n("Report")
-            onTriggered: Qt.openUrlExternally(Maui.App.about.bugAddress)
-        }
-        ]
+        //Action
+        //{
+            //icon.name: "documentinfo"
+            //text: i18n("Report")
+            //onTriggered: Qt.openUrlExternally(Maui.App.about.bugAddress)
+        //}
+        //]
         
         //     background: Rectangle
         //     {
