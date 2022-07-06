@@ -41,7 +41,6 @@ import org.mauikit.controls 1.3 as Maui
 T.Pane
 {
     id: control
-    focus: true
     padding: 0
     
     leftPadding: control.padding

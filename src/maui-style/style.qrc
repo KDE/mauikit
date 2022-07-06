@@ -18,6 +18,7 @@
         <file>Menu.qml</file>
         <file>MenuItem.qml</file>
         <file>Page.qml</file>
+        <file>Pane.qml</file>
         <file>Popup.qml</file>
         <file>ProgressBar.qml</file>
         <file>RangeSlider.qml</file>

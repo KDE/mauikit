@@ -162,6 +162,8 @@ namespace Maui
         
         struct LightColor
         {
+            const static inline QColor textColor = QColor{"#31363b"};
+            const static inline QColor disabledTextColor = QColor{"#83909d"};
             const static inline QColor backgroundColor = QColor{"#e8e8e8"};
             const static inline QColor alternateBackgroundColor = QColor{"#f0f0f0"};
             const static inline QColor hoverColor = QColor{"#dbdbdb"};
@@ -181,6 +183,8 @@ namespace Maui
         
         struct DarkColor
         {
+            const static inline QColor textColor = QColor{"#f4f5f6"};
+            const static inline QColor disabledTextColor = QColor{"#505050"};
             const static inline QColor backgroundColor = QColor{"#27292a"};
             const static inline QColor alternateBackgroundColor = QColor{"#1a1e1e"};
             const static inline QColor hoverColor = QColor{"#202727"};
@@ -191,7 +195,7 @@ namespace Maui
             
             const static inline QColor viewBackgroundColor = QColor{"#0a0b0b"};
             const static inline QColor viewAlternateBackgroundColor = QColor{"#1a1e1e"};
-            const static inline  QColor viewHoverColor = QColor{"#202727"};
+            const static inline  QColor viewHoverColor = QColor{"#1f1f1f"};
         };
     };
     

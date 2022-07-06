@@ -34,40 +34,25 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Controls.impl 2.3
+import QtQuick 2.12
+import QtQuick.Templates 2.12 as T
+import org.mauikit.controls 1.2 as Maui
 
-import QtQuick.Templates 2.3 as T
-import org.mauikit.controls 1.3 as Maui
-
-T.Page
+T.Pane
 {
     id: control
     
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
-    padding: 0
     
-    leftPadding: control.padding
-    rightPadding: control.padding
-    topPadding: control.padding
-    bottomPadding: control.padding
-    
-   
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            Math.max(contentWidth,
-                                     header && header.visible ? header.implicitWidth : 0,
-                                     footer && footer.visible ? footer.implicitWidth : 0) + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentHeight + topPadding + bottomPadding
-                             + (header && header.visible ? header.implicitHeight + spacing : 0)
-                             + (footer && footer.visible ? footer.implicitHeight + spacing : 0))
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            contentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             contentHeight + topPadding + bottomPadding)
 
-    contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
-    contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
+    padding: Maui.Style.space.medium
 
-    background: Rectangle 
+    background: Rectangle
     {
         color: Maui.Theme.backgroundColor
     }

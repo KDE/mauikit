@@ -68,7 +68,9 @@ T.Control
     contentItem: MouseArea
     {
         propagateComposedEvents: true
-        onPressed: mouse.accepted= false
+        preventStealing: false
+//        onPressed: mouse.accepted= false
+
         Label
         {
             anchors.fill: parent

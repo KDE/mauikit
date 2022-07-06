@@ -107,10 +107,7 @@ namespace Maui
                 Q_EMIT this->changed();
             }
         });
-        
-        disabledTextColor = QColor{"#9931363b"};
-        
-        activeBackgroundColor = QColor{"#0176D3"};        
+              
         
         negativeTextColor = QColor{"#DA4453"};
         negativeBackgroundColor = QColor{"#DA4453"};
@@ -155,11 +152,13 @@ namespace Maui
     {
         auto palette = QGuiApplication::palette();
         textColor = palette.color(QPalette::ColorRole::WindowText);
+        disabledTextColor = palette.color(QPalette::ColorRole::PlaceholderText);
         
         highlightColor = palette.color(QPalette::ColorRole::Highlight);
         highlightedTextColor = palette.color(QPalette::ColorRole::HighlightedText);      
         
-        backgroundColor = palette.color(QPalette::ColorRole::Window);        
+        backgroundColor = palette.color(QPalette::ColorRole::Window);  
+        activeBackgroundColor = highlightColor;        
         alternateBackgroundColor = palette.color(QPalette::ColorRole::AlternateBase).lighter(104);
         hoverColor = palette.color(QPalette::ColorRole::Midlight);        
         focusColor = highlightColor;
@@ -207,7 +206,8 @@ namespace Maui
     {
         ColorUtils cu;
         
-        textColor = QColor{"#f4f5f6"};
+        textColor = DarkColor::textColor;
+        disabledTextColor = DarkColor::disabledTextColor;
         
         highlightColor = Style::instance()->accentColor();        
         const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;
@@ -215,6 +215,7 @@ namespace Maui
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};
                 
         backgroundColor =  cu.tintWithAlpha(DarkColor::backgroundColor, highlightColor, 0.02);
+        activeBackgroundColor = highlightColor;       
         alternateBackgroundColor = cu.tintWithAlpha(DarkColor::alternateBackgroundColor, highlightColor, 0.02);
         hoverColor = cu.tintWithAlpha(DarkColor::hoverColor, highlightColor, 0.02);      
         focusColor = highlightColor;
@@ -260,15 +261,17 @@ namespace Maui
     void BasicThemeDefinition::setLightColors()
     {
         ColorUtils cu;
-        
-        textColor = QColor{"#31363b"};
+               
+        textColor = LightColor::textColor;
+        disabledTextColor = LightColor::disabledTextColor;
         
         highlightColor = Style::instance()->accentColor();
         //         backgroundColor = QColor{"#efefef"};        
         const auto isDark = cu.brightnessForColor(highlightColor) == ColorUtils::Dark;        
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};       
         
-        backgroundColor = cu.tintWithAlpha(LightColor::backgroundColor, highlightColor, 0.02);        
+        backgroundColor = cu.tintWithAlpha(LightColor::backgroundColor, highlightColor, 0.02);     
+        activeBackgroundColor = highlightColor;        
         alternateBackgroundColor = cu.tintWithAlpha(LightColor::alternateBackgroundColor, highlightColor, 0.02);
         hoverColor = LightColor::hoverColor;        
         focusColor = highlightColor;
@@ -315,7 +318,9 @@ namespace Maui
     {
         ColorUtils cu;
         
-        textColor = m_imgColors->foreground();        
+        textColor = m_imgColors->foreground();    
+        disabledTextColor = textColor.lighter(120);
+        
         highlightColor = m_imgColors->highlight();
         
         const auto isDark = m_imgColors->paletteBrightness() == ColorUtils::Dark;
@@ -325,6 +330,7 @@ namespace Maui
         highlightedTextColor = cu.brightnessForColor(highlightColor) ==  ColorUtils::Dark ? m_imgColors->closestToWhite() : m_imgColors->closestToBlack();
 //         backgroundColor = cu.tintWithAlpha(m_imgColors->background(), bgColor, 0.8);
         backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.03);
+        activeBackgroundColor = highlightColor;        
         alternateBackgroundColor = cu.tintWithAlpha(isDark ? DarkColor::alternateBackgroundColor : LightColor::alternateBackgroundColor, highlightColor, 0.03);
         hoverColor =  cu.tintWithAlpha(isDark ? DarkColor::hoverColor : LightColor::hoverColor, highlightColor, 0.02);
         

@@ -91,7 +91,7 @@ class Style : public QObject
 
     Q_PROPERTY(StyleType styleType READ styleType WRITE setStyleType NOTIFY styleTypeChanged RESET unsetStyeType)
 
-    Q_PROPERTY(bool enableEffects READ enableEffects NOTIFY enableEffectsChanged CONSTANT)
+    Q_PROPERTY(bool enableEffects READ enableEffects NOTIFY enableEffectsChanged FINAL)
 
 public:
     enum StyleType : uint
