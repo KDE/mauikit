@@ -146,14 +146,16 @@ void Handy::setTransientTouchInput(bool touch)
 bool Handy::eventFilter(QObject *watched, QEvent *event)
 {
     Q_UNUSED(watched)
-    switch (event->type()) {
+    switch (event->type()) 
+    {
         case QEvent::TouchBegin:
             setTransientTouchInput(true);
             break;
         case QEvent::MouseButtonPress:
         case QEvent::MouseMove: {
             QMouseEvent *me = static_cast<QMouseEvent *>(event);
-            if (me->source() == Qt::MouseEventNotSynthesized) {
+            if (me->source() == Qt::MouseEventNotSynthesized) 
+            {
                 setTransientTouchInput(false);
             }
             break;

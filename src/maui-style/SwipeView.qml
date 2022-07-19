@@ -42,7 +42,8 @@ import org.mauikit.controls 1.3 as Maui
 T.SwipeView 
 {
     id: control
-
+    clip: true
+    
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
