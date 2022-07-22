@@ -45,7 +45,7 @@ Item
     
     onHiddenChanged:
     {
-        if(hidden)
+        if(hidden && !singleSelection)
         {
             control.close()
         }else
@@ -629,12 +629,13 @@ Item
      */
     function append(uri, item)
     {
-        if(!contains(uri))
+        if(control.singleSelection)
         {
-            if(control.singleSelection)
-            {
-                clear()
-            }
+            clear()
+        }
+        
+        if(!contains(uri) || control.singleSelection)
+        {            
             _private._items.push(item)
             _private._uris.push(uri)
             
