@@ -176,7 +176,7 @@ Item
         {
             id: _layout
             anchors.fill: parent
-            spacing: Maui.Style.space.small
+            spacing: Maui.Style.space.medium
             
             Loader
             {

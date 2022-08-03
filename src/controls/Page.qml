@@ -515,17 +515,12 @@ T.Pane
 
     onAutoHideHeaderChanged:
     {
-        if(control.autoHideHeader){
-            if(header.height !== 0)
-            {
-                _autoHideHeaderTimer.start()
-                _revealHeaderTimer.stop()
-
-            }else
-            {
-                _autoHideHeaderTimer.stop()
-                _revealHeaderTimer.start()
-            }
+        if(control.autoHideHeader)
+        {
+            pullBackHeader()
+        }else
+        {           
+            pullDownHeader()            
         }
     }
 
@@ -533,14 +528,10 @@ T.Pane
     {
         if(control.autoHideFooter)
         {
-            if(footer.height !== 0)
-            {
-                _autoHideFooterTimer.start()
-            } else
-            {
-                pullDownFooter()
-                _autoHideFooterTimer.stop()
-            }
+            pullBackFooter()
+        } else
+        {
+            pullDownFooter()
         }
     }
     onAltHeaderChanged: pullDownHeader()

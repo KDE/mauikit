@@ -17,9 +17,9 @@ T.MenuItem
     
     opacity: control.enabled ? 1 : 0.5
     
-    Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
-    
+//     Maui.Theme.colorSet: Maui.Theme.Button
+//     Maui.Theme.inherit: false
+//     
     hoverEnabled: !Maui.Handy.isMobile
     
     width: implicitWidth
@@ -29,46 +29,55 @@ T.MenuItem
     background: null
     
     spacing: Maui.Style.space.medium
-    padding: Maui.Style.space.small
+//     padding: Maui.Style.space.small
     
     display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Maui.Handy.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     
     contentItem: Flow
+    {
+        id: _layout
+        //            anchors.centerIn: parent
+        spacing: control.spacing
+        
+        Repeater
         {
-            id: _layout
-//            anchors.centerIn: parent
-            spacing: control.spacing
+            id: _repeater
+            model: control.actions
             
-            Repeater
+            delegate: ToolButton
             {
-                id: _repeater
-                model: control.actions
+                id: _delegate  
+                    Maui.Theme.inherit: true
                 
-                delegate: ToolButton
+                width: Math.max(height, implicitWidth)
+                height: Math.max(implicitHeight, Maui.Style.rowHeight)
+                
+                action: modelData
+                display: control.display
+                
+                ToolTip.delay: 1000
+                ToolTip.timeout: 5000
+                ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
+                ToolTip.text: modelData.text
+                
+                background: Rectangle
                 {
-                    id: _delegate      
-                    width: Math.max(height, implicitWidth)
-                   height: Math.max(implicitHeight, Maui.Style.rowHeight)
-                   
-                    action: modelData
-                    display: control.display
+                    radius: Maui.Style.radiusV
+                    color: _delegate.checked || _delegate.pressed || _delegate.down ? Maui.Theme.highlightColor : _delegate.highlighted || _delegate.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor
                     
-                    ToolTip.delay: 1000
-                    ToolTip.timeout: 5000
-                    ToolTip.visible: ( _delegate.hovered ) && _delegate.text.length
-                    ToolTip.text: modelData.text
-                    
-                    Connections
+                }
+                
+                Connections
+                {
+                    target: _delegate.action
+                    ignoreUnknownSignals: true
+                    function onTriggered()
                     {
-                        target: _delegate.action
-                        ignoreUnknownSignals: true
-                        function onTriggered()
-                        {
-                            control.triggered()
-                        }
+                        control.triggered()
                     }
                 }
-            }  
-        }
+            }
+        }  
+    }
     
 }

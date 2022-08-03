@@ -79,7 +79,7 @@ T.ItemDelegate
             Layout.fillHeight: true
             Layout.fillWidth: true
             verticalAlignment: Qt.AlignVCenter
-            color: Maui.ColorUtils.brightnessForColor(_background.color) === Maui.ColorUtils.Light ? Qt.darker(_background.color, 4) : Qt.lighter(_background.color, 4)
+            color: Maui.ColorUtils.brightnessForColor(_background.color) === Maui.ColorUtils.Light ? "#333" :"#fafafa"
         }
         
         Loader

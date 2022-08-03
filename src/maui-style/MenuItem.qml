@@ -49,8 +49,8 @@ T.MenuItem
 
     opacity: control.enabled ? 1 : 0.5
     
-    Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
+//     Maui.Theme.colorSet: Maui.Theme.Button
+//     Maui.Theme.inherit: false
     
     hoverEnabled: !Maui.Handy.isMobile
     
@@ -131,10 +131,8 @@ T.MenuItem
         implicitHeight: Math.floor(Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) 
         
         radius: Maui.Style.radiusV
-
-        readonly property color m_color : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
-
-        color: control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : (control.highlighted || control.hovered ? Maui.Theme.hoverColor : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.3))
+        
+        color: control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor
         
          Behavior on color
         {

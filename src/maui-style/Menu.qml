@@ -166,28 +166,29 @@ T.Menu
             header: T.Control
             {
                 visible: control.title && control.title.length
-                height: visible ?  48 + topPadding + bottomPadding : 0
-                padding: Maui.Style.space.tiny
-                topPadding: 0
-                bottomPadding: control.bottomPadding
-                
+                height: visible ? 64 : 0
+                padding: control.padding
+              bottomPadding: control.topPadding + padding
+              
                 width: parent.width
-                
-                //            background: Item
-                //            {
-                //                Maui.Separator
-                //                {
-                //                    width: parent.width
-                //                    anchors.bottom: parent.bottom
-                //                }
-                //            }
+//                 
+//                            background: Rectangle
+//                            {
+//                                color: "pink"
+//                                Maui.Separator
+//                                {
+//                                    width: parent.width
+//                                    anchors.bottom: parent.bottom
+//                                }
+//                            }
                 
                 contentItem: Maui.ListItemTemplate
                 {
                     label1.font.bold: true
                     label1.text: control.title
                     label2.text: control.subtitle
-                    label1.font.pointSize: Maui.Style.fontSizes.large
+                    label1.font.pointSize: Maui.Style.fontSizes.big
+                    label1.elide:Text.ElideMiddle
                     imageSource: control.titleImageSource
                     iconSource: control.titleIconSource
                     maskRadius: Maui.Style.radiusV

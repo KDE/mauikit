@@ -41,22 +41,25 @@ LinearGradient
       */
     property color color: "#333"
 
-    implicitWidth: Maui.Style.units.gridUnit/2
-    implicitHeight: Maui.Style.units.gridUnit/2
+    implicitWidth: Maui.Style.units.gridUnit
+    implicitHeight: Maui.Style.units.gridUnit   
+    
 
-    start: Qt.point((edge !== Qt.RightEdge ? 0 : width), (edge !== Qt.BottomEdge ? 0 : height))
-    end: Qt.point((edge !== Qt.LeftEdge ? 0 : width), (edge !== Qt.TopEdge ? 0 : height))
-    gradient: Gradient {
-        GradientStop {
-            position: 0.1
+    rotation: edge === Qt.RightEdge ? 180 : 0
+    start: Qt.point( 0, height)
+    end: Qt.point( width, height)
+    
+    gradient: Gradient 
+    {
+        GradientStop 
+        {
+            position: 0
             color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.4)
         }
-        GradientStop {
-            position: 0.3
-            color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.5)
-        }
-        GradientStop {
-            position: 1.0
+        
+        GradientStop
+        {
+            position: 1
             color:  "transparent"
         }
     }

@@ -157,7 +157,6 @@ ToolBar
                 
                 sourceComponent: Maui.EdgeShadow
                 {
-                    opacity: 0.7
                     edge: Qt.RightEdge
                 }
             }
@@ -180,7 +179,6 @@ ToolBar
                 
                 sourceComponent: Maui.EdgeShadow
                 {                    
-                    opacity: 0.7
                     edge: Qt.LeftEdge                    
                 }
             }
