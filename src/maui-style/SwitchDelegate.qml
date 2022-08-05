@@ -27,7 +27,8 @@ import org.mauikit.controls 1.3 as Maui
 
 import "private"
 
-T.SwitchDelegate {
+T.SwitchDelegate 
+{
     id: controlRoot
 
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
