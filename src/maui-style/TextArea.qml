@@ -20,16 +20,20 @@
  */
 
 
-import QtQuick 2.6
-import QtQuick.Window 2.2
-import QtQuick.Controls 2.6
-import QtQuick.Templates 2.6 as T
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
+import "private" as Private
+
 
 T.TextArea 
 {
     id: control
-    palette: Maui.Theme.palette
+
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: false
 
 
     implicitWidth: Math.max(contentWidth + leftPadding + rightPadding,
@@ -39,21 +43,57 @@ T.TextArea
                              background ? background.implicitHeight : 0,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    padding: 6
+    padding: Maui.Style.space.medium
 
     color: Maui.Theme.textColor
     selectionColor: Maui.Theme.highlightColor
     selectedTextColor: Maui.Theme.highlightedTextColor
+
     opacity: control.enabled ? 1 : 0.6
     wrapMode: Text.WordWrap
-//    verticalAlignment: TextEdit.AlignTop
-//    hoverEnabled: !Kirigami.Settings.tabletMode
+
+    verticalAlignment: TextEdit.AlignTop
+    hoverEnabled: !Maui.Handy.isTouch
 
     // Work around Qt bug where NativeRendering breaks for non-integer scale factors
     // https://bugreports.qt.io/browse/QTBUG-67007
-//    renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
+    renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
 
     selectByMouse: !Maui.Handy.isMobile
+    selectByKeyboard: true
+
+    persistentSelection: true
+    activeFocusOnPress: true
+    activeFocusOnTab: true
+
+    cursorDelegate: Maui.Handy.isTouch ? mobileCursor : null
+    Component
+    {
+        id: mobileCursor
+        Private.MobileCursor
+        {
+            target: control
+        }
+    }   
+
+    onPressAndHold:
+    {
+        if (!Maui.Handy.isTouch) {
+            return;
+        }
+        forceActiveFocus();
+        cursorPosition = positionAt(event.x, event.y);
+        selectWord();
+    }
+
+    Private.MobileCursor
+    {
+        target: control
+        selectionStartHandle: true
+        readonly property rect rect: target.positionToRectangle(target.selectionStart)
+        x: rect.x
+        y: rect.y
+    }
 
     Label
     {
@@ -75,7 +115,8 @@ T.TextArea
         elide: Text.ElideRight
     }
 
-    background: Rectangle {
+    background: Rectangle
+    {
 //        y: parent.height - height - control.bottomPadding / 2
         implicitWidth: 120
 //        height: control.activeFocus ? 2 : 1

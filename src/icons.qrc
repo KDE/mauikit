@@ -771,5 +771,6 @@
         <file>icons/luv-icon-theme/Luv/actions/22/item-handle.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/office-chart-line.svg</file>
         <file>icons/luv-icon-theme/Luv/actions/22/view-process-system.svg</file>
+        <file>icons/luv-icon-theme/Luv/actions/22/view-sidetree.svg</file>
     </qresource>
 </RCC>

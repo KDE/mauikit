@@ -13,7 +13,7 @@ T.ItemDelegate
 {
     id: control
     
-    Maui.Theme.colorSet: Maui.Theme.ToolTip 
+    Maui.Theme.colorSet: Maui.Theme.Tooltip 
     
     hoverEnabled: !Maui.Handy.isMobile
     implicitHeight: Maui.Style.iconSizes.big

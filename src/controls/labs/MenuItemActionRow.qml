@@ -17,9 +17,9 @@ T.MenuItem
     
     opacity: control.enabled ? 1 : 0.5
     
-//     Maui.Theme.colorSet: Maui.Theme.Button
-//     Maui.Theme.inherit: false
-//     
+    //     Maui.Theme.colorSet: Maui.Theme.Button
+    //     Maui.Theme.inherit: false
+    //
     hoverEnabled: !Maui.Handy.isMobile
     
     width: implicitWidth
@@ -29,7 +29,7 @@ T.MenuItem
     background: null
     
     spacing: Maui.Style.space.medium
-//     padding: Maui.Style.space.small
+    //     padding: Maui.Style.space.small
     
     display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Maui.Handy.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     
@@ -46,9 +46,10 @@ T.MenuItem
             
             delegate: ToolButton
             {
-                id: _delegate  
-                    Maui.Theme.inherit: true
-                
+                id: _delegate
+                Maui.Theme.inherit: true
+                padding: Maui.Style.space.small
+
                 width: Math.max(height, implicitWidth)
                 height: Math.max(implicitHeight, Maui.Style.rowHeight)
                 
@@ -77,7 +78,7 @@ T.MenuItem
                     }
                 }
             }
-        }  
+        }
     }
     
 }

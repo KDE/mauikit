@@ -109,11 +109,11 @@ namespace Maui
         });
               
         
-        negativeTextColor = QColor{"#DA4453"};
+        negativeTextColor = QColor{"#dac7cb"};
         negativeBackgroundColor = QColor{"#DA4453"};
-        neutralTextColor = QColor{"#F67400"};
+        neutralTextColor = QColor{"#333"};
         neutralBackgroundColor = QColor{"#F67400"};
-        positiveTextColor = QColor{"#27AE60"};
+        positiveTextColor = QColor{"#333"};
         positiveBackgroundColor = QColor{"#27AE60"};        
         
         tooltipTextColor = QColor{"#fafafa"};

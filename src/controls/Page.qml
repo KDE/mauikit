@@ -597,10 +597,11 @@ T.Pane
             anchors.fill: parent
             asynchronous: true
             sourceComponent: MouseArea // to support tbutton go back and forward
-
             {
                 propagateComposedEvents: true
                 acceptedButtons: Qt.BackButton | Qt.ForwardButton
+                cursorShape: undefined
+                
                 //        hoverEnabled: true
                 //        onEntered: _splitView.currentIndex = control.index
                 onPressed:
@@ -728,7 +729,6 @@ T.Pane
 
             sourceComponent: Item
             {
-
                 HoverHandler
                 {
                     target: parent
@@ -798,28 +798,28 @@ T.Pane
         }
     }
 
-    Keys.onBackPressed:
-    {
-        control.goBackTriggered();
-    }
+    //Keys.onBackPressed:
+    //{
+        //control.goBackTriggered();
+    //}
 
-    Shortcut
-    {
-        sequence: "Forward"
-        onActivated: control.goForwardTriggered();
-    }
+    //Shortcut
+    //{
+        //sequence: "Forward"
+        //onActivated: control.goForwardTriggered();
+    //}
 
-    Shortcut
-    {
-        sequence: StandardKey.Forward
-        onActivated: control.goForwardTriggered();
-    }
+    //Shortcut
+    //{
+        //sequence: StandardKey.Forward
+        //onActivated: control.goForwardTriggered();
+    //}
 
-    Shortcut
-    {
-        sequence: StandardKey.Back
-        onActivated: control.goBackTriggered();
-    }
+    //Shortcut
+    //{
+        //sequence: StandardKey.Back
+        //onActivated: control.goBackTriggered();
+    //}
 
     Component
     {

@@ -19,8 +19,10 @@ import org.mauikit.controls 1.3 as Maui
 T.TabButton
 {
     id: control
-    implicitWidth: 200    
-    
+    implicitWidth: 200
+    implicitHeight: _content.implicitheight + topPadding + bottomPadding
+    spacing: Maui.Style.space.medium
+    padding: Maui.Style.space.small
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
@@ -35,20 +37,20 @@ T.TabButton
      */
     signal closeClicked()
     signal rightClicked(var mouse)
-        
+
     background: Rectangle
     {
-        opacity: control.hovered && !control.checked ? 0.2 : 1
+        //opacity: control.hovered && !control.checked ? 1 : 1
         color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
         
-//          Behavior on color
-//         {
-//             Maui.ColorTransition{}
-//         }
+        //          Behavior on color
+        //         {
+        //             Maui.ColorTransition{}
+        //         }
     }
     
-    contentItem:  MouseArea
+    contentItem: MouseArea
     {
         acceptedButtons: Qt.RightButton
         propagateComposedEvents: true
@@ -59,7 +61,7 @@ T.TabButton
             if(mouse.button === Qt.RightButton)
             {
                 control.rightClicked(mouse)
-            }          
+            }
             
             mouse.accepted = false
         }
@@ -68,6 +70,7 @@ T.TabButton
         {
             id: _content
             anchors.fill: parent
+            spacing: control.spacing
             
             Row
             {
@@ -90,7 +93,7 @@ T.TabButton
                 Layout.fillHeight: true
                 
                 sourceComponent: Label
-                {         
+                {
                     text: control.text
                     
                     horizontalAlignment: Qt.AlignHCenter
@@ -98,9 +101,9 @@ T.TabButton
                     color: Maui.Theme.textColor
                     wrapMode: Text.NoWrap
                     elide: Text.ElideMiddle
-                }  
-            }            
-          
+                }
+            }
+
             Loader
             {
                 asynchronous: true
@@ -124,8 +127,7 @@ T.TabButton
                     }
                 }
             }
-        }        
-    }    
-    
+        }
+    }
 }
 

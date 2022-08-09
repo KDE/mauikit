@@ -120,6 +120,8 @@ Maui.Dialog
                     font.family: "Monospace"
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
+                    padding: 0
+                    background: null
                 }
                 
                 ]

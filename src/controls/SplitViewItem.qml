@@ -121,6 +121,9 @@ Item
     {
         anchors.fill: parent
         propagateComposedEvents: true
+        preventStealing: false
+                cursorShape: undefined
+        
         //        hoverEnabled: true
         //        onEntered: _splitView.currentIndex = control.index
         onPressed:

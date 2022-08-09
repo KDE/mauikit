@@ -42,6 +42,7 @@ T.Container
         MenuItem
         {
             text: i18n("Open")
+            icon.name: "tab-new"
             onTriggered:
             {
                 control.currentIndex = _menu.index
@@ -51,7 +52,18 @@ T.Container
         
         MenuItem
         {
+            text: i18n("Duplicate")
+            icon.name: "tab-duplicate"
+            onTriggered:
+            {
+            }
+        }
+        
+        
+        MenuItem
+        {
             text: i18n("Close")
+            icon.name: "tab-close"
             onTriggered:
             {
                 control.closeTabClicked(_menu.index)
@@ -379,10 +391,11 @@ T.Container
                     }
                     
                     leftContent:  Maui.Badge
-                        {
-                            text: control.count
-                            radius: Maui.Style.radiusV
-                        }
+                    {
+                        text: control.count
+                        radius: Maui.Style.radiusV
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
                     
                 }
             }
