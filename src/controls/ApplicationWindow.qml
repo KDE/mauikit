@@ -378,23 +378,6 @@ Window
       id: dialogLoader
     }
     
-    Component.onCompleted:
-    {
-      if(Maui.Handy.isAndroid)
-      {
-        if(headBar.position === ToolBar.Footer)
-        {
-          Maui.Android.statusbarColor(Maui.Theme.backgroundColor, true)
-          Maui.Android.navBarColor(headBar.visible ? headBar.Maui.Theme.backgroundColor : Maui.Theme.backgroundColor, true)
-          
-        } else
-        {
-          Maui.Android.statusbarColor(headBar.Maui.Theme.backgroundColor, true)
-          Maui.Android.navBarColor(footBar.visible ? footBar.Maui.Theme.backgroundColor : Maui.Theme.backgroundColor, true)
-        }
-      }
-    }
-    
     Connections
     {
       target: Maui.Platform

@@ -519,8 +519,8 @@ T.Pane
         {
             pullBackHeader()
         }else
-        {           
-            pullDownHeader()            
+        {
+            pullDownHeader()
         }
     }
 

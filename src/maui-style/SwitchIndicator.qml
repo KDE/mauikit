@@ -53,7 +53,7 @@ Item
         height: 20
         radius: height / 2
         y: parent.height / 2 - height / 2
-        border.color: control.enabled ? "transparent" : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
+        border.color: control.enabled ? "transparent" : Maui.Theme.disabledTextColor
         color: control.enabled ? m_color : "transparent"
 //         opacity: control.checked ? 1 : 0.5
         

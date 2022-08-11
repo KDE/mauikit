@@ -50,20 +50,16 @@ T.ToolButton
    opacity: enabled ? 1 : 0.5
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
+                            implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem.implicitHeight + topPadding + bottomPadding)
+                             implicitContentHeight + topPadding + bottomPadding)
 //    baselineOffset: contentItem.y + contentItem.baselineOffset
 
     hoverEnabled: !Maui.Handy.isMobile
 
     spacing: Maui.Style.space.small
 
-    padding: Maui.Style.space.small
-    rightPadding: padding
-    leftPadding: padding
-    topPadding: padding
-    bottomPadding: padding
+    padding: Maui.Style.space.medium
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

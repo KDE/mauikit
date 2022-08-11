@@ -50,7 +50,7 @@ T.Menu
     
     property string subtitle
     property string titleImageSource
-    property string titleIconSource
+    property string titleIconSource: "application-menu"
     
     readonly property bool responsive: Maui.Handy.isMobile
     
@@ -166,11 +166,14 @@ T.Menu
             header: T.Control
             {
                 visible: control.title && control.title.length
-                height: visible ? 64 : 0
+                implicitHeight: implicitContentHeight + topPadding + bottomPadding
                 padding: control.padding
-              bottomPadding: control.topPadding + padding
+                bottomPadding: control.topPadding + padding
+                topPadding: 0
               
                 width: parent.width
+                
+                background: null
 //                 
 //                            background: Rectangle
 //                            {
@@ -192,8 +195,8 @@ T.Menu
                     imageSource: control.titleImageSource
                     iconSource: control.titleIconSource
                     maskRadius: Maui.Style.radiusV
-                    imageSizeHint: 42
-                    iconSizeHint: 32
+                    imageSizeHint: Maui.Style.iconSizes.big
+                    iconSizeHint: Maui.Style.iconSize
                 }
             }
         }

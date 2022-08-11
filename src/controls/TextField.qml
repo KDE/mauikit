@@ -40,7 +40,8 @@ T.TextField
     id: control
     
     Maui.Theme.colorSet: Maui.Theme.Button
-        Maui.Theme.inherit: false
+    Maui.Theme.inherit: false
+    opacity: control.enabled ? 1 : 0.5
     
     color: Maui.Theme.textColor
     selectionColor: Maui.Theme.highlightColor
@@ -284,7 +285,7 @@ T.TextField
     background: Rectangle 
     {       
         color: control.enabled ? Maui.Theme.backgroundColor : "transparent"
-        //         border.color: control.activeFocus ? Maui.Theme.highlightColor : "transparent"
+        border.color: !control.enabled ? Maui.Theme.disabledTextColor : "transparent"
         
         radius: Maui.Style.radiusV
         

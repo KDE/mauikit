@@ -38,7 +38,7 @@ Flow
                 Maui.Icon
                 {
                     visible: opacity > 0
-                    color: Maui.ColorUtils.brightnessForColor(parent.color) == Maui.ColorUtils.Light ? Qt.darker(parent.color, 2) :  Qt.lighter(parent.color, 2)
+                    color: Maui.ColorUtils.brightnessForColor(parent.color) == Maui.ColorUtils.Light ? "#333" : "#fafafa"
                     anchors.centerIn: parent
                     height: checked ? Math.round(parent.height * 0.9) : 0
                     width: height

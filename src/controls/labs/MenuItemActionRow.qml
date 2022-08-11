@@ -48,7 +48,6 @@ T.MenuItem
             {
                 id: _delegate
                 Maui.Theme.inherit: true
-                padding: Maui.Style.space.small
 
                 width: Math.max(height, implicitWidth)
                 height: Math.max(implicitHeight, Maui.Style.rowHeight)

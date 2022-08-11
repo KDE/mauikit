@@ -126,15 +126,15 @@ T.MenuItem
 
     background: Rectangle
     {
-        visible: control.enabled
        
         implicitHeight: Math.floor(Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) 
         
         radius: Maui.Style.radiusV
         
-        color: control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor
-        
-         Behavior on color
+        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor) : "transparent"
+        border.color: !control.enabled ? Maui.Theme.disabledTextColor : "transparent"
+
+        Behavior on color
         {
             Maui.ColorTransition{}
         }

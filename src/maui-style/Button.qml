@@ -29,6 +29,8 @@ T.Button
     id: control
     opacity: control.enabled ? 1 : 0.5
 
+    highlighted: activeFocus
+    
     implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) + Maui.Style.space.big + leftPadding + rightPadding
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
@@ -45,11 +47,19 @@ T.Button
     
     spacing: Maui.Style.space.small
     
-    padding: Maui.Style.space.small
+    padding: Maui.Style.space.medium
     rightPadding: padding
     leftPadding: padding
     topPadding: padding
     bottomPadding: padding
+    
+    focusPolicy: Qt.StrongFocus
+    focus: true
+    
+    Keys.enabled: true
+
+    Keys.onReturnPressed: { control.clicked() }
+    Keys.onEnterPressed: { control.clicked() }
     
     contentItem: IconLabel
     {
@@ -73,7 +83,7 @@ T.Button
         visible: !control.flat
         implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
         implicitHeight: Maui.Style.rowHeight
-        color: control.pressed || control.down || control.checked ? Maui.Theme.highlightColor : (control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
+        color: control.highlighted || control.pressed || control.down || control.checked ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
         
         radius: Maui.Style.radiusV
         

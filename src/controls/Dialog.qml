@@ -43,6 +43,9 @@ Maui.Popup
 {
   id: control
     
+    focus: true
+//     focusPolicy: Qt.StrongFocus
+    
   Maui.Theme.colorSet: Maui.Theme.Window
   Maui.Theme.inherit: false
   
@@ -267,7 +270,7 @@ Maui.Popup
           spacing: control.spacing
         }
         
-        Maui.ScrollView
+        ScrollView
         {
           id: _scrollView
           anchors.fill: parent
@@ -280,8 +283,7 @@ Maui.Popup
           
           ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
           ScrollBar.vertical.policy: control.verticalScrollBarPolicy
-          
-          
+                    
           Flickable
           {
             id: _flickable
@@ -363,12 +365,12 @@ Maui.Popup
         
         visible: control.defaultButtons || control.actions.length
         rows: isWide? 1 : _defaultButtonsLayout.children.length
-        columns: isWide ? _defaultButtonsLayout.children.length : 1
+        columns: isWide ? _defaultButtonsLayout.children.length : 1               
         
         Button
         {
           id: _rejectButton
-         
+         focus: true
           Layout.fillWidth: true
           
           implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
@@ -378,7 +380,7 @@ Maui.Popup
           text: i18n("Cancel")
           background: Rectangle
           {
-            color: _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
+            color:  _rejectButton.visualFocus || _rejectButton.highlighted || _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
             Behavior on color
             {
               Maui.ColorTransition{}
@@ -391,7 +393,7 @@ Maui.Popup
         Button
         {
           id: _acceptButton
-        
+        focus: true
           Layout.fillWidth: true
           implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
           
@@ -402,7 +404,7 @@ Maui.Popup
           
           background: Rectangle
           {
-            color: _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? Maui.Theme.positiveBackgroundColor : Maui.Theme.backgroundColor
+            color: _acceptButton.visualFocus || _acceptButton.highlighted || _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? Maui.Theme.positiveBackgroundColor : Maui.Theme.backgroundColor
             Behavior on color
             {
               Maui.ColorTransition{}
@@ -418,7 +420,7 @@ Maui.Popup
           Button
           {
             id: _actionButton
-           
+           focus: true
             Layout.fillWidth: true
             implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
             
@@ -426,7 +428,7 @@ Maui.Popup
             
             background: Rectangle
             {
-              color: _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
+              color: _actionButton.visualFocus || _actionButton.highlighted || _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
               
               Behavior on color
               {
@@ -441,7 +443,15 @@ Maui.Popup
     onOpened:
     {
       if(control.entryField)
+      {
         control.textEntry.forceActiveFocus()
+        return
+      }
+      
+      if(control.defaultButtons)
+      {
+        _rejectButton.forceActiveFocus()
+      }
     }
     
     /**

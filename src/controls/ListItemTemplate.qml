@@ -123,7 +123,7 @@ Item
     property int iconSizeHint : Maui.Style.iconSizes.big
     property int imageSizeHint : -1
 
-    property int headerSizeHint : Math.max(iconSizeHint, imageSizeHint) + Maui.Style.space.big
+    property int headerSizeHint : Math.max(iconSizeHint, imageSizeHint) 
 
     /**
          * imageSource : string
@@ -198,7 +198,7 @@ Item
         Item
         {
             id: _iconContainer
-            implicitHeight: control.headerSizeHint
+            implicitHeight: visible ? control.headerSizeHint : 0
 
             visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
 
