@@ -213,14 +213,14 @@ Item
     Keys.enabled : true
     Keys.forwardTo : _listView
     
-    Maui.ScrollView
+    ScrollView
     {
         id: _scrollView
         anchors.fill: parent
         clip: control.clip
         visible: !_holder.visible
         focus: true
-        padding: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
+        padding: Maui.Style.space.medium
 
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy

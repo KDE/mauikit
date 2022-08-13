@@ -66,7 +66,7 @@ T.MenuItem
     padding: Maui.Style.space.small
 //     verticalPadding: Maui.Style.space.small
 
-    spacing: Maui.Handy.isMobile ? Maui.Style.space.big :  Maui.Style.space.small
+    spacing: Maui.Style.space.medium
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

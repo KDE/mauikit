@@ -215,12 +215,13 @@ Item
             control.adaptGrid()
     }
     
-   Maui.ScrollView
+   ScrollView
     {
         id: _scrollView
         anchors.fill: parent   
         focus: true              
-      
+//         padding: Maui.Style.space.medium
+        
         clip: control.clip
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy  
