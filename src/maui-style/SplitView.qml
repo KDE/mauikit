@@ -21,6 +21,7 @@ T.SplitView
     
     clip: true
     focus: true
+    padding: 0
         
     Component
     {

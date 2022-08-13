@@ -166,24 +166,15 @@ T.Menu
             header: T.Control
             {
                 visible: control.title && control.title.length
-                implicitHeight: implicitContentHeight + topPadding + bottomPadding
+                implicitHeight: visible ? implicitContentHeight + topPadding + bottomPadding : 0
                 padding: control.padding
                 bottomPadding: control.topPadding + padding
                 topPadding: 0
               
                 width: parent.width
                 
+                
                 background: null
-//                 
-//                            background: Rectangle
-//                            {
-//                                color: "pink"
-//                                Maui.Separator
-//                                {
-//                                    width: parent.width
-//                                    anchors.bottom: parent.bottom
-//                                }
-//                            }
                 
                 contentItem: Maui.ListItemTemplate
                 {

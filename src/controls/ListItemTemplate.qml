@@ -149,7 +149,7 @@ Item
     /**
          * fillMode : Image.fillMode
          */
-    property int fillMode : Image.PreserveAspectCrop
+    property int fillMode : Image.PreserveAspectFit
 
     /**
          * maskRadius : int
