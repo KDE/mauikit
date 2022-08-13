@@ -125,8 +125,7 @@ T.MenuItem
     }
 
     background: Rectangle
-    {
-       
+    {       
         implicitHeight: Math.floor(Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) 
         
         radius: Maui.Style.radiusV

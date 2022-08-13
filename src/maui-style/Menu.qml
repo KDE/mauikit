@@ -166,14 +166,12 @@ T.Menu
             header: T.Control
             {
                 visible: control.title && control.title.length
-                implicitHeight: visible ? implicitContentHeight + topPadding + bottomPadding : 0
+                width: parent.width                
+                height: visible ? implicitContentHeight + topPadding + bottomPadding : 0
                 padding: control.padding
                 bottomPadding: control.topPadding + padding
                 topPadding: 0
-              
-                width: parent.width
-                
-                
+                              
                 background: null
                 
                 contentItem: Maui.ListItemTemplate
@@ -185,7 +183,7 @@ T.Menu
                     label1.elide:Text.ElideMiddle
                     imageSource: control.titleImageSource
                     iconSource: control.titleIconSource
-                    maskRadius: Maui.Style.radiusV
+                    maskRadius: 0
                     imageSizeHint: Maui.Style.iconSizes.big
                     iconSizeHint: Maui.Style.iconSize
                 }
