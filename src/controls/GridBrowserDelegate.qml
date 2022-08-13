@@ -40,7 +40,8 @@ Maui.ItemDelegate
 {
     id: control
     isCurrentItem : GridView.isCurrentItem || checked
-    padding: Maui.Style.space.tiny
+    padding: Maui.Style.space.small
+    spacing: padding
     radius: Maui.Style.radiusV
 
     /**
@@ -168,6 +169,7 @@ Maui.ItemDelegate
         iconContainer.scale: _dropArea.containsDrag  || _checkboxLoader.active ? 0.8 : 1
         hovered: control.hovered
         maskRadius: control.radius
+        spacing: control.spacing
         //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
         highlighted: control.containsPress 
