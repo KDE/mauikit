@@ -15,7 +15,7 @@ Item
         {
             id: _sideBar
             height: parent.height     
-            collapsed: control.width < preferredWidth * 2
+            collapsed: control.width < (preferredWidth * 2.5)
             //preferredWidth : Math.min(control.width, Maui.Style.units.gridUnit * 12)            
         }
         
