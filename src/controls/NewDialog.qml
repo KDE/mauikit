@@ -1,4 +1,5 @@
 import QtQuick 2.14
+import QtQuick.Layouts 1.12
 
 import org.mauikit.controls 1.2 as Maui
 
@@ -15,8 +16,8 @@ import org.mauikit.controls 1.2 as Maui
 Maui.Dialog
 {
     id: control
-    entryField: true
-
+   property bool entryField: true
+property alias textEntry: _textEntry
     /**
       * finished :
       */
@@ -26,17 +27,24 @@ Maui.Dialog
     rejectButton.text: i18n("Cancel")
     closeButtonVisible: false
     
+    Maui.TextField
+    {
+        id: _textEntry
+        Layout.fillWidth: true        
+    }
+    
     onAccepted: done()
     onRejected:
     {
         textEntry.clear()
         control.close()
     }
-
-    //page.margins: Maui.Style.space.big
-    //spacing: Maui.Style.space.medium
     
-    onOpened: textEntry.selectAll()
+    onOpened: 
+    {
+        textEntry.forceActiveFocus()
+        textEntry.selectAll()
+    }
     
     function done()
     {

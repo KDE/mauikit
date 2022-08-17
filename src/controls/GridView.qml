@@ -281,6 +281,8 @@ Item
                 id: _holder
                 visible: false
                 anchors.fill : parent
+                anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
+                anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
             }
             
             Loader

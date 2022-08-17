@@ -138,18 +138,6 @@ Maui.Popup
     property alias rejectButton : _rejectButton
     
     /*!
-     *    \qmlproperty TextEntry ApplicationWindow::textEntry
-     * 
-     *    Access to the optional text entry.
-     */
-    property alias textEntry : _textEntry
-    
-    /*!
-     *    If a text entry should be visible under the dialog body message.
-     */
-    property bool entryField: false
-    
-    /*!
      *    \qmlproperty Page ApplicationWindow::page
      * 
      *    Access to the default dialog content.
@@ -233,13 +221,16 @@ Maui.Popup
         Maui.Theme.colorSet: control.Maui.Theme.colorSet
         Layout.fillWidth: true
         Layout.fillHeight: true
+        
         implicitHeight: Math.max(_scrollView.contentHeight + _scrollView.topPadding + _scrollView.bottomPadding, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.topPadding + _page.bottomPadding) + _page.headerContainer.implicitHeight + (_page.topMargin + _page.bottomMargin)
+        
         headerPositioning: ListView.InlineHeader
         padding: 0
         margins: 0
+        
         headBar.visible: control.persistent
-        headerColorSet: Maui.Theme.Header
-        headBar.background: null
+//         headerColorSet: Maui.Theme.Header
+//         headBar.background: null
         background: null
         
         headBar.farRightContent: Loader
@@ -300,7 +291,7 @@ Maui.Popup
               Maui.ListItemTemplate
               {
                 id: _template
-                visible: control.message.length || control.entryField
+                visible: control.message.length
                 Layout.fillWidth: true
                 label2.text: message
                 label2.textFormat : TextEdit.AutoText
@@ -310,15 +301,7 @@ Maui.Popup
                 iconSizeHint: Maui.Style.iconSizes.large
                 spacing: Maui.Style.space.big
                 
-                leftLabels.spacing: control.spacing
-                leftLabels.data: Maui.TextField
-                {
-                  id: _textEntry
-                  visible: control.entryField
-                  Layout.fillWidth: true
-                  focus: visible
-                  onAccepted: control.accepted()
-                }
+                leftLabels.spacing: control.spacing              
               }
             }
           }
@@ -442,12 +425,6 @@ Maui.Popup
     
     onOpened:
     {
-      if(control.entryField)
-      {
-        control.textEntry.forceActiveFocus()
-        return
-      }
-      
       if(control.defaultButtons)
       {
         _rejectButton.forceActiveFocus()

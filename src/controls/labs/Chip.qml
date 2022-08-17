@@ -55,7 +55,7 @@ T.ItemDelegate
         {
             visible: _icon.valid
             Layout.fillHeight: true
-            Layout.preferredWidth: visible ? Maui.Style.iconSizes.medium : 0
+            Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
             
             Maui.Icon
             {
@@ -64,11 +64,6 @@ T.ItemDelegate
                 implicitWidth: Maui.Style.iconSizes.small
                 implicitHeight: implicitWidth
                 color: _label1.color
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
             }            
         }
         

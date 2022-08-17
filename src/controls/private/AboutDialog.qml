@@ -100,8 +100,8 @@ Maui.Dialog
                 spacing: Maui.Style.space.big
                 label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 label1.text: Maui.App.about.displayName
-                label1.font.weight: Font.Bold
-                label1.font.bold: true
+                label1.font.weight: Font.Black
+//                 label1.font.bold: true
                 label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.5
                 
                 label2.text: Maui.App.about.shortDescription

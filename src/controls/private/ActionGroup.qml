@@ -96,6 +96,7 @@ T.Pane
         icon.name: modelData.Maui.AppView.iconName
         text: modelData.Maui.AppView.title
         //         flat: display === ToolButton.IconOnly
+        font.weight: Font.Bold
         font.bold: true
 //         display: control.display
         display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly

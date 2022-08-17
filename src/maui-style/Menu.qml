@@ -176,7 +176,7 @@ T.Menu
                 
                 contentItem: Maui.ListItemTemplate
                 {
-                    label1.font.bold: true
+                    label1.font.weight: Font.Bold
                     label1.text: control.title
                     label2.text: control.subtitle
                     label1.font.pointSize: Maui.Style.fontSizes.big

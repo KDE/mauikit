@@ -91,6 +91,7 @@ Maui.Dialog
     {
         id: _content
         Layout.fillWidth: true
+        spacing: control.spacing
     }
 
     template.iconComponent: Item

@@ -141,7 +141,7 @@ Item
         /**
          * iconComponent : Component
          */
-        property Component iconComponent :  _iconLoader.visible ? _iconComponent : null
+        property Component iconComponent : _iconComponent
         
         Component
         {
@@ -184,12 +184,9 @@ Item
                 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                /* 
-                 L ayout.maximum*Width:  Math.min(parent.width, implicitWidth)
-                 Layout.maximumHeight: Math.min(parent.height-control.labelSizeHint, implicitHeight)*/
-                //                 Layout.margins: 2
                 
                 asynchronous: true
+                active: visible
                 sourceComponent: control.iconComponent
                 
                 Behavior on scale
@@ -197,20 +194,9 @@ Item
                     NumberAnimation
                     {
                         duration: Maui.Style.units.longDuration
-                        easing.type: Easing.OutBack
-                        
+                        easing.type: Easing.OutBack                        
                     }
                 }
-                //                Maui.Icon
-                //                {
-                //                    visible: _iconLoader.status !== Loader.Ready
-                //                    anchors.centerIn: parent
-                //                    height: Maui.Style.iconSizes.small
-                //                    width: height
-                //                    source:  control.iconSource || "folder-images"
-                //                    color: Maui.Theme.textColor
-                //                    opacity: 0.5
-                //                }
             }
             
             Item

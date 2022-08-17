@@ -10,8 +10,8 @@ Kirigami.Icon
     implicitWidth: implicitHeight
     color: Maui.Theme.textColor
     
-    Behavior on color
-    {
-        Maui.ColorTransition{}
-    }
+//     Behavior on color
+//     {
+//         Maui.ColorTransition{}
+//     }
 }

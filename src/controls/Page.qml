@@ -418,7 +418,7 @@ T.Pane
                     anchors.fill: parent
                     text: control.title
                     elide : Text.ElideRight
-                    font.bold : true
+//                     font.bold : true
                     font.weight: Font.Bold
                     color : Maui.Theme.textColor
                     font.pointSize: Maui.Style.fontSizes.large

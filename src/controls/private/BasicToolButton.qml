@@ -34,9 +34,9 @@ T.ToolButton
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
-    spacing: Maui.Style.space.small
-    
+    spacing: Maui.Style.space.small    
     padding: Maui.Style.space.small
+    
     rightPadding: padding
     leftPadding: padding
     topPadding: padding

@@ -221,7 +221,7 @@ Item
         visible: !_holder.visible
         focus: true
         padding: Maui.Style.space.medium
-
+        
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
         
@@ -247,7 +247,7 @@ Item
             keyNavigationEnabled : true
             keyNavigationWraps : true
             Keys.onPressed: control.keyPress(event)
-           
+            
             Loader
             {
                 asynchronous: true
@@ -398,6 +398,9 @@ Item
         id: _holder
         visible: false
         anchors.fill : parent
+        
+        anchors.topMargin: _listView.headerItem ? _listView.headerItem.height : 0
+        anchors.bottomMargin: _listView.footerItem ?  _listView.footerItem.height : 0
     }    
 }
 
