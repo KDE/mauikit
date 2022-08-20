@@ -36,10 +36,8 @@ T.ToolBar
     contentWidth: contentChildren[0].implicitWidth
     contentHeight: contentChildren[0].implicitHeight
     
-    spacing: Maui.Style.space.small
-    
-    padding: Maui.Style.space.small
-  
+    spacing: Maui.Style.space.small    
+    padding: Maui.Style.space.small  
     
     contentItem: Item {}
     //    position: controlRoot.parent.footer == controlRoot ? ToolBar.Footer : ToolBar.Header

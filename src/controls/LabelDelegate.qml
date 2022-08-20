@@ -82,7 +82,7 @@ T.Control
             elide: Text.ElideRight
             wrapMode: Text.NoWrap
             color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
-            font.weight : control.isSection ? Font.Black : Font.Normal
+            font.weight : control.isSection ? Font.Bold : Font.Normal
         }
     }
 }

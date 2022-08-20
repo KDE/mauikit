@@ -6,7 +6,6 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-    anchors.fill: parent
     default property alias content : _content.data
         property alias sideBarContent: _sideBar.content
         property alias sideBar : _sideBar

@@ -157,6 +157,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/MenuItemActionRow.qml")), uri, 1, 3, "MenuItemActionRow");
     qmlRegisterType(componentUrl(QStringLiteral("labs/GalleryRollTemplate.qml")), uri, 1, 3, "GalleryRollTemplate");
 
+    //backwars compatible
     qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
     qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
     qmlRegisterType(componentUrl(QStringLiteral("ScrollView.qml")), uri, 1, 0, "ScrollView");
