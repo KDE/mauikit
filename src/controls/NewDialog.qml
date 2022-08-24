@@ -30,7 +30,8 @@ property alias textEntry: _textEntry
     Maui.TextField
     {
         id: _textEntry
-        Layout.fillWidth: true        
+        Layout.fillWidth: true    
+        onAccepted: control.acceptButton.forceActiveFocus()
     }
     
     onAccepted: done()

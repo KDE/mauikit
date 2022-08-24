@@ -67,7 +67,6 @@ T.TabBar
             
             sourceComponent: Private.EdgeShadow
             {                    
-                opacity: 0.7
                 edge: Qt.RightEdge                    
             }
         }
@@ -90,7 +89,6 @@ T.TabBar
             
             sourceComponent: Private.EdgeShadow
             {                
-                opacity: 0.7
                 edge: Qt.LeftEdge            
             }
         }
@@ -105,7 +103,7 @@ T.TabBar
             anchors.fill: parent
             spacing: 0 
             
-            Maui.ScrollView
+            ScrollView
             {
                 id: _scrollView
                 Layout.fillWidth: true

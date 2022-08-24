@@ -21,6 +21,8 @@ T.Container
     
     property bool tabBarVisible : true
     
+    property list<Action> menuActions
+    
     signal newTabClicked()
     signal closeTabClicked(int index)
     
@@ -39,13 +41,22 @@ T.Container
         parent: control
         property int index //tabindex
         
+        Repeater
+        {
+            model: control.menuActions
+            delegate: MenuItem
+            {
+                action: modelData
+            }
+        }
+        
         MenuItem
         {
             text: i18n("Open")
             icon.name: "tab-new"
             onTriggered:
             {
-                control.currentIndex = _menu.index
+                control.setCurrentIndex(_menu.index)
                 control.overviewMode = false
             }
         }
@@ -150,7 +161,7 @@ T.Container
 
                 onAccepted:
                 {
-                    control.currentIndex = _filterTabsList.currentIndex
+                    control.setCurrentIndex(_filterTabsList.currentIndex)
                     _quickSearch.close()
                     control.currentItem.forceActiveFocus()
                 }
@@ -189,7 +200,7 @@ T.Container
                     onClicked:
                     {
                         currentIndex =index
-                        control.currentIndex = index
+                        control.setCurrentIndex(index)
                         _quickSearch.close()
                     }
                 }
@@ -201,23 +212,18 @@ T.Container
     {
         spacing: 0
         
-        Loader
-        {
-            asynchronous: false
-            active: control.count > 1 && !control.mobile && control.tabBarVisible
-            Layout.fillWidth: true
-            visible: active
-            
-            sourceComponent: Maui.TabBar
+      
+            //asynchronous: false
+              
+       Maui.TabBar
             {
                 id: _tabBar
+                Layout.fillWidth: true
+                visible: control.count > 1 && !control.mobile && control.tabBarVisible         
+                
                 position: TabBar.Header
                 
-                Binding on currentIndex
-                {
-                    value: control.currentIndex
-                    restoreMode: Binding.RestoreValue
-                }
+                currentIndex: control.currentIndex                
                 
                 onNewTabClicked: control.newTabClicked()
                 
@@ -234,79 +240,78 @@ T.Container
                     }
                 }
                 
-                Repeater
+                Component
                 {
-                    id: _repeater
-                    model: control.count
-                    
+                    id: _tabButtonComponent
+                  
                     Maui.TabButton
                     {
                         id: _tabButton
-                        property int mindex : index
-                        
+
+                        readonly property int mindex : _tabButton.TabBar.index
                         implicitHeight: ListView.view.height
-                        width: Math.max(Math.floor((ListView.view.width / _repeater.count) -(_tabBar.spacing * _repeater.count)), 200)
-                        checked: ListView.isCurrentItem
-                        text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                        
+                        width: Math.max(Math.floor((ListView.view.width / _tabButton.TabBar.tabBar.count) -(_tabBar.spacing * control.count)), 200)
+                        checked: mindex === control.currentIndex || _dropArea.containsDrag
+                        text: control.contentModel.get(mindex).Maui.TabViewInfo.tabTitle
+
                         ToolTip.delay: 1000
                         ToolTip.timeout: 5000
                         ToolTip.visible: ( _tabButton.hovered )
-                        ToolTip.text: control.contentModel.get(index).Maui.TabViewInfo.tabToolTipText
-                        
+                        ToolTip.text: control.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText
+//                         Label
+//                         {
+//                             z: parent.z + 999
+//                             color: "orange"
+//                             text: control.currentIndex + " / " + _tabButton.mindex
+//                         }
+
+//                         
                         onClicked:
                         {
-                            control.currentIndex = index
+                            control.currentIndex = _tabButton.mindex
                             control.currentItem.forceActiveFocus()
                         }
                         
                         onRightClicked:
                         {
-                            _menu.index = index
+                            _menu.index = _tabButton.mindex
                             _menu.show()
                         }
                         
                         onCloseClicked:
                         {
-                            control.closeTabClicked(index)
+                            control.closeTabClicked(_tabButton.mindex)
                         }
                         
-                        //Drag.active: dragArea.held
-                        //Drag.source: _tabButton
-                        //Drag.hotSpot.x: width / 2
-                        //Drag.hotSpot.y: height / 2
-                        //Drag.dragType: Drag.Automatic
-                        
-                        
-                        //Label
-                        //{
-                        //color: "orange"
-                        //text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
-                        //}
-                        
-                        //MouseArea
-                        //{
-                        //id: dragArea
-                        //anchors.fill: parent
-                        //property bool held: false
+                        Drag.active: dragArea.active
+                        Drag.source: _tabButton
+                        Drag.hotSpot.x: width / 2
+                        Drag.hotSpot.y: height / 2
+                        Drag.dragType: Drag.Automatic
 
-                        //drag.target: held ? _tabButton : undefined
-                        //drag.axis: Drag.XAxis
-                        //drag.smoothed: false
-                        //preventStealing: false
-                        //propagateComposedEvents: true
-                        //onPressAndHold: held = true
-                        //onReleased:
-                        //{
-                        //held = false
-                        //}
-                        //onClicked:
-                        //{
-                        //control.currentIndex = index
-                        //control.currentItem.forceActiveFocus()
-                        //}
-                        //}
+                        Label
+                        {
+                            color: "orange"
+                            text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
+                        }
                         
+                        DragHandler
+                        {
+                            id: dragArea
+                            target: null
+                           xAxis.enabled: true
+                           yAxis.enabled: false
+                           cursorShape: Qt.OpenHandCursor
+                           
+                           onActiveChanged:
+                           if (active) 
+                           {
+                               _tabButton.grabToImage(function(result)
+                               {
+                                   _tabButton.Drag.imageSource = result.url;
+                               })
+                           }
+                        }                        
                         
                         Timer
                         {
@@ -316,7 +321,7 @@ T.Container
                             {
                                 if(_dropArea.containsDrag)
                                 {
-                                    control.currentIndex = index
+                                    control.currentIndex = mindex
                                 }
                             }
                         }
@@ -324,42 +329,32 @@ T.Container
                         DropArea
                         {
                             id: _dropArea
+                            property int dropSide : -1
                             anchors.fill: parent
-                            onEntered:
+                            onDropped:
                             {
-                                //console.log("Move ", drop.source.mindex,
-                                //_tabButton.mindex)
-                                //const from = drop.source.mindex
-                                //const to = _tabButton.mindex
+                                console.log("Move ", drop.source.mindex,
+                                _tabButton.mindex)
+                                const from = drop.source.mindex
+                                const to = _tabButton.mindex
                                 
-                                //control.moveItem(from , to)
-                                //_tabBar.moveItem(from , to)
-                                _dropAreaTimer.restart()
+                                    dropSide = from > to ? 1 : 0
+                                
+                                control.moveItem(from , to)
+                                _tabBar.moveItem(from , to)
+                                _tabBar.setCurrentIndex(control.currentIndex)
+//                                 _dropAreaTimer.restart()
                             }
                             
                             onExited:
                             {
-                                _dropAreaTimer.stop()
+                                //_dropAreaTimer.stop()
                             }
                         }
-                        
-                        //Maui.Separator
-                        //{
-                        
-                        //height: 0.5
-                        //weight: Maui.Separator.Weight.Light
-                        //visible: index < control.count
-                        //anchors
-                        //{
-                        //bottom: parent.bottom
-                        //top: parent.top
-                        //right: parent.right
-                        //}
-                        //}
                     }
                 }
             }
-        }
+        
         
         Loader
         {
@@ -583,7 +578,11 @@ T.Container
     
     function closeTab(index)
     {
-        control.removeItem(control.takeItem(index))
+        control.removeItem(control.itemAt(index))
+        _tabBar.removeItem(_tabBar.itemAt(index))
+        
+//         control.setCurrentIndex(Math.max(0, index-1))    
+        
         control.currentItemChanged()
         control.currentItem.forceActiveFocus()
     }
@@ -591,9 +590,11 @@ T.Container
     function addTab(component, properties)
     {
         const object = component.createObject(control.contentModel, properties);
-        
+                    
         control.addItem(object)
-        control.currentIndex = Math.max(control.count -1, 0)
+        _tabBar.addItem(_tabButtonComponent.createObject(_tabBar))
+        
+        control.setCurrentIndex(Math.max(control.count -1, 0))
         object.forceActiveFocus()
         
         return object

@@ -43,7 +43,7 @@ T.TabButton
         //opacity: control.hovered && !control.checked ? 1 : 1
         color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
-        
+       
         //          Behavior on color
         //         {
         //             Maui.ColorTransition{}

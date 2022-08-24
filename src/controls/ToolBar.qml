@@ -188,6 +188,7 @@ ToolBar
         {
             implicitWidth: _mainLayout.implicitWidth 
             implicitHeight: _mainLayout.implicitHeight 
+            
             Item
             {
                 id: _container
