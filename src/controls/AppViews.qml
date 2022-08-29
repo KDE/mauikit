@@ -144,6 +144,7 @@ display: ToolButton.TextUnderIcon
             snapMode: ListView.SnapOneItem
             boundsBehavior: Flickable.StopAtBounds
             clip: _swipeView.clip
+            
             preferredHighlightBegin: 0
             preferredHighlightEnd: width
             
