@@ -43,6 +43,7 @@
 
 class QQuickWindow;
 class QQuickItem;
+class QWindow;
 
 namespace MauiMan
 {
@@ -178,6 +179,9 @@ public:
   void setEnableCSD(const bool &value);
   QUrl source() const;
   QString styleName() const;
+  
+public slots:
+  void applyRadius(QWindow *window, int radius);
 
 private:
   MauiMan::ThemeManager *m_themeSettings;

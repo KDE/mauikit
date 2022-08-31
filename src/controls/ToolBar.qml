@@ -136,9 +136,6 @@ ToolBar
         
         property bool draggable : true
         
-        //}
-        
-        
             Loader
             {
                 asynchronous: true
@@ -183,6 +180,7 @@ ToolBar
                 }
             }
         
+   
         
         contentItem: Item
         {
@@ -237,6 +235,7 @@ ToolBar
                     }
                 }
                 
+               
                 states: [State
                 {
                     when: control.position === ToolBar.Header
@@ -277,7 +276,7 @@ ToolBar
                         spacing: control.spacing
                     }
                     
-                    Maui.ScrollView
+                    ScrollView
                     {
                         id: _scrollView
                         padding: 0
@@ -391,5 +390,8 @@ ToolBar
                     }
                 }
             }
+            
+            
+            
         }
 }

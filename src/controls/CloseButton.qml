@@ -45,7 +45,7 @@ AbstractButton
     background: Rectangle
     {
     radius: height/2
-    color: control.hovered || control.containsPress ? Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9)) : "transparent"     
+    color: control.hovered || control.containsPress ? Maui.Theme.negativeBackgroundColor : "transparent"     
     
     Behavior on color
     {

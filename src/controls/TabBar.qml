@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
+import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -21,18 +22,23 @@ T.TabBar
 {
     id: control
     
-    //     implicitWidth: _content.contentWidth
-    implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
-    padding: Maui.Style.space.tiny
+    property alias content : _layout.data
+    property alias leftContent: _leftLayout.data
+    property alias rightContent: _layout.data
+
+    implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight )+ topPadding + bottomPadding
     
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
     
-    spacing: Maui.Style.space.tiny
+    spacing: Maui.Style.space.small    
+    padding: Maui.Style.space.small  
+    
     /**
      * showNewTabButton : bool
      */
     property bool showNewTabButton : true
+    property alias showTabs : _content.visible
     
     /**
      * newTabClicked :
@@ -98,10 +104,29 @@ T.TabBar
     {        
         readonly property bool fits : _content.contentWidth <= width
         
+        Item
+        {
+            id: _dragHandler
+            anchors.fill: parent
+            DragHandler
+            {
+                acceptedDevices: PointerDevice.GenericPointer
+                grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+            }
+        }
+        
         RowLayout
         {
+            id: _layout
             anchors.fill: parent
-            spacing: 0 
+            spacing: control.spacing 
+            
+            Row
+            {
+                id: _leftLayout
+                spacing: control.spacing
+            }
             
             ScrollView
             {

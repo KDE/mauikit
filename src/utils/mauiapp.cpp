@@ -24,6 +24,7 @@
 #include <QStandardPaths>
 #include <QQuickWindow>
 #include <QQuickItem>
+#include <QWindow>
 
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 #include <KConfig>
@@ -41,6 +42,8 @@
 #include <MauiMan/thememanager.h>
 
 #include "../mauikit_version.h"
+
+
 
 MauiApp *MauiApp::m_instance = nullptr;
 
@@ -469,4 +472,22 @@ void CSDButton::setIsFocused(bool newIsFocused)
         this->setState (CSDButtonState::Backdrop);
     }
     emit isFocusedChanged();
+}
+
+ void CSDControls::applyRadius(QWindow *window, int radius)
+ {
+    
+    QRect r(QPoint(), window->geometry().size());
+    QRect rb(0, 0, 2 * radius, 2 * radius);
+    
+    QRegion region(rb, QRegion::Ellipse);
+    rb.moveRight(r.right());
+    region += QRegion(rb, QRegion::Ellipse);
+    rb.moveBottom(r.bottom());
+    region += QRegion(rb, QRegion::Ellipse);
+    rb.moveLeft(r.left());
+    region += QRegion(rb, QRegion::Ellipse);
+    region += QRegion(r.adjusted(radius, 0, -radius, 0), QRegion::Rectangle);
+    region += QRegion(r.adjusted(0, radius, 0, -radius), QRegion::Rectangle);
+    window->setMask(region);
 }

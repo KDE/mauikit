@@ -19,7 +19,8 @@ T.Container
     
     readonly property bool overviewMode :  _stackView.depth === 2
     
-    property bool tabBarVisible : true
+    property alias tabBarVisible : _tabBar.visible
+    property alias tabBar: _tabBar
     
     property list<Action> menuActions
     
@@ -217,72 +218,72 @@ T.Container
             
             pushExit: Transition
             {
-            ParallelAnimation
-            {
-            PropertyAnimation
-            {
-            property: "scale"
-            from: 1
-            to: 0
-            duration: 200
-            easing.type: Easing.InOutCubic
-            }
-            
-            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200; easing.type: Easing.InOutCubic }
-            }
-            
+                ParallelAnimation
+                {
+                    PropertyAnimation
+                    {
+                        property: "scale"
+                        from: 1
+                        to: 0
+                        duration: 200
+                        easing.type: Easing.InOutCubic
+                    }
+                    
+                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200; easing.type: Easing.InOutCubic }
+                }
+                
             }
             
             pushEnter: Transition
             {
-            ParallelAnimation
-            {
-            PropertyAnimation
-            {
-            property: "scale"
-            from: 4
-            to: 1
-            duration: 200
-            easing.type: Easing.OutCubic
-            }
-            
-            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.OutCubic }
-            }
+                ParallelAnimation
+                {
+                    PropertyAnimation
+                    {
+                        property: "scale"
+                        from: 4
+                        to: 1
+                        duration: 200
+                        easing.type: Easing.OutCubic
+                    }
+                    
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.OutCubic }
+                }
             }
             
             popEnter: Transition
             {
-            ParallelAnimation
-            {
-            PropertyAnimation
-            {
-            property: "scale"
-            from: 0.5
-            to: 1
-            duration: 200
-            easing.type: Easing.InOutCubic
-            }
-            
-            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.InOutCubic }
-            }
+                ParallelAnimation
+                {
+                    PropertyAnimation
+                    {
+                        property: "scale"
+                        from: 0.5
+                        to: 1
+                        duration: 200
+                        easing.type: Easing.InOutCubic
+                    }
+                    
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.InOutCubic }
+                }
             }
             
             popExit: Transition
             {
-            ParallelAnimation
-            {
-            //PropertyAnimation
-            //{
-            //property: "scale"
-            //from: 1
-            //to: 4
-            //duration: 200
-            //easing.type: Easing.OutCubic
-            //}
-            
-            NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200; easing.type: Easing.OutCubic }
-            }
-            
+                ParallelAnimation
+                {
+//                     //PropertyAnimation
+//                     //{
+//                     //property: "scale"
+//                     //from: 1
+//                     //to: 4
+//                     //duration: 200
+//                     //easing.type: Easing.OutCubic
+//                     //}
+//                     
+                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200; easing.type: Easing.OutCubic }
+                }
+                
             }
             
             initialItem: ColumnLayout
@@ -293,7 +294,7 @@ T.Container
                 {
                     id: _tabBar
                     Layout.fillWidth: true
-                    visible: control.count > 1 && !control.mobile && control.tabBarVisible         
+                    visible: control.count > 1 && !control.mobile       
                     
                     position: TabBar.Header
                     
@@ -332,12 +333,12 @@ T.Container
                             ToolTip.timeout: 5000
                             ToolTip.visible: ( _tabButton.hovered )
                             ToolTip.text: control.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText
-//                                                     Label
-//                                                     {
-//                                                         z: parent.z + 999
-//                                                         color: "orange"
-//                                                         text: control.currentIndex + " / " + _tabButton.mindex
-//                                                     }
+                            //                                                     Label
+                            //                                                     {
+                            //                                                         z: parent.z + 999
+                            //                                                         color: "orange"
+                            //                                                         text: control.currentIndex + " / " + _tabButton.mindex
+                            //                                                     }
                             
                             //                         
                             onClicked:
@@ -565,7 +566,7 @@ T.Container
                         {
                             height: GridView.view.cellHeight
                             width: GridView.view.cellWidth
-                                                       
+                            
                             Maui.GridBrowserDelegate
                             {
                                 id: _delegate
@@ -652,7 +653,7 @@ T.Container
     {
         control.removeItem(control.itemAt(index))
         _tabBar.removeItem(_tabBar.itemAt(index))
-               
+        
         control.currentItemChanged()
         control.currentItem.forceActiveFocus()
     }
