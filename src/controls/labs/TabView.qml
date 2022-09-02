@@ -11,19 +11,18 @@ import QtQuick.Templates 2.15 as T
 T.Container
 {
     id: control
-    
-    spacing: 0
-    
+       
     property alias holder : _holder
     property bool mobile : Maui.Handy.isMobile
     
     readonly property bool overviewMode :  _stackView.depth === 2
     
-    property alias tabBarVisible : _tabBar.visible
     property alias tabBar: _tabBar
     
     property list<Action> menuActions
     
+    spacing: 0
+        
     signal newTabClicked()
     signal closeTabClicked(int index)
     
@@ -294,13 +293,15 @@ T.Container
                 {
                     id: _tabBar
                     Layout.fillWidth: true
-                    visible: control.count > 1 && !control.mobile       
+                    visible: control.count > 1    
+                    interactive: control.mobile
                     
                     position: TabBar.Header
                     
                     currentIndex: control.currentIndex                
                     
                     onNewTabClicked: control.newTabClicked()
+                    onNewTabFocused: control.setCurrentIndex(index)
                     
                     Keys.onPressed:
                     {
@@ -313,8 +314,8 @@ T.Container
                         {
                             control.currentItem.forceActiveFocus()
                         }
-                    }
-                    
+                    }    
+                   
                     Component
                     {
                         id: _tabButtonComponent
@@ -324,8 +325,11 @@ T.Container
                             id: _tabButton
                             
                             readonly property int mindex : _tabButton.TabBar.index
+                            
                             implicitHeight: ListView.view.height
-                            width: Math.max(Math.floor((ListView.view.width / _tabButton.TabBar.tabBar.count) -(_tabBar.spacing * control.count)), 200)
+                            
+                            width: control.mobile ? ListView.view.width : Math.max(Math.floor((ListView.view.width / _tabButton.TabBar.tabBar.count) -(_tabBar.spacing * control.count)), 200)
+                            
                             checked: _tabButton.mindex === control.currentIndex
                             text: control.contentModel.get(mindex).Maui.TabViewInfo.tabTitle
                             
@@ -333,16 +337,24 @@ T.Container
                             ToolTip.timeout: 5000
                             ToolTip.visible: ( _tabButton.hovered )
                             ToolTip.text: control.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText
-                            //                                                     Label
-                            //                                                     {
-                            //                                                         z: parent.z + 999
-                            //                                                         color: "orange"
-                            //                                                         text: control.currentIndex + " / " + _tabButton.mindex
-                            //                                                     }
+                                                    
+                            leftContent: Maui.Badge
+                            {
+                                width: visible ? implicitWidth : 0
+                                visible: control.mobile
+                                text: control.count
+                                radius: Maui.Style.radiusV
+                                anchors.verticalCenter: parent.verticalCenter
+                            }                            
                             
-                            //                         
                             onClicked:
                             {
+                                if(control.mobile)
+                                {
+                                    control.openOverview()
+                                    return
+                                }
+                                
                                 control.setCurrentIndex(_tabButton.mindex)
                                 control.currentItem.forceActiveFocus()
                             }
@@ -374,6 +386,7 @@ T.Container
                             DragHandler
                             {
                                 id: dragArea
+                                enabled: !control.mobile
                                 target: null
                                 xAxis.enabled: true
                                 yAxis.enabled: false
@@ -452,46 +465,6 @@ T.Container
                     }
                 }
                 
-                Loader
-                {
-                    asynchronous: true
-                    visible: active
-                    
-                    Layout.fillWidth: true
-                    active: control.count > 1 && control.mobile && control.tabBarVisible
-                    
-                    sourceComponent: Maui.TabBar
-                    {
-                        Maui.Theme.colorSet: Maui.Theme.Header
-                        Maui.Theme.inherit: false
-                        showNewTabButton: false
-                        position: ToolBar.Header
-                        
-                        Maui.TabButton
-                        {
-                            implicitWidth: ListView.view.width
-                            implicitHeight: ListView.view.height
-                            closeButtonVisible: control.count > 1
-                            text: control.currentItem.Maui.TabViewInfo.tabTitle
-                            checked: true
-                            centerLabel: false
-                            onClicked: openOverview()
-                            onCloseClicked:
-                            {
-                                control.closeTabClicked(control.currentIndex)
-                            }
-                            
-                            leftContent:  Maui.Badge
-                            {
-                                text: control.count
-                                radius: Maui.Style.radiusV
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
-                            
-                        }
-                    }
-                }
-                
                 ListView
                 {  
                     Layout.fillWidth: true
@@ -500,8 +473,11 @@ T.Container
                     model: control.contentModel
                     interactive: false
                     currentIndex: control.currentIndex
-                    spacing: 0
+                    
+                    spacing: control.spacing
+                    
                     clip: true
+                    
                     orientation: ListView.Horizontal
                     snapMode: ListView.SnapOneItem
                     
@@ -537,11 +513,7 @@ T.Container
             Component
             {
                 id: _overviewComponent
-                //active: (control.count > 1 && control.mobile) || item
-                //visible: active && control.overviewMode
-                //asynchronous: true
-                //anchors.fill: parent
-                
+               
                 Pane
                 {
                     Maui.Theme.colorSet: Maui.Theme.Window
@@ -552,8 +524,11 @@ T.Container
                         id: _overviewGrid
                         
                         anchors.fill: parent
+                        
                         model: control.count
+                        
                         currentIndex: control.currentIndex
+                        
                         itemSize: Math.floor(width / 3)
                         itemHeight:  Math.floor(height / 3)
                         
@@ -570,7 +545,9 @@ T.Container
                             Maui.GridBrowserDelegate
                             {
                                 id: _delegate
+                                
                                 anchors.centerIn: parent
+                                
                                 width: _overviewGrid.itemSize - Maui.Style.space.small
                                 height: _overviewGrid.itemHeight  - Maui.Style.space.small
                                 
@@ -619,27 +596,28 @@ T.Container
                                         sourceItem: control.contentModel.get(index)
                                         
                                     }
+                                                                        
+                                    Maui.CloseButton
+                                    {
+                                        id: _closeButton
+                                        anchors.top: parent.top
+                                        anchors.right: parent.right
+                                        anchors.margins: Maui.Style.space.small
+                                        
+                                        onClicked: control.closeTab(index)
+                                        
+                                        background: Rectangle
+                                        {
+                                            radius: height/2
+                                            color: _closeButton.hovered || _closeButton.containsPress ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor  
+                                            
+                                            Behavior on color
+                                            {
+                                                Maui.ColorTransition{}
+                                            }
+                                        }
+                                    }
                                 }
-                                
-                                //background: Maui.ShadowedRectangle
-                                //{
-                                //color: _delegate.isCurrentItem ? Maui.Theme.highlightColor : Qt.lighter(Maui.Theme.backgroundColor)
-                                //property int radius : Maui.Style.radiusV
-                                //border.color: _delegate.hovered || _delegate.containsPress? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
-                                //border.width: 1
-                                //corners
-                                //{
-                                //topLeftRadius: radius
-                                //topRightRadius: radius
-                                //bottomLeftRadius: radius
-                                //bottomRightRadius: radius
-                                //}
-                                
-                                //shadow.xOffset: 0
-                                //shadow.yOffset: 0
-                                //shadow.color: Qt.rgba(0, 0, 0, 0.3)
-                                //shadow.size: 10
-                                //}
                             }
                         }
                     }

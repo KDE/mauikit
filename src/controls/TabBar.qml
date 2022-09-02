@@ -25,25 +25,27 @@ T.TabBar
     property alias content : _layout.data
     property alias leftContent: _leftLayout.data
     property alias rightContent: _layout.data
-
-    implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight )+ topPadding + bottomPadding
     
-    Maui.Theme.colorSet: Maui.Theme.Header
-    Maui.Theme.inherit: false
-    
-    spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.small  
-    
+    property alias interactive: _content.interactive
     /**
      * showNewTabButton : bool
      */
     property bool showNewTabButton : true
-    property alias showTabs : _content.visible
+    property bool showTabs : true
     
+    implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight )+ topPadding + bottomPadding
+        
+    spacing: Maui.Style.space.small    
+    padding: Maui.Style.space.small  
+    
+    Maui.Theme.colorSet: Maui.Theme.Header
+    Maui.Theme.inherit: false
+      
     /**
      * newTabClicked :
      */
     signal newTabClicked()
+    signal newTabFocused(int index)
     
     background: Rectangle
     {
@@ -110,6 +112,7 @@ T.TabBar
             anchors.fill: parent
             DragHandler
             {
+                enabled: !control.interactive
                 acceptedDevices: PointerDevice.GenericPointer
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
@@ -130,23 +133,23 @@ T.TabBar
             
             ScrollView
             {
-                id: _scrollView
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-                contentWidth: availableWidth
+                contentHeight: availableHeight
                 
                 ListView
                 {
                     id: _content
+                    opacity: control.showTabs ? 1 : 0 
+                    visible: opacity > 0
+                    
                     clip: true
-                    orientation: ListView.Horizontal
                     
-                    width: _scrollView.width
-                    height: _scrollView.height
-                    
+                    orientation: ListView.Horizontal                    
+                  
                     spacing: control.spacing
                     
                     model: control.contentModel
@@ -164,6 +167,21 @@ T.TabBar
                     
                     keyNavigationEnabled : true
                     keyNavigationWraps : true
+                    
+                    onMovementEnded:
+                    {
+                        const newIndex = indexAt(contentX, contentY)
+                        control.newTabFocused(newIndex)
+                    }
+                    
+                    Behavior on opacity
+                    {
+                        NumberAnimation
+                        {
+                            duration: Maui.Style.units.shortDuration
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
                 }                
             }
             

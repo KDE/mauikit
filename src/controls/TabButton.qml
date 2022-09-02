@@ -21,9 +21,11 @@ T.TabButton
     id: control
     implicitWidth: 200
     implicitHeight: _content.implicitheight + topPadding + bottomPadding
-    spacing: Maui.Style.space.medium
+   
+   spacing: Maui.Style.space.small
     padding: Maui.Style.space.small
-    Maui.Theme.colorSet: Maui.Theme.Button
+  
+  Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
     property alias content: _content.data
@@ -75,33 +77,27 @@ T.TabButton
             Row
             {
                 id: _leftContent
-                Layout.fillHeight: true
-                
+                Layout.fillHeight: true                
             }
             
-            Item
-            {
-                Layout.fillHeight: true
-                implicitWidth: height
-                visible: control.closeButtonVisible && control.centerLabel
-            }
+            //Item
+            //{
+                //Layout.fillHeight: true
+                //implicitWidth: height
+                //visible: control.closeButtonVisible && control.centerLabel
+            //}
             
-            Loader
+            Label
             {
-                asynchronous: true
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 
-                sourceComponent: Label
-                {
-                    text: control.text
-                    
-                    horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignVCenter
-                    color: Maui.Theme.textColor
-                    wrapMode: Text.NoWrap
-                    elide: Text.ElideMiddle
-                }
+                text: control.text
+                
+                horizontalAlignment: Qt.AlignHCenter
+                verticalAlignment: Qt.AlignVCenter
+                wrapMode: Text.NoWrap
+                elide: Text.ElideMiddle                
             }
 
             Loader
@@ -117,6 +113,7 @@ T.TabButton
                     opacity: Maui.Handy.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
                     
                     onClicked: control.closeClicked()
+                    
                     Behavior on opacity
                     {
                         NumberAnimation

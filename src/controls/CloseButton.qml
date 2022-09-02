@@ -16,18 +16,7 @@ AbstractButton
     padding: Maui.Style.space.small
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
-    
-//     Maui.CSDButton
-//     {
-//         id: button
-//         style: Maui.App.controls.styleName
-//         type: Maui.CSDButton.Close
-//         isHovered: control.hovered
-//         isPressed: control.pressed
-//         isFocused: control.activeFocus
-//         //         isMaximized: maximized
-//     }
-    
+        
     contentItem: Item
     {
         Maui.Icon
@@ -44,12 +33,12 @@ AbstractButton
     
     background: Rectangle
     {
-    radius: height/2
-    color: control.hovered || control.containsPress ? Maui.Theme.negativeBackgroundColor : "transparent"     
-    
-    Behavior on color
-    {
-    Maui.ColorTransition{}
-    }
+        radius: height/2
+        color: control.hovered || control.containsPress ? Maui.Theme.negativeBackgroundColor : "transparent"     
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 }
