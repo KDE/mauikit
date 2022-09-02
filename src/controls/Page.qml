@@ -826,7 +826,7 @@ T.Pane
         id: _csdRightControlsComponent
         Loader
         {
-            active: Maui.App.controls.enableCSD  && Maui.Handy.isLinux && control.showCSDControls
+            active: control.showCSDControls
             visible: active
             width: visible ? implicitWidth:  0
             sourceComponent: Maui.WindowControls

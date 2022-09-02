@@ -387,6 +387,7 @@ T.Container
                             {
                                 id: dragArea
                                 enabled: !control.mobile
+                                acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus | PointerDevice.GenericPointer
                                 target: null
                                 xAxis.enabled: true
                                 yAxis.enabled: false

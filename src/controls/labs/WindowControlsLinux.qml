@@ -1,13 +1,21 @@
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Window 2.15
+import QtQuick 2.15
 
 /*!
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.CSDControls
+
+Loader
 {
     id: control
+    
+    active: Maui.App.controls.enableCSD  && Maui.Handy.isLinux 
+    visible: active
+    width: visible ? implicitWidth:  0
+    sourceComponent: Maui.CSDControls
+{
     onButtonClicked: performActiveWindowAction(type)
 
     /**
@@ -24,4 +32,5 @@ Maui.CSDControls
             Window.window.showMinimized()
         }
     }
+}
 }
