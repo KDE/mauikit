@@ -3,6 +3,7 @@ import QtQml 2.14
 
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.10
+import QtGraphicalEffects 1.0
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -13,7 +14,7 @@ T.Container
     id: control
        
     property alias holder : _holder
-    property bool mobile : Maui.Handy.isMobile
+    property bool mobile : control.width <= Maui.Style.units.gridUnit * 30
     
     readonly property bool overviewMode :  _stackView.depth === 2
     
@@ -341,7 +342,7 @@ T.Container
                             leftContent: Maui.Badge
                             {
                                 width: visible ? implicitWidth : 0
-                                visible: control.mobile
+                                visible: control.mobile && _tabButton.checked
                                 text: control.count
                                 radius: Maui.Style.radiusV
                                 anchors.verticalCenter: parent.verticalCenter
@@ -349,7 +350,7 @@ T.Container
                             
                             onClicked:
                             {
-                                if(control.mobile)
+                                if(_tabButton.mindex === control.currentIndex)
                                 {
                                     control.openOverview()
                                     return
@@ -517,7 +518,7 @@ T.Container
                
                 Pane
                 {
-                    Maui.Theme.colorSet: Maui.Theme.Window
+                    Maui.Theme.colorSet: Maui.Theme.View
                     Maui.Theme.inherit: false
                     
                     Maui.GridView
@@ -532,6 +533,15 @@ T.Container
                         
                         itemSize: Math.floor(width / 3)
                         itemHeight:  Math.floor(height / 3)
+                        
+                        Maui.FloatingButton
+                        {
+                            icon.name: "list-add"
+                            anchors.bottom: parent.bottom
+                            anchors.right: parent.right
+                            anchors.margins: Maui.Style.space.big
+                            onClicked: control.newTabClicked()
+                        }
                         
                         onAreaClicked:
                         {
@@ -554,8 +564,9 @@ T.Container
                                 
                                 isCurrentItem : parent.GridView.isCurrentItem
                                 label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                                template.labelSizeHint: 32
+//                                 template.labelSizeHint: 32
                                 iconSource: "tab-new"
+//                                 flat: true
                                 
                                 onRightClicked:
                                 {
@@ -588,22 +599,34 @@ T.Container
                                         
                                         anchors.centerIn: parent
                                         
-                                        height: _overviewGrid.itemHeight - 4
-                                        width: _overviewGrid.itemSize - 4
+                                        height: Math.round(sourceItem.height * (parent.height/control.height))
+                                        width: Math.round(sourceItem.width * (parent.width/control.width))
                                         
-                                        hideSource: false
+                                        hideSource: true
                                         live: false
+                                        mipmap: true
+                                        
                                         textureSize: Qt.size(width,height)
                                         sourceItem: control.contentModel.get(index)
-                                        
+                                        layer.enabled: true
+                                        layer.effect: OpacityMask
+                                        {
+                                            maskSource: Rectangle
+                                            {
+                                                width: _effect.width
+                                                height: _effect.height
+                                                radius: Maui.Style.radiusV
+                                            }            
+                                        }
                                     }
                                                                         
                                     Maui.CloseButton
                                     {
                                         id: _closeButton
+                                        visible: _delegate.isCurrentItem || _delegate.hovered || Maui.Handy.isMobile
                                         anchors.top: parent.top
                                         anchors.right: parent.right
-                                        anchors.margins: Maui.Style.space.small
+//                                         anchors.margins: Maui.Style.space.small
                                         
                                         onClicked: control.closeTab(index)
                                         
