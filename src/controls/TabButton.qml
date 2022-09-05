@@ -19,17 +19,27 @@ import org.mauikit.controls 1.3 as Maui
 T.TabButton
 {
     id: control
-    implicitWidth: 200
-    implicitHeight: _content.implicitheight + topPadding + bottomPadding
-   
-   spacing: Maui.Style.space.small
-    padding: Maui.Style.space.small
-  
-  Maui.Theme.colorSet: Maui.Theme.Button
+    
+    opacity: enabled ? 1 : 0.5
+    
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    
+    hoverEnabled: !Maui.Handy.isMobile
+    
+    spacing: Maui.Style.space.small
+    
+    padding: Maui.Style.space.medium
+    
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
+    
+    Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
     property alias content: _content.data
     property alias leftContent: _leftContent.data
+    property alias rightContent: _rightContent.data
     
     property bool closeButtonVisible: true
     property bool centerLabel : true
@@ -39,13 +49,13 @@ T.TabButton
      */
     signal closeClicked()
     signal rightClicked(var mouse)
-
+    
     background: Rectangle
     {
         //opacity: control.hovered && !control.checked ? 1 : 1
         color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
-       
+        
         //          Behavior on color
         //         {
         //             Maui.ColorTransition{}
@@ -54,6 +64,9 @@ T.TabButton
     
     contentItem: MouseArea
     {
+        implicitWidth: _content.implicitWidth
+        implicitHeight: _content.implicitHeight
+        
         acceptedButtons: Qt.RightButton
         propagateComposedEvents: true
         preventStealing: false
@@ -77,14 +90,13 @@ T.TabButton
             Row
             {
                 id: _leftContent
-                Layout.fillHeight: true                
             }
             
             //Item
             //{
-                //Layout.fillHeight: true
-                //implicitWidth: height
-                //visible: control.closeButtonVisible && control.centerLabel
+            //Layout.fillHeight: true
+            //implicitWidth: height
+            //visible: control.closeButtonVisible && control.centerLabel
             //}
             
             Label
@@ -99,7 +111,12 @@ T.TabButton
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle                
             }
-
+            
+            Row
+            {
+                id: _rightContent
+            }            
+            
             Loader
             {
                 asynchronous: true

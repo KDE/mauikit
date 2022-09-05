@@ -33,7 +33,7 @@ T.TabBar
     property bool showNewTabButton : true
     property bool showTabs : true
     
-    implicitHeight: Math.max(Maui.Style.rowHeight, _layout.implicitHeight )+ topPadding + bottomPadding
+    implicitHeight: Math.max(Maui.Style.toolBarHeight, _layout.implicitHeight )+ topPadding + bottomPadding
         
     spacing: Maui.Style.space.small    
     padding: Maui.Style.space.small  
@@ -134,8 +134,9 @@ T.TabBar
             ScrollView
             {
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+//                 Layout.fillHeight: true
                 
+                Layout.preferredHeight: Maui.Style.rowHeight
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 contentHeight: availableHeight
@@ -208,5 +209,10 @@ T.TabBar
                 }
             }
         }
+    }
+    
+    function positionViewAtIndex(index : int)
+    {
+        _content.positionViewAtIndex(index, ListView.SnapPosition)
     }
 }

@@ -79,6 +79,7 @@
         <file alias="labs/ContextualMenu.qml">controls/labs/ContextualMenu.qml</file>
         <file alias="labs/ColorsRow.qml">controls/labs/ColorsRow.qml</file>
         <file alias="labs/TabView.qml">controls/labs/TabView.qml</file>
+        <file alias="TabViewButton.qml">controls/TabViewButton.qml</file>
         <file alias="CloseButton.qml">controls/CloseButton.qml</file>
         <file alias="BrowserDelegate.qml">controls/BrowserDelegate.qml</file>
         <file alias="SplitView.qml">controls/SplitView.qml</file>

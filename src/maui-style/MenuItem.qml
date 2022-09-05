@@ -63,10 +63,8 @@ T.MenuItem
                                        implicitIndicatorHeight + topPadding + bottomPadding) )
     //Layout.fillWidth: true
 
-    padding: Maui.Style.space.small
-//     verticalPadding: Maui.Style.space.small
-
-    spacing: Maui.Style.space.medium
+    padding: Maui.Style.space.medium
+    spacing: Maui.Style.space.small
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
@@ -75,7 +73,7 @@ T.MenuItem
     
     indicator: CheckIndicator
     {
-        x: control.width - width - control.rightPadding - Maui.Style.space.small
+        x: control.width - width - control.rightPadding 
         y: control.topPadding + (control.availableHeight - height) / 2
         visible: control.checkable
         control: control
@@ -83,7 +81,7 @@ T.MenuItem
 
     arrow: Maui.Icon
     {
-        x: control.mirrored ? control.padding : control.width - width - control.rightPadding - Maui.Style.space.small
+        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
         y: control.topPadding + (control.availableHeight - height) / 2
 
         visible: control.subMenu
@@ -104,8 +102,9 @@ T.MenuItem
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
         
-        leftPadding: Maui.Style.space.small
-        rightPadding: indicatorPadding + Maui.Style.space.small + arrowPadding 
+//         leftPadding: Maui.Style.space.small
+        rightPadding: indicatorPadding + arrowPadding 
+        
         spacing: control.spacing
         
         mirrored: control.mirrored

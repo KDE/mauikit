@@ -15,12 +15,62 @@ T.Container
        
     property alias holder : _holder
     property bool mobile : control.width <= Maui.Style.units.gridUnit * 30
+    property bool altTabBar : false
     
     readonly property bool overviewMode :  _stackView.depth === 2
     
-    property alias tabBar: _tabBar
+    property alias tabBar: _tabBar    
     
     property list<Action> menuActions
+    
+    property Component tabViewButton :  _tabButtonComponent
+    
+    onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
+    onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
+    
+    Component
+    {
+        id: _tabButtonComponent
+        
+        Maui.TabViewButton
+        {
+            id: _tabButton
+            tabView: control
+            tabBar: control.tabBar
+            
+            leftContent: Maui.Badge
+            {
+                width: visible ? implicitWidth : 0
+                visible: control.mobile && _tabButton.checked
+                text: control.count
+                radius: Maui.Style.radiusV
+                anchors.verticalCenter: parent.verticalCenter
+            }                            
+            
+            onClicked:
+            {
+                if(_tabButton.mindex === control.currentIndex)
+                {
+                    control.openOverview()
+                    return
+                }
+                
+                control.setCurrentIndex(_tabButton.mindex)
+                control.currentItem.forceActiveFocus()
+            }
+            
+            onRightClicked:
+            {
+                _menu.index = _tabButton.mindex
+                _menu.show()
+            }
+            
+            onCloseClicked:
+            {
+                control.closeTabClicked(_tabButton.mindex)
+            }
+        }
+    }
     
     spacing: 0
         
@@ -288,18 +338,23 @@ T.Container
             
             initialItem: ColumnLayout
             {
-                spacing: 0
+                Item
+            {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
                 
                 Maui.TabBar
                 {
                     id: _tabBar
-                    Layout.fillWidth: true
-                    visible: control.count > 1    
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    
+                    visible: control.count > 1   
+                    
                     interactive: control.mobile
-                    
-                    position: TabBar.Header
-                    
+                                        
                     currentIndex: control.currentIndex                
+                    showNewTabButton: !mobile
                     
                     onNewTabClicked: control.newTabClicked()
                     onNewTabFocused: control.setCurrentIndex(index)
@@ -315,162 +370,51 @@ T.Container
                         {
                             control.currentItem.forceActiveFocus()
                         }
-                    }    
-                   
-                    Component
+                    }                       
+                    
+                    states: [  State
                     {
-                        id: _tabButtonComponent
+                        when: !control.altTabBar && control.tabBar.visible
                         
-                        Maui.TabButton
+                        AnchorChanges
                         {
-                            id: _tabButton
-                            
-                            readonly property int mindex : _tabButton.TabBar.index
-                            
-                            implicitHeight: ListView.view.height
-                            
-                            width: control.mobile ? ListView.view.width : Math.max(Math.floor((ListView.view.width / _tabButton.TabBar.tabBar.count) -(_tabBar.spacing * control.count)), 200)
-                            
-                            checked: _tabButton.mindex === control.currentIndex
-                            text: control.contentModel.get(mindex).Maui.TabViewInfo.tabTitle
-                            
-                            ToolTip.delay: 1000
-                            ToolTip.timeout: 5000
-                            ToolTip.visible: ( _tabButton.hovered )
-                            ToolTip.text: control.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText
-                                                    
-                            leftContent: Maui.Badge
-                            {
-                                width: visible ? implicitWidth : 0
-                                visible: control.mobile && _tabButton.checked
-                                text: control.count
-                                radius: Maui.Style.radiusV
-                                anchors.verticalCenter: parent.verticalCenter
-                            }                            
-                            
-                            onClicked:
-                            {
-                                if(_tabButton.mindex === control.currentIndex)
-                                {
-                                    control.openOverview()
-                                    return
-                                }
-                                
-                                control.setCurrentIndex(_tabButton.mindex)
-                                control.currentItem.forceActiveFocus()
-                            }
-                            
-                            onRightClicked:
-                            {
-                                _menu.index = _tabButton.mindex
-                                _menu.show()
-                            }
-                            
-                            onCloseClicked:
-                            {
-                                control.closeTabClicked(_tabButton.mindex)
-                            }
-                            
-                            Drag.active: dragArea.active
-                            Drag.source: _tabButton
-                            Drag.hotSpot.x: width / 2
-                            Drag.hotSpot.y: height / 2
-                            Drag.dragType: Drag.Automatic
-                            Drag.proposedAction: Qt.IgnoreAction
-                            
-                            //                         Label
-                            //                         {
-                            //                             color: "orange"
-                            //                             text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
-                            //                         }
-                            
-                            DragHandler
-                            {
-                                id: dragArea
-                                enabled: !control.mobile
-                                acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus | PointerDevice.GenericPointer
-                                target: null
-                                xAxis.enabled: true
-                                yAxis.enabled: false
-                                cursorShape: Qt.OpenHandCursor
-                                
-                                onActiveChanged:
-                                {
-                                    if (active) 
-                                    {
-                                        _tabButton.grabToImage(function(result)
-                                        {
-                                            _tabButton.Drag.imageSource = result.url;
-                                        })
-                                    }
-                                }
-                            }                        
-                            
-                            Timer
-                            {
-                                id: _dropAreaTimer
-                                interval: 250
-                                onTriggered:
-                                {
-                                    if(_dropArea.containsDrag)
-                                    {
-                                        control.setCurrentIndex(mindex)
-                                    }
-                                }
-                            }
-                            
-                            DropArea
-                            {
-                                id: _dropArea
-                                property int dropSide : -1
-                                anchors.fill: parent
-                                onDropped:
-                                {                             
-                                    const from = drop.source.mindex
-                                    const to = _tabButton.mindex
-                                    
-                                    if(to === from)
-                                    {
-                                        return
-                                    }
-                                    
-                                    console.log("Move ", drop.source.mindex,
-                                                _tabButton.mindex)
-                                    
-                                    dropSide = from > to ? 1 : 0
-                                    
-                                    control.moveItem(from , to)
-                                    _tabBar.moveItem(from , to)
-                                    
-                                    _tabBar.setCurrentIndex(to)
-                                    control.setCurrentIndex(to)                                    
-                                    
-                                    control.currentItemChanged()
-                                    control.currentItem.forceActiveFocus()
-                                }
-                                
-                                onEntered: 
-                                {
-                                    if(drag.source &&  drag.source.mindex >= 0)
-                                    {
-                                        return
-                                    }
-                                    _dropAreaTimer.restart()    
-                                }
-                                
-                                onExited:
-                                {
-                                    _dropAreaTimer.stop()
-                                }
-                            }
+                            target: _tabBar
+                            anchors.top: parent.top
+                            anchors.bottom: undefined
                         }
-                    }
+                        
+                        PropertyChanges
+                        {
+                            target: _tabBar
+                            position: TabBar.Header
+                        }
+                    },
+                    
+                    State
+                    {
+                        when: control.altTabBar && control.tabBar.visible
+                        
+                        AnchorChanges
+                        {
+                            target: _tabBar
+                            anchors.top: undefined
+                            anchors.bottom: parent.bottom
+                        }
+                        
+                        PropertyChanges
+                        {
+                            target: _tabBar
+                            position: ToolBar.Footer
+                        }
+                    } ]
                 }
                 
                 ListView
                 {  
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true            
+                    anchors.fill: parent
+                    
+                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height : 0
+                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height : 0 
                     
                     model: control.contentModel
                     interactive: false
@@ -511,7 +455,7 @@ T.Container
                     }
                 }
             }  
-            
+            }
             Component
             {
                 id: _overviewComponent
@@ -557,10 +501,8 @@ T.Container
                             {
                                 id: _delegate
                                 
-                                anchors.centerIn: parent
-                                
-                                width: _overviewGrid.itemSize - Maui.Style.space.small
-                                height: _overviewGrid.itemHeight  - Maui.Style.space.small
+                                anchors.fill: parent
+                                anchors.margins: Maui.Style.space.medium
                                 
                                 isCurrentItem : parent.GridView.isCurrentItem
                                 label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
@@ -577,8 +519,8 @@ T.Container
                                 
                                 onClicked:
                                 {
-                                    control.setCurrentIndex(index)
                                     control.closeOverview()
+                                    control.setCurrentIndex(index)                                    
                                     control.currentItem.forceActiveFocus()
                                 }
                                 
@@ -670,7 +612,7 @@ T.Container
         const object = component.createObject(control.contentModel, properties);
         
         control.addItem(object)
-        _tabBar.addItem(_tabButtonComponent.createObject(_tabBar))
+        _tabBar.addItem(control.tabViewButton.createObject(_tabBar))
         
         control.setCurrentIndex(Math.max(control.count -1, 0))
         object.forceActiveFocus()

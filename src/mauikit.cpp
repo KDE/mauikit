@@ -148,6 +148,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("labs/ComboBox.qml")), uri, 1, 3, "ComboBox");
     qmlRegisterType(componentUrl(QStringLiteral("labs/FontsComboBox.qml")), uri, 1, 3, "FontsComboBox");
     qmlRegisterType(componentUrl(QStringLiteral("labs/TabView.qml")), uri, 1, 3, "TabView");
+    qmlRegisterType(componentUrl(QStringLiteral("TabViewButton.qml")), uri, 1, 3, "TabViewButton");
     qmlRegisterType(componentUrl(QStringLiteral("CloseButton.qml")), uri, 1, 3, "CloseButton");
     qmlRegisterType(componentUrl(QStringLiteral("labs/ColorsRow.qml")), uri, 1, 3, "ColorsRow");
     qmlRegisterType(componentUrl(QStringLiteral("SplitView.qml")), uri, 1, 3, "SplitView");
