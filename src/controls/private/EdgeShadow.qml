@@ -39,12 +39,12 @@ LinearGradient
     /**
       *
       */
-    property color color: "#333"
+    property color color: Maui.Theme.textColor
 
     implicitWidth: Maui.Style.units.gridUnit
     implicitHeight: Maui.Style.units.gridUnit   
     
-
+opacity: 0.5
     rotation: edge === Qt.RightEdge ? 180 : 0
     start: Qt.point( 0, height)
     end: Qt.point( width, height)
