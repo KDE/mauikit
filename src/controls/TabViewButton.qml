@@ -25,8 +25,7 @@ Maui.TabButton
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && !Maui.Handy.isMobile && ToolTip.text.length
-    ToolTip.text: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText
-    
+    ToolTip.text: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText    
     
     Drag.active: dragArea.active
     Drag.source: control

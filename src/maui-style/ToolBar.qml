@@ -23,6 +23,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtGraphicalEffects 1.15
 
 import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
@@ -32,6 +33,8 @@ T.ToolBar
     id: control
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
+    
+    property Item translucencySource : null
     
     implicitWidth: Math.max(background ? background.implicitWidth : 0, contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0, contentHeight + topPadding + bottomPadding)
@@ -47,12 +50,38 @@ T.ToolBar
     
         background: Rectangle
         {
+            id: _headBarBG
             color: Maui.Theme.backgroundColor
-            Behavior on color
-            {
-                Maui.ColorTransition {}
-            }
             
+            Loader
+            {
+                asynchronous: true
+                active: control.translucencySource !== null && Maui.Style.enableEffects
+                anchors.fill: parent
+                sourceComponent: FastBlur
+                {                   
+                    layer.enabled: true
+                    layer.effect: Desaturate
+                    {
+                        desaturation: -1.2
+                    }
+                    
+                    source: control.translucencySource
+                    radius: 64
+                }                
+            }
+           
+            
+            Rectangle
+            {
+                color: Maui.Theme.backgroundColor
+                anchors.fill: parent
+                opacity: 0.8
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
+            }           
             
             Maui.Separator
             {

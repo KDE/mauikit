@@ -22,6 +22,7 @@ import QtQml 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
+import QtGraphicalEffects 1.15
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -240,7 +241,7 @@ T.Pane
     {
         id: _private
         property int topMargin : !control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0
-        property int bottomMargin: control.floatingFooter && control.footerPositioning === ListView.InlineFooter  ? control.bottomMargin : control.bottomMargin + _footerContent.implicitHeight
+        property int bottomMargin: (control.floatingFooter && control.footerPositioning === ListView.InlineFooter  ? control.bottomMargin : control.bottomMargin) + _footerContent.implicitHeight +(control.altHeader ? _headerContent.implicitHeight : 0)
     }
 
     background: Rectangle
@@ -379,6 +380,13 @@ T.Pane
         visible: count > 0
         width: visible ? parent.width : 0
 
+        translucencySource: ShaderEffectSource
+        {
+            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
+            sourceItem: _content
+            sourceRect: Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)
+        }
+        
         Binding on height
         {
             //when: _headBar.height > 0
@@ -459,6 +467,13 @@ T.Pane
 
         position: ToolBar.Footer
 
+        translucencySource: ShaderEffectSource
+        {
+            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
+            sourceItem: _content
+            sourceRect: Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)
+        }        
+        
         Behavior on height
         {
             id: _footerAnimation
@@ -562,34 +577,23 @@ T.Pane
             anchors.left: parent.left
             anchors.right: parent.right
             z: _content.z+1
-        }
-
-        Item
-        {
-            id: _layout
-            anchors.fill: parent
-
-            anchors.bottomMargin: control.altHeader ? _headerContent.implicitHeight : 0
-            anchors.topMargin: _private.topMargin
-
+        }  
+       
             Item
             {
                 id: _content
                 anchors.fill: parent
-                anchors.margins: control.margins
-                anchors.leftMargin: control.leftMargin
-                anchors.rightMargin: control.rightMargin
-                anchors.topMargin: control.topMargin
+                
+                anchors.topMargin: _private.topMargin                
                 anchors.bottomMargin: _private.bottomMargin
             }
-
-            Column
-            {
-                id: _footerContent
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
-            }
+        
+        Column
+        {
+            id: _footerContent
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
         }
 
         Loader

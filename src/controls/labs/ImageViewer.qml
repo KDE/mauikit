@@ -20,7 +20,7 @@ Flickable
     boundsBehavior: Flickable.StopAtBounds
     boundsMovement: Flickable.StopAtBounds
     interactive: contentWidth > width || contentHeight > height
-    clip: true
+    clip: false
     
     ScrollBar.vertical: ScrollBar
     {

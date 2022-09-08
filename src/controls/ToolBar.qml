@@ -180,8 +180,6 @@ ToolBar
                 }
             }
         
-   
-        
         contentItem: Item
         {
             implicitWidth: _mainLayout.implicitWidth 

@@ -24,7 +24,7 @@ Maui.Page
     Maui.Theme.inherit: false
 
     focus: true
-    clip: true
+    clip: false
 
     /*!
       The current view being used, the GridView or the ListBrowser.

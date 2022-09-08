@@ -51,7 +51,7 @@ T.ScrollView
 
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: !background || !background.visible
-    clip: true
+    clip: false
         
     padding: 0
     rightPadding: padding

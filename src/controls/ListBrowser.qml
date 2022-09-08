@@ -36,7 +36,7 @@ Item
 {
     id: control
     focus: true
-    clip: true
+    clip: false
     
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
@@ -235,6 +235,10 @@ Item
             
             spacing: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
             snapMode: ListView.NoSnap
+            
+            
+            displayMarginBeginning: Maui.Style.toolBarHeight * 4
+            displayMarginEnd: Maui.Style.toolBarHeight * 4
             
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds

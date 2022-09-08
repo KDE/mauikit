@@ -13,7 +13,7 @@ SplitView
 {
     id: control
     
-    clip: true
+    clip: false
     focus: true
     
     onCurrentItemChanged:

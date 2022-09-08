@@ -90,6 +90,8 @@ T.TabButton
             Row
             {
                 id: _leftContent
+                Layout.fillHeight: true
+                
             }
             
             //Item
@@ -115,6 +117,8 @@ T.TabButton
             Row
             {
                 id: _rightContent
+                Layout.fillHeight: true
+                
             }            
             
             Loader

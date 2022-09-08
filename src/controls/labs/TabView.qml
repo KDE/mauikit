@@ -3,7 +3,7 @@ import QtQml 2.14
 
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.10
-import QtGraphicalEffects 1.0
+import QtGraphicalEffects 1.15
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -20,6 +20,8 @@ T.Container
     readonly property bool overviewMode :  _stackView.depth === 2
     
     property alias tabBar: _tabBar    
+    
+    property alias menu :_menu
     
     property list<Action> menuActions
     
@@ -346,6 +348,7 @@ T.Container
                 Maui.TabBar
                 {
                     id: _tabBar
+                    z : _listView.z+1
                     anchors.left: parent.left
                     anchors.right: parent.right
                     
@@ -370,7 +373,7 @@ T.Container
                         {
                             control.currentItem.forceActiveFocus()
                         }
-                    }                       
+                    }      
                     
                     states: [  State
                     {
@@ -411,6 +414,7 @@ T.Container
                 
                 ListView
                 {  
+                    id: _listView
                     anchors.fill: parent
                     
                     anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height : 0
@@ -422,7 +426,7 @@ T.Container
                     
                     spacing: control.spacing
                     
-                    clip: true
+                    clip: false
                     
                     orientation: ListView.Horizontal
                     snapMode: ListView.SnapOneItem

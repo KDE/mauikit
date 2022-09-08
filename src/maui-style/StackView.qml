@@ -9,6 +9,7 @@ T.StackView
 {
     id: control
     focus: true
+    clip: false
     
     pushEnter: Transition
     {

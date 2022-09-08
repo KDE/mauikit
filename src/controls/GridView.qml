@@ -36,7 +36,7 @@ Item
 {
     id: control
     focus: true
-    clip: true
+    clip: false
     
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding    
@@ -223,6 +223,7 @@ Item
 //         padding: Maui.Style.space.medium
         
         clip: control.clip
+        
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy  
         
@@ -260,6 +261,9 @@ Item
             flow: GridView.FlowLeftToRight
             clip: control.clip
             
+            displayMarginBeginning: Maui.Style.toolBarHeight * 4
+             displayMarginEnd: Maui.Style.toolBarHeight * 4
+            cacheBuffer: control.itemHeight * 4
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight
             
