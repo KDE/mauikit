@@ -46,13 +46,15 @@ T.ToolBar
     padding: Maui.Style.space.small  
     
     contentItem: Item {}
-    //    position: controlRoot.parent.footer == controlRoot ? ToolBar.Footer : ToolBar.Header
     
         background: Rectangle
         {
             id: _headBarBG
             color: Maui.Theme.backgroundColor
-            
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
             Loader
             {
                 asynchronous: true
@@ -68,20 +70,17 @@ T.ToolBar
                     
                     source: control.translucencySource
                     radius: 64
+                                        
+                    Rectangle
+                    {
+                        color: _headBarBG.color
+                        anchors.fill: parent
+                        opacity: 0.9
+                        
+                    }   
                 }                
-            }
-           
-            
-            Rectangle
-            {
-                color: Maui.Theme.backgroundColor
-                anchors.fill: parent
-                opacity: 0.8
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
             }           
+                    
             
             Maui.Separator
             {

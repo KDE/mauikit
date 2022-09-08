@@ -51,17 +51,24 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT this->iconSizeChanged(m_iconSize);
     });
     
+    connect(m_themeSettings, &MauiMan::ThemeManager::enableEffectsChanged, [this](bool value)
+    {
+        m_enableEffects = value;
+        Q_EMIT this->enableEffectsChanged(m_enableEffects);
+    });
+    
     connect(m_backgroundSettings, &MauiMan::BackgroundManager::wallpaperSourceChanged, [this](QString source)
     {
         m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
         Q_EMIT this->adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
-    }); 
+    });     
     
     m_radiusV = m_themeSettings->borderRadius();
     m_iconSize = m_themeSettings->iconSize();
     m_accentColor = m_themeSettings->accentColor();
     m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
+    m_enableEffects = m_themeSettings->enableEffects();
 }
 
 void Style::setRadiusV(const uint& radius)
@@ -79,7 +86,6 @@ bool Style::enableEffects() const
 {
     return m_enableEffects;
 }
-
 
 Style *Style::qmlAttachedProperties(QObject *object)
 {
