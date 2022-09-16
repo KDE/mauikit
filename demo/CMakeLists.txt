@@ -41,7 +41,7 @@ endif()
 target_link_libraries(mauidemo MauiKit Qt5::Sql Qt5::Qml Qt5::Widgets Qt5::Svg Qt5::QuickControls2)
 
 install(TARGETS mauidemo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES org.kde.mauidemo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES org.kde.mauidemo.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
 #TODO: port to ecm_install_icons()
 # install(FILES src/assets/mauidemo.svg DESTINATION ${KDE_INSTALL_ICONDIR}/hicolor/scalable/apps)

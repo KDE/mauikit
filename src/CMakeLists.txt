@@ -294,7 +294,7 @@ target_link_libraries(MauiKit
     )
 
 generate_export_header(MauiKit BASE_NAME MauiKit)
-install(TARGETS MauiKit EXPORT MauiKitTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS MauiKit EXPORT MauiKitTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 target_include_directories(MauiKit
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core>")
@@ -327,4 +327,4 @@ install(FILES
 install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
 
 ##INSTALL THE DECO FOR CSD
-install(DIRECTORY csd DESTINATION ${DATA_INSTALL_DIR}/org.mauikit.controls)
+install(DIRECTORY csd DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
