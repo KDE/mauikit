@@ -35,8 +35,10 @@ import org.mauikit.controls 1.3 as Maui
 Maui.ItemDelegate
 {
     id: control
-    leftPadding: Maui.Style.space.medium
-    rightPadding: Maui.Style.space.medium
+    
+    implicitHeight: _template.implicitHeight + topPadding + bottomPadding
+    
+    padding: Maui.Style.space.medium
     /**
       * labelVisible : bool
       */
@@ -72,7 +74,6 @@ Maui.ItemDelegate
       */
     property alias template : _template
 
-    implicitHeight: Math.floor(Math.max(control.iconSize + Maui.Style.space.tiny, Maui.Style.rowHeight))
 
     isCurrentItem : ListView.isCurrentItem
 

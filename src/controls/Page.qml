@@ -240,8 +240,8 @@ T.Pane
     QtObject
     {
         id: _private
-        property int topMargin : !control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0
-        property int bottomMargin: (control.floatingFooter && control.footerPositioning === ListView.InlineFooter  ? control.bottomMargin : control.bottomMargin) + _footerContent.implicitHeight +(control.altHeader ? _headerContent.implicitHeight : 0)
+        property int topMargin : (!control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0) + control.topMargin
+        property int bottomMargin: ((control.floatingFooter && control.footerPositioning === ListView.InlineFooter ? 0 : _footerContent.implicitHeight)  + (control.altHeader ? _headerContent.implicitHeight : 0))
     }
 
     background: Rectangle
@@ -263,7 +263,7 @@ T.Pane
         when:  control.floatingFooter && control.footerPositioning === ListView.InlineFooter && _footerContent.implicitHeight > 0
         target: control.flickable
         property: "bottomMargin"
-        value:  _footerContent.implicitHeight
+        value: _footerContent.implicitHeight
         restoreMode: Binding.RestoreBindingOrValue
     }
 
@@ -384,7 +384,7 @@ T.Pane
         {
             //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
             sourceItem: _content
-            sourceRect: Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)
+            sourceRect: control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)
         }
         
         Binding on height
@@ -471,7 +471,7 @@ T.Pane
         {
             //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
             sourceItem: _content
-            sourceRect: Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)
+            sourceRect: control.floatingFooter ?  Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)
         }        
         
         Behavior on height
@@ -488,13 +488,20 @@ T.Pane
 
     states: [  State
         {
-            when: !altHeader && header.visible
+            when: !altHeader 
             
             AnchorChanges
             {
                 target: _headerContent
                 anchors.top: parent.top
                 anchors.bottom: undefined
+            }
+            
+            AnchorChanges
+            {
+                target: _footerContent
+                anchors.top: undefined
+                anchors.bottom: parent.bottom
             }
             
             PropertyChanges
@@ -506,7 +513,7 @@ T.Pane
         
         State
         {
-            when: altHeader && header.visible
+            when: altHeader 
             
             AnchorChanges
             {
@@ -515,12 +522,13 @@ T.Pane
                 anchors.bottom: parent.bottom
             }
             
-            PropertyChanges
+            AnchorChanges
             {
-                target: header
-                height: header.implicitHeight
+                target: _footerContent
+                anchors.top: undefined
+                anchors.bottom: _headerContent.top
             }
-            
+                      
             PropertyChanges
             {
                 target: _headBar
@@ -570,15 +578,7 @@ T.Pane
     //                 }
 
     contentItem: Item
-    {
-        Column
-        {
-            id: _headerContent
-            anchors.left: parent.left
-            anchors.right: parent.right
-            z: _content.z+1
-        }  
-       
+    {        
             Item
             {
                 id: _content
@@ -586,14 +586,23 @@ T.Pane
                 
                 anchors.topMargin: _private.topMargin                
                 anchors.bottomMargin: _private.bottomMargin
+                
+                anchors.leftMargin: control.leftMargin
+                anchors.rightMargin: control.rightMargin
             }
+            
+            Column
+            {
+                id: _headerContent
+                anchors.left: parent.left
+                anchors.right: parent.right
+            }              
         
         Column
         {
             id: _footerContent
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.bottom: parent.bottom
         }
 
         Loader

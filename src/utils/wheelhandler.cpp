@@ -320,6 +320,23 @@ void WheelHandler::setScrolling(bool scrolling)
     m_filterItem->setEnabled(m_wheelScrolling);
 }
 
+Qt::Orientation WheelHandler::primaryOrientation() const
+{
+    return m_primaryOrientation;
+}
+
+void WheelHandler::setPrimaryOrientation(Qt::Orientation orientation)
+{
+    if(m_primaryOrientation == orientation)
+    {
+        return;
+    }
+    
+    m_primaryOrientation = orientation;
+    Q_EMIT primaryOrientationChanged();
+}
+
+
 bool WheelHandler::scrollFlickable(QPointF pixelDelta, QPointF angleDelta, Qt::KeyboardModifiers modifiers)
 {
     if (!m_flickable || (pixelDelta.isNull() && angleDelta.isNull())) {
@@ -344,7 +361,7 @@ bool WheelHandler::scrollFlickable(QPointF pixelDelta, QPointF angleDelta, Qt::K
     const qreal devicePixelRatio = window != nullptr ? window->devicePixelRatio() : qGuiApp->devicePixelRatio();
 
     // HACK: Only transpose deltas when not using xcb in order to not conflict with xcb's own delta transposing
-    if (modifiers & m_defaultHorizontalScrollModifiers && qGuiApp->platformName() != QLatin1String("xcb")) {
+    if (m_primaryOrientation == Qt::Orientation::Horizontal || qGuiApp->platformName() != QLatin1String("xcb")) {
         angleDelta = angleDelta.transposed();
         pixelDelta = pixelDelta.transposed();
     }

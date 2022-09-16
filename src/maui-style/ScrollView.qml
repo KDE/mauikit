@@ -59,7 +59,11 @@ T.ScrollView
     topPadding: padding
     bottomPadding: padding
     
-    data: Maui.WheelHandler {
+    property alias orientation : _wheelHandler.primaryOrientation
+    
+    data: Maui.WheelHandler 
+    {
+        id: _wheelHandler
         target: control.contentItem
     }
 

@@ -218,6 +218,7 @@ ToolBar
                     sourceComponent: Maui.WheelHandler
                     {
                         target: mainFlickable
+                        primaryOrientation : Qt.Horizontal
                     }
                 }
                 

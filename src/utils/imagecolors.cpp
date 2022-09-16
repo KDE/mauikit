@@ -52,13 +52,23 @@ ImageColors::~ImageColors()
 
 void ImageColors::setSource(const QVariant &source)
 {
-    if (source.canConvert<QQuickItem *>()) {
+     if (source.canConvert<QQuickItem *>()) {
+        qDebug() << "can convert to item";
         setSourceItem(source.value<QQuickItem *>());
     } else if (source.canConvert<QImage>()) {
+        qDebug() << "can convert to image";
+        
         setSourceImage(source.value<QImage>());
     } else if (source.canConvert<QIcon>()) {
+        qDebug() << "can convert to icon";
+        
         setSourceImage(source.value<QIcon>().pixmap(128, 128).toImage());
     } else if (source.canConvert<QString>()) {
+        qDebug() << "can convert to string";
+        if(source.toString().isEmpty())
+        {
+            return;
+        }
         setSourceImage(QIcon::fromTheme(source.toString()).pixmap(128, 128).toImage());
     } else {
         return;

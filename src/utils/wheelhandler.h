@@ -263,6 +263,8 @@ class WheelHandler : public QObject
      * The default value is true.
      */
     Q_PROPERTY(bool scrollFlickableTarget MEMBER m_scrollFlickableTarget NOTIFY scrollFlickableTargetChanged)
+    
+    Q_PROPERTY(Qt::Orientation primaryOrientation READ primaryOrientation WRITE setPrimaryOrientation NOTIFY primaryOrientationChanged)
 
 public:
     explicit WheelHandler(QObject *parent = nullptr);
@@ -289,6 +291,8 @@ public:
     bool keyNavigationEnabled() const;
     void setKeyNavigationEnabled(bool enabled);
 
+    Qt::Orientation primaryOrientation() const;
+    void setPrimaryOrientation(Qt::Orientation orientation);
     /**
      * Scroll up one step. If the stepSize parameter is less than 0, the verticalStepSize will be used.
      *
@@ -334,7 +338,7 @@ Q_SIGNALS:
     void keyNavigationEnabledChanged();
     void blockTargetWheelChanged();
     void scrollFlickableTargetChanged();
-
+void primaryOrientationChanged();
     /**
      * @brief This signal is emitted when a wheel event reaches the event filter, just before scrolling is handled.
      *
@@ -368,6 +372,7 @@ private:
     bool m_wasTouched = false;
     bool m_blockTargetWheel = true;
     bool m_scrollFlickableTarget = true;
+    Qt::Orientation m_primaryOrientation = Qt::Orientation::Vertical;
     // Same as QXcbWindow.
     constexpr static Qt::KeyboardModifiers m_defaultHorizontalScrollModifiers = Qt::AltModifier;
     // Same as QScrollBar/QAbstractSlider.

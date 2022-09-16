@@ -280,7 +280,6 @@ Maui.Popup
             id: _flickable
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
-            clip: true
             
             ColumnLayout
             {

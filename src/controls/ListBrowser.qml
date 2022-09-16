@@ -221,6 +221,7 @@ Item
         visible: !_holder.visible
         focus: true
         padding: Maui.Style.space.medium
+        orientation: _listView.orientation
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy

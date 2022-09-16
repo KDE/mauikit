@@ -291,9 +291,7 @@ T.Control
           Maui.ColorTransition{}
         }
       }           
-    }
-    
-    
+    }    
     
     function open()
     {

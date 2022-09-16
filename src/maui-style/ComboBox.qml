@@ -47,28 +47,40 @@ T.ComboBox
 {
     id: control
 
+    enabled: control.count > 0
+    //NOTE: typeof necessary to not have warnings on Qt 5.7
+    Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
+    readonly property bool responsive: Maui.Handy.isMobile
+    readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
+    
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
-
-    topInset: Maui.Style.space.small
-    bottomInset: Maui.Style.space.small
-
-    spacing: Maui.Style.space.small
+    
+    //    topInset: Maui.Style.space.small
+    //    bottomInset: Maui.Style.space.small
+    
+    spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
+    
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
-
+    
     delegate: MenuItem
     {
-        width: parent.width
+        width: ListView.view.width
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
-//        Material.foreground: control.currentIndex === index ? parent.Material.accent : parent.Material.foreground
+        //        Material.foreground: control.currentIndex === index ? parent.Material.accent : parent.Material.foreground
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
+        Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
+        Maui.Theme.inherit: control.Maui.Theme.inherit
+        
     }
-
+    
     indicator: Maui.Icon
     {
         x: control.mirrored ? control.padding : control.width - width - control.padding - Maui.Style.space.small
@@ -77,129 +89,220 @@ T.ComboBox
         source: "go-down"
         height: Maui.Style.iconSizes.small
         width: height
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }    
     }
+    
 
     contentItem: T.TextField
     {
         padding: Maui.Style.space.small
-        leftPadding: control.editable ? 2 : control.mirrored ? 0 : 12
-        rightPadding: control.editable ? 2 : control.mirrored ? 12 : 0
-
+        leftPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? 0 : Maui.Style.space.medium) + control.leftPadding
+        rightPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? Maui.Style.space.medium : 0) + control.rightPadding
         text: control.editable ? control.editText : control.displayText
-
+        
         enabled: control.editable
         autoScroll: control.editable
         readOnly: control.down
         inputMethodHints: control.inputMethodHints
         validator: control.validator
-
+        renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
+        selectByMouse: !Maui.Handy.isMobile
+        
         font: control.font
-        color: control.enabled ? control.Maui.Theme.textColor : control.Maui.Theme.highlightColor
+        color: control.Maui.Theme.textColor
         selectionColor:  control.Maui.Theme.highlightColor
         selectedTextColor: control.Maui.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
-
-//        cursorDelegate: CursorDelegate { }
+        opacity: control.enabled ? 1 : 0.5
+        //        cursorDelegate: CursorDelegate { }
     }
-
+    
     background: Rectangle
     {
-        implicitWidth:  (Maui.Style.iconSizes.medium * 6) + Maui.Style.space.big
-        implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
-
+        implicitWidth: 200
+        implicitHeight: Maui.Style.rowHeight
+        
         radius: Maui.Style.radiusV
-
-        color: !control.editable ? control.Maui.Theme.backgroundColor : "transparent"
-
-        border.color: Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
-
-
-        Rectangle {
-            visible: control.editable
-            y: parent.y + control.baselineOffset
-            width: parent.width
-            height: control.activeFocus ? 2 : 1
-            color: control.editable && control.activeFocus ? control.Maui.Theme.highlightColor : control.Maui.Theme.highlightedTextColor
+        
+        color: control.enabled ? (control.editable ? Maui.Theme.backgroundColor : Maui.Theme.backgroundColor) : "transparent"
+        
+        border.color: control.enabled ? ( control.editable && control.activeFocus ? Maui.Theme.highlightColor : color) : Maui.Theme.backgroundColor
+        
+        MouseArea
+        {
+            property int wheelDelta: 0
+            
+            anchors
+            {
+                fill: parent
+                leftMargin: control.leftPadding
+                rightMargin: control.rightPadding
+            }
+            
+            acceptedButtons: Qt.NoButton
+            
+            onWheel:
+            {
+                var delta = wheel.angleDelta.y || wheel.angleDelta.x
+                wheelDelta += delta;
+                // magic number 120 for common "one click"
+                // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                while (wheelDelta >= 120) {
+                    wheelDelta -= 120;
+                    control.decrementCurrentIndex();
+                }
+                while (wheelDelta <= -120) {
+                    wheelDelta += 120;
+                    control.incrementCurrentIndex();
+                }
+            }
         }
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
     }
 
+    
     popup: T.Popup
     {
-        y: control.editable ? control.height - 5 : 0
-
-        width: Math.max(control.width, 150)
-        implicitHeight: Math.min(contentItem.implicitHeight, control.Window.window.height - topMargin - bottomMargin)
+        parent: control.responsive ? control.parent.Window.window.contentItem : control
+        x: 0
+        y: control.responsive ? parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
+        
+        implicitWidth: control.responsive ? parentWindow.width :  Math.min(parentWindow.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
+        
+        implicitHeight: control.responsive ? Math.min(parentWindow.height * 0.8, contentHeight + Maui.Style.space.huge) : implicitContentHeight + topPadding + bottomPadding
+        
         transformOrigin: Item.Top
-        padding: 0
-    //    topPadding: 0
-    //    bottomPadding: 0
-        verticalPadding: 8
-
-        enter: Transition {
+        
+        spacing: control.spacing
+        modal: control.responsive
+        margins: 0        
+        
+        padding: control.responsive ? 0 : 1
+        topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
+        bottomPadding: Maui.Style.space.medium
+        
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+        
+        enter:  Maui.Style.enableEffects ? (control.responsive ? _responsiveEnterTransition : _enterTransition) : null
+        exit: Maui.Style.enableEffects ? (control.responsive ? _responsiveExitTransition : _exitTransition) : null
+        
+        Transition
+        {
+            id: _enterTransition
+            enabled: Maui.Style.enableEffects
             // grow_fade_in
             NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
         }
-
-        exit: Transition {
+        
+        
+        Transition
+        {
+            id: _exitTransition
+            enabled: Maui.Style.enableEffects
+            
             // shrink_fade_out
             NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
         }
-
-        contentItem: ListView
+        
+        Transition
+        {
+            id: _responsiveEnterTransition
+            enabled: Maui.Style.enableEffects
+            
+            ParallelAnimation
+            {
+                //NumberAnimation { property: "y"; from: control.parentWindow.height; to: control.finalY; easing.type: Easing.OutQuint; duration: 220 }
+                NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
+            }
+        }
+        
+        Transition
+        {
+            id: _responsiveExitTransition
+            enabled: Maui.Style.enableEffects
+            
+            ParallelAnimation
+            {
+                //NumberAnimation { property: "y"; from: control.finalY; to: control.parentWindow.height; easing.type: Easing.OutQuint; duration: 220 }
+                NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
+            }
+        }
+        
+        contentItem: Maui.ListBrowser
         {
             clip: true
-            implicitHeight: contentHeight + 16
+            
+            implicitWidth: {
+                var maxWidth = 0;
+                for (var i = 0; i < contentItem.children.length; ++i) {
+                    maxWidth = Math.max(maxWidth, contentItem.children[i].implicitWidth);
+                }
+                return Math.min(250, maxWidth);
+            }
+            
+            implicitHeight: contentHeight
             model: control.delegateModel
-            currentIndex: control.highlightedIndex
-            highlightMoveDuration: 0
             spacing: control.spacing
-            keyNavigationEnabled: true
-            keyNavigationWraps: true
-
-            T.ScrollIndicator.vertical: ScrollIndicator { }
+            padding: Maui.Style.space.small
+            currentIndex: control.highlightedIndex
         }
-
+        
         background: Rectangle
         {
-            implicitWidth: 200
-            implicitHeight: Maui.Style.rowHeight
-
-            radius: Maui.Style.radiusV
+            id: _bg
+            implicitWidth: Maui.Style.units.gridUnit * 8
             color: control.Maui.Theme.backgroundColor
-            border.color: Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
-
+            radius: control.responsive ? 0 : Maui.Style.radiusV
+            
+            readonly property color m_color : Qt.darker(Maui.Theme.backgroundColor, 2.2)
+            border.color: control.responsive ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
+            
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+                
+            }
             Rectangle
-             {
-                 anchors.fill: parent
-                 radius: Maui.Style.radiusV
-                 color: "transparent"
-                 border.color: Qt.darker(Maui.Theme.backgroundColor, 2.7)
-                 opacity: 0.8
-
-                 Rectangle
-                 {
-                     anchors.fill: parent
-                     anchors.margins: 1
-                     color: "transparent"
-                     radius: parent.radius - 0.5
-                     border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
-                     opacity: 0.8
-                 }
-
-             }
-
-
-            layer.enabled: true
+            {
+                visible: !control.responsive
+                anchors.fill: parent
+                anchors.margins: 1
+                color: "transparent"
+                radius: parent.radius - 0.5
+                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
+                opacity: 0.7
+            }
+            
+            Maui.Separator
+            {
+                visible: control.responsive
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 0.5
+                weight: Maui.Separator.Weight.Light
+            }
+            
+            layer.enabled: control.responsive
             layer.effect: DropShadow
             {
-                transparentBorder: true
-                radius: 8
-                samples: 16
+                cached: true
                 horizontalOffset: 0
                 verticalOffset: 0
-                color: Qt.rgba(0, 0, 0, 0.3)
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
             }
         }
     }

@@ -39,7 +39,6 @@ Terminal 1.0 Terminal.qml
 Holder 1.0 Holder.qml
 TabBar 1.0 TabBar.qml
 TabButton 1.0 TabButton.qml
-ActionSideBar 1.0 ActionSideBar.qml
 ToolActions 1.0 ToolActions.qml
 ToolButtonMenu 1.0 ToolButtonMenu.qml
 ListItemTemplate 1.0 ListItemTemplate.qml

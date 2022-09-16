@@ -132,7 +132,7 @@ T.Menu
         }
     }
     
-    contentItem: Maui.ScrollView
+    contentItem: ScrollView
     {
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AsNeeded

@@ -47,21 +47,25 @@ T.ToolBar
     
     contentItem: Item {}
     
-        background: Rectangle
+    background: Rectangle
+    {
+        id: _headBarBG
+        color: Maui.Theme.backgroundColor
+        Behavior on color
         {
-            id: _headBarBG
-            color: Maui.Theme.backgroundColor
-            Behavior on color
+            Maui.ColorTransition{}
+        }
+        Loader
+        {
+            asynchronous: true
+            active: control.translucencySource !== null && Maui.Style.enableEffects
+            anchors.fill: parent
+            sourceComponent: Item
             {
-                Maui.ColorTransition{}
-            }
-            Loader
-            {
-                asynchronous: true
-                active: control.translucencySource !== null && Maui.Style.enableEffects
-                anchors.fill: parent
-                sourceComponent: FastBlur
-                {                   
+                FastBlur
+                {    
+                    anchors.fill: parent
+                    
                     layer.enabled: true
                     layer.effect: Desaturate
                     {
@@ -70,55 +74,57 @@ T.ToolBar
                     
                     source: control.translucencySource
                     radius: 64
-                                        
-                    Rectangle
-                    {
-                        color: _headBarBG.color
-                        anchors.fill: parent
-                        opacity: 0.9
-                        
-                    }   
-                }                
-            }           
+                }  
+                
+                
+                Rectangle
+                {
+                    color: _headBarBG.color
+                    anchors.fill: parent
+                    opacity: 0.9
                     
-            
-            Maui.Separator
-            {
-                id: _border
-                anchors.left: parent.left
-                anchors.right: parent.right
-                weight: Maui.Separator.Weight.Light
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
+                }   
             }
+        }           
+        
+        
+        Maui.Separator
+        {
+            id: _border
+            anchors.left: parent.left
+            anchors.right: parent.right
+            weight: Maui.Separator.Weight.Light
             
-            
-            states: [  State
+            Behavior on color
             {
-                when: control.position === ToolBar.Header
-                
-                AnchorChanges
-                {
-                    target: _border
-                    anchors.top: undefined
-                    anchors.bottom: parent.bottom
-                }
-            },
-            
-            State
-            {
-                when: control.position === ToolBar.Footer
-                
-                AnchorChanges
-                {
-                    target: _border
-                    anchors.top: parent.top
-                    anchors.bottom: undefined                    
-                }
+                Maui.ColorTransition{}
             }
-            ]
         }
+        
+        
+        states: [  State
+        {
+            when: control.position === ToolBar.Header
+            
+            AnchorChanges
+            {
+                target: _border
+                anchors.top: undefined
+                anchors.bottom: parent.bottom
+            }
+        },
+        
+        State
+        {
+            when: control.position === ToolBar.Footer
+            
+            AnchorChanges
+            {
+                target: _border
+                anchors.top: parent.top
+                anchors.bottom: undefined                    
+            }
+        }
+        ]
+    }
 }
