@@ -40,8 +40,7 @@ import QtQuick.Templates 2.15 as T
  */
 ToolBar
 {
-    id: control
-    
+    id: control    
     
     implicitHeight: preferredHeight + topPadding + bottomPadding
     

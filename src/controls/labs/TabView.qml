@@ -30,6 +30,11 @@ T.Container
     onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     
+    background: Rectangle
+    {
+        color: Maui.Theme.backgroundColor
+    }
+    
     Component
     {
         id: _tabButtonComponent
@@ -281,7 +286,7 @@ T.Container
                         easing.type: Easing.InOutCubic
                     }
                     
-                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200; easing.type: Easing.InOutCubic }
+                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 300; easing.type: Easing.InOutCubic }
                 }
                 
             }
@@ -299,7 +304,7 @@ T.Container
                         easing.type: Easing.OutCubic
                     }
                     
-                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.OutCubic }
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 300; easing.type: Easing.OutCubic }
                 }
             }
             
@@ -310,13 +315,13 @@ T.Container
                     PropertyAnimation
                     {
                         property: "scale"
-                        from: 0.5
+                        from: 1
                         to: 1
-                        duration: 200
+                        duration: 0
                         easing.type: Easing.InOutCubic
                     }
                     
-                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.InOutCubic }
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.OutCubic }
                 }
             }
             

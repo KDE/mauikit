@@ -361,7 +361,7 @@ bool WheelHandler::scrollFlickable(QPointF pixelDelta, QPointF angleDelta, Qt::K
     const qreal devicePixelRatio = window != nullptr ? window->devicePixelRatio() : qGuiApp->devicePixelRatio();
 
     // HACK: Only transpose deltas when not using xcb in order to not conflict with xcb's own delta transposing
-    if (m_primaryOrientation == Qt::Orientation::Horizontal || qGuiApp->platformName() != QLatin1String("xcb")) {
+    if (m_primaryOrientation == Qt::Orientation::Horizontal) {
         angleDelta = angleDelta.transposed();
         pixelDelta = pixelDelta.transposed();
     }

@@ -34,7 +34,7 @@ T.TextArea
 
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
-
+clip: false
 
     implicitWidth: Math.max(contentWidth + leftPadding + rightPadding,
                             background ? background.implicitWidth : 0,

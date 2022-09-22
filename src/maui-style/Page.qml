@@ -47,6 +47,7 @@ T.Page
     
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
+    
     padding: 0
     
     leftPadding: control.padding
