@@ -27,21 +27,10 @@ import QtQuick.Layouts 1.3
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
-T.ToolButton
+ToolButton
 {
     id: control
-    
-    Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
-    
-    spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.small
-    
-    rightPadding: padding
-    leftPadding: padding
-    topPadding: padding
-    bottomPadding: padding
-    
+        
 //     property bool flat : false
     
     /**
@@ -59,41 +48,12 @@ T.ToolButton
      */
     readonly property alias kicon : _icon
     
-    /**
-     * 
-     */
-    property alias rec : _background
     
     //    Maui.Theme.inherit: false
     //    Maui.Theme.colorSet: Maui.Theme.Button
     
     focusPolicy: Qt.NoFocus
-    
-    hoverEnabled: !Maui.Handy.isMobile
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding
-    implicitWidth: implicitContentWidth + leftPadding + rightPadding
-         
-    icon.width: Maui.Style.iconSize
-    icon.height: Maui.Style.iconSize
-    
-    icon.color: ((control.checked || control.pressed) ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : control.Maui.Theme.textColor)
-    
-    opacity: enabled ? 1 : 0.5
-    
-    background: Rectangle
-    {
-        id: _background
-        
-        visible: !control.flat
-        radius: Maui.Style.radiusV
-        color: control.down || control.checked || control.pressed ? control.Maui.Theme.highlightColor : (control.hovered ? control.Maui.Theme.hoverColor : "transparent")
-        //         border.color:  checked ?  control.Maui.Theme.highlightColor : "transparent"
-        Behavior on color
-        {
-             Maui.ColorTransition{}
-        }
-    }
-    
+                
     contentItem: GridLayout
     {
         id: _layoutButton

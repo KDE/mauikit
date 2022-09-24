@@ -49,10 +49,11 @@ T.ToolButton
     
     opacity: enabled ? 1 : 0.5
     
-    implicitWidth: Math.max(Math.max(background ? background.implicitWidth : 0,
-                                     implicitContentWidth + leftPadding + rightPadding), implicitHeight)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             implicitContentHeight + topPadding + bottomPadding)
+    property int preferredWidth : Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
+    property int preferredHeight : Maui.Style.rowHeight
+    
+    implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding, implicitHeight)    
+    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
     //    baselineOffset: contentItem.y + contentItem.baselineOffset
     
     hoverEnabled: !Maui.Handy.isMobile
@@ -108,10 +109,7 @@ T.ToolButton
     background: Rectangle
     {
         visible: !control.flat
-        implicitWidth: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
-        implicitHeight: Maui.Style.rowHeight
-        
-        radius: Maui.Style.radiusV
+                radius: Maui.Style.radiusV
         
         color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
         

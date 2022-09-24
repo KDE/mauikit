@@ -32,7 +32,9 @@ Item
     id: control
  
 //     color: "transparent"
-    
+implicitHeight: Math.max(iconSizeHint, imageSizeHint)
+implicitWidth: Math.max(iconSizeHint, imageSizeHint)
+
     /**
      * iconSizeHint : int
      */

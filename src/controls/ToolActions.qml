@@ -23,15 +23,11 @@ T.Control
     id: control
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    
     opacity: enabled ? 1 : 0.5
     
-    spacing: 2
-    
+    spacing: 2   
     padding: 0
-    rightPadding: padding
-    leftPadding: padding
-    topPadding: padding
-    bottomPadding: padding
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
@@ -53,7 +49,7 @@ T.Control
     /**
      * display : int
      */
-    property int display: ToolButton.IconOnly
+    property int display: ToolButton.TextBesideIcon
     
     /**
      * cyclic : bool
@@ -162,14 +158,12 @@ T.Control
                 id: _repeater
                 model: control.actions
                 
-                Private.BasicToolButton
+                ToolButton
                 {
                     id: _actionButton
                     action : modelData
                     checkable: control.checkable || action.checkable
                     checked: action.checked
-                    leftPadding: Maui.Style.space.big
-                    rightPadding: Maui.Style.space.big
                     
                     Binding on checked
                     {
@@ -178,13 +172,9 @@ T.Control
                     }
                     
                     autoExclusive: control.autoExclusive
-                    
-                    height: Math.max(Maui.Style.rowHeight, implicitHeight)
-                    width : Math.max(implicitWidth, 48)
-                    
                     enabled: action.enabled
                     
-                    display: control.autoExclusive ? (checked && control.enabled ? control.display : ToolButton.IconOnly) : control.display
+                    display: control.display
                     
                     icon.name: action.icon.name
                     icon.width:  action.icon.width ?  action.icon.width : Maui.Style.iconSize
@@ -197,7 +187,7 @@ T.Control
                     }
                     
                     background: Maui.ShadowedRectangle
-                    {
+                    {                        
                         color: checkable ? (checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)) : Maui.Theme.backgroundColor
                         corners
                         {
@@ -343,11 +333,11 @@ T.Control
                 id: _defaultButtonLayout
                 spacing: control.spacing
                 
-                Private.BasicToolButton
+                ToolButton
                 {
                     id: _defaultButtonIcon
-                    Layout.preferredHeight: Math.max(Maui.Style.rowHeight, implicitHeight)
-                    Layout.minimumWidth: 48
+                   
+                    
                     property var m_item : _defaultButtonMouseArea.buttonAction()
                     property Action m_action : m_item.action
                     
@@ -384,6 +374,15 @@ T.Control
                             Maui.ColorTransition{}
                         }
                     }
+                    
+                    // indicator:  Maui.Triangle
+                    // {
+                    //     // anchors.centerIn: parent
+                    //     rotation: -45
+                    //     color: _defaultButtonIcon.icon.color
+                    //     width: Maui.Style.iconSizes.tiny-3
+                    //     height:  width
+                    // }
                 }
                 
                 Maui.ShadowedRectangle
