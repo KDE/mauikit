@@ -42,8 +42,8 @@ Maui.AlternateListItem
         spacing: Maui.Style.space.big
         
         Layout.fillWidth: true
-        Layout.maximumWidth: 600
-        Layout.alignment: Qt.AlignCenter
+        // Layout.maximumWidth: 600
+        // Layout.alignment: Qt.AlignCenter
         implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
         contentItem: ColumnLayout

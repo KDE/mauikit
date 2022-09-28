@@ -99,7 +99,7 @@ Item
     /**
          * iconVisible : bool
          */
-    property alias iconVisible : _iconContainer.visible
+    property alias iconVisible : _iconLoader.visible
 
     /**
          * leftLabels : ColumnLayout
@@ -122,8 +122,7 @@ Item
          */
     property int iconSizeHint : Maui.Style.iconSizes.big
     property int imageSizeHint : -1
-
-    property int headerSizeHint : Math.max(iconSizeHint, imageSizeHint) 
+    property int headerSizeHint : -1
 
     /**
          * imageSource : string
@@ -160,7 +159,7 @@ Item
     /**
          * iconComponent : Component
          */
-    property Component iconComponent :  _iconContainer.visible ? _iconComponent : null
+    property Component iconComponent : _iconComponent 
 
     property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
     property bool hovered: false
@@ -195,55 +194,42 @@ Item
         anchors.fill: parent
         spacing: Maui.Style.space.medium
 
-        Item
-        {
-            id: _iconContainer
-            implicitHeight: visible ? control.headerSizeHint : 0
-
-            visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillHeight: true
-            Layout.fillWidth: !control.labelsVisible
-
-            Layout.preferredWidth:  control.headerSizeHint
-            Layout.preferredHeight: implicitHeight
-
-            //            Maui.Icon
-            //            {
-            //                visible: _iconLoader.status !== Loader.Ready
-            //                anchors.centerIn: parent
-            //                height: Maui.Style.iconSizes.small
-            //                width: height
-            //                source:  control.iconSource || "folder-images"
-            //                isMask: true
-            //                color: Maui.Theme.textColor
-            //                opacity: 0.5
-            //            }
-
             Loader
             {
                 id: _iconLoader
+                
                 asynchronous: true
-                anchors.fill: parent
-                //                    anchors.margins: Maui.Style.space.tiny
+                
+                visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
+                
+                active: visible
+                
+                Layout.alignment: Qt.AlignCenter
+                Layout.fillWidth: !control.labelsVisible
+                
+                Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint)
+                Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint)
 
                 sourceComponent: control.iconComponent
             }
-        }
+        
 
         ColumnLayout
         {
             id: _leftLabels
+            clip: true
             visible: control.labelsVisible
+            
             Layout.fillHeight: true
             Layout.fillWidth: true
-            spacing: 2
+            
+            spacing: 0
 
             Label
             {
                 id: _label1
                 visible: text.length
+                
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label2.visible ? Qt.AlignBottom :  Qt.AlignVCenter
@@ -251,7 +237,7 @@ Item
                 elide: Text.ElideRight
                 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
-
+textFormat: Text.PlainText
                 color: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
             }
 
@@ -259,6 +245,7 @@ Item
             {
                 id: _label2
                 visible: text.length
+                
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label1.visible ? Qt.AlignTop : Qt.AlignVCenter
@@ -266,55 +253,67 @@ Item
                 elide: Text.ElideRight
                 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
-
-                color: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
-                opacity: control.isCurrentItem ? 0.8 : 0.6
+                textFormat: Text.PlainText
+ color: _label1.color
+ opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
 
         ColumnLayout
         {
             id: _rightLabels
-            visible: control.width >  Maui.Style.units.gridUnit * 15 && control.labelsVisible && control.height > 32
+            clip: true
+            // visible: (control.width >  Maui.Style.units.gridUnit * 15) && control.labelsVisible 
+            
             Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.maximumWidth: control.width/2
+            Layout.preferredWidth: implicitWidth
+            Layout.minimumWidth: 0
             spacing: _leftLabels.spacing
 
             Label
             {
                 id: _label3
                 visible: text.length > 0
-                Layout.fillHeight: true
-                Layout.minimumWidth: implicitWidth
-                Layout.preferredWidth: implicitWidth
+                
+                Layout.fillHeight: true               
+                Layout.fillWidth: true
+                
                 Layout.alignment: Qt.AlignRight
+                
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label4.visible ? Qt.AlignBottom :  Qt.AlignVCenter
-
+                
                 font.pointSize: Maui.Style.fontSizes.small
                 font.weight: Font.Light
+                
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem || control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
-                opacity: control.isCurrentItem ? 0.8 : 0.6
+                textFormat: Text.PlainText
+ color: _label1.color
+ opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
             Label
             {
                 id: _label4
                 visible: text.length > 0
-                Layout.fillHeight: true
-                Layout.minimumWidth: implicitWidth
-                Layout.preferredWidth: implicitWidth
+                
+                Layout.fillHeight: true                
+                Layout.fillWidth: true
+                
                 Layout.alignment: Qt.AlignRight
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label3.visible ? Qt.AlignTop : Qt.AlignVCenter
-
+                
                 font.pointSize: Maui.Style.fontSizes.small
                 font.weight: Font.Light
+                
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
-                color: control.isCurrentItem || control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+                textFormat: Text.PlainText
+                color: _label1.color
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }

@@ -158,6 +158,8 @@ Maui.Dialog
                         
                         width: parent.width
                         label1.text: modelData.name
+                        label2.textFormat: Text.AutoText
+                        
                         label2.text: modelData.emailAddress.length ? String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress) :  String("<a href='%1'>%1</a>").arg(modelData.webAddress)
                         label3.text: modelData.task
                         isMask: true

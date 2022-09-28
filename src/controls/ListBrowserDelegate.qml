@@ -77,7 +77,7 @@ Maui.ItemDelegate
       * iconItem : Item
       */
     property alias iconItem : _template.iconItem
-
+    
     /**
       * iconVisible : bool
       */

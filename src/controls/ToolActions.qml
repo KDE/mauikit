@@ -328,16 +328,10 @@ T.Control
                 }
             }
             
-            contentItem: RowLayout
-            {
-                id: _defaultButtonLayout
-                spacing: control.spacing
-                
-                ToolButton
+            contentItem:  ToolButton
                 {
                     id: _defaultButtonIcon
-                   
-                    
+                                       
                     property var m_item : _defaultButtonMouseArea.buttonAction()
                     property Action m_action : m_item.action
                     
@@ -351,72 +345,26 @@ T.Control
                     
                     enabled: m_action ? m_action.enabled : true
                     
+                    subMenu: !control.canCyclic
+                    
                     text: m_action ?  m_action.text : ""
                     
                     display: control.display
                     
                     checkable: control.checkable && (m_action ? m_action.checkable : false)
                     
-                    background: Maui.ShadowedRectangle
+                    background: Rectangle
                     {
                         color: Maui.Theme.backgroundColor
-                        
-                        corners
-                        {
-                            topLeftRadius: Maui.Style.radiusV
-                            topRightRadius: !_dropArrowItem.visible ? Maui.Style.radiusV : 0
-                            bottomLeftRadius: Maui.Style.radiusV
-                            bottomRightRadius: !_dropArrowItem.visible ? Maui.Style.radiusV : 0
-                        }
+                        radius: Maui.Style.radiusV
                         
                         Behavior on color
                         {
                             Maui.ColorTransition{}
                         }
                     }
-                    
-                    // indicator:  Maui.Triangle
-                    // {
-                    //     // anchors.centerIn: parent
-                    //     rotation: -45
-                    //     color: _defaultButtonIcon.icon.color
-                    //     width: Maui.Style.iconSizes.tiny-3
-                    //     height:  width
-                    // }
                 }
-                
-                Maui.ShadowedRectangle
-                {
-                    id: _dropArrowItem
-                    visible: !control.canCyclic
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
-                    
-                    color: Maui.Theme.backgroundColor
-                    
-                    corners
-                    {
-                        topLeftRadius: 0
-                        topRightRadius: Maui.Style.radiusV
-                        bottomLeftRadius: 0
-                        bottomRightRadius: Maui.Style.radiusV
-                    }
-                    
-                    Maui.Triangle
-                    {
-                        anchors.centerIn: parent
-                        rotation: -45
-                        color: _defaultButtonIcon.icon.color
-                        width: Maui.Style.iconSizes.tiny-3
-                        height:  width
-                    }
-                    
-                    Behavior on color
-                    {
-                        Maui.ColorTransition{}
-                    }
-                }
-            }
+            
         }
     }
 }

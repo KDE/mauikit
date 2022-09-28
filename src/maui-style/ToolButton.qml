@@ -47,6 +47,8 @@ T.ToolButton
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
     
+    property bool subMenu : false
+    
     opacity: enabled ? 1 : 0.5
     
     property int preferredWidth : Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
@@ -71,8 +73,31 @@ T.ToolButton
     
     font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
     
+    indicator: Maui.Icon
+    {
+        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
+        y: control.topPadding + (control.availableHeight - height) / 2
+        
+        visible: control.subMenu
+        //        mirror: control.mirrored
+        color: control.icon.color
+        height: 8
+        width: 8
+        rotation: 90
+        source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/arrow-indicator.png"
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+    }
+    
     contentItem: IconLabel
     {
+        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + control.spacing : 0
+        
+        rightPadding: arrowPadding
+                
         spacing: control.spacing
         mirrored: control.mirrored
         display: control.display
