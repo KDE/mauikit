@@ -206,7 +206,7 @@ Item
                 
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: !control.labelsVisible
-                
+                Layout.fillHeight: true
                 Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint)
                 Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint)
 
