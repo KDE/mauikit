@@ -89,7 +89,7 @@ T.MenuItem
         color: control.icon.color
         height: 10
         width: 10
-        source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/arrow-indicator.png"
+        source: "qrc:/assets/arrow-right.svg"
         
         Behavior on color
         {

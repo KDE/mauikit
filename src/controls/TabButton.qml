@@ -90,16 +90,8 @@ T.TabButton
             Row
             {
                 id: _leftContent
-                Layout.fillHeight: true
-                
+                Layout.fillHeight: true                
             }
-            
-            //Item
-            //{
-            //Layout.fillHeight: true
-            //implicitWidth: height
-            //visible: control.closeButtonVisible && control.centerLabel
-            //}
             
             Label
             {
@@ -117,8 +109,7 @@ T.TabButton
             Row
             {
                 id: _rightContent
-                Layout.fillHeight: true
-                
+                Layout.fillHeight: true                
             }            
             
             Loader

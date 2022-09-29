@@ -8,12 +8,13 @@ AbstractButton
     id: control
     Maui.Theme.colorSet: Maui.Theme.Button
     
-    implicitWidth: (icon.width)+ leftPadding + rightPadding
+    implicitWidth: (icon.width) + leftPadding + rightPadding
     implicitHeight: (icon.height) + topPadding + bottomPadding
     
     hoverEnabled: true
     
     padding: Maui.Style.space.small
+    
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
         

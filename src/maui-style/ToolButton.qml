@@ -83,8 +83,7 @@ T.ToolButton
         color: control.icon.color
         height: 8
         width: 8
-        rotation: 90
-        source: "qrc:/qt-project.org/imports/QtQuick/Controls.2/Material/images/arrow-indicator.png"
+        source: "qrc:/assets/arrow-down.svg"
         
         Behavior on color
         {
@@ -94,7 +93,7 @@ T.ToolButton
     
     contentItem: IconLabel
     {
-        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + control.spacing : 0
+        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width : 0
         
         rightPadding: arrowPadding
                 
