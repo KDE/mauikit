@@ -77,24 +77,24 @@ Maui.Dialog
         //         color: "red"
         //     }
         
-        Item
+        Control
         {
             id: _header
             Layout.fillWidth: true
-            implicitHeight: _div1.implicitHeight + Maui.Style.space.huge
+            implicitHeight: _div1.implicitHeight + topPadding + bottomPadding
+            padding: Maui.Style.space.big
+            background: null
             
-            Maui.ListItemTemplate
+            contentItem: Maui.ListItemTemplate
             {
                 id: _div1
-                width: parent.width
-                anchors.centerIn: parent
                 
                 imageSource: Maui.App.iconName
                 
                 fillMode: Image.PreserveAspectFit
                 iconSizeHint: Maui.Style.iconSizes.huge
                 imageSizeHint: iconSizeHint
-                headerSizeHint: iconSizeHint + Maui.Style.space.huge
+                // headerSizeHint: iconSizeHint + Maui.Style.space.huge
                 isMask: false
                 
                 spacing: Maui.Style.space.big
@@ -115,7 +115,7 @@ Maui.Dialog
                 {
                     Maui.Theme.inherit: true
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
+                    background: null
                     readOnly: true
                     text:   Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
@@ -157,16 +157,16 @@ Maui.Dialog
 //                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
                         
                         width: parent.width
-                        label1.text: modelData.name
-                        label2.textFormat: Text.AutoText
                         
-                        label2.text: modelData.emailAddress.length ? String("<a href='mailto:%1'>%1</a>").arg(modelData.emailAddress) :  String("<a href='%1'>%1</a>").arg(modelData.webAddress)
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.textFormat: Text.AutoText
+                        
                         label3.text: modelData.task
                         isMask: true
                         
                         Connections
                         {
-                            target: _credits.label2
+                            target: _credits.label1
                             function onLinkActivated(link)
                             {
                                 Qt.openUrlExternally(link)
