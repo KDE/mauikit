@@ -87,8 +87,8 @@ Maui.ItemDelegate
         id: _template
         anchors.fill: parent
         labelsVisible: control.labelVisible
-        hovered: control.hovered
-      
+        hovered: control.hovered      
         isCurrentItem: control.isCurrentItem
+        highlighted: control.containsPress 
     }
 }
