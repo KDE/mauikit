@@ -44,7 +44,7 @@ T.Container
             id: _tabButton
             tabView: control
             tabBar: control.tabBar
-            closeButtonVisible : !control.mobile 
+            closeButtonVisible: !control.mobile
             
             leftContent: Maui.Badge
             {

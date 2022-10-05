@@ -188,7 +188,7 @@ T.Control
                     
                     background: Maui.ShadowedRectangle
                     {                        
-                        color: checkable ? (checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)) : Maui.Theme.backgroundColor
+                        color:  (checked || down ? Maui.Theme.highlightColor : ( hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)) 
                         corners
                         {
                             topLeftRadius: index === 0 ? Maui.Style.radiusV : 0

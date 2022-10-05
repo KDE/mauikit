@@ -30,10 +30,12 @@ T.Button
     opacity: control.enabled ? 1 : 0.5
 
     highlighted: activeFocus
+    property int preferredHeight : Maui.Style.rowHeight
     
-    implicitWidth: Math.max(background.implicitWidth, contentItem.implicitWidth) + Maui.Style.space.big + leftPadding + rightPadding
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem.implicitHeight + topPadding + bottomPadding)
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    
+    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+    
     
     hoverEnabled: !Maui.Handy.isMobile
 
@@ -81,8 +83,6 @@ T.Button
     background: Rectangle
     {
         visible: !control.flat
-        implicitWidth:  (Maui.Style.iconSizes.medium * 3) + Maui.Style.space.big
-        implicitHeight: Maui.Style.rowHeight
         color: control.highlighted || control.pressed || control.down || control.checked ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
         
         radius: Maui.Style.radiusV

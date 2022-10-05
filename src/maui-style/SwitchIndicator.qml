@@ -45,7 +45,7 @@ Item
     
     property Item control
     property alias handle: handle
-    property color m_color : control.checked ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
+    property color m_color : control.checked ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor)
     
     Rectangle
     {

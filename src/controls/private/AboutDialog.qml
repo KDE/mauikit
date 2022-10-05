@@ -153,8 +153,7 @@ Maui.Dialog
                         id: _credits
                         iconSource: "view-media-artist"
                         
-                        iconSizeHint: Maui.Style.iconSizes.medium
-//                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
+                        iconSizeHint: Maui.Style.iconSize
                         
                         width: parent.width
                         
@@ -193,8 +192,7 @@ Maui.Dialog
                         width: parent.width
                         isMask: true
                         
-                        iconSizeHint: Maui.Style.iconSizes.medium
-//                         headerSizeHint: iconSizeHint + Maui.Style.space.medium
+                        iconSizeHint: Maui.Style.iconSize
                         
                         label1.text: modelData.name
                         label3.text: i18n("License")
@@ -210,8 +208,7 @@ Maui.Dialog
                 isMask: true
                 
                 iconSource: "code-context"
-                iconSizeHint: Maui.Style.iconSizes.medium
-//                 headerSizeHint: iconSizeHint + Maui.Style.space.medium
+                iconSizeHint: Maui.Style.iconSize
                 
                 label1.text: i18n("Powered by")
                 label2.text: "MauiKit Frameworks "
@@ -238,7 +235,7 @@ Maui.Dialog
                 id: _footerColumn
                 Layout.fillWidth: true
                 opacity: 0.7
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.space.small
                 
                 Maui.Icon
                 {

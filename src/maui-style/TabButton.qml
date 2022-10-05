@@ -27,7 +27,8 @@ import QtQuick.Controls 2.3
 import QtQuick.Templates 2.3 as T
 import org.mauikit.controls 1.2 as Maui
 
-T.TabButton {
+T.TabButton
+{
     id: controlRoot
 
     //Some qstyles like fusion don't have correct pixel metrics here and just return 0
