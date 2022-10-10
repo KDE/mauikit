@@ -147,24 +147,9 @@ Window
           height: _content.height
           radius: Maui.Style.radiusV
         }            
-      }
-      
+      }      
     }
-    
-    //background: Rectangle
-    //{
-      //id: _pageBackground
-      //opacity: Maui.App.translucencyAvailable ? 0.7 : 1
-      //color: Maui.Theme.backgroundColor
-      //radius: root.isMaximized || root.isFullScreen || !Maui.App.controls.enableCSD ? 0 : Maui.Style.radiusV
-      
-      //Behavior on color
-      //{
-        //Maui.ColorTransition{}
-      //}
-    //}
-    
-    
+        
     Loader
     {
       active: Maui.App.controls.enableCSD

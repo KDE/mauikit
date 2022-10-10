@@ -176,7 +176,7 @@ T.TextField
             z: parent.z + 1
             spacing: Maui.Style.space.medium        
             
-            Maui.BasicToolButton
+            ToolButton
             {
                 id: clearButton
                 height: parent.height
@@ -185,7 +185,6 @@ T.TextField
                 
                 visible: control.text.length || control.activeFocus
                 icon.name: "edit-clear"
-                icon.color: control.color
                
                 onClicked:
                 {
@@ -198,13 +197,12 @@ T.TextField
             {
                 model: control.actions
                 
-                Maui.BasicToolButton
+                ToolButton
                 {
                     flat: !checkable
                     height: parent.height
                     focusPolicy: Qt.NoFocus
                     action: modelData
-                    icon.color: control.color
                 }
             }
         }
