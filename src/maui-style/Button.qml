@@ -50,11 +50,7 @@ T.Button
     spacing: Maui.Style.space.small
     
     padding: Maui.Style.space.medium
-    rightPadding: padding
-    leftPadding: padding
-    topPadding: padding
-    bottomPadding: padding
-    
+ 
     focusPolicy: Qt.StrongFocus
     focus: true
     
@@ -83,7 +79,9 @@ T.Button
     background: Rectangle
     {
         visible: !control.flat
-        color: control.highlighted || control.pressed || control.down || control.checked ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
+        
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
+        
         
         radius: Maui.Style.radiusV
         

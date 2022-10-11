@@ -29,12 +29,13 @@ T.Slider
 {
     id: control
     Maui.Theme.colorSet: Maui.Theme.Button
-
+    Maui.Theme.inherit: false
+    
     implicitWidth: background.implicitWidth
     implicitHeight: background.implicitHeight
 
-    hoverEnabled: true
-
+    hoverEnabled: !Maui.Handy.isMobile
+    
     handle: Rectangle
     {
         id: handleRect
@@ -77,7 +78,7 @@ T.Slider
         width: control.horizontal ? control.availableWidth : 8
         height: control.horizontal ? 8 : control.availableHeight
 
-        color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+        color: control.hovered ? control.Maui.Theme.hoverColor : control.Maui.Theme.backgroundColor
         scale: control.horizontal && control.mirrored ? -1 : 1
         
         Behavior on color

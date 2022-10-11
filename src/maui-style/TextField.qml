@@ -41,6 +41,9 @@ T.TextField
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
+    
+    hoverEnabled: !Maui.Handy.isMobile
+    
     opacity: control.enabled ? 1 : 0.5
     
     color: Maui.Theme.textColor
@@ -53,7 +56,9 @@ T.TextField
     
     verticalAlignment: TextInput.AlignVCenter
     horizontalAlignment: Text.AlignLeft
+    
     padding: 0
+    
     leftPadding: Maui.Style.space.small
     rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.small
     
@@ -282,7 +287,7 @@ T.TextField
     
     background: Rectangle 
     {       
-        color: control.enabled ? Maui.Theme.backgroundColor : "transparent"
+        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
         border.color: !control.enabled ? Maui.Theme.disabledTextColor : "transparent"
         
         radius: Maui.Style.radiusV
