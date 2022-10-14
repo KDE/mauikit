@@ -59,11 +59,7 @@ MauiApp::MauiApp()
         m_instance = nullptr;
     });
     
-    connect(m_controls, &CSDControls::enableCSDChanged, [this]()
-    {
-       qDebug() << "CSD ENABLED CHANGED<<<<" << m_controls->enableCSD(); 
-    });
-
+    
     setDefaultMauiStyle();
 }
 
@@ -172,7 +168,7 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
         Q_EMIT styleNameChanged();
         Q_EMIT sourceChanged();
     });
-    
+ 
 //     connect(this, &CSDControls::styleNameChanged, [this]()
 //     {
 //     });
