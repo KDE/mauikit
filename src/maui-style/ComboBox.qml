@@ -48,6 +48,10 @@ T.ComboBox
     id: control
 
     enabled: control.count > 0
+    hoverEnabled: !Maui.Handy.isMobile
+    
+    opacity: control.enabled ? 1 : 0.5
+    
     //NOTE: typeof necessary to not have warnings on Qt 5.7
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
@@ -55,19 +59,15 @@ T.ComboBox
     readonly property bool responsive: Maui.Handy.isMobile
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
     
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding,
-                             implicitIndicatorHeight + topPadding + bottomPadding)
     
-    //    topInset: Maui.Style.space.small
-    //    bottomInset: Maui.Style.space.small
+    readonly property int preferredWidth : 200
+    readonly property int preferredHeight : Maui.Style.rowHeight
     
-    spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
-    
-    leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
-    rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
+    implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)    
+    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+        
+    spacing: Maui.Style.space.small
+    padding: Maui.Style.space.medium
     
     delegate: MenuItem
     {
@@ -83,12 +83,13 @@ T.ComboBox
     
     indicator: Maui.Icon
     {
-        x: control.mirrored ? control.padding : control.width - width - control.padding - Maui.Style.space.small
+        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
         y: control.topPadding + (control.availableHeight - height) / 2
-        color: control.enabled ? control.Maui.Theme.textColor : control.Maui.Theme.highlightColor
-        source: "go-down"
-        height: Maui.Style.iconSizes.small
-        width: height
+        color: control.icon.color
+        source: "qrc:/assets/arrow-down.svg"
+        height: 8
+        width: 8
+        
         Behavior on color
         {
             Maui.ColorTransition{}
@@ -98,9 +99,9 @@ T.ComboBox
 
     contentItem: T.TextField
     {
-        padding: Maui.Style.space.small
-        leftPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? 0 : Maui.Style.space.medium) + control.leftPadding
-        rightPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? Maui.Style.space.medium : 0) + control.rightPadding
+        padding: 0
+        leftPadding : 0
+        rightPadding: control.indicator ? control.indicator.width : 0
         text: control.editable ? control.editText : control.displayText
         
         enabled: control.editable
@@ -112,7 +113,7 @@ T.ComboBox
         selectByMouse: !Maui.Handy.isMobile
         
         font: control.font
-        color: control.Maui.Theme.textColor
+        color: Maui.Theme.textColor
         selectionColor:  control.Maui.Theme.highlightColor
         selectedTextColor: control.Maui.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
@@ -122,12 +123,10 @@ T.ComboBox
     
     background: Rectangle
     {
-        implicitWidth: 200
-        implicitHeight: Maui.Style.rowHeight
         
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.editable ? Maui.Theme.backgroundColor : Maui.Theme.backgroundColor) : "transparent"
+        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor) : "transparent"
         
         border.color: control.enabled ? ( control.editable && control.activeFocus ? Maui.Theme.highlightColor : color) : Maui.Theme.backgroundColor
         

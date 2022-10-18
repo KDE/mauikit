@@ -62,6 +62,8 @@ T.Control
    * labelTxt : Label
    */
     property alias labelTxt : labelTxt
+    
+    property alias color :labelTxt.color
 
     background: Item{}
 

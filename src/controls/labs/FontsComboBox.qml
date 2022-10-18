@@ -61,28 +61,4 @@ Maui.ComboBox
         Maui.Theme.inherit: control.Maui.Theme.inherit
 
     }
-    
-    contentItem: T.TextField
-    {
-        padding: Maui.Style.space.small
-        leftPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? 0 : Maui.Style.space.medium) + control.leftPadding
-        rightPadding: (control.editable ? Maui.Style.space.medium : control.mirrored ? Maui.Style.space.medium : 0) + control.rightPadding
-        text: control.editable ? control.editText : control.displayText
-        
-        enabled: control.editable
-        autoScroll: control.editable
-        readOnly: control.down
-        inputMethodHints: control.inputMethodHints
-        validator: control.validator
-        renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
-        selectByMouse: !Maui.Handy.isMobile
-
-        font: control.font
-        color: control.Maui.Theme.textColor
-        selectionColor:  control.Maui.Theme.highlightColor
-        selectedTextColor: control.Maui.Theme.highlightedTextColor
-        verticalAlignment: Text.AlignVCenter
-        opacity: control.enabled ? 1 : 0.5
-        //        cursorDelegate: CursorDelegate { }
-    }
 }
