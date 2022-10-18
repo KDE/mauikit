@@ -72,7 +72,7 @@ T.ComboBox
     spacing: Maui.Style.space.small
     padding: Maui.Style.space.medium
     
-    delegate: MenuItem
+           delegate: MenuItem
     {
         width: ListView.view.width
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
@@ -88,7 +88,7 @@ T.ComboBox
     {
         x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
         y: control.topPadding + (control.availableHeight - height) / 2
-        color: control.icon.color
+        color: Maui.Theme.textColor
         source: "qrc:/assets/arrow-down.svg"
         height: 8
         width: 8
@@ -97,8 +97,7 @@ T.ComboBox
         {
             Maui.ColorTransition{}
         }    
-    }
-    
+    }    
 
     contentItem: T.TextField
     {
