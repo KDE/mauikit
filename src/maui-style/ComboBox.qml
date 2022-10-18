@@ -56,9 +56,6 @@ T.ComboBox
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
     
-    hoverEnabled: !Maui.Handy.isMobile
-    opacity: enabled ? 1 : 0.5
-
     readonly property bool responsive: Maui.Handy.isMobile
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
     
