@@ -47,6 +47,7 @@ Maui.CheckBoxItem
     checked: control.checked
     checkable: control.checkable
     autoExclusive: control.autoExclusive
+    hovered: control.hovered
     
     property Item control    
 }

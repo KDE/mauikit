@@ -94,6 +94,7 @@ T.Control
     
     background: Rectangle
     {
+      opacity: Maui.App.translucencyAvailable && Maui.Style.enableEffects ? 0.8 :  1
       color: Maui.Theme.backgroundColor
       Behavior on color
       {

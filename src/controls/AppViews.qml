@@ -63,17 +63,17 @@ Maui.Page
     /*!
      *     The toolbar where the app view buttons will be* added.
      */
-    
+    headBar.forceCenterMiddleContent: false
     headBar.middleContent: Loader
     {
         asynchronous: true
-        Layout.alignment: Qt.AlignCenter
-//height: 190
+        Layout.alignment: Qt.AlignLeft
+
         sourceComponent: Private.ActionGroup
         {
             id: _actionGroup
             currentIndex : _swipeView.currentIndex
-display: ToolButton.TextUnderIcon
+            display: ToolButton.TextUnderIcon
             Binding on currentIndex 
             {
                 value: _swipeView.currentIndex

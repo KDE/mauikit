@@ -48,13 +48,16 @@ T.SpinBox
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
-    
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            contentItem.implicitWidth +
+        hoverEnabled: !Maui.Handy.isMobile
+
+            property int preferredHeight : Maui.Style.rowHeight
+    property int preferredWidth : 100
+
+    implicitWidth: Math.max(preferredWidth, contentItem.implicitWidth +
                             up.implicitIndicatorWidth +
-                            down.implicitIndicatorWidth)
+                            down.implicitIndicatorWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitContentHeight + topPadding + bottomPadding,
-                             implicitBackgroundHeight,
+                             preferredHeight,
                              up.implicitIndicatorHeight,
                              down.implicitIndicatorHeight)
     
@@ -122,7 +125,7 @@ T.SpinBox
     up.indicator: Item
     {
         x: control.mirrored ? 0 : parent.width - width
-        height: parent.height
+        height: control.preferredHeight
         width: height
         
         Maui.Icon
@@ -138,7 +141,7 @@ T.SpinBox
     down.indicator: Item
     {
         x: control.mirrored ? parent.width - width : 0
-        height: parent.height
+        height: control.preferredHeight
         width: height
         
         Maui.Icon
@@ -158,12 +161,10 @@ T.SpinBox
     
     background: Rectangle
     {
-        implicitWidth:  (Maui.Style.iconSizes.medium * 6) + Maui.Style.space.big
-        implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
         
         radius: Maui.Style.radiusV
         
-        color: Maui.Theme.backgroundColor
+        color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
         
         Behavior on color
         {

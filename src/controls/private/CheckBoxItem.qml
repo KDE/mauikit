@@ -12,14 +12,14 @@ Item
     property bool checked : false
     property bool checkable: false
     property bool autoExclusive: false
-    
+    property bool hovered: false
     //     signal toggled(bool state)    
     
     Rectangle
     {
         id: _rec
         anchors.fill: parent
-        color: control.checked ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
+        color: control.checked ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
         radius: control.autoExclusive ? height/2 : 4
         border.color: control.checked ?  Maui.Theme.highlightedTextColor :  Maui.Theme.textColor 
         
