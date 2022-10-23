@@ -44,7 +44,7 @@ import org.mauikit.controls 1.3 as Maui
 
 import QtGraphicalEffects 1.0
 
-Maui.ComboBox
+ComboBox
 {
     id: control
     font.family: control.displayText

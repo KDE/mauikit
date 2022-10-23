@@ -52,6 +52,8 @@ T.ComboBox
     
     opacity: control.enabled ? 1 : 0.5
     
+    property alias popupContent: _popup.contentItem
+    
     //NOTE: typeof necessary to not have warnings on Qt 5.7
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
@@ -169,6 +171,7 @@ T.ComboBox
     
     popup: T.Popup
     {
+        id: _popup
         parent: control.responsive ? control.parent.Window.window.contentItem : control
         x: 0
         y: control.responsive ? parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
