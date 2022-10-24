@@ -19,6 +19,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Layouts 1.3
@@ -51,7 +52,7 @@ T.TextField
     selectedTextColor: Maui.Theme.highlightedTextColor
     focus: true
     
-    implicitHeight: Math.max(_actionsLayoutLoader.implicitHeight, Maui.Style.rowHeight)  + topPadding + bottomPadding
+    implicitHeight: Math.max(_layout.implicitHeight, Maui.Style.rowHeight)  + topPadding + bottomPadding
     implicitWidth: 100 + leftPadding + rightPadding
     
     verticalAlignment: TextInput.AlignVCenter
@@ -59,10 +60,11 @@ T.TextField
     
     padding: 0
     
-    leftPadding: Maui.Style.space.small
-    rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.small
+    leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
+    rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.medium
     
     selectByMouse: !Maui.Handy.isMobile
+    renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
     
     persistentSelection: true
     
@@ -126,27 +128,16 @@ T.TextField
         }
     }    
     
-    RowLayout
+     RowLayout
     {
-        clip: true
-       anchors.fill: parent
-       anchors.leftMargin: Maui.Style.space.small
-        visible: opacity > 0
-        opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.4 : 0     
-        
-        Behavior on opacity 
-        {
-            NumberAnimation
-            {
-                duration: Maui.Style.units.longDuration
-                easing.type: Easing.InOutQuad
-            }
-        }        
-        
+        id: _layout
+       anchors.fill: parent   
+            anchors.leftMargin: Maui.Style.space.medium
+            
         Maui.Icon
         {
             id: _icon
-            visible: String(_icon.source).length > 0
+            visible: source ? true : false
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color   
@@ -162,56 +153,67 @@ T.TextField
             verticalAlignment: control.verticalAlignment
             elide: Text.ElideRight
             wrapMode: Text.NoWrap
-        }
-    }
-    
-    Loader
-    {
-        id: _actionsLayoutLoader
-        //         height: parent.height
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.margins: 2
-        anchors.right: control.right
-        //         anchors.verticalCenter: parent.verticalCenter
-        asynchronous: true
-        
-        sourceComponent: Row
-        {
-            z: parent.z + 1
-            spacing: Maui.Style.space.medium        
             
-            ToolButton
+            visible: opacity > 0
+            opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.4 : 0  
+                       
+            
+            Behavior on opacity 
             {
-                id: clearButton
-                height: parent.height
-                flat: true
-                focusPolicy: Qt.NoFocus
-                
-                visible: control.text.length || control.activeFocus
-                icon.name: "edit-clear"
-               
-                onClicked:
+                NumberAnimation
                 {
-                    control.clear()
-                    cleared()
+                    duration: Maui.Style.units.longDuration
+                    easing.type: Easing.InOutQuad
                 }
-            }
+            }  
+        }        
+        
+        Loader
+        {
+            id: _actionsLayoutLoader
+            asynchronous: true
+            Layout.fillHeight: true
+            Layout.alignment: Qt.AlignRight
             
-            Repeater
+            sourceComponent: Row
             {
-                model: control.actions
+                z: parent.z + 1
+                spacing: Maui.Style.space.medium    
                 
                 ToolButton
                 {
-                    flat: !checkable
+                    id: clearButton
                     height: parent.height
+                    flat: true
                     focusPolicy: Qt.NoFocus
-                    action: modelData
+                    
+                    visible: control.text.length || control.activeFocus
+                    icon.name: "edit-clear"
+                    
+                    onClicked:
+                    {
+                        control.clear()
+                        cleared()
+                    }
+                }
+                
+                Repeater
+                {
+                    model: control.actions
+                    
+                    ToolButton
+                    {
+                        flat: !checkable
+                        height: parent.height
+                        focusPolicy: Qt.NoFocus
+                        action: modelData
+                    }
                 }
             }
         }
+        
     }
+    
     
     Maui.ContextualMenu
     {

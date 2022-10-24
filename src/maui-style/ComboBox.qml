@@ -58,6 +58,8 @@ T.ComboBox
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
     
+    property alias icon : _icon
+    
     readonly property bool responsive: Maui.Handy.isMobile
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
     
@@ -86,7 +88,7 @@ T.ComboBox
     indicator: Maui.Icon
     {
         x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
-        y: control.topPadding + (control.availableHeight - height) / 2
+        y: (control.topPadding + (control.availableHeight - height) / 2) - 2
         color: Maui.Theme.textColor
         source: "qrc:/assets/arrow-down.svg"
         height: 8
@@ -101,7 +103,7 @@ T.ComboBox
     contentItem: T.TextField
     {
         padding: 0
-        leftPadding : 0
+        leftPadding : _icon.visible ? _icon.width + Maui.Style.space.medium : 0
         rightPadding: control.indicator ? control.indicator.width : 0
         text: control.editable ? control.editText : control.displayText
         
@@ -118,8 +120,16 @@ T.ComboBox
         selectionColor:  control.Maui.Theme.highlightColor
         selectedTextColor: control.Maui.Theme.highlightedTextColor
         verticalAlignment: Text.AlignVCenter
-        opacity: control.enabled ? 1 : 0.5
         //        cursorDelegate: CursorDelegate { }
+        
+        Maui.Icon
+        {
+            id: _icon
+            visible: source ? true : false
+            height: visible ? Maui.Style.iconSize : 0
+            width: height
+            color: Maui.Theme.textColor
+        }
     }
     
     background: Rectangle
@@ -172,6 +182,10 @@ T.ComboBox
     popup: T.Popup
     {
         id: _popup
+        
+        Maui.Theme.colorSet: Maui.Theme.View
+        Maui.Theme.inherit: false
+        
         parent: control.responsive ? control.parent.Window.window.contentItem : control
         x: 0
         y: control.responsive ? parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
@@ -262,7 +276,7 @@ T.ComboBox
         {
             id: _bg
             implicitWidth: Maui.Style.units.gridUnit * 8
-            color: control.Maui.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             radius: control.responsive ? 0 : Maui.Style.radiusV
             
             readonly property color m_color : Qt.darker(Maui.Theme.backgroundColor, 2.2)
@@ -297,13 +311,11 @@ T.ComboBox
             layer.enabled: control.responsive
             layer.effect: DropShadow
             {
-                cached: true
                 horizontalOffset: 0
                 verticalOffset: 0
                 radius: 8.0
                 samples: 16
-                color:  "#80000000"
-                smooth: true
+                color: Qt.rgba(0, 0, 0, 0.3)
             }
         }
     }

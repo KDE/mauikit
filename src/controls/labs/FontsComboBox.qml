@@ -49,6 +49,7 @@ ComboBox
     id: control
     font.family: control.displayText
     model: Qt.fontFamilies()
+    icon.source: "font"
     
     delegate: MenuItem
     {

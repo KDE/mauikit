@@ -31,6 +31,9 @@ import org.mauikit.controls 1.3 as Maui
 T.ToolBar 
 {
     id: control
+    
+    default property alias content : _layout.data
+        
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
     
@@ -45,7 +48,11 @@ T.ToolBar
     spacing: Maui.Style.space.small    
     padding: Maui.Style.space.small  
     
-    contentItem: Item {}
+    contentItem: Row
+    {
+        id: _layout
+        spacing: control.spacing
+    }
     
     background: Rectangle
     {

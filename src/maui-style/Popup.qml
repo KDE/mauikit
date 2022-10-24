@@ -69,9 +69,9 @@ T.Popup
         radius: Maui.Style.radiusV
         color: Maui.Theme.backgroundColor
         border.color: Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
-        layer.enabled: true
         
-        layer.effect: DropShadow {
+        layer.enabled: true
+                layer.effect: DropShadow {
             transparentBorder: true
             radius: 8
             samples: 16
