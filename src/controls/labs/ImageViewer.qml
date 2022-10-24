@@ -163,10 +163,11 @@ Flickable
             autoTransform: true
             asynchronous: true
             
-            BusyIndicator
+            Maui.ProgressIndicator
             {
-                anchors.centerIn: parent
-                running: image.status === Image.Loading
+                width: parent.width
+                anchors.bottom: parent.bottom
+                visible: image.status === Image.Loading
             }
             
             Maui.Holder

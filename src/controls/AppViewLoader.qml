@@ -19,31 +19,34 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import org.mauikit.controls 1.3 as Maui
+
 
 /*!
-\since org.mauikit.controls 1.0
-\inqmlmodule org.mauikit.controls
-\brief Lazy-loads app views
-
-Wraps a component into a loader that is active only if it is the next, current or previous view in used, or if it has already been created.
-This component is useful when the AppViews has more then 4 different views to relief the loading of many views at the same time.
-*/
+ \ since org.maui*kit.controls 1.0
+ \inqmlmodule org.mauikit.controls
+ \brief Lazy-loads app views
+ 
+ Wraps a component into a loader that is active only if it is the next, current or previous view in used, or if it has already been created.
+ This component is useful when the AppViews has more then 4 different views to relief the loading of many views at the same time.
+ */
 Loader
 {
-    id: control
-
-    /*!
-      \qmlproperty Component ApplicationWindow::content
-
-      The source component to be loaded.
-    */
-    asynchronous: true
-    default property alias content : control.sourceComponent
+  id: control
+  
+  /*!
+   \ qmlprope*rty Component ApplicationWindow::content
+   
+   The source component to be loaded.
+   */
+  asynchronous: true
+  default property alias content : control.sourceComponent
     active: (SwipeView.view.visible && SwipeView.isCurrentItem) || item
-
-    BusyIndicator
+    
+    Maui.ProgressIndicator
     {
-        running: control.status === Loader.Loading
-        anchors.centerIn: parent
+      width: parent.width
+      anchors.bottom: parent.bottom
+      visible: control.status === Loader.Loading
     }
 }
