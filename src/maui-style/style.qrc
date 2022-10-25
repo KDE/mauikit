@@ -46,6 +46,7 @@
         <file>RadioButton.qml</file>
         <file>RadioDelegate.qml</file>
         <file>RadioIndicator.qml</file>
+        <file>Tumbler.qml</file>
         <file>private/MobileCursor.qml</file>
     </qresource>
 </RCC>

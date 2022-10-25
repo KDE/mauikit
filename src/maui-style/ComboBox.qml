@@ -274,28 +274,17 @@ T.ComboBox
         
         background: Rectangle
         {
-            id: _bg
             implicitWidth: Maui.Style.units.gridUnit * 8
-            color: Maui.Theme.backgroundColor
+            color: _popup.Maui.Theme.backgroundColor
             radius: control.responsive ? 0 : Maui.Style.radiusV
+            property color borderColor: Maui.Theme.textColor
             
-            readonly property color m_color : Qt.darker(Maui.Theme.backgroundColor, 2.2)
-            border.color: control.responsive ? "transparent" : Qt.rgba(m_color.r, m_color.g, m_color.b, 0.7)
+            border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
             
             Behavior on color
             {
                 Maui.ColorTransition{}
                 
-            }
-            Rectangle
-            {
-                visible: !control.responsive
-                anchors.fill: parent
-                anchors.margins: 1
-                color: "transparent"
-                radius: parent.radius - 0.5
-                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
-                opacity: 0.7
             }
             
             Maui.Separator
@@ -307,6 +296,36 @@ T.ComboBox
                 height: 0.5
                 weight: Maui.Separator.Weight.Light
             }
+            
+              MouseArea
+        {
+            property int wheelDelta: 0
+            
+            anchors
+            {
+                fill: parent
+                leftMargin: control.leftPadding
+                rightMargin: control.rightPadding
+            }
+            
+            acceptedButtons: Qt.NoButton
+            
+            onWheel:
+            {
+                var delta = wheel.angleDelta.y || wheel.angleDelta.x
+                wheelDelta += delta;
+                // magic number 120 for common "one click"
+                // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                while (wheelDelta >= 120) {
+                    wheelDelta -= 120;
+                    control.decrementCurrentIndex();
+                }
+                while (wheelDelta <= -120) {
+                    wheelDelta += 120;
+                    control.incrementCurrentIndex();
+                }
+            }
+        }
             
             layer.enabled: control.responsive
             layer.effect: DropShadow
