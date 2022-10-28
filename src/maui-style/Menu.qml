@@ -66,7 +66,7 @@ T.Menu
     
     implicitWidth:  Math.min(parentWindow.width, Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding ))
     
-    implicitHeight: control.responsive ? parentWindow.height* 0.7 : Math.min(implicitContentHeight + topPadding + bottomPadding, parentWindow.height)
+    implicitHeight: Math.min(implicitContentHeight + topPadding + bottomPadding, (control.responsive ? parentWindow.height *0.7 : parentWindow.height))
     
     focus: true
     
