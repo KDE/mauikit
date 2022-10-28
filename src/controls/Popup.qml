@@ -170,13 +170,11 @@ T.Popup
             layer.enabled: !control.filling
             layer.effect: DropShadow
             {
-                cached: true
                 horizontalOffset: 0
-                verticalOffset: 0
-                radius: 8.0
-                samples: 16
-                color:  "#80000000"
-                smooth: true
+            verticalOffset: 3
+            radius: 12
+            samples: 17
+            color: "#000000"
             }            
             
             Behavior on color

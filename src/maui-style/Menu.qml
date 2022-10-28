@@ -59,28 +59,24 @@ T.Menu
     transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
     
     readonly property int finalY : control.responsive ? parentWindow.height - height : 0
-    y: finalY
+   
+   y: finalY
+    x: control.responsive ? Math.round(parentWindow.width/2 - control.width/2) : 0
     
-    implicitWidth: control.responsive ? parentWindow.width :  Math.min(parentWindow.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
+    implicitWidth: Math.min(parentWindow.width, Math.max(300, implicitContentWidth + leftPadding + rightPadding ))
     
-    implicitHeight: control.responsive ? Math.min(parentWindow.height * 0.8, contentHeight + Maui.Style.space.huge) : implicitContentHeight + topPadding + bottomPadding
+    implicitHeight: Math.min(implicitContentHeight + topPadding + bottomPadding, parentWindow.height)
     
     focus: true
+    
     modal: control.responsive
     cascade: !control.responsive
     overlap: cascade ? 0-Maui.Style.space.medium : 0
     
-    spacing: control.responsive ? Maui.Style.space.medium : Maui.Style.space.small
-    
-    margins: 0
-    rightMargin: leftMargin
-    leftMargin: control.margins
-    topMargin: control.margins
-    bottomMargin: control.margins
-    
-    padding: control.responsive ? 0 : 1
-    topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
-    bottomPadding: Maui.Style.space.medium
+    spacing: Maui.Style.space.medium 
+        padding: spacing
+
+    margins: Maui.Style.space.big    
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem { }
@@ -136,8 +132,9 @@ T.Menu
     {
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
         ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        
         focus: true
-        padding: Maui.Style.space.small
+        padding: 0
         
         ListView
         {
@@ -162,7 +159,7 @@ T.Menu
             
             keyNavigationEnabled : true
             keyNavigationWraps : true
-            
+ 
             header: T.Control
             {
                 visible: control.title && control.title.length
@@ -194,12 +191,12 @@ T.Menu
     background: Rectangle
     {
         id: _bg
-        implicitWidth: Maui.Style.units.gridUnit * 8
         color: control.Maui.Theme.backgroundColor
-        radius: control.responsive ? 0 : Maui.Style.radiusV
+        radius: Maui.Style.radiusV
+        
         property color borderColor: Maui.Theme.textColor
         
-        border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
+        border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
         
         Behavior on color
         {
@@ -211,23 +208,23 @@ T.Menu
             Maui.ColorTransition{}
         }
         
-        Maui.Separator
-        {
-            visible: control.responsive
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
-            weight: Maui.Separator.Weight.Light
-        }
+        // Maui.Separator
+        // {
+        //     visible: control.responsive
+        //     anchors.top: parent.top
+        //     anchors.left: parent.left
+        //     anchors.right: parent.right
+        //     weight: Maui.Separator.Weight.Light
+        // }
         
         layer.enabled: true
         layer.effect: DropShadow
         {
             horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8.0
-            samples: 16
-            color:  "#80000000"
+            verticalOffset: 3
+            radius: 12
+            samples: 17
+            color: "#000000"
         }
     }
     
