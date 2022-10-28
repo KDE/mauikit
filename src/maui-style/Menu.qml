@@ -63,9 +63,9 @@ T.Menu
    y: finalY
     x: control.responsive ? Math.round(parentWindow.width/2 - control.width/2) : 0
     
-    implicitWidth: Math.min(parentWindow.width, Math.max(300, implicitContentWidth + leftPadding + rightPadding ))
+    implicitWidth: control.responsive ? parentWindow.width : Math.min(parentWindow.width, Math.max(300, implicitContentWidth + leftPadding + rightPadding ))
     
-    implicitHeight: Math.min(implicitContentHeight + topPadding + bottomPadding, parentWindow.height)
+    implicitHeight: control.responsive ? parentWindow.height* 0.7 : Math.min(implicitContentHeight + topPadding + bottomPadding, parentWindow.height)
     
     focus: true
     
