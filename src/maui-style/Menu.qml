@@ -59,11 +59,12 @@ T.Menu
     transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
     
     readonly property int finalY : control.responsive ? parentWindow.height - height : 0
+   readonly property int preferredWidth: control.responsive ? 600 : 300 
    
    y: finalY
     x: control.responsive ? Math.round(parentWindow.width/2 - control.width/2) : 0
     
-    implicitWidth: control.responsive ? parentWindow.width : Math.min(parentWindow.width, Math.max(300, implicitContentWidth + leftPadding + rightPadding ))
+    implicitWidth:  Math.min(parentWindow.width, Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding ))
     
     implicitHeight: control.responsive ? parentWindow.height* 0.7 : Math.min(implicitContentHeight + topPadding + bottomPadding, parentWindow.height)
     
@@ -76,7 +77,7 @@ T.Menu
     spacing: Maui.Style.space.medium 
         padding: spacing
 
-    margins: Maui.Style.space.big    
+    margins: Maui.Style.space.medium    
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem { }
