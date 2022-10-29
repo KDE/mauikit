@@ -47,8 +47,6 @@ private:
 #endif
 #endif
     }
-
-    void initializeEngine(QQmlEngine *engine, const char *uri) override;
 };
 
 #endif // MAUIKIT_H

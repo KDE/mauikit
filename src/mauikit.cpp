@@ -58,13 +58,6 @@ QUrl MauiKit::componentUrl(const QString &fileName) const
     return QUrl(resolveFileUrl(fileName));
 }
 
-void MauiKit::initializeEngine(QQmlEngine *engine, const char *uri)
-{
-    Q_UNUSED(uri);
-    KLocalizedString::setApplicationDomain("mauikit");
-    engine->rootContext()->setContextObject(new KLocalizedContext(engine));
-}
-
 void MauiKit::registerTypes(const char *uri)
 {
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
