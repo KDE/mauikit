@@ -80,7 +80,7 @@ Maui.ItemDelegate
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: hovered
-    ToolTip.text: qsTr(control.label)
+    ToolTip.text: control.label
 
     Maui.ListItemTemplate
     {
