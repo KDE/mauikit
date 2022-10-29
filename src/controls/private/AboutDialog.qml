@@ -53,21 +53,21 @@ Maui.Dialog
         //Action
         //{
             //icon.name: "link"
-            //text: i18n("Site")
+            //text: i18nd("mauikit", "Site")
             //onTriggered: Qt.openUrlExternally(Maui.App.about.homepage)
         //},
         
         //Action
         //{
             //icon.name: "love"
-            //text: i18n("Donate")
+            //text: i18nd("mauikit", "Donate")
             //onTriggered: Qt.openUrlExternally(Maui.App.donationPage)
         //},
         
         //Action
         //{
             //icon.name: "documentinfo"
-            //text: i18n("Report")
+            //text: i18nd("mauikit", "Report")
             //onTriggered: Qt.openUrlExternally(Maui.App.about.bugAddress)
         //}
         //]
@@ -195,7 +195,7 @@ Maui.Dialog
                         iconSizeHint: Maui.Style.iconSize
                         
                         label1.text: modelData.name
-                        label3.text: i18n("License")
+                        label3.text: i18nd("mauikit", "License")
                     }
                 }
             }

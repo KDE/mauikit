@@ -111,7 +111,7 @@ T.Container
         
         MenuItem
         {
-            text: i18n("Open")
+            text: i18nd("mauikit", "Open")
             icon.name: "tab-new"
             onTriggered:
             {
@@ -122,7 +122,7 @@ T.Container
         
         MenuItem
         {
-            text: i18n("Duplicate")
+            text: i18nd("mauikit", "Duplicate")
             icon.name: "tab-duplicate"
             onTriggered:
             {
@@ -132,7 +132,7 @@ T.Container
         
         MenuItem
         {
-            text: i18n("Close")
+            text: i18nd("mauikit", "Close")
             icon.name: "tab-close"
             onTriggered:
             {
@@ -142,7 +142,7 @@ T.Container
         
         MenuItem
         {
-            text: i18n("Close Other")
+            text: i18nd("mauikit", "Close Other")
             onTriggered:
             {
                 control.closeTabClicked(_menu.index)
@@ -151,7 +151,7 @@ T.Container
         
         MenuItem
         {
-            text: i18n("Close All")
+            text: i18nd("mauikit", "Close All")
             onTriggered:
             {
                 control.closeTabClicked(_menu.index)

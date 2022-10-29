@@ -23,8 +23,8 @@ property alias textEntry: _textEntry
       */
     signal finished(string text)
 
-    acceptButton.text: i18n("Accept")
-    rejectButton.text: i18n("Cancel")
+    acceptButton.text: i18nd("mauikit", "Accept")
+    rejectButton.text: i18nd("mauikit", "Cancel")
     closeButtonVisible: false
     
     Maui.TextField

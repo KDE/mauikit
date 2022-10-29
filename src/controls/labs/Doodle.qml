@@ -123,7 +123,7 @@ Maui.Dialog
             Action
             {
                 icon.name: "draw-highlight"
-                text: i18n("Highlighter")
+                text: i18nd("mauikit", "Highlighter")
                 onTriggered:
                 {
                     control.paintColor = "yellow"
@@ -134,7 +134,7 @@ Maui.Dialog
             Action
             {
                 icon.name: "draw-brush"
-                text: i18n("Marker")
+                text: i18nd("mauikit", "Marker")
                 onTriggered:
                 {
                     control.paintColor = "blue"
@@ -145,7 +145,7 @@ Maui.Dialog
             Action
             {
                 icon.name: "draw-calligraphic"
-                text: i18n("Highlighter")
+                text: i18nd("mauikit", "Highlighter")
                 onTriggered:
                 {
                     control.paintColor = "#333"
@@ -156,7 +156,7 @@ Maui.Dialog
             Action
             {
                 id: _eraserButton
-                text: i18n("Eraser")
+                text: i18nd("mauikit", "Eraser")
 
                 icon.name: "draw-eraser"
             }
@@ -171,14 +171,14 @@ Maui.Dialog
             Action
             {
                 id: _colorsButton
-                text: i18n("Color")
+                text: i18nd("mauikit", "Color")
                 icon.name: "color-fill"
             }
 
             Action
             {
                 id: _opacityButton
-                text: i18n("Opacity")
+                text: i18nd("mauikit", "Opacity")
 
                 icon.name: "edit-opacity"
             }
@@ -186,7 +186,7 @@ Maui.Dialog
             Action
             {
                 id: _sizeButton
-                text: i18n("Size")
+                text: i18nd("mauikit", "Size")
 
             }
         }
@@ -202,7 +202,7 @@ Maui.Dialog
             position: ToolBar.Footer
             leftContent: Label
             {
-                text: i18n("Size")
+                text: i18nd("mauikit", "Size")
                 color: Maui.Theme.textColor
             }
 
@@ -232,7 +232,7 @@ Maui.Dialog
 
             leftContent: Label
             {
-                text: i18n("Opacity")
+                text: i18nd("mauikit", "Opacity")
                 color: Maui.Theme.textColor
             }
 

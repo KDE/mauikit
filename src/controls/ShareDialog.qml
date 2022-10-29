@@ -49,7 +49,7 @@ Maui.Dialog
     persistent: false
     defaultButtons: false
 
-    page.title: i18n("Share with")
+    page.title: i18nd("mauikit", "Share with")
     headBar.visible: true
 
  

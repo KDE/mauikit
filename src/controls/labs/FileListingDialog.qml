@@ -63,7 +63,7 @@ Maui.Dialog
 
         ToolButton
         {
-            //text: i18n("Clear")
+            //text: i18nd("mauikit", "Clear")
             icon.name: "edit-clear"
             icon.width: Maui.Style.iconSizes.small
             icon.height: Maui.Style.iconSizes.small

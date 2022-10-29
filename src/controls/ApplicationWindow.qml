@@ -394,7 +394,7 @@ Window
       dialog.title.text = title
       dialog.body.text = body
       dialog.timeInterval = timeout ? timeout : 2500
-      dialog.acceptButton.text = buttonText || i18n("Accept")
+      dialog.acceptButton.text = buttonText || i18nd("mauikit", "Accept")
       dialog.show(callback)
     }
     

@@ -359,7 +359,7 @@ Maui.Popup
 //           Maui.Theme.textColor: Maui.Theme.negativeTextColor
           
           visible: control.defaultButtons
-          text: i18n("Cancel")
+          text: i18nd("mauikit", "Cancel")
           background: Rectangle
           {
             color:  _rejectButton.visualFocus || _rejectButton.highlighted || _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
@@ -379,7 +379,7 @@ Maui.Popup
           Layout.fillWidth: true
           implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
           
-          text: i18n("Accept")
+          text: i18nd("mauikit", "Accept")
           visible: control.defaultButtons
           
 //           Maui.Theme.textColor: Maui.Theme.positiveTextColor

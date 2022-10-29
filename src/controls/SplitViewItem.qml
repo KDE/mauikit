@@ -82,7 +82,7 @@ Item
             opacity: (control.minimumWidth) / control.width
             
             Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
-            label.text: i18n("Close Split")
+            label.text: i18nd("mauikit", "Close Split")
         }
     }
     
@@ -97,7 +97,7 @@ Item
             opacity: (control.minimumHeight) / control.height
             
             Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
-            label.text: i18n("Close Split")
+            label.text: i18nd("mauikit", "Close Split")
         }
     }
     

@@ -174,8 +174,8 @@ Flickable
             {
                 anchors.fill: parent
                 visible: image.status === Image.Error || image.status === Image.Null 
-                title: i18n("Oops!")
-                body: i18n("The image could not be loaded.")
+                title: i18nd("mauikit", "Oops!")
+                body: i18nd("mauikit", "The image could not be loaded.")
                 emoji: "qrc:/assets/dialog-information.svg"
             }
             

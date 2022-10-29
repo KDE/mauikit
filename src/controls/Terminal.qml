@@ -96,7 +96,7 @@ Maui.Page
     Action
     {
         id: _copyAction
-        text: i18n("Copy")
+        text: i18nd("mauikit", "Copy")
         icon.name: "edit-copy"
         onTriggered:  kterminal.copyClipboard();
         //shortcut: "Ctrl+Shift+C"
@@ -105,7 +105,7 @@ Maui.Page
     Action
     {
         id: _pasteAction
-        text: i18n("Paste")
+        text: i18nd("mauikit", "Paste")
         icon.name: "edit-paste"
         onTriggered: kterminal.pasteClipboard()
         //         shortcut: "Ctrl+Shift+V"
@@ -114,7 +114,7 @@ Maui.Page
     Action
     {
         id: _findAction
-        text: i18n("Find")
+        text: i18nd("mauikit", "Find")
         icon.name: "edit-find"
         //         shortcut: "Ctrl+Shift+F"
         onTriggered: footBar.visible = !footBar.visible
@@ -165,7 +165,7 @@ Maui.Page
     {
         id: findBar
         Layout.fillWidth: true
-        placeholderText: i18n("Find...")
+        placeholderText: i18nd("mauikit", "Find...")
         horizontalAlignment: Qt.Left
         onAccepted: ksession.search(text)
     }    

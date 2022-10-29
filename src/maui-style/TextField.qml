@@ -222,21 +222,21 @@ T.TextField
         
         MenuItem
         {
-            text: i18n("Copy")
+            text: i18nd("mauikit", "Copy")
             onTriggered: control.copy()
             enabled: control.selectedText.length
         }
         
         MenuItem
         {
-            text: i18n("Cut")
+            text: i18nd("mauikit", "Cut")
             onTriggered: control.cut()
             enabled: control.selectedText.length
         }
         
         MenuItem
         {
-            text: i18n("Paste")
+            text: i18nd("mauikit", "Paste")
             onTriggered:
             {
                 var text = control.paste()
@@ -246,21 +246,21 @@ T.TextField
         
         MenuItem
         {
-            text: i18n("Select All")
+            text: i18nd("mauikit", "Select All")
             onTriggered: control.selectAll()
             enabled: control.text.length
         }
         
         MenuItem
         {
-            text: i18n("Undo")
+            text: i18nd("mauikit", "Undo")
             onTriggered: control.undo()
             enabled: control.canUndo
         }
         
         MenuItem
         {
-            text: i18n("Redo")
+            text: i18nd("mauikit", "Redo")
             onTriggered: control.redo()
             enabled: control.canRedo
         }

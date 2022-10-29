@@ -53,10 +53,10 @@ Maui.Dialog
     defaultButtons: false
         persistent: false
         rejectButton.visible: false
-        //     acceptButton.text: i18n("Open with")
+        //     acceptButton.text: i18nd("mauikit", "Open with")
         onAccepted:  control.openWith()
         
-        page.title: i18n("Share with")
+        page.title: i18nd("mauikit", "Share with")
         headBar.visible: true
         
         headBar.leftContent: ToolButton

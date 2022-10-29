@@ -11,7 +11,7 @@ Maui.Dialog
     maxWidth: 500
     defaultButtons: false
     hint: 1
-    page.title: i18n("Settings")
+    page.title: i18nd("mauikit", "Settings")
     headBar.visible: true
     spacing: Maui.Style.space.huge
     
