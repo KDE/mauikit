@@ -116,7 +116,7 @@ Maui.ItemDelegate
     property alias imageWidth : _template.imageWidth
     property alias imageHeight : _template.imageHeight
 
-    property bool flat : false
+    property bool flat : !Maui.Handy.isMobile
     
     /**
      * contentDropped :

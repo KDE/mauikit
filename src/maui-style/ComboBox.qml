@@ -61,6 +61,7 @@ T.ComboBox
     property alias icon : _icon
     
     readonly property bool responsive: Maui.Handy.isMobile
+    
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
     
     
@@ -183,26 +184,27 @@ T.ComboBox
     {
         id: _popup
         
-        Maui.Theme.colorSet: Maui.Theme.View
+        Maui.Theme.colorSet: Maui.Theme.Window
         Maui.Theme.inherit: false
         
         parent: control.responsive ? control.parent.Window.window.contentItem : control
-        x: 0
-        y: control.responsive ? parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
+                
+        readonly property int finalY : control.responsive ? control.parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
+        readonly property int preferredWidth: control.responsive ? 600 : 300 
         
-        implicitWidth: control.responsive ? parentWindow.width :  Math.min(parentWindow.width,  Math.max(250, implicitContentWidth + leftPadding + rightPadding ))
+        y: finalY
+        x: control.responsive ? Math.round(control.parentWindow.width/2 - width/2) : 0
         
-        implicitHeight: control.responsive ? Math.min(parentWindow.height * 0.8, contentHeight + Maui.Style.space.huge) : implicitContentHeight + topPadding + bottomPadding
+        implicitWidth:  Math.min(control.parentWindow.width, Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding ))
+        
+        implicitHeight: Math.min(implicitContentHeight + topPadding + bottomPadding, (control.responsive ? control.parentWindow.height *0.7 : control.parentWindow.height))
         
         transformOrigin: Item.Top
         
-        spacing: control.spacing
-        modal: control.responsive
-        margins: 0        
+        spacing: Maui.Style.space.medium 
+        padding: spacing
         
-        padding: control.responsive ? 0 : 1
-        topPadding: control.responsive ? Maui.Style.space.big : Maui.Style.space.medium
-        bottomPadding: Maui.Style.space.medium
+        margins: Maui.Style.space.medium    
         
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
         
@@ -268,35 +270,20 @@ T.ComboBox
             implicitHeight: contentHeight
             model: control.delegateModel
             spacing: control.spacing
-            padding: Maui.Style.space.small
+            padding: 0
             currentIndex: control.highlightedIndex
         }
         
         background: Rectangle
         {
-            implicitWidth: Maui.Style.units.gridUnit * 8
             color: _popup.Maui.Theme.backgroundColor
-            radius: control.responsive ? 0 : Maui.Style.radiusV
-            property color borderColor: Maui.Theme.textColor
-            
-            border.color: control.responsive ? "transparent" : Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-            
+            radius: Maui.Style.radiusV
+                       
             Behavior on color
             {
                 Maui.ColorTransition{}
                 
             }
-            
-            Maui.Separator
-            {
-                visible: control.responsive
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: 0.5
-                weight: Maui.Separator.Weight.Light
-            }
-            
               MouseArea
         {
             property int wheelDelta: 0
@@ -327,14 +314,15 @@ T.ComboBox
             }
         }
             
-            layer.enabled: control.responsive
+            layer.enabled: true
             layer.effect: DropShadow
             {
                 horizontalOffset: 0
                 verticalOffset: 0
-                radius: 8.0
+                radius: 8
                 samples: 16
-                color: Qt.rgba(0, 0, 0, 0.3)
+                color: "#80000000"
+                transparentBorder: true
             }
         }
     }

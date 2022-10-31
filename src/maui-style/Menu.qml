@@ -45,7 +45,7 @@ T.Menu
 {
     id: control
     
-    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
     
     property string subtitle
@@ -75,7 +75,7 @@ T.Menu
     overlap: cascade ? 0-Maui.Style.space.medium : 0
     
     spacing: Maui.Style.space.medium 
-        padding: spacing
+    padding: spacing
 
     margins: Maui.Style.space.medium    
     
@@ -194,11 +194,7 @@ T.Menu
         id: _bg
         color: control.Maui.Theme.backgroundColor
         radius: Maui.Style.radiusV
-        
-        property color borderColor: Maui.Theme.textColor
-        
-        border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
-        
+                
         Behavior on color
         {
             Maui.ColorTransition{}
@@ -209,23 +205,15 @@ T.Menu
             Maui.ColorTransition{}
         }
         
-        // Maui.Separator
-        // {
-        //     visible: control.responsive
-        //     anchors.top: parent.top
-        //     anchors.left: parent.left
-        //     anchors.right: parent.right
-        //     weight: Maui.Separator.Weight.Light
-        // }
-        
         layer.enabled: true
         layer.effect: DropShadow
         {
             horizontalOffset: 0
-            verticalOffset: 3
-            radius: 12
-            samples: 17
-            color: "#000000"
+            verticalOffset: 0
+            radius: 8
+            samples: 16
+            color: "#80000000"
+            transparentBorder: true
         }
     }
     
