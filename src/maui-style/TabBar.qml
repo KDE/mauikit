@@ -55,7 +55,8 @@ T.TabBar {
         preferredHighlightEnd: width - 40
     }
 
-    background: Item {
+    background: Item
+    {
         Rectangle {
             anchors {
                 left: parent.left

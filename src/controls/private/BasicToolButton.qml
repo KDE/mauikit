@@ -60,24 +60,20 @@ ToolButton
         rowSpacing: control.spacing
         columnSpacing: control.spacing
         
-        Item
-        {
-            implicitWidth: control.icon.width
-            implicitHeight: control.icon.height
-            Layout.fillHeight: true
-            
-            Layout.column: 0
-            Layout.row: 0
-            Layout.alignment: Qt.AlignCenter
-            
-            visible: _icon.source && _icon.source.length && (control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || control.display === ToolButton.IconOnly)
-            
+       
             Maui.Icon
             {
                 id: _icon
                 height: control.icon.height
                 width: control.icon.width
-                anchors.centerIn: parent
+               
+               
+               Layout.column: 0
+               Layout.row: 0
+               Layout.alignment: Qt.AlignCenter
+               
+               visible: _icon.source && _icon.source.length && (control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || control.display === ToolButton.IconOnly)
+               
                 
                 color: control.icon.color
                 
@@ -102,7 +98,7 @@ ToolButton
 //                     }
 //                 }
             }
-        }
+        
         
         Label
         {
@@ -129,8 +125,10 @@ ToolButton
         }
     }
     
-    Behavior on width {
-        NumberAnimation {
+    Behavior on width
+    {
+        NumberAnimation
+        {
             duration: 250
             easing.type: Easing.OutBack
         }

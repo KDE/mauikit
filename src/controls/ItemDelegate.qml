@@ -40,10 +40,6 @@ T.Control
     hoverEnabled: !Maui.Handy.isMobile
     
     padding: 0
-    bottomPadding: padding
-    rightPadding: padding
-    leftPadding: padding
-    topPadding: padding
     
     focus: true
 
@@ -124,10 +120,10 @@ T.Control
     contentItem : MouseArea
     {
         id: _mouseArea
-        //        scrollGestureEnabled: false
-        //        preventStealing: true
+        
         propagateComposedEvents: false
         acceptedButtons:  Qt.RightButton | Qt.LeftButton
+        
         property bool pressAndHoldIgnored : false
 
         onClicked:

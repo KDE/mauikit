@@ -36,7 +36,6 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
-    opacity: enabled ? 1 : 0.5
     /**
      * content : data
      */
@@ -223,7 +222,7 @@ Item
             Layout.fillHeight: true
             Layout.fillWidth: true
             
-            spacing: 0
+            spacing: Maui.Style.space.tiny
 
             Label
             {

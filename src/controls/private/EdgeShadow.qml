@@ -42,16 +42,16 @@ LinearGradient
     property color color: Maui.Theme.textColor
 
     implicitWidth: Maui.Style.units.gridUnit
-    implicitHeight: Maui.Style.units.gridUnit   
+    implicitHeight: Maui.Style.units.gridUnit
     
-opacity: 0.5
+    opacity: 0.3
     rotation: edge === Qt.RightEdge ? 180 : 0
     start: Qt.point( 0, height)
     end: Qt.point( width, height)
     
-    gradient: Gradient 
+    gradient: Gradient
     {
-        GradientStop 
+        GradientStop
         {
             position: 0
             color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.4)

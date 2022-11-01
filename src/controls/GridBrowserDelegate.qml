@@ -39,9 +39,12 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
+    
     isCurrentItem : GridView.isCurrentItem || checked
+    
     padding: Maui.Style.space.small
     spacing: padding
+    
     radius: Maui.Style.radiusV
 
     /**
@@ -170,7 +173,6 @@ Maui.ItemDelegate
         hovered: control.hovered
         maskRadius: control.radius
         spacing: control.spacing
-        //        label1.elide: Text.ElideMiddle // TODO this is broken ???
         isCurrentItem: control.isCurrentItem
         highlighted: control.containsPress 
     }
@@ -180,7 +182,6 @@ Maui.ItemDelegate
         id: _checkboxLoader
         asynchronous: true
         active: control.checkable || control.checked
-//         visible: active
         height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.1)
         width: height
         anchors.top: parent.top

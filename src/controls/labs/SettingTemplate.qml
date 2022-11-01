@@ -29,28 +29,25 @@ import org.mauikit.controls 1.3 as Maui
 Maui.FlexListItem
 {
     id: control
-    padding: Math.floor(Maui.Style.space.medium * 1.5)
-    Layout.fillWidth: true
+   
+   padding: Maui.Style.space.medium
+   
+   Layout.fillWidth: true
+   
     hoverEnabled: !Maui.Handy.isMobile
-    //    label2.opacity: 0.5
+
     readonly property bool childCheckable : control.content.length && control.content[0].hasOwnProperty("checkable") ? control.content[0].checkable : false
     
     background: Rectangle
     {       
         color: control.enabled ? ( control.childCheckable && control.pressed ? control.Maui.Theme.hoverColor :  Maui.Theme.alternateBackgroundColor) : "transparent"        
-        radius: Maui.Style.radiusV
-        
-        /* Behavior on color
-         {    *
-         Maui.ColorTransition{}
-    } */       
+        radius: Maui.Style.radiusV      
     }
     
     onClicked:
     {
         if(control.childCheckable)
         {
-            //item.checked = !item.checked
             control.content[0].toggled()
         }        
     }

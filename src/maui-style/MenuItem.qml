@@ -48,20 +48,16 @@ T.MenuItem
     id: control
 
     opacity: control.enabled ? 1 : 0.5
-    
-//     Maui.Theme.colorSet: Maui.Theme.Button
-//     Maui.Theme.inherit: false
-    
+        
     hoverEnabled: !Maui.Handy.isMobile
-    
-    width: implicitWidth
-    height: implicitHeight
+        
+    readonly property int preferredHeight:  Maui.Style.rowHeight
     
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.floor(Math.max(implicitBackgroundHeight + topInset + bottomInset,
+    
+    implicitHeight: Math.floor(Math.max(preferredHeight,
                                        implicitContentHeight + topPadding + bottomPadding,
                                        implicitIndicatorHeight + topPadding + bottomPadding) )
-    //Layout.fillWidth: true
 
     padding: Maui.Style.space.medium
     spacing: Maui.Style.space.small
@@ -102,7 +98,6 @@ T.MenuItem
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
         
-//         leftPadding: Maui.Style.space.small
         rightPadding: indicatorPadding + arrowPadding 
         
         spacing: control.spacing
@@ -124,9 +119,7 @@ T.MenuItem
     }
 
     background: Rectangle
-    {       
-        implicitHeight: Math.floor(Maui.Handy.isMobile ? Maui.Style.rowHeight*1.2 : Maui.Style.rowHeightAlt) 
-        
+    {               
         radius: Maui.Style.radiusV
         
         color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor) : "transparent"

@@ -117,7 +117,6 @@ T.ItemDelegate
             iconSizeHint: Maui.Style.iconSizes.medium
             label2.wrapMode: Text.WordWrap
             label1.font.weight: Font.Bold
-//             label1.font.bold: true
         }
 
         Row
@@ -134,10 +133,4 @@ T.ItemDelegate
             Layout.maximumWidth: control.wide ? control.width * 0.5 : control.width
         }
     }
-    
-//     Label
-//     {
-//       color: "yellow"
-//       text: _content.implicitWidth + " / " + control.width + " / " + control.wide
-//     }
 }

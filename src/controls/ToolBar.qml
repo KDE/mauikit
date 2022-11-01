@@ -42,8 +42,7 @@ ToolBar
 {
     id: control    
     
-    implicitHeight: preferredHeight + topPadding + bottomPadding
-    
+    implicitHeight: preferredHeight + topPadding + bottomPadding    
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
   
     /**
@@ -54,7 +53,7 @@ ToolBar
         /**
          * preferredHeight : int
          */
-        property int preferredHeight: Math.max(Maui.Style.toolBarHeight, implicitContentHeight)
+        property int preferredHeight: implicitContentHeight
         
         /**
          * forceCenterMiddleContent : bool
@@ -183,33 +182,13 @@ ToolBar
         {
             implicitWidth: _mainLayout.implicitWidth 
             implicitHeight: _mainLayout.implicitHeight 
+            clip: true
             
             Item
             {
                 id: _container
                 height: control.preferredHeight
                 width: parent.width
-                //              Label{
-                //                  anchors.left: parent.left
-                //                  z: parent.z + 9999
-                //                  color: "orange"
-                //                  text: farLeftRowContent.implicitWidth + " / " + leftRowContent.implicitWidth + " / " + _scrollView.width
-                //              }
-                
-                //             Label{
-                //                 anchors.centerIn: parent
-                
-                //                 z: parent.z + 9999
-                //                 color: "orange"
-                //                 text: _helper1.width + " / " + middleRowContent.implicitWidth + " / " + _helper2.width
-                //             }
-                
-                //Label{
-                //anchors.right: parent.right
-                //z: parent.z + 9999
-                //color: "orange"
-                //text: farRightRowContent.implicitWidth + " / " + rightRowContent.implicitWidth  + " / " + control.width
-                //}
                 
                 Loader
                 {
@@ -231,8 +210,7 @@ ToolBar
                         grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                         onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
                     }
-                }
-                
+                }                
                
                 states: [State
                 {

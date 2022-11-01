@@ -28,7 +28,7 @@ T.Pane
 {
     id: control
     
-    implicitWidth: implicitContentWidth +leftPadding + rightPadding
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
     spacing: Maui.Style.space.medium
@@ -83,19 +83,16 @@ T.Pane
     {
         id: _buttonDelegate
         Layout.alignment: Qt.AlignCenter
-        //         Layout.preferredWidth: visible ? implicitWidth : 0
-        //Layout.fillWidth: true
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
-        //padding: Maui.Style.space.medium
+
         leftPadding: Maui.Style.space.big
         rightPadding: Maui.Style.space.big
-        //Maui.Theme.backgroundColor: modelData.Maui.Theme.backgroundColor
-        //Maui.Theme.highlightColor: modelData.Maui.Theme.highlightColor
+        
         icon.name: modelData.Maui.AppView.iconName
         text: modelData.Maui.AppView.title
-        //         flat: display === ToolButton.IconOnly
+
         font.weight: Font.Bold
         font.bold: true
 //         display: control.display
@@ -118,17 +115,7 @@ T.Pane
             
             mouseArea.enabled: false
         }
-        //        onCheckedChanged:
-        //        {
-        //            if(checked)
-        //            {
-        //                _enterAnim.start()
-        //            }else
-        //            {
-        ////                _exitAnim.start()
-        //            }
-        //        }
-
+        
         SequentialAnimation
         {
             id: _enterAnim
@@ -142,11 +129,6 @@ T.Pane
                 duration: 200
                 easing.type: Easing.InQuad
             }
-//            onFinished:
-//            {
-//                control.currentIndex = index
-//                control.clicked(index)
-//            }
         }
 
         SequentialAnimation
@@ -170,10 +152,6 @@ T.Pane
             {
                 return
             }
-            //if(_buttonDelegate.display === ToolButton.IconOnly)
-            //{
-                //_enterAnim.start()
-            //}
 
             control.currentIndex = index
             control.clicked(index)
@@ -215,9 +193,6 @@ T.Pane
             display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
 
             text: obj ? obj.Maui.AppView.title : ""
-
-            //                Maui.Theme.backgroundColor: obj ? obj.Maui.Theme.backgroundColor : undefined
-            //                Maui.Theme.highlightColor: obj ? obj.Maui.Theme.highlightColor: undefined
         }
 
         Maui.ToolButtonMenu

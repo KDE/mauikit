@@ -382,27 +382,15 @@ T.Pane
 
         translucencySource: ShaderEffectSource
         {
-            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
             sourceItem: _content
             sourceRect: control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)
         }
         
         Binding on height
         {
-            //when: _headBar.height > 0
             value: visible ? _headBar.implicitHeight : 0
             restoreMode: Binding.RestoreBindingOrValue
-        }
-        
-        //Maui.Theme.inherit: false
-        //Maui.Theme.colorSet: control.headerColorSet
-
-        //             Label
-        //             {
-        //                 visible: false
-        //                 color: "yellow"
-        //                 text: _headBar.visibleCount + " / " + _headBar.count + " - " + _headBar.height + " / " + header.height + " - " + _headBar.visible + " / " + header.visible
-        //             }
+        }               
 
         Behavior on height
         {
@@ -421,8 +409,10 @@ T.Pane
             
             Item
             {
+                implicitHeight:_titleLabel.implicitHeight
                 Label
-                {                
+                {
+                    id: _titleLabel
                     anchors.fill: parent
                     text: control.title
                     elide : Text.ElideRight

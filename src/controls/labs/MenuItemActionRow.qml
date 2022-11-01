@@ -17,19 +17,14 @@ T.MenuItem
     
     opacity: control.enabled ? 1 : 0.5
     
-    //     Maui.Theme.colorSet: Maui.Theme.Button
-    //     Maui.Theme.inherit: false
-    //
     hoverEnabled: !Maui.Handy.isMobile
     
-    width: implicitWidth
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
     background: null
     
     spacing: Maui.Style.space.medium
-    //     padding: Maui.Style.space.small
     
     display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Maui.Handy.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     

@@ -20,9 +20,9 @@
  */
 
 
-import QtQuick 2.1
-import QtQuick.Window 2.2
-import QtQuick.Templates 2.3 as T
+import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
 
 T.Label 
@@ -34,7 +34,7 @@ T.Label
     activeFocusOnTab: false
     //Text.NativeRendering is broken on non integer pixel ratios
     renderType: Window.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
-    
+  
 
     font.capitalization: Maui.Theme.defaultFont.capitalization
     font.family: Maui.Theme.defaultFont.family

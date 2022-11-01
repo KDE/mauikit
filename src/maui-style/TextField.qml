@@ -55,7 +55,7 @@ T.TextField
     implicitHeight: Math.max(_layout.implicitHeight, Maui.Style.rowHeight)  + topPadding + bottomPadding
     implicitWidth: 100 + leftPadding + rightPadding
     
-    verticalAlignment: TextInput.AlignVCenter
+    verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignLeft
     
     padding: 0
@@ -147,6 +147,7 @@ T.TextField
         {
             id: placeholder
             Layout.fillWidth: true
+            Layout.fillHeight: true
             text: control.placeholderText
             font: control.font
             color: control.color

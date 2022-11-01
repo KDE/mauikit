@@ -60,8 +60,7 @@ T.ToolButton
     
     hoverEnabled: !Maui.Handy.isMobile
     
-    spacing: Maui.Style.space.small
-    
+    spacing: Maui.Style.space.small    
     padding: Maui.Style.space.medium
     
     icon.width: Maui.Style.iconSize
@@ -85,10 +84,10 @@ T.ToolButton
         width: 8
         source: "qrc:/assets/arrow-down.svg"
         
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+//        Behavior on color
+//        {
+//            Maui.ColorTransition{}
+//        }
     }
     
     contentItem: IconLabel

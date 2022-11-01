@@ -38,6 +38,7 @@ import QtQuick 2.15
 
 import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
+import QtQuick.Controls.impl 2.15
 
 T.Switch
 {
@@ -53,10 +54,12 @@ T.Switch
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: implicitBackgroundHeight + topInset + bottomInset
     
-    padding: 8
-    spacing: 8
-    icon.width: 22
-    icon.height: 22
+    padding: Maui.Style.space.medium
+    spacing: padding
+    
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
+    icon.color: Maui.Theme.textColor
     
     indicator: SwitchIndicator
     {
@@ -66,42 +69,20 @@ T.Switch
         control: control
     }    
     
-    contentItem: Row
-    {
-        opacity: control.enabled ? 1 : 0.7
-        
+    contentItem: IconLabel
+    {        
         spacing: control.spacing
+        
         leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
         rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
         
-        Item
-        {
-            visible: control.icon.name.length
-            height: visible ? parent.height : 0
-            width: height
-            Maui.Icon
-            {
-                source: control.icon.name
-                height: control.icon.height
-                width: control.icon.width
-                anchors.centerIn: parent
-            }
-        }
+        icon: control.icon
         
-        Text
-        {
-            height: parent.height
-            visible: control.text.length
-            text: control.text
-            font: control.font
-            color:  control.Maui.Theme.textColor
-            verticalAlignment: Text.AlignVCenter
-            
-            Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
-        }
+        mirrored: control.mirrored
+        display: control.display
+        text: control.text
+        font: control.font
+        color: control.icon.color        
     }
     
     background: Item

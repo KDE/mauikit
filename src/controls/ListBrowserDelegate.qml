@@ -199,12 +199,6 @@ Maui.ItemDelegate
         anchors.fill: parent
         spacing: _template.spacing
 
-//        Item
-//        {
-//            Layout.preferredHeight: Maui.Style.iconSizes.medium
-//            visible: control.checkable || control.checked
-//        }
-
         Loader
         {
             asynchronous: true

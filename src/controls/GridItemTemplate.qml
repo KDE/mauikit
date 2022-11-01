@@ -38,11 +38,6 @@ Item
     id: control
     focus: true
     property alias spacing: _layout.spacing
-    //property int padding: Maui.Style.space.tiny
-    //property int topPadding: padding
-    //property int  bottomPadding: padding
-    //property int rightPadding: padding
-    //property int leftPadding: padding
     
     implicitHeight: _layout.implicitHeight /*+ control.topPadding + control.bottomPadding*/
     
@@ -207,7 +202,6 @@ Item
                 
                 Layout.preferredHeight: labelSizeHint
                 Layout.fillWidth: true
-                //                 Layout.margins: Maui.Style.space.small
                 Layout.maximumHeight: control.height* 0.9
                 Layout.minimumHeight: labelSizeHint
                 
@@ -252,32 +246,6 @@ Item
                         opacity: control.isCurrentItem ? 0.8 : 0.6
                     }
                 }
-                
-                //Rectangle
-                //{
-                //visible: (control.hovered ) && _label1.implicitHeight > _label1.height
-                //height: Math.max(_labelsContainer.height, Math.min(_label2D.implicitHeight, control.height) + Maui.Style.space.medium)
-                //width: parent.width
-                //color: Maui.Theme.backgroundColor
-                //anchors.bottom: parent.bottom
-                //radius: Maui.Style.radiusV
-                //clip: true
-                
-                //Label
-                //{
-                //id: _label2D
-                //horizontalAlignment: Qt.AlignHCenter
-                //verticalAlignment: Qt.AlignVCenter
-                //text: _label1.text
-                //width: parent.width
-                //height: implicitHeight
-                //anchors.centerIn: parent
-                //elide: Qt.ElideRight
-                //wrapMode: Text.Wrap
-                //font: _label1.font
-                //color: _label1.color
-                //}
-                //}
             }
         }
 }

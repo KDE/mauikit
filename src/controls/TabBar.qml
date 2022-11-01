@@ -33,10 +33,10 @@ T.TabBar
     property bool showNewTabButton : true
     property bool showTabs : true
     
-    implicitHeight: Math.max(Maui.Style.toolBarHeight, _layout.implicitHeight )+ topPadding + bottomPadding
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
     spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.small  
+    padding: Maui.Style.space.medium  
     
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false

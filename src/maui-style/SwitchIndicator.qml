@@ -40,8 +40,9 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: indicator
-    implicitWidth: 38
-    implicitHeight: 32
+    
+    implicitWidth:  Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
+    implicitHeight: Maui.Style.rowHeight
     
     property Item control
     property alias handle: handle
