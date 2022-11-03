@@ -1,355 +1,496 @@
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 
-import org.mauikit.controls 1.0 as Maui
-import org.kde.kirigami 2.6 as Kirigami
-import QtQuick.Templates 2.3 as T
+import org.mauikit.controls 1.3 as Maui
 
 Maui.ApplicationWindow
 {
     id: root
 
-//    isWide : root.width >= Maui.Style.units.gridUnit * 10
-
-    property int currentPageIndex : 0
-    //    about.appDescription: "MauiDemo is a gallery app displaying the MauiKit controls in conjuction with Kirigami and QQC2 controls."
-
-
-    property alias dialog : _dialogLoader.item
-    floatingBar: false
-
-    mainMenu: [
-
-        Maui.MenuItem
-        {
-            text: i18n("File dialog")
-            icon.name: "folder-open"
-            onTriggered:
-            {
-                _dialogLoader.sourceComponent = _fileDialogComponent
-                dialog.callback = function(paths)
-                {
-                    console.log("Selected paths >> ", paths)
-                }
-
-                dialog.open()
-            }
-        }
-    ]
-
-    headBar.spacing: space.huge
-    headBar.middleContent: [
-
-        ToolButton
-        {
-//            Layout.fillHeight: true
-            icon.name: "nx-home"
-            Maui.Theme.textColor : root.headBarFGColor
-            spacing: space.medium
-            checked: currentPageIndex === 0
-            onClicked: currentPageIndex = 0
-            text: i18n("Home")
-
-        },
-
-        ToolButton
-        {
-//            Layout.fillHeight: true
-            icon.name: "view-list-icons"
-			Maui.Theme.textColor: root.headBarFGColor
-            spacing: space.medium
-            checked: currentPageIndex === 1
-            onClicked: currentPageIndex = 1
-            text: i18n("Browser")
-        },
-
-        ToolButton
-        {
-//            Layout.fillHeight: true
-            icon.name: "view-media-genre"
-			Maui.Theme.textColor: root.headBarFGColor
-            spacing: space.medium
-            checked: currentPageIndex === 2
-            onClicked: currentPageIndex = 2
-            text: i18n("Editor")
-        },
-
-        ToolButton
-        {
-//            Layout.fillHeight: true
-            icon.name: "nx-software-center"
-			Maui.Theme.textColor: root.headBarFGColor
-            spacing: space.medium
-            checked: currentPageIndex === 3
-            onClicked: currentPageIndex = 3
-            text: i18n("Store")
-        }
-    ]
-
-    footBar.leftContent: ToolButton
-    {
-        icon.name: "view-split-left-right"
-        onClicked: _drawer.visible = !_drawer.visible
-        checked: _drawer.visible
-    }
-
-    footBar.rightContent: Kirigami.ActionToolBar
-    {
-        Layout.fillWidth: true
-        actions:
-            [
-            Kirigami.Action
-            {
-                iconName: "folder-new"
-                text: "New folder"
-                icon.width: iconSizes.medium
-                icon.height: iconSizes.medium
-                expandible: true
-
-                Kirigami.Action
-                    {
-                        text: "exmaple"
-                        icon.name: "love"
-                    }
-
-            },
-
-            Kirigami.Action
-            {
-                id: _findAction
-                iconName: "edit-find"
-                text: parent == T.ToolButton ? "Search" : undefined
-                icon.width: iconSizes.medium
-                icon.height: iconSizes.medium
-
-
-            },
-
-            Kirigami.Action
-            {
-                iconName: "document-preview-archive"
-                text: "Hidden files"
-                icon.width: iconSizes.medium
-                icon.height: iconSizes.medium
-
-            }
-        ]
-    }
-
-    globalDrawer: Maui.GlobalDrawer
-    {
-        id: _drawer
-        width: Maui.Style.units.gridUnit * 14
-        modal: !root.isWide
-
-        actions: [
-        Kirigami.Action
-            {
-                text: i18n("Shopping")
-                iconName: "cpu"
-            },
-
-            Kirigami.Action
-                {
-                    text: i18n("Notes")
-                iconName: "send-sms"
-                },
-
-            Kirigami.Action
-                {
-                    text: i18n("Example 3")
-                iconName: "love"
-                }
-
-        ]
-    }
-
-    content: SwipeView
+Maui.SideBarView
+{
+    id: _sidebarView
+    anchors.fill: parent
+    sideBarContent: Pane
     {
         anchors.fill: parent
-        currentIndex: currentPageIndex
-        onCurrentIndexChanged: currentPageIndex = currentIndex
-
-        Maui.Page
+        padding: Maui.Style.space.medium
+        Maui.Theme.colorSet: Maui.Theme.Window
+       
+       ScrollView
+       {
+           anchors.fill: parent
+           Flickable
+           {
+               width: parent.width
+               contentHeight: _layout.implicitHeight
+        ColumnLayout
         {
-            id: _page1
-
-            Item
+            id: _layout
+            width: parent.width
+            spacing: Maui.Style.space.big
+            Maui.SettingsSection
             {
-                anchors.fill: parent
-                ColumnLayout
+                title: i18n ("Core")
+                description: i18n("MauiKit Core components")
+                
+                      Maui.SettingTemplate
                 {
-                    anchors.centerIn: parent
-                    width: Math.max(Math.min(implicitWidth, parent.width), Math.min(400, parent.width))
-
-                    Label
-                    {
-                        text: "Header bar background color"
-                        Layout.fillWidth: true
-                    }
-
-                    Maui.TextField
-                    {
-                        Layout.fillWidth: true
-                        placeholderText: root.headBarBGColor
-                        onAccepted:
-                        {
-                            root.headBarBGColor= text
-                        }
-                    }
-
-                    Label
-                    {
-                        text: "Header bar foreground color"
-                        Layout.fillWidth: true
-                    }
-
-                    Maui.TextField
-                    {
-                        Layout.fillWidth: true
-                        placeholderText: root.headBarFGColor
-                        onAccepted:
-                        {
-                            root.headBarFGColor = text
-                        }
-                    }
-
-                    Label
-                    {
-                        text: "Header bar background color"
-                        Layout.fillWidth: true
-                    }
-
-                    Maui.TextField
-                    {
-                        Layout.fillWidth: true
-                        onAccepted:
-                        {
-                            root.headBarBGColor= text
-                        }
-                    }
-
-                    //                     CheckBox
-                    //                     {
-                    //                         text: "Draw toolbar borders"
-                    //                         Layout.fillWidth: true
-                    //                            onCheckedChanged:
-                    //                            {
-                    //                                headBar.drawBorder = checked
-                    //                                footBar.drawBorder = checked
-
-                    //                            }
-                    //                     }
+                    Layout.fillWidth: true
+                    label1.text: i18n("Views")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("Page")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("SplitView")
 
                 }
+             
+                                        }
 
-            }
-
-            headBar.rightContent: ToolButton
-            {
-                icon.name: "documentinfo"
-                text: i18n("Notify")
-
-                onClicked:
-                {
-                    var callback = function()
-                    {
-                        _batteryBtn.visible = true
-                    }
-
-                    notify("battery", i18n("Plug your device"),
-                           i18n("Your device battery level is below 20%, please plug your device to a power supply"),
-                           callback, 5000)
                 }
+                       Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Browsers")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("GridBrowser")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("AltBrowser")
 
+                }
+                
+                         Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("SidebarView")
+
+                }
+                
+                         Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("AppViews")
+
+                }
+                                        }
+
+                }
+                
+                 Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Buttons")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("ToolActions")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("ToolButtonMenu")
+
+                }
+                                        }
+
+                }
+                
+                       Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Layouts")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("SectionColumn")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("SectionTemplate")
+
+                }
+                                        }
+
+                }
+                
+                           Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Delegates")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("ListBrowserDelegate")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("GridBrowserDelegate")
+
+                }
+                
+                           Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("CollageDelegate")
+
+                }
+                
+                              Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("GalleryRollDelegate")
+
+                }
+                                        }
+
+                }  
+                
+                           Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Templates")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("LisItemTemplate")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("GridItemTemplate")
+
+                }
+                
+                           Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("IconItem")
+
+                }
+                
+                              Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("CollageItem")
+
+                }
+                                        }
+
+                }  
             }
-
-            headBar.leftContent: ToolButton
+            
+               Maui.SettingsSection
             {
-                id: _batteryBtn
-                visible: false
-                icon.name: "battery"
+                title: i18n ("Common")
+                description: i18n("Baseline controls")
+                
+                           Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Buttons")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("Button")
+                }
+                
+                                             Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("ToolButton")
+
+                }
+                
+                           Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("RadioButton")
+
+                }
+                
+                              Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("Switch")
+
+                }
+                
+                           Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("CheckBox")
+
+                }
+                
+                           Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("TabButton")
+
+                }
+                                        }
+
+                }  
+                
+                            Maui.SettingTemplate
+                {
+                    Layout.fillWidth: true
+                    label1.text: i18n("Sliders")
+                                        label2.text: i18n("Adaptive views for contents")
+                                        
+                                        Column
+                                        {
+                                            width: parent.parent.width
+                                            spacing: Maui.Style.space.medium
+                                            
+                                            Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("Slider")
+                }
+                
+                      Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("ProgressBar")
+                }
+                
+                                      Maui.ListDelegate
+                {
+                   width: parent.width
+                    label: i18n("Range")
+                }
+                                        }
+                }
+                
+                Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Buttons")
+                }
+                       Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Text")
+                }
+                
+                       Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Input")
+                }
+                
+                         Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Bars")
+                }
+                
+                         Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Popups")
+                }
+            }
+            
+            Maui.SettingsSection
+            {
+                title: i18n ("Custom")
+                description: i18n("Baseline controls")
+                
+                Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Bars")
+                }
+                       Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Text")
+                }
+                
+                       Maui.ListDelegate
+                {
+                    Layout.fillWidth: true
+                    label: i18n("Input")
+                }
             }
         }
-
-
-        Maui.FileBrowser
-        {
-            id: _page2
-
-            onItemClicked: openItem(index)
-
-        }
-
-
-        Maui.Page
-        {
-            id: _page3
-            margins: 0
-            headBar.visible: false
-            Maui.Editor
-            {
-                id: _editor
-                anchors
-                {
-                    fill: parent
-                    //                    top: parent.top
-                    //                    right: parent.right
-                    //                    left: parent.left
-                    //                    bottom: _terminal.top
-                }
-            }
-
-            //                Maui.Terminal
-            //                {
-            //                    id: _terminal
-            ////                    anchors
-            ////                    {
-            ////                        top: _editor.top
-            ////                        right: parent.right
-            ////                        left: parent.left
-            ////                        bottom: parent.bottom
-            ////                    }
-            //                }
-
-
-            footBar.rightContent: Maui.ToolButton
-            {
-                iconName: "utilities-terminal"
-                onClicked:
-                {
-                    //                    _terminal.visible = _terminal.visible
-                }
-            }
-        }
-
-                Maui.Store
-                {
-                    id: _page4
-                    list.provider: StoreList.KDELOOK
-
-                    list.category: StoreList.WALLPAPERS
-                }
+           }
+       }
+        
     }
-
-    //Components
-
-    ///Dialog loaders
-
-    Loader
+    
+    Maui.Page
+{
+    anchors.fill: parent
+    showCSDControls: true
+    
+    headBar.leftContent: ToolButton
     {
-        id: _dialogLoader
+        icon.name: "sidebar-collapse"
+        checked: _sidebarView.sideBar.visible
+        onClicked: _sidebarView.sideBar.toggle()
     }
-
-    Component
+    
+    headBar.rightContent: Maui.ToolButtonMenu
     {
-        id: _fileDialogComponent
-
-        Maui.FileDialog
+        icon.name: "contrast"
+        
+        Action
         {
-
+            text: i18n("Light")
+        }
+        
+            Action
+        {
+            text: i18n("Dark")
+        }
+        
+            Action
+        {
+            text: i18n("Adaptive")
+        }
+        
+            Action
+        {
+            text: i18n("System")
         }
     }
+    
+    Pane
+    {
+        anchors.fill: parent
+        padding: Maui.Style.space.huge
+        
+       contentItem: ColumnLayout
+        {
+            Pane
+            {
+                id: _descriptionPane
+Layout.fillWidth: true
+
+                background: Rectangle
+                {
+                    radius: Maui.Style.radiusV
+                    color: Maui.Theme.alternateBackgroundColor
+                }
+                
+                contentItem: Maui.SettingsSection
+                {
+                    title: i18n("Control Title")
+                    description: i18n("Control description")
+                    
+                    TextArea
+                    {
+                        Layout.fillWidth: true
+                        text: "import org.mauikit.controls 1.3 as Maui\n Maui.Control {}"
+                        font.family: "Monospace"
+                        background: Rectangle
+                        {
+                            color: Maui.Theme.backgroundColor
+                            radius: Maui.Style.radiusV
+                        }
+                    }
+                }
+            }
+            
+            Pane
+            {
+                id: _demoPane
+Layout.fillWidth: true
+Layout.fillHeight: true
+
+                background: Rectangle
+                {
+                    radius: Maui.Style.radiusV
+                    color: Maui.Theme.alternateBackgroundColor
+                }
+                
+                contentItem: Item
+                {
+                    Maui.Page
+                    {
+                        anchors.fill: parent
+                        
+                        headBar.leftContent: Switch
+                        {
+                            icon.name: "love"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+}
 
 }

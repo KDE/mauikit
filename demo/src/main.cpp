@@ -13,19 +13,15 @@
 #include <QApplication>
 #endif
 
-#ifdef STATIC_KIRIGAMI
-#include "./3rdparty/kirigami/src/kirigamiplugin.h"
-#endif
+#include <MauiKit/Core/mauiapp.h>
 
-#ifdef STATIC_MAUIKIT
-#include "./mauikit/src/mauikit.h"
-#include <QStyleHints>
-#endif
 
-int main(int argc, char *argv[])
+Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    
 #ifdef Q_OS_ANDROID
     QGuiApplication app(argc, argv);
     //    QGuiApplication::styleHints()->setMousePressAndHoldInterval(2000); // in [ms]
@@ -38,16 +34,9 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName("Maui Demo");
     app.setWindowIcon(QIcon(":/../assets/mauidemo.svg"));
 
+        MauiApp::instance()->setIconName("qrc:/../assets/mauidemo.svg");
+
     QQmlApplicationEngine engine;
-#ifdef STATIC_KIRIGAMI
-    KirigamiPlugin::getInstance().registerTypes();
-#endif
-
-#ifdef STATIC_MAUIKIT
-    MauiKit::getInstance().registerTypes();
-
-#endif
-
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
