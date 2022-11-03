@@ -210,8 +210,7 @@ Maui.Dialog
                 iconSource: "code-context"
                 iconSizeHint: Maui.Style.iconSize
                 
-                label1.text: i18n("Powered by")
-                label2.text: "MauiKit Frameworks "
+                label1.text: "MauiKit Frameworks"
                 label3.text: Maui.App.mauikitVersion
                 Connections
                 {

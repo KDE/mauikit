@@ -214,7 +214,7 @@ T.Control
               anchors.bottom: parent.bottom
               anchors.right: parent.right  
               weight: Maui.Separator.Weight.Light
-              
+              opacity: 0.4
               Behavior on color
               {
                 Maui.ColorTransition{}

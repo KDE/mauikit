@@ -58,10 +58,12 @@ T.ToolBar
     {
         id: _headBarBG
         color: Maui.Theme.backgroundColor
-        Behavior on color
+       
+       Behavior on color
         {
             Maui.ColorTransition{}
         }
+        
         Loader
         {
             asynchronous: true
@@ -95,43 +97,43 @@ T.ToolBar
         }           
         
         
-        Maui.Separator
-        {
-            id: _border
-            anchors.left: parent.left
-            anchors.right: parent.right
-            weight: Maui.Separator.Weight.Light
-            
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-        }
-        
-        
-        states: [  State
-        {
-            when: control.position === ToolBar.Header
-            
-            AnchorChanges
-            {
-                target: _border
-                anchors.top: undefined
-                anchors.bottom: parent.bottom
-            }
-        },
-        
-        State
-        {
-            when: control.position === ToolBar.Footer
-            
-            AnchorChanges
-            {
-                target: _border
-                anchors.top: parent.top
-                anchors.bottom: undefined                    
-            }
-        }
-        ]
+         Maui.Separator
+         {
+             id: _border
+             anchors.left: parent.left
+             anchors.right: parent.right
+             weight: Maui.Separator.Weight.Light
+             opacity: 0.4
+             Behavior on color
+             {
+                 Maui.ColorTransition{}
+             }
+         }
+
+
+         states: [  State
+         {
+             when: control.position === ToolBar.Header
+
+             AnchorChanges
+             {
+                 target: _border
+                 anchors.top: undefined
+                 anchors.bottom: parent.bottom
+             }
+         },
+
+         State
+         {
+             when: control.position === ToolBar.Footer
+
+             AnchorChanges
+             {
+                 target: _border
+                 anchors.top: parent.top
+                 anchors.bottom: undefined
+             }
+         }
+         ]
     }
 }
