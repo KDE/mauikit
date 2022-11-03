@@ -831,7 +831,6 @@ T.Pane
         {
             active: control.showCSDControls
             visible: active
-            width: visible ? implicitWidth:  0
             sourceComponent: Maui.WindowControls
             {
                 

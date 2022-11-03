@@ -11,7 +11,8 @@ Loader
 {
     id: control
     
-    active: Maui.App.controls.enableCSD  && Maui.Handy.isLinux 
+    active: Maui.App.controls.enableCSD  && Maui.Handy.isLinux && control.Window.window.visibility !== Window.FullScreen
+    
     visible: active
     width: visible ? implicitWidth:  0
     sourceComponent: Maui.CSDControls

@@ -141,7 +141,8 @@ Window
       anchors.fill: parent 
       
       
-      layer.enabled: Maui.App.controls.enableCSD
+      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen
+    
       layer.effect: OpacityMask
       {
         maskSource: Rectangle
@@ -155,7 +156,7 @@ Window
         
     Loader
     {
-      active: Maui.App.controls.enableCSD
+      active: _content.layer.enabled
       visible: active
       z: ApplicationWindow.overlay.z + 9999
       anchors.fill: parent
