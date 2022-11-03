@@ -43,7 +43,7 @@ Maui.ItemDelegate
     isCurrentItem : GridView.isCurrentItem || checked
     
     padding: Maui.Style.space.small
-    spacing: padding
+    spacing: Maui.Style.space.medium
     
     radius: Maui.Style.radiusV
 

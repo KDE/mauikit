@@ -209,7 +209,7 @@ Item
                 {
                     id: _labels
                     anchors.fill: parent
-                    spacing: 0
+            spacing: Maui.Style.space.tiny
                     
                     Label
                     {

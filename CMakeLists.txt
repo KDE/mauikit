@@ -94,7 +94,7 @@ if(QUICK_COMPILER)
 endif()
 
 add_subdirectory(src)
-add_subdirectory(demo)
+# add_subdirectory(demo)
 
 ##CMAKE PARTS
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/MauiKit")
