@@ -37,10 +37,13 @@ Maui.GridBrowserDelegate
     property var cb       
     
     //label1.font.bold: true
-    label1.font.weight: Font.Black
+    label1.font.weight: Font.Bold
+    label1.font.pointSize: Maui.Style.fontSizes.big
+    
     template.labelSizeHint: 32
     template.alignment: Qt.AlignLeft
     flat: true
+    
     template.iconComponent: Item
     {
         id: _collageLayout
