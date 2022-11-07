@@ -43,13 +43,16 @@ import org.mauikit.controls 1.3 as Maui
 T.Tumbler 
 {
     id: control
+    
+    padding: Maui.Style.space.medium
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding) || 60 // ### remove 60 in Qt 6
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding) || 200 // ### remove 200 in Qt 6
 
-    delegate: Text {
+    delegate: Text
+    {
         text: modelData
         color: Maui.Theme.textColor
         font: control.font
@@ -82,7 +85,7 @@ T.Tumbler
     background: Rectangle
     {
         color: Maui.Theme.backgroundColor
-        
+        radius: Maui.Style.radiusV
         
         MouseArea
         {

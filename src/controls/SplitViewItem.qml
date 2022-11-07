@@ -22,6 +22,7 @@ Item
     property int minimumWidth : 200
     property int minimumHeight : 100
     
+    
     SplitView.fillHeight: true
     SplitView.fillWidth: true
     
@@ -32,6 +33,7 @@ Item
     SplitView.minimumWidth: SplitView.view.orientation === Qt.Horizontal ? minimumWidth :  0
     
     opacity: SplitView.view.currentIndex === splitIndex ? 1 : 0.7
+    clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0        
     
     Item
     {

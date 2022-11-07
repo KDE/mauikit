@@ -29,8 +29,8 @@ T.SplitView
         
         Rectangle
         {
-            implicitWidth: Maui.Handy.isTouch ? 20 : 12
-            implicitHeight: Maui.Handy.isTouch ? 20 : 12
+            implicitWidth: 20
+            implicitHeight: 20
             
             color: Maui.Theme.backgroundColor
             
@@ -88,8 +88,8 @@ T.SplitView
         
         Rectangle
         {
-            implicitWidth: Maui.Handy.isTouch ? 20 : 12
-            implicitHeight: Maui.Handy.isTouch ? 20 : 12
+            implicitWidth: 20
+            implicitHeight: 20
             
             color: Maui.Theme.backgroundColor
             
@@ -143,6 +143,7 @@ T.SplitView
     handle: Loader
     {
         //        asynchronous: true
+        z: control.z +9999
         property bool pressed: T.SplitHandle.pressed
         sourceComponent: control.orientation === Qt.Horizontal ? _verticalHandleComponent : _horizontalHandleComponent
     }
