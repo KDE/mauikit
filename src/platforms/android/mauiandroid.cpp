@@ -112,29 +112,36 @@ void MAUIAndroid::navBarColor(const QString &bg, const bool &light)
 
 void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
 {
-    shareDialog(urls.first());
-}
-
-void MAUIAndroid::shareDialog(const QUrl &url)
-{
-    qDebug() << "trying to share dialog";
     QAndroidJniEnvironment _env;
     QAndroidJniObject activity = QAndroidJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
     if (_env->ExceptionCheck()) {
         _env->ExceptionClear();
         throw InterfaceConnFailedException();
     }
-    if (activity.isValid()) {
+
+    if(urls.isEmpty())
+        return;
+
+    if (activity.isValid())
+    {
         qDebug() << "trying to share dialog << valid";
 
         QMimeDatabase mimedb;
-        QString mimeType = mimedb.mimeTypeForFile(url.toLocalFile()).name();
+        QString mimeType = mimedb.mimeTypeForFile(urls.first().toLocalFile()).name();
+
+        jobjectArray stringArray = _env->NewObjectArray(urls.count(), _env->FindClass("java/lang/String"), NULL);
+
+        int index = -1;
+        for(auto url : urls)
+        {
+               _env->SetObjectArrayElement(stringArray, ++index, QAndroidJniObject::fromString(url.toLocalFile()).object<jstring>());
+           }
 
         QAndroidJniObject::callStaticMethod<void>("com/kde/maui/tools/SendIntent",
                                                   "share",
-                                                  "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+                                                  "(Landroid/app/Activity;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                                                   activity.object<jobject>(),
-                                                  QAndroidJniObject::fromString(url.toLocalFile()).object<jstring>(),
+                                                   QAndroidJniObject::fromLocalRef(stringArray).object<jobjectArray>(),
                                                   QAndroidJniObject::fromString(mimeType).object<jstring>(),
                                                   QAndroidJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
 
@@ -147,6 +154,7 @@ void MAUIAndroid::shareDialog(const QUrl &url)
     } else
         throw InterfaceConnFailedException();
 }
+
 
 void MAUIAndroid::shareText(const QString &text)
 {

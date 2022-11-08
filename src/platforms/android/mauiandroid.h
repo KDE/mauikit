@@ -88,11 +88,6 @@ public slots:
      * @param urls
      */
     void shareFiles(const QList<QUrl> &urls) override final;
-    /**
-     * @brief shareDialog
-     * @param url
-     */
-    static void shareDialog(const QUrl &url);
 
     /**
      * @brief shareText

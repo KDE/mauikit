@@ -63,11 +63,11 @@ Maui.Page
     /*!
      *     The toolbar where the app view buttons will be* added.
      */
-    headBar.forceCenterMiddleContent: false
+    headBar.forceCenterMiddleContent: !isWide
     headBar.middleContent: Loader
     {
         asynchronous: true
-        Layout.alignment: Qt.AlignLeft
+        Layout.alignment: Qt.AlignCenter
 
         sourceComponent: Private.ActionGroup
         {

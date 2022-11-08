@@ -87,7 +87,7 @@ if(BUNDLE_LUV_ICONS)
 endif()
 
 if (ANDROID)
-    #   add_subdirectory(platforms/android)
+       add_subdirectory(platforms/android)
 
     set(mauikit_PLATFORM_SRCS
         platforms/android/mauiandroid.cpp

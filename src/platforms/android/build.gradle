@@ -17,8 +17,9 @@ repositories {
 apply plugin: 'com.android.library'
 
     android {
-        compileSdkVersion @ANDROID_SDK_COMPILE_API@
-        buildToolsVersion '@ANDROID_SDK_BUILD_TOOLS_REVISION@'
+        compileSdkVersion androidCompileSdkVersion.toInteger()
+
+                buildToolsVersion androidBuildToolsVersion
 
 
         sourceSets {
@@ -42,7 +43,7 @@ apply plugin: 'com.android.library'
   }
 
   defaultConfig {
-    minSdkVersion @ANDROID_API_LEVEL@
-            targetSdkVersion @ANDROID_SDK_COMPILE_API@
+    minSdkVersion qtMinSdkVersion
+            targetSdkVersion qtTargetSdkVersion
 }
 }

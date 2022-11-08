@@ -42,6 +42,7 @@ Maui.GridBrowserDelegate
     
     template.labelSizeHint: 32
     template.alignment: Qt.AlignLeft
+    
     flat: true
     
     template.iconComponent: Item
@@ -93,11 +94,10 @@ Maui.GridBrowserDelegate
                         Image
                         {
                             anchors.fill: parent
-                            sourceSize.width:  (control.imageWidth > -1 ? control.imageWidth : width)
-                            sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : height)
-                            
+                            sourceSize.width: Math.max(300, width)
+                            sourceSize.height: Math.max(200, height)
+                            cache: true
                             asynchronous: true
-                            smooth: true
                             source: control.cb ? control.cb(modelData) : modelData
                             fillMode: control.fillMode
                         }

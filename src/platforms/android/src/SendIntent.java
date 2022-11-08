@@ -77,29 +77,32 @@ public class SendIntent
 
     }
 
-    public static void share(Activity context, String url, String mime, String authority)
+    public static void share(Activity context, String[] urls, String mime, String authority)
     {
-        File file = new File(url);
-        System.out.println(file.exists());
+        ShareCompat.IntentBuilder sendIntent = ShareCompat.IntentBuilder.from(context);
 
-        Uri uri;
-        try
+        for(String url : urls )
         {
-            uri = FileProvider.getUriForFile(context, authority, file);
-        } catch (IllegalArgumentException e) {
-            System.out.println("cannot be shared: "+ url+ " " +e);
-            return;
-        }
+                File file = new File(url);
 
-        Intent sendIntent = ShareCompat.IntentBuilder.from(context).getIntent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                Uri uri = FileProvider.getUriForFile(
+                        context,
+                        authority,
+                        file);
+
+                sendIntent.addStream(uri);
+            }
+
         System.out.println(mime);
         sendIntent.setType(mime);
 
-        if (sendIntent.resolveActivity(context.getPackageManager()) != null)
+        Intent intent=sendIntent.getIntent();
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            intent.setAction(Intent.ACTION_SEND_MULTIPLE);
+
+        if (intent.resolveActivity(context.getPackageManager()) != null)
         {
-            context.startActivity(Intent.createChooser(sendIntent, "Share"));
+            context.startActivity(Intent.createChooser(intent, "Share"));
         } else {
             System.out.println( "Intent not resolved");
         }
