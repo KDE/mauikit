@@ -47,9 +47,6 @@
 #include "utils/imagecolors.h"
 #include "utils/wheelhandler.h"
 
-#include <KI18n/KLocalizedContext>
-#include <KI18n/KLocalizedString>
-
 #include <QDebug>
 #include <QQmlContext>
 

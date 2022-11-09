@@ -1,3 +1,4 @@
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/utils
     ${CMAKE_CURRENT_BINARY_DIR}/utils
@@ -206,6 +207,8 @@ add_library(MauiKit
     ${mauikit_QML_QRC}
     )
 
+    ecm_create_qm_loader(MauiKit MauiKitPlugin)
+
 if(QUICK_COMPILER)
     add_definitions(-DQUICK_COMPILER)
     target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
@@ -279,7 +282,6 @@ endif()
 target_link_libraries(MauiKit
     PUBLIC
     Qt5::Core
-    KF5::I18n
     KF5::CoreAddons
 
     PRIVATE

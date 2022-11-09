@@ -83,7 +83,7 @@ set_package_properties(XCB PROPERTIES TYPE REQUIRED)
     find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
 endif()
 
-find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons Notifications)
+find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS CoreAddons Notifications)
 
 if(QUICK_COMPILER)
         find_package(Qt5QuickCompiler)
@@ -125,6 +125,8 @@ install(EXPORT MauiKitTargets
     FILE MauiKitTargets.cmake
     )
 
-    ki18n_install(po)
-file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
+    ecm_install_po_files_as_qm(poqm)
+
+    file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
