@@ -207,8 +207,6 @@ add_library(MauiKit
     ${mauikit_QML_QRC}
     )
 
-    ecm_create_qm_loader(MauiKit MauiKitPlugin)
-
 if(QUICK_COMPILER)
     add_definitions(-DQUICK_COMPILER)
     target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
@@ -288,6 +286,7 @@ target_link_libraries(MauiKit
         ${kwin_XCB_LIBS}
     MauiMan::MauiMan
     KF5::Notifications
+    KF5::I18n
     Qt5::Qml
     Qt5::Svg
     Qt5::Widgets
