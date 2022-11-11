@@ -125,6 +125,7 @@ install(EXPORT MauiKitTargets
     FILE MauiKitTargets.cmake
     )
 
+    add_definitions(-DTRANSLATION_DOMAIN="mauikit")
     ki18n_install(po)
 
     file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
