@@ -1,0 +1,154 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the mauikit package.
+#
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-11-10 00:45+0000\n"
+"PO-Revision-Date: 2022-11-10 19:05-0400\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 22.08.3\n"
+
+#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
+#: src/controls/NewDialog.qml:26
+#, kde-format
+msgid "Accept"
+msgstr "Accepteren"
+
+#: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
+#, kde-format
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
+#, kde-format
+msgid "Highlighter"
+msgstr "Accentuering"
+
+#: src/controls/labs/Doodle.qml:137
+#, kde-format
+msgid "Marker"
+msgstr "Markering"
+
+#: src/controls/labs/Doodle.qml:159
+#, kde-format
+msgid "Eraser"
+msgstr "Gum"
+
+#: src/controls/labs/Doodle.qml:174
+#, kde-format
+msgid "Color"
+msgstr "Kleur"
+
+#: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
+#, kde-format
+msgid "Opacity"
+msgstr "Dekking"
+
+#: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
+#, kde-format
+msgid "Size"
+msgstr "Grootte"
+
+#: src/controls/labs/ImageViewer.qml:177
+#, kde-format
+msgid "Oops!"
+msgstr "Oops!"
+
+#: src/controls/labs/ImageViewer.qml:178
+#, kde-format
+msgid "The image could not be loaded."
+msgstr "De afbeelding kon niet worden geladen."
+
+#: src/controls/labs/SettingsDialog.qml:14
+#, kde-format
+msgid "Settings"
+msgstr "Instellingen"
+
+#: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
+#, kde-format
+msgid "Share with"
+msgstr "Delen met"
+
+#: src/controls/labs/TabView.qml:114
+#, kde-format
+msgid "Open"
+msgstr "Openen"
+
+#: src/controls/labs/TabView.qml:125
+#, kde-format
+msgid "Duplicate"
+msgstr "Dupliceren"
+
+#: src/controls/labs/TabView.qml:135
+#, kde-format
+msgid "Close"
+msgstr "Sluiten"
+
+#: src/controls/labs/TabView.qml:145
+#, kde-format
+msgid "Close Other"
+msgstr "Andere sluiten"
+
+#: src/controls/labs/TabView.qml:154
+#, kde-format
+msgid "Close All"
+msgstr "Alles sluiten"
+
+#: src/controls/private/AboutDialog.qml:198
+#, kde-format
+msgid "License"
+msgstr "Licentie"
+
+#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#, kde-format
+msgid "Close Split"
+msgstr "Splitsing sluiten"
+
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:225
+#, kde-format
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:239
+#, kde-format
+msgid "Paste"
+msgstr "Plakken"
+
+#: src/controls/Terminal.qml:117
+#, kde-format
+msgid "Find"
+msgstr "Zoeken"
+
+#: src/controls/Terminal.qml:168
+#, kde-format
+msgid "Find..."
+msgstr "Zoeken..."
+
+#: src/maui-style/TextField.qml:232
+#, kde-format
+msgid "Cut"
+msgstr "Knippen"
+
+#: src/maui-style/TextField.qml:249
+#, kde-format
+msgid "Select All"
+msgstr "Alles selecteren"
+
+#: src/maui-style/TextField.qml:256
+#, kde-format
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: src/maui-style/TextField.qml:263
+#, kde-format
+msgid "Redo"
+msgstr "Opnieuw"

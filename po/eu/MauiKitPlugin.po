@@ -1,0 +1,157 @@
+# Translation for MauiKitPlugin.po to Euskara/Basque (eu).
+# Copyright (C) 2022 This file is copyright:
+# This file is distributed under the same license as the mauikit package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-11-10 00:45+0000\n"
+"PO-Revision-Date: 2022-11-10 07:12+0100\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.08.3\n"
+
+#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
+#: src/controls/NewDialog.qml:26
+#, kde-format
+msgid "Accept"
+msgstr "Onartu"
+
+#: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
+#, kde-format
+msgid "Cancel"
+msgstr "Utzi"
+
+#: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
+#, kde-format
+msgid "Highlighter"
+msgstr "Nabarmentzailea"
+
+#: src/controls/labs/Doodle.qml:137
+#, kde-format
+msgid "Marker"
+msgstr "Markatzailea"
+
+#: src/controls/labs/Doodle.qml:159
+#, kde-format
+msgid "Eraser"
+msgstr "Borragoma"
+
+#: src/controls/labs/Doodle.qml:174
+#, kde-format
+msgid "Color"
+msgstr "Kolorea"
+
+#: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
+#, kde-format
+msgid "Opacity"
+msgstr "Opakutasuna"
+
+#: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
+#, kde-format
+msgid "Size"
+msgstr "Neurria"
+
+#: src/controls/labs/ImageViewer.qml:177
+#, kde-format
+msgid "Oops!"
+msgstr "Ieepa!"
+
+#: src/controls/labs/ImageViewer.qml:178
+#, kde-format
+msgid "The image could not be loaded."
+msgstr "Irudia ezin izan du zamatu."
+
+#: src/controls/labs/SettingsDialog.qml:14
+#, kde-format
+msgid "Settings"
+msgstr "Ezarpenak"
+
+#: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
+#, kde-format
+msgid "Share with"
+msgstr "Partekatu honekin"
+
+#: src/controls/labs/TabView.qml:114
+#, kde-format
+msgid "Open"
+msgstr "Ireki"
+
+#: src/controls/labs/TabView.qml:125
+#, kde-format
+msgid "Duplicate"
+msgstr "Bikoiztu"
+
+#: src/controls/labs/TabView.qml:135
+#, kde-format
+msgid "Close"
+msgstr "Itxi"
+
+#: src/controls/labs/TabView.qml:145
+#, kde-format
+msgid "Close Other"
+msgstr "Itxi bestea"
+
+#: src/controls/labs/TabView.qml:154
+#, kde-format
+msgid "Close All"
+msgstr "Itxi denak"
+
+#: src/controls/private/AboutDialog.qml:198
+#, kde-format
+msgid "License"
+msgstr "Lizentzia"
+
+#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#, kde-format
+msgid "Close Split"
+msgstr "Itxi zatiketa"
+
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:225
+#, kde-format
+msgid "Copy"
+msgstr "Kopiatu"
+
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:239
+#, kde-format
+msgid "Paste"
+msgstr "Itsatsi"
+
+#: src/controls/Terminal.qml:117
+#, kde-format
+msgid "Find"
+msgstr "Aurkitu"
+
+#: src/controls/Terminal.qml:168
+#, kde-format
+msgid "Find..."
+msgstr "Aurkitu..."
+
+#: src/maui-style/TextField.qml:232
+#, kde-format
+msgid "Cut"
+msgstr "Ebaki"
+
+#: src/maui-style/TextField.qml:249
+#, kde-format
+msgid "Select All"
+msgstr "Hautatu denak"
+
+#: src/maui-style/TextField.qml:256
+#, kde-format
+msgid "Undo"
+msgstr "Desegin"
+
+#: src/maui-style/TextField.qml:263
+#, kde-format
+msgid "Redo"
+msgstr "Berregin"
