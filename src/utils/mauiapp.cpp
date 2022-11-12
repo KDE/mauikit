@@ -26,6 +26,8 @@
 #include <QQuickItem>
 #include <QWindow>
 
+#include <KLocalizedString>
+
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 #include <KConfig>
 #include <KConfigGroup>
@@ -43,8 +45,6 @@
 
 #include "../mauikit_version.h"
 
-
-
 MauiApp *MauiApp::m_instance = nullptr;
 
 MauiApp::MauiApp()
@@ -59,6 +59,15 @@ MauiApp::MauiApp()
         m_instance = nullptr;
     });
     
+    KAboutData aboutData(KAboutData::applicationData());
+    if (aboutData.translators().isEmpty()) 
+    {
+        aboutData.setTranslator(i18ndc(nullptr, "NAME OF TRANSLATORS", "Your names"), //
+                                i18ndc(nullptr, "EMAIL OF TRANSLATORS", "Your emails"));
+
+        KAboutData::setApplicationData(aboutData);
+    }
+
     
     setDefaultMauiStyle();
 }

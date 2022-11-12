@@ -175,6 +175,42 @@ Maui.Dialog
                 }
             }
         
+          Column
+            {
+                id: _translators
+                spacing: Maui.Style.space.big
+                Layout.fillWidth: true
+                
+                Repeater
+                {
+                    model: Maui.App.about.translators
+                    
+                    Maui.ListItemTemplate
+                    {
+                        id: _tCredits
+                        iconSource: "folder-language"
+                        
+                        iconSizeHint: Maui.Style.iconSize
+                        
+                        width: parent.width
+                        
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.textFormat: Text.AutoText
+                        
+                        label3.text: i18nd("mauikit", "Translator")
+                        isMask: true
+                        
+                        Connections
+                        {
+                            target: _tCredits.label1
+                            function onLinkActivated(link)
+                            {
+                                Qt.openUrlExternally(link)
+                            }
+                        }
+                    }
+                }
+            }
         
             Column
             {
