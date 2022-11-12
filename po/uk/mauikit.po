@@ -1,154 +1,155 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 #
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-10 00:45+0000\n"
-"PO-Revision-Date: 2022-11-10 04:20+0300\n"
-"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
-"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
-"Language: tr\n"
+"POT-Creation-Date: 2022-11-11 00:44+0000\n"
+"PO-Revision-Date: 2022-11-11 17:38+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
 #: src/controls/NewDialog.qml:26
 #, kde-format
 msgid "Accept"
-msgstr "Kabul Et"
+msgstr "Прийняти"
 
 #: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Cancel"
-msgstr "İptal"
+msgstr "Скасувати"
 
 #: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
-msgstr "Vurgulayıcı"
+msgstr "Підсвічування"
 
 #: src/controls/labs/Doodle.qml:137
 #, kde-format
 msgid "Marker"
-msgstr "İmleyici"
+msgstr "Позначка"
 
 #: src/controls/labs/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
-msgstr "Silgi"
+msgstr "Гумка"
 
 #: src/controls/labs/Doodle.qml:174
 #, kde-format
 msgid "Color"
-msgstr "Renk"
+msgstr "Колір"
 
 #: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
-msgstr "Matlık"
+msgstr "Непрозорість"
 
 #: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
 #, kde-format
 msgid "Size"
-msgstr "Boyut"
+msgstr "Розмір"
 
 #: src/controls/labs/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
-msgstr "Ups!"
+msgstr "Отакої!"
 
 #: src/controls/labs/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
-msgstr "Görsel yüklenemedi."
+msgstr "Не вдається завантажити образ."
 
 #: src/controls/labs/SettingsDialog.qml:14
 #, kde-format
 msgid "Settings"
-msgstr "Ayarlar"
+msgstr "Параметри"
 
 #: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
 #, kde-format
 msgid "Share with"
-msgstr "Şununla Paylaş"
+msgstr "Поділитися"
 
 #: src/controls/labs/TabView.qml:114
 #, kde-format
 msgid "Open"
-msgstr "Aç"
+msgstr "Відкрити"
 
 #: src/controls/labs/TabView.qml:125
 #, kde-format
 msgid "Duplicate"
-msgstr "Çoğalt"
+msgstr "Здублювати"
 
 #: src/controls/labs/TabView.qml:135
 #, kde-format
 msgid "Close"
-msgstr "Kapat"
+msgstr "Закрити"
 
 #: src/controls/labs/TabView.qml:145
 #, kde-format
 msgid "Close Other"
-msgstr "Diğerini Kapat"
+msgstr "Закрити інші"
 
 #: src/controls/labs/TabView.qml:154
 #, kde-format
 msgid "Close All"
-msgstr "Tümünü Kapat"
+msgstr "Закрити всі"
 
 #: src/controls/private/AboutDialog.qml:198
 #, kde-format
 msgid "License"
-msgstr "Lisans"
+msgstr "Ліцензування"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
 msgid "Close Split"
-msgstr "Bölünmüşü Kapat"
+msgstr "Закрити панель розділеного перегляду"
 
 #: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:225
 #, kde-format
 msgid "Copy"
-msgstr "Kopyala"
+msgstr "Копіювати"
 
 #: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:239
 #, kde-format
 msgid "Paste"
-msgstr "Yapıştır"
+msgstr "Вставити"
 
 #: src/controls/Terminal.qml:117
 #, kde-format
 msgid "Find"
-msgstr "Bul"
+msgstr "Знайти"
 
 #: src/controls/Terminal.qml:168
 #, kde-format
 msgid "Find..."
-msgstr "Bul..."
+msgstr "Знайти…"
 
 #: src/maui-style/TextField.qml:232
 #, kde-format
 msgid "Cut"
-msgstr "Kes"
+msgstr "Вирізати"
 
 #: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Select All"
-msgstr "Tümünü Seç"
+msgstr "Позначити все"
 
 #: src/maui-style/TextField.qml:256
 #, kde-format
 msgid "Undo"
-msgstr "Geri Al"
+msgstr "Скасувати"
 
 #: src/maui-style/TextField.qml:263
 #, kde-format
 msgid "Redo"
-msgstr "Yinele"
+msgstr "Повторити"
