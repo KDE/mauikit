@@ -1,110 +1,108 @@
-# Spanish translations for mauikit.po package.
-# Copyright (C) 2022 This file is copyright:
+# Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 #
-# Eloy Cuadra <ecuadra@eloihr.net>, %Y.
-# Automatically generated, 2022.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2022.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-13 00:44+0000\n"
-"PO-Revision-Date: 2022-11-11 04:20+0100\n"
-"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
-"Language-Team: Spanish <kde-l10n-es@kde.org>\n"
-"Language: es\n"
+"PO-Revision-Date: 2022-11-12 09:01+0100\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.3\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
+"X-Generator: Lokalize 22.08.1\n"
 
 #: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
 #: src/controls/NewDialog.qml:26
 #, kde-format
 msgid "Accept"
-msgstr "Aceptar"
+msgstr "Sprejmi"
 
 #: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Prekliči"
 
 #: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
-msgstr "Resaltador"
+msgstr "Osvetljevalnik"
 
 #: src/controls/labs/Doodle.qml:137
 #, kde-format
 msgid "Marker"
-msgstr "Marcador"
+msgstr "Označevalnik"
 
 #: src/controls/labs/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
-msgstr "Borrador"
+msgstr "Brisalnik"
 
 #: src/controls/labs/Doodle.qml:174
 #, kde-format
 msgid "Color"
-msgstr "Color"
+msgstr "Barva"
 
 #: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
-msgstr "Opacidad"
+msgstr "Neprosojnost"
 
 #: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
 #, kde-format
 msgid "Size"
-msgstr "Tamaño"
+msgstr "Velikost"
 
 #: src/controls/labs/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
-msgstr "¡Ups!"
+msgstr "Opsa!"
 
 #: src/controls/labs/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
-msgstr "No se puede cargar la imagen."
+msgstr "Slike ni bilo mogoče naložiti."
 
 #: src/controls/labs/SettingsDialog.qml:14
 #, kde-format
 msgid "Settings"
-msgstr "Preferencias"
+msgstr "Nastavitve"
 
 #: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
 #, kde-format
 msgid "Share with"
-msgstr "Compartir con"
+msgstr "Deli z"
 
 #: src/controls/labs/TabView.qml:114
 #, kde-format
 msgid "Open"
-msgstr "Abrir"
+msgstr "Odpri"
 
 #: src/controls/labs/TabView.qml:125
 #, kde-format
 msgid "Duplicate"
-msgstr "Duplicar"
+msgstr "Dupliciraj"
 
 #: src/controls/labs/TabView.qml:135
 #, kde-format
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Zapri"
 
 #: src/controls/labs/TabView.qml:145
 #, kde-format
 msgid "Close Other"
-msgstr "Cerrar los otros"
+msgstr "Zapri ostalo"
 
 #: src/controls/labs/TabView.qml:154
 #, kde-format
 msgid "Close All"
-msgstr "Cerrar todo"
+msgstr "Zapri vse"
 
 #: src/controls/private/AboutDialog.qml:200
 #, kde-format
@@ -114,52 +112,52 @@ msgstr ""
 #: src/controls/private/AboutDialog.qml:234
 #, kde-format
 msgid "License"
-msgstr "Licencia"
+msgstr "Dovoljenje"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
 msgid "Close Split"
-msgstr "Cerrar división"
+msgstr "Zapri razcep"
 
 #: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:225
 #, kde-format
 msgid "Copy"
-msgstr "Copiar"
+msgstr "Kopiraj"
 
 #: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:239
 #, kde-format
 msgid "Paste"
-msgstr "Pegar"
+msgstr "Prilepi"
 
 #: src/controls/Terminal.qml:117
 #, kde-format
 msgid "Find"
-msgstr "Buscar"
+msgstr "Najdi"
 
 #: src/controls/Terminal.qml:168
 #, kde-format
 msgid "Find..."
-msgstr "Buscar..."
+msgstr "Najdi..."
 
 #: src/maui-style/TextField.qml:232
 #, kde-format
 msgid "Cut"
-msgstr "Cortar"
+msgstr "Izreži"
 
 #: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Select All"
-msgstr "Seleccionar todo"
+msgstr "Izberi vse"
 
 #: src/maui-style/TextField.qml:256
 #, kde-format
 msgid "Undo"
-msgstr "Deshacer"
+msgstr "Razveljavi"
 
 #: src/maui-style/TextField.qml:263
 #, kde-format
 msgid "Redo"
-msgstr "Rehacer"
+msgstr "Uveljavi"
 
 #: src/utils/mauiapp.cpp:65
 #, kde-format

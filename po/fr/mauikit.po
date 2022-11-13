@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-11 00:44+0000\n"
+"POT-Creation-Date: 2022-11-13 00:44+0000\n"
 "PO-Revision-Date: 2022-11-11 18:34+0100\n"
 "Last-Translator: KDE Francophone <kde-francophone@kde.org>\n"
 "Language-Team: KDE Francophone <kde-francophone@kde.org>\n"
@@ -98,7 +98,12 @@ msgstr ""
 msgid "Close All"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:198
+#: src/controls/private/AboutDialog.qml:200
+#, kde-format
+msgid "Translator"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:234
 #, kde-format
 msgid "License"
 msgstr ""
@@ -146,4 +151,16 @@ msgstr ""
 #: src/maui-style/TextField.qml:263
 #, kde-format
 msgid "Redo"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:65
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:66
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
 msgstr ""
