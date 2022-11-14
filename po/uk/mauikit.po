@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-13 00:44+0000\n"
-"PO-Revision-Date: 2022-11-11 17:38+0200\n"
+"PO-Revision-Date: 2022-11-13 19:26+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -107,7 +107,7 @@ msgstr "Закрити всі"
 #: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Translator"
-msgstr ""
+msgstr "Перекладач"
 
 #: src/controls/private/AboutDialog.qml:234
 #, kde-format
@@ -163,10 +163,10 @@ msgstr "Повторити"
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Юрій Чорноіван"
 
 #: src/utils/mauiapp.cpp:66
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "yurchor@ukr.net"
