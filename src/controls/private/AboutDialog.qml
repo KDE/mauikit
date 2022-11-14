@@ -296,6 +296,38 @@ Maui.Dialog
         
         }
         
+         Maui.SettingTemplate
+        {
+            id: _linksssSection
+            label1.text: i18n("Links")
+            // label2.text: Maui.App.about.copyrightStatement
+            
+ iconSource: "link"
+                                                template.isMask: true
+                        template.iconSizeHint: Maui.Style.iconSize
+                        
+            Column
+            {
+                id: _links
+                spacing: Maui.Style.space.medium
+                width: parent.parent.width
+                
+                Button
+                {
+                    width: parent.width
+                    text: i18n("Reports")
+                    onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+                }
+                
+                 Button
+                {
+                    width: parent.width
+                    text: i18n("Home Page")
+                    onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
+                }
+            }
+        }
+        
         Item
         {
             Layout.fillWidth: true

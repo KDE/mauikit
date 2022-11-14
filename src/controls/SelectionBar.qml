@@ -535,7 +535,11 @@ Item
             {
                 icon.name: "overflow-menu"
                 visible: content.length > 0
-                content: control.hiddenActions
+                Repeater
+                {
+                    model:  control.hiddenActions
+                    delegate: MenuItem{ action: modelData}
+                }
             }
 
             Maui.CloseButton
