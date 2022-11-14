@@ -206,6 +206,8 @@ signals:
 };
 
 class Notify;
+class KAboutComponent;
+
 class MAUIKIT_EXPORT MauiApp : public QObject
 {
   Q_OBJECT
@@ -222,6 +224,7 @@ class MAUIKIT_EXPORT MauiApp : public QObject
 //   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
   
 public:
+  static KAboutComponent aboutMauiKit();
   static MauiApp *qmlAttachedProperties(QObject *object);
 
   static MauiApp *instance()

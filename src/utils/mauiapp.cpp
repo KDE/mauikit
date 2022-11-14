@@ -27,6 +27,7 @@
 #include <QWindow>
 
 #include <KLocalizedString>
+#include <KCoreAddons>
 
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 #include <KConfig>
@@ -47,6 +48,12 @@
 
 MauiApp *MauiApp::m_instance = nullptr;
 
+KAboutComponent MauiApp::aboutMauiKit()
+{
+    return KAboutComponent("MauiKit", i18n("Multi-adaptable user interfaces."), MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);
+}
+
+
 MauiApp::MauiApp()
     : QObject(nullptr)
     , m_controls(new CSDControls(this))
@@ -65,10 +72,15 @@ MauiApp::MauiApp()
         aboutData.setTranslator(i18ndc(nullptr, "NAME OF TRANSLATORS", "Your names"), //
                                 i18ndc(nullptr, "EMAIL OF TRANSLATORS", "Your emails"));
 
-        KAboutData::setApplicationData(aboutData);
     }
+        aboutData.addComponent("Qt", "", QT_VERSION_STR, "https://qt.io");
+   
+        aboutData.addComponent(i18n("KDE Frameworks"), "", KCoreAddons::versionString(), "https://kde.org");
 
-    
+aboutData.addComponent(i18n("MauiKit Frameworks"), "", MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);           
+
+KAboutData::setApplicationData(aboutData);
+
     setDefaultMauiStyle();
 }
 

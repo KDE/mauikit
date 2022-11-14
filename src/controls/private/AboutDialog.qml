@@ -138,11 +138,21 @@ Maui.Dialog
             implicitHeight: Maui.Style.space.big
         }
         
+        Maui.SettingTemplate
+        {
+            id: _authorsSection
+            label1.text: i18n("Authors")
+            // label2.text: Maui.App.about.copyrightStatement
+            
+ iconSource: "view-media-artist"
+                                                template.isMask: true
+                        template.iconSizeHint: Maui.Style.iconSize
+                        
             Column
             {
                 id: _credits
-                spacing: Maui.Style.space.big
-                Layout.fillWidth: true
+                spacing: Maui.Style.space.medium
+                width: parent.parent.width
                 
                 Repeater
                 {
@@ -151,17 +161,13 @@ Maui.Dialog
                     Maui.ListItemTemplate
                     {
                         id: _credits
-                        iconSource: "view-media-artist"
-                        
-                        iconSizeHint: Maui.Style.iconSize
-                        
+                       
                         width: parent.width
                         
                         label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
                         
                         label3.text: modelData.task
-                        isMask: true
                         
                         Connections
                         {
@@ -174,12 +180,22 @@ Maui.Dialog
                     }
                 }
             }
+        }
         
+        Maui.SettingTemplate
+        {
+            id: _translatorsSection
+            label1.text: i18n("Translators")
+            // label2.text: Maui.App.about.copyrightStatement
+            
+                        iconSource: "folder-language"
+                                                template.isMask: true
+                        template.iconSizeHint: Maui.Style.iconSize
           Column
             {
                 id: _translators
-                spacing: Maui.Style.space.big
-                Layout.fillWidth: true
+                spacing: Maui.Style.space.medium
+                width: parent.parent.width
                 
                 Repeater
                 {
@@ -188,18 +204,12 @@ Maui.Dialog
                     Maui.ListItemTemplate
                     {
                         id: _tCredits
-                        iconSource: "folder-language"
-                        
-                        iconSizeHint: Maui.Style.iconSize
-                        
+                                                
                         width: parent.width
                         
                         label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
-                        
-                        label3.text: i18nd("mauikit", "Translator")
-                        isMask: true
-                        
+                                                label3.text: modelData.task
                         Connections
                         {
                             target: _tCredits.label1
@@ -211,53 +221,80 @@ Maui.Dialog
                     }
                 }
             }
+        }
         
+          Maui.SettingTemplate
+        {
+            id: _licensesSection
+                                    iconSource: "license"
+
+                                                template.isMask: true
+                        template.iconSizeHint: Maui.Style.iconSize
+                        
+            label1.text: i18n("Licenses")
+            // label2.text: `Maui.App.about.copyrightStatement
+            
             Column
             {
                 id: _licenses
-                spacing: Maui.Style.space.big
-                Layout.fillWidth: true
-                
+                spacing: Maui.Style.space.medium
+                width: parent.parent.width               
                 
                 Repeater
                 {
                     model: Maui.App.about.licenses
                     Maui.ListItemTemplate
                     {
-                        iconSource: "license"
                         width: parent.width
-                        isMask: true
-                        
-                        iconSizeHint: Maui.Style.iconSize
-                        
                         label1.text: modelData.name
-                        label3.text: i18nd("mauikit", "License")
+                        label3.text: modelData.spdx
                     }
                 }
             }
+        }
         
-        
-            Maui.ListItemTemplate
-            {
-                id: _poweredBy
-                 Layout.fillWidth: true
-                isMask: true
-                
+          Maui.SettingTemplate
+        {
+            id: _componentsSection
                 iconSource: "code-context"
-                iconSizeHint: Maui.Style.iconSize
+
+                                                template.isMask: true
+                        template.iconSizeHint: Maui.Style.iconSize
+                        
+            label1.text: i18n("Components")
+            
+            Column
+            {
+                spacing: Maui.Style.space.medium
+                width: parent.parent.width               
                 
-                label1.text: "MauiKit Frameworks"
-                label3.text: Maui.App.mauikitVersion
-                Connections
+                Repeater
                 {
-                    target: _poweredBy.label2
+                    model: Maui.App.about.components
+                    Maui.ListItemTemplate
+                    {
+                        width: parent.width
+                                                label1.textFormat: Text.AutoText
+
+                                                label1.text: modelData.webAddress ? String("<a href='%1'>%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name 
+
+                                                
+                        label2.text: modelData.description
+                        label3.text: modelData.version
+                        
+ Connections
+                {
+                    target: label1
                     function onLinkActivated(link)
                     {
                         Qt.openUrlExternally(link)
                     }
                 }
+                    }
+                }
             }
         
+        }
         
         Item
         {
