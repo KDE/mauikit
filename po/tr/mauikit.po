@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-13 00:44+0000\n"
+"POT-Creation-Date: 2022-11-15 00:45+0000\n"
 "PO-Revision-Date: 2022-11-13 11:48+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -16,6 +16,258 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 22.08.3\n"
+
+#: demo/src/main.qml:35
+#, kde-format
+msgid "Core"
+msgstr ""
+
+#: demo/src/main.qml:36
+#, kde-format
+msgid "MauiKit Core components"
+msgstr ""
+
+#: demo/src/main.qml:41
+#, kde-format
+msgid "Views"
+msgstr ""
+
+#: demo/src/main.qml:42 demo/src/main.qml:69 demo/src/main.qml:110
+#: demo/src/main.qml:137 demo/src/main.qml:164 demo/src/main.qml:205
+#: demo/src/main.qml:252 demo/src/main.qml:307
+#, kde-format
+msgid "Adaptive views for contents"
+msgstr ""
+
+#: demo/src/main.qml:52
+#, kde-format
+msgid "Page"
+msgstr ""
+
+#: demo/src/main.qml:58
+#, kde-format
+msgid "SplitView"
+msgstr ""
+
+#: demo/src/main.qml:68
+#, kde-format
+msgid "Browsers"
+msgstr ""
+
+#: demo/src/main.qml:79
+#, kde-format
+msgid "GridBrowser"
+msgstr ""
+
+#: demo/src/main.qml:85
+#, kde-format
+msgid "AltBrowser"
+msgstr ""
+
+#: demo/src/main.qml:92
+#, kde-format
+msgid "SidebarView"
+msgstr ""
+
+#: demo/src/main.qml:99
+#, kde-format
+msgid "AppViews"
+msgstr ""
+
+#: demo/src/main.qml:109 demo/src/main.qml:251 demo/src/main.qml:337
+#, kde-format
+msgid "Buttons"
+msgstr ""
+
+#: demo/src/main.qml:120
+#, kde-format
+msgid "ToolActions"
+msgstr ""
+
+#: demo/src/main.qml:126
+#, kde-format
+msgid "ToolButtonMenu"
+msgstr ""
+
+#: demo/src/main.qml:136
+#, kde-format
+msgid "Layouts"
+msgstr ""
+
+#: demo/src/main.qml:147
+#, kde-format
+msgid "SectionColumn"
+msgstr ""
+
+#: demo/src/main.qml:153
+#, kde-format
+msgid "SectionTemplate"
+msgstr ""
+
+#: demo/src/main.qml:163
+#, kde-format
+msgid "Delegates"
+msgstr ""
+
+#: demo/src/main.qml:174
+#, kde-format
+msgid "ListBrowserDelegate"
+msgstr ""
+
+#: demo/src/main.qml:180
+#, kde-format
+msgid "GridBrowserDelegate"
+msgstr ""
+
+#: demo/src/main.qml:187
+#, kde-format
+msgid "CollageDelegate"
+msgstr ""
+
+#: demo/src/main.qml:194
+#, kde-format
+msgid "GalleryRollDelegate"
+msgstr ""
+
+#: demo/src/main.qml:204
+#, kde-format
+msgid "Templates"
+msgstr ""
+
+#: demo/src/main.qml:215
+#, kde-format
+msgid "LisItemTemplate"
+msgstr ""
+
+#: demo/src/main.qml:221
+#, kde-format
+msgid "GridItemTemplate"
+msgstr ""
+
+#: demo/src/main.qml:228
+#, kde-format
+msgid "IconItem"
+msgstr ""
+
+#: demo/src/main.qml:235
+#, kde-format
+msgid "CollageItem"
+msgstr ""
+
+#: demo/src/main.qml:245
+#, kde-format
+msgid "Common"
+msgstr ""
+
+#: demo/src/main.qml:246 demo/src/main.qml:367
+#, kde-format
+msgid "Baseline controls"
+msgstr ""
+
+#: demo/src/main.qml:262
+#, kde-format
+msgid "Button"
+msgstr ""
+
+#: demo/src/main.qml:268
+#, kde-format
+msgid "ToolButton"
+msgstr ""
+
+#: demo/src/main.qml:275
+#, kde-format
+msgid "RadioButton"
+msgstr ""
+
+#: demo/src/main.qml:282
+#, kde-format
+msgid "Switch"
+msgstr ""
+
+#: demo/src/main.qml:289
+#, kde-format
+msgid "CheckBox"
+msgstr ""
+
+#: demo/src/main.qml:296
+#, kde-format
+msgid "TabButton"
+msgstr ""
+
+#: demo/src/main.qml:306
+#, kde-format
+msgid "Sliders"
+msgstr ""
+
+#: demo/src/main.qml:317
+#, kde-format
+msgid "Slider"
+msgstr ""
+
+#: demo/src/main.qml:323
+#, kde-format
+msgid "ProgressBar"
+msgstr ""
+
+#: demo/src/main.qml:329
+#, kde-format
+msgid "Range"
+msgstr ""
+
+#: demo/src/main.qml:342 demo/src/main.qml:377
+#, kde-format
+msgid "Text"
+msgstr ""
+
+#: demo/src/main.qml:348 demo/src/main.qml:383
+#, kde-format
+msgid "Input"
+msgstr ""
+
+#: demo/src/main.qml:354 demo/src/main.qml:372
+#, kde-format
+msgid "Bars"
+msgstr ""
+
+#: demo/src/main.qml:360
+#, kde-format
+msgid "Popups"
+msgstr ""
+
+#: demo/src/main.qml:366
+#, kde-format
+msgid "Custom"
+msgstr ""
+
+#: demo/src/main.qml:410
+#, kde-format
+msgid "Light"
+msgstr ""
+
+#: demo/src/main.qml:415
+#, kde-format
+msgid "Dark"
+msgstr ""
+
+#: demo/src/main.qml:420
+#, kde-format
+msgid "Adaptive"
+msgstr ""
+
+#: demo/src/main.qml:425
+#, kde-format
+msgid "System"
+msgstr ""
+
+#: demo/src/main.qml:449
+#, kde-format
+msgid "Control Title"
+msgstr ""
+
+#: demo/src/main.qml:450
+#, kde-format
+msgid "Control description"
+msgstr ""
 
 #: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
 #: src/controls/NewDialog.qml:26
@@ -103,15 +355,42 @@ msgstr "Diğerini Kapat"
 msgid "Close All"
 msgstr "Tümünü Kapat"
 
-#: src/controls/private/AboutDialog.qml:200
+#: src/controls/private/AboutDialog.qml:144
 #, kde-format
-msgid "Translator"
+msgid "Authors"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:188
+#, fuzzy, kde-format
+#| msgid "Translator"
+msgid "Translators"
 msgstr "Çevirmen"
 
 #: src/controls/private/AboutDialog.qml:234
-#, kde-format
-msgid "License"
+#, fuzzy, kde-format
+#| msgid "License"
+msgid "Licenses"
 msgstr "Lisans"
+
+#: src/controls/private/AboutDialog.qml:264
+#, kde-format
+msgid "Components"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:302
+#, kde-format
+msgid "Links"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:318
+#, kde-format
+msgid "Reports"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:325
+#, kde-format
+msgid "Home Page"
+msgstr ""
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
@@ -158,14 +437,29 @@ msgstr "Geri Al"
 msgid "Redo"
 msgstr "Yinele"
 
-#: src/utils/mauiapp.cpp:65
+#: src/utils/mauiapp.cpp:53
+#, kde-format
+msgid "Multi-adaptable user interfaces."
+msgstr ""
+
+#: src/utils/mauiapp.cpp:72
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Emir SARI"
 
-#: src/utils/mauiapp.cpp:66
+#: src/utils/mauiapp.cpp:73
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "emir_sari@icloud.com"
+
+#: src/utils/mauiapp.cpp:78
+#, kde-format
+msgid "KDE Frameworks"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:80
+#, kde-format
+msgid "MauiKit Frameworks"
+msgstr ""
