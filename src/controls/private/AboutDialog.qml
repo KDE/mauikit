@@ -28,54 +28,30 @@ import org.mauikit.controls 1.3 as Maui
 Maui.Dialog
 {
     id: control
-    //     implicitHeight: 200 + defaultButtonsLayout.height
     defaultButtons: false
         persistent: false
         widthHint: 0.9
         heightHint: 0.8
-//         spacing: Maui.Style.space.medium
-        //     scrollView.padding: 0
         
         maxWidth: 360
         maxHeight: implicitHeight
         
         Maui.Theme.inherit: false
         Maui.Theme.colorSet: Maui.Theme.Complementary
-        
-        //     verticalScrollBarPolicy: ScrollBar.AlwaysOff
-        
         /**
          * mainHeader : AlternateListItem
          */
         property alias mainHeader : _header
-        //         defaultButtonsLayout.visible: flickable.atYEnd
-        //actions: [
-        //Action
-        //{
-            //icon.name: "link"
-            //text: i18nd("mauikit", "Site")
-            //onTriggered: Qt.openUrlExternally(Maui.App.about.homepage)
-        //},
         
-        //Action
-        //{
-            //icon.name: "love"
-            //text: i18nd("mauikit", "Donate")
-            //onTriggered: Qt.openUrlExternally(Maui.App.donationPage)
-        //},
-        
-        //Action
-        //{
-            //icon.name: "documentinfo"
-            //text: i18nd("mauikit", "Report")
-            //onTriggered: Qt.openUrlExternally(Maui.App.about.bugAddress)
-        //}
-        //]
-        
-        //     background: Rectangle
-        //     {
-        //         color: "red"
-        //     }
+        Maui.ImageColors
+        {
+            id: _imgColors
+            source: Maui.App.iconName
+            onPaletteChanged:
+            {
+                console.log(_imgColors.average)
+            }
+        }
         
         Control
         {
@@ -88,20 +64,19 @@ Maui.Dialog
             contentItem: Maui.ListItemTemplate
             {
                 id: _div1
-                
+                               
                 imageSource: Maui.App.iconName
                 
                 fillMode: Image.PreserveAspectFit
                 iconSizeHint: Maui.Style.iconSizes.huge
                 imageSizeHint: iconSizeHint
-                // headerSizeHint: iconSizeHint + Maui.Style.space.huge
                 isMask: false
                 
                 spacing: Maui.Style.space.big
+                label1.color: _imgColors.foreground
                 label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 label1.text: Maui.App.about.displayName
                 label1.font.weight: Font.Black
-//                 label1.font.bold: true
                 label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.5
                 
                 label2.text: Maui.App.about.shortDescription
@@ -122,13 +97,10 @@ Maui.Dialog
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
                     padding: 0
-                    //background: null
-                    color: control.Maui.Theme.textColor
-                }
-                
+                    color: _div1.label1.color
+                }                
                 ]
-            }
-            
+            }            
         }
 
         
@@ -374,74 +346,55 @@ Maui.Dialog
         Item
         {
             id: _iconItem
+            // opacity: 0.6
             parent: control.background
             clip: true
             anchors.fill: parent
-            anchors.margins: 1
             layer.enabled: true
             layer.effect: OpacityMask
             {
-                cached: true
                 maskSource:  Rectangle
                 {
                     width: control.width
                     height: control.height
                     radius: Maui.Style.radiusV
                 }
-            }
-            
-            Item
+            }            
+                        
+            LinearGradient
             {
-                id: _iconRec
+                
                 anchors.fill: parent
-                
-                FastBlur
+                gradient: Gradient 
                 {
-                    rotation: 45
+                    GradientStop { position: 0.0; color: _imgColors.background}                    
+                                       
+                    GradientStop { position: 0.4; color: control.background.color}
                     
-                    id: fastBlur
-                    height: parent.height * 3
-                    width: parent.width * 4
-                    anchors.centerIn: parent
-                    source: _div1.iconItem
-                    radius: 64
-                    transparentBorder: false
+                    
                 }
                 
-                Rectangle
-                {
-                    anchors.fill: parent
-                    opacity: 0.8
-                    color: control.Maui.Theme.backgroundColor
-                }
-            }
-            
-            HueSaturation
-            {
-                anchors.fill: _iconRec
-                source: _iconRec
-                hue: 0
-                saturation: 1
-                lightness: 0
-            }
-            
-            OpacityMask
-            {
-                source: mask
-                maskSource: _iconRec
+                start: Qt.point(control.width, 0)
+                end: Qt.point(control.background.width, control.background.height)
             }
             
             LinearGradient
             {
-                id: mask
+                opacity: 0.5
                 anchors.fill: parent
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "transparent"}
-                    GradientStop { position: 0.3; color: control.background.color}
+                gradient: Gradient 
+                {
+                    GradientStop { position: 0.0; color: _imgColors.dominant}                    
+                    
+                    GradientStop { position: 0.2; color: _imgColors.average}
+                    
+                    GradientStop { position: 0.4; color: control.background.color}
+                    
+                                        
                 }
                 
-                start: Qt.point(0, 0)
-                end: Qt.point(_iconRec.width, _iconRec.height)
+                start: Qt.point(control.width, 0)
+                end: Qt.point(control.background.width, control.background.height)
             }
         }
         

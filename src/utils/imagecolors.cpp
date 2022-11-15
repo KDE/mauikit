@@ -69,7 +69,16 @@ void ImageColors::setSource(const QVariant &source)
         {
             return;
         }
+        
+        if(source.toString().startsWith("qrc:"))
+        {
+            qDebug() << "SET IMAGE FROM QRC IMAGE COLORS" << source.toString();
+            setSourceImage(QImage(source.toString().replace("qrc", "")));            
+        }else
+        {
+        
         setSourceImage(QIcon::fromTheme(source.toString()).pixmap(128, 128).toImage());
+        }
     } else {
         return;
     }

@@ -46,7 +46,7 @@ Maui.AlternateListItem
         // Layout.alignment: Qt.AlignCenter
         implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
-        contentItem: ColumnLayout
+        contentItem: Column
         {
             id: _layout
             
@@ -55,7 +55,7 @@ Maui.AlternateListItem
             Maui.SectionDropDown
             {
                 id: _template
-                Layout.fillWidth: true
+                width: parent.width
                 padding: 0
 //                 leftPadding : 0
                 label1.text: control.title
@@ -65,19 +65,13 @@ Maui.AlternateListItem
                 checked: true
             }            
             
-            Item
+            ColumnLayout
             {
-                Layout.fillWidth: true
-                implicitHeight: _mainData.implicitHeight
-
-                ColumnLayout
-                {
-                    id: _mainData
-                    anchors.fill: parent
-                    spacing: control.spacing
-                    
-                    visible: _template.checked                           
-                }
+                id: _mainData
+                width: parent.width
+                spacing: control.spacing
+                
+                visible: _template.checked                           
             }
         }
 }

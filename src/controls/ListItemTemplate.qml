@@ -231,6 +231,7 @@ Item
                 
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                
                 verticalAlignment: _label2.visible ? Qt.AlignBottom :  Qt.AlignVCenter
 
                 elide: Text.ElideRight
