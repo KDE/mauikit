@@ -93,6 +93,9 @@ if(QUICK_COMPILER)
         )
 endif()
 
+    add_definitions(-DTRANSLATION_DOMAIN="mauikit")
+    ki18n_install(po)
+    
 add_subdirectory(src)
 # add_subdirectory(demo)
 
@@ -124,9 +127,6 @@ install(EXPORT MauiKitTargets
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     FILE MauiKitTargets.cmake
     )
-
-    add_definitions(-DTRANSLATION_DOMAIN="mauikit")
-    ki18n_install(po)
 
     file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
