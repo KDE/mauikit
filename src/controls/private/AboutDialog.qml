@@ -122,7 +122,6 @@ Maui.Dialog
                         
             Column
             {
-                id: _credits
                 spacing: Maui.Style.space.medium
                 width: parent.parent.width
                 
@@ -182,6 +181,45 @@ Maui.Dialog
                         label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
                                                 label3.text: modelData.task
+                        Connections
+                        {
+                            target: _tCredits.label1
+                            function onLinkActivated(link)
+                            {
+                                Qt.openUrlExternally(link)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        Maui.SettingTemplate
+        {
+            id: _creditsSection
+            label1.text: i18n("Credits")           
+            iconSource: "love"
+            template.isMask: true
+            template.iconSizeHint: Maui.Style.iconSize
+            
+            Column
+            {
+                spacing: Maui.Style.space.medium
+                width: parent.parent.width
+                
+                Repeater
+                {
+                    model: Maui.App.about.credits
+                    
+                    Maui.ListItemTemplate
+                    {
+                        id: _tCredits
+                        
+                        width: parent.width
+                        
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.textFormat: Text.AutoText
+                        label3.text: modelData.task
                         Connections
                         {
                             target: _tCredits.label1
