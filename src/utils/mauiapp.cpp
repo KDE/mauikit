@@ -79,6 +79,11 @@ MauiApp::MauiApp()
 
 aboutData.addComponent(i18n("MauiKit Frameworks"), "", MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);           
 
+#if defined BUNDLE_LUV_ICONS
+aboutData.addComponent(i18n("Luv Icon Theme"), "", "", "https://github.com/Nitrux/luv-icon-theme", KAboutLicense::Artistic);           
+
+#endif
+
 KAboutData::setApplicationData(aboutData);
 
     setDefaultMauiStyle();

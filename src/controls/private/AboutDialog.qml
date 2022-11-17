@@ -414,8 +414,16 @@ Maui.Dialog
                                         
                 }
                 
-                start: Qt.point(control.width, 0)
+                start: Qt.point(0, 0)
                 end: Qt.point(control.background.width, control.background.height)
+            }
+            
+            Image
+            {
+                anchors.fill: parent
+                source: "qrc:/assets/subtle-dots.png"
+                fillMode: Image.Tile
+                opacity: 0.9
             }
             
             LinearGradient
@@ -434,6 +442,8 @@ Maui.Dialog
                 start: Qt.point(control.width, 0)
                 end: Qt.point(control.background.width, control.background.height)
             }
+            
+            
             
            
         }
