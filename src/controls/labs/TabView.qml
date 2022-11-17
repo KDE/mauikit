@@ -553,9 +553,9 @@ T.Container
                                         height: Math.round(sourceItem.height * (parent.height/control.height))
                                         width: Math.round(sourceItem.width * (parent.width/control.width))
                                         
-                                        hideSource: true
+                                        hideSource: false
                                         live: false
-                                        mipmap: true
+//                                        mipmap: true
                                         
                                         textureSize: Qt.size(width,height)
                                         sourceItem: control.contentModel.get(index)
