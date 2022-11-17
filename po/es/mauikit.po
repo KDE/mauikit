@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:45+0000\n"
-"PO-Revision-Date: 2022-11-16 01:22+0100\n"
+"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"PO-Revision-Date: 2022-11-17 00:39+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -111,32 +111,37 @@ msgstr "Cerrar todo"
 msgid "Authors"
 msgstr "Autores"
 
-#: src/controls/private/AboutDialog.qml:160
+#: src/controls/private/AboutDialog.qml:159
 #, kde-format
 msgid "Translators"
 msgstr "Traductores"
 
-#: src/controls/private/AboutDialog.qml:206
+#: src/controls/private/AboutDialog.qml:200
+#, kde-format
+msgid "Credits"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:244
 #, kde-format
 msgid "Licenses"
 msgstr "Licencias"
 
-#: src/controls/private/AboutDialog.qml:236
+#: src/controls/private/AboutDialog.qml:274
 #, kde-format
 msgid "Components"
 msgstr "Componentes"
 
-#: src/controls/private/AboutDialog.qml:274
+#: src/controls/private/AboutDialog.qml:312
 #, kde-format
 msgid "Links"
 msgstr "Enlaces"
 
-#: src/controls/private/AboutDialog.qml:290
+#: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
 msgstr "Informes"
 
-#: src/controls/private/AboutDialog.qml:297
+#: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
 msgstr "Página web"
@@ -189,7 +194,7 @@ msgstr "Rehacer"
 #: src/utils/mauiapp.cpp:53
 #, kde-format
 msgid "Multi-adaptable user interfaces."
-msgstr ""
+msgstr "Interfaces de usuario multiadaptables."
 
 #: src/utils/mauiapp.cpp:72
 #, kde-format

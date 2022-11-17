@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:45+0000\n"
-"PO-Revision-Date: 2022-11-14 08:58+0100\n"
+"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"PO-Revision-Date: 2022-11-16 10:59+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -107,39 +107,42 @@ msgstr "Zapri vse"
 #: src/controls/private/AboutDialog.qml:116
 #, kde-format
 msgid "Authors"
-msgstr ""
+msgstr "Avtorji"
 
-#: src/controls/private/AboutDialog.qml:160
-#, fuzzy, kde-format
-#| msgid "Translator"
-msgid "Translators"
-msgstr "Prevajalec"
-
-#: src/controls/private/AboutDialog.qml:206
-#, fuzzy, kde-format
-#| msgid "License"
-msgid "Licenses"
-msgstr "Dovoljenje"
-
-#: src/controls/private/AboutDialog.qml:236
+#: src/controls/private/AboutDialog.qml:159
 #, kde-format
-msgid "Components"
+msgid "Translators"
+msgstr "Prevajalci"
+
+#: src/controls/private/AboutDialog.qml:200
+#, kde-format
+msgid "Credits"
 msgstr ""
+
+#: src/controls/private/AboutDialog.qml:244
+#, kde-format
+msgid "Licenses"
+msgstr "Dovoljenja"
 
 #: src/controls/private/AboutDialog.qml:274
 #, kde-format
-msgid "Links"
-msgstr ""
+msgid "Components"
+msgstr "Komponente"
 
-#: src/controls/private/AboutDialog.qml:290
+#: src/controls/private/AboutDialog.qml:312
+#, kde-format
+msgid "Links"
+msgstr "Povezave"
+
+#: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
-msgstr ""
+msgstr "Poročila"
 
-#: src/controls/private/AboutDialog.qml:297
+#: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
-msgstr ""
+msgstr "Domača stran"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
@@ -189,7 +192,7 @@ msgstr "Uveljavi"
 #: src/utils/mauiapp.cpp:53
 #, kde-format
 msgid "Multi-adaptable user interfaces."
-msgstr ""
+msgstr "Vsesplošno prilagodljivi uporabniški vmesniki."
 
 #: src/utils/mauiapp.cpp:72
 #, kde-format
@@ -206,9 +209,9 @@ msgstr "matjaz.jeran@amis.net"
 #: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "KDE Frameworks"
-msgstr ""
+msgstr "KDE Frameworks"
 
 #: src/utils/mauiapp.cpp:80
 #, kde-format
 msgid "MauiKit Frameworks"
-msgstr ""
+msgstr "MauiKit Frameworks"

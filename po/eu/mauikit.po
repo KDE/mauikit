@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:45+0000\n"
-"PO-Revision-Date: 2022-11-13 07:54+0100\n"
+"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"PO-Revision-Date: 2022-11-16 07:04+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -109,39 +109,42 @@ msgstr "Itxi denak"
 #: src/controls/private/AboutDialog.qml:116
 #, kde-format
 msgid "Authors"
-msgstr ""
+msgstr "Egileak"
 
-#: src/controls/private/AboutDialog.qml:160
-#, fuzzy, kde-format
-#| msgid "Translator"
+#: src/controls/private/AboutDialog.qml:159
+#, kde-format
 msgid "Translators"
 msgstr "Itzultzailea"
 
-#: src/controls/private/AboutDialog.qml:206
-#, fuzzy, kde-format
-#| msgid "License"
-msgid "Licenses"
-msgstr "Lizentzia"
-
-#: src/controls/private/AboutDialog.qml:236
+#: src/controls/private/AboutDialog.qml:200
 #, kde-format
-msgid "Components"
+msgid "Credits"
 msgstr ""
+
+#: src/controls/private/AboutDialog.qml:244
+#, kde-format
+msgid "Licenses"
+msgstr "Lizentziak"
 
 #: src/controls/private/AboutDialog.qml:274
 #, kde-format
-msgid "Links"
-msgstr ""
+msgid "Components"
+msgstr "Osagaiak"
 
-#: src/controls/private/AboutDialog.qml:290
+#: src/controls/private/AboutDialog.qml:312
+#, kde-format
+msgid "Links"
+msgstr "Estekak"
+
+#: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
-msgstr ""
+msgstr "Txostenak"
 
-#: src/controls/private/AboutDialog.qml:297
+#: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
-msgstr ""
+msgstr "Orri nagusia"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
@@ -191,7 +194,7 @@ msgstr "Berregin"
 #: src/utils/mauiapp.cpp:53
 #, kde-format
 msgid "Multi-adaptable user interfaces."
-msgstr ""
+msgstr "Erabiltzaile-interfaze multimoldagarriak."
 
 #: src/utils/mauiapp.cpp:72
 #, kde-format
@@ -208,9 +211,9 @@ msgstr "xalba@ni.eus"
 #: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "KDE Frameworks"
-msgstr ""
+msgstr "KDE Frameworks"
 
 #: src/utils/mauiapp.cpp:80
 #, kde-format
 msgid "MauiKit Frameworks"
-msgstr ""
+msgstr "MauiKit Frameworks"

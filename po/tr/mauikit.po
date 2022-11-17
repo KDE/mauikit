@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:45+0000\n"
+"POT-Creation-Date: 2022-11-17 00:44+0000\n"
 "PO-Revision-Date: 2022-11-15 04:55+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -108,32 +108,37 @@ msgstr "Tümünü Kapat"
 msgid "Authors"
 msgstr "Yazarlar"
 
-#: src/controls/private/AboutDialog.qml:160
+#: src/controls/private/AboutDialog.qml:159
 #, kde-format
 msgid "Translators"
 msgstr "Çevirmenler"
 
-#: src/controls/private/AboutDialog.qml:206
+#: src/controls/private/AboutDialog.qml:200
+#, kde-format
+msgid "Credits"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:244
 #, kde-format
 msgid "Licenses"
 msgstr "Lisanslar"
 
-#: src/controls/private/AboutDialog.qml:236
+#: src/controls/private/AboutDialog.qml:274
 #, kde-format
 msgid "Components"
 msgstr "Bileşenler"
 
-#: src/controls/private/AboutDialog.qml:274
+#: src/controls/private/AboutDialog.qml:312
 #, kde-format
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: src/controls/private/AboutDialog.qml:290
+#: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
 msgstr "Raporlar"
 
-#: src/controls/private/AboutDialog.qml:297
+#: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
 msgstr "Ana Sayfa"
