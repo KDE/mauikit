@@ -398,18 +398,20 @@ Maui.Dialog
                     radius: Maui.Style.radiusV
                 }
             }            
-                        
-            LinearGradient
+                
+                 LinearGradient
             {
                 
                 anchors.fill: parent
                 gradient: Gradient 
                 {
-                    GradientStop { position: 0.0; color: _imgColors.background}                    
-                                       
-                    GradientStop { position: 0.4; color: control.background.color}
+                    GradientStop { position: 0.0; color: _imgColors.dominant}                    
                     
+                    GradientStop { position: 0.4; color: _imgColors.average}
                     
+                    GradientStop { position: 0.7; color: control.background.color}
+                    
+                                        
                 }
                 
                 start: Qt.point(control.width, 0)
@@ -418,22 +420,22 @@ Maui.Dialog
             
             LinearGradient
             {
-                opacity: 0.5
+                opacity: 0.8
                 anchors.fill: parent
                 gradient: Gradient 
                 {
-                    GradientStop { position: 0.0; color: _imgColors.dominant}                    
+                    GradientStop { position: 0.0; color: _imgColors.background}                    
+                                       
+                    GradientStop { position: 0.6; color: control.background.color}
                     
-                    GradientStop { position: 0.2; color: _imgColors.average}
                     
-                    GradientStop { position: 0.4; color: control.background.color}
-                    
-                                        
                 }
                 
                 start: Qt.point(control.width, 0)
                 end: Qt.point(control.background.width, control.background.height)
             }
+            
+           
         }
         
         
