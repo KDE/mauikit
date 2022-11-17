@@ -113,7 +113,7 @@ Maui.Dialog
         Maui.SettingTemplate
         {
             id: _authorsSection
-            label1.text: i18n("Authors")
+            label1.text: i18nd("mauikit", "Authors")
             // label2.text: Maui.App.about.copyrightStatement
             
  iconSource: "view-media-artist"
@@ -156,7 +156,7 @@ Maui.Dialog
         Maui.SettingTemplate
         {
             id: _translatorsSection
-            label1.text: i18n("Translators")
+            label1.text: i18nd("mauikit", "Translators")
             // label2.text: Maui.App.about.copyrightStatement
             
                         iconSource: "folder-language"
@@ -197,7 +197,7 @@ Maui.Dialog
         Maui.SettingTemplate
         {
             id: _creditsSection
-            label1.text: i18n("Credits")           
+            label1.text: i18nd("mauikit", "Credits")
             iconSource: "love"
             template.isMask: true
             template.iconSizeHint: Maui.Style.iconSize
@@ -241,7 +241,7 @@ Maui.Dialog
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
                         
-            label1.text: i18n("Licenses")
+            label1.text: i18nd("mauikit", "Licenses")
             // label2.text: `Maui.App.about.copyrightStatement
             
             Column
@@ -271,7 +271,7 @@ Maui.Dialog
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
                         
-            label1.text: i18n("Components")
+            label1.text: i18nd("mauikit", "Components")
             
             Column
             {
@@ -309,7 +309,7 @@ Maui.Dialog
          Maui.SettingTemplate
         {
             id: _linksssSection
-            label1.text: i18n("Links")
+            label1.text: i18nd("mauikit", "Links")
             // label2.text: Maui.App.about.copyrightStatement
             
  iconSource: "link"
@@ -325,14 +325,14 @@ Maui.Dialog
                 Button
                 {
                     width: parent.width
-                    text: i18n("Reports")
+                    text: i18nd("mauikit", "Reports")
                     onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
                 }
                 
                  Button
                 {
                     width: parent.width
-                    text: i18n("Home Page")
+                    text: i18nd("mauikit", "Home Page")
                     onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
                 }
             }
