@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:44+0000\n"
-"PO-Revision-Date: 2022-11-15 16:40+0200\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
+"PO-Revision-Date: 2022-11-17 04:14+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -117,7 +117,7 @@ msgstr "Перекладачі"
 #: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Credits"
-msgstr ""
+msgstr "Подяки"
 
 #: src/controls/private/AboutDialog.qml:244
 #, kde-format
@@ -215,6 +215,11 @@ msgstr "KDE Frameworks"
 #, kde-format
 msgid "MauiKit Frameworks"
 msgstr "Бібліотеки MauiKit"
+
+#: src/utils/mauiapp.cpp:83
+#, kde-format
+msgid "Luv Icon Theme"
+msgstr ""
 
 #~ msgid "Core"
 #~ msgstr "Ядро"

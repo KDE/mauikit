@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:44+0000\n"
-"PO-Revision-Date: 2022-11-15 10:36+0100\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
+"PO-Revision-Date: 2022-11-17 13:37+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -118,7 +118,7 @@ msgstr "Traductors"
 #: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Credits"
-msgstr ""
+msgstr "Atribucions"
 
 #: src/controls/private/AboutDialog.qml:244
 #, kde-format
@@ -217,152 +217,7 @@ msgstr "Frameworks del KDE"
 msgid "MauiKit Frameworks"
 msgstr "Frameworks del MauiKit"
 
-#~ msgid "Core"
-#~ msgstr "Nucli"
-
-#~ msgid "MauiKit Core components"
-#~ msgstr "Components del nucli del MauiKit"
-
-#~ msgid "Views"
-#~ msgstr "Vistes"
-
-#~ msgid "Adaptive views for contents"
-#~ msgstr "Vista adaptativa per al contingut"
-
-#~ msgid "Page"
-#~ msgstr "Pàgina"
-
-#~ msgid "SplitView"
-#~ msgstr "Vista dividida"
-
-#~ msgid "Browsers"
-#~ msgstr "Navegadors"
-
-#~ msgid "GridBrowser"
-#~ msgstr "Navegador en quadrícula"
-
-#~ msgid "AltBrowser"
-#~ msgstr "Navegador alternatiu"
-
-#~ msgid "SidebarView"
-#~ msgstr "Vista de la barra lateral"
-
-#~ msgid "AppViews"
-#~ msgstr "Vistes d'aplicacions"
-
-#~ msgid "Buttons"
-#~ msgstr "Botons"
-
-#~ msgid "ToolActions"
-#~ msgstr "Accions d'eina"
-
-#~ msgid "ToolButtonMenu"
-#~ msgstr "Menú de botó d'eina"
-
-#~ msgid "Layouts"
-#~ msgstr "Disposicions"
-
-#~ msgid "SectionColumn"
-#~ msgstr "Columna de secció"
-
-#~ msgid "SectionTemplate"
-#~ msgstr "Plantilla de secció"
-
-#~ msgid "Delegates"
-#~ msgstr "Delegats"
-
-#~ msgid "ListBrowserDelegate"
-#~ msgstr "Delegat de navegador de llista"
-
-#~ msgid "GridBrowserDelegate"
-#~ msgstr "Delegat de navegador de quadrícula"
-
-#~ msgid "CollageDelegate"
-#~ msgstr "Delegat de collage"
-
-#~ msgid "GalleryRollDelegate"
-#~ msgstr "Delegat de gir de galeria"
-
-#~ msgid "Templates"
-#~ msgstr "Plantilles"
-
-#~ msgid "LisItemTemplate"
-#~ msgstr "Plantilla d'element de llista"
-
-#~ msgid "GridItemTemplate"
-#~ msgstr "Plantilla d'element de quadrícula"
-
-#~ msgid "IconItem"
-#~ msgstr "Element d'icona"
-
-#~ msgid "CollageItem"
-#~ msgstr "Element de collage"
-
-#~ msgid "Common"
-#~ msgstr "Comú"
-
-#~ msgid "Baseline controls"
-#~ msgstr "Controls de la línia base"
-
-#~ msgid "Button"
-#~ msgstr "Botó"
-
-#~ msgid "ToolButton"
-#~ msgstr "Botó d'eina"
-
-#~ msgid "RadioButton"
-#~ msgstr "Botó d'opció"
-
-#~ msgid "Switch"
-#~ msgstr "Commutador"
-
-#~ msgid "CheckBox"
-#~ msgstr "Casella de selecció"
-
-#~ msgid "TabButton"
-#~ msgstr "Botó de pestanya"
-
-#~ msgid "Sliders"
-#~ msgstr "Controls lliscants"
-
-#~ msgid "Slider"
-#~ msgstr "Control lliscant"
-
-#~ msgid "ProgressBar"
-#~ msgstr "Barra de progrés"
-
-#~ msgid "Range"
-#~ msgstr "Interval"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Input"
-#~ msgstr "Entrada"
-
-#~ msgid "Bars"
-#~ msgstr "Barres"
-
-#~ msgid "Popups"
-#~ msgstr "Missatges emergents"
-
-#~ msgid "Custom"
-#~ msgstr "Personalitzat"
-
-#~ msgid "Light"
-#~ msgstr "Clar"
-
-#~ msgid "Dark"
-#~ msgstr "Fosc"
-
-#~ msgid "Adaptive"
-#~ msgstr "Adaptatiu"
-
-#~ msgid "System"
-#~ msgstr "Sistema"
-
-#~ msgid "Control Title"
-#~ msgstr "Títol del control"
-
-#~ msgid "Control description"
-#~ msgstr "Descripció del control"
+#: src/utils/mauiapp.cpp:83
+#, kde-format
+msgid "Luv Icon Theme"
+msgstr ""

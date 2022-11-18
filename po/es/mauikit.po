@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-17 00:44+0000\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
 "PO-Revision-Date: 2022-11-17 00:39+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -217,6 +217,11 @@ msgstr "KDE Frameworks"
 #, kde-format
 msgid "MauiKit Frameworks"
 msgstr "MauiKit Frameworks"
+
+#: src/utils/mauiapp.cpp:83
+#, kde-format
+msgid "Luv Icon Theme"
+msgstr ""
 
 #~ msgid "Core"
 #~ msgstr "Núcleo"
