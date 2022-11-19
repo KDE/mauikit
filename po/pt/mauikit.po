@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2022-11-16 09:42+0000\n"
+"PO-Revision-Date: 2022-11-18 09:59+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POFile-SpellExtra: Ups MauiKit\n"
+"X-POFile-SpellExtra: Ups MauiKit Luv\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
@@ -112,7 +112,7 @@ msgstr "Tradutores"
 #: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Credits"
-msgstr ""
+msgstr "Créditos"
 
 #: src/controls/private/AboutDialog.qml:244
 #, kde-format
@@ -214,4 +214,4 @@ msgstr "Plataforma MauiKit"
 #: src/utils/mauiapp.cpp:83
 #, kde-format
 msgid "Luv Icon Theme"
-msgstr ""
+msgstr "Tema de Ícones Luv"
