@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the mauikit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
+"PO-Revision-Date: 2022-11-25 23:31+0100\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2\n"
+
+#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
+#: src/controls/NewDialog.qml:26
+#, kde-format
+msgid "Accept"
+msgstr "დასტური"
+
+#: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
+#, kde-format
+msgid "Cancel"
+msgstr "_გაუქმება"
+
+#: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
+#, kde-format
+msgid "Highlighter"
+msgstr "გამომკვეთი"
+
+#: src/controls/labs/Doodle.qml:137
+#, kde-format
+msgid "Marker"
+msgstr "სანიშნი"
+
+#: src/controls/labs/Doodle.qml:159
+#, kde-format
+msgid "Eraser"
+msgstr "საშლელი"
+
+#: src/controls/labs/Doodle.qml:174
+#, kde-format
+msgid "Color"
+msgstr "ფერი"
+
+#: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
+#, kde-format
+msgid "Opacity"
+msgstr "გაუმჭირვალობა"
+
+#: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
+#, kde-format
+msgid "Size"
+msgstr "ზომა"
+
+#: src/controls/labs/ImageViewer.qml:177
+#, kde-format
+msgid "Oops!"
+msgstr "უფს!"
+
+#: src/controls/labs/ImageViewer.qml:178
+#, kde-format
+msgid "The image could not be loaded."
+msgstr "გამოსახულების ჩატვირთვა შეუძლებელია."
+
+#: src/controls/labs/SettingsDialog.qml:14
+#, kde-format
+msgid "Settings"
+msgstr "მორგება"
+
+#: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
+#, kde-format
+msgid "Share with"
+msgstr "გაზიარება"
+
+#: src/controls/labs/TabView.qml:114
+#, kde-format
+msgid "Open"
+msgstr "გახსნა"
+
+#: src/controls/labs/TabView.qml:125
+#, kde-format
+msgid "Duplicate"
+msgstr "დუბლიკაცია"
+
+#: src/controls/labs/TabView.qml:135
+#, kde-format
+msgid "Close"
+msgstr "დახურვა"
+
+#: src/controls/labs/TabView.qml:145
+#, kde-format
+msgid "Close Other"
+msgstr "სხვების დახურვა"
+
+#: src/controls/labs/TabView.qml:154
+#, kde-format
+msgid "Close All"
+msgstr "ყველას დახურვა"
+
+#: src/controls/private/AboutDialog.qml:116
+#, kde-format
+msgid "Authors"
+msgstr "ავტორები"
+
+#: src/controls/private/AboutDialog.qml:159
+#, kde-format
+msgid "Translators"
+msgstr "მთარგმნელები"
+
+#: src/controls/private/AboutDialog.qml:200
+#, kde-format
+msgid "Credits"
+msgstr "კრედიტები"
+
+#: src/controls/private/AboutDialog.qml:244
+#, kde-format
+msgid "Licenses"
+msgstr "ლიცენზიები"
+
+#: src/controls/private/AboutDialog.qml:274
+#, kde-format
+msgid "Components"
+msgstr "კომპონენტები"
+
+#: src/controls/private/AboutDialog.qml:312
+#, kde-format
+msgid "Links"
+msgstr "ბმულები"
+
+#: src/controls/private/AboutDialog.qml:328
+#, kde-format
+msgid "Reports"
+msgstr "ანგარიშები"
+
+#: src/controls/private/AboutDialog.qml:335
+#, kde-format
+msgid "Home Page"
+msgstr "საწყისი გვერდი"
+
+#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#, kde-format
+msgid "Close Split"
+msgstr "გაყოფის დახურვა"
+
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:225
+#, kde-format
+msgid "Copy"
+msgstr "კოპირება"
+
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:239
+#, kde-format
+msgid "Paste"
+msgstr "ჩასმა"
+
+#: src/controls/Terminal.qml:117
+#, kde-format
+msgid "Find"
+msgstr "მოძებნა"
+
+#: src/controls/Terminal.qml:168
+#, kde-format
+msgid "Find..."
+msgstr "მოძებნა…"
+
+#: src/maui-style/TextField.qml:232
+#, kde-format
+msgid "Cut"
+msgstr "ამოჭრა"
+
+#: src/maui-style/TextField.qml:249
+#, kde-format
+msgid "Select All"
+msgstr "ყველას მონიშვნა"
+
+#: src/maui-style/TextField.qml:256
+#, kde-format
+msgid "Undo"
+msgstr "ბრძანების გაუქმება"
+
+#: src/maui-style/TextField.qml:263
+#, kde-format
+msgid "Redo"
+msgstr "თავიდან"
+
+#: src/utils/mauiapp.cpp:53
+#, kde-format
+msgid "Multi-adaptable user interfaces."
+msgstr "მრავალნაირად ადაპტირებადი მომხმარებლის ინტერფეისი."
+
+#: src/utils/mauiapp.cpp:72
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Temuri Doghonadze"
+
+#: src/utils/mauiapp.cpp:73
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "Temuri.doghonadze@gmail.com"
+
+#: src/utils/mauiapp.cpp:78
+#, kde-format
+msgid "KDE Frameworks"
+msgstr "KDE-სი გამოყენებული ბიბლიოთეკები"
+
+#: src/utils/mauiapp.cpp:80
+#, kde-format
+msgid "MauiKit Frameworks"
+msgstr "MauiKit Frameworks"
+
+#: src/utils/mauiapp.cpp:83
+#, kde-format
+msgid "Luv Icon Theme"
+msgstr "ხატულების თემა Luv"
