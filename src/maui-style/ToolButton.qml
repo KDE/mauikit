@@ -94,9 +94,9 @@ T.ToolButton
     
     contentItem: IconLabel
     {
-        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width : 0
+        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
         
-        rightPadding: arrowPadding
+        rightPadding: arrowPadding 
                 
         spacing: control.spacing
         mirrored: control.mirrored
