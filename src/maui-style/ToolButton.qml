@@ -66,11 +66,13 @@ T.ToolButton
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
     
-    icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
+    icon.color: control.color
+    
+    readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     flat: control.parent === T.ToolBar
     
-    font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
+    // font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
     
     indicator: Maui.Icon
     {
@@ -79,7 +81,7 @@ T.ToolButton
         
         visible: control.subMenu
         //        mirror: control.mirrored
-        color: control.icon.color
+        color: control.color
         height: 8
         width: 8
         source: "qrc:/assets/arrow-down.svg"
@@ -103,7 +105,8 @@ T.ToolButton
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.icon.color
+        
+        color: control.color
         
         Behavior on color
         {

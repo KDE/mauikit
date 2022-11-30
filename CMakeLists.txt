@@ -48,7 +48,7 @@ set(BUNDLE_LUV_ICONS ON)
 endif()
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Concurrent Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
-find_package(MauiMan REQUIRED COMPONENTS)
+find_package(MauiMan 1.0.1 REQUIRED )
 
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
