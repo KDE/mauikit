@@ -5,6 +5,10 @@
 #include <MauiMan/thememanager.h>
 #include <MauiMan/backgroundmanager.h>
 
+#ifdef Q_OS_ANDROID
+#include "mauiandroid.h"
+#endif
+
 Style *Style::m_instance = nullptr;
 
 Style::Style(QObject *parent) : QObject(parent)
@@ -66,7 +70,13 @@ Style::Style(QObject *parent) : QObject(parent)
     m_radiusV = m_themeSettings->borderRadius();
     m_iconSize = m_themeSettings->iconSize();
     m_accentColor = m_themeSettings->accentColor();
-    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
+
+#ifdef Q_OS_ANDROID
+    MAUIAndroid android;
+    m_styleType = android.darkModeEnabled() ? StyleType::Dark : StyleType::Light;
+#else
+    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
+#endif
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
     m_enableEffects = m_themeSettings->enableEffects();
 }
