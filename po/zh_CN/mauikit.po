@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-18 00:44+0000\n"
+"POT-Creation-Date: 2022-12-01 00:45+0000\n"
 "PO-Revision-Date: 2022-11-19 14:49\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -108,37 +108,37 @@ msgstr ""
 msgid "Authors"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:159
+#: src/controls/private/AboutDialog.qml:160
 #, kde-format
 msgid "Translators"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:200
+#: src/controls/private/AboutDialog.qml:201
 #, kde-format
 msgid "Credits"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:244
+#: src/controls/private/AboutDialog.qml:249
 #, kde-format
 msgid "Licenses"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:274
+#: src/controls/private/AboutDialog.qml:280
 #, kde-format
 msgid "Components"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:312
+#: src/controls/private/AboutDialog.qml:318
 #, kde-format
 msgid "Links"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:328
+#: src/controls/private/AboutDialog.qml:334
 #, kde-format
 msgid "Reports"
 msgstr ""
 
-#: src/controls/private/AboutDialog.qml:335
+#: src/controls/private/AboutDialog.qml:341
 #, kde-format
 msgid "Home Page"
 msgstr ""
