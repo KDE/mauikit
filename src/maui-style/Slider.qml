@@ -39,15 +39,16 @@ T.Slider
     handle: Rectangle
     {
         id: handleRect
-        visible: control.pressed
+        visible: control.pressed || control.hovered
         x: control.leftPadding + (control.horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
         y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
 
-        width: Maui.Style.iconSizes.medium
+        width: Maui.Style.iconSizes.small
         height: width
+        
+        scale: control.pressed ? 1.5 : 1
         radius: width /2
         color: Maui.Theme.highlightColor
-        border.color: Maui.Theme.highlightColor
 
         Behavior on scale
         {
@@ -55,13 +56,7 @@ T.Slider
             {
                 duration: 250
             }
-        }
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
-        
+        }        
     }
 
     snapMode: T.Slider.SnapOnRelease

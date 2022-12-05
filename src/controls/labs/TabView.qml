@@ -517,7 +517,7 @@ T.Container
                                 label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
 //                                 template.labelSizeHint: 32
                                 iconSource: "tab-new"
-//                                 flat: true
+                                flat: false
                                 
                                 onRightClicked:
                                 {
