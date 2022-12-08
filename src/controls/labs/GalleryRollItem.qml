@@ -38,7 +38,7 @@ Maui.GridBrowserDelegate
     template.alignment: Qt.AlignLeft
 
      flat: true
-                
+                spacing: Maui.Style.space.big
     maskRadius: radius
 
     template.iconComponent: Maui.GalleryRollTemplate

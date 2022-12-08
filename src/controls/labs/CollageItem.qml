@@ -43,6 +43,8 @@ Maui.GridBrowserDelegate
     template.labelSizeHint: 32
     template.alignment: Qt.AlignLeft
     
+    spacing: Maui.Style.space.big
+    
     flat: true
     
     template.iconComponent: Item

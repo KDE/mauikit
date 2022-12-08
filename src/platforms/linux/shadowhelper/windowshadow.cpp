@@ -182,7 +182,7 @@ void WindowShadow::onViewVisibleChanged(bool visible)
 void WindowShadow::configureTiles()
 {
     //only for cask
-    // if(qEnvironmentVariableIsSet("XDG_CURRENT_DESKTOP") && qEnvironmentVariable("XDG_CURRENT_DESKTOP") == "Cask")
+    if(qEnvironmentVariableIsSet("XDG_CURRENT_DESKTOP") && qEnvironmentVariable("XDG_CURRENT_DESKTOP") == "Cask")
     {
         auto chromeInterface = new QDBusInterface ("org.cask.Server",
                                                    "/Chrome",
