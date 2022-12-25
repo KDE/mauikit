@@ -37,6 +37,7 @@ Item
         AbstractButton
         {
             id: _button
+            visible: modelData === "A" ? canMaximize : true
             hoverEnabled: true
             width: height
             height: control.iconSize + Maui.Style.space.medium
