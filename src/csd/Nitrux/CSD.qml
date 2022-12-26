@@ -3,19 +3,22 @@ import QtQuick.Controls 2.15
 
 import org.mauikit.controls 1.3 as Maui
 
-Item
+Control
 {
     id: control
 
     property int iconSize : 24
-    implicitHeight: visible ? control.iconSize + Maui.Style.space.medium : 0
-    implicitWidth: visible ? _row.implicitWidth : 0
 
-    Row
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+    implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
+    spacing: Maui.Style.space.medium
+
+    background: null
+
+    contentItem: Row
     {
-        id: _row
-        height: parent.height
-        spacing: Maui.Style.space.small
+        id: _layout
+        spacing: control.spacing
 
         ToolSeparator
         {
@@ -37,10 +40,14 @@ Item
         AbstractButton
         {
             id: _button
+
             visible: modelData === "A" ? canMaximize : true
+
             hoverEnabled: true
-            width: height
-            height: control.iconSize + Maui.Style.space.medium
+
+            implicitWidth:  control.iconSize
+            implicitHeight: control.iconSize
+
             focusPolicy: Qt.NoFocus
             
             Maui.CSDButton
@@ -60,10 +67,15 @@ Item
                 {
                     width: control.iconSize
                     height: control.iconSize
+
                     smooth: true
+
                     source: button.source
+
                     color: Maui.Theme.textColor
+
                     anchors.centerIn: parent
+
                     Behavior on color
                     {
                         Maui.ColorTransition{}
@@ -71,10 +83,10 @@ Item
                 }
             }
             
-            onClicked: 
+            onClicked:
             {
                 console.log("NITRUX CSD BUTTON CLICKED", button.type)
-               buttonClicked(button.type)
+                buttonClicked(button.type)
             }
         }
     }
