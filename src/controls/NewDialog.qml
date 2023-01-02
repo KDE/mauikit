@@ -1,4 +1,5 @@
-import QtQuick 2.14
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 
 import org.mauikit.controls 1.2 as Maui
@@ -27,7 +28,7 @@ property alias textEntry: _textEntry
     rejectButton.text: i18nd("mauikit", "Cancel")
     closeButtonVisible: false
     
-    Maui.TextField
+    TextField
     {
         id: _textEntry
         Layout.fillWidth: true    
