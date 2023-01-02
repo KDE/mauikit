@@ -210,7 +210,7 @@ T.Container
                     }
                 }
                 
-                headBar.middleContent: Maui.TextField
+                headBar.middleContent: TextField
                 {
                     id: _quickSearchField
                     Layout.fillWidth: true

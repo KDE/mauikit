@@ -161,7 +161,7 @@ Maui.Page
     }
     
     footBar.visible: false
-    footBar.middleContent: Maui.TextField
+    footBar.middleContent: TextField
     {
         id: findBar
         Layout.fillWidth: true

@@ -27,7 +27,6 @@
         <file alias="Dialog.qml">controls/Dialog.qml</file>
         <file alias="private/AboutDialog.qml">controls/private/AboutDialog.qml</file>
         <file alias="Popup.qml">controls/Popup.qml</file>
-        <file alias="TextField.qml">controls/TextField.qml</file>
         <file alias="SearchField.qml">controls/SearchField.qml</file>
         <file alias="PasswordField.qml">controls/PasswordField.qml</file>
         <file alias="Badge.qml">controls/Badge.qml</file>
@@ -48,8 +47,6 @@
         <file alias="private/shapes/PlusSign.qml">controls/private/shapes/PlusSign.qml</file>
         <file alias="private/shapes/Rectangle.qml">controls/private/shapes/Rectangle.qml</file>
         <file alias="labs/CSDControls.qml">controls/labs/CSDControls.qml</file>
-        <file alias="labs/ActionToolBar.qml">controls/labs/ActionToolBar.qml</file>
-        <file alias="labs/ToolButtonAction.qml">controls/labs/ToolButtonAction.qml</file>
         <file alias="AppViews.qml">controls/AppViews.qml</file>
         <file alias="AppViewLoader.qml">controls/AppViewLoader.qml</file>
         <file alias="AltBrowser.qml">controls/AltBrowser.qml</file>
@@ -80,18 +77,14 @@
         <file alias="labs/TabView.qml">controls/labs/TabView.qml</file>
         <file alias="TabViewButton.qml">controls/TabViewButton.qml</file>
         <file alias="CloseButton.qml">controls/CloseButton.qml</file>
-        <file alias="BrowserDelegate.qml">controls/BrowserDelegate.qml</file>
         <file alias="SplitView.qml">controls/SplitView.qml</file>
         <file alias="SplitViewItem.qml">controls/SplitViewItem.qml</file>
         <file alias="ProgressIndicator.qml">controls/ProgressIndicator.qml</file>
-        <file alias="labs/ComboBox.qml">controls/labs/ComboBox.qml</file>
         <file alias="labs/FontsComboBox.qml">controls/labs/FontsComboBox.qml</file>
         <file alias="labs/MenuItemActionRow.qml">controls/labs/MenuItemActionRow.qml</file>
         <file alias="labs/GalleryRollTemplate.qml">controls/labs/GalleryRollTemplate.qml</file>
         <file alias="labs/ImageViewer.qml">controls/labs/ImageViewer.qml</file>
         <file alias="labs/AnimatedImageViewer.qml">controls/labs/AnimatedImageViewer.qml</file>
-        <file alias="ScrollView.qml">controls/ScrollView.qml</file>
-        <file alias="labs/StackView.qml">controls/labs/StackView.qml</file>
         <file alias="labs/ColorTransition.qml">controls/labs/ColorTransition.qml</file>
         <file alias="Icon.qml">controls/Icon.qml</file>
         <file alias="ShadowedRectangle.qml">controls/ShadowedRectangle.qml</file>

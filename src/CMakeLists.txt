@@ -255,7 +255,7 @@ if(ANDROID)
 
 #    add_subdirectory(platforms/android)
 
-    target_link_libraries(MauiKit PRIVATE Qt5::AndroidExtras jnigraphics)
+    target_link_libraries(MauiKit PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit COMPONENT Devel)
 
@@ -271,7 +271,7 @@ elseif(UNIX AND NOT ANDROID)
         target_link_libraries(MauiKit 
         PRIVATE 
         KF5::WindowSystem
-        Qt5::X11Extras
+        Qt${QT_VERSION_MAJOR}::X11Extras
         )
     endif()
     target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
@@ -279,7 +279,7 @@ endif()
 
 target_link_libraries(MauiKit
     PUBLIC
-    Qt5::Core
+    Qt${QT_VERSION_MAJOR}::Core
     KF5::CoreAddons
 
     PRIVATE
@@ -287,11 +287,11 @@ target_link_libraries(MauiKit
     MauiMan::MauiMan
     KF5::Notifications
     KF5::I18n
-    Qt5::Qml
-    Qt5::Svg
-    Qt5::Widgets
-    Qt5::Concurrent
-    Qt5::QuickControls2
+    Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Svg
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::QuickControls2
     )
 
 generate_export_header(MauiKit BASE_NAME MauiKit)

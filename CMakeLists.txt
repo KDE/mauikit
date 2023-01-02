@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
+set(QT_DEFAULT_MAJOR_VERSION 6)
 set(REQUIRED_QT_VERSION 5.15.2)
 set(REQUIRED_KF5_VERSION 5.90.0)
 
@@ -17,6 +18,12 @@ set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.controls)
 
 project(mauikit VERSION ${MAUIKIT_VERSION})
 
+################# Disallow in-source build #################
+
+if("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
+   message(FATAL_ERROR "MauiKit requires an out of source build. Please create a separate build directory and run 'cmake path_to_mauikit [options]' there.")
+endif()
+
 if(ANDROID)
     set(ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/platforms/android)
     set(ANDROID_ABIS "armeabi-v7a")
@@ -30,13 +37,11 @@ include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(CMakePackageConfigHelpers)
-include(ECMPoQmTools)
 include(ECMFindQmlModule)
 include(KDEClangFormat)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(ECMQtDeclareLoggingCategory)
-include(ECMAddQch)
 #include(KDECompilerSettings NO_POLICY_SCOPE)
 
 option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." ON)
@@ -47,19 +52,21 @@ set(QUICK_COMPILER ON)
 set(BUNDLE_LUV_ICONS ON)
 endif()
 
-find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Qml Core Concurrent Widgets QuickControls2 Svg) #Qt5::Svg needed to render icons on android
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Concurrent QuickControls2 Qml Svg Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Concurrent QuickControls2 Qml Svg Widgets REQUIRED)
+
 find_package(MauiMan 1.0.1 REQUIRED )
 
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 
 if(ANDROID)
-    find_package(Qt5 REQUIRED COMPONENTS AndroidExtras)
+    find_package(Qt${QT_MAJOR} REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
         # Do not find X11 on macOS
-        find_package(Qt5 ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS X11Extras)
+        find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS X11Extras)
         find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS WindowSystem)
         find_package(XCB 1.10 REQUIRED COMPONENTS
     ICCCM
@@ -95,6 +102,8 @@ endif()
 
     add_definitions(-DTRANSLATION_DOMAIN="mauikit")
     ki18n_install(po)
+    
+    add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
     
 add_subdirectory(src)
 # add_subdirectory(demo)

@@ -33,7 +33,7 @@ import QtQuick.Layouts 1.3
  *
  *
  */
-Maui.TextField
+TextField
 {
     id: control
     
