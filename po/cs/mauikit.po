@@ -1,62 +1,62 @@
-# German translations for mauikit package.
-# Copyright (C) 2022 This file is copyright:
+# Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
-# Automatically generated, 2022.
+# Vit Pelcak <vit@pelcak.org>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-15 00:46+0000\n"
-"PO-Revision-Date: 2022-11-13 14:52+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: de\n"
+"PO-Revision-Date: 2023-01-03 17:19+0100\n"
+"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
 #: src/controls/NewDialog.qml:26
 #, kde-format
 msgid "Accept"
-msgstr ""
+msgstr "Přijmout"
 
 #: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušit"
 
 #: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
-msgstr ""
+msgstr "Zvýraznění"
 
 #: src/controls/labs/Doodle.qml:137
 #, kde-format
 msgid "Marker"
-msgstr ""
+msgstr "Značka"
 
 #: src/controls/labs/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
-msgstr ""
+msgstr "Guma"
 
 #: src/controls/labs/Doodle.qml:174
 #, kde-format
 msgid "Color"
-msgstr ""
+msgstr "Barva"
 
 #: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
-msgstr ""
+msgstr "Krytí"
 
 #: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
 #, kde-format
 msgid "Size"
-msgstr ""
+msgstr "Velikost"
 
 #: src/controls/labs/ImageViewer.qml:177
 #, kde-format
@@ -71,7 +71,7 @@ msgstr ""
 #: src/controls/labs/SettingsDialog.qml:14
 #, kde-format
 msgid "Settings"
-msgstr ""
+msgstr "Nastavení"
 
 #: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
 #, kde-format
@@ -81,67 +81,67 @@ msgstr ""
 #: src/controls/labs/TabView.qml:114
 #, kde-format
 msgid "Open"
-msgstr ""
+msgstr "Otevřít"
 
 #: src/controls/labs/TabView.qml:125
 #, kde-format
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikovat"
 
 #: src/controls/labs/TabView.qml:135
 #, kde-format
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: src/controls/labs/TabView.qml:145
 #, kde-format
 msgid "Close Other"
-msgstr ""
+msgstr "Zavřít ostatní"
 
 #: src/controls/labs/TabView.qml:154
 #, kde-format
 msgid "Close All"
-msgstr ""
+msgstr "Zavřít vše"
 
 #: src/controls/private/AboutDialog.qml:116
 #, kde-format
 msgid "Authors"
-msgstr ""
+msgstr "Autoři"
 
 #: src/controls/private/AboutDialog.qml:160
 #, kde-format
 msgid "Translators"
-msgstr ""
+msgstr "Překladatelé"
 
 #: src/controls/private/AboutDialog.qml:201
 #, kde-format
 msgid "Credits"
-msgstr ""
+msgstr "Poděkování"
 
 #: src/controls/private/AboutDialog.qml:249
 #, kde-format
 msgid "Licenses"
-msgstr ""
+msgstr "Licence"
 
 #: src/controls/private/AboutDialog.qml:280
 #, kde-format
 msgid "Components"
-msgstr ""
+msgstr "Složky"
 
 #: src/controls/private/AboutDialog.qml:318
 #, kde-format
 msgid "Links"
-msgstr ""
+msgstr "Odkazy"
 
 #: src/controls/private/AboutDialog.qml:334
 #, kde-format
 msgid "Reports"
-msgstr ""
+msgstr "Výkazy"
 
 #: src/controls/private/AboutDialog.qml:341
 #, kde-format
 msgid "Home Page"
-msgstr ""
+msgstr "Domovská stránka"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
@@ -151,42 +151,42 @@ msgstr ""
 #: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:238
 #, kde-format
 msgid "Copy"
-msgstr ""
+msgstr "Kopírovat"
 
 #: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:252
 #, kde-format
 msgid "Paste"
-msgstr ""
+msgstr "Vložit"
 
 #: src/controls/Terminal.qml:117
 #, kde-format
 msgid "Find"
-msgstr ""
+msgstr "Najít"
 
 #: src/controls/Terminal.qml:168
 #, kde-format
 msgid "Find..."
-msgstr ""
+msgstr "Najít..."
 
 #: src/maui-style/TextField.qml:245
 #, kde-format
 msgid "Cut"
-msgstr ""
+msgstr "Vyjmout"
 
 #: src/maui-style/TextField.qml:262
 #, kde-format
 msgid "Select All"
-msgstr ""
+msgstr "Vybrat vše"
 
 #: src/maui-style/TextField.qml:269
 #, kde-format
 msgid "Undo"
-msgstr ""
+msgstr "Zpět"
 
 #: src/maui-style/TextField.qml:276
 #, kde-format
 msgid "Redo"
-msgstr ""
+msgstr "Znovu"
 
 #: src/utils/mauiapp.cpp:53
 #, kde-format
@@ -197,18 +197,18 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Vít Pelčák"
 
 #: src/utils/mauiapp.cpp:73
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "vit@pelcak.org"
 
 #: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "KDE Frameworks"
-msgstr ""
+msgstr "KDE Frameworks "
 
 #: src/utils/mauiapp.cpp:80
 #, kde-format
