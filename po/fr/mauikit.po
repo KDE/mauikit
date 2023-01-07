@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-15 00:46+0000\n"
-"PO-Revision-Date: 2023-01-01 16:08+0100\n"
+"PO-Revision-Date: 2023-01-05 18:07+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -210,7 +210,7 @@ msgstr "Environnements de développement de KDE"
 #: src/utils/mauiapp.cpp:80
 #, kde-format
 msgid "MauiKit Frameworks"
-msgstr "Environnements de développement de MauiKit"
+msgstr "Environnements de développement de Mauikit"
 
 #: src/utils/mauiapp.cpp:83
 #, kde-format
