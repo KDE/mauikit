@@ -170,7 +170,7 @@ public slots:
      * @return
      * Formated into a readable string
      */
-    static QString formatSize(const int &size);
+    static QString formatSize(quint64 size);
     
     /**
      * @brief formatTime

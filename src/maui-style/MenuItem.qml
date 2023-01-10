@@ -123,7 +123,6 @@ T.MenuItem
         radius: Maui.Style.radiusV
         
         color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor) : "transparent"
-        border.color: !control.enabled ? Maui.Theme.disabledTextColor : "transparent"
 
         Behavior on color
         {

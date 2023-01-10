@@ -344,7 +344,7 @@ bool Handy::isMac()
 }
 
 
-QString Handy::formatSize(const int &size)
+QString Handy::formatSize(quint64 size)
 {
     const QLocale locale;
     return locale.formattedDataSize(size);

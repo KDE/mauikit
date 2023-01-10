@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-01 00:45+0000\n"
+"POT-Creation-Date: 2022-12-15 00:46+0000\n"
 "PO-Revision-Date: 2022-11-18 08:44+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -149,12 +149,12 @@ msgstr "Домашня сторінка"
 msgid "Close Split"
 msgstr "Закрити панель розділеного перегляду"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:225
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:238
 #, kde-format
 msgid "Copy"
 msgstr "Копіювати"
 
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:239
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:252
 #, kde-format
 msgid "Paste"
 msgstr "Вставити"
@@ -169,22 +169,22 @@ msgstr "Знайти"
 msgid "Find..."
 msgstr "Знайти…"
 
-#: src/maui-style/TextField.qml:232
+#: src/maui-style/TextField.qml:245
 #, kde-format
 msgid "Cut"
 msgstr "Вирізати"
 
-#: src/maui-style/TextField.qml:249
+#: src/maui-style/TextField.qml:262
 #, kde-format
 msgid "Select All"
 msgstr "Позначити все"
 
-#: src/maui-style/TextField.qml:256
+#: src/maui-style/TextField.qml:269
 #, kde-format
 msgid "Undo"
 msgstr "Скасувати"
 
-#: src/maui-style/TextField.qml:263
+#: src/maui-style/TextField.qml:276
 #, kde-format
 msgid "Redo"
 msgstr "Повторити"

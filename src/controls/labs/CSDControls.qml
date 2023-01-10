@@ -18,7 +18,7 @@ Loader
    
     property bool maximized : Window.window.visibility === Window.Maximized
     property bool isActiveWindow : Window.window.active
-    
+    property bool canMaximize: Window.window.minimumWidth !== Window.window.maximumWidth && Window.window.maximumHeight !== Window.window.minimumHeight
     readonly property var buttonsModel : Maui.App.controls.rightWindowControls
 
 

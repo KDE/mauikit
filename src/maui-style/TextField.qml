@@ -61,7 +61,7 @@ T.TextField
     padding: 0
     
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
-    rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.medium
+    rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
     
     selectByMouse: !Maui.Handy.isMobile
     renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
@@ -69,6 +69,7 @@ T.TextField
     persistentSelection: true
     
     wrapMode: TextInput.NoWrap
+
     /**
      * menu : Menu
      */
@@ -80,6 +81,8 @@ T.TextField
     property list<Action> actions
     
     property alias icon : _icon
+
+    property alias rightContent : _rightLayout.data
     
     /**
      * cleared
@@ -141,8 +144,14 @@ T.TextField
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color   
-        }    
-        
+        }
+
+        Item
+        {
+           Layout.fillWidth: true
+           visible: !placeholder.visible
+        }
+
         Label
         {
             id: placeholder
@@ -169,13 +178,17 @@ T.TextField
             }  
         }        
         
+        Row
+        {
+            id: _rightLayout
+            height: parent.height
+
         Loader
         {
             id: _actionsLayoutLoader
             asynchronous: true
-            Layout.fillHeight: true
-            Layout.alignment: Qt.AlignRight
-            
+            height: parent.height
+
             sourceComponent: Row
             {
                 z: parent.z + 1
@@ -212,7 +225,7 @@ T.TextField
                 }
             }
         }
-        
+        }
     }
     
     
