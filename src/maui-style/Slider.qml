@@ -96,6 +96,8 @@ T.Slider
                 Maui.ColorTransition{}
             }
         }
+        
+        
 
         layer.enabled: true
         layer.effect: OpacityMask
@@ -107,5 +109,39 @@ T.Slider
                 radius:  Maui.Style.radiusV
             }
         }
+        
+        MouseArea
+        {
+            property int wheelDelta: 0
+            
+            anchors {
+                fill: parent
+                leftMargin: control.leftPadding
+                rightMargin: control.rightPadding
+            }
+            
+            acceptedButtons: Qt.NoButton
+            
+            onWheel: {
+                const lastValue = control.value
+                const delta = wheel.angleDelta.y || wheel.angleDelta.x
+                wheelDelta += delta;
+                // magic number 120 for common "one click"
+                // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                while (wheelDelta >= 120) {
+                    wheelDelta -= 120;
+                    control.decrease();
+                }
+                while (wheelDelta <= -120) {
+                    wheelDelta += 120;
+                    control.increase();
+                }
+                if (lastValue !== control.value) {
+                    control.moved();
+                }
+            }
+        }
     }
+    
+    
 }
