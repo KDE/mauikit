@@ -7,7 +7,7 @@ Control
 {
     id: control
 
-    property int iconSize : 24
+    property int iconSize : 22
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
