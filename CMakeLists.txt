@@ -57,6 +57,11 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Concurrent QuickControls2 Qml
 
 find_package(MauiMan 1.0.1 REQUIRED )
 
+find_package(FormFactorLib 1.0.0)
+if(FormFactorLib_FOUND)
+set(FORMFACTOR_LIB ON)
+endif()
+
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 

@@ -40,6 +40,10 @@
 #include <QIcon>
 #endif
 
+#ifdef FORMFACTOR_FOUND
+#include <FormFactorLib/formfactor.h>
+#endif
+
 #include <QQuickStyle>
 
 #include <MauiMan/thememanager.h>
@@ -279,9 +283,12 @@ QString CSDControls::styleName() const
 CSDButton::CSDButton(QObject *parent): QObject(parent)
 {
     connect(this, &CSDButton::typeChanged, this, &CSDButton::setSources);
-    connect(this, &CSDButton::styleChanged, this, &CSDButton::setSources);
+    // connect(this, &CSDButton::styleChanged, this, &CSDButton::setSources);
     connect(this, &CSDButton::stateChanged, this, &CSDButton::requestCurrentSource);
+    // connect(MauiApp::instance()->controls(), &CSDControls::styleNameChanged, this, &CSDButton::setSources);
+    
     m_style = MauiApp::instance()->controls()->styleName();
+    setSources();
 }
 
 void CSDButton::setStyle(const QString& style)
