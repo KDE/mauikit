@@ -40,10 +40,6 @@
 #include <QIcon>
 #endif
 
-#ifdef FORMFACTOR_FOUND
-#include <FormFactorLib/formfactor.h>
-#endif
-
 #include <QQuickStyle>
 
 #include <MauiMan/thememanager.h>
@@ -177,17 +173,12 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
 ,m_themeSettings( new MauiMan::ThemeManager(this))
-
 {       
     connect(m_themeSettings, &MauiMan::ThemeManager::enableCSDChanged, [this](bool enabled)
     {        
         qDebug() << "CSD ENABLED CHANGED<<<<" << enabled; 
         
-        if(m_enabledCSD_blocked)
-            return;
-        
-        m_enableCSD = enabled;
-        Q_EMIT enableCSDChanged();
+        getWindowControlsSettings();
     });
     
     connect(m_themeSettings, &MauiMan::ThemeManager::windowControlsThemeChanged, [this](QString style)
@@ -198,10 +189,6 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
         Q_EMIT styleNameChanged();
         Q_EMIT sourceChanged();
     });
- 
-//     connect(this, &CSDControls::styleNameChanged, [this]()
-//     {
-//     });
     
     getWindowControlsSettings();     
 }
@@ -222,37 +209,47 @@ void CSDControls::setStyle()
     
     qDebug() << "CSD QML SOURCXE" << m_source;
     m_rightWindowControls =  QStringList {"I", "A", "X"};
-    emit this->rightWindowControlsChanged();    
 }
 
 void CSDControls::getWindowControlsSettings()
-{    
-    #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
+{        
+    if(m_enabledCSD_blocked)
+        return;    
+    
+    m_enableCSD = m_themeSettings->enableCSD();
+    Q_EMIT enableCSDChanged();
+    
+  /*  #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID    
+    
+    #ifdef FORMFACTOR_FOUND
+    
+    if(m_formFactor->preferredMode() == 0)
+    {
+        m_enableCSD = m_themeSettings->enableCSD();
+        Q_EMIT enableCSDChanged();
+        
+    }else
+    {
+        m_enableCSD = false;  
+        Q_EMIT enableCSDChanged();        
+        return;
+    }
+#else //Fallback in case FormFactor is not found. and then check for the env var QT_QUICK_CONTROLS_MOBILE
     if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE"))
     {
         if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
         {
             m_enableCSD = m_themeSettings->enableCSD();
+            Q_EMIT enableCSDChanged();            
         }else
         {
             return;    
         }
-    }else
-    {
-        m_enableCSD = m_themeSettings->enableCSD();
     }
+    #endif  */ 
     
     m_styleName = m_themeSettings->windowControlsTheme();
-    setStyle();
-    
-    #elif defined Q_OS_MACOS || defined Q_OS_ANDROID
-    m_leftWindowControls = QStringList {"X", "I", "A"};
-    emit this->leftWindowControlsChanged();
-    
-    #elif defined Q_OS_WIN32
-    //   m_rightWindowControls = QStringList {"I", "A", "X"};
-    emit this->rightWindowControlsChanged();
-    #endif
+    setStyle();   
 }
 
 bool CSDControls::enableCSD() const
@@ -268,6 +265,12 @@ void CSDControls::setEnableCSD(const bool &value)
     
     m_enableCSD = value;        
     Q_EMIT enableCSDChanged();
+}
+
+void CSDControls::resetEnableCSD()
+{
+    m_enabledCSD_blocked = false;
+    getWindowControlsSettings();
 }
 
 QUrl CSDControls::source() const

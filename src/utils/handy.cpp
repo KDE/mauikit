@@ -52,6 +52,8 @@
 #include <QFileSystemWatcher>
 #endif
 
+#include <MauiMan/formfactormanager.h>
+
 Handy *Handy::m_instance = nullptr;
 
 static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/kdeglobals";
@@ -69,8 +71,8 @@ static const auto confCheck = [](QString key, QVariant defaultValue) -> QVariant
 
 Handy::Handy(QObject *parent)
     : QObject(parent)
-    , m_isTouch(Handy::isTouch())
     , m_hasTransientTouchInput(false)
+    ,m_formFactor(new MauiMan::FormFactorManager(this))
 {
 #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
 
@@ -86,26 +88,30 @@ Handy::Handy(QObject *parent)
     
 #elif defined Q_OS_MAC || defined Q_OS_WIN32
     m_singleClick = false;
-    Q_EMIT singleClickChanged();
-    
+    Q_EMIT singleClickChanged();    
     #endif
-    
-    #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
-    m_mobile = true;
-    #else
-    // Mostly for debug purposes and for platforms which are always mobile,
-    // such as Plasma Mobile
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) 
-    {
-        m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
-    } else 
-    {
-        m_mobile = false;
-    }
-#endif
-
+     
 qDebug() << "CREATING INSTANCE OF MAUI HANDY";
 
+// #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
+
+connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
+{    
+   m_ffactor = static_cast<FFactor>(value);
+   m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+   Q_EMIT formFactorChanged();
+   Q_EMIT isMobileChanged();
+});
+
+connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
+{    
+    m_isTouch = value;
+    Q_EMIT isTouchChanged();
+});
+
+m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
+m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+m_isTouch =m_formFactor->hasTouchscreen();
 
 if (m_isTouch)
 {
@@ -118,6 +124,28 @@ if (m_isTouch)
     });
 }
 
+// #else
+// 
+// #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
+// m_mobile = true;
+// m_ffactor = FormFactor::Phone;
+// #else
+// // Mostly for debug purposes and for platforms which are always mobile,
+// // such as Plasma Mobile
+// if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) 
+// {
+//     m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
+//     m_ffactor = FormFactor::Phone;
+//     
+// } else 
+// {
+//     m_mobile = false;
+//     m_ffactor = FormFactor::Desktop;    
+// }
+// #endif
+// 
+// #endif
+
 connect(qApp, &QCoreApplication::aboutToQuit, []()
 {
     qDebug() << "Lets remove MauiApp singleton instance";
@@ -125,6 +153,16 @@ connect(qApp, &QCoreApplication::aboutToQuit, []()
     m_instance = nullptr;
 });
 
+}
+
+bool Handy::isTouch()
+{
+    return m_isTouch;
+}
+
+Handy::FFactor Handy::formFactor()
+{
+    return m_ffactor;
 }
 
 bool Handy::hasTransientTouchInput() const
@@ -300,29 +338,6 @@ bool Handy::isIOS()
     return FMH::isIOS();
 }
 
-bool Handy::isTouch()
-{
-    #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
-   return true;
-    #else
-    
-   #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-   const auto touchDevices = QTouchDevice::devices();
-   const auto touchDeviceType = QTouchDevice::TouchScreen;
-   #else
-   const auto touchDevices = QInputDevice::devices();
-   const auto touchDeviceType = QInputDevice::DeviceType::TouchScreen;
-   #endif
-   
-   for (const auto &device : touchDevices) {
-       if (device->type() == touchDeviceType) {
-           return true;
-       }
-   }  
-#endif
-    return false;
-}
-
 bool Handy::hasKeyboard()
 {
     return Platform::instance()->hasKeyboard();
@@ -383,16 +398,6 @@ void Handy::saveSettings(const QString &key, const QVariant &value, const QStrin
 QVariant Handy::loadSettings(const QString &key, const QString &group, const QVariant &defaultValue)
 {
     return UTIL::loadSettings(key, group, defaultValue);
-}
-
-void Handy::setIsMobile(bool mobile)
-{
-    if (mobile == m_mobile) {
-        return;
-    }
-
-    m_mobile = mobile;
-    Q_EMIT isMobileChanged();
 }
 
 bool Handy::isMobile() const
