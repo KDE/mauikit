@@ -69,7 +69,7 @@ T.ComboBox
     readonly property int preferredHeight : Maui.Style.rowHeight
     
     implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)    
-    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+    implicitHeight: Math.max(preferredHeight, implicitContentHeight + topPadding + bottomPadding)
         
     spacing: Maui.Style.space.small
     padding: Maui.Style.space.medium

@@ -67,7 +67,7 @@ Window
   minimumWidth: Math.min(400, Screen.desktopAvailableWidth)
   
   color: "transparent"
-  flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint | Qt.Window : Qt.Window & ~Qt.FramelessWindowHint
+  flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
   
   Settings 
   {

@@ -212,10 +212,6 @@ if(QUICK_COMPILER)
     target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
 endif()
 
-if(FORMFACTOR_LIB)
-    target_compile_definitions(MauiKit PUBLIC FORMFACTOR_FOUND)
-endif()
-
     add_definitions(-DBUNDLE_MAUI_STYLE)
     target_compile_definitions(MauiKit PUBLIC BUNDLE_MAUI_STYLE)
 
@@ -279,13 +275,6 @@ elseif(UNIX AND NOT ANDROID)
         )
     endif()
     target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
-endif()
-
-if(FORMFACTOR_LIB)
-target_link_libraries(MauiKit 
-        PRIVATE 
-        FormFactorLib
-        )
 endif()
 
 target_link_libraries(MauiKit
