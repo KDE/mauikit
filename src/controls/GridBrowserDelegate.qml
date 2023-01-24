@@ -42,6 +42,8 @@ Maui.ItemDelegate
     
     isCurrentItem : GridView.isCurrentItem || checked
     
+    implicitHeight: _template.implicitHeight + topPadding +bottomPadding
+    
     padding: Maui.Style.space.small
     spacing: Maui.Style.space.medium
     
