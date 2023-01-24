@@ -274,7 +274,6 @@ elseif(UNIX AND NOT ANDROID)
         Qt${QT_VERSION_MAJOR}::X11Extras
         )
     endif()
-    target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
 endif()
 
 target_link_libraries(MauiKit

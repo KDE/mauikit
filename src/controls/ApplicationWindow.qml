@@ -85,7 +85,7 @@ Window
     sourceComponent: Maui.WindowShadow
     {
       view: root
-      radius:  Maui.Style.radiusV
+      radius: Maui.Style.radiusV
       strength: 7.8
     }
   }       

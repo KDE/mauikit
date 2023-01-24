@@ -29,13 +29,6 @@
 #include <KLocalizedString>
 #include <KCoreAddons>
 
-#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-#include <KConfig>
-#include <KConfigGroup>
-#include <KSharedConfig>
-#include <QFileSystemWatcher>
-#endif
-
 #if defined BUNDLE_LUV_ICONS
 #include <QIcon>
 #endif

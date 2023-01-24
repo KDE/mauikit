@@ -25,6 +25,7 @@
 namespace MauiMan
 {
     class FormFactorManager;
+    class AccessibilityManager;
 }
 
 /*!
@@ -83,6 +84,7 @@ private:
     Handy(QObject *parent = nullptr);    
     
     MauiMan::FormFactorManager *m_formFactor;
+    MauiMan::AccessibilityManager *m_accessibility;;
     
     FFactor m_ffactor = FFactor::Desktop;
     bool m_isTouch = false;
@@ -134,13 +136,13 @@ public slots:
      * @brief hasKeyboard
      * @return
      */
-    static bool hasKeyboard();
+    bool hasKeyboard();
     
     /**
      * @brief hasMouse
      * @return
      */
-    static bool hasMouse();
+    bool hasMouse();
 
     /**
      * @brief isAndroid

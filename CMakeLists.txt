@@ -87,7 +87,6 @@ set_package_properties(XCB PROPERTIES TYPE REQUIRED)
     #TYPE OPTIONAL)
     
     endif()
-    find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS Config)
 endif()
 
 find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons Notifications)
