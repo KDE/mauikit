@@ -222,7 +222,7 @@ Item
             Layout.fillHeight: true
             Layout.fillWidth: true
             
-            spacing: Maui.Style.space.tiny
+            spacing: _layout.spacing
 
             Label
             {

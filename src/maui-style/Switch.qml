@@ -54,7 +54,7 @@ T.Switch
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: implicitBackgroundHeight + topInset + bottomInset
     
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
     spacing: padding
     
     icon.width: Maui.Style.iconSize

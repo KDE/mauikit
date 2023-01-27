@@ -39,7 +39,7 @@ Maui.AlternateListItem
         /**
          * 
          */
-        spacing: Maui.Style.space.big
+        spacing: Maui.Style.space.medium
         
         Layout.fillWidth: true
         // Layout.maximumWidth: 600
@@ -56,8 +56,6 @@ Maui.AlternateListItem
             {
                 id: _template
                 Layout.fillWidth: true
-                padding: 0
-//                 leftPadding : 0
                 label1.text: control.title
                 label2.text: control.description
                 template.iconSizeHint: Maui.Style.iconSizes.medium

@@ -46,8 +46,10 @@ Maui.ItemDelegate
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
     isCurrentItem : ListView.isCurrentItem || checked
-    padding: Maui.Style.space.medium
-
+    
+    padding: Maui.Style.defaultPadding
+    spacing: padding
+    
     /**
       * content : ListItemTemplate.data
       */
@@ -240,6 +242,9 @@ Maui.ItemDelegate
             id: _template
             Layout.fillHeight: true
             Layout.fillWidth: true
+            
+            spacing: control.spacing
+            
             hovered: control.hovered
             isCurrentItem : control.isCurrentItem
             highlighted: control.containsPress 

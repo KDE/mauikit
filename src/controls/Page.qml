@@ -410,6 +410,7 @@ T.Pane
             Item
             {
                 implicitHeight:_titleLabel.implicitHeight
+                
                 Label
                 {
                     id: _titleLabel
@@ -417,9 +418,8 @@ T.Pane
                     text: control.title
                     elide : Text.ElideRight
 //                     font.bold : true
-                    font.weight: Font.Bold
-                    color : Maui.Theme.textColor
-                    font.pointSize: Maui.Style.fontSizes.large
+                    font.weight: Font.DemiBold
+                    font.pointSize: Maui.Style.fontSizes.big
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
                 }

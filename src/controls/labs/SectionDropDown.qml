@@ -22,37 +22,18 @@ T.ItemDelegate
     implicitHeight: _template.implicitHeight + topPadding + bottomPadding
     hoverEnabled: true
     
+    padding: Maui.Style.defaultPadding
+    spacing: padding   
+    
     contentItem: Maui.ListItemTemplate
     {
         id: _template
 
         label1.font.pointSize: Maui.Style.fontSizes.big
-        label1.font.weight: Font.Bold
+        label1.font.weight: Font.DemiBold
         label2.wrapMode: Text.WordWrap
         label1.color: Maui.Theme.textColor
         isMask: iconSizeHint <= 22
-
-        //         leftMargin: 0
-        //         rightMargin: 0
-        //
-        Item
-        {
-            visible: false
-
-            implicitHeight: Maui.Style.iconSizes.medium
-            implicitWidth: implicitHeight
-            
-            Maui.Triangle
-            {
-                anchors.centerIn: parent
-                height: Maui.Style.iconSizes.tiny
-                width: height
-                rotation: !control.checked ? -225 : -45
-                color: Maui.Theme.textColor
-                opacity: 0.7
-            }
-        }
+spacing: control.spacing
     }
-    
-    onClicked: control.checked = !control.checked
-}
+    }

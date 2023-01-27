@@ -35,8 +35,8 @@ T.TabBar
     
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
-    spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.medium  
+        padding: Maui.Style.defaultPadding
+        spacing: padding        
     
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false

@@ -45,7 +45,6 @@ Maui.Dialog
     maxHeight: Math.max(grid.contentHeight, maxWidth) + (page.padding * 2.5) + headBar.height
     maxWidth: 500
 
-    verticalAlignment: Qt.AlignBottom
     persistent: false
     defaultButtons: false
 

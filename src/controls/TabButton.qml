@@ -27,9 +27,8 @@ T.TabButton
     
     hoverEnabled: !Maui.Handy.isMobile
     
-    spacing: Maui.Style.space.small
-    
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: padding       
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

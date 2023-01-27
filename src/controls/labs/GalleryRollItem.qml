@@ -32,13 +32,11 @@ Maui.GridBrowserDelegate
     
     
 //     label1.font.bold: true
-    label1.font.weight: Font.Bold
+    label1.font.weight: Font.DemiBold
     label1.font.pointSize: Maui.Style.fontSizes.big
     template.labelSizeHint: 32
     template.alignment: Qt.AlignLeft
 
-     flat: true
-                spacing: Maui.Style.space.big
     maskRadius: radius
 
     template.iconComponent: Maui.GalleryRollTemplate
