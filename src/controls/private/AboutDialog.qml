@@ -38,9 +38,7 @@ Maui.Dialog
         
         Maui.Theme.inherit: false
         Maui.Theme.colorSet: Maui.Theme.Complementary
-        /**
-         * mainHeader : AlternateListItem
-         */
+       
         property alias mainHeader : _header
         
         Maui.ImageColors
@@ -110,7 +108,7 @@ Maui.Dialog
             implicitHeight: Maui.Style.space.big
         }
         
-        Maui.SettingTemplate
+        Maui.SectionItem
         {
             id: _authorsSection
             label1.text: i18nd("mauikit", "Authors")
@@ -154,7 +152,7 @@ Maui.Dialog
             }
         }
         
-        Maui.SettingTemplate
+        Maui.SectionItem
         {
             id: _translatorsSection
             label1.text: i18nd("mauikit", "Translators")
@@ -195,7 +193,7 @@ Maui.Dialog
             }
         }
         
-        Maui.SettingTemplate
+        Maui.SectionItem
         {
             id: _creditsSection
             label1.text: i18nd("mauikit", "Credits")
@@ -236,7 +234,7 @@ Maui.Dialog
             }
         }
         
-          Maui.SettingTemplate
+          Maui.SectionItem
         {
             id: _licensesSection
                                     visible: Maui.App.about.licenses.length > 0
@@ -268,7 +266,7 @@ Maui.Dialog
             }
         }
         
-          Maui.SettingTemplate
+          Maui.SectionItem
         {
             id: _componentsSection
                 iconSource: "code-context"
@@ -312,7 +310,7 @@ Maui.Dialog
         
         }
         
-         Maui.SettingTemplate
+         Maui.SectionItem
         {
             id: _linksssSection
             label1.text: i18nd("mauikit", "Links")

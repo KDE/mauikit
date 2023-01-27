@@ -9,18 +9,15 @@ import QtQuick.Templates 2.15 as T
   \inqmlmodule org.mauikit.controls.labs
 */
 
-T.ItemDelegate
+T.Control
 {
     id: control
-
-    checkable: false
 
     property alias template : _template
     property alias label1 : _template.label1
     property alias label2 : _template.label2
     
     implicitHeight: _template.implicitHeight + topPadding + bottomPadding
-    hoverEnabled: true
     
     padding: Maui.Style.defaultPadding
     spacing: padding   

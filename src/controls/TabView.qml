@@ -474,7 +474,7 @@ T.Container
                     Maui.Theme.colorSet: Maui.Theme.View
                     Maui.Theme.inherit: false
                     
-                    Maui.GridView
+                    Maui.GridBrowser
                     {
                         id: _overviewGrid
                         

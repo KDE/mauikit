@@ -19,7 +19,7 @@ Maui.Dialog
 //     {
 //         for(var i = 0; i < control.scrollable.length; i++)
 //         {
-//             if(control.scrollable[i] instanceof Maui.SettingsSection)
+//             if(control.scrollable[i] instanceof Maui.SectionGroup)
 //             {
 //                 console.log("Setting dialog section", i)
 //                 control.scrollable[i].index = i
