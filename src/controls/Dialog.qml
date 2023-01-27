@@ -46,7 +46,7 @@ Maui.Popup
     focus: true
 //     focusPolicy: Qt.StrongFocus
     
-  Maui.Theme.colorSet: Maui.Theme.Window
+  Maui.Theme.colorSet: Maui.Theme.View
   Maui.Theme.inherit: false
   
   closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
@@ -229,8 +229,6 @@ Maui.Popup
         margins: 0
         
         headBar.visible: control.persistent
-//         headerColorSet: Maui.Theme.Header
-//         headBar.background: null
         background: null
         
         headBar.farRightContent: Loader
@@ -267,7 +265,7 @@ Maui.Popup
           anchors.fill: parent
           visible: _stack.children.length === 0
           
-          padding: Maui.Style.space.big
+          padding: Maui.Style.contentMargins
           
           contentWidth: availableWidth
           contentHeight: _pageContent.implicitHeight

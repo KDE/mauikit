@@ -36,11 +36,10 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
 import org.mauikit.controls 1.3 as Maui
 
-T.ScrollView 
+T.ScrollView
 {
     id: control
 
@@ -60,8 +59,8 @@ T.ScrollView
     bottomPadding: padding
     
     property alias orientation : _wheelHandler.primaryOrientation
-    
-    data: Maui.WheelHandler 
+
+    data: Maui.WheelHandler
     {
         id: _wheelHandler
         target: control.contentItem

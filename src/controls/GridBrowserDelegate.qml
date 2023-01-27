@@ -44,8 +44,8 @@ Maui.ItemDelegate
     
     implicitHeight: _template.implicitHeight + topPadding +bottomPadding
     
-    padding: Maui.Style.space.small
-    spacing: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: padding
     
     radius: Maui.Style.radiusV
 

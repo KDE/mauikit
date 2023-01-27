@@ -55,6 +55,20 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT this->iconSizeChanged(m_iconSize);
     });
     
+    connect(m_themeSettings, &MauiMan::ThemeManager::paddingSizeChanged, [this](uint size)
+    {
+        m_defaultPadding = size;
+        Q_EMIT this->defaultPaddingChanged();
+    });
+    
+    
+    connect(m_themeSettings, &MauiMan::ThemeManager::marginSizeChanged, [this](uint size)
+    {
+        qDebug() << "ContentMARGINS CHANGED" << size;
+        m_contentMargins = size;
+        Q_EMIT this->contentMarginsChanged();
+    });
+    
     connect(m_themeSettings, &MauiMan::ThemeManager::enableEffectsChanged, [this](bool value)
     {
         m_enableEffects = value;
@@ -70,6 +84,9 @@ Style::Style(QObject *parent) : QObject(parent)
     m_radiusV = m_themeSettings->borderRadius();
     m_iconSize = m_themeSettings->iconSize();
     m_accentColor = m_themeSettings->accentColor();
+    
+    m_contentMargins = m_themeSettings->marginSize();
+    m_defaultPadding = m_themeSettings->paddingSize();
 
 #ifdef Q_OS_ANDROID
     MAUIAndroid android;

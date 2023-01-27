@@ -59,6 +59,7 @@ T.TextField
     horizontalAlignment: Text.AlignLeft
     
     padding: 0
+    property int spacing: Maui.Style.space.medium    
     
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
     rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
@@ -136,6 +137,7 @@ T.TextField
         id: _layout
        anchors.fill: parent   
             anchors.leftMargin: Maui.Style.space.medium
+            spacing: control.spacing 
             
         Maui.Icon
         {
@@ -182,7 +184,7 @@ T.TextField
         {
             id: _rightLayout
             height: parent.height
-
+            spacing: control.spacing 
         Loader
         {
             id: _actionsLayoutLoader
@@ -192,7 +194,7 @@ T.TextField
             sourceComponent: Row
             {
                 z: parent.z + 1
-                spacing: Maui.Style.space.medium    
+                spacing: control.spacing 
                 
                 ToolButton
                 {

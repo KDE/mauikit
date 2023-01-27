@@ -18,12 +18,9 @@ T.ItemDelegate
     hoverEnabled: !Maui.Handy.isMobile
     implicitHeight: Maui.Style.iconSizes.big
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
-    padding: spacing
-    bottomPadding: padding
-    rightPadding: padding
-    leftPadding: padding
-    topPadding: padding
-    spacing: Maui.Style.space.medium
+    
+    padding: Maui.Style.defaultPadding
+    spacing: padding   
     
     property alias label : _label1
     property alias iconSource : _icon.source

@@ -52,7 +52,6 @@ class GroupSizes : public QObject
 public:
     explicit GroupSizes(const uint tiny,const uint small, const uint medium, const uint big, const uint large, const uint huge, const uint enormous, QObject *parent = nullptr);
 
-private:
     uint m_tiny;
     uint m_small;
     uint m_medium;
@@ -75,8 +74,9 @@ class Style : public QObject
 
     Q_PROPERTY(uint rowHeight MEMBER m_rowHeight CONSTANT FINAL)
     Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
-    Q_PROPERTY(uint contentMargins MEMBER m_contentMargins CONSTANT FINAL)
+    Q_PROPERTY(uint contentMargins MEMBER m_contentMargins  NOTIFY contentMarginsChanged)
     Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
+Q_PROPERTY(uint defaultPadding MEMBER m_defaultPadding NOTIFY defaultPaddingChanged)
 
     Q_PROPERTY(QFont defaultFont MEMBER m_defaultFont NOTIFY defaultFontChanged)
 
@@ -150,8 +150,10 @@ private:
     uint m_iconSize = 22;
     uint m_rowHeight = 32;
     uint m_rowHeightAlt = 28;
-    uint m_contentMargins = 8;
-
+    
+    uint m_contentMargins;
+    uint m_defaultPadding;
+    
     QColor m_accentColor;
     bool m_accentColor_blocked = false;
 
@@ -175,6 +177,8 @@ signals:
     void radiusVChanged(uint radius);
     void iconSizeChanged(uint size);
     void enableEffectsChanged(bool enableEffects);
+    void defaultPaddingChanged();
+    void contentMarginsChanged();
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

@@ -220,7 +220,7 @@ Item
         id: _scrollView
         anchors.fill: parent   
         focus: true              
-//         padding: Maui.Style.space.medium
+        padding: Maui.Style.contentMargins
         
         clip: control.clip
         

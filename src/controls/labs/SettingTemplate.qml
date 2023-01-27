@@ -30,7 +30,8 @@ Maui.FlexListItem
 {
     id: control
    
-   padding: Maui.Style.space.medium
+   padding: Maui.Style.defaultPadding
+   spacing: padding   
    
    Layout.fillWidth: true
    

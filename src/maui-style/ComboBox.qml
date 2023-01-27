@@ -71,8 +71,8 @@ T.ComboBox
     implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)    
     implicitHeight: Math.max(preferredHeight, implicitContentHeight + topPadding + bottomPadding)
         
-    spacing: Maui.Style.space.small
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: padding
     
            delegate: MenuItem
     {
@@ -82,8 +82,7 @@ T.ComboBox
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
         Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
-        Maui.Theme.inherit: control.Maui.Theme.inherit
-        
+        Maui.Theme.inherit: control.Maui.Theme.inherit        
     }
     
     indicator: Maui.Icon
@@ -134,8 +133,7 @@ T.ComboBox
     }
     
     background: Rectangle
-    {
-        
+    {        
         radius: Maui.Style.radiusV
         
         color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor) : "transparent"
@@ -201,8 +199,8 @@ T.ComboBox
         
         transformOrigin: Item.Top
         
-        spacing: Maui.Style.space.medium 
-        padding: spacing
+        padding: Maui.Style.space.small
+        spacing: padding           
         
         margins: Maui.Style.space.medium    
         

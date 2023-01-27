@@ -39,9 +39,14 @@ T.Control
     id: control
     Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
     implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
-    padding: Maui.Style.contentMargins
+    
+    
     focusPolicy: Qt.NoFocus
     hoverEnabled: false
+    
+    padding: Maui.Style.defaultPadding
+    spacing: padding
+    
     //   highlighted:  ListView.isCurrentItem
     /**
    * isCurrentListItem : bool
@@ -77,14 +82,14 @@ T.Control
         {
             anchors.fill: parent
             id: labelTxt
-            font.pointSize: control.isSection ? Maui.Style.fontSizes.large : Maui.Style.fontSizes.medium
+            font.pointSize: control.isSection ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.medium
             horizontalAlignment: Qt.AlignLeft
             verticalAlignment: Qt.AlignVCenter
             text: labelTxt.text
             elide: Text.ElideRight
             wrapMode: Text.NoWrap
             color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
-            font.weight : control.isSection ? Font.Bold : Font.Normal
+            font.weight : control.isSection ? Font.DemiBold : Font.Normal
         }
     }
 }

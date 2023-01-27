@@ -74,8 +74,8 @@ T.Menu
     cascade: !control.responsive
     overlap: cascade ? 0-Maui.Style.space.medium : 0
     
-    spacing: Maui.Style.space.medium 
-    padding: spacing
+    padding: Maui.Style.defaultPadding
+    spacing: padding   
 
     margins: Maui.Style.space.medium    
     

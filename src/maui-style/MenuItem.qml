@@ -59,8 +59,8 @@ T.MenuItem
                                        implicitContentHeight + topPadding + bottomPadding,
                                        implicitIndicatorHeight + topPadding + bottomPadding) )
 
-    padding: Maui.Style.space.medium
-    spacing: Maui.Style.space.small
+    padding: Maui.Style.defaultPadding
+    spacing: padding
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

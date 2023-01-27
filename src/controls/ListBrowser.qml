@@ -220,7 +220,7 @@ Item
         clip: control.clip
         // visible: !_holder.visible
         focus: true
-        padding: Maui.Style.space.medium
+        padding: Maui.Style.contentMargins
         orientation: _listView.orientation
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy

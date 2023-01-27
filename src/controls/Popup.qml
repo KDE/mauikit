@@ -45,9 +45,7 @@ T.Popup
     
     width: (filling ? parent.width  : mWidth) - leftMargin - rightMargin
     height: (filling ? parent.height : mHeight) - topMargin - bottomMargin
-    
-    //     anchors.centerIn: Overlay.overlay
-    
+        
     Behavior on width
     {
         enabled: control.hint === 1
@@ -76,8 +74,7 @@ T.Popup
     x: filling ? control.leftMargin : Math.round( parent.width / 2 - width / 2 )
     y: filling ? control.parent.height - control.height : Math.round( positionY() ) + bottomInset
     
-    modal: true
-    
+    modal: true    
     padding: 0
     
     topPadding: control.padding
@@ -87,11 +84,8 @@ T.Popup
     
     bottomInset: 0
 
-    margins:  0
-    rightMargin: control.margins
-    leftMargin: control.margins
-    topMargin: control.margins
-    bottomMargin: control.margins
+    margins: filling ? 0 : Maui.Style.space.medium    
+    
     
     property bool filling : false
     /**
@@ -127,7 +121,7 @@ T.Popup
         /**
          * verticalAlignment : int
          */
-        property int verticalAlignment : Qt.AlignVCenter
+        property int verticalAlignment : Maui.Handy.isMobile ?  Qt.AlignBottom : Qt.AlignVCenter
         
         contentItem:  Item  
         {
@@ -143,9 +137,8 @@ T.Popup
                     radius:  control.filling ? 0 : Maui.Style.radiusV  
                 }            
             }            
-        }    
+        } 
         
-       
         background: Rectangle
         {
             color: control.Maui.Theme.backgroundColor
@@ -185,11 +178,11 @@ T.Popup
             }
             else if(verticalAlignment === Qt.AlignTop)
             {
-                return (height + Maui.Style.space.huge)
+                return (height)
             }
             else if(verticalAlignment === Qt.AlignBottom)
             {
-                return (parent.height) - (height + Maui.Style.space.huge)
+                return (parent.height) - (height )
                 
             }else
             {

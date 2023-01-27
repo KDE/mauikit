@@ -93,6 +93,8 @@ T.ItemDelegate
 
     background: null
     
+    spacing: Maui.Style.space.big
+    
     onWideChanged:
     {
       _layout.force
@@ -101,8 +103,8 @@ T.ItemDelegate
     contentItem: GridLayout
     {
         id: _layout
-        rowSpacing: Maui.Style.space.big
-        columnSpacing: Maui.Style.space.big
+        rowSpacing: control.spacing
+        columnSpacing: control.spacing
         rows: 2
         columns:2
 
@@ -116,7 +118,7 @@ T.ItemDelegate
             Layout.rowSpan: control.wide ? 2 : 1
             iconSizeHint: Maui.Style.iconSizes.medium
             label2.wrapMode: Text.WordWrap
-            label1.font.weight: Font.Bold
+            label1.font.weight: Font.Medium
         }
 
         Row

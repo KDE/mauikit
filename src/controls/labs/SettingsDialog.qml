@@ -13,7 +13,7 @@ Maui.Dialog
     hint: 1
     page.title: i18nd("mauikit", "Settings")
     headBar.visible: true
-    spacing: Maui.Style.space.huge
+    spacing: Maui.Style.space.big
     
 //     Component.onCompleted:
 //     {
