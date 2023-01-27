@@ -30,12 +30,12 @@ Maui.SideBarView
             id: _layout
             width: parent.width
             spacing: Maui.Style.space.big
-            Maui.SettingsSection
+            Maui.SectionGroup
             {
                 title: i18n ("Core")
                 description: i18n("MauiKit Core components")
                 
-                      Maui.SettingTemplate
+                      Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Views")
@@ -62,7 +62,7 @@ Maui.SideBarView
                                         }
 
                 }
-                       Maui.SettingTemplate
+                       Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Browsers")
@@ -103,7 +103,7 @@ Maui.SideBarView
 
                 }
                 
-                 Maui.SettingTemplate
+                 Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Buttons")
@@ -130,7 +130,7 @@ Maui.SideBarView
 
                 }
                 
-                       Maui.SettingTemplate
+                       Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Layouts")
@@ -157,7 +157,7 @@ Maui.SideBarView
 
                 }
                 
-                           Maui.SettingTemplate
+                           Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Delegates")
@@ -198,7 +198,7 @@ Maui.SideBarView
 
                 }  
                 
-                           Maui.SettingTemplate
+                           Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Templates")
@@ -240,12 +240,12 @@ Maui.SideBarView
                 }  
             }
             
-               Maui.SettingsSection
+               Maui.SectionGroup
             {
                 title: i18n ("Common")
                 description: i18n("Baseline controls")
                 
-                           Maui.SettingTemplate
+                           Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Buttons")
@@ -300,7 +300,7 @@ Maui.SideBarView
 
                 }  
                 
-                            Maui.SettingTemplate
+                            Maui.SectionItem
                 {
                     Layout.fillWidth: true
                     label1.text: i18n("Sliders")
@@ -361,7 +361,7 @@ Maui.SideBarView
                 }
             }
             
-            Maui.SettingsSection
+            Maui.SectionGroup
             {
                 title: i18n ("Custom")
                 description: i18n("Baseline controls")
@@ -444,7 +444,7 @@ Layout.fillWidth: true
                     color: Maui.Theme.alternateBackgroundColor
                 }
                 
-                contentItem: Maui.SettingsSection
+                contentItem: Maui.SectionGroup
                 {
                     title: i18n("Control Title")
                     description: i18n("Control description")

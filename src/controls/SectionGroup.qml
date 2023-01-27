@@ -1,5 +1,6 @@
 import QtQuick.Layouts 1.3
 import QtQuick 2.14
+import QtQuick.Controls 2.15
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -7,7 +8,7 @@ import org.mauikit.controls 1.3 as Maui
  *  \since org.mauikit.controls.labs 1.0
  *  \inqmlmodule org.mauikit.controls.labs
  */
-Maui.AlternateListItem
+Control
 {
     id: control
     
@@ -42,9 +43,10 @@ Maui.AlternateListItem
         spacing: Maui.Style.space.medium
         
         Layout.fillWidth: true
-        // Layout.maximumWidth: 600
-        // Layout.alignment: Qt.AlignCenter
+        
         implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+        
+        background: null
         
         contentItem: ColumnLayout
         {
@@ -52,15 +54,13 @@ Maui.AlternateListItem
             
             spacing: control.spacing
             
-            Maui.SectionDropDown
+            Maui.SectionHeader
             {
                 id: _template
                 Layout.fillWidth: true
                 label1.text: control.title
                 label2.text: control.description
                 template.iconSizeHint: Maui.Style.iconSizes.medium
-
-                checked: true
             }
         }
 }

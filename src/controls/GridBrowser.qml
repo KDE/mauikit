@@ -23,7 +23,7 @@ import QtQuick.Controls 2.15
 import org.mauikit.controls 1.3 as Maui
 
 /**
- * GridView
+ * GridBrowser
  * A global sidebar for the application window that can be collapsed.
  *
  *
