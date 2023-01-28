@@ -222,7 +222,7 @@ Item
             Layout.fillHeight: true
             Layout.fillWidth: true
             
-            spacing: _layout.spacing
+            spacing: 0
 
             Label
             {

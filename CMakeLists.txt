@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(QT_DEFAULT_MAJOR_VERSION 6)
+# set(QT_DEFAULT_MAJOR_VERSION 6)
+set(QT_MAJOR_VERSION 5)
+set(KF_MAJOR_VERSION 5)
+# set(REQUIRED_QT_VERSION 6.2)
 set(REQUIRED_QT_VERSION 5.15.2)
-set(REQUIRED_KF5_VERSION 5.90.0)
+set(REQUIRED_KF_VERSION 5.90.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,8 +16,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 set(MAUIKIT_VERSION 2.2.2)
+set(MAUIKIT_URI org.mauikit.controls)
 
-set(AUTOMOC_MOC_OPTIONS -Muri=org.mauikit.controls)
+set(AUTOMOC_MOC_OPTIONS -Muri=${MAUIKIT_URI})
 
 project(mauikit VERSION ${MAUIKIT_VERSION})
 
@@ -29,21 +33,22 @@ if(ANDROID)
     set(ANDROID_ABIS "armeabi-v7a")
 endif()
 
-find_package(ECM ${REQUIRED_KF5_VERSION} NO_MODULE)
+find_package(ECM ${REQUIRED_KF_VERSION} NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 #DEFAULT COMPONENTS DEFINITIONS
 include(GenerateExportHeader)
+include(CMakePackageConfigHelpers)
+
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
-include(CMakePackageConfigHelpers)
 include(ECMFindQmlModule)
+
 include(KDEClangFormat)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(ECMQtDeclareLoggingCategory)
-#include(KDECompilerSettings NO_POLICY_SCOPE)
 
+##option to be removed in qt6 migration
 option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." ON)
 option(BUNDLE_LUV_ICONS "Ship Luv icon them bundled." OFF)
 
@@ -52,44 +57,51 @@ set(QUICK_COMPILER ON)
 set(BUNDLE_LUV_ICONS ON)
 endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Concurrent QuickControls2 Qml Svg Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Concurrent QuickControls2 Qml Svg Widgets REQUIRED)
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
+    Core
+    Concurrent
+    Qml
+    Quick
+    QuickControls2
+    Svg
+    Widgets
+)
 
-find_package(MauiMan 1.0.1 REQUIRED )
+find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS
+    I18n
+    CoreAddons
+    Notifications
+)
+
+find_package(MauiMan 1.0.1 REQUIRED)
+set_package_properties(MauiMan PROPERTIES
+    TYPE REQUIRED
+    DESCRIPTION "MauiMan is a server and API for syncing global system setting preferences."
+    URL "https://invent.kde.org/maui/mauiman"
+    PURPOSE "Sync to system setting preferences."
+)
 
 ecm_find_qmlmodule(QtGraphicalEffects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 
 if(ANDROID)
-    find_package(Qt${QT_MAJOR} REQUIRED COMPONENTS AndroidExtras)
+    find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
         # Do not find X11 on macOS
-        find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS X11Extras)
-        find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS WindowSystem)
+        find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS X11Extras)
+        
+        find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS WindowSystem)
+        
         find_package(XCB 1.10 REQUIRED COMPONENTS
     ICCCM
     SHAPE
     XCB
 )
-set_package_properties(XCB PROPERTIES TYPE REQUIRED)
-
-# and the optional XCB dependencies
-#if (XCB_ICCCM_VERSION VERSION_LESS "0.4")
-    #set(XCB_ICCCM_FOUND FALSE)
-#endif()
-#add_feature_info("XCB-ICCCM" XCB_ICCCM_FOUND "Required for building test applications for KWin")
-
-#find_package(X11_XCB)
-#set_package_properties(X11_XCB PROPERTIES
-    #PURPOSE "Required for building X11 windowed backend of kwin_wayland"
-    #TYPE OPTIONAL)
-    
+set_package_properties(XCB PROPERTIES TYPE REQUIRED)   
     endif()
 endif()
-
-find_package(KF5 ${REQUIRED_KF5_VERSION} REQUIRED COMPONENTS I18n CoreAddons Notifications)
 
 if(QUICK_COMPILER)
         find_package(Qt5QuickCompiler)
@@ -99,6 +111,7 @@ if(QUICK_COMPILER)
         )
 endif()
 
+##Translations stuff with KI18n
     add_definitions(-DTRANSLATION_DOMAIN="mauikit")
     ki18n_install(po)
     
@@ -121,7 +134,7 @@ configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/MauiKitConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/MauiKitConfig.cmake"
     INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
-    PATH_VARS  KF5_INCLUDE_INSTALL_DIR CMAKE_INSTALL_PREFIX
+    PATH_VARS CMAKE_INSTALL_PREFIX
     )
 
 install(FILES
@@ -135,7 +148,8 @@ install(EXPORT MauiKitTargets
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     FILE MauiKitTargets.cmake
     )
-
+##Clang formatting
     file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
