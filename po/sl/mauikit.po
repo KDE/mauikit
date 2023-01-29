@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-15 00:46+0000\n"
+"POT-Creation-Date: 2023-01-29 00:56+0000\n"
 "PO-Revision-Date: 2022-11-18 08:16+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,143 +18,143 @@ msgstr ""
 "%100==4 ? 3 : 0);\n"
 "X-Generator: Lokalize 22.08.2\n"
 
-#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
-#: src/controls/NewDialog.qml:26
+#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:380
+#: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
 msgstr "Sprejmi"
 
-#: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
+#: src/controls/Dialog.qml:360 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
+#: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
 msgstr "Osvetljevalnik"
 
-#: src/controls/labs/Doodle.qml:137
+#: src/controls/Doodle.qml:137
 #, kde-format
 msgid "Marker"
 msgstr "Označevalnik"
 
-#: src/controls/labs/Doodle.qml:159
+#: src/controls/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
 msgstr "Brisalnik"
 
-#: src/controls/labs/Doodle.qml:174
+#: src/controls/Doodle.qml:174
 #, kde-format
 msgid "Color"
 msgstr "Barva"
 
-#: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
+#: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
 msgstr "Neprosojnost"
 
-#: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
+#: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
 #, kde-format
 msgid "Size"
 msgstr "Velikost"
 
-#: src/controls/labs/ImageViewer.qml:177
+#: src/controls/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
 msgstr "Opsa!"
 
-#: src/controls/labs/ImageViewer.qml:178
+#: src/controls/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "Slike ni bilo mogoče naložiti."
 
-#: src/controls/labs/SettingsDialog.qml:14
-#, kde-format
-msgid "Settings"
-msgstr "Nastavitve"
-
-#: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
-#, kde-format
-msgid "Share with"
-msgstr "Deli z"
-
-#: src/controls/labs/TabView.qml:114
-#, kde-format
-msgid "Open"
-msgstr "Odpri"
-
-#: src/controls/labs/TabView.qml:125
-#, kde-format
-msgid "Duplicate"
-msgstr "Dupliciraj"
-
-#: src/controls/labs/TabView.qml:135
-#, kde-format
-msgid "Close"
-msgstr "Zapri"
-
-#: src/controls/labs/TabView.qml:145
-#, kde-format
-msgid "Close Other"
-msgstr "Zapri ostalo"
-
-#: src/controls/labs/TabView.qml:154
-#, kde-format
-msgid "Close All"
-msgstr "Zapri vse"
-
-#: src/controls/private/AboutDialog.qml:116
+#: src/controls/private/AboutDialog.qml:114
 #, kde-format
 msgid "Authors"
 msgstr "Avtorji"
 
-#: src/controls/private/AboutDialog.qml:160
+#: src/controls/private/AboutDialog.qml:158
 #, kde-format
 msgid "Translators"
 msgstr "Prevajalci"
 
-#: src/controls/private/AboutDialog.qml:201
+#: src/controls/private/AboutDialog.qml:199
 #, kde-format
 msgid "Credits"
 msgstr "Zasluge"
 
-#: src/controls/private/AboutDialog.qml:249
+#: src/controls/private/AboutDialog.qml:247
 #, kde-format
 msgid "Licenses"
 msgstr "Dovoljenja"
 
-#: src/controls/private/AboutDialog.qml:280
+#: src/controls/private/AboutDialog.qml:278
 #, kde-format
 msgid "Components"
 msgstr "Komponente"
 
-#: src/controls/private/AboutDialog.qml:318
+#: src/controls/private/AboutDialog.qml:316
 #, kde-format
 msgid "Links"
 msgstr "Povezave"
 
-#: src/controls/private/AboutDialog.qml:334
+#: src/controls/private/AboutDialog.qml:332
 #, kde-format
 msgid "Reports"
 msgstr "Poročila"
 
-#: src/controls/private/AboutDialog.qml:341
+#: src/controls/private/AboutDialog.qml:339
 #, kde-format
 msgid "Home Page"
 msgstr "Domača stran"
+
+#: src/controls/SettingsDialog.qml:14
+#, kde-format
+msgid "Settings"
+msgstr "Nastavitve"
+
+#: src/controls/ShareDialogLinux.qml:59
+#, kde-format
+msgid "Share with"
+msgstr "Deli z"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
 msgid "Close Split"
 msgstr "Zapri razcep"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:238
+#: src/controls/TabView.qml:114
+#, kde-format
+msgid "Open"
+msgstr "Odpri"
+
+#: src/controls/TabView.qml:125
+#, kde-format
+msgid "Duplicate"
+msgstr "Dupliciraj"
+
+#: src/controls/TabView.qml:135
+#, kde-format
+msgid "Close"
+msgstr "Zapri"
+
+#: src/controls/TabView.qml:145
+#, kde-format
+msgid "Close Other"
+msgstr "Zapri ostalo"
+
+#: src/controls/TabView.qml:154
+#, kde-format
+msgid "Close All"
+msgstr "Zapri vse"
+
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:240
 #, kde-format
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:252
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:254
 #, kde-format
 msgid "Paste"
 msgstr "Prilepi"
@@ -169,54 +169,54 @@ msgstr "Najdi"
 msgid "Find..."
 msgstr "Najdi..."
 
-#: src/maui-style/TextField.qml:245
+#: src/maui-style/TextField.qml:247
 #, kde-format
 msgid "Cut"
 msgstr "Izreži"
 
-#: src/maui-style/TextField.qml:262
+#: src/maui-style/TextField.qml:264
 #, kde-format
 msgid "Select All"
 msgstr "Izberi vse"
 
-#: src/maui-style/TextField.qml:269
+#: src/maui-style/TextField.qml:271
 #, kde-format
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: src/maui-style/TextField.qml:276
+#: src/maui-style/TextField.qml:278
 #, kde-format
 msgid "Redo"
 msgstr "Uveljavi"
 
-#: src/utils/mauiapp.cpp:53
+#: src/utils/mauiapp.cpp:46
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Vsesplošno prilagodljivi uporabniški vmesniki."
 
-#: src/utils/mauiapp.cpp:72
+#: src/utils/mauiapp.cpp:65
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Matjaž Jeran"
 
-#: src/utils/mauiapp.cpp:73
+#: src/utils/mauiapp.cpp:66
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "matjaz.jeran@amis.net"
 
-#: src/utils/mauiapp.cpp:78
+#: src/utils/mauiapp.cpp:71
 #, kde-format
 msgid "KDE Frameworks"
 msgstr "KDE Frameworks"
 
-#: src/utils/mauiapp.cpp:80
+#: src/utils/mauiapp.cpp:73
 #, kde-format
 msgid "MauiKit Frameworks"
 msgstr "MauiKit Frameworks"
 
-#: src/utils/mauiapp.cpp:83
+#: src/utils/mauiapp.cpp:76
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Tema ikone Luv"

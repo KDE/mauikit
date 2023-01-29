@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-15 00:46+0000\n"
+"POT-Creation-Date: 2023-01-29 00:56+0000\n"
 "PO-Revision-Date: 2022-11-25 23:31+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -18,143 +18,143 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2\n"
 
-#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:382
-#: src/controls/NewDialog.qml:26
+#: src/controls/ApplicationWindow.qml:397 src/controls/Dialog.qml:380
+#: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
 msgstr "დასტური"
 
-#: src/controls/Dialog.qml:362 src/controls/NewDialog.qml:27
+#: src/controls/Dialog.qml:360 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "_გაუქმება"
 
-#: src/controls/labs/Doodle.qml:126 src/controls/labs/Doodle.qml:148
+#: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
 msgstr "გამომკვეთი"
 
-#: src/controls/labs/Doodle.qml:137
+#: src/controls/Doodle.qml:137
 #, kde-format
 msgid "Marker"
 msgstr "სანიშნი"
 
-#: src/controls/labs/Doodle.qml:159
+#: src/controls/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
 msgstr "საშლელი"
 
-#: src/controls/labs/Doodle.qml:174
+#: src/controls/Doodle.qml:174
 #, kde-format
 msgid "Color"
 msgstr "ფერი"
 
-#: src/controls/labs/Doodle.qml:181 src/controls/labs/Doodle.qml:235
+#: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
 msgstr "გაუმჭირვალობა"
 
-#: src/controls/labs/Doodle.qml:189 src/controls/labs/Doodle.qml:205
+#: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
 #, kde-format
 msgid "Size"
 msgstr "ზომა"
 
-#: src/controls/labs/ImageViewer.qml:177
+#: src/controls/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
 msgstr "უფს!"
 
-#: src/controls/labs/ImageViewer.qml:178
+#: src/controls/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "გამოსახულების ჩატვირთვა შეუძლებელია."
 
-#: src/controls/labs/SettingsDialog.qml:14
-#, kde-format
-msgid "Settings"
-msgstr "მორგება"
-
-#: src/controls/labs/ShareDialogLinux.qml:59 src/controls/ShareDialog.qml:52
-#, kde-format
-msgid "Share with"
-msgstr "გაზიარება"
-
-#: src/controls/labs/TabView.qml:114
-#, kde-format
-msgid "Open"
-msgstr "გახსნა"
-
-#: src/controls/labs/TabView.qml:125
-#, kde-format
-msgid "Duplicate"
-msgstr "დუბლიკაცია"
-
-#: src/controls/labs/TabView.qml:135
-#, kde-format
-msgid "Close"
-msgstr "დახურვა"
-
-#: src/controls/labs/TabView.qml:145
-#, kde-format
-msgid "Close Other"
-msgstr "სხვების დახურვა"
-
-#: src/controls/labs/TabView.qml:154
-#, kde-format
-msgid "Close All"
-msgstr "ყველას დახურვა"
-
-#: src/controls/private/AboutDialog.qml:116
+#: src/controls/private/AboutDialog.qml:114
 #, kde-format
 msgid "Authors"
 msgstr "ავტორები"
 
-#: src/controls/private/AboutDialog.qml:160
+#: src/controls/private/AboutDialog.qml:158
 #, kde-format
 msgid "Translators"
 msgstr "მთარგმნელები"
 
-#: src/controls/private/AboutDialog.qml:201
+#: src/controls/private/AboutDialog.qml:199
 #, kde-format
 msgid "Credits"
 msgstr "კრედიტები"
 
-#: src/controls/private/AboutDialog.qml:249
+#: src/controls/private/AboutDialog.qml:247
 #, kde-format
 msgid "Licenses"
 msgstr "ლიცენზიები"
 
-#: src/controls/private/AboutDialog.qml:280
+#: src/controls/private/AboutDialog.qml:278
 #, kde-format
 msgid "Components"
 msgstr "კომპონენტები"
 
-#: src/controls/private/AboutDialog.qml:318
+#: src/controls/private/AboutDialog.qml:316
 #, kde-format
 msgid "Links"
 msgstr "ბმულები"
 
-#: src/controls/private/AboutDialog.qml:334
+#: src/controls/private/AboutDialog.qml:332
 #, kde-format
 msgid "Reports"
 msgstr "ანგარიშები"
 
-#: src/controls/private/AboutDialog.qml:341
+#: src/controls/private/AboutDialog.qml:339
 #, kde-format
 msgid "Home Page"
 msgstr "საწყისი გვერდი"
+
+#: src/controls/SettingsDialog.qml:14
+#, kde-format
+msgid "Settings"
+msgstr "მორგება"
+
+#: src/controls/ShareDialogLinux.qml:59
+#, kde-format
+msgid "Share with"
+msgstr "გაზიარება"
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
 msgid "Close Split"
 msgstr "გაყოფის დახურვა"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:238
+#: src/controls/TabView.qml:114
+#, kde-format
+msgid "Open"
+msgstr "გახსნა"
+
+#: src/controls/TabView.qml:125
+#, kde-format
+msgid "Duplicate"
+msgstr "დუბლიკაცია"
+
+#: src/controls/TabView.qml:135
+#, kde-format
+msgid "Close"
+msgstr "დახურვა"
+
+#: src/controls/TabView.qml:145
+#, kde-format
+msgid "Close Other"
+msgstr "სხვების დახურვა"
+
+#: src/controls/TabView.qml:154
+#, kde-format
+msgid "Close All"
+msgstr "ყველას დახურვა"
+
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:240
 #, kde-format
 msgid "Copy"
 msgstr "კოპირება"
 
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:252
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:254
 #, kde-format
 msgid "Paste"
 msgstr "ჩასმა"
@@ -169,54 +169,54 @@ msgstr "მოძებნა"
 msgid "Find..."
 msgstr "მოძებნა…"
 
-#: src/maui-style/TextField.qml:245
+#: src/maui-style/TextField.qml:247
 #, kde-format
 msgid "Cut"
 msgstr "ამოჭრა"
 
-#: src/maui-style/TextField.qml:262
+#: src/maui-style/TextField.qml:264
 #, kde-format
 msgid "Select All"
 msgstr "ყველას მონიშვნა"
 
-#: src/maui-style/TextField.qml:269
+#: src/maui-style/TextField.qml:271
 #, kde-format
 msgid "Undo"
 msgstr "ბრძანების გაუქმება"
 
-#: src/maui-style/TextField.qml:276
+#: src/maui-style/TextField.qml:278
 #, kde-format
 msgid "Redo"
 msgstr "თავიდან"
 
-#: src/utils/mauiapp.cpp:53
+#: src/utils/mauiapp.cpp:46
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "მრავალნაირად ადაპტირებადი მომხმარებლის ინტერფეისი."
 
-#: src/utils/mauiapp.cpp:72
+#: src/utils/mauiapp.cpp:65
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Temuri Doghonadze"
 
-#: src/utils/mauiapp.cpp:73
+#: src/utils/mauiapp.cpp:66
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "Temuri.doghonadze@gmail.com"
 
-#: src/utils/mauiapp.cpp:78
+#: src/utils/mauiapp.cpp:71
 #, kde-format
 msgid "KDE Frameworks"
 msgstr "KDE-სი გამოყენებული ბიბლიოთეკები"
 
-#: src/utils/mauiapp.cpp:80
+#: src/utils/mauiapp.cpp:73
 #, kde-format
 msgid "MauiKit Frameworks"
 msgstr "MauiKit Frameworks"
 
-#: src/utils/mauiapp.cpp:83
+#: src/utils/mauiapp.cpp:76
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "ხატულების თემა Luv"
