@@ -112,7 +112,7 @@ Maui.Page
 
     readonly property int count : currentView.count
 
-    flickable:  _gridView.flickable
+    flickable:  currentView.flickable
 
     Maui.GridBrowser
     {
