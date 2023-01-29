@@ -586,6 +586,7 @@ T.Pane
                 id: _headerContent
                 anchors.left: parent.left
                 anchors.right: parent.right
+                children: header
             }              
         
         Column
@@ -593,6 +594,13 @@ T.Pane
             id: _footerContent
             anchors.left: parent.left
             anchors.right: parent.right
+            children: footer
+        }
+        
+        Label
+        {
+            color: "orange"
+            text: _footerContent.implicitHeight  + "/ " + _private.bottomMargin
         }
 
         Loader
@@ -840,19 +848,8 @@ T.Pane
 
     Component.onCompleted :
     {
-        if(footer)
-        {
-            _footerContent.data.push(footer)
-        }
-
-        if(header)
-        {
-            _headerContent.data.push(header)
-        }
-
         var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
-        control.headBar.farRightContent.push(obj)
-        
+        control.headBar.farRightContent.push(obj)        
     }
 
     /*!
@@ -867,7 +864,7 @@ T.Pane
 
         if(control.footer)
         {
-            pullDownFooter()
+            pullUpFooter()
         }
     }
 

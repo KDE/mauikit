@@ -112,7 +112,7 @@ Maui.Page
 
     readonly property int count : currentView.count
 
-    flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
+    flickable:  _gridView.flickable
 
     Maui.GridBrowser
     {

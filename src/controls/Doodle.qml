@@ -315,7 +315,7 @@ Maui.Dialog
     ]
 
     headBar.visible: false
-    Maui.ScrollView
+    ScrollView
     {
         Layout.fillHeight: true
         Layout.fillWidth: true
@@ -351,9 +351,5 @@ Maui.Dialog
         brushSize : _sizeSlider.value
         brushOpacity :_opacitySlider.value
     }
-    }
-
-
-   
-
+    }  
 }

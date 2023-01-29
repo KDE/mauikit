@@ -39,8 +39,9 @@ Item
 {
     id: control
     
-    implicitHeight:  _imp.implicitHeight + Maui.Style.space.big
-    implicitWidth: _imp.implicitWidth
+    implicitHeight: _layout.implicitHeight + Maui.Style.space.big
+    implicitWidth: _layout.implicitWidth
+    
     readonly property bool hidden : count === 0
     
     onHiddenChanged:
@@ -256,32 +257,16 @@ Item
         }
     }
     
-    T.Control
-    {
-        id: _imp
-        
-        implicitHeight: implicitContentHeight + topPadding + bottomPadding
-        implicitWidth: implicitContentWidth + leftPadding + rightPadding
-
-        width: control.width
-        focus: true
-        
-        padding: 0
-        topPadding: padding
-        bottomPadding: padding
-        rightPadding: padding
-        leftPadding: padding
-        
-        y: control.height
+  
         
         ParallelAnimation
         {
             id: _openAnimation
             NumberAnimation
             {
-                target: _imp
+                target: _layout
                 property: "y"
-                from: _imp.height
+                from: _layout.height
                 to: Maui.Style.space.big/2
                 duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.OutBack
@@ -290,7 +275,7 @@ Item
             
             NumberAnimation
             {
-                target: _imp
+                target: _layout
                 property: "scale"
                 from: 0.5
                 to: 1
@@ -314,10 +299,10 @@ Item
             id: _closeAnimation
             NumberAnimation
             {
-                target: _imp
+                target: _layout
                 property: "y"
                 from: Maui.Style.space.big/2
-                to: _imp.height
+                to: _layout.height
                 duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.InBack
                 
@@ -325,7 +310,7 @@ Item
             
             NumberAnimation
             {
-                target: _imp
+                target: _layout
                 property: "scale"
                 from: 1
                 to: 0.5
@@ -350,83 +335,15 @@ Item
         
         
         
-        background: Rectangle
-        {
-            id: bg
-            color: Maui.Theme.backgroundColor
-            radius: control.radius
-            border.color: control.filling ? "transparent" :Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.2)
-            property color borderColor: Maui.Theme.textColor
-            
-            Behavior on color
-            {
-                Maui.ColorTransition {  }
-            }
-
-            MouseArea
-            {
-                anchors.fill: parent
-                acceptedButtons: Qt.RightButton | Qt.LeftButton
-                propagateComposedEvents: false
-                preventStealing: true
-                
-                onClicked:
-                {
-                    if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
-                        control.rightClicked(mouse)
-                    else
-                        control.clicked(mouse)
-                }
-                
-                onPressAndHold :
-                {
-                    if(Maui.Handy.isMobile)
-                        control.rightClicked(mouse)
-                }
-            }
-            
-            Maui.Rectangle
-            {
-                opacity: 0.2
-                anchors.fill: parent
-                anchors.margins: 4
-                visible: _dropArea.containsDrag
-                color: "transparent"
-                borderColor: Maui.Theme.textColor
-                solidBorder: false
-            }
-            
-            DropArea
-            {
-                id: _dropArea
-                anchors.fill: parent
-                onDropped:
-                {
-                    control.urisDropped(drop.urls)
-                }
-            }
-            
-            layer.enabled: true
-            layer.effect: DropShadow
-            {
-                cached: true
-                horizontalOffset: 0
-                verticalOffset: 0
-                radius: 8.0
-                samples: 16
-                color:  "#80000000"
-                smooth: true
-            }
-        }
+       
         
         
-        contentItem: Maui.ToolBar
+        Maui.ToolBar
         {
             id: _layout
+            width: control.width
             
-            clip: true
             position: ToolBar.Footer
-            background: null
 
             Maui.Badge
             {
@@ -549,7 +466,80 @@ Item
                     control.exitClicked()
                 }
             }
+            
+            background: Rectangle
+            {
+                id: bg
+                color: Maui.Theme.backgroundColor
+                radius: control.radius
+                
+                Behavior on color
+                {
+                    Maui.ColorTransition {  }
+                }
+                
+                MouseArea
+                {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton | Qt.LeftButton
+                    propagateComposedEvents: false
+                    preventStealing: true
+                    
+                    onClicked:
+                    {
+                        if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
+                            control.rightClicked(mouse)
+                            else
+                                control.clicked(mouse)
+                    }
+                    
+                    onPressAndHold :
+                    {
+                        if(Maui.Handy.isMobile)
+                            control.rightClicked(mouse)
+                    }
+                }
+                
+                Maui.Rectangle
+                {
+                    opacity: 0.2
+                    anchors.fill: parent
+                    anchors.margins: 4
+                    visible: _dropArea.containsDrag
+                    color: "transparent"
+                    borderColor: Maui.Theme.textColor
+                    solidBorder: false
+                }
+                
+                DropArea
+                {
+                    id: _dropArea
+                    anchors.fill: parent
+                    onDropped:
+                    {
+                        control.urisDropped(drop.urls)
+                    }
+                }
+                
+                layer.enabled: true
+                layer.effect: DropShadow
+                {
+                    cached: true
+                    horizontalOffset: 0
+                    verticalOffset: 0
+                    radius: 8.0
+                    samples: 16
+                    color:  "#80000000"
+                    smooth: true
+                }
+            }
         }
+    
+    
+    Label
+    {
+        color: "orange"
+        text: control.implicitHeight  + "/ " + _imp.implicitHeight
     }
     
     Keys.onEscapePressed:
