@@ -535,13 +535,6 @@ Item
             }
         }
     
-    
-    Label
-    {
-        color: "orange"
-        text: control.implicitHeight  + "/ " + _imp.implicitHeight
-    }
-    
     Keys.onEscapePressed:
     {
         control.exitClicked();

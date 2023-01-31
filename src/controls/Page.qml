@@ -596,12 +596,6 @@ T.Pane
             anchors.right: parent.right
             children: footer
         }
-        
-        Label
-        {
-            color: "orange"
-            text: _footerContent.implicitHeight  + "/ " + _private.bottomMargin
-        }
 
         Loader
         {
@@ -859,12 +853,12 @@ T.Pane
     {
         if(control.header)
         {
-            pullDownHeader()
+            // pullDownHeader()
         }
 
         if(control.footer)
         {
-            pullUpFooter()
+            // pullDownFooter()
         }
     }
 
@@ -901,6 +895,6 @@ T.Pane
     function pullDownFooter()
     {
         _footerAnimation.enabled = true
-        footer.height = footer.implicitHeight
+        footer.height = _footerContent.implicitHeight
     }
 }
