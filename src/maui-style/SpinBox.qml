@@ -61,7 +61,7 @@ T.SpinBox
                              up.implicitIndicatorHeight,
                              down.implicitIndicatorHeight)
     
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.defaultPadding
     editable: true
     
     topPadding: 0

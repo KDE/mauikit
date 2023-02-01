@@ -59,10 +59,7 @@ Window
   id: root
   
   visible: true
-  
-  width: Screen.desktopAvailableWidth * (Maui.Handy.isMobile ? 1 : 0.4)
-  height: Screen.desktopAvailableHeight * (Maui.Handy.isMobile ? 1 : 0.4)
-  
+    
   minimumHeight: Math.min(600, Screen.desktopAvailableHeight)
   minimumWidth: Math.min(400, Screen.desktopAvailableWidth)
   

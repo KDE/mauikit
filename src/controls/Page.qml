@@ -379,7 +379,7 @@ T.Pane
         id: _headBar
         visible: count > 0
         width: visible ? parent.width : 0
-
+        position: control.altHeader ? ToolBar.Footer : ToolBar.Header
         translucencySource: ShaderEffectSource
         {
             sourceItem: _content
@@ -493,12 +493,6 @@ T.Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
-            
-            PropertyChanges
-            {
-                target: _headBar
-                position: ToolBar.Header
-            }
         },
         
         State
@@ -517,12 +511,6 @@ T.Pane
                 target: _footerContent
                 anchors.top: undefined
                 anchors.bottom: _headerContent.top
-            }
-                      
-            PropertyChanges
-            {
-                target: _headBar
-                position: ToolBar.Footer
             }
         } ]
 

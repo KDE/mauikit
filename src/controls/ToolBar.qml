@@ -26,7 +26,6 @@ import org.mauikit.controls 1.3 as Maui
 import QtQuick.Layouts 1.3
 
 import "private" as Private
-import QtQuick.Templates 2.15 as T
 
 /**
  * ToolBar
@@ -183,12 +182,16 @@ ToolBar
             implicitWidth: _mainLayout.implicitWidth 
             implicitHeight: _mainLayout.implicitHeight 
             clip: true
-            
+           
             Item
             {
                 id: _container
                 height: control.preferredHeight
                 width: parent.width
+                
+                property bool isHeader: control.position === ToolBar.Header
+                state: isHeader? "headerState" : "footerState"
+             
                 
                 Loader
                 {
@@ -214,7 +217,7 @@ ToolBar
                
                 states: [State
                 {
-                    when: control.position === ToolBar.Header
+                    name: "headerState" 
                     
                     AnchorChanges
                     {
@@ -226,7 +229,7 @@ ToolBar
                 
                 State
                 {
-                    when: control.position === ToolBar.Footer
+                   name: "footerState"
                     
                     AnchorChanges
                     {

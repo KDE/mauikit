@@ -67,6 +67,8 @@ T.MenuItem
     
     icon.color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
     
+    property bool flat: !Maui.Handy.isMobile
+    
     indicator: CheckIndicator
     {
         x: control.width - width - control.rightPadding 
@@ -122,7 +124,7 @@ T.MenuItem
     {               
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor) : "transparent"
+        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)) : "transparent"
 
         Behavior on color
         {
