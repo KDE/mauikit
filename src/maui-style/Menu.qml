@@ -45,7 +45,7 @@ T.Menu
 {
     id: control
     
-    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
     
     property string subtitle

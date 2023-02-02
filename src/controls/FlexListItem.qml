@@ -124,7 +124,6 @@ T.ItemDelegate
         Row
         {
             id: _content
-            spacing: control.spacing
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.row: control.wide ? 0 : 1
             Layout.column: control.wide ? 1 : 0

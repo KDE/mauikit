@@ -34,6 +34,7 @@ Maui.FlexListItem
    spacing: padding   
    
    Layout.fillWidth: true
+   property bool flat : !Maui.Handy.isMobile
    
     hoverEnabled: !Maui.Handy.isMobile
 
@@ -41,8 +42,14 @@ Maui.FlexListItem
     
     background: Rectangle
     {       
-        color: control.enabled ? ( control.childCheckable && control.pressed ? control.Maui.Theme.hoverColor :  Maui.Theme.alternateBackgroundColor) : "transparent"        
-        radius: Maui.Style.radiusV      
+        color: control.enabled ? ( control.childCheckable && control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)) : "transparent"        
+        radius: Maui.Style.radiusV   
+        
+        Behavior on color
+        {
+            enabled: !control.flat
+            Maui.ColorTransition{}
+        }
     }
     
     onClicked:

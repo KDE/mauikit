@@ -128,6 +128,7 @@ T.MenuItem
 
         Behavior on color
         {
+            enabled: !control.flat
             Maui.ColorTransition{}
         }
     }

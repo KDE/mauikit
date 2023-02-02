@@ -138,7 +138,7 @@ Maui.ItemDelegate
 
     property alias layout : _layout
 
-    property bool flat : false
+    property bool flat : !Maui.Handy.isMobile
     /**
       * contentDropped :
       */
@@ -153,8 +153,8 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-        color: control.flat || !control.enabled ? "transparent" : (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor))
-
+      color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
+      
         radius: control.radius
 
         Rectangle
@@ -173,7 +173,8 @@ Maui.ItemDelegate
 
         Behavior on color
         {
-           Maui.ColorTransition{}
+          enabled: !control.flat
+          Maui.ColorTransition{}
         }
     }
 
