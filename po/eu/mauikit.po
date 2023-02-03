@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:56+0000\n"
+"POT-Creation-Date: 2023-02-03 00:58+0000\n"
 "PO-Revision-Date: 2022-11-18 07:46+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -76,37 +76,37 @@ msgstr "Irudia ezin izan du zamatu."
 msgid "Authors"
 msgstr "Egileak"
 
-#: src/controls/private/AboutDialog.qml:158
+#: src/controls/private/AboutDialog.qml:159
 #, kde-format
 msgid "Translators"
 msgstr "Itzultzailea"
 
-#: src/controls/private/AboutDialog.qml:199
+#: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Credits"
 msgstr "Merituak"
 
-#: src/controls/private/AboutDialog.qml:247
+#: src/controls/private/AboutDialog.qml:248
 #, kde-format
 msgid "Licenses"
 msgstr "Lizentziak"
 
-#: src/controls/private/AboutDialog.qml:278
+#: src/controls/private/AboutDialog.qml:279
 #, kde-format
 msgid "Components"
 msgstr "Osagaiak"
 
-#: src/controls/private/AboutDialog.qml:316
+#: src/controls/private/AboutDialog.qml:317
 #, kde-format
 msgid "Links"
 msgstr "Estekak"
 
-#: src/controls/private/AboutDialog.qml:332
+#: src/controls/private/AboutDialog.qml:333
 #, kde-format
 msgid "Reports"
 msgstr "Txostenak"
 
-#: src/controls/private/AboutDialog.qml:339
+#: src/controls/private/AboutDialog.qml:340
 #, kde-format
 msgid "Home Page"
 msgstr "Orri nagusia"

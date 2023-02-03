@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:56+0000\n"
+"POT-Creation-Date: 2023-02-03 00:58+0000\n"
 "PO-Revision-Date: 2023-01-03 17:19+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -73,37 +73,37 @@ msgstr ""
 msgid "Authors"
 msgstr "Autoři"
 
-#: src/controls/private/AboutDialog.qml:158
+#: src/controls/private/AboutDialog.qml:159
 #, kde-format
 msgid "Translators"
 msgstr "Překladatelé"
 
-#: src/controls/private/AboutDialog.qml:199
+#: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Credits"
 msgstr "Poděkování"
 
-#: src/controls/private/AboutDialog.qml:247
+#: src/controls/private/AboutDialog.qml:248
 #, kde-format
 msgid "Licenses"
 msgstr "Licence"
 
-#: src/controls/private/AboutDialog.qml:278
+#: src/controls/private/AboutDialog.qml:279
 #, kde-format
 msgid "Components"
 msgstr "Složky"
 
-#: src/controls/private/AboutDialog.qml:316
+#: src/controls/private/AboutDialog.qml:317
 #, kde-format
 msgid "Links"
 msgstr "Odkazy"
 
-#: src/controls/private/AboutDialog.qml:332
+#: src/controls/private/AboutDialog.qml:333
 #, kde-format
 msgid "Reports"
 msgstr "Výkazy"
 
-#: src/controls/private/AboutDialog.qml:339
+#: src/controls/private/AboutDialog.qml:340
 #, kde-format
 msgid "Home Page"
 msgstr "Domovská stránka"

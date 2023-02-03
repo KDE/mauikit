@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-02 00:56+0000\n"
+"POT-Creation-Date: 2023-02-03 00:58+0000\n"
 "PO-Revision-Date: 2022-12-31 16:24+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -73,37 +73,37 @@ msgstr "The image could not be loaded."
 msgid "Authors"
 msgstr "Authors"
 
-#: src/controls/private/AboutDialog.qml:158
+#: src/controls/private/AboutDialog.qml:159
 #, kde-format
 msgid "Translators"
 msgstr "Translators"
 
-#: src/controls/private/AboutDialog.qml:199
+#: src/controls/private/AboutDialog.qml:200
 #, kde-format
 msgid "Credits"
 msgstr "Credits"
 
-#: src/controls/private/AboutDialog.qml:247
+#: src/controls/private/AboutDialog.qml:248
 #, kde-format
 msgid "Licenses"
 msgstr "Licences"
 
-#: src/controls/private/AboutDialog.qml:278
+#: src/controls/private/AboutDialog.qml:279
 #, kde-format
 msgid "Components"
 msgstr "Components"
 
-#: src/controls/private/AboutDialog.qml:316
+#: src/controls/private/AboutDialog.qml:317
 #, kde-format
 msgid "Links"
 msgstr "Links"
 
-#: src/controls/private/AboutDialog.qml:332
+#: src/controls/private/AboutDialog.qml:333
 #, kde-format
 msgid "Reports"
 msgstr "Reports"
 
-#: src/controls/private/AboutDialog.qml:339
+#: src/controls/private/AboutDialog.qml:340
 #, kde-format
 msgid "Home Page"
 msgstr "Home Page"
