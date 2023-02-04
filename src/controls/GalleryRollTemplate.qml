@@ -32,7 +32,10 @@ Maui.ShadowedRectangle
     
     property int fillMode: Image.PreserveAspectCrop
     property alias running: _featuredTimer.running 
-    
+
+    property int imageWidth : -1
+    property int imageHeight : -1
+
     corners
     {
         topLeftRadius: control.radius

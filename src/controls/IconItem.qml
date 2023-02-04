@@ -91,15 +91,15 @@ implicitWidth: Math.max(iconSizeHint, imageSizeHint)
         id: icon
         visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
         smooth: control.smooth
-//         anchors.centerIn: parent
-anchors.verticalCenter: parent.verticalCenter
+         anchors.centerIn: parent
+//anchors.verticalCenter: parent.verticalCenter
 
-        x: switch(control.alignment)
-        {
-            case Qt.AlignLeft: return 0
-            case Qt.AlignHCenter: return control.width/2 - width/2
-            case Qt.AlignRight: return control.width - width
-        }
+//        x: switch(control.alignment)
+//        {
+//            case Qt.AlignLeft: return 0
+//            case Qt.AlignHCenter: return control.width/2 - width/2
+//            case Qt.AlignRight: return control.width - width
+//        }
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height

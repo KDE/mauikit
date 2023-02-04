@@ -291,6 +291,8 @@ public:
 
 private:
   static MauiApp *m_instance;
+  MauiMan::ThemeManager *m_themeSettings;
+
   MauiApp();
   CSDControls * m_controls;
   QString m_iconName;
@@ -302,6 +304,7 @@ signals:
   void iconNameChanged();
   void donationPageChanged();
   void translucencyAvailableChanged(bool translucencyAvailable);
+  void currentIconThemeChanged(QString currentIconTheme);
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)

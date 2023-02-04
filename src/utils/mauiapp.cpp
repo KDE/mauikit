@@ -50,6 +50,8 @@ KAboutComponent MauiApp::aboutMauiKit()
 MauiApp::MauiApp()
     : QObject(nullptr)
     , m_controls(new CSDControls(this))
+    ,m_themeSettings( new MauiMan::ThemeManager(this))
+
 {
     qDebug() << "CREATING INSTANCE OF MAUI APP";
     connect(qApp, &QCoreApplication::aboutToQuit, []()
@@ -60,26 +62,30 @@ MauiApp::MauiApp()
     });
     
     KAboutData aboutData(KAboutData::applicationData());
-    if (aboutData.translators().isEmpty()) 
+    if (aboutData.translators().isEmpty())
     {
         aboutData.setTranslator(i18ndc(nullptr, "NAME OF TRANSLATORS", "Your names"), //
                                 i18ndc(nullptr, "EMAIL OF TRANSLATORS", "Your emails"));
 
     }
-        aboutData.addComponent("Qt", "", QT_VERSION_STR, "https://qt.io");
-   
-        aboutData.addComponent(i18n("KDE Frameworks"), "", KCoreAddons::versionString(), "https://kde.org");
+    aboutData.addComponent("Qt", "", QT_VERSION_STR, "https://qt.io");
 
-aboutData.addComponent(i18n("MauiKit Frameworks"), "", MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);           
+    aboutData.addComponent(i18n("KDE Frameworks"), "", KCoreAddons::versionString(), "https://kde.org");
+
+    aboutData.addComponent(i18n("MauiKit Frameworks"), "", MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);
 
 #if defined BUNDLE_LUV_ICONS
-aboutData.addComponent(i18n("Luv Icon Theme"), "", "", "https://github.com/Nitrux/luv-icon-theme", KAboutLicense::Artistic);           
+    aboutData.addComponent(i18n("Luv Icon Theme"), "", "", "https://github.com/Nitrux/luv-icon-theme", KAboutLicense::Artistic);
 
 #endif
 
-KAboutData::setApplicationData(aboutData);
+    KAboutData::setApplicationData(aboutData);
 
     setDefaultMauiStyle();
+   if(MauiManUtils::isMauiSession())
+   {
+        QIcon::setThemeName(m_themeSettings->iconTheme());
+   }
 }
 
 QString MauiApp::getMauikitVersion()
@@ -165,25 +171,25 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 }
 
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
-,m_themeSettings( new MauiMan::ThemeManager(this))
+  ,m_themeSettings( new MauiMan::ThemeManager(this))
 {       
     connect(m_themeSettings, &MauiMan::ThemeManager::enableCSDChanged, [this](bool enabled)
-    {        
-        qDebug() << "CSD ENABLED CHANGED<<<<" << enabled; 
+    {
+        qDebug() << "CSD ENABLED CHANGED<<<<" << enabled;
         
         getWindowControlsSettings();
     });
     
     connect(m_themeSettings, &MauiMan::ThemeManager::windowControlsThemeChanged, [this](QString style)
-    {        
+    {
         m_styleName = style;
-        setStyle(); 
+        setStyle();
         
         Q_EMIT styleNameChanged();
         Q_EMIT sourceChanged();
     });
     
-    getWindowControlsSettings();     
+    getWindowControlsSettings();
 }
 
 void CSDControls::setStyle()
@@ -207,13 +213,13 @@ void CSDControls::setStyle()
 void CSDControls::getWindowControlsSettings()
 {        
     if(m_enabledCSD_blocked)
-        return;    
+        return;
     
     m_enableCSD = m_themeSettings->enableCSD();
     Q_EMIT enableCSDChanged();
     
-  /*  #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID    
-    
+    /*  #if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
+
     #ifdef FORMFACTOR_FOUND
     
     if(m_formFactor->preferredMode() == 0)
@@ -223,8 +229,8 @@ void CSDControls::getWindowControlsSettings()
         
     }else
     {
-        m_enableCSD = false;  
-        Q_EMIT enableCSDChanged();        
+        m_enableCSD = false;
+        Q_EMIT enableCSDChanged();
         return;
     }
 #else //Fallback in case FormFactor is not found. and then check for the env var QT_QUICK_CONTROLS_MOBILE
@@ -233,16 +239,16 @@ void CSDControls::getWindowControlsSettings()
         if (QByteArrayList {"0", "false"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE")))
         {
             m_enableCSD = m_themeSettings->enableCSD();
-            Q_EMIT enableCSDChanged();            
+            Q_EMIT enableCSDChanged();
         }else
         {
-            return;    
+            return;
         }
     }
-    #endif  */ 
+    #endif  */
     
     m_styleName = m_themeSettings->windowControlsTheme();
-    setStyle();   
+    setStyle();
 }
 
 bool CSDControls::enableCSD() const
@@ -256,7 +262,7 @@ void CSDControls::setEnableCSD(const bool &value)
     if (m_enableCSD == value)
         return;
     
-    m_enableCSD = value;        
+    m_enableCSD = value;
     Q_EMIT enableCSDChanged();
 }
 
@@ -499,8 +505,8 @@ void CSDButton::setIsFocused(bool newIsFocused)
     emit isFocusedChanged();
 }
 
- void CSDControls::applyRadius(QWindow *window, int radius)
- {
+void CSDControls::applyRadius(QWindow *window, int radius)
+{
     
     QRect r(QPoint(), window->geometry().size());
     QRect rb(0, 0, 2 * radius, 2 * radius);

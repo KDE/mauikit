@@ -16,14 +16,17 @@ T.ItemDelegate
     Maui.Theme.colorSet: Maui.Theme.Tooltip 
     
     hoverEnabled: !Maui.Handy.isMobile
-    implicitHeight: Maui.Style.iconSizes.big
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     
     padding: Maui.Style.defaultPadding
     spacing: padding   
     
+    icon.height: Maui.Style.iconSizes.small
+    icon.width: Maui.Style.iconSizes.small
+
     property alias label : _label1
-    property alias iconSource : _icon.source
+    property alias iconSource : control.icon.name
     
     property bool showCloseButton : false
     
@@ -48,21 +51,18 @@ T.ItemDelegate
         id: _layout
         spacing: control.spacing
         
-        Item
-        {
-            visible: _icon.valid
-            Layout.fillHeight: true
-            Layout.preferredWidth: visible ? Maui.Style.iconSizes.small : 0
-            
+
             Maui.Icon
             {
+
                 id: _icon
-                anchors.centerIn: parent
-                implicitWidth: Maui.Style.iconSizes.small
-                implicitHeight: implicitWidth
+                visible: valid
+                implicitWidth: control.icon.width
+                implicitHeight: control.icon.height
                 color: _label1.color
+                source: control.icon.name
             }            
-        }
+
         
         Label
         {
@@ -72,6 +72,7 @@ T.ItemDelegate
             Layout.fillWidth: true
             verticalAlignment: Qt.AlignVCenter
             color: Maui.ColorUtils.brightnessForColor(_background.color) === Maui.ColorUtils.Light ? "#333" :"#fafafa"
+            wrapMode: Text.Wrap
         }
         
         Loader
@@ -80,7 +81,7 @@ T.ItemDelegate
             visible: active
             
             asynchronous: true
-            Layout.fillHeight: true
+            Layout.preferredHeight: Maui.Style.iconSizes.big
             Layout.preferredWidth: visible ? Maui.Style.iconSizes.medium : 0
             Layout.alignment: Qt.AlignRight
             

@@ -84,7 +84,7 @@
         <file alias="ImageViewer.qml">controls/ImageViewer.qml</file>
         <file alias="AnimatedImageViewer.qml">controls/AnimatedImageViewer.qml</file>
         <file alias="ColorTransition.qml">controls/ColorTransition.qml</file>
-        <file alias="Icon.qml">controls/Icon.qml</file>
         <file alias="ShadowedRectangle.qml">controls/ShadowedRectangle.qml</file>
+        <file alias="Icon.qml">controls/Icon.qml</file>
     </qresource>
 </RCC>

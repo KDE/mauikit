@@ -78,7 +78,6 @@ IconItem 1.3 IconItem.qml
 DoodleCanvas 1.3 DoodleCanvas.qml
 Doodle 1.3 Doodle.qml
 FlexListItem 1.3 FlexListItem.qml
-IconItem 1.3 IconItem.qml
 Chip 1.3 Chip.qml
 ContextualMenu 1.3 ContextualMenu.qml
 ComboBox 1.3 ComboBox.qml

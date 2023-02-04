@@ -115,7 +115,7 @@ endif()
     add_definitions(-DTRANSLATION_DOMAIN="mauikit")
     ki18n_install(po)
     
-    add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
+#    add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
     
 add_subdirectory(src)
 # add_subdirectory(demo)

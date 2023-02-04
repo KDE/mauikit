@@ -47,6 +47,8 @@ Maui.GridBrowserDelegate
         cb: control.cb
         fillMode: control.fillMode
         running: !control.hovered && !control.checked
+        imageWidth: control.imageWidth
+        imageHeight: control.imageHeight
         
         corners
         {

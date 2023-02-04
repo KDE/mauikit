@@ -46,6 +46,7 @@
 #include "utils/colorutils.h"
 #include "utils/imagecolors.h"
 #include "utils/wheelhandler.h"
+#include "utils/icon.h"
 
 #include <QDebug>
 #include <QQmlContext>
@@ -91,7 +92,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("FloatingButton.qml")), uri, 1, 0, "FloatingButton");
     
     
-    //Kirigami aliases to be replaced later on 
+    //Kirigami aliases to be replaced later on
     //TODO
     qmlRegisterType(componentUrl(QStringLiteral("Icon.qml")), uri, 1, 0, "Icon"); //to be remove later
     qmlRegisterType(componentUrl(QStringLiteral("ShadowedRectangle.qml")), uri, 1, 0, "ShadowedRectangle"); //to be remove later
@@ -165,7 +166,7 @@ void MauiKit::registerTypes(const char *uri)
         engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
         return platform;
     });
-        
+
     qmlRegisterUncreatableType<Maui::PlatformTheme>(uri, 1, 0, "Theme", QStringLiteral("Cannot create objects of type Theme, use it as an attached property"));
     qmlRegisterSingletonType<ColorUtils>(uri, 1, 3, "ColorUtils", [](QQmlEngine *, QJSEngine *) -> QObject*
     {
@@ -173,7 +174,8 @@ void MauiKit::registerTypes(const char *uri)
     });
     qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
     qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
-    
+    qmlRegisterType<Icon>(uri, 1, 0, "PrivateIcon");
+
     /** Experimental **/
 #ifdef Q_OS_WIN32
     qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
@@ -182,7 +184,7 @@ void MauiKit::registerTypes(const char *uri)
 #elif defined Q_OS_ANDROID
     qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-    qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");    
+    qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
 #if defined Q_PROCESSOR_ARM
     qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
 #else
@@ -226,7 +228,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType<NotifyAction>(uri, 1, 3, "NotifyAction");
 
     qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
-    qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");    
+    qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
     qmlRegisterSingletonType<Handy>(uri, 1, 2, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(scriptEngine)
         auto handy = Handy::instance();

@@ -33,6 +33,8 @@ set(mauikit_SRCS
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
     platforms/platform.cpp
+    utils/icon.cpp
+    utils/managedtexturenode.cpp
     )
 
 set(mauikit_HDRS
