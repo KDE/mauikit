@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-03 00:58+0000\n"
+"POT-Creation-Date: 2023-02-05 00:56+0000\n"
 "PO-Revision-Date: 2022-11-18 13:19+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -195,29 +195,29 @@ msgstr "Refés"
 msgid "Multi-adaptable user interfaces."
 msgstr "Interfícies d'usuari multiadaptables."
 
-#: src/utils/mauiapp.cpp:65
+#: src/utils/mauiapp.cpp:67
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Josep M. Ferrer"
 
-#: src/utils/mauiapp.cpp:66
+#: src/utils/mauiapp.cpp:68
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "txemaq@gmail.com"
 
-#: src/utils/mauiapp.cpp:71
+#: src/utils/mauiapp.cpp:73
 #, kde-format
 msgid "KDE Frameworks"
 msgstr "Frameworks de KDE"
 
-#: src/utils/mauiapp.cpp:73
+#: src/utils/mauiapp.cpp:75
 #, kde-format
 msgid "MauiKit Frameworks"
 msgstr "Frameworks de MauiKit"
 
-#: src/utils/mauiapp.cpp:76
+#: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Tema d'icones Luv"
