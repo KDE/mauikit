@@ -72,7 +72,7 @@ T.ComboBox
     implicitHeight: Math.max(preferredHeight, implicitContentHeight + topPadding + bottomPadding)
         
     padding: Maui.Style.defaultPadding
-    spacing: padding
+    spacing: Maui.Style.defaultSpacing    
     
            delegate: MenuItem
     {
@@ -199,8 +199,8 @@ T.ComboBox
         
         transformOrigin: Item.Top
         
-        padding: Maui.Style.space.small
-        spacing: padding           
+        padding: Maui.Style.defaultPadding
+        spacing: Maui.Style.defaultSpacing    
         
         margins: Maui.Style.space.medium    
         

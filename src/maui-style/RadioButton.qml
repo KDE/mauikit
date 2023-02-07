@@ -37,8 +37,8 @@ property alias m_control: control
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     padding: 1
-    spacing: Maui.Style.space.medium
-
+    spacing: Maui.Style.defaultSpacing    
+    
     hoverEnabled: true
 
     indicator: RadioIndicator

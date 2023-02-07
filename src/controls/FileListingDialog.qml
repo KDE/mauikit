@@ -40,8 +40,8 @@ Maui.Dialog
     maxWidth: 400
     closeButtonVisible: false
 
-    spacing: Maui.Style.space.medium
-
+    spacing: Maui.Style.defaultSpacing
+    
     template.headerSizeHint: template.iconSizeHint + Maui.Style.space.big
     template.iconSource: singleItem.icon
     template.imageSource: singleItem.thumbnail
@@ -171,7 +171,7 @@ Maui.Dialog
 
             implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)
             model: urls
-            spacing: Maui.Style.space.small
+            spacing: Maui.Style.defaultSpacing
             padding: 0
             verticalScrollBarPolicy: ScrollBar.AlwaysOff
 

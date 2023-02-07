@@ -59,7 +59,8 @@ T.TextField
     horizontalAlignment: Text.AlignLeft
     
     padding: 0
-    property int spacing: Maui.Style.space.medium    
+    property int spacing: Maui.Style.defaultSpacing
+    
     
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
     rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium

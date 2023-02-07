@@ -80,7 +80,7 @@ Maui.Dialog
             Layout.margins: Maui.Style.space.medium
             pluginType: 'Export'
             clip: true
-            spacing: Maui.Style.space.medium
+            spacing: Maui.Style.defaultSpacing
             
             inputData :
             {

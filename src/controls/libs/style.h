@@ -76,8 +76,9 @@ class Style : public QObject
     Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
     Q_PROPERTY(uint contentMargins MEMBER m_contentMargins  NOTIFY contentMarginsChanged)
     Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
-Q_PROPERTY(uint defaultPadding MEMBER m_defaultPadding NOTIFY defaultPaddingChanged)
-
+    Q_PROPERTY(uint defaultPadding MEMBER m_defaultPadding NOTIFY defaultPaddingChanged)
+    Q_PROPERTY(uint defaultSpacing MEMBER m_defaultSpacing NOTIFY defaultSpacingChanged)
+    
     Q_PROPERTY(QFont defaultFont MEMBER m_defaultFont NOTIFY defaultFontChanged)
 
     Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes CONSTANT FINAL)
@@ -159,7 +160,8 @@ private:
     
     uint m_contentMargins;
     uint m_defaultPadding;
-    
+    uint m_defaultSpacing;
+
     QColor m_accentColor;
     bool m_accentColor_blocked = false;
 
@@ -188,6 +190,7 @@ signals:
     void defaultPaddingChanged();
     void contentMarginsChanged();
     void currentIconThemeChanged(QString currentIconTheme);
+    void defaultSpacingChanged();
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

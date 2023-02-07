@@ -234,7 +234,8 @@ Item
             
             clip: control.clip
             
-            spacing: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
+            spacing: Maui.Style.defaultSpacing
+            
             snapMode: ListView.NoSnap
             
             

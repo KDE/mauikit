@@ -249,7 +249,6 @@ Item
                 id: selectionList
                 
                 anchors.fill: parent
-                spacing: Maui.Style.space.small
                 model: _urisModel
                 
                 delegate: control.listDelegate

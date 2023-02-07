@@ -45,7 +45,7 @@ T.Control
     hoverEnabled: false
     
     padding: Maui.Style.defaultPadding
-    spacing: padding
+    spacing: Maui.Style.defaultSpacing
     
     //   highlighted:  ListView.isCurrentItem
     /**

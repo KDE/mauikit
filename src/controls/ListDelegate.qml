@@ -39,7 +39,7 @@ Maui.ItemDelegate
     implicitHeight: _template.implicitHeight + topPadding + bottomPadding
     
     padding: Maui.Style.defaultPadding
-    spacing: padding
+    spacing: Maui.Style.space.medium
     
     /**
       * labelVisible : bool

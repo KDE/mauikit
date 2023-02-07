@@ -114,7 +114,7 @@ Item
   {
     id: _layout
     anchors.centerIn: parent
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.defaultSpacing
     
     Loader
     {

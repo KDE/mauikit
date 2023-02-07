@@ -122,7 +122,7 @@ Maui.Dialog
                         
             Column
             {
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
                 
                 Repeater
@@ -165,7 +165,7 @@ Maui.Dialog
           Column
             {
                 id: _translators
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
                 
                 Repeater
@@ -206,7 +206,7 @@ Maui.Dialog
             
             Column
             {
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
                 
                 Repeater
@@ -251,7 +251,7 @@ Maui.Dialog
             Column
             {
                 id: _licenses
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width               
                 
                 Repeater
@@ -280,7 +280,7 @@ Maui.Dialog
             
             Column
             {
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width               
                 
                 Repeater
@@ -324,7 +324,7 @@ Maui.Dialog
             Column
             {
                 id: _links
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
                 
                 Button
@@ -376,7 +376,7 @@ Maui.Dialog
                     iconSizeHint: Maui.Style.iconSizes.medium
 //                     headerSizeHint: iconSizeHint + Maui.Style.space.medium
                     
-                    spacing: Maui.Style.space.medium
+                    spacing: Maui.Style.defaultSpacing    
                     label1.text: Maui.App.about.copyrightStatement
                     label1.horizontalAlignment: Qt.AlignHCenter
                     label1.font.pointSize: Maui.Style.fontSizes.small

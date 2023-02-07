@@ -25,7 +25,7 @@ T.MenuItem
     background: null
     
     padding: 0
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.defaultSpacing
     
     display : width > Maui.Style.units.gridUnit * 28 && control.actions.length <= 3 ?  ToolButton.TextBesideIcon : (Maui.Handy.isMobile ? ToolButton.TextUnderIcon : ToolButton.IconOnly)
     

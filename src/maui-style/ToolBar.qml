@@ -47,7 +47,7 @@ T.ToolBar
     contentHeight: contentChildren[0].implicitHeight
     
     padding: Maui.Style.defaultPadding
-    spacing: padding       
+    spacing: Maui.Style.defaultSpacing
     
     contentItem: Row
     {

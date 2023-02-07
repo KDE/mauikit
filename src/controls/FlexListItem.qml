@@ -93,7 +93,7 @@ T.ItemDelegate
 
     background: null
     
-    spacing: Maui.Style.space.big
+    spacing: Maui.Style.defaultSpacing
     
     onWideChanged:
     {

@@ -69,6 +69,12 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT this->contentMarginsChanged();
     });
     
+    connect(m_themeSettings, &MauiMan::ThemeManager::spacingSizeChanged, [this](uint size)
+    {
+        m_defaultSpacing = size;
+        Q_EMIT this->defaultSpacingChanged();
+    });
+
     connect(m_themeSettings, &MauiMan::ThemeManager::enableEffectsChanged, [this](bool value)
     {
         m_enableEffects = value;
@@ -98,6 +104,7 @@ Style::Style(QObject *parent) : QObject(parent)
     
     m_contentMargins = m_themeSettings->marginSize();
     m_defaultPadding = m_themeSettings->paddingSize();
+    m_defaultSpacing = m_themeSettings->spacingSize();
 
     m_currentIconTheme = m_themeSettings->iconTheme();
 

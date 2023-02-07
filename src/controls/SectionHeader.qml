@@ -20,7 +20,7 @@ T.Control
     implicitHeight: _template.implicitHeight + topPadding + bottomPadding
     
     padding: Maui.Style.defaultPadding
-    spacing: padding   
+    spacing: Maui.Style.defaultSpacing
     
     contentItem: Maui.ListItemTemplate
     {

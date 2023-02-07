@@ -336,7 +336,7 @@ Window
             Maui.ListItemTemplate
             {
               id: _notifyTemplate
-              spacing: Maui.Style.space.big
+              spacing: Maui.Style.defaultSpacing
               width: parent.width
               anchors.centerIn: parent
               

@@ -35,8 +35,8 @@ T.TabBar {
     implicitHeight: contentItem.implicitHeight
     
     padding: Maui.Style.defaultPadding
-    spacing: padding    
-
+    spacing: Maui.Style.defaultSpacing
+    
     contentItem: ListView {
         implicitWidth: contentWidth
         implicitHeight: controlRoot.contentModel.get(0).height

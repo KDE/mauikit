@@ -74,9 +74,9 @@ T.Menu
     cascade: !control.responsive
     overlap: cascade ? 0-Maui.Style.space.medium : 0
     
-    padding: Maui.Style.defaultPadding
-    spacing: padding   
-
+    padding: Maui.Style.contentMargins
+    spacing: Maui.Style.defaultSpacing
+    
     margins: Maui.Style.space.medium    
     
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside

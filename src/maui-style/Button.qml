@@ -47,7 +47,7 @@ T.Button
     icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     padding: Maui.Style.defaultPadding
-    spacing: padding   
+    spacing: Maui.Style.space.medium   
     
     focusPolicy: Qt.StrongFocus
     focus: true

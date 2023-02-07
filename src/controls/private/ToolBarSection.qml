@@ -17,6 +17,5 @@ Item
     {
         id: _layout
         anchors.fill: parent
-        spacing: control.spacing                               
     }  
 }

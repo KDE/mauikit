@@ -14,7 +14,7 @@ Item
     {
         id: _row
         height: parent.height
-        spacing: Maui.Style.space.medium
+    spacing: Maui.Style.defaultSpacing    
         
         ToolSeparator
         {

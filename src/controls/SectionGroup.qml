@@ -40,7 +40,7 @@ Control
         /**
          * 
          */
-        spacing: Maui.Style.space.medium
+        spacing: Maui.Style.defaultSpacing
         
         Layout.fillWidth: true
         

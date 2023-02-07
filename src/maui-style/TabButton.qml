@@ -41,8 +41,8 @@ T.TabButton
     width: implicitWidth
     
     padding: Maui.Style.defaultPadding
-    spacing: padding       
-
+    spacing: Maui.Style.defaultSpacing
+    
     hoverEnabled: true
 
     contentItem: Item {}

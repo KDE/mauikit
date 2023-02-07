@@ -28,7 +28,7 @@ T.TabButton
     hoverEnabled: !Maui.Handy.isMobile
     
     padding: Maui.Style.defaultPadding
-    spacing: padding       
+    spacing: Maui.Style.defaultSpacing    
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
@@ -89,6 +89,7 @@ T.TabButton
             Row
             {
                 id: _leftContent
+                 Layout.fillHeight: true
             }
             
             Label
@@ -107,6 +108,7 @@ T.TabButton
             Row
             {
                 id: _rightContent
+                 Layout.fillHeight: true
             }            
             
             Loader

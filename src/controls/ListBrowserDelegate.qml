@@ -42,13 +42,14 @@ Maui.ItemDelegate
     id: control
     focus: true
     radius: Maui.Style.radiusV
-
+    flat : !Maui.Handy.isMobile
+    
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
     isCurrentItem : ListView.isCurrentItem || checked
     
     padding: Maui.Style.defaultPadding
-    spacing: padding
+    spacing: Maui.Style.space.medium
     
     /**
       * content : ListItemTemplate.data
@@ -138,7 +139,6 @@ Maui.ItemDelegate
 
     property alias layout : _layout
 
-    property bool flat : !Maui.Handy.isMobile
     /**
       * contentDropped :
       */

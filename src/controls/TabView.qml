@@ -52,7 +52,6 @@ T.Container
                 visible: control.mobile && _tabButton.checked
                 text: control.count
                 radius: Maui.Style.radiusV
-                anchors.verticalCenter: parent.verticalCenter
             }                            
             
             onClicked:
