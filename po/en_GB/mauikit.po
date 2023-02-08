@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-05 00:56+0000\n"
+"POT-Creation-Date: 2023-02-08 00:57+0000\n"
 "PO-Revision-Date: 2022-12-31 16:24+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -123,37 +123,37 @@ msgstr "Share with"
 msgid "Close Split"
 msgstr "Close Split"
 
-#: src/controls/TabView.qml:114
+#: src/controls/TabView.qml:113
 #, kde-format
 msgid "Open"
 msgstr "Open"
 
-#: src/controls/TabView.qml:125
+#: src/controls/TabView.qml:124
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplicate"
 
-#: src/controls/TabView.qml:135
+#: src/controls/TabView.qml:134
 #, kde-format
 msgid "Close"
 msgstr "Close"
 
-#: src/controls/TabView.qml:145
+#: src/controls/TabView.qml:144
 #, kde-format
 msgid "Close Other"
 msgstr "Close Other"
 
-#: src/controls/TabView.qml:154
+#: src/controls/TabView.qml:153
 #, kde-format
 msgid "Close All"
 msgstr "Close All"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:240
+#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:241
 #, kde-format
 msgid "Copy"
 msgstr "Copy"
 
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:254
+#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:255
 #, kde-format
 msgid "Paste"
 msgstr "Paste"
@@ -168,22 +168,22 @@ msgstr "Find"
 msgid "Find..."
 msgstr "Find..."
 
-#: src/maui-style/TextField.qml:247
+#: src/maui-style/TextField.qml:248
 #, kde-format
 msgid "Cut"
 msgstr "Cut"
 
-#: src/maui-style/TextField.qml:264
+#: src/maui-style/TextField.qml:265
 #, kde-format
 msgid "Select All"
 msgstr "Select All"
 
-#: src/maui-style/TextField.qml:271
+#: src/maui-style/TextField.qml:272
 #, kde-format
 msgid "Undo"
 msgstr "Undo"
 
-#: src/maui-style/TextField.qml:278
+#: src/maui-style/TextField.qml:279
 #, kde-format
 msgid "Redo"
 msgstr "Redo"
