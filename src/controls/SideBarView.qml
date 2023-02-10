@@ -9,6 +9,7 @@ Item
     default property alias content : _content.data
         property alias sideBarContent: _sideBar.content
         property alias sideBar : _sideBar
+
         
         Maui.SideBar
         {

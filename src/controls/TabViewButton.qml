@@ -15,7 +15,7 @@ Maui.TabButton
     property Item tabView : control.parent
     property Maui.TabBar tabBar : control.TabBar.tabBar
     
-    implicitHeight: ListView.view.height
+    // implicitHeight: ListView.view.height
     
     width: control.tabView.mobile ? ListView.view.width : Math.max(200, Math.min(600, implicitWidth))
     

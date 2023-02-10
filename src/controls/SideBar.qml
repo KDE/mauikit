@@ -62,7 +62,10 @@ T.Control
      */
     property bool collapsed: false    
     property bool resizeable : !Maui.Handy.isMobile
-    
+  /*!
+     *   If when collapsed the sidebar should automatically hide or stay in place
+     */
+    property bool autoHide: false
     
     /*!
      *      preferredWidth : int
@@ -119,7 +122,7 @@ T.Control
       //       
       Binding on position
       {
-        value: control.enabled ? (control.collapsed ? 0 : 1) : 0
+        value: control.enabled ? (control.collapsed && control.autoHide ? 0 : 1) : 0
         restoreMode: Binding.RestoreBindingOrValue
       }
       
@@ -129,7 +132,7 @@ T.Control
         
         NumberAnimation
         {
-          duration: Maui.Style.units.longDuration
+          duration: Maui.Style.units.shortDuration
           easing.type: Easing.InOutQuad
         }
       }
@@ -139,7 +142,10 @@ T.Control
     {
       if(control.collapsed || !control.enabled)
       {
-        control.close()
+if(control.autoHide)
+        {
+control.close()
+}
       }
       else
       {
