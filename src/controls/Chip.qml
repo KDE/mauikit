@@ -20,7 +20,7 @@ T.ItemDelegate
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing
+    spacing: Maui.Style.space.medium
     
     icon.height: Maui.Style.iconSizes.small
     icon.width: Maui.Style.iconSizes.small

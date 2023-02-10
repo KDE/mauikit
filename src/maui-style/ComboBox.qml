@@ -72,7 +72,7 @@ T.ComboBox
     implicitHeight: Math.max(preferredHeight, implicitContentHeight + topPadding + bottomPadding)
         
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing    
+    spacing: Maui.Style.space.medium    
     
            delegate: MenuItem
     {
@@ -129,6 +129,7 @@ T.ComboBox
             height: visible ? Maui.Style.iconSize : 0
             width: height
             color: Maui.Theme.textColor
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
     

@@ -61,11 +61,12 @@ T.SpinBox
                              up.implicitIndicatorHeight,
                              down.implicitIndicatorHeight)
     
-    spacing: Maui.Style.defaultSpacing
+
     editable: true
+
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium  
     
-    topPadding: 0
-    bottomPadding: 0
     leftPadding: (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
     
@@ -125,7 +126,7 @@ T.SpinBox
     up.indicator: Item
     {
         x: control.mirrored ? 0 : parent.width - width
-        height: control.preferredHeight
+        height: control.height
         width: height
         
         Maui.Icon
@@ -141,7 +142,7 @@ T.SpinBox
     down.indicator: Item
     {
         x: control.mirrored ? parent.width - width : 0
-        height: control.preferredHeight
+        height: control.height
         width: height
         
         Maui.Icon
@@ -160,8 +161,7 @@ T.SpinBox
     }
     
     background: Rectangle
-    {
-        
+    {        
         radius: Maui.Style.radiusV
         
         color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
