@@ -138,7 +138,7 @@ Window
       anchors.fill: parent 
       
       
-      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen
+      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile
     
       layer.effect: OpacityMask
       {
