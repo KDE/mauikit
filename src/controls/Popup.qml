@@ -111,17 +111,17 @@ T.Popup
         /**
          * heightHint : double
          */
-        property double heightHint : hint
+        property double heightHint: hint
         
         /**
          * widthHint : double
          */
-        property double widthHint : hint
+        property double widthHint: hint
         
         /**
          * verticalAlignment : int
          */
-        property int verticalAlignment : Maui.Handy.isMobile ?  Qt.AlignBottom : Qt.AlignVCenter
+        property int verticalAlignment: Qt.AlignVCenter
         
         contentItem:  Item  
         {
