@@ -261,8 +261,8 @@ Item
             flow: GridView.FlowLeftToRight
             clip: control.clip
             
-            displayMarginBeginning: Maui.Style.toolBarHeight * 4
-             displayMarginEnd: Maui.Style.toolBarHeight * 4
+            displayMarginBeginning: Maui.Style.effectsEnabled ? Maui.Style.toolBarHeight * 4 : 0
+             displayMarginEnd: displayMarginBeginning
             cacheBuffer: control.itemHeight * 4
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight
@@ -272,7 +272,7 @@ Item
             flickableDirection: Flickable.AutoFlickDirection
             snapMode: GridView.NoSnap
             highlightMoveDuration: 0
-            interactive: Maui.Handy.hasTransientTouchInput
+            interactive: Maui.Handy.isTouch
             onWidthChanged: if(adaptContent) control.adaptGrid()
             onCountChanged: if(adaptContent) control.adaptGrid()
             
@@ -496,7 +496,7 @@ Item
      */
     function adaptGrid()
     {
-        var fullWidth = controlView.width
+        var fullWidth = controlView.availableWidth
         var realAmount = parseInt(fullWidth / controlView.size_, 0)
         var amount = parseInt(fullWidth / control.cellWidth, 0)
         

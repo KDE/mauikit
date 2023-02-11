@@ -86,8 +86,7 @@ m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
 m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
 m_isTouch = m_formFactor->hasTouchscreen();
 
-if (m_isTouch)
-{
+
     connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win) 
     {
         if (win) 
@@ -95,7 +94,7 @@ if (m_isTouch)
             win->installEventFilter(this);
         }
     });
-}
+
 
 connect(qApp, &QCoreApplication::aboutToQuit, []()
 {
