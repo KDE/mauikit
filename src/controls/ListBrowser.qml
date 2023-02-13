@@ -245,7 +245,7 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
             
-            interactive: Maui.Handy.hasTransientTouchInput /*&& (control.selectionMode ? _listView.position.x > 84 : true)*/
+            interactive: Maui.Handy.isTouch
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0

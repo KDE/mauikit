@@ -496,7 +496,7 @@ Item
      */
     function adaptGrid()
     {
-        var fullWidth = controlView.availableWidth
+        var fullWidth = controlView.width
         var realAmount = parseInt(fullWidth / controlView.size_, 0)
         var amount = parseInt(fullWidth / control.cellWidth, 0)
         

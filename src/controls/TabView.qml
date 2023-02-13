@@ -282,11 +282,11 @@ T.Container
                         property: "scale"
                         from: 1
                         to: 0
-                        duration: 200
+                        duration: Maui.Style.units.veryShortDuration
                         easing.type: Easing.InOutCubic
                     }
                     
-                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 300; easing.type: Easing.InOutCubic }
+                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Maui.Style.units.longDuration; easing.type: Easing.InOutCubic }
                 }
                 
             }
@@ -300,11 +300,11 @@ T.Container
                         property: "scale"
                         from: 4
                         to: 1
-                        duration: 200
+                        duration: Maui.Style.units.veryShortDuration
                         easing.type: Easing.OutCubic
                     }
                     
-                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 300; easing.type: Easing.OutCubic }
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Maui.Style.units.longDuration; easing.type: Easing.OutCubic }
                 }
             }
             
@@ -321,7 +321,7 @@ T.Container
                         easing.type: Easing.InOutCubic
                     }
                     
-                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 200; easing.type: Easing.OutCubic }
+                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Maui.Style.units.longDuration; easing.type: Easing.OutCubic }
                 }
             }
             
@@ -338,7 +338,7 @@ T.Container
 //                     //easing.type: Easing.OutCubic
 //                     //}
 //                     
-                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: 200; easing.type: Easing.OutCubic }
+                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Maui.Style.units.longDuration; easing.type: Easing.OutCubic }
                 }                
             }
             

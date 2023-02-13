@@ -9,7 +9,7 @@ import QtQuick.Templates 2.15 as T
   \inqmlmodule org.mauikit.controls.labs
 */
 
-T.Control
+T.Pane
 {
     id: control
 
@@ -20,7 +20,7 @@ T.Control
     implicitHeight: _template.implicitHeight + topPadding + bottomPadding
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing
+    spacing: Maui.Style.space.medium
     
     contentItem: Maui.ListItemTemplate
     {
@@ -31,6 +31,6 @@ T.Control
         label2.wrapMode: Text.WordWrap
         label1.color: Maui.Theme.textColor
         isMask: iconSizeHint <= 22
-spacing: control.spacing
+        spacing: control.spacing
     }
-    }
+}

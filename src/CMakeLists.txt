@@ -254,7 +254,7 @@ elseif(APPLE)
 endif()
 
 if(ANDROID)
-   add_subdirectory(platforms/android)
+#   add_subdirectory(platforms/android)
     target_link_libraries(MauiKit PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit COMPONENT Devel)
