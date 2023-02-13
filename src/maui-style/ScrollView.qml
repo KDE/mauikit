@@ -53,10 +53,10 @@ T.ScrollView
     clip: false
         
     padding: 0
-    rightPadding: padding
+    rightPadding: padding + ScrollBar.vertical.width
     leftPadding: padding 
     topPadding: padding
-    bottomPadding: padding
+    bottomPadding: padding+ ScrollBar.horizontal.height
     
     property alias orientation : _wheelHandler.primaryOrientation
 
@@ -65,21 +65,29 @@ T.ScrollView
         id: _wheelHandler
         target: control.contentItem
     }
-
-    ScrollBar.vertical: ScrollBar {
+    
+    ScrollBar.vertical: ScrollBar 
+    {
         parent: control
-        x: control.mirrored ? 0 : control.width - width
+        width: visible ? implicitWidth : 0
+        x: control.mirrored ? 0 : control.width - width - Maui.Style.space.small
         y: control.topPadding
         height: control.availableHeight
-        active: control.ScrollBar.horizontal.active
+        active: control.ScrollBar.vertical.active
+        policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AsNeeded
     }
 
-    ScrollBar.horizontal: ScrollBar {
+    ScrollBar.horizontal: ScrollBar
+    {
         parent: control
+        height: visible ? implicitHeight : 0
+        
         x: control.leftPadding
-        y: control.height - height
+        y: control.availableHeight - height 
         width: control.availableWidth
-        active: control.ScrollBar.vertical.active
+        active: control.ScrollBar.horizontal.active
+        policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AlwaysOff
+        
     }
     
     background: null

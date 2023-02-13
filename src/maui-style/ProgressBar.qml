@@ -25,44 +25,72 @@ import QtQuick.Templates 2.14 as T
 
 import org.mauikit.controls 1.3 as Maui
 
-import QtQuick.Controls.Material 2.12
-import QtQuick.Controls.Material.impl 2.12
-
 import QtGraphicalEffects 1.0
 
 T.ProgressBar
 {
     id: control
-
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
+    
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
-
-    contentItem: ProgressBarImpl 
+    
+    
+    contentItem: Item 
     {
-        implicitHeight: Maui.Style.iconSizes.tiny
-
-        scale: control.mirrored ? -1 : 1
-        color: Maui.Theme.highlightColor
-        progress: control.position
-        indeterminate: control.visible && control.indeterminate
-//         radius: Maui.Style.radiusV
+        id: _item
+        implicitHeight: 10
         
-    }
-
-    background: Rectangle 
-    {
-        id: bg
-        implicitWidth: 200
-        implicitHeight: 4
-        y: (control.height - height) / 2
-        height: Maui.Style.iconSizes.tiny
-
-        color: Maui.Theme.backgroundColor
-        Behavior on color
+        scale: control.mirrored ? -1 : 1
+        
+        Rectangle 
         {
-            Maui.ColorTransition{}
+            visible: !control.indeterminate
+            height: parent.height
+            width: control.position * parent.width
+            
+            radius: Maui.Style.radiusV
+            color: Maui.Theme.highlightColor            
+        }
+        
+        Repeater
+        {
+            model: 2
+            enabled: !control.indeterminate
+            Rectangle 
+            {
+                property real offset: 0
+                
+                x:  offset * parent.width
+              
+                width: offset * (parent.width - x)
+                height: parent.height
+                radius: Maui.Style.radiusV
+                
+                color: Maui.Theme.highlightColor
+                
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
+                
+                SequentialAnimation on offset
+                {
+                    loops: Animation.Infinite
+                    running: control.indeterminate && control.visible
+                    PauseAnimation { duration: index ? 520 : 0 }
+                    NumberAnimation {
+                        easing.type: Easing.OutCubic
+                        duration: 1240
+                        from: 0
+                        to: 1
+                    }
+                    PauseAnimation { duration: index ? 0 : 520 }
+                }
+            }
         }
         
         layer.enabled: true
@@ -70,11 +98,27 @@ T.ProgressBar
         {
             maskSource: Rectangle
             {
-                width: bg.width
-                height: bg.height
+                width: _item.width
+                height: _item.height
                 radius:  Maui.Style.radiusV
             }
         }
     }
+
+    background: Rectangle 
+    {
+        id: bg
+        radius:  Maui.Style.radiusV
+        color: Maui.Theme.backgroundColor
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+        
+                
+               
+            }
+        
+    
 }
 

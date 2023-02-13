@@ -55,6 +55,8 @@ T.MenuItem
     
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
+    width: implicitWidth
+    
     implicitHeight: Math.floor(Math.max(preferredHeight,
                                        implicitContentHeight + topPadding + bottomPadding,
                                        implicitIndicatorHeight + topPadding + bottomPadding) )

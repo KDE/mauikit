@@ -64,9 +64,9 @@ T.Menu
    y: finalY
     x: control.responsive ? Math.round(parentWindow.width/2 - control.width/2) : 0
     
-    implicitWidth:  Math.min(parentWindow.width, Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding ))
+    implicitWidth: Math.min(parentWindow.width, preferredWidth)
     
-    implicitHeight: Math.min(implicitContentHeight + topPadding + bottomPadding, (control.responsive ? parentWindow.height *0.7 : parentWindow.height))
+    implicitHeight: Math.min(contentHeight + topPadding + bottomPadding, (control.responsive ? parentWindow.height *0.7 : parentWindow.height))
     
     focus: true
     
@@ -74,7 +74,7 @@ T.Menu
     cascade: !control.responsive
     overlap: cascade ? 0-Maui.Style.space.medium : 0
     
-    padding: Maui.Style.contentMargins
+    padding: 0
     spacing: Maui.Style.defaultSpacing
     
     margins: Maui.Style.space.medium    
@@ -130,64 +130,67 @@ T.Menu
     }
     
     contentItem: ScrollView
-    {
-        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-        ScrollBar.vertical.policy: ScrollBar.AsNeeded
-        
-        focus: true
-        padding: 0
-        
-        ListView
         {
-            id: _listView
-            clip: true
+            id: _scrollView            
             focus: true
-            implicitHeight: contentHeight
+            contentWidth: availableWidth
+            padding: Maui.Style.contentMargins
             
-            headerPositioning: ListView.InlineHeader
+            implicitHeight: _listView.contentHeight + topPadding+bottomPadding
             
-            model: control.contentModel
-            spacing: control.spacing
-            currentIndex: control.currentIndex
             
-            snapMode: ListView.NoSnap
-            
-            boundsBehavior: Flickable.StopAtBounds
-            boundsMovement: Flickable.StopAtBounds
-            highlightFollowsCurrentItem: true
-            highlightMoveDuration: 0
-            highlightResizeDuration : 0
-            
-            keyNavigationEnabled : true
-            keyNavigationWraps : true
- 
-            header: T.Control
+            ListView
             {
-                visible: control.title && control.title.length
-                width: parent.width                
-                height: visible ? implicitContentHeight + topPadding + bottomPadding : 0
-                padding: control.padding
-                bottomPadding: control.topPadding + padding
-                topPadding: 0
-                              
-                background: null
+                id: _listView
                 
-                contentItem: Maui.ListItemTemplate
+                clip: true
+                focus: true
+                
+                headerPositioning: ListView.InlineHeader
+                
+                model: control.contentModel
+                spacing: control.spacing
+                currentIndex: control.currentIndex
+                
+                snapMode: ListView.NoSnap
+                
+                boundsBehavior: Flickable.StopAtBounds
+                boundsMovement: Flickable.StopAtBounds
+                highlightFollowsCurrentItem: true
+                highlightMoveDuration: 0
+                highlightResizeDuration : 0
+                
+                keyNavigationEnabled : true
+                keyNavigationWraps : true
+                
+                header: T.Control
                 {
-                    label1.font.weight: Font.Bold
-                    label1.text: control.title
-                    label2.text: control.subtitle
-                    label1.font.pointSize: Maui.Style.fontSizes.big
-                    label1.elide:Text.ElideMiddle
-                    imageSource: control.titleImageSource
-                    iconSource: control.titleIconSource
-                    maskRadius: 0
-                    imageSizeHint: Maui.Style.iconSizes.big
-                    iconSizeHint: Maui.Style.iconSize
+                    visible: control.title && control.title.length
+                    width: parent.width                
+                    height: visible ? implicitContentHeight + topPadding + bottomPadding : 0
+                    padding: control.padding
+                    bottomPadding: _scrollView.topPadding + padding
+                    topPadding: 0
+                    
+                    background: null
+                    
+                    contentItem: Maui.ListItemTemplate
+                    {
+                        label1.font.weight: Font.DemiBold
+                        label1.text: control.title
+                        label2.text: control.subtitle
+                        label1.font.pointSize: Maui.Style.fontSizes.big
+                        label1.elide:Text.ElideMiddle
+                        imageSource: control.titleImageSource
+                        iconSource: control.titleIconSource
+                        maskRadius: 0
+                        imageSizeHint: Maui.Style.iconSizes.big
+                        iconSizeHint: Maui.Style.iconSize
+                    }
                 }
             }
         }
-    }
+    
     
     background: Rectangle
     {

@@ -190,6 +190,10 @@ Item
     property alias header : _listView.header
     property alias footer : _listView.footer
     
+    property alias availableWidth: _listView.width
+    
+    property alias availableHeight: _listView.height
+    
     /**
      * itemsSelected :
      */

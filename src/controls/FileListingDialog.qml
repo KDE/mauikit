@@ -168,12 +168,11 @@ Maui.Dialog
 
         sourceComponent: Maui.ListBrowser
         {
-
-            implicitHeight: Math.min(contentHeight + Maui.Style.space.big, 300)
+clip: true
+            implicitHeight: Math.min(contentHeight, 300)
             model: urls
             spacing: Maui.Style.defaultSpacing
             padding: 0
-            verticalScrollBarPolicy: ScrollBar.AlwaysOff
 
             delegate: control.listDelegate
         }

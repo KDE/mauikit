@@ -244,7 +244,7 @@ control.close()
       {
         visible: control.resizeable
         height: parent.height
-        width : 10
+        width : 6
         anchors.right: parent.right
         color:  _dragHandler.active ? Maui.Theme.highlightColor : "transparent"
                 

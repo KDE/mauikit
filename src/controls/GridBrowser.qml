@@ -141,7 +141,7 @@ Item
     /**
      * leftMargin : int
      */
-    property int verticalScrollBarPolicy:  ScrollBar.AsNeeded
+    property int verticalScrollBarPolicy: Maui.Handy.isMobile ? ScrollBar.AlwaysOff :  ScrollBar.AsNeeded
     
     /**
      * horizontalScrollBarPolicy : ScrollBar.policy
@@ -182,6 +182,10 @@ Item
     
     property alias header : controlView.header
     property alias footer : controlView.footer
+    
+    property alias availableWidth: controlView.width
+    
+    property alias availableHeight: controlView.height
     
     /**
      * itemsSelected :

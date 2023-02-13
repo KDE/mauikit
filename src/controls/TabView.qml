@@ -483,8 +483,8 @@ T.Container
                         
                         currentIndex: control.currentIndex
                         
-                        itemSize: Math.floor(width / 3)
-                        itemHeight:  Math.floor(height / 3)
+                        itemSize: Math.floor(flickable.width / 3)
+                        itemHeight:  Math.floor(flickable.height / 3)
                         
                         Maui.FloatingButton
                         {
