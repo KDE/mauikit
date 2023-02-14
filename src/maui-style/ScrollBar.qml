@@ -106,20 +106,26 @@ T.ScrollBar
     
     onSizeChanged: 
     {
-        if(control.policy !== T.ScrollBar.AlwaysOff )
+        if(control.policy !== T.ScrollBar.AlwaysOff)
             _timer.restart()
     }
     
     Timer
     {
         id: _timer
-        interval: 200
+        interval: 500
         repeat: false
         
         property bool shouldHide : true
+        property real before
         onTriggered:
         {
-            shouldHide = control.size >= 1.0
+            console.log(control.size)
+            if(before === control.size && control.size !== 1)
+                return
+            
+            shouldHide = control.size >= 1.0 
+            before = control.size
         }
     }
 }
