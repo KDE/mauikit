@@ -42,13 +42,13 @@ T.ScrollBar
 {
     id: control
 
-    Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
+    // Maui.Theme.colorSet: Maui.Theme.Button
+    // Maui.Theme.inherit: false
     
-    implicitWidth: (control.interactive ? 10 : 4 )
-    implicitHeight: (control.interactive ? 10 : 4 ) 
+    implicitWidth: (control.interactive ? 6 : 4 )
+    implicitHeight: (control.interactive ? 6 : 4 ) 
 
-    padding: control.interactive ? 2 : 2
+    padding: 0
     
     visible: control.policy !== T.ScrollBar.AlwaysOff && !_timer.shouldHide
     
@@ -59,11 +59,9 @@ T.ScrollBar
     {       
         
         radius: Maui.Style.radiusV
-        implicitWidth: control.interactive ? 10 : 4
-        implicitHeight: control.interactive ? 10 : 4
 
         color: control.pressed ? Maui.Theme.highlightColor :
-               control.interactive && control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor
+               control.interactive && control.hovered ? Maui.Theme.highlightColor : (Maui.ColorUtils.linearInterpolation(Maui.Theme.alternateBackgroundColor, Maui.Theme.textColor, 0.2))
         opacity: 0.0
         
         Behavior on color

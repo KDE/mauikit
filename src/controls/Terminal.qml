@@ -120,6 +120,37 @@ Maui.Page
         onTriggered: footBar.visible = !footBar.visible
     }
     
+    onKeyPressed:
+    {
+        if ((event.key === Qt.Key_A)
+            && (event.modifiers & Qt.ControlModifier)
+            && (event.modifiers & Qt.ShiftModifier)) {
+            kterminal.selectAll()
+            event.accepted = true
+            }
+            
+            if ((event.key === Qt.Key_C)
+                && (event.modifiers & Qt.ControlModifier)
+                && (event.modifiers & Qt.ShiftModifier)) {
+                _copyAction.trigger()
+                event.accepted = true
+                }
+                
+                if ((event.key === Qt.Key_V)
+                    && (event.modifiers & Qt.ControlModifier)
+                    && (event.modifiers & Qt.ShiftModifier)) {
+                    _pasteAction.trigger()
+                    event.accepted = true
+                    }
+                    
+                    if ((event.key === Qt.Key_Q)
+                        && (event.modifiers & Qt.ControlModifier)
+                        && (event.modifiers & Qt.ShiftModifier)) {
+                        Qt.quit()
+                        }       
+    }
+    
+    
     Maui.ContextualMenu
     {
         id: terminalMenu
@@ -182,6 +213,8 @@ Maui.Page
         font.family: "Monospace"
         font.pixelSize: 12
         
+        // backgroundOpacity: 0
+        
         onTerminalUsesMouseChanged: console.log(terminalUsesMouse);
         
         Keys.enabled: true
@@ -210,6 +243,8 @@ Maui.Page
             initialWorkingDirectory: "$HOME"
             onFinished: Qt.quit()
             
+            // onFinished: control.terminalClosed()
+            // initialWorkingDirectory: control.path
             /* Disable search until implemented correctly
              *             
              *            onMatchFound:
@@ -409,7 +444,7 @@ Maui.Page
         Loader
         {
             asynchronous: true
-            active: Maui.Handy.hasTransientTouchInput
+            // active: Maui.Handy.hasTransientTouchInput
             anchors {
                 right: parent.right
                 top: parent.top
@@ -419,23 +454,25 @@ Maui.Page
             {
                 Maui.Theme.colorSet: Maui.Theme.Complementary // text color of terminal is also complementary
                 Maui.Theme.inherit: false
+                width: 10
                 
                 active: hovered || pressed
                 visible: true
                 orientation: Qt.Vertical
                 size: (kterminal.lines / (kterminal.lines + kterminal.scrollbarMaximum - kterminal.scrollbarMinimum))
                 position: kterminal.scrollbarCurrentValue / (kterminal.lines + kterminal.scrollbarMaximum)
-                interactive: false
+                // interactive: false
                 property double oldPos
                 
-                //         onPositionChanged: {
-                //             var yPos =  (2* position * kterminal.scrollbarMaximum ) * (position > oldPos ? -1 : 1)
-                //             console.log("Position changed", position, yPos, kterminal.scrollbarMaximum, kterminal.scrollbarCurrentValue)
-                //             kterminal.simulateWheel(0, 0, 0, 0, Qt.point(0,yPos))
-                //             oldPos = position
-                //             
-                //         }   
+                       /* onPositionChanged: {
+                            var yPos =  (2* position * kterminal.scrollbarMaximum ) * (position > oldPos ? -1 : 1)
+                            console.log("Position changed", position, yPos, kterminal.scrollbarMaximum, kterminal.scrollbarCurrentValue)
+                            kterminal.simulateWheel(0, 0, 0, 0, Qt.point(0,yPos))
+                            oldPos = position
+                            
+                        } */  
             }  
+            
         }
         
         Component.onCompleted:
