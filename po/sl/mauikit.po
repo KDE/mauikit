@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-08 00:57+0000\n"
+"POT-Creation-Date: 2023-02-16 00:57+0000\n"
 "PO-Revision-Date: 2022-11-18 08:16+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -164,7 +164,7 @@ msgstr "Prilepi"
 msgid "Find"
 msgstr "Najdi"
 
-#: src/controls/Terminal.qml:168
+#: src/controls/Terminal.qml:199
 #, kde-format
 msgid "Find..."
 msgstr "Najdi..."
