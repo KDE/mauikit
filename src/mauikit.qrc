@@ -30,7 +30,6 @@
         <file alias="PasswordField.qml">controls/PasswordField.qml</file>
         <file alias="Badge.qml">controls/Badge.qml</file>
         <file alias="GridBrowser.qml">controls/GridBrowser.qml</file>
-        <file alias="Terminal.qml">controls/Terminal.qml</file>
         <file alias="TabBar.qml">controls/TabBar.qml</file>
         <file alias="TabButton.qml">controls/TabButton.qml</file>
         <file alias="private/ActionGroup.qml">controls/private/ActionGroup.qml</file>
@@ -67,7 +66,6 @@
         <file alias="SectionHeader.qml">controls/SectionHeader.qml</file>
         <file alias="IconItem.qml">controls/IconItem.qml</file>
         <file alias="DoodleCanvas.qml">controls/DoodleCanvas.qml</file>
-        <file alias="private/TerminalInputArea.qml">controls/private/TerminalInputArea.qml</file>
         <file alias="FlexListItem.qml">controls/FlexListItem.qml</file>
         <file alias="Chip.qml">controls/Chip.qml</file>
         <file alias="ContextualMenu.qml">controls/ContextualMenu.qml</file>

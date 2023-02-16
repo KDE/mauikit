@@ -83,7 +83,7 @@ T.ScrollView
         height: visible ? implicitHeight : 0
         
         x: control.leftPadding
-        y: control.availableHeight - height 
+        y: control.height - height -Maui.Style.space.small
         width: control.availableWidth
         active: control.ScrollBar.horizontal.active
         policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AlwaysOff

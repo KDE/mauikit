@@ -193,11 +193,6 @@ void MauiKit::registerTypes(const char *uri)
 
 #endif
 
-    /** PLATFORMS SPECIFIC CONTROLS **/
-#if defined Q_OS_LINUX || defined Q_OS_FREEBSD || defined Q_OS_MACOS
-    qmlRegisterType(componentUrl(QStringLiteral("Terminal.qml")), uri, 1, 0, "Terminal");
-#endif
-
 #ifdef Q_OS_ANDROID
     qmlRegisterSingletonType<MAUIAndroid>(uri, 1, 0, "Android", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)
