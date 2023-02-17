@@ -68,7 +68,7 @@ Maui.Popup
    *    When adding a item keep on mind that to correctly have the scrollable behavior
    *    the item must have an implicit height. And the positioning should be done via the Layout attached properties.
    */
-  default property alias scrollable : _pageContent.data
+  default property alias scrollable : _scrollView.content
     
     /*!
      *    \qmlproperty list<Item> ApplicationWindow::stack
@@ -170,7 +170,7 @@ Maui.Popup
      * 
      *    MouseArea for the close button when the dialog is marked as persistent.
      */
-    property alias flickable : _flickable
+    property alias flickable : _scrollView.flickable
     
     /*!
      *    \qmlproperty ScrollView Dialog::scrollView
@@ -259,48 +259,29 @@ Maui.Popup
           spacing: control.spacing
         }
         
-        ScrollView
+        Maui.ScrollColumn
         {
           id: _scrollView
           anchors.fill: parent
           visible: _stack.children.length === 0
-          
-          padding: Maui.Style.contentMargins
-          
-          contentWidth: availableWidth
-          contentHeight: _pageContent.implicitHeight
-          
-          ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
-          ScrollBar.vertical.policy: control.verticalScrollBarPolicy
-                    
-          Flickable
+           spacing: control.spacing
+           ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
+           ScrollBar.vertical.policy: control.verticalScrollBarPolicy
+
+          Maui.ListItemTemplate
           {
-            id: _flickable
-            boundsBehavior: Flickable.StopAtBounds
-            boundsMovement: Flickable.StopAtBounds
-            
-            ColumnLayout
-            {
-              id: _pageContent
-              width: parent.width
-              spacing: control.spacing
-              
-              Maui.ListItemTemplate
-              {
-                id: _template
-                visible: control.message.length
-                Layout.fillWidth: true
-                label2.text: message
-                label2.textFormat : TextEdit.AutoText
-                label2.wrapMode: TextEdit.WordWrap
-                iconVisible: control.width > Maui.Style.units.gridUnit * 20
-                
-                iconSizeHint: Maui.Style.iconSizes.large
-                spacing: Maui.Style.space.big
-                
-                leftLabels.spacing: control.spacing              
-              }
-            }
+            id: _template
+            visible: control.message.length
+            Layout.fillWidth: true
+            label2.text: message
+            label2.textFormat : TextEdit.AutoText
+            label2.wrapMode: TextEdit.WordWrap
+            iconVisible: control.width > Maui.Style.units.gridUnit * 20
+
+            iconSizeHint: Maui.Style.iconSizes.large
+            spacing: Maui.Style.space.big
+
+            leftLabels.spacing: control.spacing
           }
         }
       }   

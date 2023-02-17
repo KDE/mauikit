@@ -84,5 +84,6 @@
         <file alias="ColorTransition.qml">controls/ColorTransition.qml</file>
         <file alias="ShadowedRectangle.qml">controls/ShadowedRectangle.qml</file>
         <file alias="Icon.qml">controls/Icon.qml</file>
+        <file alias="ScrollColumn.qml">controls/ScrollColumn.qml</file>
     </qresource>
 </RCC>

@@ -1,4 +1,6 @@
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
+import QtQuick.Controls 2.14
+import QtQuick.Layouts 1.3
 
 /*!
   \since org.mauikit.controls.labs 1.0
@@ -7,6 +9,10 @@ import org.mauikit.controls 1.2 as Maui
 Maui.Dialog
 {
     id: control
+    default property alias content: _content.content
+      property alias stackView: _stackView
+      
+      
     maxHeight: implicitHeight
     maxWidth: 500
     defaultButtons: false
@@ -15,15 +21,32 @@ Maui.Dialog
     headBar.visible: true
     spacing: Maui.Style.space.huge
     
-//     Component.onCompleted:
-//     {
-//         for(var i = 0; i < control.scrollable.length; i++)
-//         {
-//             if(control.scrollable[i] instanceof Maui.SectionGroup)
-//             {
-//                 console.log("Setting dialog section", i)
-//                 control.scrollable[i].index = i
-//             }
-//         }
-//     }
+    headBar.leftContent: ToolButton
+    {
+      icon.name: "go-previous"
+      visible: _stackView.depth >= 2
+      onClicked: _stackView.pop()
+    }
+
+    stack: StackView
+    {
+      id: _stackView
+      Layout.fillHeight: true
+      Layout.fillWidth: true
+      implicitHeight: currentItem.implicitHeight+topPadding +bottomPadding
+      
+      initialItem: Maui.ScrollColumn
+      {
+        id:_content
+        spacing: control.spacing
+      }
+      
+    }
+    
+    function addPage(component)
+    {
+      _stackView.push(component)
+    }
+    
+    
 }
