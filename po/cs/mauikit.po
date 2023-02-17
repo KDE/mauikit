@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-16 00:57+0000\n"
+"POT-Creation-Date: 2023-02-17 00:57+0000\n"
 "PO-Revision-Date: 2023-01-03 17:19+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -148,30 +148,20 @@ msgstr "Zavřít ostatní"
 msgid "Close All"
 msgstr "Zavřít vše"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:241
 #, kde-format
 msgid "Copy"
 msgstr "Kopírovat"
-
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:255
-#, kde-format
-msgid "Paste"
-msgstr "Vložit"
-
-#: src/controls/Terminal.qml:117
-#, kde-format
-msgid "Find"
-msgstr "Najít"
-
-#: src/controls/Terminal.qml:199
-#, kde-format
-msgid "Find..."
-msgstr "Najít..."
 
 #: src/maui-style/TextField.qml:248
 #, kde-format
 msgid "Cut"
 msgstr "Vyjmout"
+
+#: src/maui-style/TextField.qml:255
+#, kde-format
+msgid "Paste"
+msgstr "Vložit"
 
 #: src/maui-style/TextField.qml:265
 #, kde-format
@@ -219,3 +209,9 @@ msgstr ""
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr ""
+
+#~ msgid "Find"
+#~ msgstr "Najít"
+
+#~ msgid "Find..."
+#~ msgstr "Najít..."

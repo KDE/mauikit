@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-16 00:57+0000\n"
+"POT-Creation-Date: 2023-02-17 00:57+0000\n"
 "PO-Revision-Date: 2022-11-18 07:46+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -151,30 +151,20 @@ msgstr "Itxi bestea"
 msgid "Close All"
 msgstr "Itxi denak"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:241
 #, kde-format
 msgid "Copy"
 msgstr "Kopiatu"
-
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:255
-#, kde-format
-msgid "Paste"
-msgstr "Itsatsi"
-
-#: src/controls/Terminal.qml:117
-#, kde-format
-msgid "Find"
-msgstr "Aurkitu"
-
-#: src/controls/Terminal.qml:199
-#, kde-format
-msgid "Find..."
-msgstr "Aurkitu..."
 
 #: src/maui-style/TextField.qml:248
 #, kde-format
 msgid "Cut"
 msgstr "Ebaki"
+
+#: src/maui-style/TextField.qml:255
+#, kde-format
+msgid "Paste"
+msgstr "Itsatsi"
 
 #: src/maui-style/TextField.qml:265
 #, kde-format
@@ -222,3 +212,9 @@ msgstr "MauiKit Frameworks"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv ikono-gaia"
+
+#~ msgid "Find"
+#~ msgstr "Aurkitu"
+
+#~ msgid "Find..."
+#~ msgstr "Aurkitu..."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-16 00:57+0000\n"
+"POT-Creation-Date: 2023-02-17 00:57+0000\n"
 "PO-Revision-Date: 2023-02-07 23:53+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -148,30 +148,20 @@ msgstr "關閉其他的"
 msgid "Close All"
 msgstr "關閉全部"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:241
 #, kde-format
 msgid "Copy"
 msgstr "複製"
-
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:255
-#, kde-format
-msgid "Paste"
-msgstr "貼上"
-
-#: src/controls/Terminal.qml:117
-#, kde-format
-msgid "Find"
-msgstr "尋找"
-
-#: src/controls/Terminal.qml:199
-#, kde-format
-msgid "Find..."
-msgstr "尋找…"
 
 #: src/maui-style/TextField.qml:248
 #, kde-format
 msgid "Cut"
 msgstr "剪下"
+
+#: src/maui-style/TextField.qml:255
+#, kde-format
+msgid "Paste"
+msgstr "貼上"
 
 #: src/maui-style/TextField.qml:265
 #, kde-format
@@ -219,3 +209,9 @@ msgstr "MauiKit Frameworks"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv 圖示主題"
+
+#~ msgid "Find"
+#~ msgstr "尋找"
+
+#~ msgid "Find..."
+#~ msgstr "尋找…"

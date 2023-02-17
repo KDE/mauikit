@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-16 00:57+0000\n"
+"POT-Creation-Date: 2023-02-17 00:57+0000\n"
 "PO-Revision-Date: 2023-01-05 18:07+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -145,30 +145,20 @@ msgstr "Fermer les autres"
 msgid "Close All"
 msgstr "Tout fermer"
 
-#: src/controls/Terminal.qml:99 src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:241
 #, kde-format
 msgid "Copy"
 msgstr "Copier"
-
-#: src/controls/Terminal.qml:108 src/maui-style/TextField.qml:255
-#, kde-format
-msgid "Paste"
-msgstr "Coller"
-
-#: src/controls/Terminal.qml:117
-#, kde-format
-msgid "Find"
-msgstr "Trouver"
-
-#: src/controls/Terminal.qml:199
-#, kde-format
-msgid "Find..."
-msgstr "Trouver..."
 
 #: src/maui-style/TextField.qml:248
 #, kde-format
 msgid "Cut"
 msgstr "Couper"
+
+#: src/maui-style/TextField.qml:255
+#, kde-format
+msgid "Paste"
+msgstr "Coller"
 
 #: src/maui-style/TextField.qml:265
 #, kde-format
@@ -216,3 +206,9 @@ msgstr "Environnements de développement de Mauikit"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Thème pour l'icône « Luv »"
+
+#~ msgid "Find"
+#~ msgstr "Trouver"
+
+#~ msgid "Find..."
+#~ msgstr "Trouver..."
