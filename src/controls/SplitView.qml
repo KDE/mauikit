@@ -12,7 +12,8 @@ import org.mauikit.controls 1.3 as Maui
 SplitView
 {
     id: control
-    
+    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
     clip: false
     focus: true
     
