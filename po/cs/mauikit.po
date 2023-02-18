@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-17 00:57+0000\n"
+"POT-Creation-Date: 2023-02-18 00:57+0000\n"
 "PO-Revision-Date: 2023-01-03 17:19+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 22.12.0\n"
 
-#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:380
+#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
 msgstr "Přijmout"
 
-#: src/controls/Dialog.qml:360 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Zrušit"
@@ -61,7 +61,7 @@ msgstr "Velikost"
 #: src/controls/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
-msgstr ""
+msgstr "Jejda"
 
 #: src/controls/ImageViewer.qml:178
 #, kde-format
@@ -108,7 +108,7 @@ msgstr "Výkazy"
 msgid "Home Page"
 msgstr "Domovská stránka"
 
-#: src/controls/SettingsDialog.qml:14
+#: src/controls/SettingsDialog.qml:20
 #, kde-format
 msgid "Settings"
 msgstr "Nastavení"
@@ -209,9 +209,3 @@ msgstr ""
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr ""
-
-#~ msgid "Find"
-#~ msgstr "Najít"
-
-#~ msgid "Find..."
-#~ msgstr "Najít..."

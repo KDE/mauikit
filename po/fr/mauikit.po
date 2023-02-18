@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-17 00:57+0000\n"
+"POT-Creation-Date: 2023-02-18 00:57+0000\n"
 "PO-Revision-Date: 2023-01-05 18:07+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 22.12.0\n"
 
-#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:380
+#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
 msgstr "Accepter"
 
-#: src/controls/Dialog.qml:360 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Annuler"
@@ -105,7 +105,7 @@ msgstr "Rapports"
 msgid "Home Page"
 msgstr "Page d'accueil"
 
-#: src/controls/SettingsDialog.qml:14
+#: src/controls/SettingsDialog.qml:20
 #, kde-format
 msgid "Settings"
 msgstr "Configuration"

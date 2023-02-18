@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-17 00:57+0000\n"
+"POT-Creation-Date: 2023-02-18 00:57+0000\n"
 "PO-Revision-Date: 2022-11-18 09:59+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -13,13 +13,13 @@ msgstr ""
 "X-POFile-SpellExtra: Ups MauiKit Luv\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:380
+#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
 msgstr "Aceitar"
 
-#: src/controls/Dialog.qml:360 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Cancelar"
@@ -104,7 +104,7 @@ msgstr "Relatórios"
 msgid "Home Page"
 msgstr "Página Pessoal"
 
-#: src/controls/SettingsDialog.qml:14
+#: src/controls/SettingsDialog.qml:20
 #, kde-format
 msgid "Settings"
 msgstr "Configuração"
