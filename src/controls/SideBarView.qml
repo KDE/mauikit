@@ -21,7 +21,6 @@ Item
         
         Item
         {
-            id: _content
             anchors.fill: parent       
             clip: true
             transform: Translate
@@ -30,6 +29,40 @@ Item
             }
             
             anchors.leftMargin: control.sideBar.collapsed ? 0 : control.sideBar.width  * control.sideBar.position
-        }
+            
+            Item
+            {
+                id: _content
+                anchors.fill: parent
+            }
+            
+            Loader
+            {
+                anchors.fill: parent
+                active: _sideBar.collapsed && _sideBar.position === 1
+                // asynchronous: true
+                
+                sourceComponent: MouseArea
+                {   
+                    onClicked: _sideBar.close()
+                    
+                    Rectangle
+                    {
+                        anchors.fill: parent
+                        color: "#333"
+                        opacity : visible ?  0.5 : 0
+                        
+                        Behavior on opacity
+                        {
+                            NumberAnimation {
+                                duration: 500
+                                easing.type: Easing.InOutQuad
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }      
 }
 

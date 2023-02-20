@@ -41,21 +41,19 @@ Item
 {
     id: indicator
     
-    implicitWidth:  Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
-    implicitHeight: Maui.Style.rowHeight
+    implicitWidth:  height * 1.8
+    implicitHeight: 22
     
     property Item control
     property alias handle: handle
-    property color m_color : control.checked ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor)
+    property color m_color : control.checked ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor :  Maui.ColorUtils.linearInterpolation(Maui.Theme.alternateBackgroundColor, Maui.Theme.textColor, 0.2))
     
     Rectangle
     {
         width: parent.width
-        height: 20
+        height: parent.height
         radius: height / 2
-        y: parent.height / 2 - height / 2
-        border.color: control.enabled ? "transparent" : Maui.Theme.disabledTextColor
-        color: control.enabled ? m_color : "transparent"
+        color:  m_color
 //         opacity: control.checked ? 1 : 0.5
         
         Behavior on color
@@ -76,14 +74,13 @@ Item
     Rectangle
     {
         id: handle
-        x: Math.max(4, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)) - 4)
+        x: control.visualPosition * parent.width >= parent.width ? control.visualPosition * parent.width - (width) : control.visualPosition * parent.width
         y: (parent.height - height) / 2
-        width: 16
-        height: 16
+        width: height
+        height: parent.height 
         radius: width / 2
-        color: control.enabled ? (control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor)
-        : "transparent"
-        border.color: control.enabled ? "transparent" : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.9))
+        color: Maui.Theme.backgroundColor
+      
         
         Behavior on x
         {

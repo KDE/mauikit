@@ -111,7 +111,7 @@ T.ScrollBar
     Timer
     {
         id: _timer
-        interval: 500
+        interval: 300
         repeat: false
         
         property bool shouldHide : true

@@ -33,7 +33,7 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.Control
+T.Pane
 {
   id: control
   
@@ -89,8 +89,7 @@ T.Control
     topPadding: 0
     bottomPadding: 0
     leftPadding: 0
-    rightPadding: 0
-    
+    rightPadding: 0    
     
     signal opened()
     signal closed()    
@@ -163,31 +162,7 @@ control.close()
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right        
-      }     
-      
-      Loader
-      {
-        parent: control.parent
-        anchors.leftMargin: control.width
-        anchors.fill: parent
-        active: control.collapsed && control.position === 1
-        asynchronous: true
-        
-        sourceComponent: MouseArea
-        {
-          id: _overlayMouseArea
-          
-          
-          onClicked: control.close()
-          
-          Rectangle
-          {
-            anchors.fill: parent
-            color: "#333"
-            opacity : 0.5
-          }
-        }
-      }
+      }        
       
       Loader
       {

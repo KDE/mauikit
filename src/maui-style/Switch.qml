@@ -48,11 +48,14 @@ T.Switch
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
+    property int preferredHeight : Maui.Style.rowHeight
+    
     hoverEnabled: !Maui.Handy.isMobile
     
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: implicitBackgroundHeight + topInset + bottomInset
+
+    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
     
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium
@@ -85,8 +88,5 @@ T.Switch
         color: control.icon.color        
     }
     
-    background: Item
-    {
-        implicitHeight: Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25))
-    }
+    background: null
 }

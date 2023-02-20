@@ -39,22 +39,32 @@ LinearGradient
     /**
       *
       */
-    property color color: Maui.Theme.textColor
+    property color color: Maui.ColorUtils.linearInterpolation(Maui.Theme.alternateBackgroundColor, Maui.Theme.textColor, 0.2)
 
-    implicitWidth: Maui.Style.units.gridUnit
-    implicitHeight: Maui.Style.units.gridUnit
+    implicitWidth: Maui.Style.units.gridUnit*3
     
-    opacity: 0.3
-    rotation: edge === Qt.RightEdge ? 180 : 0
-    start: Qt.point( 0, height)
-    end: Qt.point( width, height)
+    opacity: 0.4
+    start: Qt.point(0, height/2)
+    end: Qt.point( width, height/2)
+    
+    
+    transform: [
+        Scale{ xScale: control.edge === Qt.RightEdge ? -1 : 1 },
+        Translate {x: control.edge === Qt.RightEdge ? control.width : 0}
+        ]
     
     gradient: Gradient
     {
         GradientStop
         {
             position: 0
-            color: Qt.rgba(control.color.r, control.color.g, control.color.b, 0.4)
+            color: control.color
+        }
+        
+        GradientStop
+        {
+            position: 0.8
+            color:  "transparent"
         }
         
         GradientStop

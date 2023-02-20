@@ -20,15 +20,18 @@ Shape
     /**
       * borderColor : color
       */
-    property color borderColor: Maui.Theme.backgroundColor
+    property color borderColor: "transparent"
 
     /**
       * borderWidth : int
       */
-    property int borderWidth: 1
+    property int borderWidth: -1
 
     layer.enabled: _shape.smooth
-    layer.samples: 4
+    layer.samples: 8
+    
+    smooth: true
+    asynchronous: true
 
     ShapePath
     {
@@ -39,12 +42,12 @@ Shape
         strokeColor: _shape.borderColor
         fillColor: _shape.color
 
-        startX: 0; startY: 1
+        startX: 0; startY: 0
         PathLine { x: _shape.width - _shape.arrowWidth; y: _path.startY }
-        PathLine { x: _shape.width; y: Math.floor(_shape.height / 2) }
+        PathLine { x: _shape.width; y: _shape.height / 2 }
         PathLine { x: _shape.width - _shape.arrowWidth; y: _shape.height}
         PathLine { x: _path.startX; y: _shape.height}
-        PathLine { x: _shape.arrowWidth; y:Math.floor(_shape.height / 2) }
+        PathLine { x: _shape.arrowWidth; y:_shape.height / 2 }
         PathLine { x: _path.startX; y: _path.startY }
     }
 }

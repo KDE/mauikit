@@ -31,9 +31,9 @@ Maui.Dialog
     stack: StackView
     {
       id: _stackView
-      Layout.fillHeight: true
+      // Layout.fillHeight: true
       Layout.fillWidth: true
-      implicitHeight: currentItem.implicitHeight+topPadding +bottomPadding
+      implicitHeight: initialItem.implicitHeight+topPadding +bottomPadding
       
       initialItem: Maui.ScrollColumn
       {
