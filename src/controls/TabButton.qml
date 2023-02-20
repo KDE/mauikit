@@ -98,7 +98,7 @@ T.TabButton
             {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                opacity: control.checked ? 1 : 0.8
+                opacity: control.checked || control.hovered ? 1 : 0.7
                 
                 text: control.text
                 
