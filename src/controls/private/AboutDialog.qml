@@ -41,16 +41,7 @@ Maui.Dialog
        
         property alias mainHeader : _header
         
-        Maui.ImageColors
-        {
-            id: _imgColors
-            source: Maui.App.iconName
-            onPaletteChanged:
-            {
-                console.log(_imgColors.average)
-            }
-        }
-        
+     
         Control
         {
             id: _header
@@ -71,7 +62,6 @@ Maui.Dialog
                 isMask: false
                 
                 spacing: Maui.Style.space.big
-                label1.color: _imgColors.foreground
                 label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 label1.text: Maui.App.about.displayName
                 label1.font.weight: Font.Black
@@ -389,70 +379,18 @@ Maui.Dialog
         Item
         {
             id: _iconItem
-            // opacity: 0.6
             parent: control.background
             clip: true
-            anchors.fill: parent
-            layer.enabled: true
-            layer.effect: OpacityMask
-            {
-                maskSource:  Rectangle
-                {
-                    width: control.width
-                    height: control.height
-                    radius: Maui.Style.radiusV
-                }
-            }            
-                
-                 LinearGradient
-            {
-                
-                anchors.fill: parent
-                gradient: Gradient 
-                {
-                    GradientStop { position: 0.0; color: _imgColors.dominant}                    
-                    
-                    GradientStop { position: 0.4; color: _imgColors.average}
-                    
-                    GradientStop { position: 0.7; color: control.background.color}
-                    
-                                        
-                }
-                
-                start: Qt.point(0, 0)
-                end: Qt.point(control.background.width, control.background.height)
-            }
+            anchors.fill: parent           
             
             Image
             {
                 anchors.fill: parent
                 source: "qrc:/assets/subtle-dots.png"
                 fillMode: Image.Tile
-                opacity: 0.9
-            }
-            
-            LinearGradient
-            {
-                opacity: 0.8
-                anchors.fill: parent
-                gradient: Gradient 
-                {
-                    GradientStop { position: 0.0; color: _imgColors.background}                    
-                                       
-                    GradientStop { position: 0.6; color: control.background.color}
-                    
-                    
-                }
-                
-                start: Qt.point(control.width, 0)
-                end: Qt.point(control.background.width, control.background.height)
-            }
-            
-            
-            
-           
+                opacity: 0.2
+            }            
         }
-        
-        
+     
         
 }

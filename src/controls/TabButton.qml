@@ -124,6 +124,8 @@ T.TabButton
                 {
                     opacity: Maui.Handy.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
                     padding: 0
+                    height: 16
+                    width: 16
                     
                     onClicked: control.closeClicked()
                     
