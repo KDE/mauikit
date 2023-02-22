@@ -168,7 +168,7 @@ T.TextField
             wrapMode: Text.NoWrap
             
             visible: opacity > 0
-            opacity: !control.length && !control.preeditText && !control.activeFocus ? 1 : 0  
+            opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0  
                        
             
             Behavior on opacity 

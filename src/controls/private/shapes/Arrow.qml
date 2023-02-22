@@ -27,7 +27,7 @@ Shape
       */
     property int borderWidth: -1
 
-    layer.enabled: _shape.smooth
+    layer.enabled: smooth
     layer.samples: 8
     
     smooth: true
@@ -44,10 +44,10 @@ Shape
 
         startX: 0; startY: 0
         PathLine { x: _shape.width - _shape.arrowWidth; y: _path.startY }
-        PathLine { x: _shape.width; y: _shape.height / 2 }
+        PathLine { x: _shape.width; y: Math.floor(_shape.height / 2) }
         PathLine { x: _shape.width - _shape.arrowWidth; y: _shape.height}
         PathLine { x: _path.startX; y: _shape.height}
-        PathLine { x: _shape.arrowWidth; y:_shape.height / 2 }
+        PathLine { x: _shape.arrowWidth; y: Math.floor(_shape.height / 2)}
         PathLine { x: _path.startX; y: _path.startY }
     }
 }
