@@ -103,7 +103,7 @@ Maui.Dialog
             id: _authorsSection
             label1.text: i18nd("mauikit", "Authors")
             visible: Maui.App.about.authors.length > 0
-            flat: false
+            // flat: false
             // label2.text: Maui.App.about.copyrightStatement
             
  iconSource: "view-media-artist"
@@ -148,7 +148,7 @@ Maui.Dialog
             id: _translatorsSection
             label1.text: i18nd("mauikit", "Translators")
             visible: Maui.App.about.translators.length > 0
-            flat: false
+            // flat: false
                         iconSource: "folder-language"
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
@@ -189,7 +189,7 @@ Maui.Dialog
             id: _creditsSection
             label1.text: i18nd("mauikit", "Credits")
                         visible: Maui.App.about.credits.length > 0
-                        flat: false
+                        // flat: false
             iconSource: "love"
             template.isMask: true
             template.iconSizeHint: Maui.Style.iconSize
@@ -229,7 +229,7 @@ Maui.Dialog
         {
             id: _licensesSection
                                     visible: Maui.App.about.licenses.length > 0
-                                    flat: false
+                                    // flat: false
                                     iconSource: "license"
 
                                                 template.isMask: true
@@ -262,7 +262,7 @@ Maui.Dialog
             id: _componentsSection
                 iconSource: "code-context"
                                     visible: Maui.App.about.components.length > 0
-                                    flat: false
+                                    // flat: false
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
                         
@@ -306,7 +306,7 @@ Maui.Dialog
             id: _linksssSection
             label1.text: i18nd("mauikit", "Links")
             // label2.text: Maui.App.about.copyrightStatement
-            flat: false
+            // flat: false
  iconSource: "link"
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
@@ -388,7 +388,7 @@ Maui.Dialog
                 anchors.fill: parent
                 source: "qrc:/assets/subtle-dots.png"
                 fillMode: Image.Tile
-                opacity: 0.2
+                opacity: 0.15
             }            
         }
      

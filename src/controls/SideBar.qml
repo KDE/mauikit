@@ -66,6 +66,7 @@ T.Pane
      *   If when collapsed the sidebar should automatically hide or stay in place
      */
     property bool autoHide: false
+    property bool autoShow: true
     
     /*!
      *      preferredWidth : int
@@ -107,6 +108,7 @@ T.Pane
     QtObject
     {
       id: _private
+      property bool initial: true
       property double position       
       property int resizeValue
       property int finalWidth : control.preferredWidth + _dragHandler.centroid.position.x
@@ -121,7 +123,8 @@ T.Pane
       //       
       Binding on position
       {
-        value: control.enabled ? (control.collapsed && control.autoHide ? 0 : 1) : 0
+        when: control.autoCollapse
+        value: control.enabled ? (!control.autoShow ? 0 : (control.collapsed && control.autoHide ? 0 : 1)) : 0
         restoreMode: Binding.RestoreBindingOrValue
       }
       
@@ -148,7 +151,12 @@ control.close()
       }
       else
       {
-        control.open()
+        
+        if(control.autoShow)
+        {
+         control.open()
+        }
+        
       }
     }
     
@@ -272,7 +280,7 @@ control.close()
         {
           Maui.ColorTransition{}
         }
-      }           
+      }   
     }    
     
     function open()

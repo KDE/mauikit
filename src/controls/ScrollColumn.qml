@@ -30,6 +30,7 @@ ScrollView
     id: control
 
     default property alias content : _pageContent.data
+        property alias container : _pageContent
     property alias flickable: _flickable
 
     padding: Maui.Style.contentMargins
