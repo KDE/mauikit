@@ -9,6 +9,7 @@ import QtQuick.Layouts 1.3
 Maui.Dialog
 {
     id: control
+    
     default property alias content: _content.content
       property alias stackView: _stackView
       

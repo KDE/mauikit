@@ -192,7 +192,9 @@ Item
         id: _layout
         anchors.fill: parent
         spacing: Maui.Style.space.medium
-
+        
+        readonly property color labelColor: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+        
             Loader
             {
                 id: _iconLoader
@@ -223,6 +225,7 @@ Item
             Layout.fillWidth: true
             
             spacing: 0
+            
 
             Label
             {
@@ -238,7 +241,7 @@ Item
                 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
 textFormat: Text.PlainText
-                color: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+                color: _layout.labelColor
             }
 
             Label
@@ -254,7 +257,7 @@ textFormat: Text.PlainText
                 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
                 textFormat: Text.PlainText
- color: _label1.color
+ color: _layout.labelColor
  opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
@@ -291,7 +294,7 @@ textFormat: Text.PlainText
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
                 textFormat: Text.PlainText
- color: _label1.color
+ color: _layout.labelColor
  opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
@@ -313,7 +316,7 @@ textFormat: Text.PlainText
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
                 textFormat: Text.PlainText
-                color: _label1.color
+                color: _layout.labelColor
                 opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }

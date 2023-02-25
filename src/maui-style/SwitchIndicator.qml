@@ -52,7 +52,7 @@ Item
     {
         width: parent.width
         height: parent.height
-        radius: height / 2
+        radius: Maui.Style.radiusV
         color:  m_color
 //         opacity: control.checked ? 1 : 0.5
         
@@ -74,11 +74,11 @@ Item
     Rectangle
     {
         id: handle
-        x: control.visualPosition * parent.width >= parent.width ? control.visualPosition * parent.width - (width) : control.visualPosition * parent.width
+        x: control.visualPosition * parent.width >= parent.width ? control.visualPosition * parent.width - (width + 2) : control.visualPosition * parent.width + 2
         y: (parent.height - height) / 2
         width: height
-        height: parent.height 
-        radius: width / 2
+        height: parent.height - 4
+        radius: Maui.Style.radiusV
         color: Maui.Theme.backgroundColor
       
         

@@ -119,9 +119,9 @@ if (ANDROID)
     #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
 
-set(kwin_XCB_LIBS   
-    XCB::ICCCM   
-    XCB::SHAPE   
+set(kwin_XCB_LIBS
+    XCB::ICCCM
+    XCB::SHAPE
     XCB::XCB
 )
 
@@ -268,8 +268,8 @@ if(ANDROID)
     endif()
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
-        target_link_libraries(MauiKit 
-        PRIVATE 
+        target_link_libraries(MauiKit
+        PRIVATE
         KF${KF_MAJOR_VERSION}::WindowSystem
         Qt${QT_MAJOR_VERSION}::X11Extras
         )

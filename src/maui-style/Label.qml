@@ -59,4 +59,10 @@ T.Label
     {
         Maui.ColorTransition{}
     }
+    
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: control.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+        acceptedButtons: Qt.NoButton // Not actually accepting clicks, just changing the cursor
+    }
 }

@@ -56,8 +56,7 @@ T.ScrollBar
 
     interactive: !Maui.Handy.isMobile
     contentItem: Rectangle
-    {       
-        
+    {   
         radius: Maui.Style.radiusV
 
         color: control.pressed ? Maui.Theme.highlightColor :

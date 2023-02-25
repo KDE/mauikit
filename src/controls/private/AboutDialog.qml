@@ -114,6 +114,7 @@ Maui.Dialog
             {
                 spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
+                opacity: 0.8
                 
                 Repeater
                 {
@@ -125,9 +126,9 @@ Maui.Dialog
                        
                         width: parent.width
                         
-                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
-                        
+                        // label1.linkColor: Maui.Theme.textColor
                         label3.text: modelData.task
                         
                         Connections
@@ -157,6 +158,7 @@ Maui.Dialog
                 id: _translators
                 spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
+                opacity: 0.8
                 
                 Repeater
                 {
@@ -168,7 +170,7 @@ Maui.Dialog
                                                 
                         width: parent.width
                         
-                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
                                                 label3.text: modelData.task
                         Connections
@@ -198,6 +200,7 @@ Maui.Dialog
             {
                 spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
+                opacity: 0.8
                 
                 Repeater
                 {
@@ -243,7 +246,7 @@ Maui.Dialog
                 id: _licenses
                 spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width               
-                
+                opacity: 0.8
                 Repeater
                 {
                     model: Maui.App.about.licenses
@@ -272,7 +275,7 @@ Maui.Dialog
             {
                 spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width               
-                
+                opacity: 0.8
                 Repeater
                 {
                     model: Maui.App.about.components
