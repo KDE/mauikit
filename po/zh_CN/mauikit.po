@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-22 00:57+0000\n"
-"PO-Revision-Date: 2023-02-15 11:05\n"
+"PO-Revision-Date: 2023-02-24 12:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -209,9 +209,3 @@ msgstr "MauiKit 程序框架"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv 图标主题"
-
-#~ msgid "Find"
-#~ msgstr "查找"
-
-#~ msgid "Find..."
-#~ msgstr "查找..."
