@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-22 00:57+0000\n"
+"POT-Creation-Date: 2023-02-26 00:57+0000\n"
 "PO-Revision-Date: 2023-02-07 23:53+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -73,42 +73,42 @@ msgstr "影像無法被載入。"
 msgid "Authors"
 msgstr "作者群"
 
-#: src/controls/private/AboutDialog.qml:149
+#: src/controls/private/AboutDialog.qml:150
 #, kde-format
 msgid "Translators"
 msgstr "翻譯者"
 
-#: src/controls/private/AboutDialog.qml:190
+#: src/controls/private/AboutDialog.qml:192
 #, kde-format
 msgid "Credits"
 msgstr "致謝"
 
-#: src/controls/private/AboutDialog.qml:238
+#: src/controls/private/AboutDialog.qml:241
 #, kde-format
 msgid "Licenses"
 msgstr "授權"
 
-#: src/controls/private/AboutDialog.qml:269
+#: src/controls/private/AboutDialog.qml:272
 #, kde-format
 msgid "Components"
 msgstr "元件"
 
-#: src/controls/private/AboutDialog.qml:307
+#: src/controls/private/AboutDialog.qml:310
 #, kde-format
 msgid "Links"
 msgstr "連結"
 
-#: src/controls/private/AboutDialog.qml:323
+#: src/controls/private/AboutDialog.qml:326
 #, kde-format
 msgid "Reports"
 msgstr "報告"
 
-#: src/controls/private/AboutDialog.qml:330
+#: src/controls/private/AboutDialog.qml:333
 #, kde-format
 msgid "Home Page"
 msgstr "首頁"
 
-#: src/controls/SettingsDialog.qml:20
+#: src/controls/SettingsDialog.qml:21
 #, kde-format
 msgid "Settings"
 msgstr "設定"

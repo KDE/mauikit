@@ -1,219 +1,212 @@
-# Translation of mauikit.po to Catalan
-# Copyright (C) 2022 This_file_is_part_of_KDE
-# This file is distributed under the license LGPL version 2.1 or
-# version 3 or later versions approved by the membership of KDE e.V.
+# Lithuanian translations for mauikit package.
+# Copyright (C) 2023 This file is copyright:
+# This file is distributed under the same license as the mauikit package.
+# Automatically generated, 2023.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-26 00:57+0000\n"
-"PO-Revision-Date: 2022-11-18 13:19+0100\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
-"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
-"Language: ca\n"
+"PO-Revision-Date: 2023-02-22 00:57+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
-msgstr "Accepta"
+msgstr ""
 
 #: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr ""
 
 #: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
-msgstr "Marcador fluorescent"
+msgstr ""
 
 #: src/controls/Doodle.qml:137
 #, kde-format
 msgid "Marker"
-msgstr "Marcador"
+msgstr ""
 
 #: src/controls/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
-msgstr "Esborrador"
+msgstr ""
 
 #: src/controls/Doodle.qml:174
 #, kde-format
 msgid "Color"
-msgstr "Color"
+msgstr ""
 
 #: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
-msgstr "Opacitat"
+msgstr ""
 
 #: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
 #, kde-format
 msgid "Size"
-msgstr "Mida"
+msgstr ""
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
-msgstr "Vaja!"
+msgstr ""
 
 #: src/controls/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
-msgstr "No s'ha pogut carregar la imatge."
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:104
 #, kde-format
 msgid "Authors"
-msgstr "Autors"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:150
 #, kde-format
 msgid "Translators"
-msgstr "Traductors"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:192
 #, kde-format
 msgid "Credits"
-msgstr "Atribucions"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:241
 #, kde-format
 msgid "Licenses"
-msgstr "Llicències"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:272
 #, kde-format
 msgid "Components"
-msgstr "Components"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:310
 #, kde-format
 msgid "Links"
-msgstr "Enllaços"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:326
 #, kde-format
 msgid "Reports"
-msgstr "Informes"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:333
 #, kde-format
 msgid "Home Page"
-msgstr "Pàgina d'inici"
+msgstr ""
 
 #: src/controls/SettingsDialog.qml:21
 #, kde-format
 msgid "Settings"
-msgstr "Configuració"
+msgstr ""
 
 #: src/controls/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
-msgstr "Comparteix amb"
+msgstr ""
 
 #: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
 #, kde-format
 msgid "Close Split"
-msgstr "Tanca la divisió"
+msgstr ""
 
 #: src/controls/TabView.qml:113
 #, kde-format
 msgid "Open"
-msgstr "Obre"
+msgstr ""
 
 #: src/controls/TabView.qml:124
 #, kde-format
 msgid "Duplicate"
-msgstr "Duplica"
+msgstr ""
 
 #: src/controls/TabView.qml:134
 #, kde-format
 msgid "Close"
-msgstr "Tanca"
+msgstr ""
 
 #: src/controls/TabView.qml:144
 #, kde-format
 msgid "Close Other"
-msgstr "Tanca els altres"
+msgstr ""
 
 #: src/controls/TabView.qml:153
 #, kde-format
 msgid "Close All"
-msgstr "Tanca-ho tot"
+msgstr ""
 
 #: src/maui-style/TextField.qml:241
 #, kde-format
 msgid "Copy"
-msgstr "Copia"
+msgstr ""
 
 #: src/maui-style/TextField.qml:248
 #, kde-format
 msgid "Cut"
-msgstr "Retalla"
+msgstr ""
 
 #: src/maui-style/TextField.qml:255
 #, kde-format
 msgid "Paste"
-msgstr "Enganxa"
+msgstr ""
 
 #: src/maui-style/TextField.qml:265
 #, kde-format
 msgid "Select All"
-msgstr "Selecciona-ho tot"
+msgstr ""
 
 #: src/maui-style/TextField.qml:272
 #, kde-format
 msgid "Undo"
-msgstr "Desfés"
+msgstr ""
 
 #: src/maui-style/TextField.qml:279
 #, kde-format
 msgid "Redo"
-msgstr "Refés"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:46
 #, kde-format
 msgid "Multi-adaptable user interfaces."
-msgstr "Interfícies d'usuari multiadaptables."
+msgstr ""
 
 #: src/utils/mauiapp.cpp:67
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Josep M. Ferrer"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:68
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "txemaq@gmail.com"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:73
 #, kde-format
 msgid "KDE Frameworks"
-msgstr "Frameworks del KDE"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:75
 #, kde-format
 msgid "MauiKit Frameworks"
-msgstr "Frameworks del MauiKit"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "Luv Icon Theme"
-msgstr "Tema d'icones Luv"
-
-#~ msgid "Find"
-#~ msgstr "Cerca"
-
-#~ msgid "Find..."
-#~ msgstr "Cerca..."
+msgstr ""

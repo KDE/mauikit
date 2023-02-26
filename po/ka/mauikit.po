@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-22 00:57+0000\n"
+"POT-Creation-Date: 2023-02-26 00:57+0000\n"
 "PO-Revision-Date: 2023-02-03 16:16+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -74,42 +74,42 @@ msgstr "გამოსახულების ჩატვირთვა შ�
 msgid "Authors"
 msgstr "ავტორები"
 
-#: src/controls/private/AboutDialog.qml:149
+#: src/controls/private/AboutDialog.qml:150
 #, kde-format
 msgid "Translators"
 msgstr "მთარგმნელები"
 
-#: src/controls/private/AboutDialog.qml:190
+#: src/controls/private/AboutDialog.qml:192
 #, kde-format
 msgid "Credits"
 msgstr "კრედიტები"
 
-#: src/controls/private/AboutDialog.qml:238
+#: src/controls/private/AboutDialog.qml:241
 #, kde-format
 msgid "Licenses"
 msgstr "ლიცენზიები"
 
-#: src/controls/private/AboutDialog.qml:269
+#: src/controls/private/AboutDialog.qml:272
 #, kde-format
 msgid "Components"
 msgstr "კომპონენტები"
 
-#: src/controls/private/AboutDialog.qml:307
+#: src/controls/private/AboutDialog.qml:310
 #, kde-format
 msgid "Links"
 msgstr "ბმულები"
 
-#: src/controls/private/AboutDialog.qml:323
+#: src/controls/private/AboutDialog.qml:326
 #, kde-format
 msgid "Reports"
 msgstr "ანგარიშები"
 
-#: src/controls/private/AboutDialog.qml:330
+#: src/controls/private/AboutDialog.qml:333
 #, kde-format
 msgid "Home Page"
 msgstr "საწყისი გვერდი"
 
-#: src/controls/SettingsDialog.qml:20
+#: src/controls/SettingsDialog.qml:21
 #, kde-format
 msgid "Settings"
 msgstr "მორგება"
