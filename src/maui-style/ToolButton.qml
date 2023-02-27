@@ -107,11 +107,6 @@ T.ToolButton
         font: control.font
         
         color: control.color
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
     }
     
     Behavior on implicitHeight

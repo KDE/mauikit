@@ -89,12 +89,7 @@ T.MenuItem
         color: control.icon.color
         height: 10
         width: 10
-        source: "qrc:/assets/arrow-right.svg"
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+        source: "qrc:/assets/arrow-right.svg"        
     }
     
     contentItem: IconLabel
@@ -114,12 +109,7 @@ T.MenuItem
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.icon.color
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+        color: control.icon.color        
     }
 
     background: Rectangle

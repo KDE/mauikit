@@ -68,10 +68,6 @@ T.Button
         display: control.display
         alignment: Qt.AlignCenter
         
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
     }
     
     background: Rectangle

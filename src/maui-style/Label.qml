@@ -54,13 +54,9 @@ T.Label
 
     Accessible.role: Accessible.StaticText
     Accessible.name: text
-    
-    Behavior on color
+        
+    MouseArea
     {
-        Maui.ColorTransition{}
-    }
-    
-    MouseArea {
         anchors.fill: parent
         cursorShape: control.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
         acceptedButtons: Qt.NoButton // Not actually accepting clicks, just changing the cursor
