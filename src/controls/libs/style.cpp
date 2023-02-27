@@ -22,7 +22,7 @@ Style::Style(QObject *parent) : QObject(parent)
   ,m_accentColor(QColor("#26c6da"))
   ,m_themeSettings( new MauiMan::ThemeManager(this))
   ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
-{
+{   
     connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         delete m_instance;
@@ -107,13 +107,22 @@ Style::Style(QObject *parent) : QObject(parent)
     m_defaultSpacing = m_themeSettings->spacingSize();
 
     m_currentIconTheme = m_themeSettings->iconTheme();
-
+    
+    m_h1Font.setPointSize(m_fontSizes->m_huge);
+    m_h1Font.setWeight(QFont::Bold);
+    m_h1Font.setBold(true);
+        
+    m_h2Font.setPointSize(m_fontSizes->m_big);
+    m_h2Font.setWeight(QFont::DemiBold);
+    // m_h2Font.setBold(false);
+    
 #ifdef Q_OS_ANDROID
     MAUIAndroid android;
     m_styleType = android.darkModeEnabled() ? StyleType::Dark : StyleType::Light;
 #else
     m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
 #endif
+    
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
     m_enableEffects = m_themeSettings->enableEffects();
 }

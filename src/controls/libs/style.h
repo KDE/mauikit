@@ -80,7 +80,9 @@ class Style : public QObject
     Q_PROPERTY(uint defaultSpacing MEMBER m_defaultSpacing NOTIFY defaultSpacingChanged)
     
     Q_PROPERTY(QFont defaultFont MEMBER m_defaultFont NOTIFY defaultFontChanged)
-
+    Q_PROPERTY(QFont h1Font MEMBER m_h1Font NOTIFY h1FontChanged)
+    Q_PROPERTY(QFont h2Font MEMBER m_h2Font NOTIFY h2FontChanged)
+    
     Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes CONSTANT FINAL)
     Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
     Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
@@ -143,7 +145,9 @@ private:
     explicit Style(QObject *parent = nullptr);
     static Style *m_instance;
     QFont m_defaultFont = QFont {};
-
+    QFont m_h1Font = QFont {};
+    QFont m_h2Font = QFont {};
+    
     GroupSizes *m_iconSizes;
     GroupSizes *m_space;
     GroupSizes *m_fontSizes;
@@ -180,6 +184,9 @@ private:
 
 signals:
     void defaultFontChanged();
+    void h1FontChanged();
+    void h2FontChanged();
+    
     void adaptiveColorSchemeSourceChanged(QVariant source);
     void accentColorChanged(QColor color);
     void colorSchemeChanged();

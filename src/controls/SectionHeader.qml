@@ -26,11 +26,12 @@ T.Pane
     {
         id: _template
 
-        label1.font.pointSize: Maui.Style.fontSizes.big
-        label1.font.weight: Font.DemiBold
+        label1.font: Maui.Style.h2Font
         label2.wrapMode: Text.WordWrap
         label1.color: Maui.Theme.textColor
         isMask: iconSizeHint <= 22
         spacing: control.spacing
     }
+    
+    background: null
 }

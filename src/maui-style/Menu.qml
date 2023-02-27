@@ -163,7 +163,7 @@ T.Menu
                 keyNavigationEnabled : true
                 keyNavigationWraps : true
                 
-                header: T.Control
+                header: Maui.SectionHeader
                 {
                     visible: control.title && control.title.length
                     width: parent.width                
@@ -171,22 +171,15 @@ T.Menu
                     padding: control.padding
                     bottomPadding: _scrollView.topPadding + padding
                     topPadding: 0
-                    
-                    background: null
-                    
-                    contentItem: Maui.ListItemTemplate
-                    {
-                        label1.font.weight: Font.DemiBold
-                        label1.text: control.title
-                        label2.text: control.subtitle
-                        label1.font.pointSize: Maui.Style.fontSizes.big
-                        label1.elide:Text.ElideMiddle
-                        imageSource: control.titleImageSource
-                        iconSource: control.titleIconSource
-                        maskRadius: 0
-                        imageSizeHint: Maui.Style.iconSizes.big
-                        iconSizeHint: Maui.Style.iconSize
-                    }
+                  
+                  label1.text: control.title
+                  label2.text: control.subtitle
+                  label1.elide:Text.ElideMiddle
+                  template.imageSource: control.titleImageSource
+                  template.iconSource: control.titleIconSource
+                 template.maskRadius: 0
+                  template.imageSizeHint: Maui.Style.iconSizes.big
+                  template.iconSizeHint: Maui.Style.iconSize                  
                 }
             }
         }

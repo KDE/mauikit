@@ -418,8 +418,7 @@ T.Pane
                     text: control.title
                     elide : Text.ElideRight
 //                     font.bold : true
-                    font.weight: Font.DemiBold
-                    font.pointSize: Maui.Style.fontSizes.big
+                    font: Maui.Style.h2Font
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
                 }

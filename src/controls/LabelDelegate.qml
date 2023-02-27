@@ -82,14 +82,13 @@ T.Control
         {
             anchors.fill: parent
             id: labelTxt
-            font.pointSize: control.isSection ? Maui.Style.fontSizes.big : Maui.Style.fontSizes.medium
+            font: control.isSection ? Maui.Style.h2Font : Maui.Style.defaultFont
             horizontalAlignment: Qt.AlignLeft
             verticalAlignment: Qt.AlignVCenter
             text: labelTxt.text
             elide: Text.ElideRight
             wrapMode: Text.NoWrap
             color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
-            font.weight : control.isSection ? Font.DemiBold : Font.Normal
         }
     }
 }

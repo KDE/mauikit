@@ -74,18 +74,22 @@ Maui.Dialog
                 leftLabels.spacing: Maui.Style.space.medium
                 leftLabels.data: [
                 
-                TextArea
+                Label
                 {
                     Maui.Theme.inherit: true
                     Layout.fillWidth: true
-                    background: null
-                    readOnly: true
-                    text:   Maui.App.about.version + " " + Maui.App.about.otherText
+                    text: Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
-                    padding: 0
                     color: _div1.label1.color
+                    
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onDoubleClicked: Maui.Handy.copyTextToClipboard(parent.text)
+                    }
                 }                
                 ]
             }            

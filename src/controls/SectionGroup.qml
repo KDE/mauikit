@@ -8,7 +8,7 @@ import org.mauikit.controls 1.3 as Maui
  *  \since org.mauikit.controls.labs 1.0
  *  \inqmlmodule org.mauikit.controls.labs
  */
-Control
+Pane
 {
     id: control
     
@@ -16,12 +16,7 @@ Control
      * 
      */
     default property alias content : _layout.data
-        
-        /**
-         * 
-         */
-        property int index : -1
-        
+                
         /**
          * 
          */
@@ -43,6 +38,7 @@ Control
         spacing: Maui.Style.defaultSpacing
         
         Layout.fillWidth: true
+        padding: 0
         
         implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
