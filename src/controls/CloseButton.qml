@@ -12,7 +12,7 @@ ToolButton
            
     background: Rectangle
     {
-        radius: height/2
+        radius: Maui.Style.radiusV
         color: control.hovered || control.containsPress ? Maui.Theme.negativeBackgroundColor : "transparent"     
         
     }

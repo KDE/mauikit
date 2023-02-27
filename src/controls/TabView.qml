@@ -610,7 +610,7 @@ T.Container
         control.currentItem.forceActiveFocus()
     }
     
-    function addTab(component, properties)
+    function addTab(component, properties, quiet = false) : Item
     {
         if(control.overviewMode)
         {
@@ -622,8 +622,11 @@ T.Container
         control.addItem(object)
         _tabBar.addItem(control.tabViewButton.createObject(_tabBar))
         
-        control.setCurrentIndex(Math.max(control.count -1, 0))
-        object.forceActiveFocus()
+        if(!quiet)
+        {
+            control.setCurrentIndex(Math.max(control.count -1, 0))
+            object.forceActiveFocus()
+        }
         
         return object
     }

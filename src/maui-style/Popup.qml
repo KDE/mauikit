@@ -190,18 +190,18 @@ T.Popup
         
         
         
-        T.Overlay.modal: Rectangle 
-        {
-            color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
-            
-            Behavior on opacity { NumberAnimation { duration: 150 } }
-        }
-        
-        T.Overlay.modeless: Rectangle
-        {
-            color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
-            Behavior on opacity { NumberAnimation { duration: 150 } }
-        }
+//         T.Overlay.modal: Rectangle 
+//         {
+//             color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
+//             
+//             Behavior on opacity { NumberAnimation { duration: 150 } }
+//         }
+//         
+//         T.Overlay.modeless: Rectangle
+//         {
+//             color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
+//             Behavior on opacity { NumberAnimation { duration: 150 } }
+//         }
         /**
          * 
          */

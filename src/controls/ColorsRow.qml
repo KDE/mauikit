@@ -22,27 +22,25 @@ Flow
 
         AbstractButton
         {
+            id: _button
             checked : control.currentColor === modelData
-            implicitHeight: control.size
-            implicitWidth: implicitHeight
+            implicitHeight: control.size + topPadding + bottomPadding
+            implicitWidth: implicitHeight + leftPadding + rightPadding
             hoverEnabled: true
             onClicked: control.colorPicked(modelData)
             
-            contentItem: Rectangle
-            {
-                radius: height/2
-                color: enabled ? modelData : "transparent"
-                border.color: Qt.darker(modelData, 2)
-                border.width: parent.hovered ?  2 : 1
-                
+            property color color : modelData
+            
+            contentItem: Item
+            {                
                 Maui.Icon
                 {
                     visible: opacity > 0
-                    color: Maui.ColorUtils.brightnessForColor(parent.color) == Maui.ColorUtils.Light ? "#333" : "#fafafa"
+                    color: Maui.ColorUtils.brightnessForColor(_button.color) === Maui.ColorUtils.Light ? "#333" : "#fff"
                     anchors.centerIn: parent
-                    height: checked ? Math.round(parent.height * 0.9) : 0
+                    height: Math.round(parent.height * 0.9)
                     width: height
-                    opacity: checked ? 1 : 0
+                    opacity: checked || hovered ? 1 : 0
                     isMask: true
                     
                     source: "qrc:/assets/checkmark.svg"
@@ -55,7 +53,14 @@ Flow
                             easing.type: Easing.InOutQuad
                         }
                     }
-                }
+                } 
+            }
+            
+            background: Rectangle
+            {
+                radius: Maui.Style.radiusV
+                color: enabled ? modelData : "transparent"
+                
             }
         }
     }

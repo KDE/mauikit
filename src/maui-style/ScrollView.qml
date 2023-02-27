@@ -69,7 +69,7 @@ T.ScrollView
     ScrollBar.vertical: ScrollBar 
     {
         parent: control
-        // width: visible ? implicitWidth : 0
+        width: visible ? implicitWidth : 0
         x: control.mirrored ? 0 : control.width - width - Maui.Style.space.small
         y: control.topPadding
         height: control.availableHeight

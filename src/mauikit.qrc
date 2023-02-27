@@ -85,5 +85,7 @@
         <file alias="ShadowedRectangle.qml">controls/ShadowedRectangle.qml</file>
         <file alias="Icon.qml">controls/Icon.qml</file>
         <file alias="ScrollColumn.qml">controls/ScrollColumn.qml</file>
+        <file alias="TabViewItem.qml">controls/TabViewItem.qml</file>
+        <file alias="SettingsPage.qml">controls/SettingsPage.qml</file>
     </qresource>
 </RCC>
