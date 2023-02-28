@@ -255,8 +255,6 @@ Item
             }
         }
     }
-    
-  
         
         ParallelAnimation
         {
@@ -331,11 +329,6 @@ Item
             
             onFinished: control.visible = false
         }
-        
-        
-        
-       
-        
         
         Maui.ToolBar
         {
@@ -450,7 +443,7 @@ Item
             Maui.ToolButtonMenu
             {
                 icon.name: "overflow-menu"
-                visible: content.length > 0
+                visible: control.hiddenActions.length > 0
                 Repeater
                 {
                     model:  control.hiddenActions

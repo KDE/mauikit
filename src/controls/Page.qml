@@ -573,7 +573,6 @@ T.Pane
                 id: _headerContent
                 anchors.left: parent.left
                 anchors.right: parent.right
-                children: header
             }              
         
         Column
@@ -581,7 +580,6 @@ T.Pane
             id: _footerContent
             anchors.left: parent.left
             anchors.right: parent.right
-            children: footer
         }
 
         Loader
@@ -829,6 +827,22 @@ T.Pane
 
     Component.onCompleted :
     {
+        if(footer)
+        {
+            _footerContent.data.push(footer)                   
+        }
+        
+        if(header)
+        {
+            let data = [header]            
+            
+            for(var i in _headerContent.data)
+            {
+                data.push(_headerContent.data[i])
+            }
+            _headerContent.data = data
+        }
+        
         var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
         control.headBar.farRightContent.push(obj)        
     }

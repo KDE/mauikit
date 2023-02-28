@@ -63,8 +63,7 @@ T.ComboBox
     readonly property bool responsive: Maui.Handy.isMobile
     
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
-    
-    
+        
     readonly property int preferredWidth : 200
     readonly property int preferredHeight : Maui.Style.rowHeight
     
@@ -137,9 +136,8 @@ T.ComboBox
     {        
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor) : "transparent"
-        
-        border.color: control.enabled ? ( control.editable && control.activeFocus ? Maui.Theme.highlightColor : color) : Maui.Theme.backgroundColor
+        color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
+
         
         MouseArea
         {

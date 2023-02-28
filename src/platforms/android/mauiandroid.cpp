@@ -145,7 +145,8 @@ void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
                                                   QAndroidJniObject::fromString(mimeType).object<jstring>(),
                                                   QAndroidJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
 
-        if (_env->ExceptionCheck()) {
+        if (_env->ExceptionCheck())
+        {
             qDebug() << "trying to share dialog << exception";
 
             _env->ExceptionClear();
