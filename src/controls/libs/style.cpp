@@ -108,8 +108,8 @@ Style::Style(QObject *parent) : QObject(parent)
 
     m_currentIconTheme = m_themeSettings->iconTheme();
     
-    m_h1Font.setPointSize(m_fontSizes->m_huge);
-    m_h1Font.setWeight(QFont::Bold);
+    m_h1Font.setPointSize(m_fontSizes->m_enormous);
+    m_h1Font.setWeight(QFont::Black);
     m_h1Font.setBold(true);
         
     m_h2Font.setPointSize(m_fontSizes->m_big);

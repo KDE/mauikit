@@ -131,8 +131,7 @@ Item
       id: _template
       width: Math.min(control.width * 0.7, layout.implicitWidth)
       
-      label1.font.pointSize: Maui.Style.fontSizes.enormous* 1.2            
-      label1.font.weight: Font.Black
+      label1.font: Maui.Style.h1Font
       label1.wrapMode: Text.Wrap
       label2.wrapMode: Text.Wrap
     }
