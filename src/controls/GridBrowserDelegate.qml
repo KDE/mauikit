@@ -41,8 +41,11 @@ Maui.ItemDelegate
     id: control
     
     isCurrentItem : GridView.isCurrentItem || checked
+    flat : !Maui.Handy.isMobile
     
-    padding: Maui.Style.space.small
+    implicitHeight: _template.implicitHeight + topPadding +bottomPadding
+    
+    padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium
     
     radius: Maui.Style.radiusV
@@ -118,8 +121,6 @@ Maui.ItemDelegate
 
     property alias imageWidth : _template.imageWidth
     property alias imageHeight : _template.imageHeight
-
-    property bool flat : !Maui.Handy.isMobile
     
     /**
      * contentDropped :

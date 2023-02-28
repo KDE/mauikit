@@ -19,8 +19,10 @@
 
 package com.kde.maui.tools;
 import android.util.Log;
-import android.support.v4.content.FileProvider;
-import android.support.v4.app.ShareCompat;
+
+import androidx.core.content.FileProvider;
+import androidx.core.app.ShareCompat;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,9 +30,7 @@ import android.content.IntentFilter;
 import android.Manifest;
 import android.net.Uri;
 import java.io.File;
-import android.provider.ContactsContract;
 import android.database.Cursor;
-import android.telephony.gsm.SmsManager;
 
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -53,13 +53,6 @@ public class SendIntent
         sendIntent.setType("text/plain");
         context.startActivity(Intent.createChooser(sendIntent, text));
     }
-
-    public static void sendSMS(Activity context, String tel, String subject, String message)
-    {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(tel, null, message, null, null);
-    }
-
 
     public static void sendUrl(Activity context, String text)
     {
@@ -135,15 +128,5 @@ public class SendIntent
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("audio/*");
         context.startActivityForResult(intent, READ_REQUEST_CODE);
-    }
-
-    public static void call(Activity context, String tel)
-    {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-//        callIntent.setPackage("com.android.phone");          // force native dialer  (Android < 5)
-        callIntent.setPackage("com.android.server.telecom"); // force native dialer  (Android >= 5)
-        callIntent.setData(Uri.parse("tel:" + tel));
-        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(callIntent);
     }
 }

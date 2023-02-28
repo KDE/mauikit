@@ -45,70 +45,48 @@
 #include <QApplication>
 #endif
 
-#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-#include <KSharedConfig>
-#include <KConfig>
-#include <KConfigGroup>
-#include <QFileSystemWatcher>
-#endif
+#include <MauiMan/formfactormanager.h>
+#include <MauiMan/accessibilitymanager.h>
 
 Handy *Handy::m_instance = nullptr;
 
-static const QUrl CONF_FILE = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/kdeglobals";
-
-#ifdef KSHAREDCONFIG_H
-static const auto confCheck = [](QString key, QVariant defaultValue) -> QVariant {
-    auto kconf = KSharedConfig::openConfig("kdeglobals");
-    const auto group = kconf->group("KDE");
-    if (group.hasKey(key))
-        return group.readEntry(key, defaultValue);
-
-    return defaultValue;
-};
-#endif
-
 Handy::Handy(QObject *parent)
     : QObject(parent)
-    , m_isTouch(Handy::isTouch())
-    , m_hasTransientTouchInput(false)
+    ,m_hasTransientTouchInput(false)
+    ,m_formFactor(new MauiMan::FormFactorManager(this))
+    ,m_accessibility(new MauiMan::AccessibilityManager(this))
 {
-#if (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-
-    auto configWatcher = new QFileSystemWatcher({CONF_FILE.toLocalFile()}, this);
-
-    m_singleClick = confCheck("SingleClick", m_singleClick).toBool();
-
-    connect(configWatcher, &QFileSystemWatcher::fileChanged, [&](QString)
+    qDebug() << "CREATING INSTANCE OF MAUI HANDY";
+    
+    connect(m_accessibility, &MauiMan::AccessibilityManager::singleClickChanged, [&](bool value)
     {
-        m_singleClick = confCheck("SingleClick", m_singleClick).toBool();
+        m_singleClick = value;
         Q_EMIT singleClickChanged();
     });
     
-#elif defined Q_OS_MAC || defined Q_OS_WIN32
-    m_singleClick = false;
-    Q_EMIT singleClickChanged();
+    m_singleClick = m_accessibility->singleClick();   
     
-    #endif
-    
-    #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
-    m_mobile = true;
-    #else
-    // Mostly for debug purposes and for platforms which are always mobile,
-    // such as Plasma Mobile
-    if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) 
-    {
-        m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
-    } else 
-    {
-        m_mobile = false;
-    }
-#endif
+// #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
 
-qDebug() << "CREATING INSTANCE OF MAUI HANDY";
+connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
+{    
+   m_ffactor = static_cast<FFactor>(value);
+   m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+   Q_EMIT formFactorChanged();
+   Q_EMIT isMobileChanged();
+});
+
+connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
+{    
+    m_isTouch = value;
+    Q_EMIT isTouchChanged();
+});
+
+m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
+m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+m_isTouch = m_formFactor->hasTouchscreen();
 
 
-if (m_isTouch)
-{
     connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win) 
     {
         if (win) 
@@ -116,22 +94,30 @@ if (m_isTouch)
             win->installEventFilter(this);
         }
     });
-}
+
 
 connect(qApp, &QCoreApplication::aboutToQuit, []()
 {
-    qDebug() << "Lets remove MauiApp singleton instance";
+    qDebug() << "Lets remove Handy singleton instance";
     delete m_instance;
     m_instance = nullptr;
 });
+}
 
+bool Handy::isTouch()
+{
+    return m_isTouch;
+}
+
+Handy::FFactor Handy::formFactor()
+{
+    return m_ffactor;
 }
 
 bool Handy::hasTransientTouchInput() const
 {
     return m_hasTransientTouchInput;
 }
-
 
 void Handy::setTransientTouchInput(bool touch)
 {
@@ -300,37 +286,14 @@ bool Handy::isIOS()
     return FMH::isIOS();
 }
 
-bool Handy::isTouch()
-{
-    #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
-   return true;
-    #else
-    
-   #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-   const auto touchDevices = QTouchDevice::devices();
-   const auto touchDeviceType = QTouchDevice::TouchScreen;
-   #else
-   const auto touchDevices = QInputDevice::devices();
-   const auto touchDeviceType = QInputDevice::DeviceType::TouchScreen;
-   #endif
-   
-   for (const auto &device : touchDevices) {
-       if (device->type() == touchDeviceType) {
-           return true;
-       }
-   }  
-#endif
-    return false;
-}
-
 bool Handy::hasKeyboard()
 {
-    return Platform::instance()->hasKeyboard();
+    return m_formFactor->hasKeyboard();
 }
 
 bool Handy::hasMouse()
 {
-    return Platform::instance()->hasMouse();
+    return m_formFactor->hasMouse();
 }
 
 bool Handy::isWindows()
@@ -344,7 +307,7 @@ bool Handy::isMac()
 }
 
 
-QString Handy::formatSize(const int &size)
+QString Handy::formatSize(quint64 size)
 {
     const QLocale locale;
     return locale.formattedDataSize(size);
@@ -383,16 +346,6 @@ void Handy::saveSettings(const QString &key, const QVariant &value, const QStrin
 QVariant Handy::loadSettings(const QString &key, const QString &group, const QVariant &defaultValue)
 {
     return UTIL::loadSettings(key, group, defaultValue);
-}
-
-void Handy::setIsMobile(bool mobile)
-{
-    if (mobile == m_mobile) {
-        return;
-    }
-
-    m_mobile = mobile;
-    Q_EMIT isMobileChanged();
 }
 
 bool Handy::isMobile() const

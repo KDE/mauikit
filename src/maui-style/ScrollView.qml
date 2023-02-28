@@ -36,11 +36,10 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Controls.impl 2.12
 import QtQuick.Templates 2.12 as T
 import org.mauikit.controls 1.3 as Maui
 
-T.ScrollView 
+T.ScrollView
 {
     id: control
 
@@ -54,33 +53,41 @@ T.ScrollView
     clip: false
         
     padding: 0
-    rightPadding: padding
+    rightPadding: padding + ScrollBar.vertical.width
     leftPadding: padding 
     topPadding: padding
-    bottomPadding: padding
+    bottomPadding: padding+ ScrollBar.horizontal.height
     
     property alias orientation : _wheelHandler.primaryOrientation
-    
-    data: Maui.WheelHandler 
+
+    data: Maui.WheelHandler
     {
         id: _wheelHandler
         target: control.contentItem
     }
-
-    ScrollBar.vertical: ScrollBar {
+    
+    ScrollBar.vertical: ScrollBar 
+    {
         parent: control
-        x: control.mirrored ? 0 : control.width - width
+        width: visible ? implicitWidth : 0
+        x: control.mirrored ? 0 : control.width - width - Maui.Style.space.small
         y: control.topPadding
         height: control.availableHeight
-        active: control.ScrollBar.horizontal.active
+        active: control.ScrollBar.vertical.active
+        policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AsNeeded
     }
 
-    ScrollBar.horizontal: ScrollBar {
+    ScrollBar.horizontal: ScrollBar
+    {
         parent: control
+        height: visible ? implicitHeight : 0
+        
         x: control.leftPadding
-        y: control.height - height
+        y: control.height - height -Maui.Style.space.small
         width: control.availableWidth
-        active: control.ScrollBar.vertical.active
+        active: control.ScrollBar.horizontal.active
+        policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AlwaysOff
+        
     }
     
     background: null

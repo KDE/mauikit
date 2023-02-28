@@ -1,28 +1,33 @@
 #include "style.h"
 #include <QCoreApplication>
 #include <QGuiApplication>
+#include <QIcon>
 
 #include <MauiMan/thememanager.h>
 #include <MauiMan/backgroundmanager.h>
 
+#ifdef Q_OS_ANDROID
+#include "mauiandroid.h"
+#endif
+
 Style *Style::m_instance = nullptr;
 
 Style::Style(QObject *parent) : QObject(parent)
-,m_defaultFont (QFont())
-,m_iconSizes (new GroupSizes(8,16, 22, 32, 48, 64, 128, this))
-,m_space( new GroupSizes(4, 6, 8, 16, 24, 32, 40, this))
-,m_fontSizes (new GroupSizes{uint(qRound (m_defaultFont.pointSize ()*0.7)),uint(qRound (m_defaultFont.pointSize ()*0.8)),uint(m_defaultFont.pointSize ()),uint(qRound (m_defaultFont.pointSize ()*1.1)),uint(qRound (m_defaultFont.pointSize ()*1.2)),uint(qRound (m_defaultFont.pointSize ()*1.3)),uint(qRound (m_defaultFont.pointSize ()*1.4)), this})
-,m_units(new Units(this))
-,m_defaultFontSize(m_defaultFont.pointSize ())
-,m_accentColor(QColor("#26c6da"))
-,m_themeSettings( new MauiMan::ThemeManager(this))
-,m_backgroundSettings( new MauiMan::BackgroundManager(this))
-{
+  ,m_defaultFont (QFont())
+  ,m_iconSizes (new GroupSizes(8,16, 22, 32, 48, 64, 128, this))
+  ,m_space( new GroupSizes(4, 6, 8, 16, 24, 32, 40, this))
+  ,m_fontSizes (new GroupSizes{uint(qRound (m_defaultFont.pointSize ()*0.7)),uint(qRound (m_defaultFont.pointSize ()*0.8)),uint(m_defaultFont.pointSize ()),uint(qRound (m_defaultFont.pointSize ()*1.1)),uint(qRound (m_defaultFont.pointSize ()*1.2)),uint(qRound (m_defaultFont.pointSize ()*1.3)),uint(qRound (m_defaultFont.pointSize ()*1.4)), this})
+  ,m_units(new Units(this))
+  ,m_defaultFontSize(m_defaultFont.pointSize ())
+  ,m_accentColor(QColor("#26c6da"))
+  ,m_themeSettings( new MauiMan::ThemeManager(this))
+  ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
+{   
     connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         delete m_instance;
         m_instance = nullptr;
-    });    
+    });
     
     connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
     {
@@ -51,6 +56,25 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT this->iconSizeChanged(m_iconSize);
     });
     
+    connect(m_themeSettings, &MauiMan::ThemeManager::paddingSizeChanged, [this](uint size)
+    {
+        m_defaultPadding = size;
+        Q_EMIT this->defaultPaddingChanged();
+    });
+    
+    connect(m_themeSettings, &MauiMan::ThemeManager::marginSizeChanged, [this](uint size)
+    {
+        qDebug() << "ContentMARGINS CHANGED" << size;
+        m_contentMargins = size;
+        Q_EMIT this->contentMarginsChanged();
+    });
+    
+    connect(m_themeSettings, &MauiMan::ThemeManager::spacingSizeChanged, [this](uint size)
+    {
+        m_defaultSpacing = size;
+        Q_EMIT this->defaultSpacingChanged();
+    });
+
     connect(m_themeSettings, &MauiMan::ThemeManager::enableEffectsChanged, [this](bool value)
     {
         m_enableEffects = value;
@@ -61,12 +85,44 @@ Style::Style(QObject *parent) : QObject(parent)
     {
         m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
         Q_EMIT this->adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
-    });     
+    });
+
+   if(MauiManUtils::isMauiSession())
+   {
+        connect(m_themeSettings, &MauiMan::ThemeManager::iconThemeChanged, [this](QString name)
+        {
+            qDebug() << "Ask to change the icon theme";
+            m_currentIconTheme = name;
+            QIcon::setThemeName(m_currentIconTheme);
+            Q_EMIT currentIconThemeChanged(m_currentIconTheme);
+        });
+   }
     
     m_radiusV = m_themeSettings->borderRadius();
     m_iconSize = m_themeSettings->iconSize();
     m_accentColor = m_themeSettings->accentColor();
-    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
+    
+    m_contentMargins = m_themeSettings->marginSize();
+    m_defaultPadding = m_themeSettings->paddingSize();
+    m_defaultSpacing = m_themeSettings->spacingSize();
+
+    m_currentIconTheme = m_themeSettings->iconTheme();
+    
+    m_h1Font.setPointSize(m_fontSizes->m_enormous);
+    m_h1Font.setWeight(QFont::Black);
+    m_h1Font.setBold(true);
+        
+    m_h2Font.setPointSize(m_fontSizes->m_big);
+    m_h2Font.setWeight(QFont::DemiBold);
+    // m_h2Font.setBold(false);
+    
+#ifdef Q_OS_ANDROID
+    MAUIAndroid android;
+    m_styleType = android.darkModeEnabled() ? StyleType::Dark : StyleType::Light;
+#else
+    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
+#endif
+    
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
     m_enableEffects = m_themeSettings->enableEffects();
 }
@@ -120,10 +176,10 @@ int findClosest(int arr[], int n, int target)
             // to mid, return closest of two
             if (mid > 0 && target > arr[mid - 1])
                 return getClosest(arr[mid - 1],
-                                  arr[mid], target);
-                
-                /* Repeat for left half */
-                j = mid;
+                        arr[mid], target);
+
+            /* Repeat for left half */
+            j = mid;
         }
         
         // If target is greater than mid
@@ -131,8 +187,8 @@ int findClosest(int arr[], int n, int target)
             if (mid < n - 1 && target < arr[mid + 1])
                 return getClosest(arr[mid],
                                   arr[mid + 1], target);
-                // update i
-                i = mid + 1;
+            // update i
+            i = mid + 1;
         }
     }
     
@@ -163,13 +219,13 @@ int Style::mapToIconSizes(const int &size)
 }
 
 GroupSizes::GroupSizes(const uint tiny, const uint small, const uint medium, const uint big, const uint large, const uint huge, const uint enormous, QObject *parent) : QObject(parent)
-,m_tiny(tiny)
-,m_small(small)
-,m_medium(medium)
-,m_big(big)
-,m_large(large)
-,m_huge(huge)
-,m_enormous(enormous)
+  ,m_tiny(tiny)
+  ,m_small(small)
+  ,m_medium(medium)
+  ,m_big(big)
+  ,m_large(large)
+  ,m_huge(huge)
+  ,m_enormous(enormous)
 
 {
     
@@ -196,7 +252,7 @@ void Style::unsetAdaptiveColorSchemeSource()
 {
     m_adaptiveColorSchemeSource_blocked = false;
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
-    Q_EMIT adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);    
+    Q_EMIT adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
 }
 
 QColor Style::accentColor() const
@@ -243,19 +299,29 @@ void Style::setStyleType(const Style::StyleType &type)
 void Style::unsetStyeType()
 {
     m_styleType_blocked = false;
-    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());    
+    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
     Q_EMIT styleTypeChanged(m_styleType);
 }
 
 Units::Units(QObject *parent) : QObject(parent)
-, m_fontMetrics(QFontMetricsF(QGuiApplication::font()))
-, m_gridUnit(m_fontMetrics.height())    
-, m_veryLongDuration(400)
-, m_longDuration(200)
-, m_shortDuration(100)
-, m_veryShortDuration(50)
-, m_humanMoment(2000)
-, m_toolTipDelay(700)
+  , m_fontMetrics(QFontMetricsF(QGuiApplication::font()))
+  , m_gridUnit(m_fontMetrics.height())
+  , m_veryLongDuration(400)
+  , m_longDuration(200)
+  , m_shortDuration(100)
+  , m_veryShortDuration(50)
+  , m_humanMoment(2000)
+  , m_toolTipDelay(700)
 {
     
+}
+
+uint Style::iconSize() const
+{
+    return m_iconSize;
+}
+
+QString Style::currentIconTheme() const
+{
+    return m_currentIconTheme;
 }

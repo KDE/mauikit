@@ -34,8 +34,8 @@ T.RadioDelegate {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
     hoverEnabled: true
 
-    padding: 4
-    spacing: 4
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.defaultSpacing
     rightPadding: 20
 
     contentItem: Label 

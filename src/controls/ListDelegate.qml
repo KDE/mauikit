@@ -38,7 +38,9 @@ Maui.ItemDelegate
     
     implicitHeight: _template.implicitHeight + topPadding + bottomPadding
     
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium
+    
     /**
       * labelVisible : bool
       */
@@ -85,6 +87,8 @@ Maui.ItemDelegate
     Maui.ListItemTemplate
     {
         id: _template
+        spacing: control.spacing
+        
         anchors.fill: parent
         labelsVisible: control.labelVisible
         hovered: control.hovered      

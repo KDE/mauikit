@@ -152,11 +152,10 @@ class CSDControls : public QObject
   Q_OBJECT
   Q_DISABLE_COPY(CSDControls)
   
-  Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD NOTIFY enableCSDChanged)
+  Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD RESET resetEnableCSD NOTIFY enableCSDChanged)
   Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
   Q_PROPERTY(QString styleName READ styleName NOTIFY styleNameChanged FINAL)
-  Q_PROPERTY(QStringList leftWindowControls MEMBER m_leftWindowControls NOTIFY leftWindowControlsChanged FINAL)
-  Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls NOTIFY rightWindowControlsChanged FINAL)
+  Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls FINAL)
 
 public:
   typedef QHash<CSDButton::CSDButtonType, CSDButton*> CSDButtons;
@@ -177,6 +176,8 @@ public:
      * @param value
      */
   void setEnableCSD(const bool &value);
+  void resetEnableCSD();
+  
   QUrl source() const;
   QString styleName() const;
   
@@ -191,15 +192,12 @@ private:
   
   QUrl m_source;
   QString m_styleName = "Nitrux";
-  QStringList m_leftWindowControls;
   QStringList m_rightWindowControls;
 
   void getWindowControlsSettings();
   void setStyle();
 
 signals:
-  void leftWindowControlsChanged();
-  void rightWindowControlsChanged();
   void enableCSDChanged();
   void styleNameChanged();
   void sourceChanged();
@@ -293,6 +291,8 @@ public:
 
 private:
   static MauiApp *m_instance;
+  MauiMan::ThemeManager *m_themeSettings;
+
   MauiApp();
   CSDControls * m_controls;
   QString m_iconName;
@@ -304,6 +304,7 @@ signals:
   void iconNameChanged();
   void donationPageChanged();
   void translucencyAvailableChanged(bool translucencyAvailable);
+  void currentIconThemeChanged(QString currentIconTheme);
 };
 
 QML_DECLARE_TYPEINFO(MauiApp, QML_HAS_ATTACHED_PROPERTIES)

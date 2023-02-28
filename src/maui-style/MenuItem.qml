@@ -55,17 +55,21 @@ T.MenuItem
     
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
+    width: implicitWidth
+    
     implicitHeight: Math.floor(Math.max(preferredHeight,
                                        implicitContentHeight + topPadding + bottomPadding,
                                        implicitIndicatorHeight + topPadding + bottomPadding) )
 
-    padding: Maui.Style.space.medium
-    spacing: Maui.Style.space.small
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
     
     icon.color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+    
+    property bool flat: !Maui.Handy.isMobile
     
     indicator: CheckIndicator
     {
@@ -85,12 +89,7 @@ T.MenuItem
         color: control.icon.color
         height: 10
         width: 10
-        source: "qrc:/assets/arrow-right.svg"
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+        source: "qrc:/assets/arrow-right.svg"        
     }
     
     contentItem: IconLabel
@@ -110,23 +109,18 @@ T.MenuItem
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.icon.color
-        
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+        color: control.icon.color        
     }
 
     background: Rectangle
     {               
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor) : "transparent"
-        border.color: !control.enabled ? Maui.Theme.disabledTextColor : "transparent"
+        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)) : "transparent"
 
         Behavior on color
         {
+            enabled: !control.flat
             Maui.ColorTransition{}
         }
     }

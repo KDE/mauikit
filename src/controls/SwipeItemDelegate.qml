@@ -36,8 +36,8 @@ import org.mauikit.controls 1.3 as Maui
 Maui.ItemDelegate
 {
     id: control
-    spacing: Maui.Style.space.medium
-    
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.defaultSpacing    
     isCurrentItem : ListView.isCurrentItem
 
     /**

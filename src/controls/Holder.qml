@@ -114,7 +114,7 @@ Item
   {
     id: _layout
     anchors.centerIn: parent
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.defaultSpacing
     
     Loader
     {
@@ -125,46 +125,16 @@ Item
       asynchronous: true
       sourceComponent: isGif ? animComponent : imgComponent
     }
-    /*
-     * Item
-     * {
-     *    width: height
-     *    height: Maui.Style.space.medium
-  }
-  */
-    
+   
     Maui.ListItemTemplate
     {
       id: _template
       width: Math.min(control.width * 0.7, layout.implicitWidth)
       
-      label1.font.pointSize: Maui.Style.fontSizes.enormous* 1.2            
-//       label1.font.bold: true
-      label1.font.weight: Font.Black
+      label1.font: Maui.Style.h1Font
+      label1.wrapMode: Text.Wrap
       label2.wrapMode: Text.Wrap
     }
-    //Label
-    //{
-    //id: _label1
-    //width: Math.min(control.width * 0.7, implicitWidth)
-    //opacity: 0.7
-    
-    
-    //elide: Text.ElideRight
-    //color: Maui.Theme.textColor
-    //wrapMode: Text.Wrap
-    //}
-    
-    //Label
-    //{
-    //id: _label2
-    //width: Math.min(control.width * 0.7, implicitWidth)
-    //opacity: 0.5
-    //elide: Text.ElideRight
-    //color: Maui.Theme.textColor
-    //wrapMode: Text.Wrap
-    //}
-    
     Item{height: Maui.Style.space.medium; width: height}
     
     Repeater

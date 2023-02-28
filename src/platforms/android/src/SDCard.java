@@ -2,7 +2,7 @@ package com.kde.maui.tools;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 

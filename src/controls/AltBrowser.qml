@@ -97,9 +97,9 @@ Maui.Page
     property alias holder : _holder
 
     /*!
-      \qmlproperty GridView AltBrowser::gridView
+      \qmlproperty GridBrowser AltBrowser::gridView
 
-      The GridView used as the grid view alternative.
+      The GridBrowser used as the grid view alternative.
     */
     readonly property alias gridView : _gridView
 
@@ -112,9 +112,9 @@ Maui.Page
 
     readonly property int count : currentView.count
 
-    flickable: control.viewType === AltBrowser.ViewType.List ? _listView.flickable : _gridView.flickable
+    flickable:  currentView.flickable
 
-    Maui.GridView
+    Maui.GridBrowser
     {
         id: _gridView
         focus: control.focus

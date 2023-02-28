@@ -32,9 +32,9 @@ T.BusyIndicator
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
 
-    padding: 6
-    spacing: Maui.Style.space.medium
-
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.defaultSpacing    
+    
     hoverEnabled: true
 
     contentItem: Maui.Icon

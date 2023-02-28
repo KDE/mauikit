@@ -61,9 +61,15 @@ T.SwipeView
         boundsBehavior: Flickable.StopAtBounds
 
         highlightRangeMode: ListView.StrictlyEnforceRange
+        highlightMoveDuration: 0
+        highlightFollowsCurrentItem: true
+        highlightResizeDuration: 0
+        highlightMoveVelocity: -1
+        highlightResizeVelocity: -1
+        
         preferredHighlightBegin: 0
-        preferredHighlightEnd: 0
-        highlightMoveDuration: 250
+        preferredHighlightEnd: width
+        
         maximumFlickVelocity: 4 * (control.orientation === Qt.Horizontal ? width : height)
     }
     

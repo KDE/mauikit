@@ -34,7 +34,7 @@ Dialog 1.0 Dialog.qml
 Popup 1.0 Popup.qml
 TextField 1.0 TextField.qml
 Badge 1.0 Badge.qml
-GridView 1.0 GridView.qml
+GridBrowser 1.0 GridBrowser.qml
 Terminal 1.0 Terminal.qml
 Holder 1.0 Holder.qml
 TabBar 1.0 TabBar.qml
@@ -57,45 +57,46 @@ AppViewLoader 1.1 AppViewLoader.qml
 AltBrowser 1.1 AltBrowser.qml
 SelectionBar 1.1 SelectionBar.qml
 
-ShareDialog 1.1 labs/ShareDialog.qml
-ActionToolBar 1.1 labs/ActionToolBar.qml
-ToolButtonAction 1.1 labs/ToolButtonAction.qml
-ImageViewer 1.1 labs/ImageViewer.qml
-AnimatedImageViewer 1.1 labs/AnimatedImageViewer.qml
+ActionToolBar 1.1 ActionToolBar.qml
+ToolButtonAction 1.1 ToolButtonAction.qml
+ImageViewer 1.1 ImageViewer.qml
+AnimatedImageViewer 1.1 AnimatedImageViewer.qml
 
-SettingsDialog 1.1 labs/SettingsDialog.qml
-SettingsSection 1.1 labs/SettingsSection.qml
-SettingTemplate 1.2 labs/SettingTemplate.qml
+SettingsDialog 1.1 SettingsDialog.qml
+SectionGroup 1.1 SectionGroup.qml
+SectionItem 1.2 SectionItem.qml
 
-AlternateListItem 1.2 labs/AlternateListItem.qml
-Separator 1.2 labs/Separator.qml
+Separator 1.2 Separator.qml
 
 TerminalInputArea 1.3 private/TerminalInputArea.qml
 
-CollageItem 1.3 labs/CollageItem.qml
-GalleryRollItem 1.3 labs/GalleryRollItem
-FileListingDialog 1.3 labs/FileListingDialog.qml
-SectionDropDown 1.3 labs/SectionDropDown.qml
-IconItem 1.3 labs/IconItem.qml
-DoodleCanvas 1.3 labs/DoodleCanvas.qml
-Doodle 1.3 labs/Doodle.qml
-FlexListItem 1.3 labs/FlexListItem.qml
-IconItem 1.3 labs/IconItem.qml
-Chip 1.3 labs/Chip.qml
-ContextualMenu 1.3 labs/ContextualMenu.qml
-ComboBox 1.3 labs/ComboBox.qml
-FontsComboBox 1.3 labs/FontsComboBox.qml
-TabView 1.3 labs/TabView.qml
+CollageItem 1.3 CollageItem.qml
+GalleryRollItem 1.3 GalleryRollItem
+FileListingDialog 1.3 FileListingDialog.qml
+SectionHeader 1.3 SectionHeader.qml
+IconItem 1.3 IconItem.qml
+DoodleCanvas 1.3 DoodleCanvas.qml
+Doodle 1.3 Doodle.qml
+FlexListItem 1.3 FlexListItem.qml
+Chip 1.3 Chip.qml
+ContextualMenu 1.3 ContextualMenu.qml
+ComboBox 1.3 ComboBox.qml
+FontsComboBox 1.3 FontsComboBox.qml
+TabView 1.3 TabView.qml
 TabViewButton 1.3 TabViewButton.qml
 CloseButton 1.3 CloseButton.qml
 ProgressIndicator 1.3 ProgressIndicator.qml
-ColorsRow 1.3 labs/ColorsRow.qml
+ColorsRow 1.3 ColorsRow.qml
 
 SearchField 1.3 SearchField.qml
 PasswordField 1.3 PasswordField.qml
 
-StackView 1.3 labs/StackView.qml
-ColorTransition 1.3 labs/ColorTransition.qml
+StackView 1.3 StackView.qml
+ColorTransition 1.3 ColorTransition.qml
+
+ScrollColumn 1.3 ScrollColumn.qml
+SettingsPage 1.3 SettingsPage.qml
+TabViewItem 1.3 TabViewItem.qml
 
 Icon 1.0 Icon.qml
 ShadowedRectangle 1.0 ShadowedRectangle.qml

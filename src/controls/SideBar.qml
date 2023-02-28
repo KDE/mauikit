@@ -33,7 +33,7 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.Control
+T.Pane
 {
   id: control
   
@@ -62,7 +62,11 @@ T.Control
      */
     property bool collapsed: false    
     property bool resizeable : !Maui.Handy.isMobile
-    
+  /*!
+     *   If when collapsed the sidebar should automatically hide or stay in place
+     */
+    property bool autoHide: false
+    property bool autoShow: true
     
     /*!
      *      preferredWidth : int
@@ -86,8 +90,7 @@ T.Control
     topPadding: 0
     bottomPadding: 0
     leftPadding: 0
-    rightPadding: 0
-    
+    rightPadding: 0    
     
     signal opened()
     signal closed()    
@@ -105,6 +108,7 @@ T.Control
     QtObject
     {
       id: _private
+      property bool initial: true
       property double position       
       property int resizeValue
       property int finalWidth : control.preferredWidth + _dragHandler.centroid.position.x
@@ -119,7 +123,8 @@ T.Control
       //       
       Binding on position
       {
-        value: control.enabled ? (control.collapsed ? 0 : 1) : 0
+        when: control.autoCollapse
+        value: control.enabled ? (!control.autoShow ? 0 : (control.collapsed && control.autoHide ? 0 : 1)) : 0
         restoreMode: Binding.RestoreBindingOrValue
       }
       
@@ -129,7 +134,7 @@ T.Control
         
         NumberAnimation
         {
-          duration: Maui.Style.units.longDuration
+          duration: Maui.Style.units.shortDuration
           easing.type: Easing.InOutQuad
         }
       }
@@ -139,11 +144,19 @@ T.Control
     {
       if(control.collapsed || !control.enabled)
       {
-        control.close()
+if(control.autoHide)
+        {
+control.close()
+}
       }
       else
       {
-        control.open()
+        
+        if(control.autoShow)
+        {
+         control.open()
+        }
+        
       }
     }
     
@@ -157,31 +170,7 @@ T.Control
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right        
-      }     
-      
-      Loader
-      {
-        parent: control.parent
-        anchors.leftMargin: control.width
-        anchors.fill: parent
-        active: control.collapsed && control.position === 1
-        asynchronous: true
-        
-        sourceComponent: MouseArea
-        {
-          id: _overlayMouseArea
-          
-          
-          onClicked: control.close()
-          
-          Rectangle
-          {
-            anchors.fill: parent
-            color: "#333"
-            opacity : 0.5
-          }
-        }
-      }
+      }        
       
       Loader
       {
@@ -238,7 +227,7 @@ T.Control
       {
         visible: control.resizeable
         height: parent.height
-        width : 10
+        width : 6
         anchors.right: parent.right
         color:  _dragHandler.active ? Maui.Theme.highlightColor : "transparent"
                 
@@ -291,7 +280,7 @@ T.Control
         {
           Maui.ColorTransition{}
         }
-      }           
+      }   
     }    
     
     function open()

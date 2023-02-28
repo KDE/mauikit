@@ -190,6 +190,10 @@ Item
     property alias header : _listView.header
     property alias footer : _listView.footer
     
+    property alias availableWidth: _listView.width
+    
+    property alias availableHeight: _listView.height
+    
     /**
      * itemsSelected :
      */
@@ -220,7 +224,7 @@ Item
         clip: control.clip
         // visible: !_holder.visible
         focus: true
-        padding: Maui.Style.space.medium
+        padding: Maui.Style.contentMargins
         orientation: _listView.orientation
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
@@ -234,7 +238,8 @@ Item
             
             clip: control.clip
             
-            spacing: control.enableLassoSelection ? Maui.Style.space.medium : Maui.Style.space.small
+            spacing: Maui.Style.defaultSpacing
+            
             snapMode: ListView.NoSnap
             
             
@@ -244,7 +249,7 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
             
-            interactive: Maui.Handy.hasTransientTouchInput /*&& (control.selectionMode ? _listView.position.x > 84 : true)*/
+            interactive: Maui.Handy.isTouch
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0

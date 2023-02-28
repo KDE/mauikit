@@ -22,14 +22,16 @@ T.TabButton
     
     opacity: enabled ? 1 : 0.5
     
-    implicitWidth: implicitContentWidth + leftPadding + rightPadding
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+        property int preferredHeight : Maui.Style.rowHeight
+
     
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+        implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+
     hoverEnabled: !Maui.Handy.isMobile
     
-    spacing: Maui.Style.space.small
-    
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium   
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
@@ -90,13 +92,13 @@ T.TabButton
             Row
             {
                 id: _leftContent
-                Layout.fillHeight: true                
             }
             
             Label
             {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                opacity: control.checked || control.hovered ? 1 : 0.7
                 
                 text: control.text
                 
@@ -109,7 +111,6 @@ T.TabButton
             Row
             {
                 id: _rightContent
-                Layout.fillHeight: true                
             }            
             
             Loader
@@ -118,11 +119,13 @@ T.TabButton
                 active: control.closeButtonVisible
                 
                 Layout.preferredWidth: height
-                Layout.fillHeight: true
                 
                 sourceComponent: Maui.CloseButton
                 {
                     opacity: Maui.Handy.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
+                    padding: 0
+                    height: 16
+                    width: 16
                     
                     onClicked: control.closeClicked()
                     

@@ -63,16 +63,15 @@ T.ComboBox
     readonly property bool responsive: Maui.Handy.isMobile
     
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
-    
-    
+        
     readonly property int preferredWidth : 200
     readonly property int preferredHeight : Maui.Style.rowHeight
     
     implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)    
-    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+    implicitHeight: Math.max(preferredHeight, implicitContentHeight + topPadding + bottomPadding)
         
-    spacing: Maui.Style.space.small
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium    
     
            delegate: MenuItem
     {
@@ -82,8 +81,7 @@ T.ComboBox
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
         Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
-        Maui.Theme.inherit: control.Maui.Theme.inherit
-        
+        Maui.Theme.inherit: control.Maui.Theme.inherit        
     }
     
     indicator: Maui.Icon
@@ -130,17 +128,16 @@ T.ComboBox
             height: visible ? Maui.Style.iconSize : 0
             width: height
             color: Maui.Theme.textColor
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
     
     background: Rectangle
-    {
-        
+    {        
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor) : "transparent"
-        
-        border.color: control.enabled ? ( control.editable && control.activeFocus ? Maui.Theme.highlightColor : color) : Maui.Theme.backgroundColor
+        color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
+
         
         MouseArea
         {
@@ -201,8 +198,8 @@ T.ComboBox
         
         transformOrigin: Item.Top
         
-        spacing: Maui.Style.space.medium 
-        padding: spacing
+        padding: Maui.Style.defaultPadding
+        spacing: Maui.Style.defaultSpacing    
         
         margins: Maui.Style.space.medium    
         

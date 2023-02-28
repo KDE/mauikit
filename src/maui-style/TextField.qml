@@ -59,9 +59,11 @@ T.TextField
     horizontalAlignment: Text.AlignLeft
     
     padding: 0
+    property int spacing: Maui.Style.defaultSpacing
+    
     
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
-    rightPadding: _actionsLayoutLoader.implicitWidth + Maui.Style.space.medium
+    rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
     
     selectByMouse: !Maui.Handy.isMobile
     renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
@@ -69,6 +71,7 @@ T.TextField
     persistentSelection: true
     
     wrapMode: TextInput.NoWrap
+
     /**
      * menu : Menu
      */
@@ -80,6 +83,8 @@ T.TextField
     property list<Action> actions
     
     property alias icon : _icon
+
+    property alias rightContent : _rightLayout.data
     
     /**
      * cleared
@@ -133,6 +138,7 @@ T.TextField
         id: _layout
        anchors.fill: parent   
             anchors.leftMargin: Maui.Style.space.medium
+            spacing: control.spacing 
             
         Maui.Icon
         {
@@ -141,8 +147,14 @@ T.TextField
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color   
-        }    
-        
+        }
+
+        Item
+        {
+           Layout.fillWidth: true
+           visible: !placeholder.visible
+        }
+
         Label
         {
             id: placeholder
@@ -156,7 +168,7 @@ T.TextField
             wrapMode: Text.NoWrap
             
             visible: opacity > 0
-            opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.4 : 0  
+            opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0  
                        
             
             Behavior on opacity 
@@ -169,17 +181,21 @@ T.TextField
             }  
         }        
         
+        Row
+        {
+            id: _rightLayout
+            height: parent.height
+            spacing: control.spacing 
         Loader
         {
             id: _actionsLayoutLoader
             asynchronous: true
-            Layout.fillHeight: true
-            Layout.alignment: Qt.AlignRight
-            
+            height: parent.height
+
             sourceComponent: Row
             {
                 z: parent.z + 1
-                spacing: Maui.Style.space.medium    
+                spacing: control.spacing 
                 
                 ToolButton
                 {
@@ -212,7 +228,7 @@ T.TextField
                 }
             }
         }
-        
+        }
     }
     
     

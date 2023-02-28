@@ -139,7 +139,6 @@ signals:
     // AbstractPlatform interface
 public slots:
     bool darkModeEnabled() override final;
-    static void darkModeEnabledChangedJNI();
 };
 
 //namespace PATHS

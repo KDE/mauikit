@@ -1,0 +1,208 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-02-28 00:57+0000\n"
+"PO-Revision-Date: 2022-11-14 22:56-0800\n"
+"Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
+#: src/controls/NewDialog.qml:27
+#, kde-format
+msgid "Accept"
+msgstr ""
+
+#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
+#, kde-format
+msgid "Cancel"
+msgstr ""
+
+#: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
+#, kde-format
+msgid "Highlighter"
+msgstr ""
+
+#: src/controls/Doodle.qml:137
+#, kde-format
+msgid "Marker"
+msgstr ""
+
+#: src/controls/Doodle.qml:159
+#, kde-format
+msgid "Eraser"
+msgstr ""
+
+#: src/controls/Doodle.qml:174
+#, kde-format
+msgid "Color"
+msgstr ""
+
+#: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
+#, kde-format
+msgid "Opacity"
+msgstr ""
+
+#: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
+#, kde-format
+msgid "Size"
+msgstr ""
+
+#: src/controls/ImageViewer.qml:177
+#, kde-format
+msgid "Oops!"
+msgstr ""
+
+#: src/controls/ImageViewer.qml:178
+#, kde-format
+msgid "The image could not be loaded."
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:108
+#, kde-format
+msgid "Authors"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:154
+#, kde-format
+msgid "Translators"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:196
+#, kde-format
+msgid "Credits"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:245
+#, kde-format
+msgid "Licenses"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:276
+#, kde-format
+msgid "Components"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:314
+#, kde-format
+msgid "Links"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:330
+#, kde-format
+msgid "Reports"
+msgstr ""
+
+#: src/controls/private/AboutDialog.qml:337
+#, kde-format
+msgid "Home Page"
+msgstr ""
+
+#: src/controls/SettingsPage.qml:10
+#, kde-format
+msgid "Settings"
+msgstr ""
+
+#: src/controls/ShareDialogLinux.qml:59
+#, kde-format
+msgid "Share with"
+msgstr ""
+
+#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#, kde-format
+msgid "Close Split"
+msgstr ""
+
+#: src/controls/TabView.qml:113
+#, kde-format
+msgid "Open"
+msgstr ""
+
+#: src/controls/TabView.qml:124
+#, kde-format
+msgid "Duplicate"
+msgstr ""
+
+#: src/controls/TabView.qml:134
+#, kde-format
+msgid "Close"
+msgstr ""
+
+#: src/controls/TabView.qml:144
+#, kde-format
+msgid "Close Other"
+msgstr ""
+
+#: src/controls/TabView.qml:153
+#, kde-format
+msgid "Close All"
+msgstr ""
+
+#: src/maui-style/TextField.qml:241
+#, kde-format
+msgid "Copy"
+msgstr ""
+
+#: src/maui-style/TextField.qml:248
+#, kde-format
+msgid "Cut"
+msgstr ""
+
+#: src/maui-style/TextField.qml:255
+#, kde-format
+msgid "Paste"
+msgstr ""
+
+#: src/maui-style/TextField.qml:265
+#, kde-format
+msgid "Select All"
+msgstr ""
+
+#: src/maui-style/TextField.qml:272
+#, kde-format
+msgid "Undo"
+msgstr ""
+
+#: src/maui-style/TextField.qml:279
+#, kde-format
+msgid "Redo"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:46
+#, kde-format
+msgid "Multi-adaptable user interfaces."
+msgstr ""
+
+#: src/utils/mauiapp.cpp:67
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:68
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:73
+#, kde-format
+msgid "KDE Frameworks"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:75
+#, kde-format
+msgid "MauiKit Frameworks"
+msgstr ""
+
+#: src/utils/mauiapp.cpp:78
+#, kde-format
+msgid "Luv Icon Theme"
+msgstr ""

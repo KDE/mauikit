@@ -42,12 +42,15 @@ Maui.ItemDelegate
     id: control
     focus: true
     radius: Maui.Style.radiusV
-
+    flat : !Maui.Handy.isMobile
+    
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
     isCurrentItem : ListView.isCurrentItem || checked
-    padding: Maui.Style.space.medium
-
+    
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium
+    
     /**
       * content : ListItemTemplate.data
       */
@@ -136,7 +139,6 @@ Maui.ItemDelegate
 
     property alias layout : _layout
 
-    property bool flat : false
     /**
       * contentDropped :
       */
@@ -151,8 +153,8 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-        color: control.flat || !control.enabled ? "transparent" : (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : Maui.Theme.alternateBackgroundColor))
-
+      color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
+      
         radius: control.radius
 
         Rectangle
@@ -171,7 +173,8 @@ Maui.ItemDelegate
 
         Behavior on color
         {
-           Maui.ColorTransition{}
+          enabled: !control.flat
+          Maui.ColorTransition{}
         }
     }
 
@@ -240,6 +243,9 @@ Maui.ItemDelegate
             id: _template
             Layout.fillHeight: true
             Layout.fillWidth: true
+            
+            spacing: control.spacing
+            
             hovered: control.hovered
             isCurrentItem : control.isCurrentItem
             highlighted: control.containsPress 

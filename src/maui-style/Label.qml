@@ -32,6 +32,7 @@ T.Label
     verticalAlignment: lineCount > 1 ? Text.AlignTop : Text.AlignVCenter
 
     activeFocusOnTab: false
+    focus: false
     //Text.NativeRendering is broken on non integer pixel ratios
     renderType: Window.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
   
@@ -53,9 +54,11 @@ T.Label
 
     Accessible.role: Accessible.StaticText
     Accessible.name: text
-    
-    Behavior on color
+        
+    MouseArea
     {
-        Maui.ColorTransition{}
+        anchors.fill: parent
+        cursorShape: control.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
+        acceptedButtons: Qt.NoButton // Not actually accepting clicks, just changing the cursor
     }
 }

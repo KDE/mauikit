@@ -38,21 +38,10 @@ Maui.Dialog
         
         Maui.Theme.inherit: false
         Maui.Theme.colorSet: Maui.Theme.Complementary
-        /**
-         * mainHeader : AlternateListItem
-         */
+       
         property alias mainHeader : _header
         
-        Maui.ImageColors
-        {
-            id: _imgColors
-            source: Maui.App.iconName
-            onPaletteChanged:
-            {
-                console.log(_imgColors.average)
-            }
-        }
-        
+     
         Control
         {
             id: _header
@@ -73,7 +62,6 @@ Maui.Dialog
                 isMask: false
                 
                 spacing: Maui.Style.space.big
-                label1.color: _imgColors.foreground
                 label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 label1.text: Maui.App.about.displayName
                 label1.font.weight: Font.Black
@@ -86,18 +74,22 @@ Maui.Dialog
                 leftLabels.spacing: Maui.Style.space.medium
                 leftLabels.data: [
                 
-                TextArea
+                Label
                 {
                     Maui.Theme.inherit: true
                     Layout.fillWidth: true
-                    background: null
-                    readOnly: true
-                    text:   Maui.App.about.version + " " + Maui.App.about.otherText
+                    text: Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
-                    padding: 0
                     color: _div1.label1.color
+                    
+                    MouseArea
+                    {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onDoubleClicked: Maui.Handy.copyTextToClipboard(parent.text)
+                    }
                 }                
                 ]
             }            
@@ -110,10 +102,12 @@ Maui.Dialog
             implicitHeight: Maui.Style.space.big
         }
         
-        Maui.SettingTemplate
+        Maui.SectionItem
         {
             id: _authorsSection
             label1.text: i18nd("mauikit", "Authors")
+            visible: Maui.App.about.authors.length > 0
+            // flat: false
             // label2.text: Maui.App.about.copyrightStatement
             
  iconSource: "view-media-artist"
@@ -122,8 +116,9 @@ Maui.Dialog
                         
             Column
             {
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
+                opacity: 0.8
                 
                 Repeater
                 {
@@ -135,9 +130,9 @@ Maui.Dialog
                        
                         width: parent.width
                         
-                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
-                        
+                        // label1.linkColor: Maui.Theme.textColor
                         label3.text: modelData.task
                         
                         Connections
@@ -153,20 +148,21 @@ Maui.Dialog
             }
         }
         
-        Maui.SettingTemplate
+        Maui.SectionItem
         {
             id: _translatorsSection
             label1.text: i18nd("mauikit", "Translators")
-            // label2.text: Maui.App.about.copyrightStatement
-            
+            visible: Maui.App.about.translators.length > 0
+            // flat: false
                         iconSource: "folder-language"
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
           Column
             {
                 id: _translators
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
+                opacity: 0.8
                 
                 Repeater
                 {
@@ -178,7 +174,7 @@ Maui.Dialog
                                                 
                         width: parent.width
                         
-                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
+                        label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name 
                         label1.textFormat: Text.AutoText
                                                 label3.text: modelData.task
                         Connections
@@ -194,18 +190,21 @@ Maui.Dialog
             }
         }
         
-        Maui.SettingTemplate
+        Maui.SectionItem
         {
             id: _creditsSection
             label1.text: i18nd("mauikit", "Credits")
+                        visible: Maui.App.about.credits.length > 0
+                        // flat: false
             iconSource: "love"
             template.isMask: true
             template.iconSizeHint: Maui.Style.iconSize
             
             Column
             {
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
+                opacity: 0.8
                 
                 Repeater
                 {
@@ -233,9 +232,11 @@ Maui.Dialog
             }
         }
         
-          Maui.SettingTemplate
+          Maui.SectionItem
         {
             id: _licensesSection
+                                    visible: Maui.App.about.licenses.length > 0
+                                    // flat: false
                                     iconSource: "license"
 
                                                 template.isMask: true
@@ -247,9 +248,9 @@ Maui.Dialog
             Column
             {
                 id: _licenses
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width               
-                
+                opacity: 0.8
                 Repeater
                 {
                     model: Maui.App.about.licenses
@@ -263,11 +264,12 @@ Maui.Dialog
             }
         }
         
-          Maui.SettingTemplate
+          Maui.SectionItem
         {
             id: _componentsSection
                 iconSource: "code-context"
-
+                                    visible: Maui.App.about.components.length > 0
+                                    // flat: false
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
                         
@@ -275,9 +277,9 @@ Maui.Dialog
             
             Column
             {
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width               
-                
+                opacity: 0.8
                 Repeater
                 {
                     model: Maui.App.about.components
@@ -306,12 +308,12 @@ Maui.Dialog
         
         }
         
-         Maui.SettingTemplate
+         Maui.SectionItem
         {
             id: _linksssSection
             label1.text: i18nd("mauikit", "Links")
             // label2.text: Maui.App.about.copyrightStatement
-            
+            // flat: false
  iconSource: "link"
                                                 template.isMask: true
                         template.iconSizeHint: Maui.Style.iconSize
@@ -319,7 +321,7 @@ Maui.Dialog
             Column
             {
                 id: _links
-                spacing: Maui.Style.space.medium
+                spacing: Maui.Style.defaultSpacing    
                 width: parent.parent.width
                 
                 Button
@@ -371,7 +373,7 @@ Maui.Dialog
                     iconSizeHint: Maui.Style.iconSizes.medium
 //                     headerSizeHint: iconSizeHint + Maui.Style.space.medium
                     
-                    spacing: Maui.Style.space.medium
+                    spacing: Maui.Style.defaultSpacing    
                     label1.text: Maui.App.about.copyrightStatement
                     label1.horizontalAlignment: Qt.AlignHCenter
                     label1.font.pointSize: Maui.Style.fontSizes.small
@@ -384,70 +386,18 @@ Maui.Dialog
         Item
         {
             id: _iconItem
-            // opacity: 0.6
             parent: control.background
             clip: true
-            anchors.fill: parent
-            layer.enabled: true
-            layer.effect: OpacityMask
-            {
-                maskSource:  Rectangle
-                {
-                    width: control.width
-                    height: control.height
-                    radius: Maui.Style.radiusV
-                }
-            }            
-                
-                 LinearGradient
-            {
-                
-                anchors.fill: parent
-                gradient: Gradient 
-                {
-                    GradientStop { position: 0.0; color: _imgColors.dominant}                    
-                    
-                    GradientStop { position: 0.4; color: _imgColors.average}
-                    
-                    GradientStop { position: 0.7; color: control.background.color}
-                    
-                                        
-                }
-                
-                start: Qt.point(0, 0)
-                end: Qt.point(control.background.width, control.background.height)
-            }
+            anchors.fill: parent           
             
             Image
             {
                 anchors.fill: parent
                 source: "qrc:/assets/subtle-dots.png"
                 fillMode: Image.Tile
-                opacity: 0.9
-            }
-            
-            LinearGradient
-            {
-                opacity: 0.8
-                anchors.fill: parent
-                gradient: Gradient 
-                {
-                    GradientStop { position: 0.0; color: _imgColors.background}                    
-                                       
-                    GradientStop { position: 0.6; color: control.background.color}
-                    
-                    
-                }
-                
-                start: Qt.point(control.width, 0)
-                end: Qt.point(control.background.width, control.background.height)
-            }
-            
-            
-            
-           
+                opacity: 0.15
+            }            
         }
-        
-        
+     
         
 }

@@ -379,7 +379,7 @@ T.Pane
         id: _headBar
         visible: count > 0
         width: visible ? parent.width : 0
-
+        position: control.altHeader ? ToolBar.Footer : ToolBar.Header
         translucencySource: ShaderEffectSource
         {
             sourceItem: _content
@@ -410,6 +410,7 @@ T.Pane
             Item
             {
                 implicitHeight:_titleLabel.implicitHeight
+                
                 Label
                 {
                     id: _titleLabel
@@ -417,9 +418,7 @@ T.Pane
                     text: control.title
                     elide : Text.ElideRight
 //                     font.bold : true
-                    font.weight: Font.Bold
-                    color : Maui.Theme.textColor
-                    font.pointSize: Maui.Style.fontSizes.large
+                    font: Maui.Style.h2Font
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
                 }
@@ -493,12 +492,6 @@ T.Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
-            
-            PropertyChanges
-            {
-                target: _headBar
-                position: ToolBar.Header
-            }
         },
         
         State
@@ -517,12 +510,6 @@ T.Pane
                 target: _footerContent
                 anchors.top: undefined
                 anchors.bottom: _headerContent.top
-            }
-                      
-            PropertyChanges
-            {
-                target: _headBar
-                position: ToolBar.Footer
             }
         } ]
 
@@ -842,17 +829,22 @@ T.Pane
     {
         if(footer)
         {
-            _footerContent.data.push(footer)
+            _footerContent.data.push(footer)                   
         }
-
+        
         if(header)
         {
-            _headerContent.data.push(header)
+            let data = [header]            
+            
+            for(var i in _headerContent.data)
+            {
+                data.push(_headerContent.data[i])
+            }
+            _headerContent.data = data
         }
-
-        var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
-        control.headBar.farRightContent.push(obj)
         
+        var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
+        control.headBar.farRightContent.push(obj)        
     }
 
     /*!
@@ -862,12 +854,12 @@ T.Pane
     {
         if(control.header)
         {
-            pullDownHeader()
+            // pullDownHeader()
         }
 
         if(control.footer)
         {
-            pullDownFooter()
+            // pullDownFooter()
         }
     }
 
@@ -904,6 +896,6 @@ T.Pane
     function pullDownFooter()
     {
         _footerAnimation.enabled = true
-        footer.height = footer.implicitHeight
+        footer.height = _footerContent.implicitHeight
     }
 }

@@ -60,17 +60,19 @@ T.ToolButton
     
     hoverEnabled: !Maui.Handy.isMobile
     
-    spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium   
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
     
-    icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
+    icon.color: control.color
+    
+    readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     flat: control.parent === T.ToolBar
     
-    font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
+    // font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
     
     indicator: Maui.Icon
     {
@@ -79,7 +81,7 @@ T.ToolButton
         
         visible: control.subMenu
         //        mirror: control.mirrored
-        color: control.icon.color
+        color: control.color
         height: 8
         width: 8
         source: "qrc:/assets/arrow-down.svg"
@@ -92,9 +94,9 @@ T.ToolButton
     
     contentItem: IconLabel
     {
-        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width : 0
+        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
         
-        rightPadding: arrowPadding
+        rightPadding: arrowPadding 
                 
         spacing: control.spacing
         mirrored: control.mirrored
@@ -103,12 +105,8 @@ T.ToolButton
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.icon.color
         
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
+        color: control.color
     }
     
     Behavior on implicitHeight

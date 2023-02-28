@@ -145,7 +145,8 @@ void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
                                                   QAndroidJniObject::fromString(mimeType).object<jstring>(),
                                                   QAndroidJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
 
-        if (_env->ExceptionCheck()) {
+        if (_env->ExceptionCheck())
+        {
             qDebug() << "trying to share dialog << exception";
 
             _env->ExceptionClear();
@@ -411,21 +412,16 @@ void MAUIAndroid::handleActivityResult(int receiverRequestCode, int resultCode, 
     }
 }
 
-static JNINativeMethod methods[] = {
-    { "darkModeEnabledChangedJNI", "()V", (void *)MAUIAndroid::darkModeEnabledChangedJNI },
-};
-
-void MAUIAndroid::darkModeEnabledChangedJNI()
-{
-    if(m_instance)
-    {
-        emit m_instance->darkModeEnabledChanged();
-    }
-}
 
 bool MAUIAndroid::darkModeEnabled()
 {
-    return QtAndroid::androidActivity().callMethod<jboolean>("darkModeEnabled");
+    jint res = QAndroidJniObject::callStaticMethod<jint>(
+        "com/kde/maui/tools/ConfigActivity",
+        "systemStyle",
+        "(Landroid/content/Context;)V",
+        QtAndroid::androidActivity().object());
+
+    return res == 1;
 }
 
 //JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* /*reserved*/)

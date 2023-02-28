@@ -35,8 +35,7 @@ T.Button
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     
     implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
-    
-    
+        
     hoverEnabled: !Maui.Handy.isMobile
 
     Maui.Theme.colorSet: Maui.Theme.Button
@@ -47,10 +46,9 @@ T.Button
 
     icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
-    spacing: Maui.Style.space.small
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium   
     
-    padding: Maui.Style.space.medium
- 
     focusPolicy: Qt.StrongFocus
     focus: true
     
@@ -70,10 +68,6 @@ T.Button
         display: control.display
         alignment: Qt.AlignCenter
         
-        Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
     }
     
     background: Rectangle

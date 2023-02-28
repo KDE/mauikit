@@ -39,14 +39,15 @@ T.ToolBar
     
     property Item translucencySource : null
     
-    implicitWidth: Math.max(background ? background.implicitWidth : 0, contentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0, contentHeight + topPadding + bottomPadding)
+    
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding    
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
     
     contentWidth: contentChildren[0].implicitWidth
     contentHeight: contentChildren[0].implicitHeight
     
-    spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.medium  
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.defaultSpacing
     
     contentItem: Row
     {

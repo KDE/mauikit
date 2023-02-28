@@ -31,8 +31,9 @@ T.DialogButtonBox
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
 
-    spacing: Maui.Style.space.medium
-    padding: Maui.Style.space.medium
+    
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.defaultSpacing
     alignment: Qt.AlignRight
 
     delegate: Button {

@@ -59,15 +59,12 @@ Window
   id: root
   
   visible: true
-  
-  width: Screen.desktopAvailableWidth * (Maui.Handy.isMobile ? 1 : 0.4)
-  height: Screen.desktopAvailableHeight * (Maui.Handy.isMobile ? 1 : 0.4)
-  
+    
   minimumHeight: Math.min(600, Screen.desktopAvailableHeight)
   minimumWidth: Math.min(400, Screen.desktopAvailableWidth)
   
   color: "transparent"
-  flags: Maui.App.controls.enableCSD ? Qt.FramelessWindowHint | Qt.Window : Qt.Window & ~Qt.FramelessWindowHint
+  flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
   
   Settings 
   {
@@ -85,7 +82,7 @@ Window
     sourceComponent: Maui.WindowShadow
     {
       view: root
-      radius:  Maui.Style.radiusV
+      radius: Maui.Style.radiusV
       strength: 7.8
     }
   }       
@@ -141,7 +138,7 @@ Window
       anchors.fill: parent 
       
       
-      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen
+      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile
     
       layer.effect: OpacityMask
       {
@@ -339,7 +336,7 @@ Window
             Maui.ListItemTemplate
             {
               id: _notifyTemplate
-              spacing: Maui.Style.space.big
+              spacing: Maui.Style.defaultSpacing
               width: parent.width
               anchors.centerIn: parent
               
@@ -372,7 +369,7 @@ Window
       ignoreUnknownSignals: true
       function onShareFilesRequest(urls)
       {
-        dialogLoader.source = "labs/ShareDialog.qml"
+        dialogLoader.source = "ShareDialog.qml"
         dialog.urls = urls
         dialog.open()
       }

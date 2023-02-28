@@ -85,6 +85,8 @@ T.Control
     property bool highlighted: control.isCurrentItem
 
     property int radius:  Maui.Style.radiusV
+    
+    property bool flat : !Maui.Handy.isMobile
 
     /**
          * pressed :

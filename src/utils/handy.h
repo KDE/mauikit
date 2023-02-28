@@ -22,6 +22,12 @@
 
 #include <QVariantMap>
 
+namespace MauiMan
+{
+    class FormFactorManager;
+    class AccessibilityManager;
+}
+
 /*!
  * \brief The Handy class
  * Contains useful static methods to be used as an attached property to the Maui application
@@ -33,7 +39,7 @@ class Handy : public QObject
     Q_DISABLE_MOVE(Handy)
     
     Q_PROPERTY(bool isMobile READ isMobile NOTIFY isMobileChanged)
-    Q_PROPERTY(bool isTouch MEMBER m_isTouch CONSTANT FINAL)
+    Q_PROPERTY(bool isTouch READ isTouch NOTIFY isTouchChanged)
     Q_PROPERTY(bool hasMouse READ hasMouse NOTIFY hasMouseChanged)
     Q_PROPERTY(bool hasKeyboard READ hasKeyboard NOTIFY hasKeyboardChanged)
     Q_PROPERTY(bool hasTransientTouchInput READ hasTransientTouchInput NOTIFY hasTransientTouchInputChanged)
@@ -45,8 +51,17 @@ class Handy : public QObject
     Q_PROPERTY(bool isIOS READ isIOS CONSTANT FINAL)
 
     Q_PROPERTY(bool singleClick MEMBER m_singleClick NOTIFY singleClickChanged)
+    
+    Q_PROPERTY(FFactor formFactor READ formFactor NOTIFY formFactorChanged)
 
 public:
+    enum FFactor
+    {
+        Desktop = 0,
+        Tablet,
+        Phone
+    }; Q_ENUM(FFactor)
+    
     static Handy *qmlAttachedProperties(QObject *object);
     
     static Handy *instance()
@@ -66,8 +81,12 @@ protected:
     
 private:
     static Handy *m_instance;
-    Handy(QObject *parent = nullptr);
+    Handy(QObject *parent = nullptr);    
     
+    MauiMan::FormFactorManager *m_formFactor;
+    MauiMan::AccessibilityManager *m_accessibility;;
+    
+    FFactor m_ffactor = FFactor::Desktop;
     bool m_isTouch = false;
     bool m_singleClick = true;
     bool m_mobile = 1;
@@ -113,24 +132,17 @@ public slots:
      */
     static bool copyToClipboard(const QVariantMap &value, const bool &cut = false);
 
-    // TODO move to Device.h the defs and implementation of device specifics
-    /**
-     * @brief isTouch
-     * @return
-     */
-    static bool isTouch();
-
     /**
      * @brief hasKeyboard
      * @return
      */
-    static bool hasKeyboard();
+    bool hasKeyboard();
     
     /**
      * @brief hasMouse
      * @return
      */
-    static bool hasMouse();
+    bool hasMouse();
 
     /**
      * @brief isAndroid
@@ -170,7 +182,7 @@ public slots:
      * @return
      * Formated into a readable string
      */
-    static QString formatSize(const int &size);
+    static QString formatSize(quint64 size);
     
     /**
      * @brief formatTime
@@ -198,8 +210,14 @@ public slots:
     static void saveSettings(const QString &key, const QVariant &value, const QString &group);
     static QVariant loadSettings(const QString &key, const QString &group, const QVariant &defaultValue);
         
-    void setIsMobile(bool mobile);
+    /**
+     * Is mobile if the system is to be set as a phone or a tablet from the MauiMan FormFactor module.
+     */
     bool isMobile() const;   
+    
+    bool isTouch();
+    
+    FFactor formFactor();
     
 signals:
     /**
@@ -210,5 +228,7 @@ signals:
     void hasMouseChanged();
     void isMobileChanged();
     void hasTransientTouchInputChanged();
+    void formFactorChanged();
+    void isTouchChanged();
 };
 

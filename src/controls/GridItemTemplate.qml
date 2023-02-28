@@ -39,7 +39,7 @@ Item
     focus: true
     property alias spacing: _layout.spacing
     
-    implicitHeight: _layout.implicitHeight /*+ control.topPadding + control.bottomPadding*/
+    implicitHeight: _layout.implicitHeight 
     
     /**
      * content : data

@@ -39,8 +39,10 @@ T.TabButton
     //This width: is important to make the tabbar internals not assume
     //all tabs have the same width
     width: implicitWidth
-    padding: 0
-
+    
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.defaultSpacing
+    
     hoverEnabled: true
 
     contentItem: Item {}

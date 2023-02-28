@@ -52,7 +52,6 @@ class GroupSizes : public QObject
 public:
     explicit GroupSizes(const uint tiny,const uint small, const uint medium, const uint big, const uint large, const uint huge, const uint enormous, QObject *parent = nullptr);
 
-private:
     uint m_tiny;
     uint m_small;
     uint m_medium;
@@ -71,15 +70,19 @@ class Style : public QObject
     Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
     Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
     Q_PROPERTY(uint radiusV MEMBER m_radiusV NOTIFY radiusVChanged FINAL)
-    Q_PROPERTY(uint iconSize MEMBER m_iconSize NOTIFY iconSizeChanged FINAL)
+    Q_PROPERTY(uint iconSize READ iconSize NOTIFY iconSizeChanged FINAL)
 
     Q_PROPERTY(uint rowHeight MEMBER m_rowHeight CONSTANT FINAL)
     Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
-    Q_PROPERTY(uint contentMargins MEMBER m_contentMargins CONSTANT FINAL)
+    Q_PROPERTY(uint contentMargins MEMBER m_contentMargins  NOTIFY contentMarginsChanged)
     Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
-
+    Q_PROPERTY(uint defaultPadding MEMBER m_defaultPadding NOTIFY defaultPaddingChanged)
+    Q_PROPERTY(uint defaultSpacing MEMBER m_defaultSpacing NOTIFY defaultSpacingChanged)
+    
     Q_PROPERTY(QFont defaultFont MEMBER m_defaultFont NOTIFY defaultFontChanged)
-
+    Q_PROPERTY(QFont h1Font MEMBER m_h1Font NOTIFY h1FontChanged)
+    Q_PROPERTY(QFont h2Font MEMBER m_h2Font NOTIFY h2FontChanged)
+    
     Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes CONSTANT FINAL)
     Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
     Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
@@ -92,6 +95,8 @@ class Style : public QObject
     Q_PROPERTY(StyleType styleType READ styleType WRITE setStyleType NOTIFY styleTypeChanged RESET unsetStyeType)
 
     Q_PROPERTY(bool enableEffects READ enableEffects NOTIFY enableEffectsChanged FINAL)
+
+    Q_PROPERTY(QString currentIconTheme READ currentIconTheme NOTIFY currentIconThemeChanged)
 
 public:
     enum StyleType : uint
@@ -129,6 +134,10 @@ public:
 
     bool enableEffects() const;
 
+    uint iconSize() const;
+
+    QString currentIconTheme() const;
+
 public slots:
     int mapToIconSizes(const int &size);
 
@@ -136,7 +145,9 @@ private:
     explicit Style(QObject *parent = nullptr);
     static Style *m_instance;
     QFont m_defaultFont = QFont {};
-
+    QFont m_h1Font = QFont {};
+    QFont m_h2Font = QFont {};
+    
     GroupSizes *m_iconSizes;
     GroupSizes *m_space;
     GroupSizes *m_fontSizes;
@@ -150,7 +161,10 @@ private:
     uint m_iconSize = 22;
     uint m_rowHeight = 32;
     uint m_rowHeightAlt = 28;
-    uint m_contentMargins = 8;
+    
+    uint m_contentMargins;
+    uint m_defaultPadding;
+    uint m_defaultSpacing;
 
     QColor m_accentColor;
     bool m_accentColor_blocked = false;
@@ -166,8 +180,13 @@ private:
 
     bool m_enableEffects = true;
 
+    QString m_currentIconTheme;
+
 signals:
     void defaultFontChanged();
+    void h1FontChanged();
+    void h2FontChanged();
+    
     void adaptiveColorSchemeSourceChanged(QVariant source);
     void accentColorChanged(QColor color);
     void colorSchemeChanged();
@@ -175,6 +194,10 @@ signals:
     void radiusVChanged(uint radius);
     void iconSizeChanged(uint size);
     void enableEffectsChanged(bool enableEffects);
+    void defaultPaddingChanged();
+    void contentMarginsChanged();
+    void currentIconThemeChanged(QString currentIconTheme);
+    void defaultSpacingChanged();
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

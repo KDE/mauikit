@@ -110,27 +110,7 @@ void WindowShadow::classBegin()
 void WindowShadow::componentComplete()
 {
     
-    configureTiles();
-    
-    
-    
-    auto chromeInterface = new QDBusInterface ("org.cask.Server",
-                                               "/Chrome",
-                                               "org.cask.Chrome",
-                                               QDBusConnection::sessionBus(), this);
-    qDebug() << "TRYING TO HOOK TO THE CASKSERVER" << qApp->desktopFileName() << qApp->desktopFileName();
-    
-    if(chromeInterface->isValid())
-    {
-        qDebug() << "TRYING TO HOOK TO THE CASKSERVER IS VAL:ID";
-        
-        chromeInterface->call("dropShadow", static_cast<int>(m_radius), qApp->desktopFileName());
-        chromeInterface->call("blurBackground", static_cast<int>(m_radius), qApp->desktopFileName());
-    }else
-    {
-        qDebug() << "COULD NTO HOOK TO THE CASKSERVER";
-    }
-    
+    configureTiles();    
 }
 
 void WindowShadow::setView(QWindow *view)
@@ -201,6 +181,30 @@ void WindowShadow::onViewVisibleChanged(bool visible)
 
 void WindowShadow::configureTiles()
 {
+    //only for cask
+    // if(qEnvironmentVariableIsSet("XDG_CURRENT_DESKTOP") && qEnvironmentVariable("XDG_CURRENT_DESKTOP") == "Cask")
+    // {
+        auto chromeInterface = new QDBusInterface ("org.cask.Server",
+                                                   "/Chrome",
+                                                   "org.cask.Chrome",
+                                                   QDBusConnection::sessionBus(), this);
+        qDebug() << "TRYING TO HOOK TO THE CASKSERVER" << qApp->desktopFileName() << qApp->desktopFileName();
+        
+    if(chromeInterface->isValid())
+    {
+        qDebug() << "TRYING TO HOOK TO THE CASKSERVER IS VAL:ID";
+        
+        chromeInterface->call("dropShadow", static_cast<int>(m_radius), qApp->desktopFileName());
+    }else
+    {
+        qDebug() << "COULD NTO HOOK TO THE CASKSERVER";
+    } 
+    
+    // return;
+    // }    
+    
+    
+    //only for plasma
     m_shadow->destroy();
 
     if (!m_view)

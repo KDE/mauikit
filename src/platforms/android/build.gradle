@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         google()
-                jcenter()
+        jcenter()
     }
 
     dependencies {
@@ -19,14 +19,14 @@ apply plugin: 'com.android.library'
     android {
         compileSdkVersion androidCompileSdkVersion.toInteger()
 
-                buildToolsVersion androidBuildToolsVersion
+        buildToolsVersion androidBuildToolsVersion
 
 
         sourceSets {
         main {
-        manifest.srcFile '@CMAKE_CURRENT_SOURCE_DIR@/AndroidManifest.xml'
-        java.srcDirs = ['/opt/Qt/src/android/java/src', '@CMAKE_CURRENT_SOURCE_DIR@/src']
-        aidl.srcDirs = ['/opt/Qt/src/android/java/src', 'src', 'aidl']
+        manifest.srcFile 'AndroidManifest.xml'
+        java.srcDirs = ['@CMAKE_CURRENT_SOURCE_DIR@/src']
+        aidl.srcDirs = ['src', 'aidl']
 
         }
         }
@@ -36,9 +36,9 @@ apply plugin: 'com.android.library'
         }
 
         dependencies {
-        implementation fileTree(dir: '/opt/Qt/jar', include: ['*.jar', '*.aar'])
-  implementation 'com.android.support:support-compat:28.0.0'
-  compile fileTree(dir: '/opt/Qt/jar', include: ['*.jar'])
+        implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+  implementation "androidx.appcompat:appcompat:1.2.0"
+
 
   }
 

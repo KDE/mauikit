@@ -33,6 +33,8 @@ set(mauikit_SRCS
     utils/model_template/mauimodel.cpp
     platforms/abstractplatform.cpp
     platforms/platform.cpp
+    utils/icon.cpp
+    utils/managedtexturenode.cpp
     )
 
 set(mauikit_HDRS
@@ -117,9 +119,9 @@ if (ANDROID)
     #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
 
-set(kwin_XCB_LIBS   
-    XCB::ICCCM   
-    XCB::SHAPE   
+set(kwin_XCB_LIBS
+    XCB::ICCCM
+    XCB::SHAPE
     XCB::XCB
 )
 
@@ -252,10 +254,8 @@ elseif(APPLE)
 endif()
 
 if(ANDROID)
-
-#    add_subdirectory(platforms/android)
-
-    target_link_libraries(MauiKit PRIVATE Qt5::AndroidExtras jnigraphics)
+#   add_subdirectory(platforms/android)
+    target_link_libraries(MauiKit PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit COMPONENT Devel)
 
@@ -268,30 +268,29 @@ if(ANDROID)
     endif()
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
-        target_link_libraries(MauiKit 
-        PRIVATE 
-        KF5::WindowSystem
-        Qt5::X11Extras
+        target_link_libraries(MauiKit
+        PRIVATE
+        KF${KF_MAJOR_VERSION}::WindowSystem
+        Qt${QT_MAJOR_VERSION}::X11Extras
         )
     endif()
-    target_link_libraries(MauiKit PRIVATE KF5::ConfigCore)
 endif()
 
 target_link_libraries(MauiKit
     PUBLIC
-    Qt5::Core
-    KF5::CoreAddons
+    Qt${QT_MAJOR_VERSION}::Core
+    KF${KF_MAJOR_VERSION}::CoreAddons
 
     PRIVATE
         ${kwin_XCB_LIBS}
     MauiMan::MauiMan
-    KF5::Notifications
-    KF5::I18n
-    Qt5::Qml
-    Qt5::Svg
-    Qt5::Widgets
-    Qt5::Concurrent
-    Qt5::QuickControls2
+    KF${KF_MAJOR_VERSION}::Notifications
+    KF${KF_MAJOR_VERSION}::I18n
+    Qt${QT_MAJOR_VERSION}::Qml
+    Qt${QT_MAJOR_VERSION}::Svg
+    Qt${QT_MAJOR_VERSION}::Widgets
+    Qt${QT_MAJOR_VERSION}::Concurrent
+    Qt${QT_MAJOR_VERSION}::QuickControls2
     )
 
 generate_export_header(MauiKit BASE_NAME MauiKit)

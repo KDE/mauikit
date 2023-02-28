@@ -35,9 +35,9 @@ T.TabBar
     
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
-    spacing: Maui.Style.space.small    
-    padding: Maui.Style.space.medium  
-    
+        padding: Maui.Style.defaultPadding
+        spacing: Maui.Style.defaultSpacing    
+        
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
       
@@ -136,11 +136,12 @@ T.TabBar
                 Layout.fillWidth: true
 //                 Layout.fillHeight: true
                orientation : Qt.Horizontal
-                Layout.preferredHeight: Maui.Style.rowHeight
+                // Layout.preferredHeight: Maui.Style.rowHeight
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 
                 contentHeight: availableHeight
+                implicitHeight: _content.currentItem ? _content.currentItem.height : Maui.Style.rowHeight 
                 
                 ListView
                 {
