@@ -52,8 +52,7 @@ T.Switch
     
     hoverEnabled: !Maui.Handy.isMobile
     
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            implicitContentWidth + leftPadding + rightPadding)
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
 
     implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
     
@@ -64,21 +63,14 @@ T.Switch
     icon.height: Maui.Style.iconSize
     icon.color: Maui.Theme.textColor
     
-    indicator: SwitchIndicator
+    contentItem: Row
     {
-        Maui.Theme.colorSet: control.Maui.Theme.colorSet
-        x: control.leftPadding
-        y: parent.height / 2 - height / 2
-        control: control
-    }    
-    
-    contentItem: IconLabel
-    {        
         spacing: control.spacing
         
-        leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
-        rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
-        
+        IconLabel
+    {        
+        spacing: control.spacing
+     
         icon: control.icon
         
         mirrored: control.mirrored
@@ -88,5 +80,15 @@ T.Switch
         color: control.icon.color        
     }
     
-    background: null
+    SwitchIndicator
+    {       
+        control: control
+    }        
+    
+    }
+    
+    background: Rectangle
+    {
+        color: "pink"
+    }
 }

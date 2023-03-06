@@ -34,7 +34,7 @@ Maui.Dialog
       id: _stackView
       Layout.fillHeight: true
       Layout.fillWidth: true
-      implicitHeight: initialItem.implicitHeight+topPadding +bottomPadding
+      implicitHeight: _content.implicitHeight+topPadding +bottomPadding
       
       initialItem: Maui.SettingsPage
       {

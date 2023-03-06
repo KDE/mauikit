@@ -41,7 +41,7 @@ Item
 {
     id: indicator
     
-    implicitWidth:  height * 1.8
+    implicitWidth: height * 1.8
     implicitHeight: 22
     
     property Item control

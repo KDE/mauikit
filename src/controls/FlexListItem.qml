@@ -38,8 +38,10 @@ T.ItemDelegate
     /**
       *
       */
-    default property alias content : _content.data
-
+    // default property alias content : _content.data
+     default property alias content : _layout.data
+       
+        
     /**
       *
       */
@@ -83,11 +85,14 @@ T.ItemDelegate
     /**
       *
       */
-    property bool wide : _content.implicitWidth <= (control.width/2)
+    property bool wide : _layout.children[1] ? _layout.children[1].implicitWidth <= 200 : true
 
     property alias rowSpacing : _layout.rowSpacing
 
-    property alias columnSpacing: _layout.columnSpacing
+    property alias columnSpacing: _layout.columnSpacing    
+    
+    property alias columns: _layout.columns
+    property alias rows: _layout.rows    
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
@@ -95,45 +100,27 @@ T.ItemDelegate
     
     spacing: Maui.Style.defaultSpacing
     
-    onWideChanged:
-    {
-      _layout.force
-    }
-
     contentItem: GridLayout
     {
         id: _layout
         rowSpacing: control.spacing
         columnSpacing: control.spacing
-        rows: 2
-        columns:2
-
+        
+        columns: control.wide ? 2 : 1
+        
         Maui.ListItemTemplate
         {
             id: _template
             Layout.fillWidth: true
-            Layout.row: 0
-            Layout.column: 0
-            Layout.columnSpan: control.wide ? 1 : 2
-            Layout.rowSpan: control.wide ? 2 : 1
             iconSizeHint: Maui.Style.iconSizes.medium
             label2.wrapMode: Text.WordWrap
             label1.font.weight: Font.Medium
         }
 
-        Row
-        {
-            id: _content
-            spacing: control.spacing
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.row: control.wide ? 0 : 1
-            Layout.column: control.wide ? 1 : 0
-
-            Layout.columnSpan: control.wide ? 2 : 1
-            Layout.rowSpan: control.wide ? 2 : 1
-
-            Layout.fillWidth: !control.wide
-            Layout.maximumWidth: control.wide ? control.width * 0.5 : control.width
-        }
+        // Row
+        // {
+        //     id: _content
+        //     spacing: control.spacing            
+        // }
     }
 }
