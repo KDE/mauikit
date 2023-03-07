@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-28 00:57+0000\n"
+"POT-Creation-Date: 2023-03-07 00:45+0000\n"
 "PO-Revision-Date: 2022-11-18 09:59+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -69,7 +69,7 @@ msgstr "Não foi possível carregar a imagem."
 msgid "Authors"
 msgstr "Autores"
 
-#: src/controls/private/AboutDialog.qml:154
+#: src/controls/private/AboutDialog.qml:153
 #, kde-format
 msgid "Translators"
 msgstr "Tradutores"
@@ -79,7 +79,7 @@ msgstr "Tradutores"
 msgid "Credits"
 msgstr "Créditos"
 
-#: src/controls/private/AboutDialog.qml:245
+#: src/controls/private/AboutDialog.qml:244
 #, kde-format
 msgid "Licenses"
 msgstr "Licenças"
@@ -94,12 +94,12 @@ msgstr "Componentes"
 msgid "Links"
 msgstr "Hiperligações"
 
-#: src/controls/private/AboutDialog.qml:330
+#: src/controls/private/AboutDialog.qml:329
 #, kde-format
 msgid "Reports"
 msgstr "Relatórios"
 
-#: src/controls/private/AboutDialog.qml:337
+#: src/controls/private/AboutDialog.qml:336
 #, kde-format
 msgid "Home Page"
 msgstr "Página Pessoal"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-28 00:57+0000\n"
+"POT-Creation-Date: 2023-03-07 00:45+0000\n"
 "PO-Revision-Date: 2023-02-01 14:05+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -73,7 +73,7 @@ msgstr "Görsel yüklenemedi."
 msgid "Authors"
 msgstr "Yazarlar"
 
-#: src/controls/private/AboutDialog.qml:154
+#: src/controls/private/AboutDialog.qml:153
 #, kde-format
 msgid "Translators"
 msgstr "Çevirmenler"
@@ -83,7 +83,7 @@ msgstr "Çevirmenler"
 msgid "Credits"
 msgstr "Emeği Geçenler"
 
-#: src/controls/private/AboutDialog.qml:245
+#: src/controls/private/AboutDialog.qml:244
 #, kde-format
 msgid "Licenses"
 msgstr "Lisanslar"
@@ -98,12 +98,12 @@ msgstr "Bileşenler"
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: src/controls/private/AboutDialog.qml:330
+#: src/controls/private/AboutDialog.qml:329
 #, kde-format
 msgid "Reports"
 msgstr "Raporlar"
 
-#: src/controls/private/AboutDialog.qml:337
+#: src/controls/private/AboutDialog.qml:336
 #, kde-format
 msgid "Home Page"
 msgstr "Ana Sayfa"

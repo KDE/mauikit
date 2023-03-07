@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-28 00:57+0000\n"
+"POT-Creation-Date: 2023-03-07 00:45+0000\n"
 "PO-Revision-Date: 2022-11-18 08:16+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -74,7 +74,7 @@ msgstr "Slike ni bilo mogoče naložiti."
 msgid "Authors"
 msgstr "Avtorji"
 
-#: src/controls/private/AboutDialog.qml:154
+#: src/controls/private/AboutDialog.qml:153
 #, kde-format
 msgid "Translators"
 msgstr "Prevajalci"
@@ -84,7 +84,7 @@ msgstr "Prevajalci"
 msgid "Credits"
 msgstr "Zasluge"
 
-#: src/controls/private/AboutDialog.qml:245
+#: src/controls/private/AboutDialog.qml:244
 #, kde-format
 msgid "Licenses"
 msgstr "Dovoljenja"
@@ -99,12 +99,12 @@ msgstr "Komponente"
 msgid "Links"
 msgstr "Povezave"
 
-#: src/controls/private/AboutDialog.qml:330
+#: src/controls/private/AboutDialog.qml:329
 #, kde-format
 msgid "Reports"
 msgstr "Poročila"
 
-#: src/controls/private/AboutDialog.qml:337
+#: src/controls/private/AboutDialog.qml:336
 #, kde-format
 msgid "Home Page"
 msgstr "Domača stran"
