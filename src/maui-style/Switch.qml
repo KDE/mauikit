@@ -39,6 +39,7 @@ import QtQuick 2.15
 import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Controls.impl 2.15
+import QtQuick.Layouts 1.3
 
 T.Switch
 {
@@ -48,21 +49,23 @@ T.Switch
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
-    property int preferredHeight : Maui.Style.rowHeight
     
     hoverEnabled: !Maui.Handy.isMobile
     
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
 
-    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     
-    padding: Maui.Style.defaultPadding
+    padding: 0
     spacing: Maui.Style.space.medium
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
     icon.color: Maui.Theme.textColor
+    
     font: Maui.Style.defaultFont
+    
+    Layout.alignment: Qt.AlignVCenter
     
     contentItem: Row
     {
@@ -88,8 +91,5 @@ T.Switch
     
     }
     
-    background: Rectangle
-    {
-        color: "pink"
-    }
+    background: null
 }
