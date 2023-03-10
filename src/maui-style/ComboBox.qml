@@ -72,6 +72,7 @@ T.ComboBox
         
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium    
+    font: Maui.Style.defaultFont
     
            delegate: MenuItem
     {
@@ -198,7 +199,7 @@ T.ComboBox
         
         transformOrigin: Item.Top
         
-        padding: Maui.Style.defaultPadding
+        padding: 0
         spacing: Maui.Style.defaultSpacing    
         
         margins: Maui.Style.space.medium    
@@ -267,7 +268,7 @@ T.ComboBox
             implicitHeight: contentHeight
             model: control.delegateModel
             spacing: control.spacing
-            padding: 0
+            // padding: 0
             currentIndex: control.highlightedIndex
         }
         

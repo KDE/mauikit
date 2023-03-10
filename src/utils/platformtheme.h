@@ -168,12 +168,6 @@ class PlatformTheme : public QObject
      */
     Q_PROPERTY(QColor hoverColor READ hoverColor WRITE setCustomHoverColor RESET setCustomHoverColor NOTIFY colorsChanged)
 
-    // font and palette
-    Q_PROPERTY(QFont defaultFont READ defaultFont NOTIFY defaultFontChanged)
-
-    // small font
-    Q_PROPERTY(QFont smallFont READ smallFont NOTIFY defaultFontChanged)
-
     // Active palette
     Q_PROPERTY(QPalette palette READ palette NOTIFY paletteChanged)
 
@@ -239,9 +233,6 @@ public:
     QColor focusColor() const;
     QColor hoverColor() const;
 
-    QFont defaultFont() const;
-    QFont smallFont() const;
-
     // this may is used by the desktop QQC2 to set the styleoption palettes
     QPalette palette() const;
 
@@ -280,8 +271,6 @@ public:
 Q_SIGNALS:
     // TODO: parameters to signals as this is also a c++ api
     void colorsChanged();
-    void defaultFontChanged(const QFont &font);
-    void smallFontChanged(const QFont &font);
     void colorSetChanged(Maui::PlatformTheme::ColorSet colorSet);
     void colorGroupChanged(Maui::PlatformTheme::ColorGroup colorGroup);
     void paletteChanged(const QPalette &pal);
@@ -316,9 +305,6 @@ protected:
     // decoration colors
     void setFocusColor(const QColor &color);
     void setHoverColor(const QColor &color);
-
-    void setDefaultFont(const QFont &defaultFont);
-    void setSmallFont(const QFont &smallFont);
 
     bool event(QEvent *event) override;
 

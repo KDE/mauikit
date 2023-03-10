@@ -37,15 +37,15 @@ T.Label
     renderType: Window.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
   
 
-    font.capitalization: Maui.Theme.defaultFont.capitalization
-    font.family: Maui.Theme.defaultFont.family
-    font.italic: Maui.Theme.defaultFont.italic
-    font.letterSpacing: Maui.Theme.defaultFont.letterSpacing
-    font.pointSize: Maui.Theme.defaultFont.pointSize
-    font.strikeout: Maui.Theme.defaultFont.strikeout
-    font.underline: Maui.Theme.defaultFont.underline
-    font.weight: Maui.Theme.defaultFont.weight
-    font.wordSpacing: Maui.Theme.defaultFont.wordSpacing
+    font.capitalization: Maui.Style.defaultFont.capitalization
+    font.family: Maui.Style.defaultFont.family
+    font.italic: Maui.Style.defaultFont.italic
+    font.letterSpacing: Maui.Style.defaultFont.letterSpacing
+    font.pointSize: Maui.Style.defaultFont.pointSize
+    font.strikeout: Maui.Style.defaultFont.strikeout
+    font.underline: Maui.Style.defaultFont.underline
+    font.weight: Maui.Style.defaultFont.weight
+    font.wordSpacing: Maui.Style.defaultFont.wordSpacing
     
     color: Maui.Theme.textColor
     linkColor: Maui.Theme.linkColor

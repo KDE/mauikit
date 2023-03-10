@@ -102,9 +102,6 @@ public:
 
     std::array<QColor, ColorRoleCount> colors;
 
-    QFont defaultFont;
-    QFont smallFont;
-
     QPalette palette;
 
     // A list of PlatformTheme instances that want to be notified when the data
@@ -153,32 +150,6 @@ public:
         updatePalette(palette, colors);
 
         notifyWatchers<QColor>(sender, oldValue, colors[role]);
-    }
-
-    inline void setDefaultFont(PlatformTheme *sender, const QFont &font)
-    {
-        if (sender != owner || font == defaultFont) {
-            return;
-        }
-
-        auto oldValue = defaultFont;
-
-        defaultFont = font;
-
-        notifyWatchers<QFont>(sender, oldValue, font);
-    }
-
-    inline void setSmallFont(PlatformTheme *sender, const QFont &font)
-    {
-        if (sender != owner || font == smallFont) {
-            return;
-        }
-
-        auto oldValue = smallFont;
-
-        smallFont = font;
-
-        notifyWatchers<QFont>(sender, oldValue, smallFont);
     }
 
     inline void addChangeWatcher(PlatformTheme *object)
@@ -668,30 +639,6 @@ void PlatformTheme::setFocusColor(const QColor &color)
     d->setDataColor(this, PlatformThemeData::FocusColor, color);
 }
 
-QFont PlatformTheme::defaultFont() const
-{
-    return d->data ? d->data->defaultFont : QFont{};
-}
-
-void PlatformTheme::setDefaultFont(const QFont &font)
-{
-    if (d->data) {
-        d->data->setDefaultFont(this, font);
-    }
-}
-
-QFont PlatformTheme::smallFont() const
-{
-    return d->data ? d->data->smallFont : QFont{};
-}
-
-void PlatformTheme::setSmallFont(const QFont &font)
-{
-    if (d->data) {
-        d->data->setSmallFont(this, font);
-    }
-}
-
 // setters for QML clients
 void PlatformTheme::setCustomTextColor(const QColor &color)
 {
@@ -849,8 +796,7 @@ bool PlatformTheme::event(QEvent *event)
 
             Q_EMIT colorSetChanged(data->colorSet);
             Q_EMIT colorGroupChanged(data->colorGroup);
-            Q_EMIT defaultFontChanged(data->defaultFont);
-            Q_EMIT smallFontChanged(data->smallFont);
+           
             d->emitCompressedColorChanged(this);
         }
 
@@ -878,8 +824,8 @@ bool PlatformTheme::event(QEvent *event)
 
     if (event->type() == PlatformThemeEvents::FontChangedEvent::type) {
         if (d->data) {
-            Q_EMIT defaultFontChanged(d->data->defaultFont);
-            Q_EMIT smallFontChanged(d->data->smallFont);
+            // Q_EMIT defaultFontChanged(d->data->defaultFont);
+            // Q_EMIT smallFontChanged(d->data->smallFont);
         }
         return true;
     }

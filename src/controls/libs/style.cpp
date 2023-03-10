@@ -13,12 +13,10 @@
 Style *Style::m_instance = nullptr;
 
 Style::Style(QObject *parent) : QObject(parent)
-  ,m_defaultFont (QFont())
   ,m_iconSizes (new GroupSizes(8,16, 22, 32, 48, 64, 128, this))
   ,m_space( new GroupSizes(4, 6, 8, 16, 24, 32, 40, this))
-  ,m_fontSizes (new GroupSizes{uint(qRound (m_defaultFont.pointSize ()*0.7)),uint(qRound (m_defaultFont.pointSize ()*0.8)),uint(m_defaultFont.pointSize ()),uint(qRound (m_defaultFont.pointSize ()*1.1)),uint(qRound (m_defaultFont.pointSize ()*1.2)),uint(qRound (m_defaultFont.pointSize ()*1.3)),uint(qRound (m_defaultFont.pointSize ()*1.4)), this})
+  ,m_fontSizes(new GroupSizes(this))
   ,m_units(new Units(this))
-  ,m_defaultFontSize(m_defaultFont.pointSize ())
   ,m_accentColor(QColor("#26c6da"))
   ,m_themeSettings( new MauiMan::ThemeManager(this))
   ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
@@ -27,6 +25,17 @@ Style::Style(QObject *parent) : QObject(parent)
     {
         delete m_instance;
         m_instance = nullptr;
+    });
+    
+    connect(qGuiApp, &QGuiApplication::fontChanged, [this](const QFont &font)
+    {
+        m_defaultFont = font;
+        setFontSizes();  
+        Q_EMIT defaultFontChanged();
+        // Q_EMIT m_fontSizes->sizesChanged();
+        Q_EMIT fontSizesChanged();
+        Q_EMIT h1FontChanged();
+        Q_EMIT h2FontChanged();
     });
     
     connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
@@ -98,6 +107,10 @@ Style::Style(QObject *parent) : QObject(parent)
         });
    }
     
+    m_defaultFont = qGuiApp->font();
+    
+    setFontSizes();
+    
     m_radiusV = m_themeSettings->borderRadius();
     m_iconSize = m_themeSettings->iconSize();
     m_accentColor = m_themeSettings->accentColor();
@@ -106,15 +119,8 @@ Style::Style(QObject *parent) : QObject(parent)
     m_defaultPadding = m_themeSettings->paddingSize();
     m_defaultSpacing = m_themeSettings->spacingSize();
 
-    m_currentIconTheme = m_themeSettings->iconTheme();
-    
-    m_h1Font.setPointSize(m_fontSizes->m_enormous);
-    m_h1Font.setWeight(QFont::Black);
-    m_h1Font.setBold(true);
-        
-    m_h2Font.setPointSize(m_fontSizes->m_big);
-    m_h2Font.setWeight(QFont::DemiBold);
-    // m_h2Font.setBold(false);
+    m_currentIconTheme = m_themeSettings->iconTheme();    
+   
     
 #ifdef Q_OS_ANDROID
     MAUIAndroid android;
@@ -126,6 +132,31 @@ Style::Style(QObject *parent) : QObject(parent)
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
     m_enableEffects = m_themeSettings->enableEffects();
 }
+
+void Style::setFontSizes()
+{
+    qDebug() << m_defaultFont << m_defaultFont.pointSize();
+    
+    m_defaultFontSize = m_defaultFont.pointSize ();
+    
+    m_fontSizes->m_tiny = m_defaultFont.pointSize ()-2;
+    m_fontSizes->m_small = m_defaultFont.pointSize ()-1;
+    m_fontSizes->m_medium = m_defaultFont.pointSize ();
+    m_fontSizes->m_big = m_defaultFont.pointSize ()+1;
+    m_fontSizes->m_large = m_defaultFont.pointSize ()+2;
+    m_fontSizes->m_huge = m_defaultFont.pointSize ()+3;
+    m_fontSizes->m_enormous = m_defaultFont.pointSize ()+4;  
+    
+    m_h1Font.setPointSize(m_fontSizes->m_enormous);
+    m_h1Font.setWeight(QFont::Black);
+    m_h1Font.setBold(true);
+    
+    m_h2Font.setPointSize(m_fontSizes->m_big);
+    m_h2Font.setWeight(QFont::DemiBold);
+    // m_h2Font.setBold(false);
+    
+}
+
 
 void Style::setRadiusV(const uint& radius)
 {
@@ -230,6 +261,11 @@ GroupSizes::GroupSizes(const uint tiny, const uint small, const uint medium, con
 {
     
 }
+
+GroupSizes::GroupSizes(QObject* parent) : QObject(parent)
+{
+}
+
 
 QVariant Style::adaptiveColorSchemeSource() const
 {

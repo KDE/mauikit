@@ -69,6 +69,7 @@ T.TextField
     renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
     
     persistentSelection: true
+    font: Maui.Style.defaultFont
     
     wrapMode: TextInput.NoWrap
 

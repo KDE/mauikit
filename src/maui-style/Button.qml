@@ -48,6 +48,7 @@ T.Button
     
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium   
+    font: Maui.Style.defaultFont
     
     focusPolicy: Qt.StrongFocus
     focus: true

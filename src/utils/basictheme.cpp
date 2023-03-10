@@ -20,11 +20,7 @@ namespace Maui
     BasicThemeDefinition::BasicThemeDefinition(QObject *parent)
     : QObject(parent)
     ,m_imgColors(new ImageColors(this))
-    {
-        defaultFont = qGuiApp->font();
-        
-        smallFont = qGuiApp->font();
-        smallFont.setPointSize(smallFont.pointSize() - 2);
+    {       
         
         auto style = Style::instance();
         connect(style, &Style::styleTypeChanged, [this, style](Style::StyleType type)
@@ -494,10 +490,7 @@ namespace Maui
         setNeutralTextColor(tint(definition.neutralTextColor));
         setNeutralBackgroundColor(tint(definition.neutralBackgroundColor));
         setPositiveTextColor(tint(definition.positiveTextColor));
-        setPositiveBackgroundColor(tint(definition.positiveBackgroundColor));
-        
-        setDefaultFont(definition.defaultFont);
-        setSmallFont(definition.smallFont);
+        setPositiveBackgroundColor(tint(definition.positiveBackgroundColor));        
     }
     
     bool BasicTheme::event(QEvent *event)

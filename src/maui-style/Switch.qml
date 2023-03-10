@@ -62,6 +62,7 @@ T.Switch
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
     icon.color: Maui.Theme.textColor
+    font: Maui.Style.defaultFont
     
     contentItem: Row
     {

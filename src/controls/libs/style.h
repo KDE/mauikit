@@ -41,17 +41,18 @@ private:
 class GroupSizes : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(uint tiny MEMBER m_tiny CONSTANT FINAL)
-    Q_PROPERTY(uint small MEMBER m_small CONSTANT FINAL)
-    Q_PROPERTY(uint medium MEMBER m_medium CONSTANT FINAL)
-    Q_PROPERTY(uint big MEMBER m_big CONSTANT FINAL)
-    Q_PROPERTY(uint large MEMBER m_large CONSTANT FINAL)
-    Q_PROPERTY(uint huge MEMBER m_huge CONSTANT FINAL)
-    Q_PROPERTY(uint enormous MEMBER m_enormous CONSTANT FINAL)
+    Q_PROPERTY(uint tiny MEMBER m_tiny NOTIFY sizesChanged  FINAL)
+    Q_PROPERTY(uint small MEMBER m_small NOTIFY sizesChanged  FINAL)
+    Q_PROPERTY(uint medium MEMBER m_medium NOTIFY sizesChanged  FINAL)
+    Q_PROPERTY(uint big MEMBER m_big NOTIFY sizesChanged  FINAL)
+    Q_PROPERTY(uint large MEMBER m_large NOTIFY sizesChanged  FINAL)
+    Q_PROPERTY(uint huge MEMBER m_huge NOTIFY sizesChanged  FINAL)
+    Q_PROPERTY(uint enormous MEMBER m_enormous NOTIFY sizesChanged  FINAL)
 
 public:
     explicit GroupSizes(const uint tiny,const uint small, const uint medium, const uint big, const uint large, const uint huge, const uint enormous, QObject *parent = nullptr);
-
+    GroupSizes(QObject *parent = nullptr);
+    
     uint m_tiny;
     uint m_small;
     uint m_medium;
@@ -59,6 +60,9 @@ public:
     uint m_large;
     uint m_huge;
     uint m_enormous;
+    
+signals:
+    void sizesChanged();
 };
 
 class Style : public QObject
@@ -83,7 +87,7 @@ class Style : public QObject
     Q_PROPERTY(QFont h1Font MEMBER m_h1Font NOTIFY h1FontChanged)
     Q_PROPERTY(QFont h2Font MEMBER m_h2Font NOTIFY h2FontChanged)
     
-    Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes CONSTANT FINAL)
+    Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes NOTIFY fontSizesChanged)
     Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
     Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
     Q_PROPERTY(Units *units MEMBER m_units CONSTANT FINAL)
@@ -144,7 +148,7 @@ public slots:
 private:
     explicit Style(QObject *parent = nullptr);
     static Style *m_instance;
-    QFont m_defaultFont = QFont {};
+    QFont m_defaultFont;
     QFont m_h1Font = QFont {};
     QFont m_h2Font = QFont {};
     
@@ -182,10 +186,12 @@ private:
 
     QString m_currentIconTheme;
 
+    void setFontSizes();
 signals:
     void defaultFontChanged();
     void h1FontChanged();
     void h2FontChanged();
+    void fontSizesChanged();
     
     void adaptiveColorSchemeSourceChanged(QVariant source);
     void accentColorChanged(QColor color);

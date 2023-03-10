@@ -71,6 +71,7 @@ T.ToolButton
     readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     flat: control.parent === T.ToolBar
+    font: Maui.Style.defaultFont
     
     // font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
     

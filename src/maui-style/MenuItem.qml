@@ -71,6 +71,8 @@ T.MenuItem
     
     property bool flat: !Maui.Handy.isMobile
     
+    font: Maui.Style.defaultFont
+    
     indicator: CheckIndicator
     {
         x: control.width - width - control.rightPadding 

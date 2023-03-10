@@ -79,8 +79,6 @@ namespace Maui
         Q_PROPERTY(QColor headerHoverColor MEMBER headerHoverColor NOTIFY changed)
         Q_PROPERTY(QColor headerFocusColor MEMBER headerFocusColor NOTIFY changed)
         
-        Q_PROPERTY(QFont defaultFont MEMBER defaultFont NOTIFY changed)
-        Q_PROPERTY(QFont smallFont MEMBER smallFont NOTIFY changed)
         
     public:
         explicit BasicThemeDefinition(QObject *parent = nullptr);
@@ -146,9 +144,6 @@ namespace Maui
         QColor headerAlternateBackgroundColor;
         QColor headerHoverColor;
         QColor headerFocusColor;
-        
-        QFont defaultFont;
-        QFont smallFont;
         
         Q_SIGNAL void changed();
         Q_SIGNAL void sync(QQuickItem *object);

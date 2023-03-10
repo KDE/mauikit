@@ -39,12 +39,6 @@ T.SplitView
                 Maui.ColorTransition{}
             }
             
-            //Maui.Separator
-            //{
-                //width: parent.width
-                //anchors.centerIn: parent
-            //}
-            
             Rectangle
             {
                 property int length: pressed ? 80 : 48
@@ -68,7 +62,7 @@ T.SplitView
                 opacity: pressed ? 1 : 0.2
                 
                 anchors.centerIn: parent
-                height: 8
+                height: 6
                 width: length
                 radius: height
                 
@@ -133,7 +127,7 @@ T.SplitView
                 opacity: pressed ? 1 : 0.2
                 anchors.centerIn: parent
                 height: length
-                width: 8
+                width: 6
                 radius: width
                 color: pressed || control.T.SplitHandle.hovered ? Maui.Theme.highlightColor : Maui.Theme.textColor
             }

@@ -1,5 +1,5 @@
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import org.mauikit.controls 1.0 as Maui
 import QtQuick.Shapes 1.12
 
@@ -28,10 +28,11 @@ Shape
     property int borderWidth: -1
 
     layer.enabled: smooth
-    layer.samples: 8
-    
+    layer.samples: 16
+
     smooth: true
     asynchronous: true
+    containsMode: Shape.FillContains
 
     ShapePath
     {

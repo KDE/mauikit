@@ -164,7 +164,7 @@ Item
     property bool hovered: false
     
     property bool highlighted: false
-
+        
     Component
     {
         id: _iconComponent

@@ -24,7 +24,7 @@ apply plugin: 'com.android.library'
 
         sourceSets {
         main {
-        manifest.srcFile 'AndroidManifest.xml'
+        manifest.srcFile '@CMAKE_CURRENT_SOURCE_DIR@/AndroidManifest.xml'
         java.srcDirs = ['@CMAKE_CURRENT_SOURCE_DIR@/src']
         aidl.srcDirs = ['src', 'aidl']
 
