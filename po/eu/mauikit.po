@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-07 00:45+0000\n"
+"POT-Creation-Date: 2023-03-11 00:47+0000\n"
 "PO-Revision-Date: 2022-11-18 07:46+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -151,32 +151,32 @@ msgstr "Itxi bestea"
 msgid "Close All"
 msgstr "Itxi denak"
 
-#: src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:242
 #, kde-format
 msgid "Copy"
 msgstr "Kopiatu"
 
-#: src/maui-style/TextField.qml:248
+#: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Cut"
 msgstr "Ebaki"
 
-#: src/maui-style/TextField.qml:255
+#: src/maui-style/TextField.qml:256
 #, kde-format
 msgid "Paste"
 msgstr "Itsatsi"
 
-#: src/maui-style/TextField.qml:265
+#: src/maui-style/TextField.qml:266
 #, kde-format
 msgid "Select All"
 msgstr "Hautatu denak"
 
-#: src/maui-style/TextField.qml:272
+#: src/maui-style/TextField.qml:273
 #, kde-format
 msgid "Undo"
 msgstr "Desegin"
 
-#: src/maui-style/TextField.qml:279
+#: src/maui-style/TextField.qml:280
 #, kde-format
 msgid "Redo"
 msgstr "Berregin"

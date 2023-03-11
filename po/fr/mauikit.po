@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-07 00:45+0000\n"
+"POT-Creation-Date: 2023-03-11 00:47+0000\n"
 "PO-Revision-Date: 2023-01-05 18:07+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -145,32 +145,32 @@ msgstr "Fermer les autres"
 msgid "Close All"
 msgstr "Tout fermer"
 
-#: src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:242
 #, kde-format
 msgid "Copy"
 msgstr "Copier"
 
-#: src/maui-style/TextField.qml:248
+#: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Cut"
 msgstr "Couper"
 
-#: src/maui-style/TextField.qml:255
+#: src/maui-style/TextField.qml:256
 #, kde-format
 msgid "Paste"
 msgstr "Coller"
 
-#: src/maui-style/TextField.qml:265
+#: src/maui-style/TextField.qml:266
 #, kde-format
 msgid "Select All"
 msgstr "Tout sélectionner"
 
-#: src/maui-style/TextField.qml:272
+#: src/maui-style/TextField.qml:273
 #, kde-format
 msgid "Undo"
 msgstr "Annuler"
 
-#: src/maui-style/TextField.qml:279
+#: src/maui-style/TextField.qml:280
 #, kde-format
 msgid "Redo"
 msgstr "Refaire"

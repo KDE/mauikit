@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-07 00:45+0000\n"
+"POT-Creation-Date: 2023-03-11 00:47+0000\n"
 "PO-Revision-Date: 2023-02-07 23:53+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -148,32 +148,32 @@ msgstr "關閉其他的"
 msgid "Close All"
 msgstr "關閉全部"
 
-#: src/maui-style/TextField.qml:241
+#: src/maui-style/TextField.qml:242
 #, kde-format
 msgid "Copy"
 msgstr "複製"
 
-#: src/maui-style/TextField.qml:248
+#: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Cut"
 msgstr "剪下"
 
-#: src/maui-style/TextField.qml:255
+#: src/maui-style/TextField.qml:256
 #, kde-format
 msgid "Paste"
 msgstr "貼上"
 
-#: src/maui-style/TextField.qml:265
+#: src/maui-style/TextField.qml:266
 #, kde-format
 msgid "Select All"
 msgstr "全部選取"
 
-#: src/maui-style/TextField.qml:272
+#: src/maui-style/TextField.qml:273
 #, kde-format
 msgid "Undo"
 msgstr "復原"
 
-#: src/maui-style/TextField.qml:279
+#: src/maui-style/TextField.qml:280
 #, kde-format
 msgid "Redo"
 msgstr "重做"
