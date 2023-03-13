@@ -545,6 +545,7 @@ bool WheelHandler::eventFilter(QObject *watched, QEvent *event)
         }
         setScrolling(scrolled);
 
+        qDebug() << "Wheel event" << scrolled << m_blockTargetWheel;
         // NOTE: Wheel events created by touchpad gestures with pixel deltas will cause scrolling to jump back
         // to where scrolling started unless the event is always accepted before it reaches the Flickable.
         bool flickableWillUseGestureScrolling = !(wheelEvent->source() == Qt::MouseEventNotSynthesized || wheelEvent->pixelDelta().isNull());

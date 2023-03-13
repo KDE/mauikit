@@ -40,6 +40,7 @@ Icon::Icon(QQuickItem *parent)
     connect(qApp, &QGuiApplication::paletteChanged, this, &QQuickItem::polish);
     connect(this, &QQuickItem::enabledChanged, this, &QQuickItem::polish);
     connect(this, &QQuickItem::smoothChanged, this, &QQuickItem::polish);
+    
 }
 
 Icon::~Icon()

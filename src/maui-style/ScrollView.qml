@@ -58,7 +58,7 @@ T.ScrollView
     topPadding: padding
     bottomPadding: padding+ ScrollBar.horizontal.height
     
-    property alias orientation : _wheelHandler.primaryOrientation
+    property int orientation 
 
     data: Maui.WheelHandler
     {

@@ -196,6 +196,7 @@ public:
 
 public slots:
     void refresh();
+    
 
 Q_SIGNALS:
     void sourceChanged();
@@ -245,4 +246,5 @@ private:
     qreal m_paintedHeight = 0.0;
 
     QImage m_icon;
+    
 };

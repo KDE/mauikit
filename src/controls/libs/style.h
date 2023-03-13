@@ -187,6 +187,8 @@ private:
     QString m_currentIconTheme;
 
     void setFontSizes();
+    void styleChanged();
+    
 signals:
     void defaultFontChanged();
     void h1FontChanged();

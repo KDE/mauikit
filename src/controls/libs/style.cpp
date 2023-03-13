@@ -2,6 +2,8 @@
 #include <QCoreApplication>
 #include <QGuiApplication>
 #include <QIcon>
+#include <QStyle>
+#include <QApplication>
 
 #include <MauiMan/thememanager.h>
 #include <MauiMan/backgroundmanager.h>
@@ -11,6 +13,26 @@
 #endif
 
 Style *Style::m_instance = nullptr;
+
+
+void Style::styleChanged()
+{
+    // It should be safe to use qApp->style() unguarded here, because the signal
+    // will only have been connected if qApp is a QApplication.
+    Q_ASSERT(qobject_cast<QApplication *>(QCoreApplication::instance()));
+    auto *style = qApp->style();
+    if (!style || QCoreApplication::closingDown()) {
+        return;
+    }
+    
+    Q_ASSERT(style != sender());
+    
+    connect(style, &QObject::destroyed, this, &Style::styleChanged);
+    
+    m_currentIconTheme = QIcon::themeName();
+    Q_EMIT currentIconThemeChanged(m_currentIconTheme);
+}
+
 
 Style::Style(QObject *parent) : QObject(parent)
   ,m_iconSizes (new GroupSizes(8,16, 22, 32, 48, 64, 128, this))
@@ -105,7 +127,14 @@ Style::Style(QObject *parent) : QObject(parent)
             QIcon::setThemeName(m_currentIconTheme);
             Q_EMIT currentIconThemeChanged(m_currentIconTheme);
         });
-   }
+   }else
+   {
+       
+       QStyle *style = qApp->style();
+       if (style) {
+           connect(style, &QObject::destroyed, this, &Style::styleChanged);
+       }
+}
     
     m_defaultFont = qGuiApp->font();
     
@@ -119,7 +148,7 @@ Style::Style(QObject *parent) : QObject(parent)
     m_defaultPadding = m_themeSettings->paddingSize();
     m_defaultSpacing = m_themeSettings->spacingSize();
 
-    m_currentIconTheme = m_themeSettings->iconTheme();    
+    m_currentIconTheme = QIcon::themeName();    
    
     
 #ifdef Q_OS_ANDROID
