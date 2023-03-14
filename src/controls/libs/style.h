@@ -102,6 +102,8 @@ class Style : public QObject
 
     Q_PROPERTY(QString currentIconTheme READ currentIconTheme NOTIFY currentIconThemeChanged)
 
+    Q_PROPERTY(bool menusHaveIcons READ menusHaveIcons CONSTANT FINAL)
+    
 public:
     enum StyleType : uint
     {
@@ -141,6 +143,8 @@ public:
     uint iconSize() const;
 
     QString currentIconTheme() const;
+    
+    bool menusHaveIcons();
 
 public slots:
     int mapToIconSizes(const int &size);

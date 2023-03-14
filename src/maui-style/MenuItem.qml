@@ -107,7 +107,7 @@ T.MenuItem
         
         alignment: Qt.AlignLeft
         
-        icon:  Qt.styleHints.showShortcutsInContextMenus ? control.icon : null
+        icon: Maui.Style.menusHaveIcons ? control.icon : null
         text: control.text
         font: control.font
         color: control.icon.color        

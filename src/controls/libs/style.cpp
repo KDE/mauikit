@@ -128,9 +128,10 @@ Style::Style(QObject *parent) : QObject(parent)
         });
    }else
    {
-
+        //to be able to check and icon theme change rely on the style being reset 
        QStyle *style = qApp->style();
-       if (style) {
+       if (style) 
+       {
            connect(style, &QObject::destroyed, this, &Style::styleChanged);
        }
 }
@@ -388,4 +389,9 @@ uint Style::iconSize() const
 QString Style::currentIconTheme() const
 {
     return m_currentIconTheme;
+}
+
+bool Style::menusHaveIcons()
+{
+    return !qApp->testAttribute(Qt::AA_DontShowIconsInMenus);
 }

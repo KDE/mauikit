@@ -265,7 +265,6 @@ T.ComboBox
                 return Math.min(250, maxWidth);
             }
             
-            implicitHeight: contentHeight
             model: control.delegateModel
             spacing: control.spacing
             // padding: 0
