@@ -23,7 +23,6 @@
 
 Q_GLOBAL_STATIC(ImageTexturesCache, s_iconImageCache)
 
-#include "style.h"
 #include <MauiMan/thememanager.h>
 
 Icon::Icon(QQuickItem *parent)
@@ -60,17 +59,6 @@ void Icon::setSource(const QVariant &icon)
         Q_ASSERT(m_theme);
 
         connect(m_theme, &Maui::PlatformTheme::PlatformTheme::colorsChanged, this, &QQuickItem::polish);
-    }
-
-    if(!m_style)
-    {
-        m_style = static_cast<Style *>(qmlAttachedPropertiesObject<Style>(this, true));
-
-//        connect(m_style, &Style::currentIconThemeChanged, [this](QString)
-//        {
-//           this->setEnabled(false);
-//            this->setEnabled(true);
-//        });
     }
 
     if (icon.type() == QVariant::String) {

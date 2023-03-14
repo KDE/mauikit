@@ -84,7 +84,7 @@ private:
     Handy(QObject *parent = nullptr);    
     
     MauiMan::FormFactorManager *m_formFactor;
-    MauiMan::AccessibilityManager *m_accessibility;;
+    MauiMan::AccessibilityManager *m_accessibility;
     
     FFactor m_ffactor = FFactor::Desktop;
     bool m_isTouch = false;

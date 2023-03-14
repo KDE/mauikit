@@ -14,7 +14,6 @@
 #include <QVariant>
 
 class QNetworkReply;
-class Style;
 namespace Maui
 {
 class PlatformTheme;
@@ -228,7 +227,6 @@ protected:
 
 private:
     Maui::PlatformTheme *m_theme = nullptr;
-    Style *m_style;
     QPointer<QNetworkReply> m_networkReply;
     QHash<int, bool> m_monochromeHeuristics;
     QVariant m_source;

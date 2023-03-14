@@ -76,16 +76,12 @@ MauiApp::MauiApp()
 
 #if defined BUNDLE_LUV_ICONS
     aboutData.addComponent(i18n("Luv Icon Theme"), "", "", "https://github.com/Nitrux/luv-icon-theme", KAboutLicense::Artistic);
-
 #endif
 
     KAboutData::setApplicationData(aboutData);
 
     setDefaultMauiStyle();
-   if(MauiManUtils::isMauiSession())
-   {
-        QIcon::setThemeName(m_themeSettings->iconTheme());
-   }
+   
 }
 
 QString MauiApp::getMauikitVersion()
