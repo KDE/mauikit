@@ -38,7 +38,6 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.10
 import QtQuick.Controls 2.15
 
-import QtQuick.Controls.impl 2.15
 import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
@@ -93,7 +92,7 @@ T.MenuItem
         source: "qrc:/assets/arrow-right.svg"        
     }
     
-    contentItem: IconLabel
+    contentItem: Maui.IconLabel
     {
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
@@ -102,7 +101,6 @@ T.MenuItem
         
         spacing: control.spacing
         
-        mirrored: control.mirrored
         display: control.display
         
         alignment: Qt.AlignLeft

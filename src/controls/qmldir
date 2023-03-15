@@ -100,3 +100,7 @@ TabViewItem 1.3 TabViewItem.qml
 
 Icon 1.0 Icon.qml
 ShadowedRectangle 1.0 ShadowedRectangle.qml
+
+FontPicker 1.3 FontPicker.qml
+FontPickerDialog 1.3 FontPickerDialog.qml
+IconLabel 1.3 IconLabel.qml

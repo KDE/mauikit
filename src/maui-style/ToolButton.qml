@@ -36,7 +36,6 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Controls.impl 2.15
 import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
@@ -93,20 +92,20 @@ T.ToolButton
 //        }
     }
     
-    contentItem: IconLabel
+    contentItem: Maui.IconLabel
     {
         readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
         
         rightPadding: arrowPadding 
                 
         spacing: control.spacing
-        mirrored: control.mirrored
+        // mirrored: control.mirrored
         display: control.display
         
         icon: control.icon
         text: control.text
         font: control.font
-        
+        alignment: Qt.AlignHCenter
         color: control.color
     }
     
@@ -128,16 +127,16 @@ T.ToolButton
         }
     }
     
+    ToolTip.delay: 1000
+    ToolTip.timeout: 5000
+    ToolTip.visible: control.hovered && control.text.length && (control.display === ToolButton.IconOnly ? true : !checked)
+    ToolTip.text: control.text
+    
     background: Rectangle
     {
         visible: !control.flat
                 radius: Maui.Style.radiusV
         
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
-        
-        //         Behavior on color
-        //         {
-        //            Maui.ColorTransition{}
-        //         }
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")        
     }
 }

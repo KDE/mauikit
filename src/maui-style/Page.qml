@@ -36,7 +36,6 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Controls.impl 2.3
 
 import QtQuick.Templates 2.3 as T
 import org.mauikit.controls 1.3 as Maui

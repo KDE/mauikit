@@ -85,7 +85,7 @@ T.ItemDelegate
     /**
       *
       */
-    property bool wide : _layout.children[1] ? _layout.children[1].implicitWidth <= 200 : true
+    property bool wide : _layout.children[1] ? _layout.children[1].implicitWidth < _layout.width*0.5 : true
 
     property alias rowSpacing : _layout.rowSpacing
 

@@ -38,7 +38,6 @@ import QtQuick 2.15
 
 import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
-import QtQuick.Controls.impl 2.15
 import QtQuick.Layouts 1.3
 
 T.Switch
@@ -71,13 +70,12 @@ T.Switch
     {
         spacing: control.spacing
         
-        IconLabel
+        Maui.IconLabel
     {        
         spacing: control.spacing
      
         icon: control.icon
         
-        mirrored: control.mirrored
         display: control.display
         text: control.text
         font: control.font

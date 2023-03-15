@@ -4,6 +4,7 @@
 #include <QIcon>
 #include <QStyle>
 #include <QApplication>
+#include <QFontDatabase>
 
 #include <MauiMan/thememanager.h>
 #include <MauiMan/backgroundmanager.h>
@@ -31,6 +32,9 @@ void Style::styleChanged()
 
     m_currentIconTheme = QIcon::themeName();
     Q_EMIT currentIconThemeChanged(m_currentIconTheme);
+    
+    m_monospacedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    Q_EMIT monospacedFontChanged();
 }
 
 
@@ -58,6 +62,7 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT fontSizesChanged();
         Q_EMIT h1FontChanged();
         Q_EMIT h2FontChanged();
+        Q_EMIT 
     });
 
     connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
@@ -137,7 +142,7 @@ Style::Style(QObject *parent) : QObject(parent)
 }
 
     m_defaultFont = qGuiApp->font();
-
+ m_monospacedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
     setFontSizes();
 
     m_radiusV = m_themeSettings->borderRadius();

@@ -35,6 +35,7 @@ set(mauikit_SRCS
     platforms/platform.cpp
     utils/icon.cpp
     utils/managedtexturenode.cpp
+    utils/fontpickermodel.cpp
     )
 
 set(mauikit_HDRS

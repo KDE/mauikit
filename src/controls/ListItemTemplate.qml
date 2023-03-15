@@ -288,8 +288,7 @@ textFormat: Text.PlainText
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label4.visible ? Qt.AlignBottom :  Qt.AlignVCenter
                 
-                font.pointSize: Maui.Style.fontSizes.small
-                font.weight: Font.Light
+                font.pointSize: Maui.Style.fontSizes.tiny
                 
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
@@ -310,8 +309,7 @@ textFormat: Text.PlainText
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label3.visible ? Qt.AlignTop : Qt.AlignVCenter
                 
-                font.pointSize: Maui.Style.fontSizes.small
-                font.weight: Font.Light
+                font.pointSize: Maui.Style.fontSizes.tiny
                 
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle

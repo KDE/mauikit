@@ -22,7 +22,6 @@
 import QtQuick 2.15
 import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
-import QtQuick.Controls.impl 2.12
 
 T.Button
 {
@@ -58,17 +57,15 @@ T.Button
     Keys.onReturnPressed: { control.clicked() }
     Keys.onEnterPressed: { control.clicked() }
     
-    contentItem: IconLabel
+    contentItem: Maui.IconLabel
     {
         text: control.text
         font: control.font
         icon: control.icon
         color: control.icon.color
         spacing: control.spacing
-        mirrored: control.mirrored
         display: control.display
-        alignment: Qt.AlignCenter
-        
+        alignment: Qt.AlignHCenter        
     }
     
     background: Rectangle

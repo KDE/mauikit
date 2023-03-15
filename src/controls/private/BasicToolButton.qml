@@ -125,17 +125,4 @@ ToolButton
         }
     }
     
-    Behavior on width
-    {
-        NumberAnimation
-        {
-            duration: 250
-            easing.type: Easing.OutBack
-        }
-    }
-    
-    ToolTip.delay: 1000
-    ToolTip.timeout: 5000
-    ToolTip.visible: ( control.hovered ) && control.text.length && (control.display === ToolButton.IconOnly ? true : !checked)
-    ToolTip.text: control.text
 }

@@ -79,10 +79,10 @@ T.Pane
         }
     }
     
-    property Component delegate : Maui.BasicToolButton
+    property Component delegate : ToolButton
     {
         id: _buttonDelegate
-        Layout.alignment: Qt.AlignCenter
+        // Layout.alignment: Qt.AlignCenter
         autoExclusive: true
         visible: modelData.visible
         checked:  index == control.currentIndex
@@ -116,36 +116,6 @@ T.Pane
             mouseArea.enabled: false
         }
         
-        SequentialAnimation
-        {
-            id: _enterAnim
-
-            NumberAnimation
-            {
-                target: _buttonDelegate.kicon
-                property: "scale"
-                from: 1.5
-                to: 1
-                duration: 200
-                easing.type: Easing.InQuad
-            }
-        }
-
-        SequentialAnimation
-        {
-            id: _exitAnim
-
-            NumberAnimation
-            {
-                target: _buttonDelegate.kicon
-                property: "scale"
-                from: 1.5
-                to: 1
-                duration: 200
-                easing.type: Easing.InQuad
-            }
-        }
-
         onClicked:
         {
             if(index == control.currentIndex )
@@ -175,9 +145,9 @@ T.Pane
             delegate: control.delegate
         }
 
-        Maui.BasicToolButton
+        ToolButton
         {
-            Layout.alignment: Qt.AlignCenter
+            // Layout.alignment: Qt.AlignCenter
 //             padding: Maui.Style.space.medium
             leftPadding: Maui.Style.space.big
             rightPadding: Maui.Style.space.big

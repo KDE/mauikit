@@ -47,6 +47,7 @@
 #include "utils/imagecolors.h"
 #include "utils/wheelhandler.h"
 #include "utils/icon.h"
+#include "utils/fontpickermodel.h"
 
 #include <QDebug>
 #include <QQmlContext>
@@ -148,6 +149,9 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("ScrollColumn.qml")), uri, 1, 3, "ScrollColumn");
     qmlRegisterType(componentUrl(QStringLiteral("TabViewItem.qml")), uri, 1, 3, "TabViewItem");
     qmlRegisterType(componentUrl(QStringLiteral("SettingsPage.qml")), uri, 1, 3, "SettingsPage");
+    qmlRegisterType(componentUrl(QStringLiteral("IconLabel.qml")), uri, 1, 3, "IconLabel");
+    qmlRegisterType(componentUrl(QStringLiteral("FontPicker.qml")), uri, 1, 3, "FontPicker");
+    qmlRegisterType(componentUrl(QStringLiteral("FontPickerDialog.qml")), uri, 1, 3, "FontPickerDialog");
     
     //backwars compatible
     qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
@@ -179,6 +183,8 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
     qmlRegisterType<Icon>(uri, 1, 0, "PrivateIcon");
 
+    qmlRegisterType<FontPickerModel>(uri, 1, 3, "FontPickerModel");
+    
     /** Experimental **/
 #ifdef Q_OS_WIN32
     qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");

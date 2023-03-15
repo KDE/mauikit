@@ -87,5 +87,8 @@
         <file alias="ScrollColumn.qml">controls/ScrollColumn.qml</file>
         <file alias="TabViewItem.qml">controls/TabViewItem.qml</file>
         <file alias="SettingsPage.qml">controls/SettingsPage.qml</file>
+        <file alias="IconLabel.qml">controls/IconLabel.qml</file>
+        <file alias="FontPicker.qml">controls/FontPicker.qml</file>
+        <file alias="FontPickerDialog.qml">controls/FontPickerDialog.qml</file>        
     </qresource>
 </RCC>
