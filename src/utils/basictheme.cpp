@@ -10,6 +10,8 @@
 #include <QFile>
 #include <QGuiApplication>
 #include <QPalette>
+// #include <KSharedConfig>
+// #include <KColorScheme>
 
 #include "controls/libs/style.h"
 #include "imagecolors.h"
@@ -144,9 +146,11 @@ namespace Maui
         }
     }
     
+    // const char *colorProperty = "KDE_COLOR_SCHEME_PATH";
     void BasicThemeDefinition::setSystemPaletteColors()
     {
-        auto palette = QGuiApplication::palette();
+        auto palette = QGuiApplication::palette();              
+        
         textColor = palette.color(QPalette::ColorRole::WindowText);
         disabledTextColor = palette.color(QPalette::ColorRole::PlaceholderText);
         
@@ -154,43 +158,70 @@ namespace Maui
         highlightedTextColor = palette.color(QPalette::ColorRole::HighlightedText);      
         
         backgroundColor = palette.color(QPalette::ColorRole::Window);  
-        activeBackgroundColor = highlightColor;        
-        alternateBackgroundColor = palette.color(QPalette::ColorRole::AlternateBase).lighter(104);
-        hoverColor = palette.color(QPalette::ColorRole::Midlight);        
+        
+        ColorUtils cu;
+        const auto isDark = cu.brightnessForColor(backgroundColor) == ColorUtils::Dark;
+        
+        activeBackgroundColor = highlightColor;      
+        alternateBackgroundColor = isDark ? palette.color(QPalette::ColorRole::AlternateBase).lighter(104) : palette.color(QPalette::ColorRole::AlternateBase).darker(104);
+        
+        hoverColor = palette.color(isDark ? QPalette::ColorRole::Midlight : QPalette::ColorRole::Mid);        
         focusColor = highlightColor;
         
         activeTextColor = highlightColor;    
         
         buttonTextColor = palette.color(QPalette::ColorRole::ButtonText);
         buttonBackgroundColor = palette.color(QPalette::ColorRole::Button);
-        buttonAlternateBackgroundColor =palette.color(QPalette::ColorRole::Midlight);
-        buttonHoverColor = palette.color(QPalette::ColorRole::Mid); 
+        buttonAlternateBackgroundColor = isDark ? buttonBackgroundColor.lighter(104) : buttonBackgroundColor.darker(104);
+        buttonHoverColor = palette.color(isDark ? QPalette::ColorRole::Midlight : QPalette::ColorRole::Mid); 
         buttonFocusColor = highlightColor;
         
         viewTextColor = palette.color(QPalette::ColorRole::Text);
         viewBackgroundColor = palette.color(QPalette::ColorRole::Base);
-        viewAlternateBackgroundColor =palette.color(QPalette::ColorRole::AlternateBase);
-        viewHoverColor = palette.color(QPalette::ColorRole::Midlight);
+        viewAlternateBackgroundColor = isDark ? viewBackgroundColor.lighter(104) : viewBackgroundColor.darker(104);
+        viewHoverColor = palette.color(isDark ? QPalette::ColorRole::Midlight : QPalette::ColorRole::Mid);
         viewFocusColor = highlightColor;
         
         selectionTextColor = palette.color(QPalette::ColorRole::HighlightedText);
         selectionBackgroundColor = highlightColor;
-        selectionAlternateBackgroundColor = highlightColor.lighter();
-        selectionHoverColor = highlightColor.darker();
+        selectionAlternateBackgroundColor = isDark ? highlightColor.lighter() : highlightColor.darker();
+        selectionHoverColor = isDark ? highlightColor.darker() : highlightColor.lighter();
         selectionFocusColor = highlightColor;
         
+       bool useDefaultColors = true;
+//         #ifndef Q_OS_ANDROID 
+//         if (qApp && qApp->property(colorProperty).isValid()) 
+//         {
+//             auto path = qApp->property(colorProperty).toString();
+//             auto config = KSharedConfig::openConfig(path);
+//            
+//             auto active = KColorScheme(QPalette::Active, KColorScheme::Header, config);
+//                        
+//             headerTextColor = active.foreground().color();
+//             headerBackgroundColor = active.background().color();
+//             headerAlternateBackgroundColor = active.background(KColorScheme::AlternateBackground).color();
+//             headerHoverColor = active.decoration(KColorScheme::HoverColor).color();
+//             headerFocusColor = active.decoration(KColorScheme::HoverColor).color();
+//             useDefaultColors = false;
+//         } 
+//         #endif
+        
+        if(useDefaultColors)
+        {           
+            headerTextColor = textColor;
+            headerBackgroundColor = palette.color(QPalette::ColorRole::Window);
+            headerAlternateBackgroundColor =palette.color(QPalette::ColorRole::AlternateBase);
+            headerHoverColor =palette.color(QPalette::ColorRole::Light);
+            headerFocusColor = highlightColor;
+        }
+        
+        
         complementaryTextColor = palette.color(QPalette::ColorRole::BrightText);
-        complementaryBackgroundColor = palette.color(QPalette::ColorRole::Dark);
-        complementaryAlternateBackgroundColor = palette.color(QPalette::ColorRole::Mid);
-        complementaryHoverColor = palette.color(QPalette::ColorRole::Midlight);
+        complementaryBackgroundColor = palette.color(QPalette::ColorRole::Shadow);
+        complementaryAlternateBackgroundColor = palette.color(QPalette::ColorRole::Dark);
+        complementaryHoverColor = palette.color(QPalette::ColorRole::Mid);
         complementaryFocusColor = highlightColor;
         
-        headerTextColor = textColor;
-        headerBackgroundColor = palette.color(QPalette::ColorRole::Window);
-        headerAlternateBackgroundColor =palette.color(QPalette::ColorRole::AlternateBase);
-        headerHoverColor =palette.color(QPalette::ColorRole::Light);
-        headerFocusColor = highlightColor;
-                
         linkColor = palette.color(QPalette::ColorRole::Link);
         linkBackgroundColor =  palette.color(QPalette::ColorRole::Light);
         visitedLinkColor =  palette.color(QPalette::ColorRole::LinkVisited);
