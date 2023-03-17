@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-16 00:59+0000\n"
-"PO-Revision-Date: 2022-11-18 08:44+0200\n"
+"PO-Revision-Date: 2023-03-16 07:22+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -63,37 +63,37 @@ msgstr "Розмір"
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Шрифти"
 
 #: src/controls/FontPickerDialog.qml:45
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "Гарнітура"
 
 #: src/controls/FontPickerDialog.qml:46
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "Виберіть гарнітуру шрифту."
 
 #: src/controls/FontPickerDialog.qml:69
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "Стиль"
 
 #: src/controls/FontPickerDialog.qml:118
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "Перегляд"
 
 #: src/controls/FontPickerDialog.qml:119
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "Перевірка шрифту."
 
 #: src/controls/FontPickerDialog.qml:128
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "Тест українських та English символів"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format

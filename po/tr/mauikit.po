@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-16 00:59+0000\n"
-"PO-Revision-Date: 2023-02-01 14:05+0300\n"
+"PO-Revision-Date: 2023-03-16 11:42+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/controls/ApplicationWindow.qml:400 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
@@ -62,37 +62,37 @@ msgstr "Boyut"
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Yazıtipleri"
 
 #: src/controls/FontPickerDialog.qml:45
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "Aile"
 
 #: src/controls/FontPickerDialog.qml:46
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "Yazıtipi ailesini seçin."
 
 #: src/controls/FontPickerDialog.qml:69
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "Biçem"
 
 #: src/controls/FontPickerDialog.qml:118
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "Önizleme"
 
 #: src/controls/FontPickerDialog.qml:119
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "Yazıtipini sınayın."
 
 #: src/controls/FontPickerDialog.qml:128
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "Pijamalı hasta, yağız şoföre çabucak güvendi"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format

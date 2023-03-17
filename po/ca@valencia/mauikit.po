@@ -1,15 +1,15 @@
 # Translation of mauikit.po to Catalan (Valencian)
-# Copyright (C) 2022 This_file_is_part_of_KDE
+# Copyright (C) 2022-2023 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2022.
+# Josep M. Ferrer <txemaq@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-16 00:59+0000\n"
-"PO-Revision-Date: 2022-11-18 13:19+0100\n"
+"PO-Revision-Date: 2023-03-16 10:50+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -64,37 +64,37 @@ msgstr "Mida"
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Lletres"
 
 #: src/controls/FontPickerDialog.qml:45
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "Família"
 
 #: src/controls/FontPickerDialog.qml:46
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "Seleccioneu la família de la lletra tipogràfica."
 
 #: src/controls/FontPickerDialog.qml:69
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "Estil"
 
 #: src/controls/FontPickerDialog.qml:118
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "Vista prèvia"
 
 #: src/controls/FontPickerDialog.qml:119
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "Prova de la lletra."
 
 #: src/controls/FontPickerDialog.qml:128
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "Jove xef, porte ací per beure whisky amb quinze glaçons d'hidrogen"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
@@ -247,9 +247,3 @@ msgstr "Frameworks de MauiKit"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Tema d'icones Luv"
-
-#~ msgid "Find"
-#~ msgstr "Busca"
-
-#~ msgid "Find..."
-#~ msgstr "Busca..."
