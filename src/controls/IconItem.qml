@@ -150,8 +150,8 @@ implicitWidth: Math.max(iconSizeHint, imageSizeHint)
                 Rectangle
                 {
                     anchors.centerIn: parent
-                    width: img.paintedWidth
-                    height: img.paintedHeight
+                    width: Math.min(parent.width, img.paintedWidth)
+                    height: Math.min(parent.height, img.paintedHeight)                    
                     radius: control.maskRadius
                 }
             }

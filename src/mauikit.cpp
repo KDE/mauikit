@@ -121,7 +121,6 @@ void MauiKit::registerTypes(const char *uri)
     /** 1.2 **/
     qmlRegisterType(componentUrl(QStringLiteral("SectionItem.qml")), uri, 1, 2, "SectionItem");
     qmlRegisterType(componentUrl(QStringLiteral("Separator.qml")), uri, 1, 2, "Separator");
-    qmlRegisterType(componentUrl(QStringLiteral("private/BasicToolButton.qml")), uri, 1, 2, "BasicToolButton");
 
     /** 1.3 **/
     qmlRegisterType(componentUrl(QStringLiteral("GalleryRollItem.qml")), uri, 1, 3, "GalleryRollItem");
