@@ -16,7 +16,7 @@ T.ItemDelegate
     Maui.Theme.colorSet: Maui.Theme.Tooltip 
     
     hoverEnabled: !Maui.Handy.isMobile
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     
     padding: Maui.Style.defaultPadding
@@ -42,15 +42,14 @@ T.ItemDelegate
         id: _background
         //         opacity: 0.5
         
-        color:  control.pressed ? Qt.darker(control.color) : (control.hovered ? Qt.lighter(control.color): control.color)
+        color:  control.checked ? Maui.Theme.highlightColor : (control.pressed ? Qt.darker(control.color) : (control.hovered ? Qt.lighter(control.color): control.color))
         radius:  Maui.Style.radiusV   
     }
     
     contentItem: RowLayout
     {
         id: _layout
-        spacing: control.spacing
-        
+        spacing: control.spacing        
 
             Maui.Icon
             {
@@ -81,14 +80,16 @@ T.ItemDelegate
             visible: active
             
             asynchronous: true
-            Layout.preferredHeight: Maui.Style.iconSizes.big
-            Layout.preferredWidth: visible ? Maui.Style.iconSizes.medium : 0
+            
+          Layout.fillHeight: true
+            
             Layout.alignment: Qt.AlignRight
             
             sourceComponent: MouseArea
             {
                 hoverEnabled: true
-                
+                implicitHeight: Maui.Style.iconSizes.medium
+                implicitWidth: visible ? Maui.Style.iconSizes.medium : 0
                 onClicked: control.close()
                 
                 Maui.X

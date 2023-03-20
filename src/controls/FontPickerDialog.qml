@@ -34,6 +34,7 @@ Maui.SettingsDialog
     property alias mfont : _model.font   
     title: i18n("Fonts")
     defaultButtons: true
+        property alias model : _model
         
     Maui.FontPickerModel
     {

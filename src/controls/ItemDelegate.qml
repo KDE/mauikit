@@ -124,7 +124,7 @@ T.Control
         id: _mouseArea
         
         propagateComposedEvents: false
-        acceptedButtons:  Qt.RightButton | Qt.LeftButton
+        acceptedButtons: Qt.RightButton | Qt.LeftButton
         
         property bool pressAndHoldIgnored : false
 
