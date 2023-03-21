@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-16 00:59+0000\n"
-"PO-Revision-Date: 2023-01-03 17:19+0100\n"
+"POT-Creation-Date: 2023-03-21 00:46+0000\n"
+"PO-Revision-Date: 2023-03-16 16:33+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/controls/ApplicationWindow.qml:400 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
@@ -54,7 +54,7 @@ msgid "Opacity"
 msgstr "Krytí"
 
 #: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
-#: src/controls/FontPickerDialog.qml:94
+#: src/controls/FontPickerDialog.qml:95
 #, kde-format
 msgid "Size"
 msgstr "Velikost"
@@ -62,37 +62,37 @@ msgstr "Velikost"
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
-
-#: src/controls/FontPickerDialog.qml:45
-#, kde-format
-msgid "Family"
-msgstr ""
+msgstr "Písma"
 
 #: src/controls/FontPickerDialog.qml:46
 #, kde-format
-msgid "Pick the font family."
-msgstr ""
+msgid "Family"
+msgstr "Rodina"
 
-#: src/controls/FontPickerDialog.qml:69
+#: src/controls/FontPickerDialog.qml:47
+#, kde-format
+msgid "Pick the font family."
+msgstr "Vyberte rodinu písma."
+
+#: src/controls/FontPickerDialog.qml:70
 #, kde-format
 msgid "Style"
-msgstr ""
-
-#: src/controls/FontPickerDialog.qml:118
-#, kde-format
-msgid "Preview"
-msgstr ""
+msgstr "Styl"
 
 #: src/controls/FontPickerDialog.qml:119
 #, kde-format
-msgid "Test the font."
-msgstr ""
+msgid "Preview"
+msgstr "Náhled"
 
-#: src/controls/FontPickerDialog.qml:128
+#: src/controls/FontPickerDialog.qml:120
+#, kde-format
+msgid "Test the font."
+msgstr "Vyzkoušejte písmo."
+
+#: src/controls/FontPickerDialog.qml:129
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "Žluťoučký kůň úpěl ďábelské ódy"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
