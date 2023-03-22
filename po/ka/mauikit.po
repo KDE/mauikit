@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-21 00:46+0000\n"
-"PO-Revision-Date: 2023-02-03 16:16+0100\n"
+"PO-Revision-Date: 2023-03-21 06:51+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -63,37 +63,37 @@ msgstr "ზომა"
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "ფონტები"
 
 #: src/controls/FontPickerDialog.qml:46
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "ოჯახი"
 
 #: src/controls/FontPickerDialog.qml:47
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "აირჩიეთ ფონტის ოჯახი."
 
 #: src/controls/FontPickerDialog.qml:70
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "სტილი"
 
 #: src/controls/FontPickerDialog.qml:119
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "მინიატურა"
 
 #: src/controls/FontPickerDialog.qml:120
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "ფონტის შემოწმება."
 
 #: src/controls/FontPickerDialog.qml:129
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "ბაყაყი წყალში ყიყინებს"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
