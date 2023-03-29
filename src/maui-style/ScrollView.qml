@@ -64,7 +64,7 @@ T.ScrollView
     {
         id: _wheelHandler
         target: control.contentItem
-    }
+            }
     
     ScrollBar.vertical: ScrollBar 
     {

@@ -187,6 +187,8 @@ Item
     
     property alias availableHeight: controlView.height
     
+    property alias moving: updateContentDelay.running
+    
     /**
      * itemsSelected :
      */
@@ -291,6 +293,23 @@ Item
                 anchors.fill : parent
                 anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
                 anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
+            }
+                        
+            onContentXChanged:
+            {
+                updateContentDelay.restart()
+            }
+            
+            onContentYChanged: 
+            {
+                updateContentDelay.restart()
+            }
+            
+            Timer 
+            {
+                id: updateContentDelay
+                interval: 500
+                repeat: false
             }
             
             Loader

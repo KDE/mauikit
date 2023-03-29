@@ -41,7 +41,6 @@ Maui.Dialog
 
     property alias mainHeader : _header
 
-
     Control
     {
         id: _header
@@ -61,7 +60,7 @@ Maui.Dialog
             imageSizeHint: iconSizeHint
             isMask: false
 
-            spacing: Maui.Style.space.big
+            spacing: Maui.Style.space.medium
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             label1.text: Maui.App.about.displayName
             label1.font.weight: Font.Black
@@ -72,6 +71,7 @@ Maui.Dialog
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             leftLabels.spacing: Maui.Style.space.medium
+            
             leftLabels.data: [
                 
                 Label
@@ -94,7 +94,6 @@ Maui.Dialog
             ]
         }
     }
-
 
     Item
     {

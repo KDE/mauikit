@@ -7,9 +7,7 @@ import QtGraphicalEffects 1.15
 
 import org.mauikit.controls 1.3 as Maui
 
-import QtQuick.Templates 2.15 as T
-
-T.Container
+SwipeView
 {
     id: control
        
@@ -29,6 +27,8 @@ T.Container
     
     onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
+    
+    interactive: control.mobile
     
     background: Rectangle
     {
@@ -358,7 +358,7 @@ T.Container
                     
                     visible: control.count > 1   
                     
-                    interactive: control.mobile
+                    interactive: control.interactive
                                         
                     currentIndex: control.currentIndex                
                     showNewTabButton: !mobile
@@ -461,7 +461,7 @@ T.Container
                         visible: !control.count
                         emojiSize: Maui.Style.iconSizes.huge
                     }
-                }
+                }      
             }  
             }
             Component
@@ -617,7 +617,7 @@ T.Container
             control.closeOverview()
         }
         
-        const object = component.createObject(control.contentModel, properties);
+        const object = component.createObject(_listView, properties);
         
         control.addItem(object)
         _tabBar.addItem(control.tabViewButton.createObject(_tabBar))

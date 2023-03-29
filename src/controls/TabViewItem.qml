@@ -6,8 +6,7 @@ import QtQuick 2.13
 Loader
 {
     id: control
-    height: ListView.view.height
-    width:  ListView.view.width
+    
     focus: true
     active: ListView.isCurrentItem || item
     

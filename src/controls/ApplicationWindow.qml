@@ -151,12 +151,6 @@ Window
       }      
     }
     
-    Label
-    {
-      color: "orange"
-      text: Maui.Style.currentIconTheme
-    }
-        
     Loader
     {
       active: _content.layer.enabled
