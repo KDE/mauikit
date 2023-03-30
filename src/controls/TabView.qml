@@ -684,18 +684,25 @@ Control
     
     function moveTab(from, to)
     {
-        _listView.moveItem(from, to)
-        _listView.setCurrentIndex(to)
-        
+        var newFocus = false
+        if(from === control.currentIndex)
+        {
+            newFocus = true
+        }
+        _listView.moveItem(from, to)        
         _tabBar.moveItem(from, to)
+        
+        
+        if(newFocus)
+        {
+        _listView.setCurrentIndex(to)        
         _tabBar.setCurrentIndex(to)
-        
-        _listView2.forceLayout()
-        
+                
         _listView2.positionViewAtIndex(to, ListView.Contain)
         
         _listView.currentItemChanged()
         _listView.currentItem.forceActiveFocus()
+        }
     }
     
     function setCurrentIndex(index)
