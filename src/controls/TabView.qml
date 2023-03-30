@@ -364,7 +364,7 @@ Control
                     
                     interactive: _listView.interactive
                                         
-                    currentIndex: _listView.currentIndex                
+                    // currentIndex: _listView.currentIndex                
                     showNewTabButton: !mobile
                     
                     onNewTabClicked: control.newTabClicked()
@@ -683,26 +683,18 @@ Control
     }
     
     function moveTab(from, to)
-    {
-        var newFocus = false
-        if(from === control.currentIndex)
-        {
-            newFocus = true
-        }
+    {       
         _listView.moveItem(from, to)        
         _tabBar.moveItem(from, to)
         
-        
-        if(newFocus)
-        {
         _listView.setCurrentIndex(to)        
-        _tabBar.setCurrentIndex(to)
+        _tabBar.setCurrentIndex(_listView.currentIndex)
                 
-        _listView2.positionViewAtIndex(to, ListView.Contain)
+        _listView2.positionViewAtIndex(_listView.currentIndex, ListView.Contain)
         
         _listView.currentItemChanged()
         _listView.currentItem.forceActiveFocus()
-        }
+        
     }
     
     function setCurrentIndex(index)
