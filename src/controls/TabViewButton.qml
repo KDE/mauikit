@@ -34,11 +34,11 @@ Maui.TabButton
     Drag.dragType: Drag.Automatic
     Drag.proposedAction: Qt.IgnoreAction
     
-    //                         Label
-    //                         {
-    //                             color: "orange"
-    //                             text: mindex + " - " + _tabBar.currentIndex + " = " + control.currentIndex
-    //                         }
+                            Label
+                            {
+                                color: "orange"
+                                text: mindex + " - " + tabBar.currentIndex + " = " + tabView.currentIndex
+                            }
     
     DragHandler
     {
@@ -94,14 +94,8 @@ Maui.TabButton
             
             dropSide = from > to ? 1 : 0
             
-            control.tabView.moveItem(from , to)
-            control.tabBar.moveItem(from , to)
-            
-            control.tabBar.setCurrentIndex(to)
-            control.tabView.setCurrentIndex(to)                                    
-            
-            control.tabView.currentItemChanged()
-            control.tabView.currentItem.forceActiveFocus()
+            control.tabView.moveTab(from , to)
+            // control.tabView.setCurrentIndex(to)         
         }
         
         onEntered: 

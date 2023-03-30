@@ -442,6 +442,40 @@ Control
                     
                     orientation: ListView.Horizontal                    
                     background: null
+                    
+                    contentItem: ListView
+                    {
+                        id: _listView2
+                        model: _listView.contentModel
+                        interactive: false
+                        currentIndex: _listView.currentIndex
+                        
+                        spacing: _listView.spacing
+                        
+                        clip: false
+                        
+                        orientation: ListView.Horizontal
+                        snapMode: ListView.SnapOneItem
+                        
+                        boundsBehavior: Flickable.StopAtBounds
+                        boundsMovement :Flickable.StopAtBounds
+                        
+                        preferredHighlightBegin: 0
+                        preferredHighlightEnd: width
+                        
+                        highlightRangeMode: ListView.StrictlyEnforceRange
+                        highlightMoveDuration: 0
+                        highlightFollowsCurrentItem: true
+                        highlightResizeDuration: 0
+                        highlightMoveVelocity: -1
+                        highlightResizeVelocity: -1
+                        
+                        maximumFlickVelocity: 4 * width
+                        
+                        cacheBuffer: _listView.count * width
+                        keyNavigationEnabled : false
+                        keyNavigationWraps : false
+                    }
                 }  
                 
                 Maui.Holder
@@ -648,13 +682,25 @@ Control
         _stackView.pop()
     }
     
-    function moveItem(from, to)
+    function moveTab(from, to)
     {
         _listView.moveItem(from, to)
+        _listView.setCurrentIndex(to)
+        
+        _tabBar.moveItem(from, to)
+        _tabBar.setCurrentIndex(to)
+        
+        _listView2.forceLayout()
+        
+        _listView2.positionViewAtIndex(to, ListView.Contain)
+        
+        _listView.currentItemChanged()
+        _listView.currentItem.forceActiveFocus()
     }
     
     function setCurrentIndex(index)
     {
+        _tabBar.setCurrentIndex(index)
         _listView.setCurrentIndex(index)
     }
 }
