@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-21 00:46+0000\n"
+"POT-Creation-Date: 2023-03-30 00:48+0000\n"
 "PO-Revision-Date: 2022-12-03 10:40+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.08.3\n"
 
-#: src/controls/ApplicationWindow.qml:400 src/controls/Dialog.qml:361
+#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
@@ -104,42 +104,42 @@ msgstr "Hups!"
 msgid "The image could not be loaded."
 msgstr "Kuvaa ei voi ladata."
 
-#: src/controls/private/AboutDialog.qml:108
+#: src/controls/private/AboutDialog.qml:107
 #, kde-format
 msgid "Authors"
 msgstr "Tekijät"
 
-#: src/controls/private/AboutDialog.qml:153
+#: src/controls/private/AboutDialog.qml:152
 #, kde-format
 msgid "Translators"
 msgstr "Kääntäjät"
 
-#: src/controls/private/AboutDialog.qml:196
+#: src/controls/private/AboutDialog.qml:195
 #, kde-format
 msgid "Credits"
 msgstr "Kiitokset"
 
-#: src/controls/private/AboutDialog.qml:244
+#: src/controls/private/AboutDialog.qml:243
 #, kde-format
 msgid "Licenses"
 msgstr "Lisenssit"
 
-#: src/controls/private/AboutDialog.qml:276
+#: src/controls/private/AboutDialog.qml:275
 #, kde-format
 msgid "Components"
 msgstr "Osat"
 
-#: src/controls/private/AboutDialog.qml:314
+#: src/controls/private/AboutDialog.qml:313
 #, kde-format
 msgid "Links"
 msgstr "Linkit"
 
-#: src/controls/private/AboutDialog.qml:329
+#: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
 msgstr "Raportit"
 
-#: src/controls/private/AboutDialog.qml:336
+#: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
 msgstr "Kotisivu"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-21 00:46+0000\n"
+"POT-Creation-Date: 2023-03-30 00:48+0000\n"
 "PO-Revision-Date: 2023-03-16 12:22+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "%100==4 ? 3 : 0);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: src/controls/ApplicationWindow.qml:400 src/controls/Dialog.qml:361
+#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
 #, kde-format
 msgid "Accept"
@@ -105,42 +105,42 @@ msgstr "Opsa!"
 msgid "The image could not be loaded."
 msgstr "Slike ni bilo mogoče naložiti."
 
-#: src/controls/private/AboutDialog.qml:108
+#: src/controls/private/AboutDialog.qml:107
 #, kde-format
 msgid "Authors"
 msgstr "Avtorji"
 
-#: src/controls/private/AboutDialog.qml:153
+#: src/controls/private/AboutDialog.qml:152
 #, kde-format
 msgid "Translators"
 msgstr "Prevajalci"
 
-#: src/controls/private/AboutDialog.qml:196
+#: src/controls/private/AboutDialog.qml:195
 #, kde-format
 msgid "Credits"
 msgstr "Zasluge"
 
-#: src/controls/private/AboutDialog.qml:244
+#: src/controls/private/AboutDialog.qml:243
 #, kde-format
 msgid "Licenses"
 msgstr "Dovoljenja"
 
-#: src/controls/private/AboutDialog.qml:276
+#: src/controls/private/AboutDialog.qml:275
 #, kde-format
 msgid "Components"
 msgstr "Komponente"
 
-#: src/controls/private/AboutDialog.qml:314
+#: src/controls/private/AboutDialog.qml:313
 #, kde-format
 msgid "Links"
 msgstr "Povezave"
 
-#: src/controls/private/AboutDialog.qml:329
+#: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
 msgstr "Poročila"
 
-#: src/controls/private/AboutDialog.qml:336
+#: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
 msgstr "Domača stran"
