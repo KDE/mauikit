@@ -90,8 +90,7 @@ Maui.TabButton
                 return
             }
             
-            console.log("Move ", drop.source.mindex,
-                        control.mindex)
+            console.log("Move ", drop.source.mindex, control.mindex)
             
             dropSide = from > to ? 1 : 0
             

@@ -7,9 +7,15 @@ import QtGraphicalEffects 1.15
 
 import org.mauikit.controls 1.3 as Maui
 
-SwipeView
+Control
 {
     id: control
+       
+       default property alias content: _listView.contentData
+       property alias contentModel: _listView.contentModel
+       property alias currentIndex: _listView.currentIndex
+       property alias currentItem: _listView.currentItem
+       property alias count: _listView.count
        
     property alias holder : _holder
     property bool mobile : control.width <= Maui.Style.units.gridUnit * 30
@@ -28,7 +34,7 @@ SwipeView
     onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     
-    interactive: control.mobile
+    property bool interactive: control.mobile
     
     background: Rectangle
     {
@@ -62,8 +68,8 @@ SwipeView
                     return
                 }
                 
-                control.setCurrentIndex(_tabButton.mindex)
-                control.currentItem.forceActiveFocus()
+                _listView.setCurrentIndex(_tabButton.mindex)
+                _listView.currentItem.forceActiveFocus()
             }
             
             onRightClicked:
@@ -114,7 +120,7 @@ SwipeView
             icon.name: "tab-new"
             onTriggered:
             {
-                control.setCurrentIndex(_menu.index)
+                _listView.setCurrentIndex(_menu.index)
                 control.closeOverview()
             }
         }
@@ -123,9 +129,7 @@ SwipeView
         {
             text: i18nd("mauikit", "Duplicate")
             icon.name: "tab-duplicate"
-            onTriggered:
-            {
-            }
+            onTriggered: {}
         }
         
         
@@ -180,7 +184,7 @@ SwipeView
                 {
                     for(var i = 0; i < control.count; i ++)
                     {
-                        var obj = control.contentModel.get(i)
+                        var obj = _listView.contentModel.get(i)
                         if(obj.Maui.TabViewInfo.tabTitle)
                         {
                             console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
@@ -219,9 +223,9 @@ SwipeView
                     
                     onAccepted:
                     {
-                        control.setCurrentIndex(_filterTabsList.currentIndex)
+                        _listView.setCurrentIndex(_filterTabsList.currentIndex)
                         _quickSearch.close()
-                        control.currentItem.forceActiveFocus()
+                        _listView.currentItem.forceActiveFocus()
                     }
                     
                     Keys.enabled: true
@@ -245,20 +249,20 @@ SwipeView
                     id: _filterTabsList
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    currentIndex: control.currentIndex
+                    currentIndex: _listView.currentIndex
                     
-                    model: control.count
+                    model: _listView.count
                     
                     delegate: Maui.ListDelegate
                     {
                         width: ListView.view.width
                         
-                        label: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                        label: _listView.contentModel.get(index).Maui.TabViewInfo.tabTitle
                         
                         onClicked:
                         {
                             currentIndex =index
-                            control.setCurrentIndex(index)
+                            _listView.setCurrentIndex(index)
                             _quickSearch.close()
                         }
                     }
@@ -356,26 +360,32 @@ SwipeView
                     anchors.left: parent.left
                     anchors.right: parent.right
                     
-                    visible: control.count > 1   
+                    visible: _listView.count > 1   
                     
-                    interactive: control.interactive
+                    interactive: _listView.interactive
                                         
-                    currentIndex: control.currentIndex                
+                    currentIndex: _listView.currentIndex                
                     showNewTabButton: !mobile
                     
                     onNewTabClicked: control.newTabClicked()
-                    onNewTabFocused: control.setCurrentIndex(index)
+                    onNewTabFocused: _listView.setCurrentIndex(index)
+                    
+                    Repeater
+                    {
+                        model: control.count
+                        delegate: control.tabViewButton
+                    }
                     
                     Keys.onPressed:
                     {
                         if(event.key == Qt.Key_Return)
                         {
-                            control.setCurrentIndex(currentIndex)                        
+                            _listView.setCurrentIndex(currentIndex)                        
                         }
                         
                         if(event.key == Qt.Key_Down)
                         {
-                            control.currentItem.forceActiveFocus()
+                            _listView.currentItem.forceActiveFocus()
                         }
                     }      
                     
@@ -416,7 +426,7 @@ SwipeView
                     } ]
                 }
                 
-                ListView
+                SwipeView
                 {  
                     id: _listView
                     anchors.fill: parent
@@ -424,44 +434,23 @@ SwipeView
                     anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height : 0
                     anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height : 0 
                     
-                    model: control.contentModel
                     interactive: false
-                    currentIndex: control.currentIndex
                     
                     spacing: control.spacing
                     
-                    clip: false
+                    clip: control.clip
                     
-                    orientation: ListView.Horizontal
-                    snapMode: ListView.SnapOneItem
-                    
-                    boundsBehavior: Flickable.StopAtBounds
-                    boundsMovement :Flickable.StopAtBounds
-                    
-                    preferredHighlightBegin: 0
-                    preferredHighlightEnd: width
-                    
-                    highlightRangeMode: ListView.StrictlyEnforceRange
-                    highlightMoveDuration: 0
-                    highlightFollowsCurrentItem: true
-                    highlightResizeDuration: 0
-                    highlightMoveVelocity: -1
-                    highlightResizeVelocity: -1
-                    
-                    maximumFlickVelocity: 4 * width
-                    
-                    cacheBuffer: control.count * width
-                    keyNavigationEnabled : false
-                    keyNavigationWraps : false
-                    
-                    Maui.Holder
-                    {
-                        id: _holder
-                        anchors.fill: parent
-                        visible: !control.count
-                        emojiSize: Maui.Style.iconSizes.huge
-                    }
-                }      
+                    orientation: ListView.Horizontal                    
+                    background: null
+                }  
+                
+                Maui.Holder
+                {
+                    id: _holder
+                    anchors.fill: parent
+                    visible: !control.count
+                    emojiSize: Maui.Style.iconSizes.huge
+                }
             }  
             }
             Component
@@ -513,28 +502,28 @@ SwipeView
                                 anchors.margins: Maui.Style.space.medium
                                 
                                 isCurrentItem : parent.GridView.isCurrentItem
-                                label1.text: control.contentModel.get(index).Maui.TabViewInfo.tabTitle
+                                label1.text: _listView.contentModel.get(index).Maui.TabViewInfo.tabTitle
 //                                 template.labelSizeHint: 32
                                 iconSource: "tab-new"
                                 flat: false
                                 
                                 onRightClicked:
                                 {
-                                    control.setCurrentIndex(index)
-                                    _menu.index = control.currentIndex
+                                    _listView.setCurrentIndex(index)
+                                    _menu.index = _listView.currentIndex
                                     _menu.show()
                                 }
                                 
                                 onClicked:
                                 {
                                     control.closeOverview()
-                                    control.setCurrentIndex(index)                                    
-                                    control.currentItem.forceActiveFocus()
+                                    _listView.setCurrentIndex(index)                                    
+                                    _listView.currentItem.forceActiveFocus()
                                 }
                                 
                                 onPressAndHold:
                                 {
-                                    control.setCurrentIndex(index)
+                                    _listView.setCurrentIndex(index)
                                     _menu.index = control.currentIndex
                                     _menu.show()
                                 }
@@ -557,7 +546,7 @@ SwipeView
 //                                        mipmap: true
                                         
                                         textureSize: Qt.size(width,height)
-                                        sourceItem: control.contentModel.get(index)
+                                        sourceItem: _listView.contentModel.get(index)
                                         layer.enabled: true
                                         layer.effect: OpacityMask
                                         {
@@ -603,11 +592,11 @@ SwipeView
     
     function closeTab(index)
     {
-        control.removeItem(control.itemAt(index))
-        _tabBar.removeItem(_tabBar.itemAt(index))
+        _listView.removeItem(_listView.itemAt(index))
+        // _tabBar.removeItem(_tabBar.itemAt(index))
         
-        control.currentItemChanged()
-        control.currentItem.forceActiveFocus()
+        _listView.currentItemChanged()
+        _listView.currentItem.forceActiveFocus()
     }
     
     function addTab(component, properties, quiet = false) : Item
@@ -617,14 +606,14 @@ SwipeView
             control.closeOverview()
         }
         
-        const object = component.createObject(_listView, properties);
+        const object = component.createObject(control, properties);
         
-        control.addItem(object)
-        _tabBar.addItem(control.tabViewButton.createObject(_tabBar))
+        _listView.addItem(object)
+        // _tabBar.addItem(control.tabViewButton.createObject(_tabBar))
         
         if(!quiet)
         {
-            control.setCurrentIndex(Math.max(control.count -1, 0))
+            _listView.setCurrentIndex(Math.max(_listView.count -1, 0))
             object.forceActiveFocus()
         }
         
@@ -657,5 +646,15 @@ SwipeView
         }
         
         _stackView.pop()
+    }
+    
+    function moveItem(from, to)
+    {
+        _listView.moveItem(from, to)
+    }
+    
+    function setCurrentIndex(index)
+    {
+        _listView.setCurrentIndex(index)
     }
 }
