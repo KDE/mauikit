@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-30 00:48+0000\n"
+"POT-Creation-Date: 2023-03-31 00:46+0000\n"
 "PO-Revision-Date: 2023-03-16 07:22+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -160,27 +160,27 @@ msgstr "Поділитися"
 msgid "Close Split"
 msgstr "Закрити панель розділеного перегляду"
 
-#: src/controls/TabView.qml:113
+#: src/controls/TabView.qml:119
 #, kde-format
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/controls/TabView.qml:124
+#: src/controls/TabView.qml:130
 #, kde-format
 msgid "Duplicate"
 msgstr "Здублювати"
 
-#: src/controls/TabView.qml:134
+#: src/controls/TabView.qml:138
 #, kde-format
 msgid "Close"
 msgstr "Закрити"
 
-#: src/controls/TabView.qml:144
+#: src/controls/TabView.qml:148
 #, kde-format
 msgid "Close Other"
 msgstr "Закрити інші"
 
-#: src/controls/TabView.qml:153
+#: src/controls/TabView.qml:157
 #, kde-format
 msgid "Close All"
 msgstr "Закрити всі"

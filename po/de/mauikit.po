@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-30 00:48+0000\n"
+"POT-Creation-Date: 2023-03-31 00:46+0000\n"
 "PO-Revision-Date: 2023-03-12 16:48+0100\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.07.70\n"
 
 #: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
@@ -161,27 +161,27 @@ msgstr ""
 msgid "Close Split"
 msgstr ""
 
-#: src/controls/TabView.qml:113
+#: src/controls/TabView.qml:119
 #, kde-format
 msgid "Open"
 msgstr "Öffnen"
 
-#: src/controls/TabView.qml:124
+#: src/controls/TabView.qml:130
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplizieren"
 
-#: src/controls/TabView.qml:134
+#: src/controls/TabView.qml:138
 #, kde-format
 msgid "Close"
 msgstr "Schließen"
 
-#: src/controls/TabView.qml:144
+#: src/controls/TabView.qml:148
 #, kde-format
 msgid "Close Other"
 msgstr "Andere schließen"
 
-#: src/controls/TabView.qml:153
+#: src/controls/TabView.qml:157
 #, kde-format
 msgid "Close All"
 msgstr "Alle schließen"
