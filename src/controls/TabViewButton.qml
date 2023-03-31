@@ -34,12 +34,6 @@ Maui.TabButton
     Drag.dragType: Drag.Automatic
     Drag.proposedAction: Qt.IgnoreAction
     
-                            Label
-                            {
-                                color: "orange"
-                                text: mindex + " - " + tabBar.currentIndex + " = " + tabView.currentIndex
-                            }
-    
     DragHandler
     {
         id: dragArea
@@ -78,7 +72,6 @@ Maui.TabButton
     DropArea
     {
         id: _dropArea
-        property int dropSide : -1
         anchors.fill: parent
         onDropped:
         {                             
@@ -90,12 +83,8 @@ Maui.TabButton
                 return
             }
             
-            console.log("Move ", drop.source.mindex, control.mindex)
-            
-            dropSide = from > to ? 1 : 0
-            
+            console.log("Move ", drop.source.mindex, control.mindex)            
             control.tabView.moveTab(from , to)
-            // control.tabView.setCurrentIndex(to)         
         }
         
         onEntered: 

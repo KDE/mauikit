@@ -46,7 +46,7 @@ Maui.Popup
     focus: true
 //     focusPolicy: Qt.StrongFocus
     
-  Maui.Theme.colorSet: Maui.Theme.View
+  Maui.Theme.colorSet: Maui.Theme.Window
   Maui.Theme.inherit: false
   
   closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside

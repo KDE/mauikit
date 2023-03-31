@@ -17,8 +17,7 @@
 #include "imagecolors.h"
 
 namespace Maui
-{
-    
+{    
     BasicThemeDefinition::BasicThemeDefinition(QObject *parent)
     : QObject(parent)
     ,m_imgColors(new ImageColors(this))
@@ -75,6 +74,16 @@ namespace Maui
                 {
                     break;                    
                 }  
+            }
+            
+            Q_EMIT this->changed();
+        });
+        
+        connect(style, &Style::trueBlackChanged, [this, style](bool)
+        {
+            if(style->styleType() == Style::StyleType::Dark)
+            {   
+                 setDarkColors(); 
             }
             
             Q_EMIT this->changed();
@@ -231,6 +240,7 @@ namespace Maui
     
     void BasicThemeDefinition::setDarkColors()
     {
+        const auto trueBlack = Style::instance()->trueBlack();
         ColorUtils cu;
         
         textColor = DarkColor::textColor;
@@ -241,7 +251,7 @@ namespace Maui
         
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};
                 
-        backgroundColor =  cu.tintWithAlpha(DarkColor::backgroundColor, highlightColor, 0.02);
+        backgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(DarkColor::backgroundColor, highlightColor, 0.02);
         activeBackgroundColor = highlightColor;       
         alternateBackgroundColor = cu.tintWithAlpha(DarkColor::alternateBackgroundColor, highlightColor, 0.02);
         hoverColor = cu.tintWithAlpha(DarkColor::hoverColor, highlightColor, 0.02);      
@@ -256,7 +266,7 @@ namespace Maui
         buttonFocusColor = highlightColor;
         
         viewTextColor = textColor;
-        viewBackgroundColor =  cu.tintWithAlpha(DarkColor::viewBackgroundColor, highlightColor, 0.02); 
+        viewBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(DarkColor::viewBackgroundColor, highlightColor, 0.02); 
         viewAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::viewAlternateBackgroundColor, highlightColor, 0.02);
         viewHoverColor =  cu.tintWithAlpha(DarkColor::viewHoverColor, highlightColor, 0.02);
         viewFocusColor = highlightColor;
@@ -268,13 +278,13 @@ namespace Maui
         selectionFocusColor = highlightColor;
         
         complementaryTextColor = QColor{"#eff0f1"};
-        complementaryBackgroundColor = cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03); 
+        complementaryBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03); 
         complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker();
         complementaryHoverColor = complementaryBackgroundColor.lighter();
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.04);
+        headerBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.04);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
         headerHoverColor = headerBackgroundColor.lighter();
         headerFocusColor = highlightColor;       

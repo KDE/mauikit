@@ -105,6 +105,8 @@ class Style : public QObject
 
     Q_PROPERTY(bool menusHaveIcons READ menusHaveIcons CONSTANT FINAL)
     
+    Q_PROPERTY(bool trueBlack READ trueBlack WRITE setTrueBlack NOTIFY trueBlackChanged)
+    
 public:
     enum StyleType : uint
     {
@@ -146,8 +148,11 @@ public:
     QString currentIconTheme() const;
     
     bool menusHaveIcons();
+    
+    bool trueBlack() const;
+    void setTrueBlack(bool value);
 
-public slots:
+public Q_SLOTS:
     int mapToIconSizes(const int &size);
 
 private:
@@ -191,11 +196,14 @@ private:
     bool m_enableEffects = true;
 
     QString m_currentIconTheme;
+    
+    bool m_trueBlack = false;
+    bool m_trueBlack_clocked = false;
 
     void setFontSizes();
     void styleChanged();
     
-signals:
+Q_SIGNALS:
     void defaultFontChanged();
     void h1FontChanged();
     void h2FontChanged();
@@ -213,6 +221,7 @@ signals:
     void contentMarginsChanged();
     void currentIconThemeChanged(QString currentIconTheme);
     void defaultSpacingChanged();
+    void trueBlackChanged(bool value);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

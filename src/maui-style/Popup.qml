@@ -41,7 +41,7 @@ T.Popup
     id: control
     
     parent: ApplicationWindow.overlay
-    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.View    
     
     width: (filling ? parent.width  : mWidth) - leftMargin - rightMargin
     height: (filling ? parent.height : mHeight) - topMargin - bottomMargin
@@ -144,8 +144,9 @@ T.Popup
             color: control.Maui.Theme.backgroundColor
             
             radius:  control.filling ? 0 : Maui.Style.radiusV    
-            
-            layer.enabled: !control.filling
+            property color borderColor: Maui.Theme.textColor
+            // border.color: Maui.Style.trueBlack ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
+            // layer.enabled: !control.filling
             layer.effect: DropShadow
             {
                 horizontalOffset: 0
@@ -159,12 +160,7 @@ T.Popup
             Behavior on color
             {
                 Maui.ColorTransition{}
-            }
-            
-            Behavior on border.color
-            {
-                Maui.ColorTransition{}
-            }            
+            }          
         }
         
         enter: Transition {

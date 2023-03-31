@@ -188,9 +188,24 @@ void Style::setFontSizes()
     m_h2Font.setPointSize(m_fontSizes->m_big);
     m_h2Font.setWeight(QFont::DemiBold);
     // m_h2Font.setBold(false);
-
 }
 
+bool Style::trueBlack() const
+{
+    return m_trueBlack;
+}
+
+void Style::setTrueBlack(bool value)
+{
+    m_trueBlack_clocked = true;
+    
+    if(m_trueBlack == value)
+        return;
+    
+    m_trueBlack = value;
+    
+    Q_EMIT trueBlackChanged(m_trueBlack);
+}
 
 void Style::setRadiusV(const uint& radius)
 {
