@@ -197,6 +197,8 @@ public:
      * \sa https://en.wikipedia.org/wiki/CIELAB_color_space
      */
     Q_INVOKABLE static qreal chroma(const QColor &color);
+    
+    Q_INVOKABLE static qreal contrastRatio(const QColor & c1, const QColor & c2);
 
     struct LabColor {
         qreal l = 0;
@@ -206,4 +208,8 @@ public:
 
     // Not for QML, returns the comvertion from srgb of a QColor and Lab colorspace
     static ColorUtils::LabColor colorToLab(const QColor &color);
+    
+private:
+    static qreal relativeLuminance(const QColor & color);
+    static qreal convertChannel(qreal c);
 };

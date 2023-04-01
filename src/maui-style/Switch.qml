@@ -66,7 +66,7 @@ T.Switch
     
     Layout.alignment: Qt.AlignVCenter
     
-    contentItem: Row
+    contentItem: RowLayout
     {
         spacing: control.spacing
         

@@ -44,7 +44,6 @@ T.TabButton
     property alias rightContent: _rightContent.data
     
     property bool closeButtonVisible: true
-    property bool centerLabel : true
     
     /**
      * closeClicked :
@@ -94,18 +93,21 @@ T.TabButton
                 id: _leftContent
             }
             
-            Label
+            Maui.IconLabel
             {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 opacity: control.checked || control.hovered ? 1 : 0.7
                 
                 text: control.text
-                
-                horizontalAlignment: Qt.AlignHCenter
+                icon: control.icon
+                color: Maui.Theme.textColor
+                alignment: Qt.AlignHCenter
+                display: ToolButton.TextBesideIcon
+                /*horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 wrapMode: Text.NoWrap
-                elide: Text.ElideMiddle                
+                elide: Text.ElideMiddle   */             
             }
             
             Row

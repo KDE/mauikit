@@ -49,7 +49,6 @@ Control
         {
             id: _tabButton
             tabView: control
-            tabBar: control.tabBar
             closeButtonVisible: !control.mobile
             
             leftContent: Maui.Badge
@@ -276,75 +275,6 @@ Control
         {
             anchors.fill: parent
             id: _stackView
-            
-            pushExit: Transition
-            {
-                ParallelAnimation
-                {
-                    PropertyAnimation
-                    {
-                        property: "scale"
-                        from: 1
-                        to: 0
-                        duration: Maui.Style.units.veryShortDuration
-                        easing.type: Easing.InOutCubic
-                    }
-                    
-                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Maui.Style.units.longDuration; easing.type: Easing.InOutCubic }
-                }
-                
-            }
-            
-            pushEnter: Transition
-            {
-                ParallelAnimation
-                {
-                    PropertyAnimation
-                    {
-                        property: "scale"
-                        from: 4
-                        to: 1
-                        duration: Maui.Style.units.veryShortDuration
-                        easing.type: Easing.OutCubic
-                    }
-                    
-                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Maui.Style.units.longDuration; easing.type: Easing.OutCubic }
-                }
-            }
-            
-            popEnter: Transition
-            {
-                ParallelAnimation
-                {
-                    PropertyAnimation
-                    {
-                        property: "scale"
-                        from: 1
-                        to: 1
-                        duration: 0
-                        easing.type: Easing.InOutCubic
-                    }
-                    
-                    NumberAnimation { property: "opacity"; from: 0; to: 1; duration: Maui.Style.units.longDuration; easing.type: Easing.OutCubic }
-                }
-            }
-            
-            popExit: Transition
-            {
-                ParallelAnimation
-                {
-//                     //PropertyAnimation
-//                     //{
-//                     //property: "scale"
-//                     //from: 1
-//                     //to: 4
-//                     //duration: 200
-//                     //easing.type: Easing.OutCubic
-//                     //}
-//                     
-                    NumberAnimation { property: "opacity"; from: 1; to: 0; duration: Maui.Style.units.longDuration; easing.type: Easing.OutCubic }
-                }                
-            }
             
             initialItem: ColumnLayout
             {
@@ -621,8 +551,7 @@ Control
                 }
             }
         }
-    }
-    
+    }    
     
     function closeTab(index)
     {
@@ -701,5 +630,10 @@ Control
     {
         _tabBar.setCurrentIndex(index)
         _listView.setCurrentIndex(index)
+    }
+    
+    function tabAt(index)
+    {
+        return _listView.itemAt(index)
     }
 }

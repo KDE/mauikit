@@ -16,8 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TABVIEW_H
-#define TABVIEW_H
+#pragma once
 #include <QObject>
 #include <QQmlEngine>
 
@@ -30,15 +29,17 @@ class TabViewInfo : public QObject
     Q_OBJECT
     Q_PROPERTY(QString tabTitle READ tabTitle WRITE setTabTitle NOTIFY tabTitleChanged)
     Q_PROPERTY(QString tabToolTipText READ tabToolTipText WRITE setTabToolTipText NOTIFY tabToolTipTextChanged)
-
+    Q_PROPERTY(QString tabColor READ tabColor WRITE setTabColor NOTIFY tabColorChanged)
+    Q_PROPERTY(QString tabIcon READ tabIcon WRITE setTabIcon NOTIFY tabIconChanged)
+        
 public:
     static TabViewInfo *qmlAttachedProperties(QObject *object)
     {
         Q_UNUSED(object)
-
+        
         return new TabViewInfo(object);
     }
-
+    
     /**
      * @brief setTitle
      * @param title
@@ -47,11 +48,11 @@ public:
     {
         if (value == m_tabTitle)
             return;
-
+        
         m_tabTitle = value;
-        emit tabTitleChanged();
+        Q_EMIT tabTitleChanged();
     }
-
+    
     /**
      * @brief setTabToolTipText
      * @param iconName
@@ -60,11 +61,31 @@ public:
     {
         if (value == m_tabToolTipText)
             return;
-
+        
         m_tabToolTipText = value;
-        emit tabToolTipTextChanged();
+        Q_EMIT tabToolTipTextChanged();
     }
-
+    
+    inline void setTabColor(const QString &value)
+    {
+        if (value == m_tabColor)
+            return;
+        
+        m_tabColor = value;
+        Q_EMIT tabColorChanged();
+    }
+    
+    
+    inline void setTabIcon(const QString &value)
+    {
+        if (value == m_tabIcon)
+            return;
+        
+        m_tabIcon = value;
+        Q_EMIT tabIconChanged();
+    }
+    
+    
     /**
      * @brief title
      * @return
@@ -73,7 +94,7 @@ public:
     {
         return m_tabTitle;
     }
-
+    
     /**
      * @brief iconName
      * @return
@@ -82,18 +103,31 @@ public:
     {
         return m_tabToolTipText;
     }
-
+    
+    inline const QString tabColor() const
+    {
+        return m_tabColor;
+    }
+    
+    inline const QString tabIcon() const
+    {
+        return m_tabIcon;
+    }
+    
 private:
     using QObject::QObject;
-
+    
     QString m_tabTitle;
     QString m_tabToolTipText;
-
-signals:
+    QString m_tabIcon;
+    QString m_tabColor;
+    
+Q_SIGNALS:
     void tabTitleChanged();
     void tabToolTipTextChanged();
+    void tabColorChanged();
+    void tabIconChanged();
 };
 
 QML_DECLARE_TYPEINFO(TabViewInfo, QML_HAS_ATTACHED_PROPERTIES)
 
-#endif // TABVIEW_H

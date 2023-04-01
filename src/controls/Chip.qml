@@ -32,7 +32,7 @@ T.ItemDelegate
     
     property color color : Maui.Theme.backgroundColor
     
-    ToolTip.visible: hovered
+    // ToolTip.visible: hovered
     ToolTip.text: label.text
     
     signal close()

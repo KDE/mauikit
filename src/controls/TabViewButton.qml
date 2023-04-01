@@ -13,7 +13,6 @@ Maui.TabButton
     
     readonly property int mindex : control.TabBar.index
     property Item tabView : control.parent
-    property Maui.TabBar tabBar : control.TabBar.tabBar
     
     // implicitHeight: ListView.view.height
     
@@ -21,6 +20,7 @@ Maui.TabButton
     
     checked: control.mindex === control.tabView.currentIndex
     text: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabTitle
+    icon.name: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabIcon
     
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
@@ -37,7 +37,7 @@ Maui.TabButton
     DragHandler
     {
         id: dragArea
-        enabled: !control.mobile && control.tabBar.count > 1
+        enabled: !control.mobile && control.tabView.count > 1
         acceptedDevices: PointerDevice.Mouse | PointerDevice.Stylus | PointerDevice.GenericPointer
         target: null
         xAxis.enabled: true

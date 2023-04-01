@@ -60,7 +60,7 @@ T.ToolButton
     hoverEnabled: !Maui.Handy.isMobile
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium   
+    spacing: Maui.Style.space.small   
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

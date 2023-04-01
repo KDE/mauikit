@@ -310,3 +310,59 @@ qreal ColorUtils::chroma(const QColor &color)
     // Chroma is hypotenuse of a and b
     return sqrt(pow(labColor.a, 2) + pow(labColor.b, 2));
 }
+
+/**
+ * @brief Computes the contrast ratio between 2 colors.
+ * @param c1 Color 1.
+ * @param c2 Color 2.
+ * @return A value in the range [1, 21]
+ */
+qreal ColorUtils::contrastRatio(const QColor & c1, const QColor & c2)
+{
+    const qreal l1 = relativeLuminance(c1);
+    const qreal l2 = relativeLuminance(c2);
+    
+    const qreal INC = 0.05;
+    const qreal ratio = (l1 > l2) ? ((l2 + INC) / (l1 + INC)) : ((l1 + INC) / (l2 + INC));
+    
+    return 1.0 / ratio;
+}
+
+/**
+ * @brief Computes the relative luminance of a color.
+ * @param color Color.
+ * @return A value in the range [0, 1]
+ */
+qreal ColorUtils::relativeLuminance(const QColor & color)
+{
+    const qreal r = convertChannel(color.redF());
+    const qreal g = convertChannel(color.greenF());
+    const qreal b = convertChannel(color.blueF());
+    
+    // magic numbers from WCAG
+    return r * 0.2126 + g * 0.7152 + b * 0.0722;
+}
+
+/**
+ * @brief Utility function that converts a color channel for the relative luminance formula.
+ * @param c A color channel in the range [0, 1]
+ * @return A converted value to use in the luminance formula.
+ */
+qreal ColorUtils::convertChannel(qreal c)
+{
+    // more magic numbers from WCAG
+    if(c <= 0.03928)
+        return c / 12.92;
+    else
+        return qPow((c + 0.055) / 1.055, 2.4);
+}
+
+
+static qreal contrastRatioForLuma(qreal y1, qreal y2)
+{
+    if (y1 > y2)
+        return (y1 + 0.05) / (y2 + 0.05);
+    else
+        return (y2 + 0.05) / (y1 + 0.05);
+}
+

@@ -165,6 +165,8 @@ T.Control
                     checkable: control.checkable || action.checkable
                     checked: action.checked
                     
+                    height: Math.max(implicitHeight, control.height)
+                    
                     Binding on checked
                     {
                         when: autoExclusive
