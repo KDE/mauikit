@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-31 00:46+0000\n"
+"POT-Creation-Date: 2023-04-02 00:46+0000\n"
 "PO-Revision-Date: 2023-03-20 14:28+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -156,27 +156,27 @@ msgstr "Partilhar com"
 msgid "Close Split"
 msgstr "Fechar a Divisória"
 
-#: src/controls/TabView.qml:119
+#: src/controls/TabView.qml:118
 #, kde-format
 msgid "Open"
 msgstr "Abrir"
 
-#: src/controls/TabView.qml:130
+#: src/controls/TabView.qml:129
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: src/controls/TabView.qml:138
+#: src/controls/TabView.qml:137
 #, kde-format
 msgid "Close"
 msgstr "Fechar"
 
-#: src/controls/TabView.qml:148
+#: src/controls/TabView.qml:147
 #, kde-format
 msgid "Close Other"
 msgstr "Fechar as Outras"
 
-#: src/controls/TabView.qml:157
+#: src/controls/TabView.qml:156
 #, kde-format
 msgid "Close All"
 msgstr "Fechar Tudo"

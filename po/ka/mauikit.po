@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-31 00:46+0000\n"
+"POT-Creation-Date: 2023-04-02 00:46+0000\n"
 "PO-Revision-Date: 2023-03-21 06:51+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -160,27 +160,27 @@ msgstr "გაზიარება"
 msgid "Close Split"
 msgstr "გაყოფის დახურვა"
 
-#: src/controls/TabView.qml:119
+#: src/controls/TabView.qml:118
 #, kde-format
 msgid "Open"
 msgstr "გახსნა"
 
-#: src/controls/TabView.qml:130
+#: src/controls/TabView.qml:129
 #, kde-format
 msgid "Duplicate"
 msgstr "დუბლიკაცია"
 
-#: src/controls/TabView.qml:138
+#: src/controls/TabView.qml:137
 #, kde-format
 msgid "Close"
 msgstr "დახურვა"
 
-#: src/controls/TabView.qml:148
+#: src/controls/TabView.qml:147
 #, kde-format
 msgid "Close Other"
 msgstr "სხვების დახურვა"
 
-#: src/controls/TabView.qml:157
+#: src/controls/TabView.qml:156
 #, kde-format
 msgid "Close All"
 msgstr "ყველას დახურვა"

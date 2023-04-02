@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-31 00:46+0000\n"
+"POT-Creation-Date: 2023-04-02 00:46+0000\n"
 "PO-Revision-Date: 2023-03-27 12:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -159,27 +159,27 @@ msgstr "分享到"
 msgid "Close Split"
 msgstr "取消分割"
 
-#: src/controls/TabView.qml:119
+#: src/controls/TabView.qml:118
 #, kde-format
 msgid "Open"
 msgstr "打开"
 
-#: src/controls/TabView.qml:130
+#: src/controls/TabView.qml:129
 #, kde-format
 msgid "Duplicate"
 msgstr "复制"
 
-#: src/controls/TabView.qml:138
+#: src/controls/TabView.qml:137
 #, kde-format
 msgid "Close"
 msgstr "关闭"
 
-#: src/controls/TabView.qml:148
+#: src/controls/TabView.qml:147
 #, kde-format
 msgid "Close Other"
 msgstr "关闭其他文档"
 
-#: src/controls/TabView.qml:157
+#: src/controls/TabView.qml:156
 #, kde-format
 msgid "Close All"
 msgstr "全部关闭"
