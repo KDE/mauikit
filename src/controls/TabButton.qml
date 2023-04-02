@@ -104,6 +104,7 @@ T.TabButton
                 color: Maui.Theme.textColor
                 alignment: Qt.AlignHCenter
                 display: ToolButton.TextBesideIcon
+                font: control.font
                 /*horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 wrapMode: Text.NoWrap

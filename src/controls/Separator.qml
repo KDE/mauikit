@@ -51,7 +51,6 @@ Rectangle
     Behavior on color
     {
         Maui.ColorTransition{}
-    }
-    
+    }    
 }
 

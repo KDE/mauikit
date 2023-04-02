@@ -4,25 +4,21 @@ import QtQuick.Window 2.3
 
 import org.mauikit.controls 1.3 as Maui
 
-Item
+Control
 {
     id: control
-    implicitHeight: visible ? _row.implicitHeight : 0
-    implicitWidth: visible ? _row.implicitWidth : 0
-    
-    property bool hovered : false
-    
-    Row
+  
+  implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+  implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
+  spacing: Maui.Style.space.medium   
+  padding: Maui.Style.space.small
+  
+    hoverEnabled: true    
+   
+    contentItem: Row
     {
-        id: _row
-        anchors.fill: parent
-        spacing: Maui.Style.space.small    
-        
-        ToolSeparator
-        {
-            height: 8
-            anchors.verticalCenter: parent.verticalCenter
-        }
+        id: _layout
+        spacing: control.spacing 
         
         Repeater
         {
@@ -38,16 +34,8 @@ Item
         AbstractButton
         {
             id: _button
-            hoverEnabled: true
             width: height
-            height: 22 
-            
-            Binding
-            {
-                target: control
-                property: "hovered"
-                value: _button.hovered               
-            }
+            height: 16 
             
             Maui.CSDButton
             {
@@ -60,17 +48,12 @@ Item
                 isMaximized: maximized
             }
             
-            contentItem: Item
-            {
-                Image
+            contentItem: Image
                 {
-                    width: 16
-                    height: 16
                     smooth: true
                     source: button.source                  
-                    anchors.centerIn: parent
                 }
-            }
+            
             
             onClicked: buttonClicked(button.type)            
         }

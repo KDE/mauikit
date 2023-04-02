@@ -7,8 +7,6 @@ Control
 {
     id: control
 
-    property int iconSize : 22
-
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     spacing: Maui.Style.space.medium
@@ -45,8 +43,8 @@ Control
 
             hoverEnabled: true
 
-            implicitWidth:  control.iconSize
-            implicitHeight: control.iconSize
+            implicitWidth: 22
+            implicitHeight: 22
 
             focusPolicy: Qt.NoFocus
             
@@ -68,9 +66,6 @@ Control
                     source: button.source
 
                     color: Maui.Theme.textColor
-
-                    anchors.centerIn: parent
-
                     Behavior on color
                     {
                         Maui.ColorTransition{}

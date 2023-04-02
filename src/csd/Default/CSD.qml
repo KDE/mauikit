@@ -9,6 +9,7 @@ Control
 
     property int iconSize : 16
 
+    padding: Maui.Style.space.small
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     spacing: Maui.Style.space.medium
@@ -61,27 +62,19 @@ Control
                 isMaximized: maximized
             }
 
-            contentItem: Item
-            {
-                Maui.Icon
+            contentItem: Maui.Icon
                 {
-                    width: control.iconSize
-                    height: control.iconSize
-
                     smooth: true
-
                     source: button.source
 
                     color: Maui.Theme.textColor
-
-                    anchors.centerIn: parent
 
                     Behavior on color
                     {
                         Maui.ColorTransition{}
                     }
                 }
-            }
+            
             
             onClicked:
             {
