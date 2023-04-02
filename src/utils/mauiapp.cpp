@@ -100,7 +100,7 @@ void MauiApp::setIconName(const QString &value)
         return;
     
     m_iconName = value;
-    emit this->iconNameChanged();
+    Q_EMIT this->iconNameChanged();
 }
 
 QString MauiApp::getDonationPage() const
@@ -114,7 +114,7 @@ void MauiApp::setDonationPage(const QString &value)
         return;
     
     m_donationPage = value;
-    emit this->donationPageChanged();
+    Q_EMIT this->donationPageChanged();
 }
 
 KAboutData MauiApp::getAbout() const
@@ -157,7 +157,7 @@ void MauiApp::setTranslucencyAvailable(const bool &value)
     }
 
     m_translucencyAvailable = value;
-    emit this->translucencyAvailableChanged(m_translucencyAvailable);
+    Q_EMIT this->translucencyAvailableChanged(m_translucencyAvailable);
 }
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
@@ -353,8 +353,8 @@ QUrl CSDButton::extractStateValue(QSettings &settings, const CSDButton::CSDButto
 
 void CSDButton::requestCurrentSource()
 {
-    this->m_source = this->m_sources.value (this->m_state);
-    emit this->sourceChanged ();
+    m_source = this->m_sources.value (this->m_state);
+    Q_EMIT this->sourceChanged ();
 }
 
 QString CSDButton::mapButtonType(const CSDButtonType &type)
@@ -388,7 +388,7 @@ void CSDButton::setState(const CSDButtonState &newState)
     if (m_state == newState)
         return;
     m_state = newState;
-    emit stateChanged();
+    Q_EMIT stateChanged();
 }
 
 CSDControls *MauiApp::controls() const
@@ -407,7 +407,7 @@ void CSDButton::setType(CSDButtonType newType)
         return;
     
     m_type = newType;
-    emit typeChanged();
+    Q_EMIT typeChanged();
 }
 
 CSDButton::CSDButtonType CSDButton::mapType(const QString &value)
@@ -434,9 +434,9 @@ void CSDButton::setIsHovered(bool newIsHovered)
         this->setState (CSDButtonState::Hover);
     }else
     {
-        this->setState (CSDButtonState::Normal);
+        this->setState (m_isFocused ? CSDButtonState::Normal : CSDButtonState::Backdrop);
     }
-    emit isHoveredChanged();
+    Q_EMIT isHoveredChanged();
 }
 
 bool CSDButton::isMaximized() const
@@ -456,7 +456,7 @@ void CSDButton::setIsMaximized(bool newIsMaximized)
     {
         this->setType (CSDButtonType::Maximize);
     }
-    emit isMaximizedChanged();
+    Q_EMIT isMaximizedChanged();
 }
 
 bool CSDButton::isPressed() const
@@ -476,7 +476,7 @@ void CSDButton::setIsPressed(bool newIsPressed)
     {
         this->setState (CSDButtonState::Normal);
     }
-    emit isPressedChanged();
+    Q_EMIT isPressedChanged();
 }
 
 bool CSDButton::isFocused() const
@@ -498,23 +498,5 @@ void CSDButton::setIsFocused(bool newIsFocused)
     {
         this->setState (CSDButtonState::Backdrop);
     }
-    emit isFocusedChanged();
-}
-
-void CSDControls::applyRadius(QWindow *window, int radius)
-{
-    
-    QRect r(QPoint(), window->geometry().size());
-    QRect rb(0, 0, 2 * radius, 2 * radius);
-    
-    QRegion region(rb, QRegion::Ellipse);
-    rb.moveRight(r.right());
-    region += QRegion(rb, QRegion::Ellipse);
-    rb.moveBottom(r.bottom());
-    region += QRegion(rb, QRegion::Ellipse);
-    rb.moveLeft(r.left());
-    region += QRegion(rb, QRegion::Ellipse);
-    region += QRegion(r.adjusted(radius, 0, -radius, 0), QRegion::Rectangle);
-    region += QRegion(r.adjusted(0, radius, 0, -radius), QRegion::Rectangle);
-    window->setMask(region);
+    Q_EMIT isFocusedChanged();
 }

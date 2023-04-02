@@ -7,11 +7,9 @@ Control
 {
     id: control
 
-    property int iconSize : 22
-
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
-    spacing: Maui.Style.space.medium
+    spacing: 0
 
     background: null
 
@@ -19,12 +17,6 @@ Control
     {
         id: _layout
         spacing: control.spacing
-
-        ToolSeparator
-        {
-            height: 8
-            anchors.verticalCenter: parent.verticalCenter
-        }
 
         Repeater
         {
@@ -45,15 +37,15 @@ Control
 
             hoverEnabled: true
 
-            implicitWidth:  control.iconSize
-            implicitHeight: control.iconSize
+            implicitWidth: 23
+            implicitHeight: 14
 
             focusPolicy: Qt.NoFocus
-            
+
             Maui.CSDButton
             {
                 id: button
-                style: "Nitrux"
+                style: "Lucid"
                 type: mapType(modelData)
                 isHovered: _button.hovered
                 isPressed: _button.pressed
@@ -61,28 +53,14 @@ Control
                 isMaximized: maximized
             }
 
-            contentItem:  Maui.Icon
+            contentItem: Image
                 {
                     smooth: true
-
-                    source: button.source
-
-                    color: Maui.Theme.textColor
-
-                    anchors.centerIn: parent
-
-                    Behavior on color
-                    {
-                        Maui.ColorTransition{}
-                    }
+                    source: button.source                 
                 }
-            
-            
-            onClicked:
-            {
-                console.log("NITRUX CSD BUTTON CLICKED", button.type)
-                buttonClicked(button.type)
-            }
+
+            onClicked: buttonClicked(button.type)
+
         }
     }
 }

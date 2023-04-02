@@ -76,6 +76,7 @@ T.Popup
     
     modal: true    
     padding: 0
+    clip: false
     
     topPadding: control.padding
     bottomPadding: control.padding + bottomInset
@@ -144,9 +145,9 @@ T.Popup
             color: control.Maui.Theme.backgroundColor
             
             radius:  control.filling ? 0 : Maui.Style.radiusV    
-            property color borderColor: Maui.Theme.textColor
+            // property color borderColor: Maui.Theme.textColor
             // border.color: Maui.Style.trueBlack ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
-            // layer.enabled: !control.filling
+            layer.enabled: !control.filling
             layer.effect: DropShadow
             {
                 horizontalOffset: 0

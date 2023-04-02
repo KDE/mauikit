@@ -109,7 +109,7 @@ public:
   QString style() const;
   void setStyle(const QString &style);
   
-public slots:
+public Q_SLOTS:
   CSDButton::CSDButtonType mapType(const QString &value);
 
 private:
@@ -135,8 +135,7 @@ private:
   void setSources();
   void requestCurrentSource();
 
-
-signals:
+Q_SIGNALS:
   void stateChanged();
   void sourceChanged();
   void isHoveredChanged();
@@ -180,9 +179,6 @@ public:
   
   QUrl source() const;
   QString styleName() const;
-  
-public slots:
-  void applyRadius(QWindow *window, int radius);
 
 private:
   MauiMan::ThemeManager *m_themeSettings;
@@ -197,7 +193,7 @@ private:
   void getWindowControlsSettings();
   void setStyle();
 
-signals:
+Q_SIGNALS:
   void enableCSDChanged();
   void styleNameChanged();
   void sourceChanged();
@@ -300,7 +296,7 @@ private:
   
   bool m_translucencyAvailable = false;
 
-signals:
+Q_SIGNALS:
   void iconNameChanged();
   void donationPageChanged();
   void translucencyAvailableChanged(bool translucencyAvailable);

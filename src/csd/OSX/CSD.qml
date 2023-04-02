@@ -10,11 +10,13 @@ Item
     implicitHeight: visible ? _row.implicitHeight : 0
     implicitWidth: visible ? _row.implicitWidth : 0
     
+    property bool hovered : false
+    
     Row
     {
         id: _row
         anchors.fill: parent
-        spacing: Maui.Style.space.medium    
+        spacing: Maui.Style.space.small    
         
         ToolSeparator
         {
@@ -40,12 +42,19 @@ Item
             width: height
             height: 22 
             
+            Binding
+            {
+                target: control
+                property: "hovered"
+                value: _button.hovered               
+            }
+            
             Maui.CSDButton
             {
                 id: button
-                style: "Breeze"
+                style: "OSX"
                 type: mapType(modelData)
-                isHovered: _button.hovered
+                isHovered: control.hovered
                 isPressed: _button.pressed
                 isFocused:  isActiveWindow
                 isMaximized: maximized
@@ -53,13 +62,12 @@ Item
             
             contentItem: Item
             {
-                Maui.Icon
+                Image
                 {
-                    width: 18
-                    height: 18
+                    width: 16
+                    height: 16
                     smooth: true
-                    source: button.source
-                    isMask: false
+                    source: button.source                  
                     anchors.centerIn: parent
                 }
             }

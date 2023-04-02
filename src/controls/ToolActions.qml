@@ -165,7 +165,7 @@ T.Control
                     checkable: control.checkable || action.checkable
                     checked: action.checked
                     
-                    height: Math.max(implicitHeight, control.height)
+                    height: Math.max(implicitHeight, _row.implicitHeight)
                     
                     Binding on checked
                     {
