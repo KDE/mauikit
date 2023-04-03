@@ -32,6 +32,7 @@ T.TabButton
     
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium   
+    font: Maui.Style.defaultFont
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
