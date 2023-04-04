@@ -39,8 +39,6 @@ Maui.Dialog
 
     maxWidth: 400
     closeButtonVisible: false
-
-    spacing: Maui.Style.defaultSpacing
     
     template.headerSizeHint: template.iconSizeHint + Maui.Style.space.big
     template.iconSource: singleItem.icon
@@ -145,16 +143,6 @@ Maui.Dialog
             }
         }
     }
-
-    Maui.Separator
-    {
-        visible: _listViewLoader.active
-        Layout.preferredWidth: 100
-        Layout.alignment: Qt.AlignCenter
-        Layout.margins: Maui.Style.space.medium
-    }
-
-    Item {Layout.fillWidth: true}
 
     Loader
     {

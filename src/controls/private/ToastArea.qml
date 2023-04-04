@@ -21,9 +21,14 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
+import QtQuick.Window 2.3
+
 import QtGraphicalEffects 1.12
+
 import QtQml.Models 2.3
+
 import QtMultimedia 5.15
+
 import org.mauikit.controls 1.3 as Maui
 
 
@@ -35,6 +40,8 @@ Pane
     visible: _container.count > 0
     
     hoverEnabled: true
+    
+    property bool autoClose :  Window.window.active
     
     SoundEffect 
     {
@@ -91,7 +98,7 @@ Pane
             property alias body: _template.label2.text
              property var callback : ({})
              property alias buttonText: _button.text
-             property int timeout : 2500
+             property int timeout : 3500
             
             onClicked: control.remove(mindex)
             
@@ -112,7 +119,7 @@ Pane
                 }
             }
             
-            // Component.onCompleted: _toastTimer.restart()
+            Component.onCompleted: _toastTimer.restart()
             
             Timer
             {
@@ -121,7 +128,7 @@ Pane
                 
                 onTriggered: 
                 {
-                    if(_toast.hovered || _container.hovered)
+                    if(_toast.hovered || _container.hovered || !control.autoClose)
                     {
                         _toastTimer.restart()
                         return;
