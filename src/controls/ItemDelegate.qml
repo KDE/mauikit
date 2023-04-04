@@ -41,7 +41,7 @@ T.Control
     
     padding: 0
     
-    focus: true
+    // focus: true
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
@@ -227,7 +227,6 @@ T.Control
             }
         }
     }
-
 
     background: Rectangle
     {        

@@ -31,10 +31,10 @@ import QtMultimedia 5.15
 
 import org.mauikit.controls 1.3 as Maui
 
-
-Pane
+Control
 {
     id: control
+    focus: true
     
     padding: Maui.Style.contentMargins
     visible: _container.count > 0
@@ -53,6 +53,20 @@ Pane
     {
         id: _dismissSound
         source: "qrc:/assets/notification_simple-02.wav"
+    }    
+    
+    Keys.enabled: true
+    Keys.onEscapePressed:
+    {
+        control.dismiss()   
+    }     
+    
+    onVisibleChanged:
+    {
+        if(visible)
+        {
+            control.forceActiveFocus()
+        }
     }
     
     background: MouseArea
@@ -83,7 +97,8 @@ Pane
         ItemDelegate
         {
             id: _toast
-            
+           
+         
             readonly property int mindex :  ObjectModel.index
             width: ListView.view.width
             height: _layout.implicitHeight + topPadding +bottomPadding
@@ -163,7 +178,10 @@ Pane
                     Layout.fillWidth: true
                     onClicked: 
                     {
-                        _toast.callback(_toast.mindex)
+                       if(_toast.callback instanceof Function)
+                       {
+                            _toast.callback(_toast.mindex)
+                    }
                         control.remove(_toast.mindex)
                     }
                 }
@@ -192,19 +210,21 @@ Pane
     }   
     
     contentItem: Item
-    {      
+    {     
+        
         Container
         {
             id: _container
-            
+         
             hoverEnabled: true
             
             width:  Math.min(400, parent.width)
             height: Math.min( _listView.implicitHeight + topPadding + bottomPadding, 500)
             
             anchors.bottom: parent.bottom
-            anchors.bottomMargin:_dimissButton.height + Maui.Style.space.medium
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: parent.horizontalCenter                      
+            
+            
             
         contentItem: Maui.ListBrowser
         {
@@ -218,7 +238,7 @@ Pane
             spacing: Maui.Style.space.medium
           
             
-            model: _container.contentModel     
+            model: _container.contentModel              
             
             footer: Item
             {
@@ -235,9 +255,7 @@ Pane
             }
             }
         }
-        }
-        
-       
+        }   
     }
     
     function add(icon, title, body, callback, timeout, buttonText)
@@ -250,7 +268,7 @@ Pane
             'timeout': timeout,
             'buttonText': buttonText           
         })
-        const object = _toastComponent.createObject(_container, properties);        
+        const object = _toastComponent.createObject(control, properties);        
         _container.insertItem(0, object)
         playSound.play() 
     }
