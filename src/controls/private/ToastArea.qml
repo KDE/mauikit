@@ -130,6 +130,7 @@ Pane
                     Layout.fillHeight: true
                     label1.text: "Title"
                     label2.text: "Body of the message"
+                    label2.wrapMode: Text.Wrap
                     label3.text: _dragHandler.centroid.scenePressPosition.x.toFixed(1) - _dragHandler.centroid.scenePosition.x.toFixed(1)
                     iconSource: "dialog-warning"
                     iconSizeHint: Maui.Style.iconSizes.big
@@ -179,16 +180,14 @@ Pane
             
             hoverEnabled: true
             
-            width:  Math.min(300, parent.width)
-            height: _listView.contentHeight + topPadding + bottomPadding
-            
-            padding: 0
+            width:  Math.min(400, parent.width)
+            height: Math.min( _listView.implicitHeight + topPadding + bottomPadding, 500)
             
             anchors.bottom: parent.bottom
             anchors.bottomMargin:_dimissButton.height + Maui.Style.space.medium
             anchors.horizontalCenter: parent.horizontalCenter
             
-        contentItem: ListView
+        contentItem: Maui.ListBrowser
         {
             id: _listView
             
@@ -197,24 +196,29 @@ Pane
                        orientation: ListView.Vertical
                          snapMode: ListView.SnapOneItem
                          
-            spacing: expanded ? Maui.Style.space.medium : -40
+            spacing: Maui.Style.space.medium
           
             
-            model: _container.contentModel
-           
+            model: _container.contentModel     
+            
+            footer: Item
+            {
+                width: ListView.view.width
+                height: Maui.Style.toolBarHeight
+                Button
+            {
+                id: _dimissButton
+                visible: _container.count > 1
+                       width: parent.width   
+                       anchors.centerIn: parent
+                text: i18n("Dismiss All")
+                onClicked: control.dismiss()
+            }
+            }
         }
         }
         
-        Button
-        {
-            id: _dimissButton
-            visible: _container.count > 1
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter            
-            width:  Math.min(300, parent.width)
-            text: i18n("Dismiss All")
-            onClicked: control.dismiss()
-        }
+       
     }
     
     function add(icon, title, body, callback, timeout, buttonText)

@@ -130,12 +130,24 @@ Window
     readonly property bool isMaximized: root.visibility === Window.Maximized
     readonly property bool isFullScreen: root.visibility === Window.FullScreen
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
-    
-    
+        
     Item
     {
-      id: _content
-      anchors.fill: parent 
+      anchors.fill: parent
+ 
+      Item
+      {
+        id: _content
+        anchors.fill: parent
+      }
+      
+      
+      Private.ToastArea
+      {
+        id: _toastArea
+        anchors.fill: parent
+      } 
+      
       
       layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile
     
@@ -150,11 +162,7 @@ Window
       }      
     }
     
-    Private.ToastArea
-    {
-      id: _toastArea
-      anchors.fill: parent
-    }    
+      
     
     Loader
     {
