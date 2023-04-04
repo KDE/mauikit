@@ -233,7 +233,7 @@ Item
     {
         id: _listContainerComponent
         
-        Maui.Popup
+        Popup
         {
             parent: control
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent

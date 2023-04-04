@@ -39,7 +39,7 @@ import QtGraphicalEffects 1.0
  * The dialog contents will be hanlded by a ColumnLayout, so the positioning of its child elements should use the attached property
  * Layout.fillheight layout.fillWidth, etc.
  */
-Maui.Popup
+Popup
 {
   id: control
     

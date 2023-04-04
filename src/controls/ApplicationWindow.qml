@@ -137,7 +137,6 @@ Window
       id: _content
       anchors.fill: parent 
       
-      
       layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile
     
       layer.effect: OpacityMask
@@ -150,6 +149,12 @@ Window
         }            
       }      
     }
+    
+    Private.ToastArea
+    {
+      id: _toastArea
+      anchors.fill: parent
+    }    
     
     Loader
     {
@@ -249,6 +254,7 @@ Window
       }
     }
     
+   
     Overlay.overlay.modal: Rectangle
     {
       color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
@@ -275,89 +281,7 @@ Window
         Maui.ColorTransition{}
       }
     }
-    
-    Component
-    {
-      id: _notifyDialogComponent
       
-      Maui.Dialog
-      {
-        id: _notify
-        property var cb : ({})
-        
-        property alias iconName : _notifyTemplate.iconSource
-        property alias title : _notifyTemplate.label1
-        property alias body: _notifyTemplate.label2
-        property alias timeInterval : _notifyTimer.interval
-        
-        persistent: false
-        verticalAlignment: Qt.AlignTop
-        defaultButtons: _notify.cb !== null
-          rejectButton.visible: false
-          
-          onAccepted:
-          {
-            if(_notify.cb)
-            {
-              _notify.cb()
-              _notify.close()
-            }
-          }
-          
-          page.margins: Maui.Style.space.big
-          footBar.background: null
-          widthHint: 0.8
-          maxWidth: 400
-          
-          Timer
-          {
-            id: _notifyTimer
-            onTriggered:
-            {
-              if(_mouseArea.containsPress || _mouseArea.containsMouse)
-              {
-                _notifyTimer.restart();
-                return
-              }
-              
-              _notify.close()
-            }
-          }
-          
-          onClosed: _notifyTimer.stop()
-          
-          stack: MouseArea
-          {
-            id: _mouseArea
-            Layout.fillWidth: true
-            hoverEnabled: true
-            implicitHeight: _notifyTemplate.implicitHeight + Maui.Style.space.huge
-            
-            Maui.ListItemTemplate
-            {
-              id: _notifyTemplate
-              spacing: Maui.Style.defaultSpacing
-              width: parent.width
-              anchors.centerIn: parent
-              
-              iconSizeHint: Maui.Style.iconSizes.big
-              label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-//               label1.font.bold: true
-              label1.font.weight: Font.Bold
-              label1.font.pointSize: Maui.Style.fontSizes.big
-              iconSource: "dialog-warning"
-            }
-          }
-          
-          function show(callback)
-          {
-            _notify.cb = callback || null
-            _notifyTimer.start()
-            _notify.open()
-          }
-      }
-    }
-    
     Loader
     {
       id: dialogLoader
@@ -386,13 +310,7 @@ Window
      */
     function notify(icon, title, body, callback, timeout, buttonText)
     {
-      dialogLoader.sourceComponent = _notifyDialogComponent
-      dialog.iconName = icon || "emblem-warning"
-      dialog.title.text = title
-      dialog.body.text = body
-      dialog.timeInterval = timeout ? timeout : 2500
-      dialog.acceptButton.text = buttonText || i18nd("mauikit", "Accept")
-      dialog.show(callback)
+      _toastArea.add(icon, title, body, callback, timeout, buttonText)
     }
     
     /**

@@ -24,7 +24,6 @@
         <file alias="ListBrowser.qml">controls/ListBrowser.qml</file>
         <file alias="Dialog.qml">controls/Dialog.qml</file>
         <file alias="private/AboutDialog.qml">controls/private/AboutDialog.qml</file>
-        <file alias="Popup.qml">controls/Popup.qml</file>
         <file alias="SearchField.qml">controls/SearchField.qml</file>
         <file alias="PasswordField.qml">controls/PasswordField.qml</file>
         <file alias="Badge.qml">controls/Badge.qml</file>
@@ -89,5 +88,6 @@
         <file alias="IconLabel.qml">controls/IconLabel.qml</file>
         <file alias="FontPicker.qml">controls/FontPicker.qml</file>
         <file alias="FontPickerDialog.qml">controls/FontPickerDialog.qml</file>
+        <file alias="private/ToastArea.qml">controls/private/ToastArea.qml</file>        
     </qresource>
 </RCC>

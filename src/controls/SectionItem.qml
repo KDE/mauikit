@@ -38,7 +38,7 @@ Maui.FlexListItem
    
     hoverEnabled: !Maui.Handy.isMobile
 
-    readonly property bool childCheckable : control.content.length && control.content[1].hasOwnProperty("checkable") ? control.content[1].checkable : false
+    readonly property bool childCheckable : control.content.length === 2 && control.content[1].hasOwnProperty("checkable") ? control.content[1].checkable : false
     
     background: Rectangle
     {       
