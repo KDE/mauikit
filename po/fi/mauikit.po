@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
-# Tommi Nieminen <translator@legisign.org>, 2022.
+# Tommi Nieminen <translator@legisign.org>, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-02 00:46+0000\n"
-"PO-Revision-Date: 2022-12-03 10:40+0200\n"
+"PO-Revision-Date: 2023-03-30 12:01+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
 #: src/controls/NewDialog.qml:27
@@ -62,37 +62,37 @@ msgstr "Koko"
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Fontit"
 
 #: src/controls/FontPickerDialog.qml:46
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "Perhe"
 
 #: src/controls/FontPickerDialog.qml:47
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "Valitse fonttiperhe"
 
 #: src/controls/FontPickerDialog.qml:70
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "Tyyli"
 
 #: src/controls/FontPickerDialog.qml:119
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "Esikatselu"
 
 #: src/controls/FontPickerDialog.qml:120
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "Kokeile fonttia."
 
 #: src/controls/FontPickerDialog.qml:129
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "On sangen hauskaa, että polkupyörä on maanteiden jokapäiväinen ilmiö."
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
