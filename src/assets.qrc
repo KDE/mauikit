@@ -18,5 +18,7 @@
         <file>assets/arrow-right.svg</file>
         <file>assets/noise.png</file>
         <file>assets/subtle-dots.png</file>        
+        <file>assets/notification_simple-01.wav</file>        
+        <file>assets/notification_simple-02.wav</file>        
     </qresource>
 </RCC>

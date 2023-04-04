@@ -23,7 +23,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.12
 import QtQml.Models 2.3
-
+import QtMultimedia 5.15
 import org.mauikit.controls 1.3 as Maui
 
 
@@ -35,6 +35,18 @@ Pane
     visible: _container.count > 0
     
     hoverEnabled: true
+    
+    SoundEffect 
+    {
+        id: playSound
+        source: "qrc:/assets/notification_simple-01.wav"
+    }
+    
+    SoundEffect 
+    {
+        id: _dismissSound
+        source: "qrc:/assets/notification_simple-02.wav"
+    }
     
     background: MouseArea
     {
@@ -100,7 +112,7 @@ Pane
                 }
             }
             
-            Component.onCompleted: _toastTimer.restart()
+            // Component.onCompleted: _toastTimer.restart()
             
             Timer
             {
@@ -233,6 +245,7 @@ Pane
         })
         const object = _toastComponent.createObject(_container, properties);        
         _container.insertItem(0, object)
+        playSound.play() 
     }
     
     
@@ -249,10 +262,12 @@ Pane
         {
             _container.removeItem(j)         
         }
+        
+        _dismissSound.play()
     }
     
     function remove(index)
     {
-        _container.removeItem(_container.itemAt(index))
+        _container.removeItem(_container.itemAt(index))        
     }    
 }
