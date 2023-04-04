@@ -31,126 +31,15 @@ import QtQuick.Templates 2.15 as T
 Maui.SettingsDialog
 {
     id: control
-    property alias mfont : _model.font   
+    property alias mfont : _picker.mfont   
     title: i18n("Fonts")
     defaultButtons: true
-        property alias model : _model
+    property alias model : _picker.model
         
-    Maui.FontPickerModel
+    FontPicker
     {
-        id: _model
-    }
-    
-    Maui.SectionItem
-    {
-        label1.text: i18n ("Family")
-        label2.text: i18n("Pick the font family.")
-        columns: 1
-    
-    ComboBox
-    {
+        id: _picker
         Layout.fillWidth: true
-        Component.onCompleted: currentIndex = find(_fontEditDialog.mfont.family, Qt.MatchExactly)
-        icon.source: "font"
-        model: _model.fontsModel
-        
-        onActivated:
-        {
-            let newFont = _fontEditDialog.mfont
-            newFont.family = currentText           
-            
-            control.mfont = newFont
-        }
-    }
-    
-    }
-    
-    Maui.SectionItem
-    {
-        label1.text: i18n("Style")
-        label2.text: control.mfont.styleName
-        columns: 1
-        ComboBox
-        {
-            Layout.fillWidth: true
-            model: _model.styles
-            Component.onCompleted: currentIndex = find(control.mfont.styleName, Qt.MatchExactly)
-            icon.source: "format-text-color"
-            onActivated:
-            {
-                 control.mfont.styleName = currentText   
-            }
-        }
-        
-        // ToolButton
-        // {
-        //     checkable: true
-        //     icon.name: "go-next"
-        //     onToggled: control.stackView.push(_styleComponent)
-        // }
-    }
-    
-    Maui.SectionItem
-    {
-        label1.text: i18n("Size")
-        label2.text: control.mfont.pointSize
-        columns: 1
-        ComboBox
-        {
-            Layout.fillWidth: true
-            model: _model.sizes
-            Component.onCompleted: currentIndex = find(control.mfont.pointSize, Qt.MatchExactly)
-            icon.source: "font-size-down"
-            onActivated:
-            {
-                 control.mfont.pointSize = currentText
-            }
-        }
-        // ToolButton
-        // {
-        //     checkable: true
-        //     icon.name: "go-next"
-        //     onToggled: control.stackView.push(_sizeComponent)
-        // }
-    }
-    
-    Maui.SectionItem
-    {
-        label1.text: i18n("Preview")
-        label2.text: i18n("Test the font.")
-        columns: 1
-        
-        
-        TextArea
-        {
-            Layout.fillWidth: true
-            implicitHeight: contentHeight + topPadding + bottomPadding
-            
-            text: i18n("The Quick Brown Fox Jumps Over The Lazy Dog")
-            font: control.mfont
-        }
-    }
-    
-    Component
-    {
-        id: _styleComponent
-        
-       Maui.SettingsPage
-       {
-           
-    }
-        
-    }
-    
-    Component
-    {
-        id: _sizeComponent
-        
-        Maui.SettingsPage
-        {
-           
-        }
-        
     }
     
     onRejected:

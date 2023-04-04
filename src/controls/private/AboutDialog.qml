@@ -379,8 +379,6 @@ Maui.Dialog
         }
     }
 
-
-
     Item
     {
         id: _iconItem

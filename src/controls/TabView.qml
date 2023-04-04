@@ -531,7 +531,7 @@ Control
                                         anchors.right: parent.right
 //                                         anchors.margins: Maui.Style.space.small
                                         
-                                        onClicked: control.closeTab(index)
+                                        onClicked: control.closeTabClicked(index)
                                         
                                         background: Rectangle
                                         {
