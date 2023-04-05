@@ -38,6 +38,8 @@ Control
         AbstractButton
         {
             id: _button
+            visible: modelData === "A" ? canMaximize : true
+            
             hoverEnabled: true
             width: 18
             height: 18 

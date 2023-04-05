@@ -34,6 +34,8 @@ Control
         AbstractButton
         {
             id: _button
+            visible: modelData === "A" ? canMaximize : true
+            
             width: height
             height: 16 
             
