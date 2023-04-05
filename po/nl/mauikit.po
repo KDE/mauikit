@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-02 00:46+0000\n"
+"POT-Creation-Date: 2023-04-05 00:46+0000\n"
 "PO-Revision-Date: 2023-03-16 12:34+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -17,16 +17,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.12.3\n"
 
-#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
-#: src/controls/NewDialog.qml:27
-#, kde-format
-msgid "Accept"
-msgstr "Accepteren"
-
 #: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
+
+#: src/controls/Dialog.qml:361 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:177
+#, kde-format
+msgid "Accept"
+msgstr "Accepteren"
 
 #: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
@@ -54,45 +54,66 @@ msgid "Opacity"
 msgstr "Dekking"
 
 #: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
-#: src/controls/FontPickerDialog.qml:95
+#: src/controls/FontPicker.qml:99
 #, kde-format
 msgid "Size"
 msgstr "Grootte"
+
+#: src/controls/FontPicker.qml:56
+#, kde-format
+msgid "Family"
+msgstr "Familie"
+
+#: src/controls/FontPicker.qml:57
+#, kde-format
+msgid "Pick the font family."
+msgstr "Kies de familie van het lettertype."
+
+#: src/controls/FontPicker.qml:80
+#, kde-format
+msgid "Style"
+msgstr "Stijl"
+
+#: src/controls/FontPicker.qml:81
+#, fuzzy, kde-format
+#| msgid "Fonts"
+msgid "Font style."
+msgstr "Lettertypen"
+
+#: src/controls/FontPicker.qml:100
+#, kde-format
+msgid "Font size from recommended values."
+msgstr ""
+
+#: src/controls/FontPicker.qml:118
+#, kde-format
+msgid "Monospaced Fonts"
+msgstr ""
+
+#: src/controls/FontPicker.qml:119
+#, kde-format
+msgid "Display only monospaced fonts."
+msgstr ""
+
+#: src/controls/FontPicker.qml:130
+#, kde-format
+msgid "Preview"
+msgstr "Voorbeeld"
+
+#: src/controls/FontPicker.qml:131
+#, kde-format
+msgid "Test the font."
+msgstr "Het lettertype testen."
+
+#: src/controls/FontPicker.qml:139
+#, kde-format
+msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
+msgstr "Filmquiz bracht knappe ex-yogi van de wijs"
 
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
 msgstr "Lettertypen"
-
-#: src/controls/FontPickerDialog.qml:46
-#, kde-format
-msgid "Family"
-msgstr "Familie"
-
-#: src/controls/FontPickerDialog.qml:47
-#, kde-format
-msgid "Pick the font family."
-msgstr "Kies de familie van het lettertype."
-
-#: src/controls/FontPickerDialog.qml:70
-#, kde-format
-msgid "Style"
-msgstr "Stijl"
-
-#: src/controls/FontPickerDialog.qml:119
-#, kde-format
-msgid "Preview"
-msgstr "Voorbeeld"
-
-#: src/controls/FontPickerDialog.qml:120
-#, kde-format
-msgid "Test the font."
-msgstr "Het lettertype testen."
-
-#: src/controls/FontPickerDialog.qml:129
-#, kde-format
-msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr "Filmquiz bracht knappe ex-yogi van de wijs"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
@@ -143,6 +164,11 @@ msgstr "Rapporten"
 #, kde-format
 msgid "Home Page"
 msgstr "Thuispagina"
+
+#: src/controls/private/ToastArea.qml:253
+#, kde-format
+msgid "Dismiss All"
+msgstr ""
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format

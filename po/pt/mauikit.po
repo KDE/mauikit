@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-02 00:46+0000\n"
+"POT-Creation-Date: 2023-04-05 00:46+0000\n"
 "PO-Revision-Date: 2023-03-20 14:28+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -13,16 +13,16 @@ msgstr ""
 "X-POFile-SpellExtra: Ups MauiKit Luv Pocinhas\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
-#: src/controls/NewDialog.qml:27
-#, kde-format
-msgid "Accept"
-msgstr "Aceitar"
-
 #: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: src/controls/Dialog.qml:361 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:177
+#, kde-format
+msgid "Accept"
+msgstr "Aceitar"
 
 #: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
@@ -50,46 +50,67 @@ msgid "Opacity"
 msgstr "Opacidade"
 
 #: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
-#: src/controls/FontPickerDialog.qml:95
+#: src/controls/FontPicker.qml:99
 #, kde-format
 msgid "Size"
 msgstr "Tamanho"
+
+#: src/controls/FontPicker.qml:56
+#, kde-format
+msgid "Family"
+msgstr "Família"
+
+#: src/controls/FontPicker.qml:57
+#, kde-format
+msgid "Pick the font family."
+msgstr "Escolher o tipo de letra."
+
+#: src/controls/FontPicker.qml:80
+#, kde-format
+msgid "Style"
+msgstr "Estilo"
+
+#: src/controls/FontPicker.qml:81
+#, fuzzy, kde-format
+#| msgid "Fonts"
+msgid "Font style."
+msgstr "Tipos de Letra"
+
+#: src/controls/FontPicker.qml:100
+#, kde-format
+msgid "Font size from recommended values."
+msgstr ""
+
+#: src/controls/FontPicker.qml:118
+#, kde-format
+msgid "Monospaced Fonts"
+msgstr ""
+
+#: src/controls/FontPicker.qml:119
+#, kde-format
+msgid "Display only monospaced fonts."
+msgstr ""
+
+#: src/controls/FontPicker.qml:130
+#, kde-format
+msgid "Preview"
+msgstr "Antevisão"
+
+#: src/controls/FontPicker.qml:131
+#, kde-format
+msgid "Test the font."
+msgstr "Testar o tipo de letra."
+
+#: src/controls/FontPicker.qml:139
+#, kde-format
+msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
+msgstr ""
+"Vejam a Bruxa da Raposa Salta-Pocinhas e o Cão Feliz Que Dorme Regalado"
 
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
 msgstr "Tipos de Letra"
-
-#: src/controls/FontPickerDialog.qml:46
-#, kde-format
-msgid "Family"
-msgstr "Família"
-
-#: src/controls/FontPickerDialog.qml:47
-#, kde-format
-msgid "Pick the font family."
-msgstr "Escolher o tipo de letra."
-
-#: src/controls/FontPickerDialog.qml:70
-#, kde-format
-msgid "Style"
-msgstr "Estilo"
-
-#: src/controls/FontPickerDialog.qml:119
-#, kde-format
-msgid "Preview"
-msgstr "Antevisão"
-
-#: src/controls/FontPickerDialog.qml:120
-#, kde-format
-msgid "Test the font."
-msgstr "Testar o tipo de letra."
-
-#: src/controls/FontPickerDialog.qml:129
-#, kde-format
-msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
-"Vejam a Bruxa da Raposa Salta-Pocinhas e o Cão Feliz Que Dorme Regalado"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
@@ -140,6 +161,11 @@ msgstr "Relatórios"
 #, kde-format
 msgid "Home Page"
 msgstr "Página Pessoal"
+
+#: src/controls/private/ToastArea.qml:253
+#, kde-format
+msgid "Dismiss All"
+msgstr ""
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format

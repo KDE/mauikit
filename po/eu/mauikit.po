@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-02 00:46+0000\n"
+"POT-Creation-Date: 2023-04-05 00:46+0000\n"
 "PO-Revision-Date: 2022-11-18 07:46+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -20,16 +20,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.08.3\n"
 
-#: src/controls/ApplicationWindow.qml:394 src/controls/Dialog.qml:361
-#: src/controls/NewDialog.qml:27
-#, kde-format
-msgid "Accept"
-msgstr "Onartu"
-
 #: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Utzi"
+
+#: src/controls/Dialog.qml:361 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:177
+#, kde-format
+msgid "Accept"
+msgstr "Onartu"
 
 #: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
@@ -57,44 +57,64 @@ msgid "Opacity"
 msgstr "Opakutasuna"
 
 #: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
-#: src/controls/FontPickerDialog.qml:95
+#: src/controls/FontPicker.qml:99
 #, kde-format
 msgid "Size"
 msgstr "Neurria"
 
-#: src/controls/FontPickerDialog.qml:35
-#, kde-format
-msgid "Fonts"
-msgstr ""
-
-#: src/controls/FontPickerDialog.qml:46
+#: src/controls/FontPicker.qml:56
 #, kde-format
 msgid "Family"
 msgstr ""
 
-#: src/controls/FontPickerDialog.qml:47
+#: src/controls/FontPicker.qml:57
 #, kde-format
 msgid "Pick the font family."
 msgstr ""
 
-#: src/controls/FontPickerDialog.qml:70
+#: src/controls/FontPicker.qml:80
 #, kde-format
 msgid "Style"
 msgstr ""
 
-#: src/controls/FontPickerDialog.qml:119
+#: src/controls/FontPicker.qml:81
+#, kde-format
+msgid "Font style."
+msgstr ""
+
+#: src/controls/FontPicker.qml:100
+#, kde-format
+msgid "Font size from recommended values."
+msgstr ""
+
+#: src/controls/FontPicker.qml:118
+#, kde-format
+msgid "Monospaced Fonts"
+msgstr ""
+
+#: src/controls/FontPicker.qml:119
+#, kde-format
+msgid "Display only monospaced fonts."
+msgstr ""
+
+#: src/controls/FontPicker.qml:130
 #, kde-format
 msgid "Preview"
 msgstr ""
 
-#: src/controls/FontPickerDialog.qml:120
+#: src/controls/FontPicker.qml:131
 #, kde-format
 msgid "Test the font."
 msgstr ""
 
-#: src/controls/FontPickerDialog.qml:129
+#: src/controls/FontPicker.qml:139
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
+msgstr ""
+
+#: src/controls/FontPickerDialog.qml:35
+#, kde-format
+msgid "Fonts"
 msgstr ""
 
 #: src/controls/ImageViewer.qml:177
@@ -146,6 +166,11 @@ msgstr "Txostenak"
 #, kde-format
 msgid "Home Page"
 msgstr "Orri nagusia"
+
+#: src/controls/private/ToastArea.qml:253
+#, kde-format
+msgid "Dismiss All"
+msgstr ""
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format
