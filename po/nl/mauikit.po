@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-05 00:46+0000\n"
-"PO-Revision-Date: 2023-03-16 12:34+0100\n"
+"PO-Revision-Date: 2023-04-05 10:22+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -75,25 +75,24 @@ msgid "Style"
 msgstr "Stijl"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Lettertypen"
+msgstr "Lettertypestijl."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Lettertypegrootte uit aanbevolen waarden."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Lettertypen met gelijke afstanden"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Alleen lettertypen met gelijke afstanden tonen."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -168,7 +167,7 @@ msgstr "Thuispagina"
 #: src/controls/private/ToastArea.qml:253
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Alles wegdoen"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format

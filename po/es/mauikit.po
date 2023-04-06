@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-05 00:46+0000\n"
-"PO-Revision-Date: 2023-03-16 14:30+0100\n"
+"PO-Revision-Date: 2023-04-05 04:49+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.03.80\n"
 
 #: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
@@ -78,25 +78,24 @@ msgid "Style"
 msgstr "Estilo"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Tipos de letra"
+msgstr "Estilo del tipo de letra."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Tamaño del tipo de letra desde los valores recomendados."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Tipos de letra de ancho fijo"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Mostrar solo tipos de letra de ancho fijo."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -171,7 +170,7 @@ msgstr "Página web"
 #: src/controls/private/ToastArea.qml:253
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Descartar todo"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format
