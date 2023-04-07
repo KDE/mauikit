@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-05 00:46+0000\n"
-"PO-Revision-Date: 2023-03-21 06:51+0100\n"
+"PO-Revision-Date: 2023-04-06 06:00+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -76,25 +76,24 @@ msgid "Style"
 msgstr "სტილი"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "ფონტები"
+msgstr "ფონტის სტილი."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "ფონტის ზომა რეკომენდებული მნიშვნელობებიდან."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "მონოსიგანური ფონტები"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "მხოლოდ მონოსიგანური ფონტების ჩვენება."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -169,7 +168,7 @@ msgstr "საწყისი გვერდი"
 #: src/controls/private/ToastArea.qml:253
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "ყველაფრის გაუქმება"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format

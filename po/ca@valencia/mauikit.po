@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-05 00:46+0000\n"
-"PO-Revision-Date: 2023-03-16 10:50+0100\n"
+"PO-Revision-Date: 2023-04-05 09:40+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -77,25 +77,24 @@ msgid "Style"
 msgstr "Estil"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Lletres"
+msgstr "Estil de la lletra."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Mida de la lletra a partir dels valors recomanats."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Lletres monoespaiades"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Mostra només les lletres monoespaiades."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -170,7 +169,7 @@ msgstr "Pàgina d'inici"
 #: src/controls/private/ToastArea.qml:253
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Descarta-ho tot"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format

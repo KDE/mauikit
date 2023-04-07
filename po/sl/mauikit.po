@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 #
-# Matjaž Jeran <matjaz.jeran@amis.net>, 2022.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-05 00:46+0000\n"
-"PO-Revision-Date: 2023-03-16 12:22+0100\n"
+"PO-Revision-Date: 2023-04-06 09:10+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
 #, kde-format
@@ -76,25 +76,24 @@ msgid "Style"
 msgstr "Slog"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Pisave"
+msgstr "Slog pisave."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Velikost pisave iz priporočenih vrednosti."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Pisave enakomerne širine znakov"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Prikazuj samo pisave enake širine znakov"
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -169,7 +168,7 @@ msgstr "Domača stran"
 #: src/controls/private/ToastArea.qml:253
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Odpusti vse"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format
