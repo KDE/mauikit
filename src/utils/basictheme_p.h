@@ -171,7 +171,7 @@ namespace Maui
             const static inline QColor viewAlternateBackgroundColor = QColor{"#f0f0f0"};
             const static inline  QColor viewHoverColor = QColor{"#e5e5e5"};
             
-           const static inline QColor headerBackgroundColor = QColor{"#e8e8e8"};
+           const static inline QColor headerBackgroundColor = QColor{"#dedede"};
             const static inline QColor headerAlternateBackgroundColor = QColor{"#f0f0f0"};
             const static inline QColor headerHoverColor = QColor{"#dbdbdb"};
         };
@@ -191,6 +191,10 @@ namespace Maui
             const static inline QColor viewBackgroundColor = QColor{"#0a0b0b"};
             const static inline QColor viewAlternateBackgroundColor = QColor{"#1a1e1e"};
             const static inline  QColor viewHoverColor = QColor{"#1f1f1f"};
+            
+            const static inline QColor headerBackgroundColor = QColor{"#2b2c31"};
+            const static inline QColor headerAlternateBackgroundColor = QColor{"#1a1e1e"};
+            const static inline QColor headerHoverColor = QColor{"#202727"};
         };
     };
     

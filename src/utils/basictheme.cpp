@@ -284,9 +284,11 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(QColor{"#2b2c31"}, highlightColor, 0.04);
-        headerAlternateBackgroundColor = headerBackgroundColor.darker();
-        headerHoverColor = headerBackgroundColor.lighter();
+        headerBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(DarkColor::headerBackgroundColor, highlightColor, 0.04);
+        
+        headerAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::headerAlternateBackgroundColor, highlightColor, 0.02);
+        
+        headerHoverColor = DarkColor::hoverColor;
         headerFocusColor = highlightColor;       
                 
         linkColor = QColor{"#21b9ff"};
@@ -340,9 +342,9 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = cu.tintWithAlpha(LightColor::headerBackgroundColor, highlightColor, 0.03);
+        headerBackgroundColor = cu.tintWithAlpha(LightColor::headerBackgroundColor, highlightColor, 0.04);
         headerAlternateBackgroundColor = cu.tintWithAlpha(LightColor::headerAlternateBackgroundColor, highlightColor, 0.02);
-        headerHoverColor = headerBackgroundColor.lighter(120);
+        headerHoverColor = LightColor::hoverColor;
         headerFocusColor = highlightColor;
         
         linkColor = QColor{"#21b9ff"};

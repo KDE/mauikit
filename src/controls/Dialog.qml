@@ -217,18 +217,24 @@ Popup
       Maui.Page
       {
         id: _page
+        
         clip: true
+        
         Maui.Theme.colorSet: control.Maui.Theme.colorSet
+        
         Layout.fillWidth: true
         Layout.fillHeight: true
         
         implicitHeight: Math.max(_scrollView.contentHeight + _scrollView.topPadding + _scrollView.bottomPadding, _stack.implicitHeight) + _page.footerContainer.implicitHeight + (_page.topPadding + _page.bottomPadding) + _page.headerContainer.implicitHeight + (_page.topMargin + _page.bottomMargin)
         
         headerPositioning: ListView.InlineHeader
+        
         padding: 0
         margins: 0
         
         headBar.visible: control.persistent
+        headBar.borderVisible: false
+        
         background: null
         
         headBar.farRightContent: Loader
@@ -255,14 +261,18 @@ Popup
         ColumnLayout
         {
           id: _stack
+          
           anchors.fill: parent
-          spacing: control.spacing
+         
+         spacing: control.spacing
         }
         
         Maui.ScrollColumn
         {
           id: _scrollView
-          anchors.fill: parent
+         
+         anchors.fill: parent
+          
           visible: _stack.children.length === 0
            spacing: control.spacing
            ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
@@ -286,15 +296,17 @@ Popup
         }
       }   
       
-      Label
+      Maui.Chip
       {
         id: _alertMessage
+        
         visible: text.length > 0
+        
         property int level : 0
+        
         Layout.fillWidth: true
         Layout.margins: Maui.Style.space.medium
-        wrapMode: Text.WordWrap
-        verticalAlignment: Qt.AlignVCenter
+        
         
         color: switch(level)
         {
@@ -331,14 +343,16 @@ Popup
         Button
         {
           id: _rejectButton
+          
          focus: true
+         
           Layout.fillWidth: true
           
           implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
-//           Maui.Theme.textColor: Maui.Theme.negativeTextColor
           
           visible: control.defaultButtons
           text: i18nd("mauikit", "Cancel")
+          
           background: Rectangle
           {
             color:  _rejectButton.visualFocus || _rejectButton.highlighted || _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
@@ -355,14 +369,14 @@ Popup
         {
           id: _acceptButton
         focus: true
+        
           Layout.fillWidth: true
+          
           implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
           
           text: i18nd("mauikit", "Accept")
           visible: control.defaultButtons
-          
-//           Maui.Theme.textColor: Maui.Theme.positiveTextColor
-          
+                   
           background: Rectangle
           {
             color: _acceptButton.visualFocus || _acceptButton.highlighted || _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? Maui.Theme.positiveBackgroundColor : Maui.Theme.backgroundColor
@@ -371,6 +385,7 @@ Popup
               Maui.ColorTransition{}
             }
           }
+          
           onClicked: accepted()
         }
         

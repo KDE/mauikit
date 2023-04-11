@@ -91,13 +91,7 @@ T.SplitView
             {
                 Maui.ColorTransition{}
             }                       
-            
-            //Maui.Separator
-            //{
-                //height: parent.height
-                //anchors.centerIn: parent
-            //}
-            
+                        
             Rectangle
             {
                 property int length: pressed ? 80 : 48

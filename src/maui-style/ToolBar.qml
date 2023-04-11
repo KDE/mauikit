@@ -38,8 +38,7 @@ T.ToolBar
     Maui.Theme.inherit: false
     
     property Item translucencySource : null
-    
-    
+        
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding    
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     
@@ -49,6 +48,8 @@ T.ToolBar
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium   
     font: Maui.Style.defaultFont
+    
+    property alias borderVisible: _border.visible
     
     contentItem: Row
     {
@@ -87,7 +88,6 @@ T.ToolBar
                     radius: 64
                 }  
                 
-                
                 Rectangle
                 {
                     color: _headBarBG.color
@@ -96,8 +96,7 @@ T.ToolBar
                     
                 }   
             }
-        }           
-        
+        }  
         
          Maui.Separator
          {
@@ -106,12 +105,12 @@ T.ToolBar
              anchors.right: parent.right
              weight: Maui.Separator.Weight.Light
              opacity: 0.4
+             
              Behavior on color
              {
                  Maui.ColorTransition{}
              }
          }
-
 
          states: [  State
          {
