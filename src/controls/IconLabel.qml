@@ -28,7 +28,7 @@ import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
 
 
-Pane
+Item
 {
     id: control
     implicitWidth: _layoutButton.implicitWidth+ leftPadding + rightPadding
@@ -40,14 +40,27 @@ Pane
     property int display : ToolButton.IconOnly
     property int alignment : Qt.AlignLeft
     
-    font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium            
+    // font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : Maui.Style.fontSizes.medium            
     
+    property int padding : 0
+    property int leftPadding: padding
+    property int rightPadding: padding
+    property int bottomPadding: padding
+    property int topPadding: padding
     
-    background: null
+    property int spacing: Maui.Style.space.medium
+    property font font : Maui.Style.defaultFont
     
-contentItem: GridLayout
+GridLayout
 {
     id: _layoutButton
+    
+    anchors.fill: parent
+    anchors.leftMargin: control.leftPadding
+    anchors.rightMargin: control.rightMargin
+    anchors.bottomMargin: control.bottomPadding
+    anchors.topMargin: control.topPadding
+    
     rowSpacing: control.spacing
     columnSpacing: control.spacing
         
