@@ -35,9 +35,8 @@ T.ItemDelegate
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
     hoverEnabled: true
 
-    padding: 4
-    spacing: 4
-    rightPadding: 20
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.medium
 
     contentItem: Label 
     {

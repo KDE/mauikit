@@ -260,21 +260,50 @@ Window
           }
         }
       }
-    }
-    
+    }    
    
-    Overlay.overlay.modal: Rectangle
+    Overlay.overlay.modal: Item
     {
-      color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
-      
-      Behavior on opacity { NumberAnimation { duration: 150 } }
-      
-      radius:  Maui.Style.radiusV
-      
-      Behavior on color
+      Loader
       {
-        Maui.ColorTransition{}
+        anchors.fill: parent
+        active: Maui.Style.enableEffects
+      sourceComponent: Item
+      {
+      ShaderEffectSource 
+      {
+        id:_shaderSource
+       anchors.fill: parent
+        sourceItem: _content   
       }
+      
+      FastBlur
+      {
+        anchors.fill: parent
+        source: _shaderSource
+        radius: 64
+      }
+      
+      layer.enabled: true
+      layer.effect: OpacityMask
+      {
+        maskSource: Rectangle
+        {
+          width: _content.width
+          height: _content.height
+          radius: Maui.Style.radiusV
+        }            
+      }      
+      }
+      }
+      
+      Rectangle
+      {
+        color: Maui.Theme.backgroundColor
+        anchors.fill: parent
+        opacity : 0.8
+        radius:  Maui.Style.radiusV        
+      }      
     }
     
     Overlay.overlay.modeless: Rectangle
@@ -316,9 +345,9 @@ Window
      * timeout = time in milliseconds before the notification dialog is dismissed
      * buttonText = text in the accepted button
      */
-    function notify(icon, title, body, callback, timeout, buttonText)
+    function notify(icon, title, body, callback, buttonText)
     {
-      _toastArea.add(icon, title, body, callback, timeout, buttonText)
+      _toastArea.add(icon, title, body, callback, buttonText)
     }
     
     /**

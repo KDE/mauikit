@@ -96,8 +96,10 @@ Control
         
         ItemDelegate
         {
-            id: _toast
-           
+            id: _toast           
+            
+            Maui.Theme.colorSet: Maui.Theme.View
+            Maui.Theme.inherit: false
          
             readonly property int mindex :  ObjectModel.index
             width: ListView.view.width
@@ -120,7 +122,7 @@ Control
             background: Rectangle
             {
                 radius: Maui.Style.radiusV
-                color: Maui.Theme.backgroundColor  
+                color: _toast.hovered? Maui.Theme.hoverColor : Maui.Theme.backgroundColor  
                 
                 layer.enabled: true
                 layer.effect: DropShadow
@@ -165,7 +167,6 @@ Control
                     label1.text: "Title"
                     label2.text: "Body of the message"
                     label2.wrapMode: Text.Wrap
-                    label3.text: _dragHandler.centroid.scenePressPosition.x.toFixed(1) - _dragHandler.centroid.scenePosition.x.toFixed(1)
                     iconSource: "dialog-warning"
                     iconSizeHint: Maui.Style.iconSizes.big
                 }
@@ -258,17 +259,16 @@ Control
         }   
     }
     
-    function add(icon, title, body, callback, timeout, buttonText)
+    function add(icon, title, body, callback, buttonText)
     {
         const properties = ({
             'iconSource': icon,
             'title': title,
             'body': body,
             'callback': callback,
-            'timeout': timeout,
             'buttonText': buttonText           
         })
-        const object = _toastComponent.createObject(control, properties);        
+        const object = _toastComponent.createObject(_listView.flickable, properties);        
         _container.insertItem(0, object)
         playSound.play() 
     }
