@@ -57,7 +57,7 @@ GridLayout
     
     anchors.fill: parent
     anchors.leftMargin: control.leftPadding
-    anchors.rightMargin: control.rightMargin
+    anchors.rightMargin: control.rightPadding
     anchors.bottomMargin: control.bottomPadding
     anchors.topMargin: control.topPadding
     
