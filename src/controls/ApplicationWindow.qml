@@ -264,39 +264,39 @@ Window
    
     Overlay.overlay.modal: Item
     {
-      Loader
-      {
-        anchors.fill: parent
-        active: Maui.Style.enableEffects
-      sourceComponent: Item
-      {
-      ShaderEffectSource 
-      {
-        id:_shaderSource
-       anchors.fill: parent
-        sourceItem: _content   
-      }
-      
-      FastBlur
-      {
-        anchors.fill: parent
-        source: _shaderSource
-        radius: 64
-      }
-      
-      layer.enabled: true
-      layer.effect: OpacityMask
-      {
-        maskSource: Rectangle
-        {
-          width: _content.width
-          height: _content.height
-          radius: Maui.Style.radiusV
-        }            
-      }      
-      }
-      }
-      
+//       Loader
+//       {
+//         anchors.fill: parent
+//         active: Maui.Style.enableEffects
+//       sourceComponent: Item
+//       {
+//       ShaderEffectSource 
+//       {
+//         id:_shaderSource
+//        anchors.fill: parent
+//         sourceItem: _content   
+//       }
+//       
+//       FastBlur
+//       {
+//         anchors.fill: parent
+//         source: _shaderSource
+//         radius: 64
+//       }
+//       
+//       layer.enabled: true
+//       layer.effect: OpacityMask
+//       {
+//         maskSource: Rectangle
+//         {
+//           width: _content.width
+//           height: _content.height
+//           radius: Maui.Style.radiusV
+//         }            
+//       }      
+//       }
+//       }
+//       
       Rectangle
       {
         color: Maui.Theme.backgroundColor
