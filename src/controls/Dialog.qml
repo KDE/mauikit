@@ -274,7 +274,10 @@ Popup
          anchors.fill: parent
           
           visible: _stack.children.length === 0
+          
            spacing: control.spacing
+          padding: Maui.Style.space.big
+          
            ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
            ScrollBar.vertical.policy: control.verticalScrollBarPolicy
 
@@ -310,9 +313,9 @@ Popup
         
         color: switch(level)
         {
-          case 0: return Maui.Theme.positiveTextColor
-          case 1: return Maui.Theme.neutralTextColor
-          case 2: return Maui.Theme.negativeTextColor
+          case 0: return Maui.Theme.positiveBackgroundColor
+          case 1: return Maui.Theme.neutralBackgroundColor
+          case 2: return Maui.Theme.negativeBackgroundColor
         }
         
         SequentialAnimation on x
