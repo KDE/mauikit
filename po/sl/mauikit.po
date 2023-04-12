@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-05 00:46+0000\n"
+"POT-Creation-Date: 2023-04-12 00:48+0000\n"
 "PO-Revision-Date: 2023-04-06 09:10+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "%100==4 ? 3 : 0);\n"
 "X-Generator: Lokalize 22.12.3\n"
 
-#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:354 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: src/controls/Dialog.qml:361 src/controls/NewDialog.qml:27
-#: src/controls/private/ToastArea.qml:177
+#: src/controls/Dialog.qml:377 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
 msgstr "Sprejmi"
@@ -165,7 +165,7 @@ msgstr "Poročila"
 msgid "Home Page"
 msgstr "Domača stran"
 
-#: src/controls/private/ToastArea.qml:253
+#: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
 msgstr "Odpusti vse"
@@ -180,7 +180,7 @@ msgstr "Nastavitve"
 msgid "Share with"
 msgstr "Deli z"
 
-#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
 #, kde-format
 msgid "Close Split"
 msgstr "Zapri razcep"

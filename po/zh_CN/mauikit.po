@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-05 00:46+0000\n"
+"POT-Creation-Date: 2023-04-12 00:48+0000\n"
 "PO-Revision-Date: 2023-04-10 14:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,13 +17,13 @@ msgstr ""
 "X-Crowdin-File: /kf5-trunk/messages/mauikit/mauikit.pot\n"
 "X-Crowdin-File-ID: 41195\n"
 
-#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:354 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
 
-#: src/controls/Dialog.qml:361 src/controls/NewDialog.qml:27
-#: src/controls/private/ToastArea.qml:177
+#: src/controls/Dialog.qml:377 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
 msgstr "同意"
@@ -164,7 +164,7 @@ msgstr "报告"
 msgid "Home Page"
 msgstr "主页"
 
-#: src/controls/private/ToastArea.qml:253
+#: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
 msgstr ""
@@ -179,7 +179,7 @@ msgstr "设置"
 msgid "Share with"
 msgstr "分享到"
 
-#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
 #, kde-format
 msgid "Close Split"
 msgstr "取消分割"

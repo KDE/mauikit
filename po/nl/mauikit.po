@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-05 00:46+0000\n"
+"POT-Creation-Date: 2023-04-12 00:48+0000\n"
 "PO-Revision-Date: 2023-04-05 10:22+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -17,13 +17,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.12.3\n"
 
-#: src/controls/Dialog.qml:341 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:354 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/controls/Dialog.qml:361 src/controls/NewDialog.qml:27
-#: src/controls/private/ToastArea.qml:177
+#: src/controls/Dialog.qml:377 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
 msgstr "Accepteren"
@@ -164,7 +164,7 @@ msgstr "Rapporten"
 msgid "Home Page"
 msgstr "Thuispagina"
 
-#: src/controls/private/ToastArea.qml:253
+#: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
 msgstr "Alles wegdoen"
@@ -179,7 +179,7 @@ msgstr "Instellingen"
 msgid "Share with"
 msgstr "Delen met"
 
-#: src/controls/SplitViewItem.qml:85 src/controls/SplitViewItem.qml:100
+#: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
 #, kde-format
 msgid "Close Split"
 msgstr "Splitsing sluiten"
