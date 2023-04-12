@@ -103,6 +103,7 @@ T.ItemDelegate
     contentItem: GridLayout
     {
         id: _layout
+        
         rowSpacing: control.spacing
         columnSpacing: control.spacing
         
@@ -116,11 +117,5 @@ T.ItemDelegate
             label2.wrapMode: Text.WordWrap
             label1.font.weight: Font.Medium
         }
-
-        // Row
-        // {
-        //     id: _content
-        //     spacing: control.spacing            
-        // }
     }
 }

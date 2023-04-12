@@ -16,10 +16,15 @@ Maui.Dialog
       
     maxHeight: implicitHeight
     maxWidth: 500
+    
     defaultButtons: false
-    hint: 1
+    
+      hint: 1
+    
     page.title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
+    
     headBar.visible: true
+    
     spacing: Maui.Style.space.huge
     
     headBar.leftContent: ToolButton
@@ -40,14 +45,11 @@ Maui.Dialog
       {
         id:_content
         spacing: control.spacing
-      }
-      
+      }      
     }
     
     function addPage(component)
     {
       _stackView.push(component)
-    }
-    
-    
+    }    
 }

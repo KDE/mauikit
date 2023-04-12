@@ -116,7 +116,7 @@ Style::Style(QObject *parent) : QObject(parent)
         m_enableEffects = value;
         Q_EMIT this->enableEffectsChanged(m_enableEffects);
     });
-
+    
     connect(m_backgroundSettings, &MauiMan::BackgroundManager::wallpaperSourceChanged, [this](QString source)
     {
         m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
@@ -155,7 +155,6 @@ Style::Style(QObject *parent) : QObject(parent)
 
     m_currentIconTheme = QIcon::themeName();
 
-
 #ifdef Q_OS_ANDROID
     MAUIAndroid android;
     m_styleType = android.darkModeEnabled() ? StyleType::Dark : StyleType::Light;
@@ -188,23 +187,6 @@ void Style::setFontSizes()
     m_h2Font.setPointSize(m_fontSizes->m_big);
     m_h2Font.setWeight(QFont::DemiBold);
     // m_h2Font.setBold(false);
-}
-
-bool Style::trueBlack() const
-{
-    return m_trueBlack;
-}
-
-void Style::setTrueBlack(bool value)
-{
-    m_trueBlack_clocked = true;
-    
-    if(m_trueBlack == value)
-        return;
-    
-    m_trueBlack = value;
-    
-    Q_EMIT trueBlackChanged(m_trueBlack);
 }
 
 void Style::setRadiusV(const uint& radius)

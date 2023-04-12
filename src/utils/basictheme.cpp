@@ -10,8 +10,6 @@
 #include <QFile>
 #include <QGuiApplication>
 #include <QPalette>
-// #include <KSharedConfig>
-// #include <KColorScheme>
 
 #include "controls/libs/style.h"
 #include "imagecolors.h"
@@ -36,6 +34,16 @@ namespace Maui
                 case Style::StyleType::Dark:
                 {
                     setDarkColors(); 
+                    break;
+                }
+                case Style::StyleType::TrueBlack:
+                {
+                    setTrueBlackColors();                
+                    break;
+                }
+                case Style::StyleType::Inverted:
+                {
+                    setTrueBlackColors(true);                
                     break;
                 }
                 case Style::StyleType::Adaptive:
@@ -68,6 +76,8 @@ namespace Maui
                     setDarkColors(); 
                     break;
                 }
+                case Style::StyleType::TrueBlack:
+                case Style::StyleType::Inverted:
                 case Style::StyleType::Auto:
                 case Style::StyleType::Adaptive:
                 default:                    
@@ -78,17 +88,7 @@ namespace Maui
             
             Q_EMIT this->changed();
         });
-        
-        connect(style, &Style::trueBlackChanged, [this, style](bool)
-        {
-            if(style->styleType() == Style::StyleType::Dark)
-            {   
-                 setDarkColors(); 
-            }
-            
-            Q_EMIT this->changed();
-        });
-        
+                
         connect(style, &Style::adaptiveColorSchemeSourceChanged, [this, style](QVariant source)
         {
             if(style->styleType() == Style::StyleType::Adaptive)
@@ -113,21 +113,7 @@ namespace Maui
                 setSystemPaletteColors();
                 Q_EMIT this->changed();
             }
-        });
-              
-        
-        negativeTextColor = QColor{"#dac7cb"};
-        negativeBackgroundColor = QColor{"#DA4453"};
-        neutralTextColor = QColor{"#333"};
-        neutralBackgroundColor = QColor{"#F67400"};
-        positiveTextColor = QColor{"#333"};
-        positiveBackgroundColor = QColor{"#27AE60"};        
-        
-        tooltipTextColor = QColor{"#fafafa"};
-        tooltipBackgroundColor = QColor{"#333"};
-        tooltipAlternateBackgroundColor = tooltipBackgroundColor.darker();
-        tooltipHoverColor = QColor{"#000"};
-        tooltipFocusColor = QColor{"#000"};        
+        });    
         
         switch(style->styleType())
         {
@@ -138,14 +124,24 @@ namespace Maui
             }
             case Style::StyleType::Dark:
             {
-                setDarkColors(); 
+                    setDarkColors(); 
                 break;
             }
             case Style::StyleType::Adaptive:
             {
                 m_imgColors->setSource(style->adaptiveColorSchemeSource());
                 break;                    
-            }  
+            } 
+            case Style::StyleType::TrueBlack:
+            {
+                setTrueBlackColors();                
+                break;
+            }
+            case Style::StyleType::Inverted:
+            {
+                setTrueBlackColors(true);                
+                break;
+            }
             case Style::StyleType::Auto:
             default:
             {
@@ -236,11 +232,90 @@ namespace Maui
         visitedLinkColor =  palette.color(QPalette::ColorRole::LinkVisited);
         visitedLinkBackgroundColor =  palette.color(QPalette::ColorRole::Light);
         
+        negativeTextColor = QColor{"#dac7cb"};
+        negativeBackgroundColor = QColor{"#DA4453"};
+        neutralTextColor = QColor{"#333"};
+        neutralBackgroundColor = QColor{"#F67400"};
+        positiveTextColor = QColor{"#333"};
+        positiveBackgroundColor = QColor{"#27AE60"};   
+        
+        tooltipTextColor = QColor{"#fafafa"};
+        tooltipBackgroundColor = QColor{"#333"};
+        tooltipAlternateBackgroundColor = tooltipBackgroundColor.darker();
+        tooltipHoverColor = QColor{"#000"};
+        tooltipFocusColor = QColor{"#000"};            
+    }
+    
+    void BasicThemeDefinition::setTrueBlackColors( bool inverted )
+    {        
+        QColor color1{"#ffffff"};
+        QColor color2{"#000000"};
+        
+        textColor = inverted ? color2 : color1;
+        disabledTextColor = textColor;
+        
+        highlightColor = inverted ? color2 : color1; 
+        highlightedTextColor = inverted ? color1 : color2;
+        
+        backgroundColor = inverted ? color1 : color2; 
+        activeBackgroundColor = highlightColor;       
+        alternateBackgroundColor = backgroundColor;
+        hoverColor = backgroundColor;      
+        focusColor = highlightColor;
+        
+        activeTextColor = highlightColor;    
+        
+        buttonTextColor = textColor;
+        buttonBackgroundColor = backgroundColor;
+        buttonAlternateBackgroundColor = buttonBackgroundColor;
+        buttonHoverColor = buttonBackgroundColor;
+        buttonFocusColor = buttonBackgroundColor;
+        
+        viewTextColor = textColor;
+        viewBackgroundColor = backgroundColor; 
+        viewAlternateBackgroundColor = viewBackgroundColor;
+        viewHoverColor = viewBackgroundColor;
+        viewFocusColor = highlightColor;
+        
+        selectionTextColor = highlightedTextColor;
+        selectionBackgroundColor = highlightColor;
+        selectionAlternateBackgroundColor = selectionBackgroundColor;
+        selectionHoverColor = selectionBackgroundColor;
+        selectionFocusColor = highlightColor;
+        
+        complementaryTextColor = highlightedTextColor;
+        complementaryBackgroundColor = highlightColor; 
+        complementaryAlternateBackgroundColor = complementaryBackgroundColor;
+        complementaryHoverColor = complementaryBackgroundColor;
+        complementaryFocusColor = highlightColor;
+        
+        headerTextColor = textColor;
+        headerBackgroundColor = backgroundColor;        
+        headerAlternateBackgroundColor = headerBackgroundColor;        
+        headerHoverColor = headerBackgroundColor;
+        headerFocusColor = highlightColor;       
+        
+        linkColor = QColor{"#21b9ff"};
+        linkBackgroundColor = QColor{"#21b9ff"};
+        visitedLinkColor = QColor{"#ff17d4"};
+        visitedLinkBackgroundColor = QColor{"#ff17d4"};        
+        
+        negativeTextColor = QColor{"#DA4453"};
+        negativeBackgroundColor = textColor;
+        neutralTextColor = QColor{"#F67400"};
+        neutralBackgroundColor = textColor;
+        positiveTextColor = QColor{"#27AE60"};
+        positiveBackgroundColor = textColor;   
+        
+        tooltipTextColor = textColor;
+        tooltipBackgroundColor = backgroundColor;
+        tooltipAlternateBackgroundColor = tooltipBackgroundColor;
+        tooltipHoverColor = tooltipBackgroundColor;
+        tooltipFocusColor = tooltipBackgroundColor;    
     }
     
     void BasicThemeDefinition::setDarkColors()
     {
-        const auto trueBlack = Style::instance()->trueBlack();
         ColorUtils cu;
         
         textColor = DarkColor::textColor;
@@ -251,7 +326,7 @@ namespace Maui
         
         highlightedTextColor = isDark ? QColor{"#eff0f1"} : QColor{"#232323"};
                 
-        backgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(DarkColor::backgroundColor, highlightColor, 0.02);
+        backgroundColor = cu.tintWithAlpha(DarkColor::backgroundColor, highlightColor, 0.02);
         activeBackgroundColor = highlightColor;       
         alternateBackgroundColor = cu.tintWithAlpha(DarkColor::alternateBackgroundColor, highlightColor, 0.02);
         hoverColor = cu.tintWithAlpha(DarkColor::hoverColor, highlightColor, 0.02);      
@@ -266,7 +341,7 @@ namespace Maui
         buttonFocusColor = highlightColor;
         
         viewTextColor = textColor;
-        viewBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(DarkColor::viewBackgroundColor, highlightColor, 0.02); 
+        viewBackgroundColor = cu.tintWithAlpha(DarkColor::viewBackgroundColor, highlightColor, 0.02); 
         viewAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::viewAlternateBackgroundColor, highlightColor, 0.02);
         viewHoverColor =  cu.tintWithAlpha(DarkColor::viewHoverColor, highlightColor, 0.02);
         viewFocusColor = highlightColor;
@@ -278,13 +353,13 @@ namespace Maui
         selectionFocusColor = highlightColor;
         
         complementaryTextColor = QColor{"#eff0f1"};
-        complementaryBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03); 
+        complementaryBackgroundColor = cu.tintWithAlpha(QColor{"#31363b"}, highlightColor, 0.03); 
         complementaryAlternateBackgroundColor = complementaryBackgroundColor.darker();
         complementaryHoverColor = complementaryBackgroundColor.lighter();
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor = trueBlack ? "#000000" : cu.tintWithAlpha(DarkColor::headerBackgroundColor, highlightColor, 0.04);
+        headerBackgroundColor =  cu.tintWithAlpha(DarkColor::headerBackgroundColor, highlightColor, 0.04);
         
         headerAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::headerAlternateBackgroundColor, highlightColor, 0.02);
         
@@ -294,7 +369,20 @@ namespace Maui
         linkColor = QColor{"#21b9ff"};
         linkBackgroundColor = QColor{"#21b9ff"};
         visitedLinkColor = QColor{"#ff17d4"};
-        visitedLinkBackgroundColor = QColor{"#ff17d4"};
+        visitedLinkBackgroundColor = QColor{"#ff17d4"};        
+        
+        negativeTextColor = QColor{"#dac7cb"};
+        negativeBackgroundColor = QColor{"#DA4453"};
+        neutralTextColor = QColor{"#333"};
+        neutralBackgroundColor = QColor{"#F67400"};
+        positiveTextColor = QColor{"#333"};
+        positiveBackgroundColor = QColor{"#27AE60"};   
+        
+        tooltipTextColor = QColor{"#fafafa"};
+        tooltipBackgroundColor = QColor{"#333"};
+        tooltipAlternateBackgroundColor = tooltipBackgroundColor.darker();
+        tooltipHoverColor = QColor{"#000"};
+        tooltipFocusColor = QColor{"#000"};    
     }
     
     void BasicThemeDefinition::setLightColors()
@@ -350,7 +438,20 @@ namespace Maui
         linkColor = QColor{"#21b9ff"};
         linkBackgroundColor = QColor{"#21b9ff"};
         visitedLinkColor = QColor{"#ff17d4"};
-        visitedLinkBackgroundColor = QColor{"#ff17d4"};
+        visitedLinkBackgroundColor = QColor{"#ff17d4"};        
+        
+        negativeTextColor = QColor{"#dac7cb"};
+        negativeBackgroundColor = QColor{"#DA4453"};
+        neutralTextColor = QColor{"#333"};
+        neutralBackgroundColor = QColor{"#F67400"};
+        positiveTextColor = QColor{"#333"};
+        positiveBackgroundColor = QColor{"#27AE60"};   
+        
+        tooltipTextColor = QColor{"#fafafa"};
+        tooltipBackgroundColor = QColor{"#333"};
+        tooltipAlternateBackgroundColor = tooltipBackgroundColor.darker();
+        tooltipHoverColor = QColor{"#000"};
+        tooltipFocusColor = QColor{"#000"};    
     }
     
     void BasicThemeDefinition::setAdaptiveColors()

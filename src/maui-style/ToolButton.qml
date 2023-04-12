@@ -43,6 +43,7 @@ import org.mauikit.controls 1.3 as Maui
 T.ToolButton
 {
     id: control
+    
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
     

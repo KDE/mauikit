@@ -104,16 +104,16 @@ class Style : public QObject
     Q_PROPERTY(QString currentIconTheme READ currentIconTheme NOTIFY currentIconThemeChanged)
 
     Q_PROPERTY(bool menusHaveIcons READ menusHaveIcons CONSTANT FINAL)
-    
-    Q_PROPERTY(bool trueBlack READ trueBlack WRITE setTrueBlack NOTIFY trueBlackChanged)
-    
+        
 public:
     enum StyleType : uint
     {
         Light = 0,
         Dark,
         Adaptive,
-        Auto
+        Auto,
+        TrueBlack,
+        Inverted
     }; Q_ENUM(StyleType)
 
     static Style *qmlAttachedProperties(QObject *object);
@@ -149,8 +149,6 @@ public:
     
     bool menusHaveIcons();
     
-    bool trueBlack() const;
-    void setTrueBlack(bool value);
 
 public Q_SLOTS:
     int mapToIconSizes(const int &size);
@@ -197,9 +195,6 @@ private:
 
     QString m_currentIconTheme;
     
-    bool m_trueBlack = false;
-    bool m_trueBlack_clocked = false;
-
     void setFontSizes();
     void styleChanged();
     
@@ -221,7 +216,6 @@ Q_SIGNALS:
     void contentMarginsChanged();
     void currentIconThemeChanged(QString currentIconTheme);
     void defaultSpacingChanged();
-    void trueBlackChanged(bool value);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

@@ -149,7 +149,7 @@ Window
       } 
       
       
-      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile
+      layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
     
       layer.effect: OpacityMask
       {

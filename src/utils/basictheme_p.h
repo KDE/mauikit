@@ -151,6 +151,7 @@ namespace Maui
     private:
         ImageColors *m_imgColors;
         void setDarkColors();
+        void setTrueBlackColors(bool inverted = false);
         void setLightColors();
         void setAdaptiveColors();
         void setSystemPaletteColors();
