@@ -33,17 +33,18 @@ ToolButton
 {
   id: control
   
-  implicitHeight: Maui.Style.toolBarHeight
-  implicitWidth: height
+  padding: Maui.Style.space.big
   
-  icon.height: Maui.Style.iconSizes.medium
-  icon.width: Maui.Style.iconSizes.medium
+  icon.height: Maui.Style.iconSize
+  icon.width: Maui.Style.iconSize
+  
   icon.color: Maui.Theme.highlightedTextColor
+  
+  display: ToolButton.IconOnly
   
   background: Rectangle
   {
     id: _rec
-    anchors.fill: parent
     radius: Maui.Style.radiusV
     color: control.hovered || control.pressed ? Qt.lighter( Maui.Theme.highlightColor, 1.2) :   Maui.Theme.highlightColor
   }
