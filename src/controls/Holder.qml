@@ -144,7 +144,7 @@ Item
       Button
       {
         id: _button
-        
+        width: Math.max(120, implicitWidth)
         
         action: modelData
         
