@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-12 00:48+0000\n"
+"POT-Creation-Date: 2023-04-13 00:48+0000\n"
 "PO-Revision-Date: 2022-11-14 22:56-0800\n"
 "Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -14,12 +14,12 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: src/controls/Dialog.qml:354 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:357 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr ""
 
-#: src/controls/Dialog.qml:377 src/controls/NewDialog.qml:27
+#: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
 #: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
