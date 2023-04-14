@@ -301,11 +301,11 @@ namespace Maui
         visitedLinkBackgroundColor = QColor{"#ff17d4"};        
         
         negativeTextColor = QColor{"#DA4453"};
-        negativeBackgroundColor = textColor;
+        negativeBackgroundColor = backgroundColor;
         neutralTextColor = QColor{"#F67400"};
-        neutralBackgroundColor = textColor;
+        neutralBackgroundColor = backgroundColor;
         positiveTextColor = QColor{"#27AE60"};
-        positiveBackgroundColor = textColor;   
+        positiveBackgroundColor = backgroundColor;   
         
         tooltipTextColor = textColor;
         tooltipBackgroundColor = backgroundColor;

@@ -349,13 +349,11 @@ Popup
           
          focus: true
          
-          Layout.fillWidth: true
-          
-          implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
+          Layout.fillWidth: true          
           
           visible: control.defaultButtons
           text: i18nd("mauikit", "Cancel")
-          
+
           background: Rectangle
           {
             color:  _rejectButton.visualFocus || _rejectButton.highlighted || _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
@@ -373,9 +371,7 @@ Popup
           id: _acceptButton
         focus: true
         
-          Layout.fillWidth: true
-          
-          implicitHeight: Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
+          Layout.fillWidth: true          
           
           text: i18nd("mauikit", "Accept")
           visible: control.defaultButtons
@@ -383,6 +379,8 @@ Popup
           background: Rectangle
           {
             color: _acceptButton.visualFocus || _acceptButton.highlighted || _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? Maui.Theme.positiveBackgroundColor : Maui.Theme.backgroundColor
+            
+            
             Behavior on color
             {
               Maui.ColorTransition{}
@@ -401,14 +399,13 @@ Popup
             id: _actionButton
            focus: true
             Layout.fillWidth: true
-            implicitHeight:  Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.25)
             
             action: modelData
             
             background: Rectangle
             {
               color: _actionButton.visualFocus || _actionButton.highlighted || _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
-              
+                            
               Behavior on color
               {
                 Maui.ColorTransition{}

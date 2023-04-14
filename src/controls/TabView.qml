@@ -572,7 +572,6 @@ Control
         const object = component.createObject(control, properties);
         
         _listView.addItem(object)
-        // _tabBar.addItem(control.tabViewButton.createObject(_tabBar))
         
         if(!quiet)
         {
