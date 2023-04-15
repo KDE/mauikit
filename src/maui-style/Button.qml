@@ -29,11 +29,10 @@ T.Button
     opacity: control.enabled ? 1 : 0.5
 
     highlighted: activeFocus
-    property int preferredHeight : Maui.Style.rowHeight
-    
+   
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     
-    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
         
     hoverEnabled: !Maui.Handy.isMobile
 
@@ -46,7 +45,8 @@ T.Button
     icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium   
+    spacing: Maui.Style.space.small
+    
     font: Maui.Style.defaultFont
     
     focusPolicy: Qt.StrongFocus

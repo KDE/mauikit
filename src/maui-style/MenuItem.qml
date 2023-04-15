@@ -49,19 +49,16 @@ T.MenuItem
     opacity: control.enabled ? 1 : 0.5
         
     hoverEnabled: !Maui.Handy.isMobile
-        
-    readonly property int preferredHeight:  Maui.Style.rowHeight
-    
+           
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
     width: implicitWidth
     
-    implicitHeight: Math.floor(Math.max(preferredHeight,
-                                       implicitContentHeight + topPadding + bottomPadding,
+    implicitHeight: Math.floor(Math.max(implicitContentHeight + topPadding + bottomPadding,
                                        implicitIndicatorHeight + topPadding + bottomPadding) )
 
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.space.small
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

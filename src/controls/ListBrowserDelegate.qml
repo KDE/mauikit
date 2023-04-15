@@ -49,7 +49,7 @@ Maui.ItemDelegate
     isCurrentItem : ListView.isCurrentItem || checked
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.space.small
     
     /**
       * content : ListItemTemplate.data

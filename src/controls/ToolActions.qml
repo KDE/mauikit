@@ -140,8 +140,9 @@ T.Control
         Row
         {
             id: _row
+            property int biggerHeight : 0
             spacing: control.spacing
-            
+                        
             Behavior on width
             {
                 enabled: Maui.Style.enableEffects
@@ -151,6 +152,21 @@ T.Control
                     duration: Maui.Style.units.longDuration
                     easing.type: Easing.InOutQuad
                 }
+            }            
+            
+            function calculateBiggerHeight() : int
+            {
+                var value = 0
+                for(var i in _row.children)
+                {
+                    const height = _row.children[i].implicitHeight
+                    if(height > value)
+                    {
+                        value = height
+                    }
+                }
+                
+                return value
             }
             
             Repeater
@@ -165,7 +181,9 @@ T.Control
                     checkable: control.checkable || action.checkable
                     checked: action.checked
                     
-                    height: Math.max(implicitHeight, _row.implicitHeight)
+                    height: Math.max(implicitHeight, _row.biggerHeight)
+                    
+                    onImplicitHeightChanged: _row.biggerHeight = _row.calculateBiggerHeight()                    
                     
                     Binding on checked
                     {

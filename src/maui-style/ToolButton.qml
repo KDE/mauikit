@@ -50,13 +50,9 @@ T.ToolButton
     property bool subMenu : false
     
     opacity: enabled ? 1 : 0.5
-    
-    property int preferredWidth : Math.floor(Maui.Style.iconSizes.medium + (Maui.Style.space.medium * 1.5))
-    property int preferredHeight : Maui.Style.rowHeight
-    
-    implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding, implicitHeight)    
-    implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
-    //    baselineOffset: contentItem.y + contentItem.baselineOffset
+       
+    implicitWidth: Math.max(implicitContentWidth + leftPadding + rightPadding, implicitHeight)    
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     
     hoverEnabled: !Maui.Handy.isMobile
     
@@ -71,9 +67,7 @@ T.ToolButton
     readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
     
     flat: control.parent === T.ToolBar
-    font: Maui.Style.defaultFont
-    
-    // font.pointSize: control.display === ToolButton.TextUnderIcon ? Maui.Style.fontSizes.small : undefined
+    font: Maui.Style.defaultFont    
     
     indicator: Maui.Icon
     {
@@ -81,16 +75,10 @@ T.ToolButton
         y: control.topPadding + (control.availableHeight - height) / 2
         
         visible: control.subMenu
-        //        mirror: control.mirrored
         color: control.color
         height: 8
         width: 8
         source: "qrc:/assets/arrow-down.svg"
-        
-//        Behavior on color
-//        {
-//            Maui.ColorTransition{}
-//        }
     }
     
     contentItem: Maui.IconLabel

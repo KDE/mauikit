@@ -47,8 +47,7 @@ T.Switch
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
-    
-    
+        
     hoverEnabled: !Maui.Handy.isMobile
     
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
@@ -56,7 +55,7 @@ T.Switch
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
     
     padding: 0
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.space.small
     
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

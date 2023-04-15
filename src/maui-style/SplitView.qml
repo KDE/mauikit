@@ -29,8 +29,7 @@ T.SplitView
         
         Rectangle
         {
-            Maui.Theme.colorSet: Maui.Theme.Header
-            Maui.Theme.inherit: false
+           
             implicitWidth: 20
             implicitHeight: 20
             
@@ -49,7 +48,7 @@ T.SplitView
                 {
                     NumberAnimation 
                     {
-                        duration: 100
+                        duration: Maui.Style.units.shortDuration
                     }
                 }                
                 
@@ -57,7 +56,7 @@ T.SplitView
                 {
                     NumberAnimation
                     {
-                        duration: 100
+                        duration: Maui.Style.units.shortDuration
                     }
                 }  
                 

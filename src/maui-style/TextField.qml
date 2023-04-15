@@ -43,6 +43,8 @@ T.TextField
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
+    clip: true
+    
     hoverEnabled: !Maui.Handy.isMobile
     
     opacity: control.enabled ? 1 : 0.5
@@ -52,16 +54,15 @@ T.TextField
     selectedTextColor: Maui.Theme.highlightedTextColor
     focus: true
     
-    implicitHeight: Math.max(_layout.implicitHeight, Maui.Style.rowHeight)  + topPadding + bottomPadding
-    implicitWidth: 100 + leftPadding + rightPadding
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+    implicitWidth: 200 
     
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignLeft
     
     padding: 0
-    property int spacing: Maui.Style.defaultSpacing
-    
-    
+    property int spacing: Maui.Style.space.small
+        
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
     rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
     
@@ -141,6 +142,11 @@ T.TextField
             anchors.leftMargin: Maui.Style.space.medium
             spacing: control.spacing 
             
+            ToolButton
+            {
+                icon.name: "love"
+            }
+            
         Maui.Icon
         {
             id: _icon
@@ -160,7 +166,6 @@ T.TextField
         {
             id: placeholder
             Layout.fillWidth: true
-            Layout.fillHeight: true
             text: control.placeholderText
             font: control.font
             color: control.color
@@ -182,53 +187,42 @@ T.TextField
             }  
         }        
         
+      
+        
         Row
         {
             id: _rightLayout
-            height: parent.height
+            
+            z: parent.z + 1
             spacing: control.spacing 
-        Loader
-        {
-            id: _actionsLayoutLoader
-            asynchronous: true
-            height: parent.height
-
-            sourceComponent: Row
+            
+            ToolButton
             {
-                z: parent.z + 1
-                spacing: control.spacing 
+                id: clearButton
+                flat: true
+                focusPolicy: Qt.NoFocus
+                
+                visible: control.text.length || control.activeFocus
+                icon.name: "edit-clear"
+                
+                onClicked:
+                {
+                    control.clear()
+                    cleared()
+                }
+            }
+            
+            Repeater
+            {
+                model: control.actions
                 
                 ToolButton
                 {
-                    id: clearButton
-                    height: parent.height
-                    flat: true
+                    flat: !checkable
                     focusPolicy: Qt.NoFocus
-                    
-                    visible: control.text.length || control.activeFocus
-                    icon.name: "edit-clear"
-                    
-                    onClicked:
-                    {
-                        control.clear()
-                        cleared()
-                    }
-                }
-                
-                Repeater
-                {
-                    model: control.actions
-                    
-                    ToolButton
-                    {
-                        flat: !checkable
-                        height: parent.height
-                        focusPolicy: Qt.NoFocus
-                        action: modelData
-                    }
+                    action: modelData
                 }
             }
-        }
         }
     }
     

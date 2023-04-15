@@ -31,7 +31,7 @@ Maui.FlexListItem
     id: control
    
    padding: Maui.Style.defaultPadding
-   spacing: Maui.Style.space.medium
+   spacing: Maui.Style.space.small
    
    Layout.fillWidth: true
    property bool flat : !Maui.Handy.isMobile

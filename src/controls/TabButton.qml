@@ -21,17 +21,15 @@ T.TabButton
     id: control
     
     opacity: enabled ? 1 : 0.5
-    
-        property int preferredHeight : Maui.Style.rowHeight
-
-    
+        
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
-        implicitHeight: Math.max(preferredHeight,implicitContentHeight + topPadding + bottomPadding)
+        implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
     hoverEnabled: !Maui.Handy.isMobile
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium   
+    spacing: Maui.Style.space.small   
+    
     font: Maui.Style.defaultFont
     
     icon.width: Maui.Style.iconSize
