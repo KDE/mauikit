@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-13 00:48+0000\n"
+"POT-Creation-Date: 2023-04-15 00:48+0000\n"
 "PO-Revision-Date: 2023-04-10 14:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,12 +17,12 @@ msgstr ""
 "X-Crowdin-File: /kf5-trunk/messages/mauikit/mauikit.pot\n"
 "X-Crowdin-File-ID: 41195\n"
 
-#: src/controls/Dialog.qml:357 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:355 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
 
-#: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
+#: src/controls/Dialog.qml:376 src/controls/NewDialog.qml:27
 #: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"

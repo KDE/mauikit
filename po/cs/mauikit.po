@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-13 00:48+0000\n"
-"PO-Revision-Date: 2023-03-16 16:33+0100\n"
+"POT-Creation-Date: 2023-04-15 00:48+0000\n"
+"PO-Revision-Date: 2023-04-06 15:05+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 22.12.3\n"
 
-#: src/controls/Dialog.qml:357 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:355 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
+#: src/controls/Dialog.qml:376 src/controls/NewDialog.qml:27
 #: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
@@ -75,25 +75,24 @@ msgid "Style"
 msgstr "Styl"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Písma"
+msgstr "Styl písma."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Velikost písma z doporučených hodnot."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Písma s pevnpou šířkou"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Zobrazit pouze písma s pevnou šířkou"
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -168,7 +167,7 @@ msgstr "Domovská stránka"
 #: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Zahodit vše"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format

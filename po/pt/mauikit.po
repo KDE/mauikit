@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-13 00:48+0000\n"
+"POT-Creation-Date: 2023-04-15 00:48+0000\n"
 "PO-Revision-Date: 2023-04-06 10:44+0100\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -13,12 +13,12 @@ msgstr ""
 "X-POFile-SpellExtra: Ups MauiKit Luv Pocinhas Monoespaçados\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: src/controls/Dialog.qml:357 src/controls/NewDialog.qml:28
+#: src/controls/Dialog.qml:355 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
+#: src/controls/Dialog.qml:376 src/controls/NewDialog.qml:27
 #: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
