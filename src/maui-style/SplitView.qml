@@ -29,6 +29,8 @@ T.SplitView
         
         Rectangle
         {
+            Maui.Theme.colorSet: Maui.Theme.Header
+            Maui.Theme.inherit: false
             implicitWidth: 20
             implicitHeight: 20
             
@@ -82,6 +84,8 @@ T.SplitView
         
         Rectangle
         {
+            Maui.Theme.colorSet: Maui.Theme.Header
+            Maui.Theme.inherit: false
             implicitWidth: 20
             implicitHeight: 20
             
