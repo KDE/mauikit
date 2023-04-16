@@ -141,12 +141,7 @@ T.TextField
        anchors.fill: parent   
             anchors.leftMargin: Maui.Style.space.medium
             spacing: control.spacing 
-            
-            ToolButton
-            {
-                icon.name: "love"
-            }
-            
+                        
         Maui.Icon
         {
             id: _icon
@@ -154,6 +149,12 @@ T.TextField
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color   
+        }
+        
+        Item
+        {
+            Layout.preferredHeight: Maui.Style.iconSize + (Maui.Style.defaultPadding * 2) //simulate the implicitHeight of common button controls
+            
         }
 
         Item
@@ -185,9 +186,7 @@ T.TextField
                     easing.type: Easing.InOutQuad
                 }
             }  
-        }        
-        
-      
+        }      
         
         Row
         {

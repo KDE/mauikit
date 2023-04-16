@@ -45,9 +45,6 @@ T.MenuItem
             {
                 id: _delegate
                 Maui.Theme.inherit: true
-
-                width: Math.max(height, implicitWidth)
-                height: Math.max(implicitHeight, Maui.Style.rowHeight)
                 
                 action: modelData
                 display: control.display

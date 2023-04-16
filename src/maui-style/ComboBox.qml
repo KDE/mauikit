@@ -64,13 +64,13 @@ T.ComboBox
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
         
     readonly property int preferredWidth : 200
-    readonly property int preferredHeight : Maui.Style.rowHeight
     
     implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)    
-    implicitHeight: Math.max(preferredHeight, implicitContentHeight + topPadding + bottomPadding)
+    implicitHeight: Math.max(implicitContentHeight, Maui.Style.iconSize) + topPadding + bottomPadding
         
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium    
+    spacing: Maui.Style.space.small
+    
     font: Maui.Style.defaultFont
     
            delegate: MenuItem

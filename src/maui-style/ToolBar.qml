@@ -46,7 +46,8 @@ T.ToolBar
     contentHeight: contentChildren[0].implicitHeight
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium   
+    spacing: Maui.Style.space.small
+    
     font: Maui.Style.defaultFont
     
     property alias borderVisible: _border.visible

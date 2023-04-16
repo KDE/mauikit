@@ -50,14 +50,12 @@ T.SpinBox
     Maui.Theme.inherit: false
         hoverEnabled: !Maui.Handy.isMobile
 
-            property int preferredHeight : Maui.Style.rowHeight
     property int preferredWidth : 100
 
     implicitWidth: Math.max(preferredWidth, contentItem.implicitWidth +
                             up.implicitIndicatorWidth +
                             down.implicitIndicatorWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitContentHeight + topPadding + bottomPadding,
-                             preferredHeight,
                              up.implicitIndicatorHeight,
                              down.implicitIndicatorHeight)
     
@@ -65,7 +63,7 @@ T.SpinBox
     editable: true
 
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium  
+    spacing: Maui.Style.space.small  
     
     leftPadding: (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))

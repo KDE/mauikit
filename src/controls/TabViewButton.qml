@@ -16,7 +16,7 @@ Maui.TabButton
     
     // implicitHeight: ListView.view.height
     
-    width: control.tabView.mobile ? ListView.view.width : Math.max(200, Math.min(600, implicitWidth))
+    width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
     
     checked: control.mindex === control.tabView.currentIndex
     text: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabTitle

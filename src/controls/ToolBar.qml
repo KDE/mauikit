@@ -42,7 +42,6 @@ ToolBar
     id: control    
     
     implicitHeight: preferredHeight + topPadding + bottomPadding    
-    implicitWidth: implicitContentWidth + leftPadding + rightPadding
   
     /**
      * content : RowLayout.data
@@ -310,10 +309,14 @@ ToolBar
                                 {
                                     id: _h1
                                     visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
+                                    
                                     readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) :0
+                                    
                                     Layout.minimumWidth: 0
+                                    
                                     Layout.preferredWidth: mwidth
                                     Layout.maximumWidth: mwidth
+                                    
                                     Layout.fillHeight: true
                                     Layout.fillWidth: true
                                 }
@@ -338,10 +341,14 @@ ToolBar
                                 {
                                     id: _h2
                                     visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
+                                    
                                     readonly property int mwidth : visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
+                                    
                                     Layout.minimumWidth: 0
+                                    
                                     Layout.fillHeight: true
                                     Layout.fillWidth: true
+                                    
                                     Layout.preferredWidth: mwidth
                                     Layout.maximumWidth: mwidth
                                 }
@@ -349,9 +356,12 @@ ToolBar
                                 Private.ToolBarSection
                                 {
                                     id: rightRowContent
+                                    
                                     Layout.fillHeight: true
+                                    
                                     Layout.maximumWidth: implicitWidth
                                     Layout.minimumWidth: implicitWidth
+                                    Layout.preferredWidth: implicitWidth
                                     
                                     spacing: control.spacing
                                 }
@@ -368,9 +378,6 @@ ToolBar
                         spacing: control.spacing
                     }
                 }
-            }
-            
-            
-            
+            }            
         }
 }

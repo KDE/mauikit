@@ -334,14 +334,12 @@ Item
         {
             id: _layout
             width: control.width
-            
+            forceCenterMiddleContent: false
             position: ToolBar.Footer
 
-            Maui.Badge
+            leftContent: Maui.Badge
             {
                 id: _counter
-                Layout.fillHeight: true
-                Layout.margins: Maui.Style.space.medium
                 implicitWidth: height
                 text: control.count
                 radius: Maui.Style.radiusV
@@ -451,7 +449,7 @@ Item
                 }
             }
 
-            Maui.CloseButton
+           rightContent: Maui.CloseButton
             {
                 onClicked:
                 {
