@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-15 00:48+0000\n"
-"PO-Revision-Date: 2023-04-06 09:10+0200\n"
+"POT-Creation-Date: 2023-04-16 00:47+0000\n"
+"PO-Revision-Date: 2023-04-15 10:20+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: src/controls/Dialog.qml:355 src/controls/NewDialog.qml:28
 #, kde-format
@@ -93,7 +93,7 @@ msgstr "Pisave enakomerne širine znakov"
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr "Prikazuj samo pisave enake širine znakov"
+msgstr "Prikazuj samo pisave enake širine znakov."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -210,32 +210,32 @@ msgstr "Zapri ostalo"
 msgid "Close All"
 msgstr "Zapri vse"
 
-#: src/maui-style/TextField.qml:242
+#: src/maui-style/TextField.qml:236
 #, kde-format
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: src/maui-style/TextField.qml:249
+#: src/maui-style/TextField.qml:243
 #, kde-format
 msgid "Cut"
 msgstr "Izreži"
 
-#: src/maui-style/TextField.qml:256
+#: src/maui-style/TextField.qml:250
 #, kde-format
 msgid "Paste"
 msgstr "Prilepi"
 
-#: src/maui-style/TextField.qml:266
+#: src/maui-style/TextField.qml:260
 #, kde-format
 msgid "Select All"
 msgstr "Izberi vse"
 
-#: src/maui-style/TextField.qml:273
+#: src/maui-style/TextField.qml:267
 #, kde-format
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: src/maui-style/TextField.qml:280
+#: src/maui-style/TextField.qml:274
 #, kde-format
 msgid "Redo"
 msgstr "Uveljavi"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-15 00:48+0000\n"
+"POT-Creation-Date: 2023-04-16 00:47+0000\n"
 "PO-Revision-Date: 2023-04-05 09:40+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -211,32 +211,32 @@ msgstr "Tanca els altres"
 msgid "Close All"
 msgstr "Tanca-ho tot"
 
-#: src/maui-style/TextField.qml:242
+#: src/maui-style/TextField.qml:236
 #, kde-format
 msgid "Copy"
 msgstr "Copia"
 
-#: src/maui-style/TextField.qml:249
+#: src/maui-style/TextField.qml:243
 #, kde-format
 msgid "Cut"
 msgstr "Retalla"
 
-#: src/maui-style/TextField.qml:256
+#: src/maui-style/TextField.qml:250
 #, kde-format
 msgid "Paste"
 msgstr "Apega"
 
-#: src/maui-style/TextField.qml:266
+#: src/maui-style/TextField.qml:260
 #, kde-format
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
-#: src/maui-style/TextField.qml:273
+#: src/maui-style/TextField.qml:267
 #, kde-format
 msgid "Undo"
 msgstr "Desfés"
 
-#: src/maui-style/TextField.qml:280
+#: src/maui-style/TextField.qml:274
 #, kde-format
 msgid "Redo"
 msgstr "Refés"

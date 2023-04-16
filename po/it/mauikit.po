@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-15 00:48+0000\n"
-"PO-Revision-Date: 2023-03-29 15:43+0200\n"
+"POT-Creation-Date: 2023-04-16 00:47+0000\n"
+"PO-Revision-Date: 2023-04-06 09:48+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -75,25 +75,24 @@ msgid "Style"
 msgstr "Stile"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Caratteri"
+msgstr "Stile del carattere."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Dimensioni del carattere dai valori consigliati."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Caratteri a larghezza fissa"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Visualizza solo i caratteri a larghezza fissa."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -168,7 +167,7 @@ msgstr "Pagina iniziale"
 #: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Ignora tutto"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format
@@ -210,32 +209,32 @@ msgstr "Chiudi gli altri"
 msgid "Close All"
 msgstr "Chiudi tutto"
 
-#: src/maui-style/TextField.qml:242
+#: src/maui-style/TextField.qml:236
 #, kde-format
 msgid "Copy"
 msgstr "Copia"
 
-#: src/maui-style/TextField.qml:249
+#: src/maui-style/TextField.qml:243
 #, kde-format
 msgid "Cut"
 msgstr "Taglia"
 
-#: src/maui-style/TextField.qml:256
+#: src/maui-style/TextField.qml:250
 #, kde-format
 msgid "Paste"
 msgstr "Incolla"
 
-#: src/maui-style/TextField.qml:266
+#: src/maui-style/TextField.qml:260
 #, kde-format
 msgid "Select All"
 msgstr "Seleziona tutto"
 
-#: src/maui-style/TextField.qml:273
+#: src/maui-style/TextField.qml:267
 #, kde-format
 msgid "Undo"
 msgstr "Annulla"
 
-#: src/maui-style/TextField.qml:280
+#: src/maui-style/TextField.qml:274
 #, kde-format
 msgid "Redo"
 msgstr "Rifai"
