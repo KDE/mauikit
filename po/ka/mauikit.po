@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-16 00:47+0000\n"
+"POT-Creation-Date: 2023-04-17 00:47+0000\n"
 "PO-Revision-Date: 2023-04-06 06:00+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -210,32 +210,32 @@ msgstr "სხვების დახურვა"
 msgid "Close All"
 msgstr "ყველას დახურვა"
 
-#: src/maui-style/TextField.qml:236
+#: src/maui-style/TextField.qml:235
 #, kde-format
 msgid "Copy"
 msgstr "კოპირება"
 
-#: src/maui-style/TextField.qml:243
+#: src/maui-style/TextField.qml:242
 #, kde-format
 msgid "Cut"
 msgstr "ამოჭრა"
 
-#: src/maui-style/TextField.qml:250
+#: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Paste"
 msgstr "ჩასმა"
 
-#: src/maui-style/TextField.qml:260
+#: src/maui-style/TextField.qml:259
 #, kde-format
 msgid "Select All"
 msgstr "ყველას მონიშვნა"
 
-#: src/maui-style/TextField.qml:267
+#: src/maui-style/TextField.qml:266
 #, kde-format
 msgid "Undo"
 msgstr "ბრძანების გაუქმება"
 
-#: src/maui-style/TextField.qml:274
+#: src/maui-style/TextField.qml:273
 #, kde-format
 msgid "Redo"
 msgstr "თავიდან"

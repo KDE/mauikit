@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-16 00:47+0000\n"
-"PO-Revision-Date: 2023-03-12 16:48+0100\n"
+"POT-Creation-Date: 2023-04-17 00:47+0000\n"
+"PO-Revision-Date: 2023-04-16 13:54+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.07.70\n"
 
 #: src/controls/Dialog.qml:355 src/controls/NewDialog.qml:28
@@ -64,22 +64,22 @@ msgstr "Größe"
 #: src/controls/FontPicker.qml:56
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "Familie"
 
 #: src/controls/FontPicker.qml:57
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "Schriftfamilie wählen."
 
 #: src/controls/FontPicker.qml:80
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #: src/controls/FontPicker.qml:81
 #, kde-format
 msgid "Font style."
-msgstr ""
+msgstr "Schriftstil."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
@@ -89,32 +89,32 @@ msgstr ""
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Schriften mit fester Zeichenbreite"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Nur nichtproportionale Schriften anzeigen."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "Vorschau"
 
 #: src/controls/FontPicker.qml:131
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "Schriftart testen."
 
 #: src/controls/FontPicker.qml:139
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg"
 
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Schriftarten"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
@@ -124,7 +124,7 @@ msgstr ""
 #: src/controls/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
-msgstr ""
+msgstr "Das Bild kann nicht geladen werden."
 
 #: src/controls/private/AboutDialog.qml:107
 #, kde-format
@@ -184,7 +184,7 @@ msgstr ""
 #: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
 #, kde-format
 msgid "Close Split"
-msgstr ""
+msgstr "Ansicht schließen"
 
 #: src/controls/TabView.qml:118
 #, kde-format
@@ -211,32 +211,32 @@ msgstr "Andere schließen"
 msgid "Close All"
 msgstr "Alle schließen"
 
-#: src/maui-style/TextField.qml:236
+#: src/maui-style/TextField.qml:235
 #, kde-format
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/maui-style/TextField.qml:243
+#: src/maui-style/TextField.qml:242
 #, kde-format
 msgid "Cut"
 msgstr "Ausschneiden"
 
-#: src/maui-style/TextField.qml:250
+#: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Paste"
 msgstr "Einfügen"
 
-#: src/maui-style/TextField.qml:260
+#: src/maui-style/TextField.qml:259
 #, kde-format
 msgid "Select All"
 msgstr "Alles auswählen"
 
-#: src/maui-style/TextField.qml:267
+#: src/maui-style/TextField.qml:266
 #, kde-format
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: src/maui-style/TextField.qml:274
+#: src/maui-style/TextField.qml:273
 #, kde-format
 msgid "Redo"
 msgstr "Wiederherstellen"
