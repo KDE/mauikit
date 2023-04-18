@@ -301,7 +301,6 @@ T.TextField
     background: Rectangle 
     {       
         color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
-        border.color: !control.enabled ? Maui.Theme.disabledTextColor : "transparent"
         
         radius: Maui.Style.radiusV
         

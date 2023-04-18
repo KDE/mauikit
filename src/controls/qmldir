@@ -87,6 +87,7 @@ TabViewButton 1.3 TabViewButton.qml
 CloseButton 1.3 CloseButton.qml
 ProgressIndicator 1.3 ProgressIndicator.qml
 ColorsRow 1.3 ColorsRow.qml
+TextFieldPopup 1.3 TextFieldPopup.qml
 
 SearchField 1.3 SearchField.qml
 PasswordField 1.3 PasswordField.qml

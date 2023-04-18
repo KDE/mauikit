@@ -4,12 +4,6 @@
 
 import QtQuick 2.10
 import QtQuick.Controls 2.15
-import QtQuick.Window 2.15
-
-import QtQuick.Templates 2.15 as T
-import QtGraphicalEffects 1.0
-
-import org.mauikit.controls 1.3 as Maui
 
 Menu
 {
@@ -25,7 +19,6 @@ Menu
         {
             control.popup(parent,x ,y)
         }
-    }
-    
+    }    
 }
 

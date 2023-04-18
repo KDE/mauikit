@@ -150,6 +150,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("IconLabel.qml")), uri, 1, 3, "IconLabel");
     qmlRegisterType(componentUrl(QStringLiteral("FontPicker.qml")), uri, 1, 3, "FontPicker");
     qmlRegisterType(componentUrl(QStringLiteral("FontPickerDialog.qml")), uri, 1, 3, "FontPickerDialog");
+    qmlRegisterType(componentUrl(QStringLiteral("TextFieldPopup.qml")), uri, 1, 3, "TextFieldPopup");
     
     //backwars compatible
     qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
