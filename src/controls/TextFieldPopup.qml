@@ -22,6 +22,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtQuick.Templates 2.15 as T
 import QtGraphicalEffects 1.0
+import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -31,6 +32,9 @@ AbstractButton
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
+    
+    property int minimumWidth: 400
+    property int minimumHeight: 500
     
     implicitWidth: 200
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
@@ -142,10 +146,10 @@ AbstractButton
         modal: false
         
         y: control.position === ToolBar.Header ? 0 : (0 - (height) + control.height)
-        x: 0
+        x: width === control.width ? 0 : 0 - ((width - control.width)/2)
         
-        width: parent.width 
-        height: 500
+        width: Math.min(Math.max(control.minimumWidth, parent.width), control.Window.window.width - Maui.Style.defaultPadding*2)
+        height: Math.min(control.Window.window.height, control.minimumHeight)
         
         margins: 0
         padding: 0
@@ -159,6 +163,7 @@ AbstractButton
         onOpened: 
         {
             _textField.forceActiveFocus()
+            _textField.selectAll()
             control.opened()
         }
         
