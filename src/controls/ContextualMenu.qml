@@ -14,34 +14,7 @@ import org.mauikit.controls 1.3 as Maui
 Menu
 {
     id: control
-    
-    
-    //enter: Transition
-    //{
-    //enabled: control.responsive
-    
-    //YAnimator {
-    //from: ApplicationWindow.overlay.height
-    //to: ApplicationWindow.overlay.height - _menu.height
-    //duration: Maui.Style.units.shortDuration
-    //easing.type: Easing.OutCubic
-    //}
-    //}
-    
-    //exit: Transition
-    //{
-    //enabled: control.responsive
-    
-    //YAnimator {
-    //from: _menu.y
-    //to: ApplicationWindow.overlay.height
-    //duration: Maui.Style.units.shortDuration
-    
-    //easing.type: Easing.OutCubic
-    //}
-    //}
-    
-    
+        
     function show(x, y, parent)
     {
         if (control.responsive)

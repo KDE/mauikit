@@ -56,6 +56,12 @@ ToolButton
         _menu.show(0, height + Maui.Style.space.medium)
         _menu.forceActiveFocus()
     }
+    
+    function popup()
+    {
+        _menu.popup()
+        _menu.forceActiveFocus()
+    }
 
     function close()
     {
