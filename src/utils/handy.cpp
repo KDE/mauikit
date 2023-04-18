@@ -223,11 +223,11 @@ QVariantMap Handy::getClipboard()
         res.insert("text", mime->text());
     
     if(mime->hasImage())
-        res.insert("image", mime->imageData())
+        res.insert("image", mime->imageData());
 
     const QByteArray a = mime->data(QStringLiteral("application/x-kde-cutselection"));
 
-    res.insert("cut", (!a.isEmpty() && a.at(0) == '1'));
+    res.insert("cut", !a.isEmpty() && a.at(0) == '1');
 #endif
     return res;
 }
