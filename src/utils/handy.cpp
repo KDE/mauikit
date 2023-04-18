@@ -212,11 +212,18 @@ QVariantMap Handy::getClipboard()
     auto clipboard = QApplication::clipboard();
 
     auto mime = clipboard->mimeData();
+    
+    if(!mime)
+        return res;
+    
     if (mime->hasUrls())
         res.insert("urls", QUrl::toStringList(mime->urls()));
 
     if (mime->hasText())
         res.insert("text", mime->text());
+    
+    if(mime->hasImage())
+        res.insert("image", mime->imageData())
 
     const QByteArray a = mime->data(QStringLiteral("application/x-kde-cutselection"));
 
