@@ -22,6 +22,9 @@ T.TabBar
 {
     id: control
     
+    Maui.Theme.colorSet: Maui.Theme.Header
+    Maui.Theme.inherit: false
+    
     property alias content : _layout.data
     property alias leftContent: _leftLayout.data
     property alias rightContent: _layout.data
@@ -36,12 +39,9 @@ T.TabBar
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
         
         padding: Maui.Style.defaultPadding
-        spacing: Maui.Style.space.medium   
+        spacing: Maui.Style.space.small   
         font: Maui.Style.defaultFont
                 
-    Maui.Theme.colorSet: Maui.Theme.Header
-    Maui.Theme.inherit: false
-      
     /**
      * newTabClicked :
      */
@@ -159,7 +159,7 @@ T.TabBar
                     model: control.contentModel
                     currentIndex: control.currentIndex
                     
-                    interactive: Maui.Handy.isTouch
+                    interactive: Maui.Handy.isMobile
                     snapMode: ListView.SnapOneItem  
                     
                     highlightFollowsCurrentItem: true

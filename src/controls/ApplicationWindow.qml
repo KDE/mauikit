@@ -60,8 +60,8 @@ Window
   
   visible: true
     
-  minimumHeight: Math.min(600, Screen.desktopAvailableHeight)
-  minimumWidth: Math.min(400, Screen.desktopAvailableWidth)
+  minimumHeight: Maui.Handy.isMobile ? undefined : Math.min(600, Screen.desktopAvailableHeight)
+  minimumWidth: Maui.Handy.isMobile ? undefined : Math.min(400, Screen.desktopAvailableWidth)
   
   color: "transparent"
   flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)

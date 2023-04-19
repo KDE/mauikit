@@ -54,7 +54,7 @@ Control
             leftContent: Maui.Badge
             {
                 width: visible ? implicitWidth : 0
-                visible: control.mobile && _tabButton.checked
+                visible: control.mobile && _tabButton.checked && control.count > 1
                 text: control.count
                 radius: Maui.Style.radiusV
             }                            
