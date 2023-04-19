@@ -276,13 +276,8 @@ Control
             anchors.fill: parent
             id: _stackView
             
-            initialItem: ColumnLayout
+            initialItem:  Item
             {
-                Item
-            {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                
                 Maui.TabBar
                 {
                     id: _tabBar
@@ -292,9 +287,7 @@ Control
                     
                     visible: _listView.count > 1   
                     
-                    interactive: _listView.interactive
-                                        
-                    // currentIndex: _listView.currentIndex                
+                    interactive: true                                       
                     showNewTabButton: !mobile
                     
                     onNewTabClicked: control.newTabClicked()
@@ -416,7 +409,7 @@ Control
                     emojiSize: Maui.Style.iconSizes.huge
                 }
             }  
-            }
+            
             Component
             {
                 id: _overviewComponent
