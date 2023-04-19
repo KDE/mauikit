@@ -149,7 +149,7 @@ AbstractButton
         x: width === control.width ? 0 : 0 - ((width - control.width)/2)
         
         width: Math.min(Math.max(control.minimumWidth, parent.width), control.Window.window.width - Maui.Style.defaultPadding*2)
-        height: Math.min(control.Window.window.height, control.minimumHeight)
+        height: Math.min(control.Window.window.height- Maui.Style.defaultPadding*2, control.minimumHeight)
         
         margins: 0
         padding: 0

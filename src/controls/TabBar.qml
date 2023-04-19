@@ -135,10 +135,10 @@ T.TabBar
             ScrollView
             {
                 Layout.fillWidth: true
-//                 Layout.fillHeight: true
-               orientation : Qt.Horizontal
-                // Layout.preferredHeight: Maui.Style.rowHeight
-                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                orientation : Qt.Horizontal
+
+               ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 
                 contentHeight: availableHeight
@@ -193,22 +193,13 @@ T.TabBar
             {
                 active: control.showNewTabButton
                 visible: active
-                asynchronous: true
-                Layout.fillHeight: true
-                Layout.preferredWidth: visible ? height : 0
+                asynchronous: true                
                 
-                sourceComponent: MouseArea
+                sourceComponent: ToolButton
                 {
-                    hoverEnabled: true
+                    icon.name: "list-add"
                     onClicked: control.newTabClicked()              
-                    
-                    Maui.PlusSign
-                    {
-                        height: Maui.Style.iconSizes.tiny
-                        width: height
-                        anchors.centerIn: parent
-                        color: parent.containsMouse || parent.containsPress ? Maui.Theme.highlightColor : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
-                    }
+                    flat: true
                 }
             }
         }
