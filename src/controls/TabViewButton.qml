@@ -14,18 +14,20 @@ Maui.TabButton
     readonly property int mindex : control.TabBar.index
     property Item tabView : control.parent
     
-    // implicitHeight: ListView.view.height
-    
+   readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
     width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
     
     checked: control.mindex === control.tabView.currentIndex
-    text: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabTitle
-    icon.name: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabIcon
+    text: tabInfo.tabTitle
+    
+    icon.name: tabInfo.tabIcon
+    
+    property color color : tabInfo.tabColor
     
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && !Maui.Handy.isMobile && ToolTip.text.length
-    ToolTip.text: control.tabView.contentModel.get(mindex).Maui.TabViewInfo.tabToolTipText    
+    ToolTip.text: tabInfo.tabToolTipText    
     
     Drag.active: dragArea.active
     Drag.source: control
@@ -33,6 +35,16 @@ Maui.TabButton
     Drag.hotSpot.y: height / 2
     Drag.dragType: Drag.Automatic
     Drag.proposedAction: Qt.IgnoreAction
+    
+    Rectangle
+    {
+        parent: control.background
+        color: control.color
+        height: 2
+        width: parent.width*0.9
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
     
     DragHandler
     {

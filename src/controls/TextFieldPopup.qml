@@ -248,15 +248,9 @@ AbstractButton
             
         }
         
-        Label
-        {
-            color: "orange"
-            text: _textField.height
-        }
-        
         background: Rectangle
         {
-            color: control.Maui.Theme.backgroundColor
+            color: Maui.Theme.backgroundColor
             
             radius: Maui.Style.radiusV    
             layer.enabled: true

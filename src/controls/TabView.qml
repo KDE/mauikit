@@ -287,8 +287,8 @@ Control
                     
                     visible: _listView.count > 1   
                     
-                    interactive: true                                       
-                    showNewTabButton: !mobile
+                    interactive: control.mobile                                       
+                    showNewTabButton: !control.mobile
                     
                     onNewTabClicked: control.newTabClicked()
                     onNewTabFocused: _listView.setCurrentIndex(index)
