@@ -310,7 +310,7 @@ ToolBar
                                     id: _h1
                                     visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
                                     
-                                    readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) -( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) :0
+                                    readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) - (leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
                                     
                                     Layout.minimumWidth: 0
                                     

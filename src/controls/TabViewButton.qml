@@ -22,7 +22,7 @@ Maui.TabButton
     
     icon.name: tabInfo.tabIcon
     
-    property color color : tabInfo.tabColor
+    property color color : tabInfo.tabColor ? tabInfo.tabColor : "transparent"
     
     ToolTip.delay: 1000
     ToolTip.timeout: 5000

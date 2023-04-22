@@ -359,10 +359,8 @@ namespace Maui
         complementaryFocusColor = highlightColor;
         
         headerTextColor = textColor;
-        headerBackgroundColor =  cu.tintWithAlpha(DarkColor::headerBackgroundColor, highlightColor, 0.04);
-        
-        headerAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::headerAlternateBackgroundColor, highlightColor, 0.02);
-        
+        headerBackgroundColor =  cu.tintWithAlpha(DarkColor::headerBackgroundColor, highlightColor, 0.04);        
+        headerAlternateBackgroundColor = cu.tintWithAlpha(DarkColor::headerAlternateBackgroundColor, highlightColor, 0.02);        
         headerHoverColor = DarkColor::hoverColor;
         headerFocusColor = highlightColor;       
                 
@@ -512,6 +510,19 @@ namespace Maui
         linkBackgroundColor = QColor{"#2980B9"};
         visitedLinkColor = QColor{"#7F8C8D"};
         visitedLinkBackgroundColor = QColor{"#2196F3"};
+        
+        negativeTextColor = QColor{"#dac7cb"};
+        negativeBackgroundColor = QColor{"#DA4453"};
+        neutralTextColor = QColor{"#333"};
+        neutralBackgroundColor = QColor{"#F67400"};
+        positiveTextColor = QColor{"#333"};
+        positiveBackgroundColor = QColor{"#27AE60"};   
+        
+        tooltipTextColor = QColor{"#fafafa"};
+        tooltipBackgroundColor = QColor{"#333"};
+        tooltipAlternateBackgroundColor = tooltipBackgroundColor.darker();
+        tooltipHoverColor = QColor{"#000"};
+        tooltipFocusColor = QColor{"#000"};  
     }
     
     void BasicThemeDefinition::syncToQml(PlatformTheme *object)

@@ -10,8 +10,9 @@ Control
   
   implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
   implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
-  spacing: Maui.Style.space.medium   
-  padding: Maui.Style.space.small
+  
+  spacing: Maui.Style.space.small   
+  padding: Maui.Style.defaultPadding
   
     hoverEnabled: true    
    

@@ -33,7 +33,7 @@ ToolButton
 {
   id: control
   
-  padding: Maui.Style.space.big
+  padding: Maui.Style.defaultPadding * 2
   
   icon.height: Maui.Style.iconSize
   icon.width: Maui.Style.iconSize

@@ -9,8 +9,10 @@ Control
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
-    spacing: Maui.Style.space.medium
-
+    
+    spacing: Maui.Style.space.small   
+    padding: Maui.Style.defaultPadding
+    
     background: null
 
     contentItem: Row

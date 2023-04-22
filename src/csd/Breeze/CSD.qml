@@ -8,11 +8,12 @@ Control
 {
     id: control
     
-    padding: Maui.Style.space.small
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
-    spacing: Maui.Style.space.medium
-        
+ 
+ spacing: Maui.Style.space.small   
+ padding: Maui.Style.defaultPadding
+         
     contentItem: Row
     {
         id: _layout
@@ -41,8 +42,8 @@ Control
             visible: modelData === "A" ? canMaximize : true
             
             hoverEnabled: true
-            width: 18
-            height: 18 
+            width: 16
+            height: 16 
             
             Maui.CSDButton
             {
