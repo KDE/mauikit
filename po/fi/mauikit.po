@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-17 00:47+0000\n"
-"PO-Revision-Date: 2023-03-30 12:01+0300\n"
+"PO-Revision-Date: 2023-04-20 12:35+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -75,25 +75,24 @@ msgid "Style"
 msgstr "Tyyli"
 
 #: src/controls/FontPicker.qml:81
-#, fuzzy, kde-format
-#| msgid "Fonts"
+#, kde-format
 msgid "Font style."
-msgstr "Fontit"
+msgstr "Fonttityyli."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Fonttikoko suositusarvoista."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Tasalevyiset fontit"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Näytä vain tasalevyiset fontit."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
@@ -168,7 +167,7 @@ msgstr "Kotisivu"
 #: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Merkitse kaikki nähdyiksi"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format
