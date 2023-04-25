@@ -186,12 +186,6 @@ control.close()
             height: parent.height
             color: Maui.Theme.alternateBackgroundColor
             
-            Label
-            {
-              text:  _dragHandler.centroid.position.x
-              color: "orange"
-            }
-            
             HoverHandler
             {
               cursorShape: Qt.SizeHorCursor

@@ -20,10 +20,10 @@ T.ItemDelegate
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
     
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.space.small
     
-    icon.height: Maui.Style.iconSizes.small
-    icon.width: Maui.Style.iconSizes.small
+    icon.height: Maui.Style.iconSize
+    icon.width: Maui.Style.iconSize
 
     property alias label : _label1
     property alias iconSource : control.icon.name
@@ -52,7 +52,6 @@ T.ItemDelegate
 
             Maui.Icon
             {
-
                 id: _icon
                 visible: valid
                 implicitWidth: control.icon.width
@@ -80,24 +79,16 @@ T.ItemDelegate
             
             asynchronous: true
             
-          Layout.fillHeight: true
-            
             Layout.alignment: Qt.AlignRight
             
-            sourceComponent: MouseArea
+            sourceComponent: Maui.CloseButton
             {
-                hoverEnabled: true
-                implicitHeight: Maui.Style.iconSizes.medium
-                implicitWidth: visible ? Maui.Style.iconSizes.medium : 0
-                onClicked: control.close()
+                icon.width: 16
+                icon.height: 16
+                icon.color: hovered ? Maui.Theme.negativeTextColor : _label1.color
                 
-                Maui.X
-                {
-                    height: Maui.Style.iconSizes.tiny
-                    width: height
-                    anchors.centerIn: parent
-                    color: parent.containsMouse || parent.containsPress ? Maui.Theme.negativeTextColor : _label1.color
-                }
+                padding: 0
+                onClicked: control.close()
             }
         }     
     }

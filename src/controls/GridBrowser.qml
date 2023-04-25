@@ -458,11 +458,14 @@ Item
                             }
                         }
                         
-                        control.itemsSelected(lassoIndexes)
+                        if(lassoIndexes.length > 0)
+                        {                            
+                            control.itemsSelected(lassoIndexes)
+                        }
+                        
                         selectLayer.reset()
                     }
-                }
-                
+                }                
             }
             
             Maui.Rectangle

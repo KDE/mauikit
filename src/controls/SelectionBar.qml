@@ -340,7 +340,6 @@ Item
             leftContent: Maui.Badge
             {
                 id: _counter
-                implicitWidth: height
                 text: control.count
                 radius: Maui.Style.radiusV
                 font.pointSize: Maui.Style.fontSizes.big

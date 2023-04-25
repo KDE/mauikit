@@ -133,12 +133,12 @@ Style::Style(QObject *parent) : QObject(parent)
         });
    }else
    {
-        //to be able to check and icon theme change rely on the style being reset 
-       QStyle *style = qApp->style();
-       if (style) 
-       {
-           connect(style, &QObject::destroyed, this, &Style::styleChanged);
-       }
+//        //to be able to check and icon theme change rely on the style being reset
+//       QStyle *style = qApp->style();
+//       if (style)
+//       {
+//           connect(style, &QObject::destroyed, this, &Style::styleChanged);
+//       }
 }
 
     m_defaultFont = qGuiApp->font();
