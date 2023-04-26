@@ -68,24 +68,7 @@ T.Control
      */
     readonly property int count : actions.length
     
-    /**
-     * currentAction : Action
-     */
-    property Action currentAction : control.autoExclusive ? actions[Math.max(0, control.currentIndex)] : null
-    
-    /**
-     * currentIndex : int
-     */
-    property int currentIndex : -1
-    
-    onCurrentIndexChanged:
-    {
-        if(control.autoExclusive && control.count > 0)
-        {
-            control.currentAction = actions[control.currentIndex]
-        }
-    }
-    
+       
     /**
      * expanded : bool
      */
@@ -99,14 +82,7 @@ T.Control
     
     //radius: Maui.Style.radiusV
     //color: !control.enabled || control.flat ? "transparent" : Maui.Theme.backgroundColor
-    
-    Component.onCompleted:
-    {
-        if(control.checkable && control.autoExclusive && control.currentIndex >= 0 && control.currentIndex < control.actions.length)
-        {
-            control.actions[control.currentIndex].checked = true
-        }
-    }
+ 
     
     /**
      * 
@@ -179,32 +155,15 @@ T.Control
                     id: _actionButton
                     action : modelData
                     checkable: control.checkable || action.checkable
-                    checked: action.checked
                     
                     height: Math.max(implicitHeight, _row.biggerHeight)
                     
                     onImplicitHeightChanged: _row.biggerHeight = _row.calculateBiggerHeight()                    
-                    
-                    Binding on checked
-                    {
-                        when: autoExclusive
-                        value: control.currentIndex === index || _actionButton.checked
-                    }
-                    
+                                       
                     autoExclusive: control.autoExclusive
                     enabled: action.enabled
                     
                     display: control.display
-                    
-                    icon.name: action.icon.name
-                    icon.width:  action.icon.width ?  action.icon.width : Maui.Style.iconSize
-                    icon.height:  action.icon.height ?  action.icon.height : Maui.Style.iconSize
-                    
-                    onClicked:
-                    {
-                        if(autoExclusive)
-                            control.currentIndex = index
-                    }
                     
                     background: Maui.ShadowedRectangle
                     {                        
@@ -231,147 +190,121 @@ T.Control
     {
         id: _buttonComponent
         
-        T.Control
-        {
-            id: _defaultButtonMouseArea
-            hoverEnabled: true
-            implicitWidth: implicitContentWidth + leftPadding + rightPadding
-            implicitHeight: implicitContentHeight + topPadding + bottomPadding
-            
-            function triggerAction()
-            {
-                if(control.canCyclic)
+         ToolButton
                 {
-                    const item = buttonAction()
-                    const action = item.action
-                    const index = item.index
+                    id: _defaultButtonIcon                                    
                     
-                    if(action.enabled)
+                    property Action m_action 
+                    
+                    Component.onCompleted: _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
+                                        
+                    function buttonAction()
                     {
-                        control.currentIndex = index
-                        action.triggered()
-                    }
-                    
-                    return
-                }
-                
-                if(!_menu.visible)
-                {
-                    _menu.show(0, control.height, control)
-                    
-                }else
-                {
-                    _menu.close()
-                }
-            }
-            
-            function buttonAction()
-            {
-                if(control.canCyclic)
-                {
-                    let index = control.currentIndex + 1
-                    
-                    index = index >= control.actions.length ? 0 : index
-                    
-                    if(control.actions[index].enabled)
-                    {
-                        var res = ({
-                            'action' : control.actions[index],
-                            'index': index
-                        })
-                        
-                        return res;
-                    }
-                    
-                    if(control.currentAction.enabled)
-                    {
-                        var res = ({
-                            'action': control.currentAction,
-                            'index': control.currentIndex
-                        })
-                        
-                        return res;
-                    }else
-                    {
-                        var res = ({
-                            'action': control.actions[1],
-                            'index': 1
-                        })
-                        
-                        return res;
-                    }
-                }else
-                {
-                    var res = ({
-                        'action': control.currentAction,
-                        'index': control.currentIndex
-                    })
-                    
-                    return res;
-                }
-            }
-            
-            //onClicked: _defaultButtonMouseArea.triggerAction()
-            
-            data: Maui.ContextualMenu
-            {
-                id: _menu
-                
-                Repeater
-                {
-                    model: control.actions
-                    
-                    MenuItem
-                    {
-                        action: modelData
-                        enabled: modelData.enabled
-                        text: modelData.text
-                        icon.name: modelData.icon.name
-                        autoExclusive: control.autoExclusive
-                        checked: action.checked
-                        
-                        Binding on checked
+                        if(control.autoExclusive)
                         {
-                            when: autoExclusive
-                            value: control.currentIndex === index
-                        }
-                        
-                        checkable: control.checkable || modelData.checkable
-                        onTriggered:
-                        {
-                            if(autoExclusive)
-                                control.currentIndex = index
+                            var currentAction
+                            var actionIndex = -1
+                            for(var i in control.actions)
+                            {
+                                console.log("Checking current action", i)
+                                if(control.actions[i].checked)
+                                {
+                                    actionIndex = i
+                                    currentAction = control.actions[actionIndex]
+                                    console.log("Found current action", i, actionIndex)                                    
+                                }
+                            }                    
+                            
+                            if(control.canCyclic)
+                            {
+                               actionIndex++
                                 
-                                //                             modelData.triggered()
+                                let m_index = actionIndex >= control.actions.length ? 0 : actionIndex
+//                                 
+                                console.log("Setting current action at", m_index)
+                                if(control.actions[m_index].enabled)
+                                {
+                                    return control.actions[m_index];
+                                }
+                            }
+                            
+                            return currentAction                    
+                        }
+                        
+                        return null
+                    }
+                    
+                    Row
+                    {
+                        visible: false
+                        Repeater
+                        {
+                            model: control.actions
+                            delegate: Item
+                            {
+                                property bool checked : modelData.checked
+                                onCheckedChanged: _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
+                            }
                         }
                     }
-                }
-            }
-            
-            contentItem:  ToolButton
-                {
-                    id: _defaultButtonIcon
-                                       
-                    property var m_item : _defaultButtonMouseArea.buttonAction()
-                    property Action m_action : m_item.action
                     
-                    onClicked: _defaultButtonMouseArea.triggerAction()
+                    
+                    data: Maui.ContextualMenu
+                    {
+                        id: _menu
+                        
+                        Repeater
+                        {
+                            model: control.autoExclusive && control.canCyclic ? undefined : control.actions
+                            
+                            delegate: MenuItem
+                            {
+                                action: modelData
+                                enabled: modelData.enabled
+                                autoExclusive: control.autoExclusive                        
+                                checkable: control.checkable || action.checkable                        
+                            }
+                        }
+                    }
+                    
+                    onClicked: 
+                    {
+                        if(_defaultButtonIcon.m_action && control.canCyclic && control.autoExclusive)
+                        {
+                            console.log("Trigger next cyclic action", _defaultButtonIcon.m_action.icon.name)
+                            // var previousAction = _defaultButtonIcon.action
+                            _defaultButtonIcon.m_action.triggered()
+                            _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
+                            
+                        }else
+                        {
+                            if(!_menu.visible)
+                            {
+                                _menu.show(0, control.height, control)
+                                
+                            }else
+                            {
+                                _menu.close()
+                            }
+                        }
+                    }
+                    
+                    
                     
                     icon.width:  Maui.Style.iconSize
                     icon.height: Maui.Style.iconSize
-                    icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : ( _defaultButtonMouseArea.containsPress ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
+                    icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : (pressed ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
                     
                     icon.name: m_action ? m_action.icon.name : control.defaultIconName
+                    text: m_action ? m_action.text: ""
                     
                     enabled: m_action ? m_action.enabled : true
                     
                     subMenu: !control.canCyclic
                     
-                    text: m_action ?  m_action.text : ""
-                    
                     display: control.display
                     
-                    checkable: control.checkable && (m_action ? m_action.checkable : false)
+                    checkable: control.checkable && (action ? action.checkable : false)
                     
                     background: Rectangle
                     {
@@ -385,6 +318,6 @@ T.Control
                     }
                 }
             
-        }
+        
     }
 }

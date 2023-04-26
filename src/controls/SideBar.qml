@@ -123,7 +123,7 @@ T.Pane
       //       
       Binding on position
       {
-        when: control.autoCollapse
+        // when: control.autoHide
         value: control.enabled ? (!control.autoShow ? 0 : (control.collapsed && control.autoHide ? 0 : 1)) : 0
         restoreMode: Binding.RestoreBindingOrValue
       }

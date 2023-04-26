@@ -796,7 +796,7 @@ bool PlatformTheme::event(QEvent *event)
 
             Q_EMIT colorSetChanged(data->colorSet);
             Q_EMIT colorGroupChanged(data->colorGroup);
-           
+
             d->emitCompressedColorChanged(this);
         }
 

@@ -193,9 +193,8 @@ public:
 
     QSGNode *updatePaintNode(QSGNode *node, UpdatePaintNodeData *data) override;
 
-public slots:
+public Q_SLOTS:
     void refresh();
-    
 
 Q_SIGNALS:
     void sourceChanged();
@@ -244,5 +243,5 @@ private:
     qreal m_paintedHeight = 0.0;
 
     QImage m_icon;
-    
+
 };

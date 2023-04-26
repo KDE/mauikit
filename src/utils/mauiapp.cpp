@@ -130,7 +130,7 @@ void MauiApp::setDefaultMauiStyle()
     QIcon::setThemeName("Luv");
 #endif
     
-    Q_INIT_RESOURCE(style);
+//    Q_INIT_RESOURCE(style);
     QQuickStyle::setStyle("maui-style");
 }
 
