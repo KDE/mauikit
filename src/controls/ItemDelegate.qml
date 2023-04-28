@@ -167,12 +167,13 @@ T.Control
         {
             _content.x = 0
             _content.y = 0
-            if(control.draggable)
-            {
-                drag.target = null
-            }
+//            if(control.draggable)
+//            {
+//                drag.target = null
+//            }
+            console.log("DROPPING DRAG", _mouseArea.pressAndHoldIgnored)
 
-            if(_mouseArea.pressAndHoldIgnored)
+            if(!mouseArea.drag.active && _mouseArea.pressAndHoldIgnored)
             {
                 control.pressAndHold(mouse)
                 _mouseArea.pressAndHoldIgnored = false
@@ -183,14 +184,17 @@ T.Control
         {
             xAnim.running = control.draggable || mouse.source === Qt.MouseEventSynthesizedByQt
 
-            if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt && Maui.Handy.isTouch)
+            _mouseArea.pressAndHoldIgnored = true
+
+            if(control.draggable )
             {
                 drag.target = _content
+                console.log("GETTING DRAG", _mouseArea.pressAndHoldIgnored)
                 control.grabToImage(function(result)
                 {
                     control.Drag.imageSource = result.url
-                })
-                _mouseArea.pressAndHoldIgnored = true
+                })                
+
             }else
             {
                 drag.target = null
@@ -200,9 +204,9 @@ T.Control
 
         onPositionChanged:
         {
-            if(control.Drag.active && _mouseArea.pressAndHoldIgnored)
+            if(control.draggable)
             {
-                //                        console.log(control.Drag.active && pressAndHoldIgnored)
+                console.log("MOVING DRAG", _mouseArea.pressAndHoldIgnored)
                 _mouseArea.pressAndHoldIgnored = false
                 mouse.accepted = true
             }
