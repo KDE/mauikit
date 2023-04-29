@@ -156,9 +156,9 @@ T.Control
                 })
             }else
             {
-                drag.target = null
+                // drag.target = null
             }
-
+            // 
             _mouseArea.pressAndHoldIgnored = false
             control.pressed(mouse)
         }
@@ -186,7 +186,7 @@ T.Control
 
             _mouseArea.pressAndHoldIgnored = true
 
-            if(control.draggable )
+            if(control.draggable && mouse.source === Qt.MouseEventSynthesizedByQt)
             {
                 drag.target = _content
                 console.log("GETTING DRAG", _mouseArea.pressAndHoldIgnored)
@@ -197,7 +197,7 @@ T.Control
 
             }else
             {
-                drag.target = null
+                // drag.target = null
                 control.pressAndHold(mouse)
             }
         }
