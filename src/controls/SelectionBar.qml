@@ -38,12 +38,12 @@ import QtQuick.Templates 2.15 as T
 Item
 {
     id: control
-    
+
     implicitHeight: _layout.implicitHeight + Maui.Style.space.big
     implicitWidth: _layout.implicitWidth
-    
+
     readonly property bool hidden : count === 0
-    
+
     onHiddenChanged:
     {
         if(hidden && !singleSelection)
@@ -54,7 +54,7 @@ Item
             control.open()
         }
     }
-    
+
     visible: false
     focus: true
     Keys.enabled: true
@@ -63,65 +63,65 @@ Item
      * Default list of actions, the actions are positioned into a Kirigami ActionToolBar.
      */
     default property list<Action> actions
-    
+
     /**
      * hiddenActions : list<Action>
      * List of action that wont be shown, and instead will always hidden and listed in the overflow menu.
      */
     property list<Action> hiddenActions
-    
-    
+
+
     /**
      * display : int
      * Preferred display mode of the visible actions. As icons only, or text beside icons... etc.
      */
     property int display : ToolButton.TextBesideIcon
-    
+
     /**
      * maxListHeight : int
      * The selectionbar can list the grouped items under a collapsable list. This property defines the maximum height the list can take.
      * This can be changed to avoid overlapping the list with other components.
      */
     property int maxListHeight : 400
-    
+
     /**
      * radius : int
      * By default the selectionbar was designed to be floating and thus has a rounded border corners.
      * This property allows to change the border radius.
      */
     property int radius: Maui.Style.radiusV
-    
+
     /**
      * singleSelection : bool
      * if singleSelection is set to true then only a single item can be appended,
      * if another item is added then it replaces the previous one.
      **/
     property bool singleSelection: false
-    
+
     /**
      * uris : var
      * List of URIs associated to the grouped elements.
      */
     readonly property alias uris: _private._uris
-    
+
     /**
      * items : var
      * List of items grouped.
      */
     readonly property alias items: _private._items
-    
+
     /**
      * count : int
      * Size of the elements grouped.
      */
     readonly property alias count : _urisModel.count
-    
+
     //     /**
     //      * background : Rectangle
     //      * The default style of the background. This can be customized by changing its properties.
     //      */
     //     property alias background : bg
-    
+
     /**
      * listDelegate : Component
      * Delegate to be used in the component where the grouped elements are listed.
@@ -131,108 +131,108 @@ Item
         id: delegate
         height: Maui.Style.rowHeight * 1.5
         width: ListView.view.width
-        
+
         Maui.Theme.backgroundColor: "transparent"
         Maui.Theme.textColor: control.Maui.Theme.textColor
-        
+
         iconVisible: false
         label1.text: model.uri
-        
+
         checkable: true
         checked: true
         onToggled: control.removeAtIndex(index)
-        
+
         onClicked: control.itemClicked(index)
-        onPressAndHold: control.itemPressAndHold(index)        
+        onPressAndHold: control.itemPressAndHold(index)
     }
-    
+
     /**
      * cleared :
      * Triggered when the selection is cleared by using the close button or calling the clear method.
      */
     signal cleared()
-    
+
     /**
      * exitClicked :
      * Triggered when the selection bar is closed by using the close button or the close method.
      */
     signal exitClicked()
-    
+
     /**
      * itemClicked :
      * Triggered when an item in the selection list view is clicked.
      */
     signal itemClicked(int index)
-    
+
     /**
      * itemPressAndHold :
      * Triggered when an item in the selection list view is pressed and hold.
      */
     signal itemPressAndHold(int index)
-    
+
     /**
      * itemAdded :
      * Triggered when an item newly added to the selection.
      */
     signal itemAdded(var item)
-    
+
     /**
      * itemRemoved :
      * Triggered when an item has been removed from the selection.
      */
     signal itemRemoved(var item)
-    
+
     /**
      * uriAdded :
      * Triggered when an item newly added to the selection. This signal only sends the refered URI of the item.
      */
     signal uriAdded(string uri)
-    
+
     /** uriRemoved:
      * Triggered when an item has been removed from the selection. This signal only sends the refered URI of the item.
      */
     signal uriRemoved(string uri)
-    
+
     /**
      * clicked :
      * Triggered when an empty area of the selectionbar has been clicked.
      */
     signal clicked(var mouse)
-    
+
     /**
      * rightClicked :
      * Triggered when an empty area of the selectionbar has been right clicked.
      */
     signal rightClicked(var mouse)
-    
+
     /**
      * urisDropped :
      * Triggered when a group of URIs has been dropped.
      */
     signal urisDropped(var uris)
-    
+
     property QtObject m_private : QtObject
     {
         id: _private
         property var _uris : []
         property var _items : []
     }
-    
+
     ListModel
     {
         id: _urisModel
     }
-    
+
     Loader
     {
         id: _loader
         active: control.visible
     }
-    
+
     Component
     {
         id: _listContainerComponent
-        
+
         Popup
         {
             parent: control
@@ -240,22 +240,22 @@ Item
             modal: true
             height: Math.min(Math.min(400, control.maxListHeight), selectionList.contentHeight) + Maui.Style.space.big
             width: Math.min(600, control.Window.window.width)
-            
+
             y: ((height) * -1) - Maui.Style.space.big
             x: Math.round( parent.width / 2 - width / 2 )
-            
+
             Maui.ListBrowser
             {
                 id: selectionList
-                
+
                 anchors.fill: parent
                 model: _urisModel
-                
+
                 delegate: control.listDelegate
             }
         }
     }
-        
+
         ParallelAnimation
         {
             id: _openAnimation
@@ -267,9 +267,9 @@ Item
                 to: Maui.Style.space.big/2
                 duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.OutBack
-                
+
             }
-            
+
             NumberAnimation
             {
                 target: _layout
@@ -279,7 +279,7 @@ Item
                 duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.OutQuad
             }
-            
+
             //NumberAnimation
             //{
             //target: _imp
@@ -290,7 +290,7 @@ Item
             //easing.type: Easing.InBack
             //}
         }
-        
+
         ParallelAnimation
         {
             id: _closeAnimation
@@ -302,9 +302,9 @@ Item
                 to: _layout.height
                 duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.InBack
-                
+
             }
-            
+
             NumberAnimation
             {
                 target: _layout
@@ -313,9 +313,9 @@ Item
                 to: 0.5
                 duration: Maui.Style.units.longDuration*1
                 easing.type: Easing.InQuad
-                
+
             }
-            
+
             //NumberAnimation
             //{
             //target: _imp
@@ -326,14 +326,15 @@ Item
             //easing.type: Easing.OutBack
 
             //}
-            
+
             onFinished: control.visible = false
         }
-        
+
         Maui.ToolBar
         {
             id: _layout
             width: control.width
+            padding: Maui.Style.space.medium
             forceCenterMiddleContent: false
             position: ToolBar.Footer
 
@@ -455,25 +456,25 @@ Item
                     control.exitClicked()
                 }
             }
-            
+
             background: Rectangle
             {
                 id: bg
                 color: Maui.Theme.backgroundColor
                 radius: control.radius
-                
+
                 Behavior on color
                 {
                     Maui.ColorTransition {  }
                 }
-                
+
                 MouseArea
                 {
                     anchors.fill: parent
                     acceptedButtons: Qt.RightButton | Qt.LeftButton
                     propagateComposedEvents: false
                     preventStealing: true
-                    
+
                     onClicked:
                     {
                         if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
@@ -481,14 +482,14 @@ Item
                             else
                                 control.clicked(mouse)
                     }
-                    
+
                     onPressAndHold :
                     {
                         if(Maui.Handy.isMobile)
                             control.rightClicked(mouse)
                     }
                 }
-                
+
                 Maui.Rectangle
                 {
                     opacity: 0.2
@@ -499,7 +500,7 @@ Item
                     borderColor: Maui.Theme.textColor
                     solidBorder: false
                 }
-                
+
                 DropArea
                 {
                     id: _dropArea
@@ -509,7 +510,7 @@ Item
                         control.urisDropped(drop.urls)
                     }
                 }
-                
+
                 layer.enabled: true
                 layer.effect: DropShadow
                 {
@@ -523,18 +524,18 @@ Item
                 }
             }
         }
-    
+
     Keys.onEscapePressed:
     {
         control.exitClicked();
     }
-    
+
     Keys.onBackPressed:
     {
         control.exitClicked();
         event.accepted = true
     }
-    
+
     /**
      * Removes all the items from the selection.
      */
@@ -545,7 +546,7 @@ Item
         _urisModel.clear()
         control.cleared()
     }
-    
+
     /**
      * Returns an item at a given index
      */
@@ -557,7 +558,7 @@ Item
         }
         return _urisModel.get(index)
     }
-    
+
     /**
      * Remove a single item at a given index
      */
@@ -567,10 +568,10 @@ Item
         {
             return
         }
-        
+
         const item = _urisModel.get(index)
         const uri = item.uri
-        
+
         if(contains(uri))
         {
             _private._uris.splice(index, 1)
@@ -580,7 +581,7 @@ Item
             control.uriRemoved(uri)
         }
     }
-    
+
     /**
      * Removes an item from thge selection at a given URI
      */
@@ -588,7 +589,7 @@ Item
     {
         removeAtIndex(indexOf(uri))
     }
-    
+
     /**
      *  Return the index of an item in the selection given its URI
      */
@@ -596,7 +597,7 @@ Item
     {
         return _private._uris.indexOf(uri)
     }
-    
+
     /**
      * Append a new item to the selection associated to the given URI
      */
@@ -606,19 +607,19 @@ Item
         {
             clear()
         }
-        
+
         if(!contains(uri) || control.singleSelection)
-        {            
+        {
             _private._items.push(item)
             _private._uris.push(uri)
-            
+
             item.uri = uri
             _urisModel.append(item)
             control.itemAdded(item)
             control.uriAdded(uri)
         }
     }
-    
+
     /**
      * Returns a single string with all the URIs separated by a comma.
      */
@@ -626,7 +627,7 @@ Item
     {
         return String(""+_private._uris.join(","))
     }
-    
+
     /**
      * Returns true if the selection contains an item associated to a given URI.
      */
@@ -634,18 +635,18 @@ Item
     {
         return _private._uris.includes(uri)
     }
-    
+
     function open()
     {
         if(control.visible)
         {
             return;
         }
-        
+
         control.visible = true
         _openAnimation.start()
     }
-    
+
     function close()
     {
         if(!control.visible)
