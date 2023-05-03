@@ -115,6 +115,8 @@ Maui.ItemDelegate
       * checkable : bool
       */
     property bool checkable: false
+    
+    property bool autoExclusive: false
 
     /**
       * leftLabels : ColumnLayout
@@ -226,13 +228,19 @@ Maui.ItemDelegate
                 CheckBox
                 {
                     anchors.centerIn: parent
+                    
+                    checkable: control.checkable
+                    autoExclusive: control.autoExclusive
+                    
                     height: Maui.Style.iconSizes.medium
                     width: Maui.Style.iconSizes.medium
+                    
                     Binding on checked
                     {
                         value: control.checked
                         restoreMode: Binding.RestoreBinding
                     }
+                    
                     onToggled: control.toggled(state)
                 }                
             }           

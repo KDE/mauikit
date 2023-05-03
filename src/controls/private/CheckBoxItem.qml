@@ -6,7 +6,7 @@ Item
 {
     id: control
         
-    implicitHeight: Maui.Style.iconSizes.medium
+    implicitHeight: Maui.Style.iconSize
     implicitWidth: implicitHeight
     
     property bool checked : false

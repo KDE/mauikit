@@ -113,6 +113,8 @@ Maui.ItemDelegate
      * checkable : bool
      */
     property bool checkable: false
+    
+    property bool autoExclusive: false
 
     /**
      * dropArea : DropArea
@@ -202,11 +204,14 @@ Maui.ItemDelegate
         sourceComponent: CheckBox
         {
             checkable: control.checkable
+            autoExclusive: control.autoExclusive
+            
             Binding on checked
             {
                 value: control.checked
                 restoreMode: Binding.RestoreBinding
             }
+            
             onToggled: control.toggled(state)
         }
     }

@@ -40,6 +40,7 @@ T.TabBar
         
         padding: Maui.Style.defaultPadding
         spacing: Maui.Style.space.small   
+        
         font: Maui.Style.defaultFont
                 
     /**
@@ -105,6 +106,7 @@ T.TabBar
     
     contentItem: Item
     {        
+        implicitHeight: _layout.implicitHeight
         readonly property bool fits : _content.contentWidth <= width
         
         Item
@@ -123,7 +125,7 @@ T.TabBar
         RowLayout
         {
             id: _layout
-            anchors.fill: parent
+            width: parent.width
             spacing: control.spacing 
             
             Row
@@ -142,7 +144,7 @@ T.TabBar
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
                 
                 contentHeight: availableHeight
-                implicitHeight: _content.currentItem ? _content.currentItem.height : Maui.Style.rowHeight 
+                implicitHeight: _content.currentItem ? _content.currentItem.height : 0
                 
                 ListView
                 {

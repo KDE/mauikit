@@ -333,13 +333,16 @@ Popup
       GridLayout
       {
         id: _defaultButtonsLayout
+        
         rowSpacing: 2
         columnSpacing: 2
+        
         Layout.fillWidth: true
         
         property bool isWide : control.width > Maui.Style.units.gridUnit*10
         
         visible: control.defaultButtons || control.actions.length
+        
         rows: isWide? 1 : _defaultButtonsLayout.children.length
         columns: isWide ? _defaultButtonsLayout.children.length : 1               
         
@@ -369,6 +372,7 @@ Popup
         Button
         {
           id: _acceptButton
+          
         focus: true
         
           Layout.fillWidth: true          

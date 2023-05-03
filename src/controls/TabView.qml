@@ -281,7 +281,9 @@ Control
                 Maui.TabBar
                 {
                     id: _tabBar
+                    
                     z : _listView.z+1
+                    
                     anchors.left: parent.left
                     anchors.right: parent.right
                     
