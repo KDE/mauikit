@@ -317,6 +317,7 @@ void WheelHandler::setScrolling(bool scrolling)
         return;
     }
     m_wheelScrolling = scrolling;
+    m_verticalScrollBar->setProperty("active", scrolling);
     m_filterItem->setEnabled(m_wheelScrolling);
 }
 

@@ -120,14 +120,18 @@ T.TabButton
                 asynchronous: true
                 active: control.closeButtonVisible
                 
-                Layout.preferredWidth: height
+                Layout.alignment: Qt.AlignCenter
                 
                 sourceComponent: Maui.CloseButton
                 {
                     opacity: Maui.Handy.isMobile ? 1 : (control.hovered || control.checked ? 1 : 0)
                     padding: 0
-                    height: 16
-                    width: 16
+                    
+                    implicitHeight: 16
+                    implicitWidth: 16
+                    
+                    icon.width: 16
+                    icon.height: 16
                     
                     onClicked: control.closeClicked()
                     

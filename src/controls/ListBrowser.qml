@@ -160,12 +160,24 @@ Item
     /**
      * leftMargin : int
      */
-    property int verticalScrollBarPolicy: ScrollBar.AsNeeded
+    property int verticalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
+    {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
+    }
     
     /**
      * horizontalScrollBarPolicy : ScrollBar.policy
      */
-    property int horizontalScrollBarPolicy:  _listView.orientation === Qt.Horizontal ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
+    property int horizontalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
+    {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
+    }
     
     /**
      * holder : Holder

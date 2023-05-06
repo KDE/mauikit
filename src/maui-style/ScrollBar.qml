@@ -42,21 +42,20 @@ T.ScrollBar
 {
     id: control
 
-    // Maui.Theme.colorSet: Maui.Theme.Button
-    // Maui.Theme.inherit: false
-    
-    implicitWidth: (control.interactive ? 6 : 4 )
-    implicitHeight: (control.interactive ? 6 : 4 ) 
+    implicitWidth: implicitContentWidth + rightPadding + leftPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
-    padding: 0
-    
-    visible: control.policy !== T.ScrollBar.AlwaysOff && !_timer.shouldHide
+    padding: control.interactive ? 1 : 2
+    visible: control.policy !== T.ScrollBar.AlwaysOff
     
     minimumSize: orientation == Qt.Horizontal ? height / width : width / height
 
     interactive: !Maui.Handy.isMobile
     contentItem: Rectangle
     {   
+        implicitWidth: Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? (_timer.hovered ? 6 : 2 ) : (control.interactive ? 6 : 4 )
+        implicitHeight: Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? (_timer.hovered ? 6 : 2 ) : (control.interactive ? 6 : 4 )
+        
         radius: Maui.Style.radiusV
 
         color: control.pressed ? Maui.Theme.highlightColor :
@@ -68,6 +67,12 @@ T.ScrollBar
             Maui.ColorTransition{}
         }
     }
+    
+    Label
+    {
+        color: "orange"
+        text: Maui.Style.scrollBarPolicy
+    }
 
     background: Rectangle
     {
@@ -75,17 +80,14 @@ T.ScrollBar
        
         color: Maui.Theme.alternateBackgroundColor
         opacity: 0.0
-        visible: control.interactive && control.pressed && control.active 
-        
-        
+        visible: Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? false : control.interactive && control.pressed && control.active         
     }
 
-    states: State 
-    {
+    states: State {
         name: "active"
-        when: control.policy === T.ScrollBar.AlwaysOn || control.policy === T.ScrollBar.AsNeeded
+        when: control.policy === T.ScrollBar.AlwaysOn || (control.active && control.size < 1.0)
     }
-
+    
     transitions: [
         Transition {
             to: "active"
@@ -101,28 +103,31 @@ T.ScrollBar
         }
     ]
     
-    onSizeChanged: 
+    readonly property bool isActive : control.hovered || control.pressed || control.active
+    
+    onIsActiveChanged: 
     {
-        if(control.policy !== T.ScrollBar.AlwaysOff)
-            _timer.restart()
+        if(!control.isActive)
+        _timer.start()
+        else
+        {
+            _timer.hovered = true
+        }
     }
     
     Timer
     {
         id: _timer
-        interval: 300
+        interval: 2800
         repeat: false
         
-        property bool shouldHide : true
-        property real before
+        property bool hovered: false
         onTriggered:
         {
-            console.log(control.size)
-            if(before === control.size && control.size !== 1)
-                return
+            if(control.hovered || control.pressed || control.active)
+                return;
             
-            shouldHide = control.size >= 1.0 
-            before = control.size
+           _timer.hovered = false
         }
     }
 }

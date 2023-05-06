@@ -36,8 +36,8 @@ property alias m_control: control
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: 1
-    spacing: Maui.Style.defaultSpacing    
+    padding: 0
+    spacing: Maui.Style.space.small    
     
     hoverEnabled: true
 

@@ -30,18 +30,13 @@ import "private"
 T.CheckBox 
 {
     id: controlRoot
-    opacity: enabled ? 1 : 0.6
+    opacity: enabled ? 1 : 0.5
     
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            Math.max(contentItem.implicitWidth,
-                                     indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             Math.max(contentItem.implicitHeight,
-                                      indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
-//     baselineOffset: contentItem.y + contentItem.baselineOffset
+    implicitWidth: Math.max(contentItem.implicitWidth, indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding
+    implicitHeight: Math.max(contentItem.implicitHeight, indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
 
-    padding: 1
-    spacing: Maui.Style.defaultSpacing    
+    padding: 0
+    spacing: Maui.Style.space.small  
     
     hoverEnabled: true
 

@@ -97,10 +97,8 @@ Rectangle
       */
     signal released()
 
-    z: parent.z+1
-
     implicitHeight: size
-    implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.implicitWidth, size) + Maui.Style.space.big : size
+    implicitWidth: loader.sourceComponent == labelComponent ? Math.max(loader.implicitWidth, size) : size
 
     radius: Math.min(width, height)
     color: Maui.Theme.backgroundColor

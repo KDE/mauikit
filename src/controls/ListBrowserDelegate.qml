@@ -40,8 +40,11 @@ import "private" as Private
 Maui.ItemDelegate
 {
     id: control
+    
     focus: true
+    
     radius: Maui.Style.radiusV
+    
     flat : !Maui.Handy.isMobile
     
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
@@ -209,9 +212,9 @@ Maui.ItemDelegate
             asynchronous: true
             active: control.checkable || control.checked
             visible: active
-            Layout.preferredHeight: Maui.Style.iconSizes.medium
-            Layout.preferredWidth: Math.max(Maui.Style.iconSizes.medium, _template.headerSizeHint)
+            
             Layout.alignment: Qt.AlignCenter
+            
             scale: active? 1 : 0
             
             Behavior on scale
@@ -223,18 +226,11 @@ Maui.ItemDelegate
                 }
             }
             
-            sourceComponent: Item
-            {
-                CheckBox
-                {
-                    anchors.centerIn: parent
-                    
+            sourceComponent: CheckBox
+                {                    
                     checkable: control.checkable
                     autoExclusive: control.autoExclusive
-                    
-                    height: Maui.Style.iconSizes.medium
-                    width: Maui.Style.iconSizes.medium
-                    
+                                        
                     Binding on checked
                     {
                         value: control.checked
@@ -242,8 +238,7 @@ Maui.ItemDelegate
                     }
                     
                     onToggled: control.toggled(state)
-                }                
-            }           
+                }   
         }
 
         Maui.ListItemTemplate

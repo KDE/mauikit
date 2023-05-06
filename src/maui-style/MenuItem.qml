@@ -65,6 +65,7 @@ T.MenuItem
     icon.color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
     
     property bool flat: !Maui.Handy.isMobile
+    property bool showIcon: Maui.Style.menusHaveIcons
     
     font: Maui.Style.defaultFont
     
@@ -102,7 +103,7 @@ T.MenuItem
         
         alignment: Qt.AlignLeft
         
-        icon: Maui.Style.menusHaveIcons ? control.icon : null
+        icon: control.showIcon ? control.icon : null
         text: control.text
         font: control.font
         color: control.icon.color        

@@ -191,7 +191,8 @@ T.Pane
                     autoExclusive: true
                     checkable: true
                     checked: control.currentIndex === control.items.length + index
-
+                    showIcon: true
+                    
                     onTriggered:
                     {
                         if(control.items.length + index === control.currentIndex)

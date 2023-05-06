@@ -41,8 +41,6 @@ import org.mauikit.controls 1.3 as Maui
 Maui.CheckBoxItem 
 {
     id: indicator
-    implicitWidth: 16
-    implicitHeight: 16
     
     checked: control.checked
     checkable: control.checkable

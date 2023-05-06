@@ -53,10 +53,10 @@ T.ScrollView
     clip: false
         
     padding: 0
-    rightPadding: padding + ScrollBar.vertical.width
+    rightPadding: padding + (Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? 0 : ScrollBar.vertical.width)
     leftPadding: padding 
     topPadding: padding
-    bottomPadding: padding+ ScrollBar.horizontal.height
+    bottomPadding: padding + (Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? 0 :ScrollBar.horizontal.height)
     
     property alias orientation : _wheelHandler.primaryOrientation
 
@@ -70,11 +70,17 @@ T.ScrollView
     {
         parent: control
         width: visible ? implicitWidth : 0
-        x: control.mirrored ? 0 : control.width - width - Maui.Style.space.small
+        x: control.mirrored ? 0 : control.width - width - 2
         y: control.topPadding
         height: control.availableHeight
         active: control.ScrollBar.vertical.active
-        policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AsNeeded
+        policy: switch(Maui.Style.scrollBarPolicy)
+        {
+            case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+            case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+            case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+            case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
+        }
     }
 
     ScrollBar.horizontal: ScrollBar
@@ -83,10 +89,16 @@ T.ScrollView
         height: visible ? implicitHeight : 0
         
         x: control.leftPadding
-        y: control.height - height -Maui.Style.space.small
+        y: control.height - height - 2
         width: control.availableWidth
         active: control.ScrollBar.horizontal.active
-        policy:  Maui.Handy.isMobile ? ScrollBar.AlwaysOff : ScrollBar.AlwaysOff
+        policy: switch(Maui.Style.scrollBarPolicy)
+        {
+            case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+            case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+            case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+            case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
+        }
         
     }
     

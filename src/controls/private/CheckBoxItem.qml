@@ -1,12 +1,12 @@
 import QtQuick 2.14
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 Item 
 {
     id: control
         
-    implicitHeight: Maui.Style.iconSize
+    implicitHeight: Maui.Style.iconSize + 2
     implicitWidth: implicitHeight
     
     property bool checked : false
@@ -19,18 +19,24 @@ Item
     {
         id: _rec
         anchors.fill: parent
-        color: control.checked ? Maui.Theme.highlightColor : (control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
+        color: control.checked ? Maui.Theme.backgroundColor : Maui.Theme.backgroundColor
         radius: control.autoExclusive ? height/2 : 4
-        border.color: control.checked ?  Maui.Theme.highlightedTextColor :  Maui.Theme.textColor 
+        border.color: control.checked ? Maui.Theme.highlightColor : Maui.ColorUtils.linearInterpolation(Maui.Theme.alternateBackgroundColor, Maui.Theme.textColor, 0.2) 
+        border.width: 2
         
         Maui.Icon
         {
             visible: opacity > 0
-            color: Maui.Theme.highlightedTextColor
+            
+            color: Maui.Theme.highlightColor
+            
             anchors.centerIn: parent
-            height: control.checked ? Math.round(parent.height * 0.9) : 0
+            
+            height: control.checked ? Math.round(parent.height*0.9) : 0
             width: height
+            
             opacity: control.checked ? 1 : 0
+            
             isMask: true
             
             source: "qrc:/assets/checkmark.svg"
@@ -55,23 +61,6 @@ Item
             Maui.ColorTransition{}
         }
     }
-    
-    //MouseArea
-    //{
-    ////enabled: control.checkable
-    //hoverEnabled: true
-    
-    //readonly property int targetMargin:  Kirigami.Settings.hasTransientTouchInput ? Maui.Style.space.big : 0
-    
-    //height: parent.height + targetMargin
-    //width: parent.width + targetMargin
-    
-    //onClicked:
-    //{
-    //control.checked = !control.checked
-    //control.toggled(control.checked)
-    //}
-    //}
     
     onCheckedChanged:
     {

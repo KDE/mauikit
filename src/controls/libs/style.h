@@ -11,6 +11,7 @@ namespace MauiMan
 {
 class ThemeManager;
 class BackgroundManager;
+class AccessibilityManager;
 }
 
 class Units : public QObject
@@ -104,6 +105,9 @@ class Style : public QObject
     Q_PROPERTY(QString currentIconTheme READ currentIconTheme NOTIFY currentIconThemeChanged)
 
     Q_PROPERTY(bool menusHaveIcons READ menusHaveIcons CONSTANT FINAL)
+    
+    Q_PROPERTY(uint scrollBarPolicy READ scrollBarPolicy NOTIFY scrollBarPolicyChanged FINAL)
+    Q_PROPERTY(bool playSounds READ playSounds NOTIFY playSoundsChanged FINAL)
         
 public:
     enum StyleType : uint
@@ -115,6 +119,14 @@ public:
         TrueBlack,
         Inverted
     }; Q_ENUM(StyleType)
+    
+    enum ScrollBarPolicy : uint
+    {
+        AlwaysOn= 0,
+        AsNeeded,
+        AlwaysOff,
+        AutoHide
+    }; Q_ENUM(ScrollBarPolicy)
 
     static Style *qmlAttachedProperties(QObject *object);
 
@@ -147,8 +159,9 @@ public:
 
     QString currentIconTheme() const;
     
-    bool menusHaveIcons();
-    
+    bool menusHaveIcons() const;
+    bool playSounds() const;
+    uint scrollBarPolicy() const;
 
 public Q_SLOTS:
     int mapToIconSizes(const int &size);
@@ -156,6 +169,7 @@ public Q_SLOTS:
 private:
     explicit Style(QObject *parent = nullptr);
     static Style *m_instance;
+    
     QFont m_defaultFont;
     QFont m_h1Font = QFont {};
     QFont m_h2Font = QFont {};
@@ -190,7 +204,8 @@ private:
 
     MauiMan::ThemeManager *m_themeSettings;
     MauiMan::BackgroundManager *m_backgroundSettings;
-
+    MauiMan::AccessibilityManager *m_accessibilitySettings;
+    
     bool m_enableEffects = true;
 
     QString m_currentIconTheme;
@@ -216,6 +231,8 @@ Q_SIGNALS:
     void contentMarginsChanged();
     void currentIconThemeChanged(QString currentIconTheme);
     void defaultSpacingChanged();
+    void scrollBarPolicyChanged(uint);
+    void playSoundsChanged(bool);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

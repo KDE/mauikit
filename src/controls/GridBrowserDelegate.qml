@@ -137,7 +137,6 @@ Maui.ItemDelegate
     background: Rectangle
     {
         color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
-
         
         radius: control.radius
 
@@ -185,11 +184,11 @@ Maui.ItemDelegate
         id: _checkboxLoader
         asynchronous: true
         active: control.checkable || control.checked
-        height: Math.max(Maui.Style.iconSizes.medium, parent.height * 0.1)
-        width: height
+     
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
+        
         scale: active ? 1 : 0
 
         Behavior on scale

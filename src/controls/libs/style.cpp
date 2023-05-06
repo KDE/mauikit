@@ -8,13 +8,13 @@
 
 #include <MauiMan/thememanager.h>
 #include <MauiMan/backgroundmanager.h>
+#include <MauiMan/accessibilitymanager.h>
 
 #ifdef Q_OS_ANDROID
 #include "mauiandroid.h"
 #endif
 
 Style *Style::m_instance = nullptr;
-
 
 void Style::styleChanged()
 {
@@ -46,7 +46,8 @@ Style::Style(QObject *parent) : QObject(parent)
   ,m_accentColor(QColor("#26c6da"))
   ,m_themeSettings( new MauiMan::ThemeManager(this))
   ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
-{
+  ,m_accessibilitySettings( new MauiMan::AccessibilityManager(this))
+  {
     connect(qApp, &QCoreApplication::aboutToQuit, []()
     {
         delete m_instance;
@@ -122,6 +123,18 @@ Style::Style(QObject *parent) : QObject(parent)
         m_adaptiveColorSchemeSource = QUrl::fromUserInput(source).toLocalFile();
         Q_EMIT this->adaptiveColorSchemeSourceChanged(m_adaptiveColorSchemeSource);
     });
+    
+    connect(m_themeSettings, &MauiMan::ThemeManager::enableEffectsChanged, [this](bool value)
+    {
+        m_enableEffects = value;
+        Q_EMIT this->enableEffectsChanged(m_enableEffects);
+    });
+    
+    connect(m_accessibilitySettings, &MauiMan::AccessibilityManager::scrollBarPolicyChanged, [this](uint state)
+    {
+     qDebug() << "SCROLBAR POLICY CHANGED" << state;
+    Q_EMIT scrollBarPolicyChanged(state);
+    });
 
    if(MauiManUtils::isMauiSession())
    {
@@ -133,7 +146,7 @@ Style::Style(QObject *parent) : QObject(parent)
         });
    }else
    {
-//        //to be able to check and icon theme change rely on the style being reset
+//        //to be able to check and icon theme change rely on the style being reset, this not even works on Plasma, so do we need it?
 //       QStyle *style = qApp->style();
 //       if (style)
 //       {
@@ -393,7 +406,21 @@ QString Style::currentIconTheme() const
     return m_currentIconTheme;
 }
 
-bool Style::menusHaveIcons()
+bool Style::menusHaveIcons() const
 {
     return !qApp->testAttribute(Qt::AA_DontShowIconsInMenus);
 }
+
+uint Style::scrollBarPolicy() const
+{
+    return m_accessibilitySettings->scrollBarPolicy();
+}
+
+bool Style::playSounds() const
+{
+    return m_accessibilitySettings->playSounds();    
+}
+
+
+
+

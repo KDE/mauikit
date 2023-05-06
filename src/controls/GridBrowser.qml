@@ -141,12 +141,23 @@ Item
     /**
      * leftMargin : int
      */
-    property int verticalScrollBarPolicy: Maui.Handy.isMobile ? ScrollBar.AlwaysOff :  ScrollBar.AsNeeded
-    
+    property int verticalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
+    {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+        case Maui.Style.AutoHide: return undefined;   
+    }
     /**
      * horizontalScrollBarPolicy : ScrollBar.policy
      */
-    property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
+    property int horizontalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
+    {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+        case Maui.Style.AutoHide: return undefined;   
+    }
     
     /**
      * holder : Holder

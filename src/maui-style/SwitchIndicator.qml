@@ -79,8 +79,7 @@ Item
         width: height
         height: parent.height - 4
         radius: Maui.Style.radiusV
-        color: Maui.Theme.backgroundColor
-      
+        color: Maui.Theme.backgroundColor      
         
         Behavior on x
         {
