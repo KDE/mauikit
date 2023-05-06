@@ -67,12 +67,6 @@ T.ScrollBar
             Maui.ColorTransition{}
         }
     }
-    
-    Label
-    {
-        color: "orange"
-        text: Maui.Style.scrollBarPolicy
-    }
 
     background: Rectangle
     {
