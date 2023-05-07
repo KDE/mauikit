@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="22"
-   height="22"
-   viewBox="0 0 22 22"
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
    id="svg2"
    version="1.1"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
@@ -34,8 +34,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="22.627417"
-     inkscape:cx="-6.8942911"
-     inkscape:cy="8.396893"
+     inkscape:cx="-18.252194"
+     inkscape:cy="11.932427"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -54,30 +54,32 @@
     <inkscape:grid
        type="xygrid"
        id="grid4136"
-       empspacing="2" />
+       empspacing="2"
+       originx="-4.9147142"
+       originy="-2.41289" />
     <sodipodi:guide
-       position="0,20"
+       position="-4.9147143,16.41289"
        orientation="0,1"
        id="guide4140"
        inkscape:label="Icon Max Height"
        inkscape:color="rgb(233,30,99)"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="0,2"
+       position="-4.9147143,-1.5871101"
        orientation="0,1"
        id="guide4142"
        inkscape:label="Icon Baseline"
        inkscape:color="rgb(233,30,99)"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="11,0"
+       position="6.0852857,-3.5871101"
        orientation="1,0"
        id="guide4144"
        inkscape:label="Center Vertical"
        inkscape:color="rgb(221,44,0)"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="15,11"
+       position="10.085286,7.41289"
        orientation="0,1"
        id="guide4146"
        inkscape:label="Center Horizontal"
@@ -92,7 +94,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -100,11 +101,11 @@
      inkscape:label="Capa 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1030.3622)">
+     transform="translate(-4.9147143,-1032.7751)">
     <path
-       style="fill:currentColor;fill-opacity:1;stroke:#000000;stroke-width:1.331;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:currentColor;fill-opacity:1;stroke:#000000;stroke-width:1.00175;stroke-dasharray:none;stroke-opacity:1"
        class="ColorScheme-Text"
-       d="m 16.32698,1034.8982 c -0.438225,0 -0.846984,0.2214 -1.092606,0.5846 l -5.7009327,8.9612 -2.8677698,-2.8704 c -1.2523527,-1.3066 -3.1843637,0.6272 -1.8789729,1.8807 l 3.9863297,3.9902 c 0.5838925,0.5839 1.5527117,0.4994 2.0269017,-0.1768 l 6.609277,-10.2602 c 0.636529,-0.8815 0.0044,-2.1135 -1.082227,-2.1093 z"
+       d="m 18.340692,1034.3692 c -0.388145,0 -0.75019,0.1961 -0.967742,0.5178 l -5.049426,7.9371 -2.5400375,-2.5424 c -1.109233,-1.1573 -2.8204521,0.5555 -1.6642425,1.6658 l 3.530768,3.5342 c 0.517164,0.5171 1.375266,0.4423 1.795266,-0.1566 l 5.853963,-9.0877 c 0.563786,-0.7807 0.0039,-1.8719 -0.958549,-1.8682 z"
        id="path822"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccc" />

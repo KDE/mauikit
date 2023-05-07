@@ -1,5 +1,4 @@
-#ifndef APPSETTINGS_H
-#define APPSETTINGS_H
+#pragma once 
 
 #include <QObject>
 #include <QSettings>
@@ -31,13 +30,13 @@ public:
     QVariant defaultValue() const;
     QVariant value() const;
 
-public slots:
+public Q_SLOTS:
     void setKey(QString key);
     void setGroup(QString group);
     void setValue(QVariant value);
     void setDefaultValue(QVariant defaultValue);
 
-signals:
+Q_SIGNALS:
     void keyChanged(QString key);
     void groupChanged(QString group);
     void defaultValueChanged(QVariant defaultValue);
@@ -106,7 +105,7 @@ private:
     QString m_org;
     QSettings *m_settings;
 
-signals:
+Q_SIGNALS:
     /**
      * @brief settingChanged
      * @param url
@@ -117,4 +116,3 @@ signals:
     void settingChanged(QUrl url, QString key, QVariant value, QString group);
 };
 
-#endif // APPSETTINGS_H
