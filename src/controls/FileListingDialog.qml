@@ -85,7 +85,7 @@ Maui.Dialog
         }
     }
 
-    template.leftLabels.data: Column
+    template.leftLabels.data: ColumnLayout
     {
         id: _content
         Layout.fillWidth: true
@@ -96,15 +96,19 @@ Maui.Dialog
     {
         Item
         {
-            anchors.fill: parent
+            height: Math.min(parent.height, 120, width)
+            width: parent.width
+            anchors.centerIn: parent
             layer.enabled: true
 
             Rectangle
             {
                 visible: control.urls ? control.urls.length > 1 : false
                 anchors.fill: parent
+                
                 anchors.leftMargin: Maui.Style.space.small
                 anchors.rightMargin: Maui.Style.space.small
+                
                 radius: Maui.Style.radiusV
                 color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
                 border.color: Maui.Theme.backgroundColor
@@ -114,9 +118,11 @@ Maui.Dialog
             {
                 visible: control.urls ? control.urls.length > 1 : false
                 anchors.fill: parent
+                
                 anchors.topMargin: Maui.Style.space.tiny
                 anchors.leftMargin: Maui.Style.space.tiny
                 anchors.rightMargin: Maui.Style.space.tiny
+                
                 radius: Maui.Style.radiusV
                 color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
                 border.color: Maui.Theme.backgroundColor

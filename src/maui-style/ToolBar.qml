@@ -39,7 +39,7 @@ T.ToolBar
     
     property Item translucencySource : null
         
-    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding    
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding    
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     
     contentWidth: contentChildren[0].implicitWidth

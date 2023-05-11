@@ -92,13 +92,7 @@ T.ScrollView
         y: control.height - height - 2
         width: control.availableWidth
         active: control.ScrollBar.horizontal.active
-        policy: switch(Maui.Style.scrollBarPolicy)
-        {
-            case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
-            case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
-            case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
-            case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
-        }
+        policy: ScrollBar.AlwaysOff
         
     }
     
