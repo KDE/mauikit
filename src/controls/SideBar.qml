@@ -105,6 +105,12 @@ T.Pane
       }
     }
     
+//     Component.onCompleted:
+//     {
+//       if(control.autoShow && control.collapsed)
+//         control.open()
+//     }
+//     
     QtObject
     {
       id: _private

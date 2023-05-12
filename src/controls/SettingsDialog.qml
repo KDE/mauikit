@@ -30,7 +30,9 @@ Maui.Dialog
     headBar.leftContent: ToolButton
     {
       icon.name: "go-previous"
-      visible: _stackView.depth >= 2
+      visible: _stackView.depth > 1
+      // text: _stackView.depth > 1 ? (_stackView.get(_stackView.currentItem.StackView.index-1, StackView.DontLoad).title) : ""
+      
       onClicked: _stackView.pop()
     }
 

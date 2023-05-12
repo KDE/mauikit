@@ -265,7 +265,7 @@ ToolBar
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         
-                        contentWidth: layout.implicitWidth - (_h1.mwidth + _h2.mwidth)
+                        contentWidth: layout.implicitWidth 
                         contentHeight: availableHeight
                         
                         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
