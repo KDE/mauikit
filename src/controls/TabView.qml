@@ -34,7 +34,7 @@ Control
     onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     
-    property bool interactive: control.mobile || Maui.Handy.isTouch
+    property bool interactive: Maui.Handy.isTouch
     
     background: Rectangle
     {
@@ -290,7 +290,13 @@ Control
                     showNewTabButton: !control.mobile
                     
                     onNewTabClicked: control.newTabClicked()
-                    onNewTabFocused: _listView.setCurrentIndex(index)
+                    onNewTabFocused: 
+                    {
+                        if(control.mobile)                        
+                        {
+                            _listView.setCurrentIndex(index)
+                        }
+                    }
                     
                     position: control.altTabBar ? TabBar.Footer : TabBar.Header
                     
