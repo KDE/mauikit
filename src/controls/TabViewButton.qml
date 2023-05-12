@@ -17,6 +17,7 @@ Maui.TabButton
     property Item tabView : control.parent
     
    readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
+    
     width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
     
     checked: control.mindex === control.tabView.currentIndex

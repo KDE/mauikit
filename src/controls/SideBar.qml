@@ -22,6 +22,7 @@ import QtQuick.Controls 2.15
 import QtQml 2.15
 import org.mauikit.controls 1.3 as Maui
 import QtQuick.Templates 2.15 as T
+import QtQuick.Window 2.15
 
 /**
  * SideBar
@@ -46,7 +47,7 @@ T.Pane
   
   visible: position > 0
   
-  width: position * preferredWidth
+  width: position * constrainedWidth
   
   /*!
    *      \qmlproperty Item AbstractSideBar::content
@@ -72,6 +73,7 @@ T.Pane
      *      preferredWidth : int
      *      The preferred width of the sidebar in the expanded state.
      */
+    readonly property int constrainedWidth : Math.min(control.preferredWidth, control.Window.window.width*0.9)
     property int preferredWidth : Maui.Style.units.gridUnit * 12
     property int maximumWidth:  Maui.Style.units.gridUnit * 20
     property int minimumWidth:  Maui.Style.units.gridUnit * 4
@@ -117,7 +119,7 @@ T.Pane
       property bool initial: true
       property double position       
       property int resizeValue
-      property int finalWidth : control.preferredWidth + _dragHandler.centroid.position.x
+      property int finalWidth : control.constrainedWidth + _dragHandler.centroid.position.x
       
       //       Binding on resizeValue
       //       {
@@ -172,7 +174,7 @@ control.close()
       Item
       {
         id: _content
-        width: control.preferredWidth
+        width: control.constrainedWidth
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right        
@@ -243,8 +245,8 @@ control.close()
           enabled: control.resizeable
           yAxis.enabled: false
           xAxis.enabled: true
-          xAxis.minimum: control.minimumWidth - control.preferredWidth
-          xAxis.maximum: control.maximumWidth - control.preferredWidth
+          xAxis.minimum: control.minimumWidth - control.constrainedWidth
+          xAxis.maximum: control.maximumWidth - control.constrainedWidth
           target: null
           cursorShape: Qt.SizeHorCursor
           
