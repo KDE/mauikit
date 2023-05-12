@@ -34,7 +34,7 @@ Control
     onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     
-    property bool interactive: control.mobile
+    property bool interactive: control.mobile || Maui.Handy.isTouch
     
     background: Rectangle
     {
@@ -286,7 +286,7 @@ Control
                     
                     visible: _listView.count > 1   
                     
-                    interactive: control.mobile                                       
+                    interactive: control.interactive                                   
                     showNewTabButton: !control.mobile
                     
                     onNewTabClicked: control.newTabClicked()
