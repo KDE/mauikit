@@ -68,13 +68,11 @@ Control
                 }
                 
                 _listView.setCurrentIndex(_tabButton.mindex)
-                _listView.currentItem.forceActiveFocus()
             }
             
             onRightClicked:
             {
-                _menu.index = _tabButton.mindex
-                _menu.show()
+                openTabMenu(_tabButton.mindex)
             }
             
             onCloseClicked:
@@ -222,9 +220,8 @@ Control
                     
                     onAccepted:
                     {
-                        _listView.setCurrentIndex(_filterTabsList.currentIndex)
+                        control.setCurrentIndex(_filterTabsList.currentIndex)
                         _quickSearch.close()
-                        _listView.currentItem.forceActiveFocus()
                     }
                     
                     Keys.enabled: true
@@ -294,6 +291,8 @@ Control
                     
                     onNewTabClicked: control.newTabClicked()
                     onNewTabFocused: _listView.setCurrentIndex(index)
+                    
+                    position: control.altTabBar ? TabBar.Footer : TabBar.Header
                     
                     Repeater
                     {
@@ -469,22 +468,19 @@ Control
                                 onRightClicked:
                                 {
                                     _listView.setCurrentIndex(index)
-                                    _menu.index = _listView.currentIndex
-                                    _menu.show()
+                                    openTabMenu(_listView.currentIndex)
                                 }
                                 
                                 onClicked:
                                 {
                                     control.closeOverview()
                                     _listView.setCurrentIndex(index)                                    
-                                    _listView.currentItem.forceActiveFocus()
                                 }
                                 
                                 onPressAndHold:
                                 {
                                     _listView.setCurrentIndex(index)
-                                    _menu.index = control.currentIndex
-                                    _menu.show()
+                                    openTabMenu(control.currentIndex)
                                 }
                                 
                                 template.iconComponent: Item
@@ -624,10 +620,17 @@ Control
     {
         _tabBar.setCurrentIndex(index)
         _listView.setCurrentIndex(index)
+        _listView.currentItem.forceActiveFocus()        
     }
     
     function tabAt(index)
     {
         return _listView.itemAt(index)
+    }
+    
+    function openTabMenu(index)
+    {
+        _menu.index = index
+        _menu.show()
     }
 }

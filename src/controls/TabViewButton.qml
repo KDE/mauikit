@@ -11,6 +11,8 @@ Maui.TabButton
 {
     id: control
     
+    autoExclusive: true
+    
     readonly property int mindex : control.TabBar.index
     property Item tabView : control.parent
     

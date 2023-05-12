@@ -31,6 +31,7 @@ import QtQuick.Templates 2.15 as T
 Item
 {
     id: control
+    
     implicitWidth: _layoutButton.implicitWidth+ leftPadding + rightPadding
     implicitHeight: _layoutButton.implicitHeight + topPadding + bottomPadding
     
@@ -76,10 +77,9 @@ GridLayout
         
         visible: String(_icon.source).length > 0 && (control.display !== ToolButton.TextOnly)        
         
-        color: control.icon ? control.icon.color  : control.color       
+        color: control.icon ? control.icon.color : control.color       
         source: control.icon ? control.icon.name || control.icon.source : ""
         
-        isMask: true
     }    
     
     Label
@@ -94,6 +94,7 @@ GridLayout
         Layout.preferredWidth: visible ? implicitWidth : 0
         color: control.color
         font: control.font
+        elide: Text.ElideRight
         
         Behavior on opacity
         {

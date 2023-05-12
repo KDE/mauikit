@@ -52,14 +52,8 @@ T.TabButton
     
     background: Rectangle
     {
-        //opacity: control.hovered && !control.checked ? 1 : 1
         color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
-        
-        //          Behavior on color
-        //         {
-        //             Maui.ColorTransition{}
-        //         }
     }
     
     contentItem: MouseArea
@@ -103,11 +97,7 @@ T.TabButton
                 color: Maui.Theme.textColor
                 alignment: Qt.AlignHCenter
                 display: ToolButton.TextBesideIcon
-                font: control.font
-                /*horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                wrapMode: Text.NoWrap
-                elide: Text.ElideMiddle   */             
+                font: control.font          
             }
             
             Row
