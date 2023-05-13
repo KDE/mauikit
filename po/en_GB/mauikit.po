@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-04 00:46+0000\n"
+"POT-Creation-Date: 2023-05-13 00:45+0000\n"
 "PO-Revision-Date: 2023-04-08 11:09+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -184,27 +184,27 @@ msgstr "Share with"
 msgid "Close Split"
 msgstr "Close Split"
 
-#: src/controls/TabView.qml:118
+#: src/controls/TabView.qml:116
 #, kde-format
 msgid "Open"
 msgstr "Open"
 
-#: src/controls/TabView.qml:129
+#: src/controls/TabView.qml:127
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplicate"
 
-#: src/controls/TabView.qml:137
+#: src/controls/TabView.qml:135
 #, kde-format
 msgid "Close"
 msgstr "Close"
 
-#: src/controls/TabView.qml:147
+#: src/controls/TabView.qml:145
 #, kde-format
 msgid "Close Other"
 msgstr "Close Other"
 
-#: src/controls/TabView.qml:156
+#: src/controls/TabView.qml:154
 #, kde-format
 msgid "Close All"
 msgstr "Close All"

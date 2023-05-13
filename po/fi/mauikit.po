@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-04 00:46+0000\n"
+"POT-Creation-Date: 2023-05-13 00:45+0000\n"
 "PO-Revision-Date: 2023-04-20 12:35+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -184,27 +184,27 @@ msgstr "Jaa"
 msgid "Close Split"
 msgstr "Sulje jakonäkymä"
 
-#: src/controls/TabView.qml:118
+#: src/controls/TabView.qml:116
 #, kde-format
 msgid "Open"
 msgstr "Avaa"
 
-#: src/controls/TabView.qml:129
+#: src/controls/TabView.qml:127
 #, kde-format
 msgid "Duplicate"
 msgstr "Monista"
 
-#: src/controls/TabView.qml:137
+#: src/controls/TabView.qml:135
 #, kde-format
 msgid "Close"
 msgstr "Sulje"
 
-#: src/controls/TabView.qml:147
+#: src/controls/TabView.qml:145
 #, kde-format
 msgid "Close Other"
 msgstr "Sulje muut"
 
-#: src/controls/TabView.qml:156
+#: src/controls/TabView.qml:154
 #, kde-format
 msgid "Close All"
 msgstr "Sulje kaikki"

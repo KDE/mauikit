@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-04 00:46+0000\n"
+"POT-Creation-Date: 2023-05-13 00:45+0000\n"
 "PO-Revision-Date: 2023-04-05 09:40+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -186,27 +186,27 @@ msgstr "Comparteix amb"
 msgid "Close Split"
 msgstr "Tanca la divisió"
 
-#: src/controls/TabView.qml:118
+#: src/controls/TabView.qml:116
 #, kde-format
 msgid "Open"
 msgstr "Obre"
 
-#: src/controls/TabView.qml:129
+#: src/controls/TabView.qml:127
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplica"
 
-#: src/controls/TabView.qml:137
+#: src/controls/TabView.qml:135
 #, kde-format
 msgid "Close"
 msgstr "Tanca"
 
-#: src/controls/TabView.qml:147
+#: src/controls/TabView.qml:145
 #, kde-format
 msgid "Close Other"
 msgstr "Tanca els altres"
 
-#: src/controls/TabView.qml:156
+#: src/controls/TabView.qml:154
 #, kde-format
 msgid "Close All"
 msgstr "Tanca-ho tot"
