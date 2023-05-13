@@ -7,6 +7,7 @@ ProgressBar
     id: control
     
     indeterminate: true   
-
+    height: 6
+    radius: 0
     background: null
 }

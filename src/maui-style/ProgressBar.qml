@@ -30,14 +30,16 @@ import QtGraphicalEffects 1.0
 T.ProgressBar
 {
     id: control
+    
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding)
+                             implicitContentHeight + topPadding + bottomPadding)    
     
+    property int radius: Maui.Style.radiusV
     
     contentItem: Item 
     {
@@ -52,7 +54,7 @@ T.ProgressBar
             height: parent.height
             width: control.position * parent.width
             
-            radius: Maui.Style.radiusV
+            radius: control.radius
             color: Maui.Theme.highlightColor            
         }
         
@@ -60,6 +62,7 @@ T.ProgressBar
         {
             model: 2
             enabled: !control.indeterminate
+            
             Rectangle 
             {
                 property real offset: 0
@@ -68,8 +71,8 @@ T.ProgressBar
               
                 width: offset * (parent.width - x)
                 height: parent.height
-                radius: Maui.Style.radiusV
                 
+                radius: control.radius                
                 color: Maui.Theme.highlightColor
                 
                 Behavior on color
@@ -82,7 +85,8 @@ T.ProgressBar
                     loops: Animation.Infinite
                     running: control.indeterminate && control.visible
                     PauseAnimation { duration: index ? 520 : 0 }
-                    NumberAnimation {
+                    NumberAnimation
+                    {
                         easing.type: Easing.OutCubic
                         duration: 1240
                         from: 0
@@ -93,30 +97,26 @@ T.ProgressBar
             }
         }
         
-        layer.enabled: true
+        layer.enabled: control.radius > 0
         layer.effect: OpacityMask
         {
             maskSource: Rectangle
             {
                 width: _item.width
                 height: _item.height
-                radius:  Maui.Style.radiusV
+                radius: control.radius
             }
         }
     }
 
     background: Rectangle 
     {
-        id: bg
-        radius:  Maui.Style.radiusV
+        radius: control.radius
         color: Maui.Theme.backgroundColor
         Behavior on color
         {
             Maui.ColorTransition{}
-        }
-        
-                
-               
+        }      
             }
         
     
