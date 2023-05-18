@@ -178,11 +178,13 @@ void MauiKit::registerTypes(const char *uri)
     {
         return new ColorUtils;
     });
+    
     qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
     qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
     qmlRegisterType<Icon>(uri, 1, 0, "PrivateIcon");
 
     qmlRegisterType<FontPickerModel>(uri, 1, 3, "FontPickerModel");
+    qmlRegisterType<FontPickerModel>(uri, 1, 3, "PageLayout");
     
     /** Experimental **/
 #ifdef Q_OS_WIN32

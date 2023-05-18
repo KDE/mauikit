@@ -160,23 +160,35 @@ Item
     /**
      * leftMargin : int
      */
-    property int verticalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
+    property int verticalScrollBarPolicy: 
+    {
+        if(control.orientation === ListView.Horizontal)
+            return ScrollBar.AlwaysOff            
+            
+        switch(Maui.Style.scrollBarPolicy)
+        {
+            case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
+            case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
+            case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
+            case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
+        }
+    }
+    
+    /**
+     * horizontalScrollBarPolicy : ScrollBar.policy
+     */
+    property int horizontalScrollBarPolicy: 
+    {
+        if(control.orientation === ListView.Vertical)
+            return ScrollBar.AlwaysOff
+            
+            switch(Maui.Style.scrollBarPolicy)
     {
         case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
         case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
         case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
         case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
     }
-    
-    /**
-     * horizontalScrollBarPolicy : ScrollBar.policy
-     */
-    property int horizontalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
-    {
-        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
-        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
-        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
-        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
     }
     
     /**

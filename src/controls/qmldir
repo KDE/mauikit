@@ -105,3 +105,4 @@ ShadowedRectangle 1.0 ShadowedRectangle.qml
 FontPicker 1.3 FontPicker.qml
 FontPickerDialog 1.3 FontPickerDialog.qml
 IconLabel 1.3 IconLabel.qml
+PageLayout 1.3 PageLayout.qml

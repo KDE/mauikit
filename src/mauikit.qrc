@@ -90,5 +90,6 @@
         <file alias="FontPickerDialog.qml">controls/FontPickerDialog.qml</file>
         <file alias="private/ToastArea.qml">controls/private/ToastArea.qml</file>        
         <file alias="TextFieldPopup.qml">controls/TextFieldPopup.qml</file>        
+        <file alias="PageLayout.qml">controls/PageLayout.qml</file>        
     </qresource>
 </RCC>
