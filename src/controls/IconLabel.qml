@@ -32,7 +32,7 @@ Item
 {
     id: control
     
-    implicitWidth: _layoutButton.implicitWidth+ leftPadding + rightPadding
+    implicitWidth: _layoutButton.implicitWidth + leftPadding + rightPadding
     implicitHeight: _layoutButton.implicitHeight + topPadding + bottomPadding
     
     property color color 
@@ -49,12 +49,18 @@ Item
     property int bottomPadding: padding
     property int topPadding: padding
     
-    property int spacing: Maui.Style.space.medium
+    property int spacing: Maui.Style.space.small
     property font font : Maui.Style.defaultFont
     
 GridLayout
 {
     id: _layoutButton
+    
+//     width: control.width 
+//     height: control.height
+//     
+//     x: control.leftPadding
+//     y: control.topPadding
     
     anchors.fill: parent
     anchors.leftMargin: control.leftPadding
@@ -70,6 +76,7 @@ GridLayout
     Maui.Icon
     {
         id: _icon
+        
         implicitHeight: visible && control.icon ? control.icon.height : 0
         implicitWidth: visible && control.icon ? control.icon.width : 0
       
@@ -78,8 +85,7 @@ GridLayout
         visible: String(_icon.source).length > 0 && (control.display !== ToolButton.TextOnly)        
         
         color: control.icon ? control.icon.color : control.color       
-        source: control.icon ? control.icon.name || control.icon.source : ""
-        
+        source: control.icon ? control.icon.name || control.icon.source : ""        
     }    
     
     Label
@@ -87,14 +93,21 @@ GridLayout
         id: _label
        
         text: control.text
+        
         visible: text.length && (control.display === ToolButton.TextOnly || control.display === ToolButton.TextBesideIcon || control.display === ToolButton.TextUnderIcon || !_icon.visible)
+        
         opacity: visible ? ( enabled ? 1 : 0.5) : 0
+        
         horizontalAlignment: control.alignment
-        Layout.fillWidth: visible
-        Layout.preferredWidth: visible ? implicitWidth : 0
+        
+        Layout.fillWidth: true
+        // Layout.preferredWidth: implicitWidth 
+        
         color: control.color
         font: control.font
+        
         elide: Text.ElideRight
+        wrapMode: Text.NoWrap
         
         Behavior on opacity
         {
@@ -106,6 +119,5 @@ GridLayout
         }
     }
 }
-
 
 }

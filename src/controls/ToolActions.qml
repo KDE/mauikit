@@ -125,12 +125,12 @@ T.Control
                 
                 NumberAnimation
                 {
-                    duration: Maui.Style.units.longDuration
+                    duration: Maui.Style.units.shortDuration
                     easing.type: Easing.InOutQuad
                 }
             }            
             
-            function calculateBiggerHeight() : int
+            function calculateBiggerHeight()
             {
                 var value = 0
                 for(var i in _row.children)
