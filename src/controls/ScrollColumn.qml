@@ -40,6 +40,8 @@ ScrollView
     
     implicitHeight: contentHeight + topPadding + bottomPadding
 
+    spacing: Maui.Style.defaultSpacing
+    
     Flickable
     {
         id: _flickable

@@ -25,7 +25,7 @@ Maui.Dialog
     
     headBar.visible: true
     
-    spacing: Maui.Style.space.huge
+    spacing: Maui.Style.defaultSpacing * 2
     
     headBar.leftContent: ToolButton
     {
@@ -41,7 +41,7 @@ Maui.Dialog
       id: _stackView
       Layout.fillHeight: true
       Layout.fillWidth: true
-      implicitHeight: _content.implicitHeight+topPadding +bottomPadding
+      implicitHeight: Math.max(_content.implicitHeight, currentItem.implicitHeight)+topPadding +bottomPadding
       
       initialItem: Maui.SettingsPage
       {

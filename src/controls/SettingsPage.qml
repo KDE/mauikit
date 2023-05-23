@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.3
 Maui.ScrollColumn
 {
     id: control
-    spacing: control.spacing
+    spacing: Maui.Style.defaultSpacing*2
     
     property string title : i18nd("mauikit", "Settings")
 }
