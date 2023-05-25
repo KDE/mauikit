@@ -81,18 +81,10 @@ clip: false
         if (!Maui.Handy.isTouch) {
             return;
         }
+        
         forceActiveFocus();
         cursorPosition = positionAt(event.x, event.y);
         selectWord();
-    }
-
-    Private.MobileCursor
-    {
-        target: control
-        selectionStartHandle: true
-        readonly property rect rect: target.positionToRectangle(target.selectionStart)
-        x: rect.x
-        y: rect.y
     }
 
     Label
@@ -113,6 +105,16 @@ clip: false
         verticalAlignment: control.verticalAlignment
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
         elide: Text.ElideRight
+    }
+    
+    TapHandler
+    {
+        onDoubleTapped: 
+        {
+            console.log("DOUBLE TAPPEDX")
+             cursorPosition = positionAt(eventPoint.pressPosition.x, eventPoint.pressPosition.y)
+        selectWord()
+        }
     }
 
     background: Rectangle
