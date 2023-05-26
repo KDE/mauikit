@@ -112,7 +112,7 @@ clip: false
         onDoubleTapped: 
         {
             console.log("DOUBLE TAPPEDX")
-             cursorPosition = positionAt(eventPoint.pressPosition.x, eventPoint.pressPosition.y)
+             cursorPosition = positionAt(eventPoint.position.x, eventPoint.position.y)
         selectWord()
         }
     }
