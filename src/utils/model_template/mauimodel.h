@@ -16,9 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAUIMODEL_H
-#define MAUIMODEL_H
-
+#pragma once
 #include <QAbstractListModel>
 #include <QObject>
 #include <QSortFilterProxyModel>
@@ -111,7 +109,7 @@ private:
     Qt::SortOrder m_sortOrder;
     QString m_sort;
 
-public slots:
+public Q_SLOTS:
     /**
      * @brief setFilter
      * Filter the model using a simple string, to clear the filter just set it to a empty string
@@ -173,7 +171,7 @@ public slots:
     
     void clearFilters();
 
-signals:
+Q_SIGNALS:
     void listChanged();
     void filterChanged(QString);
     void filtersChanged(QStringList);
@@ -207,5 +205,3 @@ public:
 private:
     MauiModel *m_model;
 };
-
-#endif // MAUIMODEL_H

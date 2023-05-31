@@ -105,7 +105,7 @@ namespace Maui
                 Q_EMIT this->changed();
             }
         });
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         connect(qGuiApp, &QGuiApplication::paletteChanged, [this, style](QPalette)
         {
             if(style->styleType() == Style::StyleType::Auto)
@@ -114,7 +114,16 @@ namespace Maui
                 Q_EMIT this->changed();
             }
         });
-
+#else
+        connect(qGuiApp, &QGuiApplication::paletteChanged, [this, style](QPalette)
+        {
+            if(style->styleType() == Style::StyleType::Auto)
+            {
+                setSystemPaletteColors();
+                Q_EMIT this->changed();
+            }
+        });
+#endif
         switch(style->styleType())
         {
             case Style::StyleType::Light:

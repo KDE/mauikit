@@ -14,7 +14,7 @@ include_directories(
 
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms
-    )
+)
 
 set(mauikit_SRCS
     mauikit.cpp
@@ -36,7 +36,7 @@ set(mauikit_SRCS
     utils/icon.cpp
     utils/managedtexturenode.cpp
     utils/fontpickermodel.cpp
-    )
+)
 
 set(mauikit_HDRS
     mauikit.h
@@ -58,27 +58,27 @@ set(mauikit_HDRS
     controls/libs/style.h
     platforms/abstractplatform.h
     platforms/platform.h
-    )
+)
 
-if(QUICK_COMPILER)
-        qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
-else()
-        qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
-endif()
+#if(QUICK_COMPILER)
+#    qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+#else()
+#    qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+#endif()
 
 if(${SUPPORT_PLUGINS})
     message(STATUS "INCLUDING PLUGINS SUPPORT")
     set(mauikitplugin_SRCS
         utils/plugin/pluginmanager.cpp
-        )
+    )
 
-    set(mauikitplugin_HDRS
-        utils/plugin/pluginmanager.h
-        )
-    include_directories(
-        ${CMAKE_CURRENT_SOURCE_DIR}/utils/plugin/
-        ${CMAKE_CURRENT_BINARY_DIR}/utils/plugin )
-    add_definitions(-DSUPPORT_PLUGINS)
+set(mauikitplugin_HDRS
+    utils/plugin/pluginmanager.h
+)
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils/plugin/
+    ${CMAKE_CURRENT_BINARY_DIR}/utils/plugin )
+add_definitions(-DSUPPORT_PLUGINS)
 endif()
 
 if(BUNDLE_LUV_ICONS)
@@ -91,62 +91,62 @@ if(BUNDLE_LUV_ICONS)
 endif()
 
 if (ANDROID)
-       add_subdirectory(platforms/android)
+    add_subdirectory(platforms/android)
 
     set(mauikit_PLATFORM_SRCS
         platforms/android/mauiandroid.cpp
         platforms/android/qtquickcontrols2.conf
         platforms/android/android.qrc
-        )
+    )
 
-    set(mauikit_PLATFORM_HDRS
-        platforms/android/mauiandroid.h
-        )
-
-    set(window_PLATFORM_SRCS
-        platforms/android/blurhelper/windowblur.cpp
-        platforms/android/shadowhelper/boxshadowrenderer.cpp
-        platforms/android/shadowhelper/tileset.cpp
-        platforms/android/shadowhelper/windowshadow.cpp
-        )
-
-    set(window_PLATFORM_HDRS
-        platforms/android/blurhelper/windowblur.h
-        platforms/android/shadowhelper/boxshadowrenderer.h
-        platforms/android/shadowhelper/tileset.h
-        platforms/android/shadowhelper/windowshadow.h
-        )
-
-    #    kde_enable_exceptions(MauiKit PRIVATE)
-elseif(UNIX AND NOT APPLE)
-
-set(kwin_XCB_LIBS
-    XCB::ICCCM
-    XCB::SHAPE
-    XCB::XCB
+set(mauikit_PLATFORM_HDRS
+    platforms/android/mauiandroid.h
 )
 
-    set(mauikit_PLATFORM_SRCS
-        platforms/linux/mauilinux.cpp
-        )
+set(window_PLATFORM_SRCS
+    platforms/android/blurhelper/windowblur.cpp
+    platforms/android/shadowhelper/boxshadowrenderer.cpp
+    platforms/android/shadowhelper/tileset.cpp
+    platforms/android/shadowhelper/windowshadow.cpp
+)
 
-    set(mauikit_PLATFORM_HDRS
-        platforms/linux/mauilinux.h
-        )
+set(window_PLATFORM_HDRS
+    platforms/android/blurhelper/windowblur.h
+    platforms/android/shadowhelper/boxshadowrenderer.h
+    platforms/android/shadowhelper/tileset.h
+    platforms/android/shadowhelper/windowshadow.h
+)
 
-    set(window_PLATFORM_SRCS
-        platforms/linux/blurhelper/windowblur.cpp
-        platforms/linux/shadowhelper/boxshadowrenderer.cpp
-        platforms/linux/shadowhelper/tileset.cpp
-        platforms/linux/shadowhelper/windowshadow.cpp
-        )
+#    kde_enable_exceptions(MauiKit PRIVATE)
+elseif(UNIX AND NOT APPLE)
 
-    set(window_PLATFORM_HDRS
-        platforms/linux/blurhelper/windowblur.h
-        platforms/linux/shadowhelper/boxshadowrenderer.h
-        platforms/linux/shadowhelper/tileset.h
-        platforms/linux/shadowhelper/windowshadow.h
-        )
+    set(kwin_XCB_LIBS
+        XCB::ICCCM
+        XCB::SHAPE
+        XCB::XCB
+    )
+
+set(mauikit_PLATFORM_SRCS
+    platforms/linux/mauilinux.cpp
+)
+
+set(mauikit_PLATFORM_HDRS
+    platforms/linux/mauilinux.h
+)
+
+set(window_PLATFORM_SRCS
+    platforms/linux/blurhelper/windowblur.cpp
+    platforms/linux/shadowhelper/boxshadowrenderer.cpp
+    platforms/linux/shadowhelper/tileset.cpp
+    platforms/linux/shadowhelper/windowshadow.cpp
+)
+
+set(window_PLATFORM_HDRS
+    platforms/linux/blurhelper/windowblur.h
+    platforms/linux/shadowhelper/boxshadowrenderer.h
+    platforms/linux/shadowhelper/tileset.h
+    platforms/linux/shadowhelper/windowshadow.h
+)
 elseif(APPLE)
     #    set(CMAKE_CXX_FLAGS "-x objective-c++")
 
@@ -154,44 +154,44 @@ elseif(APPLE)
         platforms/macos/mauimacos.cpp
     )
 
-    set(mauikit_PLATFORM_HDRS
-        platforms/macos/mauimacos.h
-    )
-    # Temporarily share blur, shawdow implementation for Windows
-    set(window_PLATFORM_SRCS
-        platforms/windows/blurhelper/windowblur.cpp
-        platforms/windows/shadowhelper/boxshadowrenderer.cpp
-        platforms/windows/shadowhelper/tileset.cpp
-        platforms/windows/shadowhelper/windowshadow.cpp
-        )
-    set(window_PLATFORM_HDRS
-        platforms/windows/blurhelper/windowblur.h
-        platforms/windows/shadowhelper/boxshadowrenderer.h
-        platforms/windows/shadowhelper/tileset.h
-        platforms/windows/shadowhelper/windowshadow.h
-        )
+set(mauikit_PLATFORM_HDRS
+    platforms/macos/mauimacos.h
+)
+# Temporarily share blur, shawdow implementation for Windows
+set(window_PLATFORM_SRCS
+    platforms/windows/blurhelper/windowblur.cpp
+    platforms/windows/shadowhelper/boxshadowrenderer.cpp
+    platforms/windows/shadowhelper/tileset.cpp
+    platforms/windows/shadowhelper/windowshadow.cpp
+)
+set(window_PLATFORM_HDRS
+    platforms/windows/blurhelper/windowblur.h
+    platforms/windows/shadowhelper/boxshadowrenderer.h
+    platforms/windows/shadowhelper/tileset.h
+    platforms/windows/shadowhelper/windowshadow.h
+)
 elseif(WIN32)
     set(mauikit_PLATFORM_SRCS
         platforms/windows/mauiwindows.cpp
-        )
+    )
 
-    set(mauikit_PLATFORM_HDRS
-        platforms/windows/mauiwindows.h
-        )
+set(mauikit_PLATFORM_HDRS
+    platforms/windows/mauiwindows.h
+)
 
-    set(window_PLATFORM_SRCS
-        platforms/windows/blurhelper/windowblur.cpp
-        platforms/windows/shadowhelper/boxshadowrenderer.cpp
-        platforms/windows/shadowhelper/tileset.cpp
-        platforms/windows/shadowhelper/windowshadow.cpp
-        )
+set(window_PLATFORM_SRCS
+    platforms/windows/blurhelper/windowblur.cpp
+    platforms/windows/shadowhelper/boxshadowrenderer.cpp
+    platforms/windows/shadowhelper/tileset.cpp
+    platforms/windows/shadowhelper/windowshadow.cpp
+)
 
-    set(window_PLATFORM_HDRS
-        platforms/windows/blurhelper/windowblur.h
-        platforms/windows/shadowhelper/boxshadowrenderer.h
-        platforms/windows/shadowhelper/tileset.h
-        platforms/windows/shadowhelper/windowshadow.h
-        )
+set(window_PLATFORM_HDRS
+    platforms/windows/blurhelper/windowblur.h
+    platforms/windows/shadowhelper/boxshadowrenderer.h
+    platforms/windows/shadowhelper/tileset.h
+    platforms/windows/shadowhelper/windowshadow.h
+)
 endif()
 
 add_library(MauiKit
@@ -208,15 +208,15 @@ add_library(MauiKit
 
     assets.qrc
     ${mauikit_QML_QRC}
-    )
+)
 
 if(QUICK_COMPILER)
     add_definitions(-DQUICK_COMPILER)
     target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
 endif()
 
-    add_definitions(-DBUNDLE_MAUI_STYLE)
-    target_compile_definitions(MauiKit PUBLIC BUNDLE_MAUI_STYLE)
+add_definitions(-DBUNDLE_MAUI_STYLE)
+target_compile_definitions(MauiKit PUBLIC BUNDLE_MAUI_STYLE)
 
 if(BUNDLE_LUV_ICONS)
     add_definitions(-DBUNDLE_LUV_ICONS)
@@ -227,35 +227,35 @@ if(ANDROID)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/android
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/android
-        )
-    target_include_directories(MauiKit PRIVATE platforms/android)
+    )
+target_include_directories(MauiKit PRIVATE platforms/android)
 elseif(WIN32)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
-        )
-    target_include_directories(MauiKit PRIVATE platforms/windows)
+    )
+target_include_directories(MauiKit PRIVATE platforms/windows)
 elseif(UNIX AND NOT APPLE)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux
-        )
-    target_include_directories(MauiKit PRIVATE platforms/linux)
+    )
+target_include_directories(MauiKit PRIVATE platforms/linux)
 elseif(APPLE)
     # Temporarily share blur, shawdow implementation for Windows
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
-        )
-    # include_directories(
-    #     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
-    #     ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
-    #     )
-    target_include_directories(MauiKit PRIVATE platforms/macos)
+    )
+# include_directories(
+#     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
+#     ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
+#     )
+target_include_directories(MauiKit PRIVATE platforms/macos)
 endif()
 
 if(ANDROID)
-#   add_subdirectory(platforms/android)
+    #   add_subdirectory(platforms/android)
     target_link_libraries(MauiKit PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit COMPONENT Devel)
@@ -270,11 +270,13 @@ if(ANDROID)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
         target_link_libraries(MauiKit
-        PRIVATE
-        KF${KF_MAJOR_VERSION}::WindowSystem
-        Qt${QT_MAJOR_VERSION}::X11Extras
+            PRIVATE
+            KF${KF_MAJOR_VERSION}::WindowSystem
         )
+    if (QT_MAJOR_VERSION STREQUAL "5")
+        target_link_libraries(MauiKit PRIVATE Qt5::X11Extras)
     endif()
+endif()
 endif()
 
 target_link_libraries(MauiKit
@@ -283,7 +285,7 @@ target_link_libraries(MauiKit
     KF${KF_MAJOR_VERSION}::CoreAddons
 
     PRIVATE
-        ${kwin_XCB_LIBS}
+    ${kwin_XCB_LIBS}
     MauiMan::MauiMan
     KF${KF_MAJOR_VERSION}::Notifications
     KF${KF_MAJOR_VERSION}::I18n
@@ -292,7 +294,7 @@ target_link_libraries(MauiKit
     Qt${QT_MAJOR_VERSION}::Widgets
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::QuickControls2
-    )
+)
 
 generate_export_header(MauiKit BASE_NAME MauiKit)
 install(TARGETS MauiKit EXPORT MauiKitTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -324,7 +326,7 @@ install(FILES
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core
     COMPONENT Devel)
 
-    ##INSTALL MAUI STYLE
+##INSTALL MAUI STYLE
 install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
 
 ##INSTALL THE DECO FOR CSD

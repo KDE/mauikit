@@ -101,14 +101,14 @@ public:
     const QList<QUrl> &urls() const;
     void setUrls(const QList<QUrl> &newUrls);
 
-private slots:
+private Q_SLOTS:
     void actionActivated(int index);
 
-public slots:
+public Q_SLOTS:
     void send();
 //    void send(const QString &title, const QString &message, const QString &iconName);
 
-signals:
+Q_SIGNALS:
     void componentNameChanged(QString);
 
     void titleChanged(QString);

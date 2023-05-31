@@ -22,7 +22,10 @@
 #include <QApplication>
 #include <QPainterPath>
 #include <QScreen>
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <QX11Info>
+#endif
 
 #include <xcb/xcb.h>
 #include <xcb/shape.h>
@@ -127,6 +130,8 @@ void WindowBlur::onViewVisibleChanged(bool visible)
 
 void WindowBlur::updateBlur()
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+
     if (!m_view)
         return;
     
@@ -167,4 +172,5 @@ void WindowBlur::updateBlur()
     } else {
         xcb_delete_property(c, m_view->winId(), atom->atom);
     }
+#endif
 }

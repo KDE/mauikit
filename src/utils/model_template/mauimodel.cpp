@@ -20,6 +20,7 @@
 #include "mauilist.h"
 #include <QDebug>
 #include <QDateTime>
+#include <QRegularExpression>
 
 MauiModel::MauiModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -57,7 +58,7 @@ void MauiModel::setFilter(const QString &filter)
 
     this->m_filter = filter;
     this->setFilterFixedString(this->m_filter);
-    emit this->filterChanged(this->m_filter);
+    Q_EMIT this->filterChanged(this->m_filter);
 }
 
 const QString MauiModel::getFilter() const
@@ -74,16 +75,16 @@ void MauiModel::setFilters(const QStringList& filters)
     QString rx;
     for( int i = 0; i < m_filters.count(); ++i )
     {
-        QString filter = QRegExp::escape( m_filters.at(i) );
+        QString filter = QRegularExpression::escape( m_filters.at(i) );
         if( i > 0 )
             rx += '|';
         rx += filter;
     }
     qDebug() << "FILTERS" << filters << m_filters << m_filter << rx << filterCaseSensitivity() << ( filterCaseSensitivity() == Qt::CaseSensitivity::CaseSensitive);
-    QRegExp reg(rx);
-    reg.setCaseSensitivity(filterCaseSensitivity());
-    this->setFilterRegExp(reg );
-    emit this->filtersChanged(this->m_filters);
+    QRegularExpression reg(rx, filterCaseSensitivity() == Qt::CaseSensitivity::CaseInsensitive ? QRegularExpression::CaseInsensitiveOption : QRegularExpression::NoPatternOption);
+//    reg.setCaseSensitivity(filterCaseSensitivity());
+    this->setFilterRegularExpression(reg);
+    Q_EMIT this->filtersChanged(this->m_filters);
 }
 
 const QStringList MauiModel::getFilters() const
@@ -96,10 +97,10 @@ void MauiModel::clearFilters()
     this->m_filter.clear();
     this->m_filters.clear();
     this->setFilterFixedString("");
-    this->setFilterRegExp("");
+    this->setFilterRegularExpression("");
     this->invalidateFilter();
-    emit this->filtersChanged(this->m_filters);
-    emit this->filterChanged(this->m_filter);
+    Q_EMIT this->filtersChanged(this->m_filters);
+    Q_EMIT this->filterChanged(this->m_filter);
     
 }
 
@@ -120,7 +121,7 @@ void MauiModel::setSortOrder(const Qt::SortOrder &sortOrder)
         return;
 
     this->m_sortOrder = sortOrder;
-    emit this->sortOrderChanged(this->m_sortOrder);
+    Q_EMIT this->sortOrderChanged(this->m_sortOrder);
     this->sort(0, this->m_sortOrder);
 }
 
@@ -135,7 +136,7 @@ void MauiModel::setSort(const QString &sort)
         return;
 
     this->m_sort = sort;
-    emit this->sortChanged(this->m_sort);
+    Q_EMIT this->sortChanged(this->m_sort);
     this->setSortRole(FMH::MODEL_NAME_KEY[sort]);
     this->sort(0, this->m_sortOrder);
 }
@@ -166,7 +167,7 @@ void MauiModel::setFilterRoleName(QString filter)
         return;
 
     m_filterRoleName = filter;
-    emit filterRoleNameChanged(m_filterRoleName);
+    Q_EMIT filterRoleNameChanged(m_filterRoleName);
     this->setFilterRole(FMH::MODEL_NAME_KEY[m_filterRoleName]);
 }
 
@@ -175,14 +176,14 @@ bool MauiModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent)
     if (this->filterRole() != Qt::DisplayRole) {
         QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
         const auto data = this->sourceModel()->data(index, this->filterRole()).toString();
-        return data.contains(this->filterRegExp());
+        return data.contains(this->filterRegularExpression());
     }
 
     const auto roleNames = this->sourceModel()->roleNames();
     for (const auto &role : roleNames) {
         QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
         const auto data = this->sourceModel()->data(index, FMH::MODEL_NAME_KEY[role]).toString();
-        if (data.contains(this->filterRegExp()))
+        if (data.contains(this->filterRegularExpression()))
             return true;
         else
             continue;
@@ -265,7 +266,7 @@ void MauiModel::PrivateAbstractListModel::setUpList()
             &MauiList::updateModel,
             this,
             [this](int index, QVector<int> roles) {
-                emit this->dataChanged(this->m_model->index(index, 0), this->m_model->index(index, 0), roles);
+                Q_EMIT this->dataChanged(this->m_model->index(index, 0), this->m_model->index(index, 0), roles);
             },
             Qt::DirectConnection);
 
@@ -305,7 +306,7 @@ void MauiModel::setList(MauiList *value)
         this->m_list->modelHooked();
         
         this->m_model->setUpList();
-        emit this->listChanged();
+        Q_EMIT this->listChanged();
         
         this->setSourceModel(this->m_model);
         this->setDynamicSortFilter(true);
@@ -322,7 +323,7 @@ MauiModel::PrivateAbstractListModel::PrivateAbstractListModel(MauiModel *model)
         this,
         [this](QModelIndex, int, int) {
             if (m_model->getList()) {
-                emit this->m_model->countChanged();
+                Q_EMIT this->m_model->countChanged();
             }
         },
         Qt::DirectConnection);
@@ -333,7 +334,7 @@ MauiModel::PrivateAbstractListModel::PrivateAbstractListModel(MauiModel *model)
         this,
         [this](QModelIndex, int, int) {
             if (m_model->getList()) {
-                emit this->m_model->countChanged();
+                Q_EMIT this->m_model->countChanged();
             }
         },
         Qt::DirectConnection);

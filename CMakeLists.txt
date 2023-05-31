@@ -1,11 +1,16 @@
 cmake_minimum_required(VERSION 3.16)
 
 # set(QT_DEFAULT_MAJOR_VERSION 6)
-set(QT_MAJOR_VERSION 5)
-set(KF_MAJOR_VERSION 5)
-# set(REQUIRED_QT_VERSION 6.2)
-set(REQUIRED_QT_VERSION 5.15.2)
-set(REQUIRED_KF_VERSION 5.90.0)
+set(QT_MAJOR_VERSION 6)
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(REQUIRED_QT_VERSION 6.4)
+    set(REQUIRED_KF_VERSION 5.240.0)
+    set(KF_MAJOR_VERSION 6)
+else()
+    set(REQUIRED_KF_VERSION 5.90.0)
+    set(KF_MAJOR_VERSION 5)
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,7 +20,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(MAUIKIT_VERSION 3.0.0)
+set(MAUIKIT_VERSION 3.0.1)
 set(MAUIKIT_URI org.mauikit.controls)
 
 set(AUTOMOC_MOC_OPTIONS -Muri=${MAUIKIT_URI})
@@ -57,7 +62,7 @@ set(QUICK_COMPILER ON)
 set(BUNDLE_LUV_ICONS ON)
 endif()
 
-find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
+find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS
     Core
     Concurrent
     Qml
@@ -67,7 +72,7 @@ find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
     Widgets
 )
 
-find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS
+find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS
     I18n
     CoreAddons
     Notifications
@@ -90,8 +95,9 @@ if(ANDROID)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
         # Do not find X11 on macOS
-        find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS X11Extras)
-        
+         if (QT_MAJOR_VERSION STREQUAL "5")
+        find_package(Qt5 REQUIRED COMPONENTS X11Extras)
+    endif()
         find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS WindowSystem)
         
         find_package(XCB 1.10 REQUIRED COMPONENTS
