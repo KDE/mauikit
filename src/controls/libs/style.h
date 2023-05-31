@@ -70,7 +70,6 @@ class Style : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Style)
-    Q_DISABLE_MOVE(Style)
 
     Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
     Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)

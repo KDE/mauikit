@@ -36,7 +36,6 @@ class Handy : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Handy)
-    Q_DISABLE_MOVE(Handy)
     
     Q_PROPERTY(bool isMobile READ isMobile NOTIFY isMobileChanged)
     Q_PROPERTY(bool isTouch READ isTouch NOTIFY isTouchChanged)

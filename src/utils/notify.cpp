@@ -48,14 +48,14 @@ Notify::Notify(QObject* parent) : QObject(parent)
 
 QQmlListProperty<NotifyAction> Notify::actions()
 {
-  return {this, this,
-      &Notify::appendAction,
-          &Notify::actionsCount,
-          &Notify::action,
-          &Notify::clearActions,
-          &Notify::replaceAction,
-          &Notify::removeLastAction
-    };
+//  return {this, this,
+//      &Notify::appendAction,
+//          &Notify::actionsCount,
+//          &Notify::action,
+//          &Notify::clearActions,
+//          &Notify::replaceAction,
+//          &Notify::removeLastAction
+//    };
 }
 
 void Notify::appendAction(NotifyAction* action)
