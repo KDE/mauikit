@@ -109,7 +109,7 @@ msgstr "Prova de la lletra."
 #: src/controls/FontPicker.qml:139
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr "Jove xef, porte ací per beure whisky amb quinze glaçons d'hidrogen"
+msgstr "Jove xef, porte ací per a beure whisky amb quinze glaçons d'hidrogen"
 
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
