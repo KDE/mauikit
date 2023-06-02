@@ -113,11 +113,10 @@ T.TabBar
         {
             id: _dragHandler
             anchors.fill: parent
-
             DragHandler
             {
                 // enabled: !control.interactive
-                acceptedDevices: PointerDevice.GenericPointer
+                acceptedDevices: PointerDevice.Mouse
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
             }

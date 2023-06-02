@@ -16,6 +16,12 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}/platforms
 )
 
+ecm_add_qml_module(MauiKit URI "org.mauikit.controls" VERSION 3.0)
+#ecm_add_qml_module_dependencies(MauiKit DEPENDS
+#    "QtQuick.Controls 2.15"
+#    "QtGraphicalEffects 1.0"
+#)
+
 set(mauikit_SRCS
     mauikit.cpp
     controls/libs/style.cpp
@@ -60,11 +66,13 @@ set(mauikit_HDRS
     platforms/platform.h
 )
 
-#if(QUICK_COMPILER)
-#    qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
-#else()
-#    qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
-#endif()
+if (QT_MAJOR_VERSION STREQUAL "5")
+if(QUICK_COMPILER)
+    qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+else()
+    qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+endif()
+endif()
 
 if(${SUPPORT_PLUGINS})
     message(STATUS "INCLUDING PLUGINS SUPPORT")
@@ -75,6 +83,7 @@ if(${SUPPORT_PLUGINS})
 set(mauikitplugin_HDRS
     utils/plugin/pluginmanager.h
 )
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/utils/plugin/
     ${CMAKE_CURRENT_BINARY_DIR}/utils/plugin )
@@ -194,9 +203,37 @@ set(window_PLATFORM_HDRS
 )
 endif()
 
-add_library(MauiKit
+ecm_target_qml_sources(MauiKit SOURCES
 
-    SHARED
+    controls.6/ApplicationWindow.qml
+
+    controls.6/ColorTransition.qml
+    controls.6/CSDControls.qml
+
+    controls.6/EdgeShadow.qml
+
+    controls.6/Holder.qml
+
+    controls.6/Icon.qml
+    controls.6/IconItem.qml
+
+    controls.6/ListItemTemplate.qml
+
+    controls.6/Page.qml
+
+    controls.6/ToolBar.qml
+
+    controls.6/WindowControlsLinux.qml
+)
+
+ecm_target_qml_sources(MauiKit PATH private SOURCES
+    controls.6/private/ToolBarSection.qml
+)
+
+target_sources(MauiKit
+
+    PRIVATE
+
     ${mauikit_HDRS}
     ${mauikit_SRCS}
 
@@ -207,12 +244,15 @@ add_library(MauiKit
     ${window_PLATFORM_SRCS}
 
     assets.qrc
-    ${mauikit_QML_QRC}
 )
 
-if(QUICK_COMPILER)
-    add_definitions(-DQUICK_COMPILER)
-    target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
+if (QT_MAJOR_VERSION STREQUAL "5")
+    target_sources(MauiKit  PRIVATE  ${mauikit_QML_QRC})
+
+    if(QUICK_COMPILER)
+        add_definitions(-DQUICK_COMPILER)
+        target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
+    endif()
 endif()
 
 add_definitions(-DBUNDLE_MAUI_STYLE)
@@ -296,28 +336,14 @@ target_link_libraries(MauiKit
     Qt${QT_MAJOR_VERSION}::QuickControls2
 )
 
+ecm_finalize_qml_module(MauiKit DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_generate_qmltypes(org.mauikit.controls 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+
 generate_export_header(MauiKit BASE_NAME MauiKit)
 install(TARGETS MauiKit EXPORT MauiKitTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 target_include_directories(MauiKit
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core>")
-
-add_custom_target(copy)
-
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/org/mauikit/controls)
-add_custom_command(TARGET copy PRE_BUILD COMMAND ${CMAKE_COMMAND}
-    -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/controls
-    ${CMAKE_BINARY_DIR}/bin/org/mauikit/controls)
-
-add_dependencies(MauiKit copy)
-
-if(QUICK_COMPILER AND NOT ANDROID)
-    install(FILES controls/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
-else()
-    install(DIRECTORY controls/ DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
-endif()
-
-install(TARGETS MauiKit DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 install(FILES
     ${mauikit_HDRS}

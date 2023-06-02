@@ -16,33 +16,14 @@
  *   Free Software Foundation, Inc.,
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-#pragma once
 
-#include <QQmlEngine>
-#include <QQmlExtensionPlugin>
+import QtQuick 2.13
+import QtQuick.Controls 2.13
+import QtQuick.Layouts 1.3
+import org.mauikit.controls 1.1 as Maui
 
-class MauiKit : public QQmlExtensionPlugin
+
+Maui.Page
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
-
-public:
-    void registerTypes(const char *uri) Q_DECL_OVERRIDE;
-
-private:
-    QUrl componentUrl(const QString &fileName) const;
-
-    QString resolveFileUrl(const QString &filePath) const
-    {
-#if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        return QStringLiteral("qrc:/android_rcc_bundle/qml/org/mauikit/controls/") + filePath;
-#else
-#ifdef QUICK_COMPILER
-        return QStringLiteral("qrc:/maui/kit/") + filePath;
-#else
-        return baseUrl().toString() + QLatin1Char('/') + filePath;
-#endif
-#endif
-    }
-};
-
+    id: control
+}
