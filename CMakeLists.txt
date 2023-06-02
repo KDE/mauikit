@@ -48,14 +48,15 @@ include(CMakePackageConfigHelpers)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMFindQmlModule)
-
+include(ECMQmlModule)
+include(ECMGenerateQmlTypes)
 include(KDEClangFormat)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 
 ##option to be removed in qt6 migration
 option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." ON)
-option(BUNDLE_LUV_ICONS "Ship Luv icon them bundled." OFF)
+option(BUNDLE_LUV_ICONS "Ship Luv icon bundled." OFF)
 
 if(ANDROID OR WIN32 OR APPLE)
 set(QUICK_COMPILER ON)
@@ -86,7 +87,7 @@ set_package_properties(MauiMan PROPERTIES
     PURPOSE "Sync to system setting preferences."
 )
 
-ecm_find_qmlmodule(QtGraphicalEffects 1.0)
+ecm_find_qmlmodule(QtQuick.Effects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 
 if(ANDROID)
@@ -109,12 +110,14 @@ set_package_properties(XCB PROPERTIES TYPE REQUIRED)
     endif()
 endif()
 
-if(QUICK_COMPILER)
-        find_package(Qt5QuickCompiler)
-        set_package_properties(Qt5QuickCompiler PROPERTIES
-                DESCRIPTION "Compile QML at build time"
-                TYPE OPTIONAL
-        )
+if (QT_MAJOR_VERSION STREQUAL "5")
+    if(QUICK_COMPILER)
+            find_package(Qt5QuickCompiler)
+            set_package_properties(Qt5QuickCompiler PROPERTIES
+                    DESCRIPTION "Compile QML at build time"
+                    TYPE OPTIONAL
+            )
+    endif()
 endif()
 
 ##Translations stuff with KI18n

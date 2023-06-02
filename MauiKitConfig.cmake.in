@@ -1,8 +1,9 @@
 @PACKAGE_INIT@
 
 include(CMakeFindDependencyMacro)
-find_dependency(Qt5Core @REQUIRED_QT_VERSION@)
-
+find_dependency(Qt6Core @REQUIRED_QT_VERSION@)
+find_dependency(Qt6Qml @REQUIRED_QT_VERSION@)
+find_dependency(Qt6Quick @REQUIRED_QT_VERSION@)
 # Any changes in this ".cmake" file will be overwritten by CMake, the source is the ".cmake.in" file.
 
 foreach(PKG IN LISTS MauiKit_FIND_COMPONENTS)

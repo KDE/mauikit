@@ -17,14 +17,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQml 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQml
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Templates as T
+import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /*!
  * \since org.mauikit.controls 1.0
@@ -380,11 +380,11 @@ T.Pane
         visible: count > 0
         width: visible ? parent.width : 0
         position: control.altHeader ? ToolBar.Footer : ToolBar.Header
-        translucencySource: ShaderEffectSource
-        {
-            sourceItem: _content
-            sourceRect:  _headBar.background ? (control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)) : null
-        }
+//        translucencySource: ShaderEffectSource
+//        {
+//            sourceItem: _content
+//            sourceRect:  _headBar.background ? (control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)) : null
+//        }
         
         Binding on height
         {
@@ -417,7 +417,6 @@ T.Pane
                     anchors.fill: parent
                     text: control.title
                     elide : Text.ElideRight
-//                     font.bold : true
                     font: Maui.Style.h2Font
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
@@ -456,12 +455,12 @@ T.Pane
 
         position: ToolBar.Footer
 
-        translucencySource: ShaderEffectSource
-        {
-            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
-            sourceItem: _content
-            sourceRect: _footBar.background ? (control.floatingFooter  ?  Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : null
-        }        
+//        translucencySource: ShaderEffectSource
+//        {
+//            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
+//            sourceItem: _content
+//            sourceRect: _footBar.background ? (control.floatingFooter  ?  Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : null
+//        }
         
         Behavior on height
         {
@@ -678,6 +677,7 @@ T.Pane
 
             sourceComponent: Item
             {
+
                 HoverHandler
                 {
                     target: parent
@@ -842,7 +842,7 @@ T.Pane
             _headerContent.data = data
         }
         
-        var obj = _csdRightControlsComponent.createObject( control.headBar.farRightContent)
+        var obj = _csdRightControlsComponent.createObject(control.headBar.farRightContent, {})
         control.headBar.farRightContent.push(obj)        
     }
 
