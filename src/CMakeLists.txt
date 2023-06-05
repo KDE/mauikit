@@ -67,11 +67,11 @@ set(mauikit_HDRS
 )
 
 if (QT_MAJOR_VERSION STREQUAL "5")
-if(QUICK_COMPILER)
-    qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
-else()
-    qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
-endif()
+    if(QUICK_COMPILER)
+        qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+    else()
+        qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+    endif()
 endif()
 
 if(${SUPPORT_PLUGINS})
@@ -208,25 +208,46 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/ApplicationWindow.qml
 
     controls.6/ColorTransition.qml
+    controls.6/ContextualMenu.qml
+    controls.6/Chip.qml
+    controls.6/CloseButton.qml
     controls.6/CSDControls.qml
 
+    controls.6/Dialog.qml
+
     controls.6/EdgeShadow.qml
+
+    controls.6/FlexListItem.qml
 
     controls.6/Holder.qml
 
     controls.6/Icon.qml
     controls.6/IconItem.qml
+    controls.6/IconLabel.qml
 
     controls.6/ListItemTemplate.qml
 
     controls.6/Page.qml
 
+    controls.6/ScrollColumn.qml
+    controls.6/SectionHeader.qml
+    controls.6/SectionItem.qml
+    controls.6/Separator.qml
+    controls.6/ShadowedRectangle.qml
+
+    controls.6/ToolActions.qml
     controls.6/ToolBar.qml
+    controls.6/ToolButtonMenu.qml
 
     controls.6/WindowControlsLinux.qml
 )
 
 ecm_target_qml_sources(MauiKit PATH private SOURCES
+
+    controls.6/private/AboutDialog.qml
+
+    controls.6/private/CheckBoxItem.qml
+
     controls.6/private/ToolBarSection.qml
 )
 
@@ -353,7 +374,15 @@ install(FILES
     COMPONENT Devel)
 
 ##INSTALL MAUI STYLE
-install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
+if (QT_MAJOR_VERSION STREQUAL "5")
+    install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
 
-##INSTALL THE DECO FOR CSD
-install(DIRECTORY csd DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
+    ##INSTALL THE DECO FOR CSD
+    install(DIRECTORY csd DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
+
+else()
+    add_subdirectory(style.6)
+    ##INSTALL THE DECO FOR CSD
+    install(DIRECTORY csd.6 DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
+endif()
+

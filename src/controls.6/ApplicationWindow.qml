@@ -27,8 +27,7 @@ import Qt.labs.settings
 
 import org.mauikit.controls as Maui
 
-//import "private" as Private
-
+import "private" as Private
 /*!
  \ since or*g.mauikit.controls 1.0
  \inqmlmodule org.mauikit.controls
@@ -110,7 +109,7 @@ Window
        The internal dialogs used in the ApplicationWindow are loaded dynamically, so the current loaded dialog can be accessed
        via this property.
        */
-    //    property alias dialog: dialogLoader.item
+        property alias dialog: dialogLoader.item
 
 
     /*!
@@ -321,6 +320,16 @@ Window
         id: dialogLoader
     }
 
+    Component
+    {
+        id: _aboutDialogComponent
+
+        Private.AboutDialog
+        {
+            onClosed: destroy()
+        }
+    }
+
     Connections
     {
         target: Maui.Platform
@@ -382,7 +391,7 @@ Window
 
     function about()
     {
-        dialogLoader.source = "qrc:/maui/kit/private/AboutDialog.qml"
-        dialog.open()
+        var about = _aboutDialogComponent.createObject(root)
+        about.open()
     }
 }

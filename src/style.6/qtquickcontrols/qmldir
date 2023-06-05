@@ -1,0 +1,48 @@
+module QtQuick.Controls.Maui
+
+
+# Make sure the style works with Qt Quick Designer
+designersupported
+import QtQuick.Controls.Basic auto
+
+ApplicationWindow 6.0 ApplicationWindow.qml
+ApplicationWindow 2.0 ApplicationWindow.qml
+
+Button 6.0 Button.qml
+Button 2.0 Button.qml
+
+CheckBox 6.0 CheckBox.qml
+CheckBox 2.0 CheckBox.qml
+
+Menu 6.0 Menu.qml
+Menu 2.0 Menu.qml
+
+MenuItem 6.0 MenuItem.qml
+MenuItem 2.0 MenuItem.qml
+
+Pane 6.0 Pane.qml
+Pane 2.0 Pane.qml
+
+Popup 6.0 Popup.qml
+Popup 2.0 Popup.qml
+
+ProgressBar 6.0 ProgressBar.qml
+ProgressBar 2.0 ProgressBar.qml
+
+ToolBar 6.0 ToolBar.qml
+ToolBar 2.0 ToolBar.qml
+
+ToolButton 6.0 ToolButton.qml
+ToolButton 2.0 ToolButton.qml
+
+ToolSeparator 6.0 ToolSeparator.qml
+ToolSeparator 2.0 ToolSeparator.qml
+
+ToolTip 6.0 ToolTip.qml
+ToolTip 2.0 ToolTip.qml
+
+Slider 6.0 Slider.qml
+Slider 2.0 Slider.qml
+
+Switch 6.0 Switch.qml
+Switch 2.0 Switch.qml

@@ -18,12 +18,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.12
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 Maui.Dialog
 {
@@ -71,9 +71,9 @@ Maui.Dialog
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             leftLabels.spacing: Maui.Style.space.medium
-            
+
             leftLabels.data: [
-                
+
                 Label
                 {
                     Maui.Theme.inherit: true
@@ -83,7 +83,7 @@ Maui.Dialog
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
                     color: _div1.label1.color
-                    
+
                     MouseArea
                     {
                         anchors.fill: parent
@@ -304,7 +304,7 @@ Maui.Dialog
                 }
             }
         }
-        
+
     }
 
     Maui.SectionItem

@@ -131,7 +131,7 @@ void MauiApp::setDefaultMauiStyle()
 #endif
     
 //    Q_INIT_RESOURCE(style);
-    QQuickStyle::setStyle("maui-style");
+    QQuickStyle::setStyle("QtQuick.Controls.Maui");
 }
 
 QQuickWindow * MauiApp::window() const

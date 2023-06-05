@@ -1,0 +1,9 @@
+module org.mauikit.style
+
+# plugin QQC2BreezeStylePlugin
+classname MauiStylePlugin
+
+depends QtQuick.Controls 2.15
+depends org.kde.kirigami 2.14
+# Make sure the style works with Qt Quick Designer
+designersupported

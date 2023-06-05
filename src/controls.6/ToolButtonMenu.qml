@@ -1,7 +1,7 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 
 /*!
@@ -30,7 +30,7 @@ ToolButton
       This can be modified for fine tuning the menu position or look.
     */
     property alias menu : _menu
-    subMenu: _menu.count > 0
+//    subMenu: _menu.count > 0
     focusPolicy: Qt.NoFocus
     checked: _menu.visible
     display: ToolButton.IconOnly

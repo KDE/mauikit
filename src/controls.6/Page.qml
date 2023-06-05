@@ -21,7 +21,6 @@ import QtQuick
 import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Templates as T
 import Qt5Compat.GraphicalEffects
 
 import org.mauikit.controls as Maui
@@ -39,11 +38,11 @@ import org.mauikit.controls as Maui
  * toolbar behaviour, floating toolbars, etc.
  *
  */
-T.Pane
+Pane
 {
     id: control
-    padding: 0
-    
+
+    padding: 0    
     leftPadding: control.padding
     rightPadding: control.padding
     topPadding: control.padding
@@ -242,15 +241,6 @@ T.Pane
         id: _private
         property int topMargin : (!control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0) + control.topMargin
         property int bottomMargin: ((control.floatingFooter && control.footerPositioning === ListView.InlineFooter ? 0 : _footerContent.implicitHeight)  + (control.altHeader ? _headerContent.implicitHeight : 0))
-    }
-
-    background: Rectangle
-    {
-        color: Maui.Theme.backgroundColor
-         Behavior on color
-        {
-            Maui.ColorTransition{}
-        }
     }
 
     onFlickableChanged:
