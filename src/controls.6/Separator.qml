@@ -5,9 +5,8 @@
  *  SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import QtQuick 2.1
-import QtQuick.Layouts 1.2
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import org.mauikit.controls as Maui
 
 /**
  * @brief A visual separator.

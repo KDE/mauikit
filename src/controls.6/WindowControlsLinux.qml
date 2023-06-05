@@ -16,22 +16,22 @@ Loader
     visible: active
     width: visible ? implicitWidth:  0
     sourceComponent: Maui.CSDControls
-{
-    onButtonClicked: performActiveWindowAction(type)
+    {
+        onButtonClicked: (type) => performActiveWindowAction(type)
 
-    /**
+        /**
       *
       */
-    function performActiveWindowAction(type)
-    {
-        console.log("WINDOW CSD CLICKED", type)
-        if (type === Maui.CSDButton.Close) {
-            Window.window.close()
-        } else if (type === Maui.CSDButton.Maximize || type === Maui.CSDButton.Restore) {
-            Window.window.toggleMaximized()
-        } else if (type ===  Maui.CSDButton.Minimize) {
-            Window.window.showMinimized()
+        function performActiveWindowAction(type)
+        {
+            switch(type)
+            {
+            case Maui.CSDButton.Close :  Window.window.close(); break;
+            case Maui.CSDButton.Maximize :
+            case Maui.CSDButton.Restore : Window.window.toggleMaximized(); break;
+            case Maui.CSDButton.Minimize: Window.window.showMinimized(); break;
+            default: console.error("CSD Button clicked type not recognized.")
+            }
         }
     }
-}
 }

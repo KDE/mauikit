@@ -17,20 +17,19 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
+import QtQuick
 
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
+import org.mauikit.controls as Maui
 
 ScrollView
 {
     id: control
 
     default property alias content : _pageContent.data
-        property alias container : _pageContent
+    property alias container : _pageContent
     property alias flickable: _flickable
 
     padding: Maui.Style.contentMargins

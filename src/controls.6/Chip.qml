@@ -1,9 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Templates as T
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /*!
  \ since org.mauikit.controls.*labs 1.0

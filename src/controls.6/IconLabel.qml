@@ -20,13 +20,11 @@
 
 //this basic toolbutton provides a basic anima
 
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
-
+import org.mauikit.controls as Maui
 
 Item
 {
