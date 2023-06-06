@@ -20,9 +20,10 @@
  */
 
 
-import QtQuick 2.15
-import QtQuick.Templates 2.15 as T
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.DialogButtonBox
 {
@@ -30,25 +31,45 @@ T.DialogButtonBox
 
     implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
-
     
-    padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing
-    alignment: Qt.AlignRight
+    padding: 0
+    spacing: Maui.Style.space.small
+    alignment: undefined
 
-    delegate: Button {
-        width: Math.min(implicitWidth, control.width / control.count - control.padding - control.spacing * control.count)
+    delegate: Button
+    {
+        id: _actionButton
+        focus: true
+        Layout.fillWidth: true
+
+        background: Rectangle
+        {
+            radius: Maui.Style.radiusV
+            color: _actionButton.visualFocus || _actionButton.highlighted || _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
+
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
+        }
     }
 
-    contentItem: ListView {
-        implicitWidth: contentWidth
-        implicitHeight: 32
+    contentItem: GridLayout
+    {
+        rowSpacing: control.spacing
+        columnSpacing: control.spacing
 
-        model: control.contentModel
-        spacing: control.spacing
-        orientation: ListView.Horizontal
-        boundsBehavior: Flickable.StopAtBounds
-        snapMode: ListView.SnapToItem
+        property bool isWide : control.width > Maui.Style.units.gridUnit*10
+
+        //        visible: control.defaultButtons || control.actions.length
+
+        rows: isWide? 1 : children.length
+        columns: isWide ? children.length : 1
+
+        Repeater
+        {
+            model: control.contentModel
+        }
     }
 
     background: Item {}

@@ -34,12 +34,11 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Templates 2.12 as T
+import QtQuick
+import QtQuick.Templates as T
 
-import org.mauikit.controls 1.2 as Maui
-import QtQuick.Window 2.1
-
+import org.mauikit.controls as Maui
+import QtQuick.Window
 
 T.SpinBox
 {
@@ -48,7 +47,7 @@ T.SpinBox
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
-        hoverEnabled: !Maui.Handy.isMobile
+    hoverEnabled: !Maui.Handy.isMobile
 
     property int preferredWidth : 100
 
@@ -63,7 +62,7 @@ T.SpinBox
     editable: true
 
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.small  
+    spacing: Maui.Style.space.small
     
     leftPadding: (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
@@ -91,11 +90,12 @@ T.SpinBox
         validator: control.validator
         inputMethodHints: Qt.ImhFormattedNumbersOnly
         renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
+
         Behavior on color
         {
             Maui.ColorTransition{}
-            
         }
+
         MouseArea
         {
             anchors.fill: parent
@@ -133,7 +133,7 @@ T.SpinBox
             anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
-            color: Maui.Theme.textColor            
+            color: Maui.Theme.textColor
         }
     }
     
@@ -159,7 +159,7 @@ T.SpinBox
     }
     
     background: Rectangle
-    {        
+    {
         radius: Maui.Style.radiusV
         
         color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
@@ -167,7 +167,6 @@ T.SpinBox
         Behavior on color
         {
             Maui.ColorTransition{}
-            
         }
     }
 }

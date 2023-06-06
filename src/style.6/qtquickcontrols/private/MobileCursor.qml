@@ -4,10 +4,11 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.1
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import org.mauikit.controls as Maui
 
-Item {
+Item
+{
     id: root
     width: 1 //<-important that this is actually a single device pixel
     height: Maui.Style.units.gridUnit

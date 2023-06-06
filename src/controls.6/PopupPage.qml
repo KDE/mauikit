@@ -23,6 +23,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import org.mauikit.controls as Maui
+
 import Qt5Compat.GraphicalEffects
 
 /*!
@@ -80,7 +81,7 @@ Popup
      *    Default message text inside the scrollable layout.
      */
     property string message : ""
-    
+
     /*!
      *    \qmlproperty string ApplicationWindow::title
      *
@@ -95,21 +96,7 @@ Popup
      *    This property gives access to the template for more detailed tweaking, by adding items or changing its properties.
      */
     property alias template : _template
-    
-    /*!
-     *    List of actions to be added to the dialog footer bar as styled buttons.
-     */
-    property list<Action> actions
-    
-    /*!
-     *    \qmlproperty bool ApplicationWindow::defaultButtons
-     *
-     *    If the Accept and Reject buttons should by displayed in the footer bar.
-     */
-    property bool defaultButtons: true
-    
-    property alias defaultButtonsLayout : _defaultButtonsLayout
-    
+
     /*!
      *    \qmlproperty bool ApplicationWindow::persistent
      *
@@ -118,22 +105,6 @@ Popup
      *    hidden if there is not more elements on it.
      */
     property bool persistent : true
-    
-    /*!
-     *    \qmlproperty Button ApplicationWindow::acceptButton
-     *
-     *    Access to the accepted button.
-     *    This button is styled to hint about a positive feedback.
-     */
-    property alias acceptButton : _acceptButton
-    
-    /*!
-     *    \qmlproperty Button ApplicationWindow::rejectButton
-     *
-     *    Access to the accepted button.
-     *    This button is styled to hint about a negative feedback.
-     */
-    property alias rejectButton : _rejectButton
     
     /*!
      *    \qmlproperty Page ApplicationWindow::page
@@ -198,14 +169,14 @@ Popup
      * Triggered when the accepted button is clicked.
      */
     signal accepted()
-    
+
     /*!
      * Triggered when the rejected button is clicked.
      */
     signal rejected()
-    
+
     signal closeTriggered()
-    
+
     ColumnLayout
     {
         id: _layout
@@ -296,143 +267,5 @@ Popup
                 }
             }
         }
-
-        Maui.Chip
-        {
-            id: _alertMessage
-
-            visible: text.length > 0
-
-            property int level : 0
-
-            Layout.fillWidth: true
-            Layout.margins: Maui.Style.space.medium
-
-
-            color: switch(level)
-                   {
-                   case 0: return Maui.Theme.positiveBackgroundColor
-                   case 1: return Maui.Theme.neutralBackgroundColor
-                   case 2: return Maui.Theme.negativeBackgroundColor
-                   }
-
-            SequentialAnimation on x
-            {
-                id: _alertAnim
-                // Animations on properties start running by default
-                running: false
-                loops: 3
-                NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
-                NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
-                PauseAnimation { duration: 50 } // This puts a bit of time between the loop
-            }
-        }
-
-        GridLayout
-        {
-            id: _defaultButtonsLayout
-
-            rowSpacing: 2
-            columnSpacing: 2
-
-            Layout.fillWidth: true
-
-            property bool isWide : control.width > Maui.Style.units.gridUnit*10
-
-            visible: control.defaultButtons || control.actions.length
-
-            rows: isWide? 1 : _defaultButtonsLayout.children.length
-            columns: isWide ? _defaultButtonsLayout.children.length : 1
-
-            Button
-            {
-                id: _rejectButton
-
-                focus: true
-
-                Layout.fillWidth: true
-
-                visible: control.defaultButtons
-                text: i18nd("mauikit", "Cancel")
-
-                background: Rectangle
-                {
-                    color:  _rejectButton.visualFocus || _rejectButton.highlighted || _rejectButton.hovered || _rejectButton.down || _rejectButton.pressed ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
-                    Behavior on color
-                    {
-                        Maui.ColorTransition{}
-                    }
-                }
-
-                onClicked: rejected()
-            }
-
-            Button
-            {
-                id: _acceptButton
-
-                focus: true
-
-                Layout.fillWidth: true
-
-                text: i18nd("mauikit", "Accept")
-                visible: control.defaultButtons
-
-                background: Rectangle
-                {
-                    color: _acceptButton.visualFocus || _acceptButton.highlighted || _acceptButton.hovered || _acceptButton.down || _acceptButton.pressed ? Maui.Theme.positiveBackgroundColor : Maui.Theme.backgroundColor
-
-
-                    Behavior on color
-                    {
-                        Maui.ColorTransition{}
-                    }
-                }
-
-                onClicked: accepted()
-            }
-
-            Repeater
-            {
-                model: control.actions
-
-                Button
-                {
-                    id: _actionButton
-                    focus: true
-                    Layout.fillWidth: true
-
-                    action: modelData
-
-                    background: Rectangle
-                    {
-                        color: _actionButton.visualFocus || _actionButton.highlighted || _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
-
-                        Behavior on color
-                        {
-                            Maui.ColorTransition{}
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    onOpened:
-    {
-        if(control.defaultButtons)
-        {
-            _rejectButton.forceActiveFocus()
-        }
-    }
-    
-    /**
-     * Send an alert message that is shown inline in the dialog.
-     * Depending on the level the color may differ.
-     */
-    function alert(message, level)
-    {
-        _alertMessage.text = message
-        _alertMessage.level = level
     }
 }

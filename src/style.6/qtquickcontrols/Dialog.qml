@@ -20,24 +20,31 @@
  */
 
 
-import QtQuick 2.6
-import QtGraphicalEffects 1.0
-import QtQuick.Templates 2.3 as T
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.Dialog
 {
     id: control
 
+    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
+
+    anchors.centerIn: parent
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentWidth > 0 ? contentWidth + leftPadding + rightPadding : 0)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentWidth > 0 ? contentHeight + topPadding + bottomPadding : 0)
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding + implicitFooterHeight + implicitHeaderHeight
 
     contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0) + header.implicitHeight + footer.implicitHeight
 
-    padding: Maui.Style.units.gridUnit
+    padding: Maui.Style.contentMargins
+    modal: true
+
+     closePolicy: control.modal ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     enter: Transition {
         NumberAnimation {
@@ -57,38 +64,49 @@ T.Dialog
             easing.type: Easing.InOutQuad
             duration: 250
         }
-    }
+    }  
 
-    contentItem: Item {}
-
-    background: Rectangle {
-        radius: height * 0.005
-        color: Maui.Theme.viewBackgroundColor
-        property color borderColor: Maui.Theme.textColor
-        border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
+    background: Rectangle
+    {
+        radius: Maui.Style.radiusV
+        color: Maui.Theme.backgroundColor
 
         layer.enabled: true
-        layer.effect: DropShadow {
-            transparentBorder: true
-            radius: 8
-            samples: 16
+        layer.effect: DropShadow
+        {
             horizontalOffset: 0
             verticalOffset: 0
-            color: Qt.rgba(0, 0, 0, 0.3)
+            radius: 8
+            samples: 16
+            color: "#80000000"
+            transparentBorder: true
+        }
+
+        Behavior on color
+        {
+            Maui.ColorTransition{}
         }
     }
 
-    //header: Kirigami.Heading {
-        //text: control.title
-        //level: 2
-        //visible: control.title
-        //elide: Label.ElideRight
-        //padding: Maui.Style.space.medium
-        //bottomPadding: 0
-    //}
+    header: Maui.ToolBar
+    {
+        visible: control.title.length >0
+        background: null
 
-    footer: DialogButtonBox {
+        middleContent: Label
+        {
+            text: control.title
+            horizontalAlignment: Qt.AlignHCenter
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            font: Maui.Style.h2Font
+        }
+    }
+
+    footer: DialogButtonBox
+    {
         visible: count > 0
-        padding: Maui.Style.space.medium
+        width: parent.width
+        padding: control.padding
     }
 }

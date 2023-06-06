@@ -34,13 +34,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Templates 2.15 as T
+import QtQuick
+import QtQuick.Window
+import QtQuick.Templates as T
 
-import org.mauikit.controls 1.3 as Maui
-import QtGraphicalEffects 1.0
+import org.mauikit.controls as Maui
+import Qt5Compat.GraphicalEffects
 
 T.ComboBox
 {
@@ -62,18 +61,18 @@ T.ComboBox
     readonly property bool responsive: Maui.Handy.isMobile
     
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
-        
+
     readonly property int preferredWidth : 200
     
-    implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)    
+    implicitWidth: Math.max(preferredWidth, implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitContentHeight, Maui.Style.iconSize) + topPadding + bottomPadding
-        
+
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
     
     font: Maui.Style.defaultFont
     
-           delegate: MenuItem
+    delegate: MenuItem
     {
         width: ListView.view.width
         text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
@@ -81,12 +80,12 @@ T.ComboBox
         highlighted: control.highlightedIndex === index
         hoverEnabled: control.hoverEnabled
         Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
-        Maui.Theme.inherit: control.Maui.Theme.inherit        
+        Maui.Theme.inherit: control.Maui.Theme.inherit
     }
     
     indicator: Maui.Icon
     {
-        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
+        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
         y: (control.topPadding + (control.availableHeight - height) / 2) - 2
         color: Maui.Theme.textColor
         source: "qrc:/assets/arrow-down.svg"
@@ -96,8 +95,8 @@ T.ComboBox
         Behavior on color
         {
             Maui.ColorTransition{}
-        }    
-    }    
+        }
+    }
 
     contentItem: T.TextField
     {
@@ -133,7 +132,7 @@ T.ComboBox
     }
     
     background: Rectangle
-    {        
+    {
         radius: Maui.Style.radiusV
         
         color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
@@ -185,9 +184,9 @@ T.ComboBox
         Maui.Theme.inherit: false
         
         parent: control.responsive ? control.parent.Window.window.contentItem : control
-                
+
         readonly property int finalY : control.responsive ? control.parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
-        readonly property int preferredWidth: control.responsive ? 600 : 300 
+        readonly property int preferredWidth: control.responsive ? 600 : 300
         
         y: finalY
         x: control.responsive ? Math.round(control.parentWindow.width/2 - width/2) : 0
@@ -199,9 +198,9 @@ T.ComboBox
         transformOrigin: Item.Top
         
         padding: 0
-        spacing: Maui.Style.defaultSpacing    
+        spacing: Maui.Style.defaultSpacing
         
-        margins: Maui.Style.space.medium    
+        margins: Maui.Style.space.medium
         
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
         
@@ -274,41 +273,41 @@ T.ComboBox
         {
             color: _popup.Maui.Theme.backgroundColor
             radius: Maui.Style.radiusV
-                       
+
             Behavior on color
             {
                 Maui.ColorTransition{}
                 
             }
-              MouseArea
-        {
-            property int wheelDelta: 0
-            
-            anchors
+            MouseArea
             {
-                fill: parent
-                leftMargin: control.leftPadding
-                rightMargin: control.rightPadding
-            }
-            
-            acceptedButtons: Qt.NoButton
-            
-            onWheel:
-            {
-                var delta = wheel.angleDelta.y || wheel.angleDelta.x
-                wheelDelta += delta;
-                // magic number 120 for common "one click"
-                // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
-                while (wheelDelta >= 120) {
-                    wheelDelta -= 120;
-                    control.decrementCurrentIndex();
+                property int wheelDelta: 0
+
+                anchors
+                {
+                    fill: parent
+                    leftMargin: control.leftPadding
+                    rightMargin: control.rightPadding
                 }
-                while (wheelDelta <= -120) {
-                    wheelDelta += 120;
-                    control.incrementCurrentIndex();
+
+                acceptedButtons: Qt.NoButton
+
+                onWheel:
+                {
+                    var delta = wheel.angleDelta.y || wheel.angleDelta.x
+                    wheelDelta += delta;
+                    // magic number 120 for common "one click"
+                    // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                    while (wheelDelta >= 120) {
+                        wheelDelta -= 120;
+                        control.decrementCurrentIndex();
+                    }
+                    while (wheelDelta <= -120) {
+                        wheelDelta += 120;
+                        control.incrementCurrentIndex();
+                    }
                 }
             }
-        }
             
             layer.enabled: true
             layer.effect: DropShadow

@@ -20,13 +20,11 @@
  */
 
 
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Templates 2.15 as T
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Window
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 import "private" as Private
-
 
 T.TextArea 
 {
@@ -67,6 +65,7 @@ clip: false
     activeFocusOnTab: true
 
     cursorDelegate: Maui.Handy.isTouch ? mobileCursor : null
+
     Component
     {
         id: mobileCursor

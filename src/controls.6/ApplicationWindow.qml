@@ -18,12 +18,12 @@
  */
 
 import QtQuick
+import QtCore
 import QtQuick.Window
 import QtQuick.Controls
 
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import Qt.labs.settings
 
 import org.mauikit.controls as Maui
 
@@ -73,18 +73,18 @@ Window
         property alias height: root.height
     }
 
-    //    // Window shadows for CSD
-    //        Loader
-    //        {
-    //            active: Maui.App.controls.enableCSD && !Maui.Handy.isMobile && Maui.Handy.isLinux
-    //            asynchronous: true
-    //            sourceComponent: Maui.WindowShadow
-    //            {
-    //                view: root
-    //                radius: Maui.Style.radiusV
-    //                strength: 7.8
-    //            }
-    //        }
+    // Window shadows for CSD
+    Loader
+    {
+        active: Maui.App.controls.enableCSD && !Maui.Handy.isMobile && Maui.Handy.isLinux
+        asynchronous: true
+        sourceComponent: Maui.WindowShadow
+        {
+            view: root
+            radius: Maui.Style.radiusV
+            strength: 7.8
+        }
+    }
 
     /***************************************************/
     /********************* COLORS *********************/
@@ -109,7 +109,7 @@ Window
        The internal dialogs used in the ApplicationWindow are loaded dynamically, so the current loaded dialog can be accessed
        via this property.
        */
-        property alias dialog: dialogLoader.item
+    property alias dialog: dialogLoader.item
 
 
     /*!
@@ -130,6 +130,8 @@ Window
     readonly property bool isFullScreen: root.visibility === Window.FullScreen
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
 
+    readonly property bool showBorders: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
+
     Item
     {
         anchors.fill: parent
@@ -146,7 +148,7 @@ Window
         //          anchors.fill: parent
         //        }
 
-        layer.enabled: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
+        layer.enabled: root.showBorders
 
         layer.effect: OpacityMask
         {
@@ -161,15 +163,15 @@ Window
 
     Loader
     {
-        active: _content.layer.enabled
+        active: root.showBorders
         visible: active
-        z: ApplicationWindow.overlay.z + 9999
+        z:  Overlay.overlay.z
         anchors.fill: parent
         asynchronous: true
 
         sourceComponent: Rectangle
         {
-            radius: Maui.Style.radiusV - 0.5
+            radius: Maui.Style.radiusV
             color: "transparent"
             border.color: Qt.darker(Maui.Theme.backgroundColor, 2.3)
             opacity: 0.5
@@ -184,7 +186,7 @@ Window
                 anchors.fill: parent
                 anchors.margins: 1
                 color: "transparent"
-                radius: parent.radius - 0.5
+                radius: parent.radius
                 border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
                 opacity: 0.7
 

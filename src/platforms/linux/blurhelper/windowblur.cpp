@@ -130,17 +130,19 @@ void WindowBlur::onViewVisibleChanged(bool visible)
 
 void WindowBlur::updateBlur()
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-
     if (!m_view)
         return;
-    
+
     if(KWindowSystem::isPlatformWayland())
     {
         KWindowEffects::enableBlurBehind(m_view, m_enabled);
         KWindowEffects::enableBackgroundContrast(m_view, m_enabled);
         return;
     }
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+
+
     
     xcb_connection_t *c = QX11Info::connection();
     if (!c)

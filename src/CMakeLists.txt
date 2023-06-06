@@ -208,12 +208,11 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/ApplicationWindow.qml
 
     controls.6/ColorTransition.qml
+    controls.6/ColorsRow.qml
     controls.6/ContextualMenu.qml
     controls.6/Chip.qml
     controls.6/CloseButton.qml
     controls.6/CSDControls.qml
-
-    controls.6/Dialog.qml
 
     controls.6/EdgeShadow.qml
 
@@ -224,15 +223,21 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/Icon.qml
     controls.6/IconItem.qml
     controls.6/IconLabel.qml
+    controls.6/InfoDialog.qml
 
+    controls.6/ListBrowser.qml
     controls.6/ListItemTemplate.qml
 
     controls.6/Page.qml
+    controls.6/PasswordField.qml
+    controls.6/PopupPage.qml
 
     controls.6/ScrollColumn.qml
     controls.6/SectionHeader.qml
     controls.6/SectionItem.qml
+    controls.6/SectionGroup.qml
     controls.6/Separator.qml
+    controls.6/SearchField.qml
     controls.6/ShadowedRectangle.qml
 
     controls.6/ToolActions.qml
@@ -249,6 +254,8 @@ ecm_target_qml_sources(MauiKit PATH private SOURCES
     controls.6/private/CheckBoxItem.qml
 
     controls.6/private/ToolBarSection.qml
+
+    controls.6/private/Rectangle.qml
 )
 
 target_sources(MauiKit
