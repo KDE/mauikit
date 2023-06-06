@@ -25,15 +25,14 @@ import Qt5Compat.GraphicalEffects
 
 import org.mauikit.controls as Maui
 
-Maui.Dialog
+Maui.PopupPage
 {
     id: control
-    defaultButtons: false
     persistent: false
     widthHint: 0.9
     heightHint: 0.8
 
-    maxWidth: 360
+    width: 360
     maxHeight: implicitHeight
 
     Maui.Theme.inherit: false

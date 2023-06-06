@@ -14,6 +14,15 @@ Button 2.0 Button.qml
 CheckBox 6.0 CheckBox.qml
 CheckBox 2.0 CheckBox.qml
 
+ComboBox 6.0 ComboBox.qml
+ComboBox 2.0 ComboBox.qml
+
+Dialog 6.0 Dialog.qml
+Dialog 2.0 Dialog.qml
+
+DialogButtonBox 6.0 DialogButtonBox.qml
+DialogButtonBox 2.0 DialogButtonBox.qml
+
 Menu 6.0 Menu.qml
 Menu 2.0 Menu.qml
 
@@ -29,6 +38,12 @@ Popup 2.0 Popup.qml
 ProgressBar 6.0 ProgressBar.qml
 ProgressBar 2.0 ProgressBar.qml
 
+TextField 6.0 TextField.qml
+TextField 2.0 TextField.qml
+
+TextArea 6.0 TextArea.qml
+TextArea 2.0 TextArea.qml
+
 ToolBar 6.0 ToolBar.qml
 ToolBar 2.0 ToolBar.qml
 
@@ -41,8 +56,15 @@ ToolSeparator 2.0 ToolSeparator.qml
 ToolTip 6.0 ToolTip.qml
 ToolTip 2.0 ToolTip.qml
 
+ScrollView 6.0 ScrollView.qml
+ScrollView 2.0 ScrollView.qml
+
 Slider 6.0 Slider.qml
 Slider 2.0 Slider.qml
+
+SpinBox 6.0 SpinBox.qml
+SpinBox 2.0 SpinBox.qml
+
 
 Switch 6.0 Switch.qml
 Switch 2.0 Switch.qml

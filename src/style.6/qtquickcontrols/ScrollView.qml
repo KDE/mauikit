@@ -34,10 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Templates 2.12 as T
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.ScrollView
 {
@@ -51,10 +50,10 @@ T.ScrollView
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: !background || !background.visible
     clip: false
-        
+
     padding: 0
     rightPadding: padding + (Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? 0 : ScrollBar.vertical.width)
-    leftPadding: padding 
+    leftPadding: padding
     topPadding: padding
     bottomPadding: padding + (Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? 0 :ScrollBar.horizontal.height)
     
@@ -64,9 +63,9 @@ T.ScrollView
     {
         id: _wheelHandler
         target: control.contentItem
-            }
+    }
     
-    ScrollBar.vertical: ScrollBar 
+    ScrollBar.vertical: ScrollBar
     {
         parent: control
         width: visible ? implicitWidth : 0
@@ -75,12 +74,12 @@ T.ScrollView
         height: control.availableHeight
         active: control.ScrollBar.vertical.active
         policy: switch(Maui.Style.scrollBarPolicy)
-        {
-            case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
-            case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
-            case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
-            case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
-        }
+                {
+                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+                }
     }
 
     ScrollBar.horizontal: ScrollBar

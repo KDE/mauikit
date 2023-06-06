@@ -17,14 +17,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Window
 
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Layouts 1.3
+import org.mauikit.controls as Maui
+import QtQuick.Layouts
 
-import QtQuick.Templates 2.15 as T
+import QtQuick.Templates as T
 
 /**
  * TextField
@@ -55,14 +54,14 @@ T.TextField
     focus: true
     
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
-    implicitWidth: 200 
+    implicitWidth: 200
     
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignLeft
     
     padding: 0
     property int spacing: Maui.Style.space.small
-        
+
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
     rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
     
@@ -92,7 +91,7 @@ T.TextField
      * cleared
      */
     signal cleared()
-        
+
     /**
      * contentDropped :
      */
@@ -105,50 +104,50 @@ T.TextField
             entryMenu.show()
     }
     
-    Keys.enabled: true  
+    Keys.enabled: true
     
     Shortcut
     {
         sequence: StandardKey.Escape
-        onActivated: 
+        onActivated:
         {
             control.clear()
             control.cleared()
         }
     }
 
-    Behavior on leftPadding 
-    {
-        NumberAnimation 
-        {
-            duration: Maui.Style.units.longDuration
-            easing.type: Easing.InOutQuad
-        }
-    }
-    
-    Behavior on rightPadding 
+    Behavior on leftPadding
     {
         NumberAnimation
         {
             duration: Maui.Style.units.longDuration
             easing.type: Easing.InOutQuad
         }
-    }    
+    }
     
-     RowLayout
+    Behavior on rightPadding
+    {
+        NumberAnimation
+        {
+            duration: Maui.Style.units.longDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
+    
+    RowLayout
     {
         id: _layout
-       anchors.fill: parent   
-            anchors.leftMargin: Maui.Style.space.medium
-            spacing: control.spacing 
-                        
+        anchors.fill: parent
+        anchors.leftMargin: Maui.Style.space.medium
+        spacing: control.spacing
+
         Maui.Icon
         {
             id: _icon
             visible: source ? true : false
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
-            color: control.color   
+            color: control.color
         }
         
         Item
@@ -159,8 +158,8 @@ T.TextField
 
         Item
         {
-           Layout.fillWidth: true
-           visible: !placeholder.visible
+            Layout.fillWidth: true
+            visible: !placeholder.visible
         }
 
         Label
@@ -175,25 +174,25 @@ T.TextField
             wrapMode: Text.NoWrap
             
             visible: opacity > 0
-            opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0  
-                       
+            opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0
+
             
-            Behavior on opacity 
+            Behavior on opacity
             {
                 NumberAnimation
                 {
                     duration: Maui.Style.units.longDuration
                     easing.type: Easing.InOutQuad
                 }
-            }  
-        }      
+            }
+        }
         
         Row
         {
             id: _rightLayout
             
             z: parent.z + 1
-            spacing: control.spacing 
+            spacing: control.spacing
             
             ToolButton
             {
@@ -280,7 +279,7 @@ T.TextField
     {
         asynchronous: true
         sourceComponent: DropArea
-        {            
+        {
             onDropped:
             {
                 console.log(drop.text, drop.html)
@@ -298,8 +297,8 @@ T.TextField
         }
     }
     
-    background: Rectangle 
-    {       
+    background: Rectangle
+    {
         color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
         
         radius: Maui.Style.radiusV

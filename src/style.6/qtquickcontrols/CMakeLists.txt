@@ -7,3 +7,4 @@ file(GLOB qtquickcontrolsfiles
     "*.qml"
 )
 install(FILES ${qtquickcontrolsfiles} DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls/Maui)
+install(DIRECTORY private DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls/Maui)

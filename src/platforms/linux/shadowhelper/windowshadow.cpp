@@ -23,6 +23,8 @@
 #include <QCoreApplication>
 #include <QDBusInterface>
 
+#include <KWindowSystem>
+#include <KWindowEffects>
 
 enum {
     ShadowNone,

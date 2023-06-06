@@ -1,6 +1,4 @@
-#ifndef ABSTRACTPLATFORM_H
-#define ABSTRACTPLATFORM_H
-
+#pragma once
 #include <QList>
 #include <QObject>
 #include <QString>
@@ -21,7 +19,7 @@ class MAUIKIT_EXPORT AbstractPlatform : public QObject
 public:
     explicit AbstractPlatform(QObject *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
 
     /**
      * @brief shareFiles
@@ -51,11 +49,9 @@ public slots:
 
     virtual bool darkModeEnabled() =0;
 
-signals:
+Q_SIGNALS:
     void hasKeyboardChanged();
     void hasMouseChanged();
     void shareFilesRequest(QStringList urls);
     void darkModeEnabledChanged();
 };
-
-#endif // ABSTRACTPLATFORM_H

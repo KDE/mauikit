@@ -414,6 +414,16 @@ Pane
             }
         }
 
+        farRightContent: Loader
+        {
+            active: control.showCSDControls
+            visible: active
+
+            asynchronous: true
+
+            sourceComponent: Maui.WindowControls {}
+        }
+
         middleContent: Loader
         {
             visible: item
@@ -421,6 +431,7 @@ Pane
             sourceComponent: _titleComponent
 
             asynchronous: true
+
             Layout.fillWidth: true
             Layout.fillHeight: true
         }
@@ -800,19 +811,6 @@ Pane
         //onActivated: control.goBackTriggered();
     //}
 
-    Component
-    {
-        id: _csdRightControlsComponent
-        Loader
-        {
-            active: control.showCSDControls
-            visible: active
-            sourceComponent: Maui.WindowControls
-            {
-                
-            }
-        }
-    }
 
     Component.onCompleted :
     {
@@ -831,9 +829,6 @@ Pane
             }
             _headerContent.data = data
         }
-        
-        var obj = _csdRightControlsComponent.createObject(control.headBar.farRightContent, {})
-        control.headBar.farRightContent.push(obj)        
     }
 
     /*!
