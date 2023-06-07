@@ -238,6 +238,7 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/SectionGroup.qml
     controls.6/Separator.qml
     controls.6/SearchField.qml
+    controls.6/SideBarView.qml
     controls.6/ShadowedRectangle.qml
 
     controls.6/ToolActions.qml
@@ -253,9 +254,11 @@ ecm_target_qml_sources(MauiKit PATH private SOURCES
 
     controls.6/private/CheckBoxItem.qml
 
+    controls.6/private/ToastArea.qml
     controls.6/private/ToolBarSection.qml
 
     controls.6/private/Rectangle.qml
+    controls.6/private/SideBar.qml
 )
 
 target_sources(MauiKit

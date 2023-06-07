@@ -30,7 +30,8 @@ ToolButton
       This can be modified for fine tuning the menu position or look.
     */
     property alias menu : _menu
-//    subMenu: _menu.count > 0
+
+    subMenu: _menu.count > 0
     focusPolicy: Qt.NoFocus
     checked: _menu.visible
     display: ToolButton.IconOnly

@@ -19,33 +19,44 @@ Item
 
     visible: Maui.Handy.isTouch && ((target.activeFocus && !selectionStartHandle) || target.selectedText.length > 0)
 
-    Rectangle {
+    Rectangle
+    {
         width: 3
-        anchors {
+        anchors
+        {
             horizontalCenter: parent.horizontalCenter
             top: parent.top
             bottom: parent.bottom
         }
+
         color: Qt.tint(Maui.Theme.highlightColor, Qt.rgba(1,1,1,0.4))
         radius: width
-        Rectangle {
+
+        Rectangle
+        {
             width: Math.round(Maui.Style.units.gridUnit/1.5)
             height: width
 //            visible: MobileTextActionsToolBar.shouldBeVisible
-            anchors {
+            anchors
+            {
                 horizontalCenter: parent.horizontalCenter
                 verticalCenter: parent.bottom
             }
+
             radius: width
             color: Qt.tint(Maui.Theme.highlightColor, Qt.rgba(1,1,1,0.4))
         }
-        MouseArea {
-            anchors {
+
+        MouseArea
+        {
+            anchors
+            {
                 fill: parent
                 margins: -Maui.Style.units.gridUnit
             }
+
             preventStealing: true
-            onPositionChanged: {
+            onPositionChanged: (mouse) => {
                 var pos = mapToItem(target, mouse.x, mouse.y);
                 pos = target.positionAt(pos.x, pos.y);
 
