@@ -32,7 +32,8 @@ T.TextArea
 
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
-clip: false
+
+    clip: false
 
     implicitWidth: Math.max(contentWidth + leftPadding + rightPadding,
                             background ? background.implicitWidth : 0,
@@ -41,7 +42,7 @@ clip: false
                              background ? background.implicitHeight : 0,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.contentMargins
 
     color: Maui.Theme.textColor
     selectionColor: Maui.Theme.highlightColor
@@ -73,7 +74,7 @@ clip: false
         {
             target: control
         }
-    }   
+    }
 
     onPressAndHold:
     {
@@ -108,19 +109,17 @@ clip: false
     
     TapHandler
     {
-        onDoubleTapped: 
+        onDoubleTapped:
         {
             console.log("DOUBLE TAPPEDX")
-             cursorPosition = positionAt(eventPoint.position.x, eventPoint.position.y)
-        selectWord()
+            cursorPosition = positionAt(eventPoint.position.x, eventPoint.position.y)
+            selectWord()
         }
     }
 
     background: Rectangle
     {
-//        y: parent.height - height - control.bottomPadding / 2
-        implicitWidth: 120
-//        height: control.activeFocus ? 2 : 1
+        radius: Maui.Style.radiusV
         color: control.Maui.Theme.backgroundColor
     }
 }

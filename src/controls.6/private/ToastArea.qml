@@ -18,18 +18,18 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Window 2.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
 
-import QtGraphicalEffects 1.12
+import Qt5Compat.GraphicalEffects
 
-import QtQml.Models 2.3
+import QtQml.Models
 
-import QtMultimedia 5.15
+import QtMultimedia
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 Control
 {
@@ -43,23 +43,23 @@ Control
     
     property bool autoClose :  Window.window.active
     
-    SoundEffect 
+    SoundEffect
     {
         id: playSound
         source: "qrc:/assets/notification_simple-01.wav"
     }
     
-    SoundEffect 
+    SoundEffect
     {
         id: _dismissSound
         source: "qrc:/assets/notification_simple-02.wav"
-    }    
+    }
     
     Keys.enabled: true
     Keys.onEscapePressed:
     {
-        control.dismiss()   
-    }     
+        control.dismiss()
+    }
     
     onVisibleChanged:
     {
@@ -73,12 +73,12 @@ Control
     {
         // opacity: 0.8
         
-        onClicked: 
+        onClicked:
         {
             if(_container.count === 1)
-            control.dismiss()
+                control.dismiss()
         }
-        LinearGradient 
+        LinearGradient
         {
             anchors.fill: parent
             start: Qt.point(control.width/2, 0)
@@ -96,11 +96,11 @@ Control
         
         ItemDelegate
         {
-            id: _toast           
+            id: _toast
             
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.inherit: false
-         
+
             readonly property int mindex :  ObjectModel.index
             width: ListView.view.width
             height: _layout.implicitHeight + topPadding +bottomPadding
@@ -113,16 +113,16 @@ Control
             property alias iconSource: _template.iconSource
             property alias imageSource: _template.imageSource
             property alias body: _template.label2.text
-             property var callback : ({})
-             property alias buttonText: _button.text
-             property int timeout : 3500
+            property var callback : ({})
+            property alias buttonText: _button.text
+            property int timeout : 3500
             
             onClicked: control.remove(mindex)
             
             background: Rectangle
             {
                 radius: Maui.Style.radiusV
-                color: _toast.hovered? Maui.Theme.hoverColor : Maui.Theme.backgroundColor  
+                color: _toast.hovered? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
                 
                 layer.enabled: true
                 layer.effect: DropShadow
@@ -143,7 +143,7 @@ Control
                 id: _toastTimer
                 interval: _toast.timeout + (_toast.mindex * 500)
                 
-                onTriggered: 
+                onTriggered:
                 {
                     if(_toast.hovered || _container.hovered || !control.autoClose)
                     {
@@ -177,12 +177,12 @@ Control
                     visible: _toast.callback instanceof Function
                     text: i18n("Accept")
                     Layout.fillWidth: true
-                    onClicked: 
+                    onClicked:
                     {
-                       if(_toast.callback instanceof Function)
-                       {
+                        if(_toast.callback instanceof Function)
+                        {
                             _toast.callback(_toast.mindex)
-                    }
+                        }
                         control.remove(_toast.mindex)
                     }
                 }
@@ -198,84 +198,82 @@ Control
                     if(!active)
                     {
                         if(_dragHandler.centroid.scenePressPosition.x.toFixed(1) - _dragHandler.centroid.scenePosition.x.toFixed(1) > 80)
-                    {                        
-                        control.remove(_toast.mindex)                        
-                    }else
-                    {
-                        _toast.x = 0
-                    }
+                        {
+                            control.remove(_toast.mindex)
+                        }else
+                        {
+                            _toast.x = 0
+                        }
                     }
                 }
             }
         }
-    }   
+    }
     
     contentItem: Item
-    {     
+    {
         
         Container
         {
             id: _container
-         
+
             hoverEnabled: true
             
             width:  Math.min(400, parent.width)
             height: Math.min( _listView.implicitHeight + topPadding + bottomPadding, 500)
             
             anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter                      
+            anchors.horizontalCenter: parent.horizontalCenter
             
-            
-            
-        contentItem: Maui.ListBrowser
-        {
-            id: _listView
-            
-            property bool expanded : true
-            
-                       orientation: ListView.Vertical
-                         snapMode: ListView.SnapOneItem
-                         
-            spacing: Maui.Style.space.medium
-          
-            
-            model: _container.contentModel              
-            
-            footer: Item
+            contentItem: Maui.ListBrowser
             {
-                width: ListView.view.width
-                height: Maui.Style.toolBarHeight
-                Button
-            {
-                id: _dimissButton
-                visible: _container.count > 1
-                       width: parent.width   
-                       anchors.centerIn: parent
-                text: i18n("Dismiss All")
-                onClicked: control.dismiss()
-            }
+                id: _listView
+
+                property bool expanded : true
+
+                orientation: ListView.Vertical
+                snapMode: ListView.SnapOneItem
+
+                spacing: Maui.Style.space.medium
+
+                model: _container.contentModel
+
+                footer: Item
+                {
+                    width: ListView.view.width
+                    height: Maui.Style.toolBarHeight
+
+                    Button
+                    {
+                        id: _dimissButton
+                        visible: _container.count > 1
+                        width: parent.width
+                        anchors.centerIn: parent
+                        text: i18n("Dismiss All")
+                        onClicked: control.dismiss()
+                    }
+                }
             }
         }
-        }   
     }
     
-    function add(icon, title, body, callback, buttonText)
+    function add(icon, title, body, callback = ({}), buttonText = "")
     {
         const properties = ({
-            'iconSource': icon,
-            'title': title,
-            'body': body,
-            'callback': callback,
-            'buttonText': buttonText           
-        })
-        const object = _toastComponent.createObject(_listView.flickable, properties);        
+                                'iconSource': icon,
+                                'title': title,
+                                'body': body,
+                                'callback': callback,
+                                'buttonText': buttonText
+                            })
+        const object = _toastComponent.createObject(_listView.flickable, properties);
         _container.insertItem(0, object)
-        playSound.play() 
+        playSound.play()
     }
     
     
     function dismiss()
-    {        
+    {
         let count = _container.count
         let items = []
         for(var i = 0; i< count; i++)
@@ -285,7 +283,7 @@ Control
         
         for(var j of items)
         {
-            _container.removeItem(j)         
+            _container.removeItem(j)
         }
         
         _dismissSound.play()
@@ -293,6 +291,6 @@ Control
     
     function remove(index)
     {
-        _container.removeItem(_container.itemAt(index))        
-    }    
+        _container.removeItem(_container.itemAt(index))
+    }
 }

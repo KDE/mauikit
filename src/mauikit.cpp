@@ -68,12 +68,12 @@ void MauiKit::registerTypes(const char *uri)
     // @uri org.mauikit.controls
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
     qmlRegisterType(componentUrl(QStringLiteral("ApplicationWindow.qml")), uri, 1, 0, "ApplicationWindow");
-        qmlRegisterType(componentUrl(QStringLiteral("Page.qml")), uri, 1, 0, "Page");
+    qmlRegisterType(componentUrl(QStringLiteral("Page.qml")), uri, 1, 0, "Page");
     //    qmlRegisterType(componentUrl(QStringLiteral("ShareDialog.qml")), uri, 1, 0, "ShareDialog");
     //    qmlRegisterType(componentUrl(QStringLiteral("PieButton.qml")), uri, 1, 0, "PieButton");
     //    qmlRegisterType(componentUrl(QStringLiteral("SideBar.qml")), uri, 1, 0, "SideBar");
-    //    qmlRegisterType(componentUrl(QStringLiteral("SideBarView.qml")), uri, 1, 0, "SideBarView");
-        qmlRegisterType(componentUrl(QStringLiteral("Holder.qml")), uri, 1, 0, "Holder");
+    qmlRegisterType(componentUrl(QStringLiteral("SideBarView.qml")), uri, 1, 0, "SideBarView");
+    qmlRegisterType(componentUrl(QStringLiteral("Holder.qml")), uri, 1, 0, "Holder");
     //    qmlRegisterType(componentUrl(QStringLiteral("GlobalDrawer.qml")), uri, 1, 0, "GlobalDrawer");
     //    qmlRegisterType(componentUrl(QStringLiteral("ListDelegate.qml")), uri, 1, 0, "ListDelegate");
     //    qmlRegisterType(componentUrl(QStringLiteral("ListBrowserDelegate.qml")), uri, 1, 0, "ListBrowserDelegate");
@@ -84,16 +84,16 @@ void MauiKit::registerTypes(const char *uri)
     //    qmlRegisterType(componentUrl(QStringLiteral("SelectionBar.qml")), uri, 1, 0, "SelectionBar");
     //    qmlRegisterType(componentUrl(QStringLiteral("LabelDelegate.qml")), uri, 1, 0, "LabelDelegate");
     //    qmlRegisterType(componentUrl(QStringLiteral("NewDialog.qml")), uri, 1, 0, "NewDialog");
-        qmlRegisterType(componentUrl(QStringLiteral("PopupPage.qml")), uri, 1, 0, "PopupPage");
+    qmlRegisterType(componentUrl(QStringLiteral("PopupPage.qml")), uri, 1, 0, "PopupPage");
     //    qmlRegisterType(componentUrl(QStringLiteral("TextField.qml")), uri, 1, 0, "TextField");
     //    qmlRegisterType(componentUrl(QStringLiteral("Badge.qml")), uri, 1, 0, "Badge");
-        qmlRegisterType(componentUrl(QStringLiteral("ListBrowser.qml")), uri, 1, 0, "ListBrowser");
+    qmlRegisterType(componentUrl(QStringLiteral("ListBrowser.qml")), uri, 1, 0, "ListBrowser");
     //    qmlRegisterType(componentUrl(QStringLiteral("GridBrowser.qml")), uri, 1, 0, "GridBrowser");
     //    qmlRegisterType(componentUrl(QStringLiteral("TabBar.qml")), uri, 1, 0, "TabBar");
     //    qmlRegisterType(componentUrl(QStringLiteral("TabButton.qml")), uri, 1, 0, "TabButton");
-        qmlRegisterType(componentUrl(QStringLiteral("ToolActions.qml")), uri, 1, 0, "ToolActions");
-        qmlRegisterType(componentUrl(QStringLiteral("ToolButtonMenu.qml")), uri, 1, 0, "ToolButtonMenu");
-        qmlRegisterType(componentUrl(QStringLiteral("ListItemTemplate.qml")), uri, 1, 0, "ListItemTemplate");
+    qmlRegisterType(componentUrl(QStringLiteral("ToolActions.qml")), uri, 1, 0, "ToolActions");
+    qmlRegisterType(componentUrl(QStringLiteral("ToolButtonMenu.qml")), uri, 1, 0, "ToolButtonMenu");
+    qmlRegisterType(componentUrl(QStringLiteral("ListItemTemplate.qml")), uri, 1, 0, "ListItemTemplate");
     //    qmlRegisterType(componentUrl(QStringLiteral("GridItemTemplate.qml")), uri, 1, 0, "GridItemTemplate");
 
     //    qmlRegisterType(componentUrl(QStringLiteral("FloatingButton.qml")), uri, 1, 0, "FloatingButton");
@@ -101,8 +101,8 @@ void MauiKit::registerTypes(const char *uri)
     
     //    //Kirigami aliases to be replaced later on
     //    //TODO
-        qmlRegisterType(componentUrl(QStringLiteral("Icon.qml")), uri, 1, 0, "Icon"); //to be remove later
-        qmlRegisterType(componentUrl(QStringLiteral("ShadowedRectangle.qml")), uri, 1, 0, "ShadowedRectangle"); //to be remove later
+    qmlRegisterType(componentUrl(QStringLiteral("Icon.qml")), uri, 1, 0, "Icon"); //to be remove later
+    qmlRegisterType(componentUrl(QStringLiteral("ShadowedRectangle.qml")), uri, 1, 0, "ShadowedRectangle"); //to be remove later
     
     //    /** Shapes **/
     //    qmlRegisterType(componentUrl(QStringLiteral("private/shapes/X.qml")), uri, 1, 0, "X");
@@ -110,8 +110,8 @@ void MauiKit::registerTypes(const char *uri)
     //    qmlRegisterType(componentUrl(QStringLiteral("private/shapes/Arrow.qml")), uri, 1, 0, "Arrow");
     //    qmlRegisterType(componentUrl(QStringLiteral("private/shapes/Triangle.qml")), uri, 1, 0, "Triangle");
     //    qmlRegisterType(componentUrl(QStringLiteral("private/shapes/CheckMark.qml")), uri, 1, 0, "CheckMark");
-        qmlRegisterType(componentUrl(QStringLiteral("private/Rectangle.qml")), uri, 1, 0, "Rectangle");
-        qmlRegisterType(componentUrl(QStringLiteral("private/CheckBoxItem.qml")), uri, 1, 0, "CheckBoxItem");
+    qmlRegisterType(componentUrl(QStringLiteral("private/Rectangle.qml")), uri, 1, 0, "Rectangle");
+    qmlRegisterType(componentUrl(QStringLiteral("private/CheckBoxItem.qml")), uri, 1, 0, "CheckBoxItem");
 
     //    /** 1.1 **/
     //    qmlRegisterType(componentUrl(QStringLiteral("ActionToolBar.qml")), uri, 1, 1, "ActionToolBar");
@@ -120,53 +120,53 @@ void MauiKit::registerTypes(const char *uri)
     //    qmlRegisterType(componentUrl(QStringLiteral("AppViewLoader.qml")), uri, 1, 1, "AppViewLoader");
     //    qmlRegisterType(componentUrl(QStringLiteral("AltBrowser.qml")), uri, 1, 1, "AltBrowser");
     //    qmlRegisterType(componentUrl(QStringLiteral("SettingsDialog.qml")), uri, 1, 1, "SettingsDialog");
-        qmlRegisterType(componentUrl(QStringLiteral("SectionGroup.qml")), uri, 1, 1, "SectionGroup");
+    qmlRegisterType(componentUrl(QStringLiteral("SectionGroup.qml")), uri, 1, 1, "SectionGroup");
     //    qmlRegisterType(componentUrl(QStringLiteral("ImageViewer.qml")), uri, 1, 1, "ImageViewer");
     //    qmlRegisterType(componentUrl(QStringLiteral("AnimatedImageViewer.qml")), uri, 1, 1, "AnimatedImageViewer");
 
     //    /** 1.2 **/
-        qmlRegisterType(componentUrl(QStringLiteral("SectionItem.qml")), uri, 1, 2, "SectionItem");
-        qmlRegisterType(componentUrl(QStringLiteral("Separator.qml")), uri, 1, 2, "Separator");
+    qmlRegisterType(componentUrl(QStringLiteral("SectionItem.qml")), uri, 1, 2, "SectionItem");
+    qmlRegisterType(componentUrl(QStringLiteral("Separator.qml")), uri, 1, 2, "Separator");
 
     //    /** 1.3 **/
     //    qmlRegisterType(componentUrl(QStringLiteral("GalleryRollItem.qml")), uri, 1, 3, "GalleryRollItem");
     //    qmlRegisterType(componentUrl(QStringLiteral("CollageItem.qml")), uri, 1, 3, "CollageItem");
     //    qmlRegisterType(componentUrl(QStringLiteral("FileListingDialog.qml")), uri, 1, 3, "FileListingDialog");
-        qmlRegisterType(componentUrl(QStringLiteral("SectionHeader.qml")), uri, 1, 3, "SectionHeader");
-        qmlRegisterType(componentUrl(QStringLiteral("IconItem.qml")), uri, 1, 3, "IconItem");
+    qmlRegisterType(componentUrl(QStringLiteral("SectionHeader.qml")), uri, 1, 3, "SectionHeader");
+    qmlRegisterType(componentUrl(QStringLiteral("IconItem.qml")), uri, 1, 3, "IconItem");
     //    qmlRegisterType(componentUrl(QStringLiteral("DoodleCanvas.qml")), uri, 1, 3, "DoodleCanvas");
     //    qmlRegisterType(componentUrl(QStringLiteral("Doodle.qml")), uri, 1, 3, "Doodle");
-        qmlRegisterType(componentUrl(QStringLiteral("FlexListItem.qml")), uri, 1, 3, "FlexListItem");
-        qmlRegisterType(componentUrl(QStringLiteral("Chip.qml")), uri, 1, 3, "Chip");
-        qmlRegisterType(componentUrl(QStringLiteral("ContextualMenu.qml")), uri, 1, 3, "ContextualMenu");
+    qmlRegisterType(componentUrl(QStringLiteral("FlexListItem.qml")), uri, 1, 3, "FlexListItem");
+    qmlRegisterType(componentUrl(QStringLiteral("Chip.qml")), uri, 1, 3, "Chip");
+    qmlRegisterType(componentUrl(QStringLiteral("ContextualMenu.qml")), uri, 1, 3, "ContextualMenu");
     //    qmlRegisterType(componentUrl(QStringLiteral("ComboBox.qml")), uri, 1, 3, "ComboBox");
     //    qmlRegisterType(componentUrl(QStringLiteral("FontsComboBox.qml")), uri, 1, 3, "FontsComboBox");
     //    qmlRegisterType(componentUrl(QStringLiteral("TabView.qml")), uri, 1, 3, "TabView");
     //    qmlRegisterType(componentUrl(QStringLiteral("TabViewButton.qml")), uri, 1, 3, "TabViewButton");
-        qmlRegisterType(componentUrl(QStringLiteral("CloseButton.qml")), uri, 1, 3, "CloseButton");
-        qmlRegisterType(componentUrl(QStringLiteral("ColorsRow.qml")), uri, 1, 3, "ColorsRow");
+    qmlRegisterType(componentUrl(QStringLiteral("CloseButton.qml")), uri, 1, 3, "CloseButton");
+    qmlRegisterType(componentUrl(QStringLiteral("ColorsRow.qml")), uri, 1, 3, "ColorsRow");
     //    qmlRegisterType(componentUrl(QStringLiteral("SplitView.qml")), uri, 1, 3, "SplitView");
     //    qmlRegisterType(componentUrl(QStringLiteral("SplitViewItem.qml")), uri, 1, 3, "SplitViewItem");
     //    qmlRegisterType(componentUrl(QStringLiteral("ProgressIndicator.qml")), uri, 1, 3, "ProgressIndicator");
 
     //    qmlRegisterType(componentUrl(QStringLiteral("MenuItemActionRow.qml")), uri, 1, 3, "MenuItemActionRow");
     //    qmlRegisterType(componentUrl(QStringLiteral("GalleryRollTemplate.qml")), uri, 1, 3, "GalleryRollTemplate");
-        qmlRegisterType(componentUrl(QStringLiteral("ScrollColumn.qml")), uri, 1, 3, "ScrollColumn");
+    qmlRegisterType(componentUrl(QStringLiteral("ScrollColumn.qml")), uri, 1, 3, "ScrollColumn");
     //    qmlRegisterType(componentUrl(QStringLiteral("TabViewItem.qml")), uri, 1, 3, "TabViewItem");
     //    qmlRegisterType(componentUrl(QStringLiteral("SettingsPage.qml")), uri, 1, 3, "SettingsPage");
-        qmlRegisterType(componentUrl(QStringLiteral("IconLabel.qml")), uri, 1, 3, "IconLabel");
-        qmlRegisterType(componentUrl(QStringLiteral("InfoDialog.qml")), uri, 1, 3, "InfoDialog");
+    qmlRegisterType(componentUrl(QStringLiteral("IconLabel.qml")), uri, 1, 3, "IconLabel");
+    qmlRegisterType(componentUrl(QStringLiteral("InfoDialog.qml")), uri, 1, 3, "InfoDialog");
     //    qmlRegisterType(componentUrl(QStringLiteral("FontPicker.qml")), uri, 1, 3, "FontPicker");
     //    qmlRegisterType(componentUrl(QStringLiteral("FontPickerDialog.qml")), uri, 1, 3, "FontPickerDialog");
     //    qmlRegisterType(componentUrl(QStringLiteral("TextFieldPopup.qml")), uri, 1, 3, "TextFieldPopup");
     
     //    //backwars compatible
-        qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
-        qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
+    qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
+    qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
     //    qmlRegisterType(componentUrl(QStringLiteral("ScrollView.qml")), uri, 1, 0, "ScrollView");
     //    qmlRegisterType(componentUrl(QStringLiteral("StackView.qml")), uri, 1, 0, "StackView");
-        qmlRegisterType(componentUrl(QStringLiteral("ColorTransition.qml")), uri, 1, 0, "ColorTransition");
-        qmlRegisterType(componentUrl(QStringLiteral("EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
+    qmlRegisterType(componentUrl(QStringLiteral("ColorTransition.qml")), uri, 1, 0, "ColorTransition");
+    qmlRegisterType(componentUrl(QStringLiteral("EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
     
     //    /// NON UI CONTROLS
     //    qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
@@ -195,20 +195,20 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType<FontPickerModel>(uri, 1, 3, "PageLayout");
     
     //    /** Experimental **/
-    #ifdef Q_OS_WIN32
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
-    #elif defined Q_OS_MAC
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
-    #elif defined Q_OS_ANDROID
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
-    #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-        qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
-    #if defined Q_PROCESSOR_ARM
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
-    #else
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
-    #endif
-    #endif
+#ifdef Q_OS_WIN32
+    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+#elif defined Q_OS_MAC
+    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
+#elif defined Q_OS_ANDROID
+    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+#elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
+    qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
+#if defined Q_PROCESSOR_ARM
+    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+#else
+    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+#endif
+#endif
 
     //#ifdef Q_OS_ANDROID
     //    qmlRegisterSingletonType<MAUIAndroid>(uri, 1, 0, "Android", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
@@ -224,8 +224,8 @@ void MauiKit::registerTypes(const char *uri)
 
     //#endif
 
-        qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
-        qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
+    qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
+    qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
 
     //    /** DATA MODELING TEMPLATED INTERFACES **/
     //    qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST

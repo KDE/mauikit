@@ -5,41 +5,51 @@
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QQuickStyle>
-#ifdef Q_OS_ANDROID
+
 #include <QGuiApplication>
 #include <QIcon>
-#else
-#include <QApplication>
-#endif
+
+#include <KLocalizedString>
+#include <KAboutData>
 
 #include <MauiKit/Core/mauiapp.h>
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    
-#ifdef Q_OS_ANDROID
     QGuiApplication app(argc, argv);
-    //    QGuiApplication::styleHints()->setMousePressAndHoldInterval(2000); // in [ms]
-#else
-    QApplication app(argc, argv);
-#endif
 
-    app.setApplicationName("MauiDemo");
-    app.setApplicationVersion("1.0.0");
-    app.setApplicationDisplayName("Maui Demo");
+    app.setOrganizationName(QStringLiteral("Maui"));
     app.setWindowIcon(QIcon(":/../assets/mauidemo.svg"));
 
-        MauiApp::instance()->setIconName("qrc:/../assets/mauidemo.svg");
+    KLocalizedString::setApplicationDomain("mauidemo");
+
+    KAboutData about(QStringLiteral("mauidemo"), i18n("Maui Demo"), "3.0.0", i18n("MauiKit Qt6 Demo."),
+                     KAboutLicense::LGPL_V3, i18n("© 2023-%1 Maui Development Team", QString::number(QDate::currentDate().year())), "qt6-2");
+
+    about.addAuthor(i18n("Camilo Higuita"), i18n("Developer"), QStringLiteral("milo.h@aol.com"));
+    about.setHomepage("https://mauikit.org");
+    about.setProductName("maui/index");
+    about.setBugAddress("https://invent.kde.org/maui/index-fm/-/issues");
+    about.setOrganizationDomain("org.qt6.tst");
+    about.setProgramLogo(app.windowIcon());
+    about.addComponent("KIO");
+
+    KAboutData::setApplicationData(about);
+    MauiApp::instance()->setIconName("qrc:/../assets/mauidemo.svg");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+    const QUrl url(u"qrc:/MauiDemo/main.qml"_qs);
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+
+    engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+
+    engine.load(url);
+
 
     return app.exec();
 }

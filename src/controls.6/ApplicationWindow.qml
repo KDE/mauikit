@@ -142,11 +142,11 @@ Window
             anchors.fill: parent
         }
 
-        //        Private.ToastArea
-        //        {
-        //          id: _toastArea
-        //          anchors.fill: parent
-        //        }
+        Private.ToastArea
+        {
+            id: _toastArea
+            anchors.fill: parent
+        }
 
         layer.enabled: root.showBorders
 
