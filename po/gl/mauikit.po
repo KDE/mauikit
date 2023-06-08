@@ -1,0 +1,272 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the mauikit package.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mauikit\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-05-13 00:45+0000\n"
+"PO-Revision-Date: 2023-06-07 09:15+0200\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.1\n"
+
+#: src/controls/Dialog.qml:358 src/controls/NewDialog.qml:28
+#, kde-format
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
+#: src/controls/private/ToastArea.qml:178
+#, kde-format
+msgid "Accept"
+msgstr "Aceptar"
+
+#: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
+#, kde-format
+msgid "Highlighter"
+msgstr "Realzador"
+
+#: src/controls/Doodle.qml:137
+#, kde-format
+msgid "Marker"
+msgstr "Marcador"
+
+#: src/controls/Doodle.qml:159
+#, kde-format
+msgid "Eraser"
+msgstr "Borrador"
+
+#: src/controls/Doodle.qml:174
+#, kde-format
+msgid "Color"
+msgstr "Cor"
+
+#: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
+#, kde-format
+msgid "Opacity"
+msgstr "Opacidade"
+
+#: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
+#: src/controls/FontPicker.qml:99
+#, kde-format
+msgid "Size"
+msgstr "Tamaño"
+
+#: src/controls/FontPicker.qml:56
+#, kde-format
+msgid "Family"
+msgstr "Familia"
+
+#: src/controls/FontPicker.qml:57
+#, kde-format
+msgid "Pick the font family."
+msgstr "Escolla a familia do tipo de letra."
+
+#: src/controls/FontPicker.qml:80
+#, kde-format
+msgid "Style"
+msgstr "Estilo"
+
+#: src/controls/FontPicker.qml:81
+#, kde-format
+msgid "Font style."
+msgstr "Estilo do tipo de letra."
+
+#: src/controls/FontPicker.qml:100
+#, kde-format
+msgid "Font size from recommended values."
+msgstr "Tipo de letra dos valores recomendados."
+
+#: src/controls/FontPicker.qml:118
+#, kde-format
+msgid "Monospaced Fonts"
+msgstr "Tipos de letra monoespazo"
+
+#: src/controls/FontPicker.qml:119
+#, kde-format
+msgid "Display only monospaced fonts."
+msgstr "Mostrar só os tipos de letra monoespazo."
+
+#: src/controls/FontPicker.qml:130
+#, kde-format
+msgid "Preview"
+msgstr "Vista previa"
+
+#: src/controls/FontPicker.qml:131
+#, kde-format
+msgid "Test the font."
+msgstr "Probar o tipo de letra."
+
+#: src/controls/FontPicker.qml:139
+#, kde-format
+msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
+msgstr "Fíxate, o mesquiño bacharel pide vinganza"
+
+#: src/controls/FontPickerDialog.qml:35
+#, kde-format
+msgid "Fonts"
+msgstr "Fontes"
+
+#: src/controls/ImageViewer.qml:177
+#, kde-format
+msgid "Oops!"
+msgstr "Oh oh!"
+
+#: src/controls/ImageViewer.qml:178
+#, kde-format
+msgid "The image could not be loaded."
+msgstr "Non se puido cargar a imaxe."
+
+#: src/controls/private/AboutDialog.qml:107
+#, kde-format
+msgid "Authors"
+msgstr "Autoría"
+
+#: src/controls/private/AboutDialog.qml:152
+#, kde-format
+msgid "Translators"
+msgstr "Tradución"
+
+#: src/controls/private/AboutDialog.qml:195
+#, kde-format
+msgid "Credits"
+msgstr "Recoñecementos"
+
+#: src/controls/private/AboutDialog.qml:243
+#, kde-format
+msgid "Licenses"
+msgstr "Licenzas"
+
+#: src/controls/private/AboutDialog.qml:275
+#, kde-format
+msgid "Components"
+msgstr "Compoñentes"
+
+#: src/controls/private/AboutDialog.qml:313
+#, kde-format
+msgid "Links"
+msgstr "Ligazóns"
+
+#: src/controls/private/AboutDialog.qml:328
+#, kde-format
+msgid "Reports"
+msgstr "Informes"
+
+#: src/controls/private/AboutDialog.qml:335
+#, kde-format
+msgid "Home Page"
+msgstr "Páxina web"
+
+#: src/controls/private/ToastArea.qml:254
+#, kde-format
+msgid "Dismiss All"
+msgstr "Ignoralo todo"
+
+#: src/controls/SettingsPage.qml:10
+#, kde-format
+msgid "Settings"
+msgstr "Configuración"
+
+#: src/controls/ShareDialogLinux.qml:59
+#, kde-format
+msgid "Share with"
+msgstr "Compartir con"
+
+#: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
+#, kde-format
+msgid "Close Split"
+msgstr "Pechar a división"
+
+#: src/controls/TabView.qml:116
+#, kde-format
+msgid "Open"
+msgstr "Abrir"
+
+#: src/controls/TabView.qml:127
+#, kde-format
+msgid "Duplicate"
+msgstr "Duplicar"
+
+#: src/controls/TabView.qml:135
+#, kde-format
+msgid "Close"
+msgstr "Pechar"
+
+#: src/controls/TabView.qml:145
+#, kde-format
+msgid "Close Other"
+msgstr "Pechar o resto"
+
+#: src/controls/TabView.qml:154
+#, kde-format
+msgid "Close All"
+msgstr "Pechalo todo"
+
+#: src/maui-style/TextField.qml:235
+#, kde-format
+msgid "Copy"
+msgstr "Copiar"
+
+#: src/maui-style/TextField.qml:242
+#, kde-format
+msgid "Cut"
+msgstr "Cortar"
+
+#: src/maui-style/TextField.qml:249
+#, kde-format
+msgid "Paste"
+msgstr "Pegar"
+
+#: src/maui-style/TextField.qml:259
+#, kde-format
+msgid "Select All"
+msgstr "Seleccionalo todo"
+
+#: src/maui-style/TextField.qml:266
+#, kde-format
+msgid "Undo"
+msgstr "Desfacer"
+
+#: src/maui-style/TextField.qml:273
+#, kde-format
+msgid "Redo"
+msgstr "Refacer"
+
+#: src/utils/mauiapp.cpp:46
+#, kde-format
+msgid "Multi-adaptable user interfaces."
+msgstr "Interfaces de usuario adaptábeis."
+
+#: src/utils/mauiapp.cpp:67
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Adrian Chaves (Gallaecio)"
+
+#: src/utils/mauiapp.cpp:68
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "adrian@chaves.io"
+
+#: src/utils/mauiapp.cpp:73
+#, kde-format
+msgid "KDE Frameworks"
+msgstr "Infraestruturas de KDE"
+
+#: src/utils/mauiapp.cpp:75
+#, kde-format
+msgid "MauiKit Frameworks"
+msgstr "Infraestruturas de MauiKit"
+
+#: src/utils/mauiapp.cpp:78
+#, kde-format
+msgid "Luv Icon Theme"
+msgstr "Tema de iconas Luv"
