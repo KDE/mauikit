@@ -73,9 +73,12 @@ T.SpinBox
         bottom: Math.min(control.from, control.to)
         top: Math.max(control.from, control.to)
     }
+    property int wheelDelta
+
     
     contentItem: TextInput
     {
+
         text: control.textFromValue(control.value, control.locale)
         opacity: control.enabled ? 1 : 0.3
         
@@ -99,22 +102,22 @@ T.SpinBox
         MouseArea
         {
             anchors.fill: parent
-            onPressed: mouse.accepted = false;
+            onPressed: (mouse) => mouse.accepted = false;
             onExited: wheelDelta = 0
-            onWheel:
+            onWheel: (wheel) =>
             {
                 wheelDelta += wheel.angleDelta.y;
                 // magic number 120 for common "one click"
                 // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
                 while (wheelDelta >= 120) {
                     wheelDelta -= 120;
-                    controlRoot.increase();
-                    controlRoot.valueModified();
+                    control.increase();
+                    control.valueModified();
                 }
                 while (wheelDelta <= -120) {
                     wheelDelta += 120;
-                    controlRoot.decrease();
-                    controlRoot.valueModified();
+                    control.decrease();
+                    control.valueModified();
                 }
             }
             cursorShape: Qt.IBeamCursor

@@ -17,11 +17,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
+import org.mauikit.controls  as Maui
 
 /**
  * ItemDelegate
@@ -33,7 +32,7 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.Control
+Control
 {
     id: control
     
@@ -128,7 +127,7 @@ T.Control
         
         property bool pressAndHoldIgnored : false
 
-        onClicked:
+        onClicked: (mouse) =>
         {
             if(mouse.button === Qt.RightButton)
             {
@@ -140,12 +139,12 @@ T.Control
             }
         }
 
-        onDoubleClicked:
+        onDoubleClicked: (mouse) =>
         {
             control.doubleClicked(mouse)
         }
 
-        onPressed:
+        onPressed: (mouse) =>
         {
             if(control.draggable && mouse.source !== Qt.MouseEventSynthesizedByQt)
             {
@@ -163,7 +162,7 @@ T.Control
             control.pressed(mouse)
         }
 
-        onReleased :
+        onReleased : (mouse) =>
         {
             _content.x = 0
             _content.y = 0
@@ -180,7 +179,7 @@ T.Control
             }
         }
 
-        onPressAndHold :
+        onPressAndHold : (mouse) =>
         {
             xAnim.running = control.draggable || mouse.source === Qt.MouseEventSynthesizedByQt
 
@@ -202,7 +201,7 @@ T.Control
             }
         }
 
-        onPositionChanged:
+        onPositionChanged: (mouse) =>
         {
             if(control.draggable)
             {

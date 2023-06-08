@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Maui Demo
+Comment=MauiKit Demo App
+TryExec=MauiDemo
+Exec=MauiDemo
+Terminal=false
+Type=Application
+Categories=Qt;KDE;Utility;TextEditor;
+GenericName=MauiKit Demo
+StartupNotify=true
+Icon=mauidemo

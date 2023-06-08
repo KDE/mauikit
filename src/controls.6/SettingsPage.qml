@@ -1,6 +1,4 @@
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
+import org.mauikit.controls as Maui
 
 Maui.ScrollColumn
 {

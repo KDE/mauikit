@@ -154,7 +154,7 @@ class CSDControls : public QObject
     Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD RESET resetEnableCSD NOTIFY enableCSDChanged)
     Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
     Q_PROPERTY(QString styleName READ styleName NOTIFY styleNameChanged FINAL)
-    Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls FINAL)
+    Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls FINAL CONSTANT)
 
 public:
     typedef QHash<CSDButton::CSDButtonType, CSDButton*> CSDButtons;

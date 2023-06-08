@@ -39,7 +39,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     MauiApp::instance()->setIconName("qrc:/../assets/mauidemo.svg");
 
     QQmlApplicationEngine engine;
-    const QUrl url(u"qrc:/MauiDemo/main.qml"_qs);
+    const QUrl url(u"qrc:/qt/qml/MauiDemo/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)

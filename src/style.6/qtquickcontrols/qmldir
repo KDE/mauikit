@@ -38,6 +38,21 @@ Popup 2.0 Popup.qml
 ProgressBar 6.0 ProgressBar.qml
 ProgressBar 2.0 ProgressBar.qml
 
+RadioButton 6.0 RadioButton.qml
+RadioButton 2.0 RadioButton.qml
+
+ScrollView 6.0 ScrollView.qml
+ScrollView 2.0 ScrollView.qml
+
+Slider 6.0 Slider.qml
+Slider 2.0 Slider.qml
+
+SpinBox 6.0 SpinBox.qml
+SpinBox 2.0 SpinBox.qml
+
+Switch 6.0 Switch.qml
+Switch 2.0 Switch.qml
+
 TextField 6.0 TextField.qml
 TextField 2.0 TextField.qml
 
@@ -56,15 +71,3 @@ ToolSeparator 2.0 ToolSeparator.qml
 ToolTip 6.0 ToolTip.qml
 ToolTip 2.0 ToolTip.qml
 
-ScrollView 6.0 ScrollView.qml
-ScrollView 2.0 ScrollView.qml
-
-Slider 6.0 Slider.qml
-Slider 2.0 Slider.qml
-
-SpinBox 6.0 SpinBox.qml
-SpinBox 2.0 SpinBox.qml
-
-
-Switch 6.0 Switch.qml
-Switch 2.0 Switch.qml

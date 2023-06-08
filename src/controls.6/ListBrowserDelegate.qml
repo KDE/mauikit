@@ -17,15 +17,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQml 2.14
+import QtQuick
+import QtQml
 
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
-
-import "private" as Private
+import org.mauikit.controls as Maui
 
 /**
  * ListBrowserDelegate
@@ -158,8 +156,8 @@ Maui.ItemDelegate
 
     background: Rectangle
     {
-      color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
-      
+        color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
+
         radius: control.radius
 
         Rectangle
@@ -170,16 +168,17 @@ Maui.ItemDelegate
             visible: control.containsDrag
             color:  control.Maui.Theme.backgroundColor
             border.color: control.Maui.Theme.highlightColor
+
             Behavior on color
             {
-              Maui.ColorTransition{}
+                Maui.ColorTransition{}
             }
         }
 
         Behavior on color
         {
-          enabled: !control.flat
-          Maui.ColorTransition{}
+            enabled: !control.flat
+            Maui.ColorTransition{}
         }
     }
 
@@ -190,15 +189,15 @@ Maui.ItemDelegate
         height: parent.height
         enabled: control.draggable
 
-        onDropped:
-        {
-            control.contentDropped(drop)
-        }
+        onDropped: (drop) =>
+                   {
+                       control.contentDropped(drop)
+                   }
 
-        onEntered:
-        {
-            control.contentEntered(drag)
-        }
+        onEntered: (drop) =>
+                   {
+                       control.contentEntered(drag)
+                   }
     }
 
     RowLayout
@@ -227,18 +226,18 @@ Maui.ItemDelegate
             }
             
             sourceComponent: CheckBox
-                {                    
-                    checkable: control.checkable
-                    autoExclusive: control.autoExclusive
-                                        
-                    Binding on checked
-                    {
-                        value: control.checked
-                        restoreMode: Binding.RestoreBinding
-                    }
-                    
-                    onToggled: control.toggled(state)
-                }   
+            {
+                checkable: control.checkable
+                autoExclusive: control.autoExclusive
+
+                Binding on checked
+                {
+                    value: control.checked
+                    restoreMode: Binding.RestoreBinding
+                }
+
+                onToggled: (state) => control.toggled(state)
+            }
         }
 
         Maui.ListItemTemplate
@@ -251,7 +250,7 @@ Maui.ItemDelegate
             
             hovered: control.hovered
             isCurrentItem : control.isCurrentItem
-            highlighted: control.containsPress 
+            highlighted: control.containsPress
         }
     }
 }
