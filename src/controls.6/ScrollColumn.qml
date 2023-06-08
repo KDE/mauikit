@@ -44,8 +44,7 @@ ScrollView
     Flickable
     {
         id: _flickable
-        topMargin: 0
-        bottomMargin: 0
+
         boundsBehavior: Flickable.StopAtBounds
         boundsMovement: Flickable.StopAtBounds
 

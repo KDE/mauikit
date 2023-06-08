@@ -224,8 +224,11 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/IconItem.qml
     controls.6/IconLabel.qml
     controls.6/InfoDialog.qml
+    controls.6/ItemDelegate.qml
 
     controls.6/ListBrowser.qml
+    controls.6/ListBrowserDelegate.qml
+    controls.6/ListDelegate.qml
     controls.6/ListItemTemplate.qml
 
     controls.6/Page.qml

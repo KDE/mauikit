@@ -77,12 +77,7 @@ T.Control
      * defaultIconName : string
      */
     property string defaultIconName: "application-menu"
-    //     border.color: control.flat ? "transparent" : Qt.tint(Maui.Theme.textColor, Qt.rgba(Maui.Theme.backgroundColor.r, Maui.Theme.backgroundColor.g, Maui.Theme.backgroundColor.b, 0.7))
-    
-    //radius: Maui.Style.radiusV
-    //color: !control.enabled || control.flat ? "transparent" : Maui.Theme.backgroundColor
 
-    
     /**
      *
      */
@@ -247,7 +242,6 @@ T.Control
                 }
             }
 
-
             data: Maui.ContextualMenu
             {
                 id: _menu
@@ -297,7 +291,7 @@ T.Control
 
             enabled: m_action ? m_action.enabled : true
 
-//            subMenu: !control.canCyclic
+            subMenu: !control.canCyclic
 
             display: control.display
 

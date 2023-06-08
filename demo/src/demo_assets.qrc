@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/mauidemo.svg</file>
+        <file>assets/mauikit-logo.png</file>
+    </qresource>
+</RCC>

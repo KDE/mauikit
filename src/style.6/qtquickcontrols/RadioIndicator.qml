@@ -34,8 +34,9 @@
  **
  ****************************************************************************/
 
-import QtQuick 2.15
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import org.mauikit.controls as Maui
+
 Maui.CheckBoxItem 
 {
     id: indicator

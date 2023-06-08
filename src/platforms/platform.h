@@ -1,6 +1,4 @@
-#ifndef PLATFORM_H
-#define PLATFORM_H
-
+#pragma once
 #include <QObject>
 #include <QQmlEngine>
 
@@ -28,7 +26,7 @@ public:
     Platform &operator=(Platform &&) = delete;
 
     // AbstractPlatform interface
-public slots:
+public Q_SLOTS:
     void shareFiles(const QList<QUrl> &urls) override final;
     void shareText(const QString &text) override final;
     bool hasKeyboard() override final;
@@ -44,4 +42,3 @@ private:
 };
 
 QML_DECLARE_TYPEINFO(Platform, QML_HAS_ATTACHED_PROPERTIES)
-#endif // PLATFORM_H

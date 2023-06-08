@@ -20,15 +20,16 @@
  */
 
 
-import QtQuick 2.6
-import QtQuick.Templates 2.3 as T
-import QtQuick.Controls 2.3
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.RadioButton 
 {
     id: control
-property alias m_control: control
+
+    property alias m_control: control
+
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
@@ -37,7 +38,7 @@ property alias m_control: control
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     padding: 0
-    spacing: Maui.Style.space.small    
+    spacing: Maui.Style.space.small
     
     hoverEnabled: true
 
@@ -52,7 +53,7 @@ property alias m_control: control
         control: m_control
     }
 
-    contentItem: Label 
+    contentItem: Label
     {
         leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
         rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
