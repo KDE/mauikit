@@ -8,8 +8,11 @@ qt_add_executable(${PROJECT_NAME}
 set(QML_SRCS
     main.qml
     controls/ButtonsPage.qml
+    controls/InputsPage.qml
+    controls/MauiPage.qml
     controls/DemoPage.qml
     controls/DemoSection.qml
+    controls/SplitViewPage.qml
 )
 
 qt_add_qml_module(${PROJECT_NAME}

@@ -20,6 +20,35 @@ Maui.ApplicationWindow
         }
     }
 
+
+    Component
+    {
+        id: _inputsPage
+        InputsPage
+        {
+            title: i18n("Input Fields")
+        }
+    }
+
+    Component
+    {
+        id: _pagePage
+        MauiPage
+        {
+            title: i18n("Page")
+        }
+    }
+
+    Component
+    {
+        id: _splitPage
+        SplitViewPage
+        {
+            title: i18n("SplitView")
+        }
+    }
+
+
     Maui.SideBarView
     {
         id: _sidebarView
@@ -27,13 +56,20 @@ Maui.ApplicationWindow
         sideBarContent: Pane
         {
             anchors.fill: parent
-            padding: Maui.Style.space.medium
+            padding: 0
             Maui.Theme.colorSet: Maui.Theme.Window
 
             Maui.ScrollColumn
             {
                 id: _layout
                 anchors.fill: parent
+
+                Button
+                {
+                    Layout.fillWidth: true
+                    text: i18n("About")
+                    onClicked: root.about()
+                }
 
                 Maui.SectionGroup
                 {
@@ -49,12 +85,16 @@ Maui.ApplicationWindow
                         {
                             Layout.fillWidth: true
                             label: i18n("Page")
+                            onClicked: root.pushPage(_pagePage)
+
                         }
 
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true
                             label: i18n("SplitView")
+                            onClicked: root.pushPage(_splitPage)
+
                         }
 
                     }
@@ -90,25 +130,6 @@ Maui.ApplicationWindow
                             Layout.fillWidth: true
                             label: i18n("AppViews")
 
-                        }
-                    }
-
-                    Maui.SectionItem
-                    {
-                        label1.text: i18n("Buttons")
-                        columns: 1
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Common")
-                            onClicked: root.pushPage(_buttonsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Checkable")
                         }
                     }
 
@@ -203,149 +224,46 @@ Maui.ApplicationWindow
                         }
 
                     }
-                }
 
-                Maui.SectionGroup
-                {
-                    title: i18n ("Common")
-                    description: i18n("Baseline controls")
 
                     Maui.SectionItem
                     {
-                        Layout.fillWidth: true
-                        label1.text: i18n("Buttons")
-                        label2.text: i18n("Adaptive views for contents")
+                        label1.text: i18n ("Common")
+                        label2.text: i18n("Baseline controls")
+                        columns: 1
 
-                        Column
+                        Maui.ListDelegate
                         {
-                            width: parent.parent.width
-                            spacing: Maui.Style.space.medium
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("Button")
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("ToolButton")
-
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("RadioButton")
-
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("Switch")
-
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("CheckBox")
-
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("TabButton")
-
-                            }
+                            Layout.fillWidth: true
+                            label: i18n("Buttons")
+                            onClicked: root.pushPage(_buttonsPage)
                         }
 
-                    }
-
-                    Maui.SectionItem
-                    {
-                        Layout.fillWidth: true
-                        label1.text: i18n("Sliders")
-                        label2.text: i18n("Adaptive views for contents")
-
-                        Column
+                        Maui.ListDelegate
                         {
-                            width: parent.parent.width
-                            spacing: Maui.Style.space.medium
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("Slider")
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("ProgressBar")
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                width: parent.width
-                                label: i18n("Range")
-                            }
+                            Layout.fillWidth: true
+                            label: i18n("Labels")
                         }
-                    }
 
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Buttons")
-                    }
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Text")
-                    }
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Input")
+                            onClicked: root.pushPage(_inputsPage)
 
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Input")
-                    }
+                        }
 
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Bars")
-                    }
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Bars")
+                        }
 
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Popups")
-                    }
-                }
-
-                Maui.SectionGroup
-                {
-                    title: i18n ("Custom")
-                    description: i18n("Baseline controls")
-
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Bars")
-                    }
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Text")
-                    }
-
-                    Maui.ListDelegate
-                    {
-                        Layout.fillWidth: true
-                        label: i18n("Input")
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Popups")
+                        }
                     }
                 }
             }
@@ -456,81 +374,16 @@ Maui.ApplicationWindow
                 anchors.fill: parent
                 padding: Maui.Style.space.huge
 
-                initialItem: DemoPage
+                initialItem: Item
                 {
-                    Pane
+                    property string title: i18n("Home")
+                    Maui.Holder
                     {
-                        id: _descriptionPane
-                        Layout.fillWidth: true
-
-                        background: Rectangle
-                        {
-                            radius: Maui.Style.radiusV
-                            color: Maui.Theme.alternateBackgroundColor
-                        }
-
-                        contentItem: Maui.SectionGroup
-                        {
-                            title: i18n("Control Title")
-                            description: i18n("Control description")
-
-                            TextArea
-                            {
-                                Layout.fillWidth: true
-                                text: "import org.mauikit.controls 1.3 as Maui\n Maui.Control {}"
-                                font.family: "Monospace"
-
-                            }
-                        }
-                    }
-
-                    Pane
-                    {
-                        id: _demoPane
-                        Layout.fillWidth: true
-                        //                       Layout.maximumHeight: 800
-                        Layout.minimumHeight: 800
-                        //                       Layout.preferredHeight: 400
-                        //                       Layout.fillHeight: true
-
-                        background: Rectangle
-                        {
-                            radius: Maui.Style.radiusV
-                            color: Maui.Theme.alternateBackgroundColor
-                        }
-
-                        contentItem: Item
-                        {
-                            Maui.Page
-                            {
-                                anchors.fill: parent
-
-                                headBar.leftContent: Switch
-                                {
-                                    icon.name: "love"
-                                }
-
-                                ColumnLayout
-                                {
-                                    anchors.fill: parent
-
-                                    Rectangle
-                                    {
-                                        Layout.fillWidth: true
-                                        color: "blue"
-                                        Layout.preferredHeight: 200
-                                    }
-
-                                    Rectangle
-                                    {
-                                        color: "yellow"
-                                        Layout.fillHeight: true
-                                        Layout.fillWidth: true
-
-                                    }
-                                }
-                            }
-                        }
+                        anchors.fill: parent
+                        emoji: "start-here"
+                        isMask: false
+                        title: i18n("MauiKit Demo")
+                        body: i18n("Welcome to the Maui Demo application. This app serves to demostrate the available controls in MauiKit and also the style and behaviour of the elements. Use it as a reference to discover the power of the MauiKit Controls!")
                     }
                 }
             }

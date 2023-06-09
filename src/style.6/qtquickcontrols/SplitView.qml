@@ -4,16 +4,19 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQml
+import QtQuick.Templates as T
 
-import QtQuick.Templates 2.15 as T
-
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 T.SplitView
 {
     id: control
+
+    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
@@ -22,43 +25,45 @@ T.SplitView
     clip: true
     focus: true
     padding: 0
-        
+
     Component
     {
         id: _horizontalHandleComponent
         
         Rectangle
         {
-           
-            implicitWidth: 20
-            implicitHeight: 20
-            
+            Maui.Theme.colorSet: Maui.Theme.Window
+            Maui.Theme.inherit: false
+
+            implicitWidth: 10
+            implicitHeight: 10
+
             color: Maui.Theme.backgroundColor
-            
+
             Behavior on color
             {
                 Maui.ColorTransition{}
             }
-            
+
             Rectangle
             {
                 property int length: pressed ? 80 : 48
                 
                 Behavior on length
                 {
-                    NumberAnimation 
+                    NumberAnimation
                     {
                         duration: Maui.Style.units.shortDuration
                     }
-                }                
+                }
                 
-                Behavior on opacity 
+                Behavior on opacity
                 {
                     NumberAnimation
                     {
                         duration: Maui.Style.units.shortDuration
                     }
-                }  
+                }
                 
                 opacity: pressed ? 1 : 0.2
                 
@@ -72,8 +77,8 @@ T.SplitView
                 Behavior on color
                 {
                     Maui.ColorTransition{}
-                }                
-            }            
+                }
+            }
         }
     }
     
@@ -83,37 +88,38 @@ T.SplitView
         
         Rectangle
         {
-            Maui.Theme.colorSet: Maui.Theme.Header
+            Maui.Theme.colorSet: Maui.Theme.Window
             Maui.Theme.inherit: false
-            implicitWidth: 20
-            implicitHeight: 20
-            
+
+            implicitWidth: 10
+            implicitHeight: 10
+
             color: Maui.Theme.backgroundColor
-            
+
             Behavior on color
             {
                 Maui.ColorTransition{}
-            }                       
-                        
+            }
+
             Rectangle
             {
                 property int length: pressed ? 80 : 48
                 
                 Behavior on length
                 {
-                    NumberAnimation 
+                    NumberAnimation
                     {
                         duration: 100
                     }
-                }    
+                }
                 
-                Behavior on opacity 
+                Behavior on opacity
                 {
                     NumberAnimation
                     {
                         duration: 100
                     }
-                }  
+                }
                 
                 Behavior on color
                 {

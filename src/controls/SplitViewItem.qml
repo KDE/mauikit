@@ -20,7 +20,7 @@ Item
     readonly property int splitIndex : ObjectModel.index
     
     property int minimumWidth : 200
-    property int minimumHeight : 100    
+    property int minimumHeight : 100
     
     SplitView.fillHeight: true
     SplitView.fillWidth: true
@@ -31,7 +31,7 @@ Item
     SplitView.preferredWidth: SplitView.view.orientation === Qt.Horizontal ? SplitView.view.width / (SplitView.view.count) : SplitView.view.width
     SplitView.minimumWidth: SplitView.view.orientation === Qt.Horizontal ? minimumWidth :  0
     
-    clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0        
+    clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0
     
     Item
     {
@@ -43,15 +43,15 @@ Item
     {
         asynchronous: true
         anchors.fill: parent
-        active: control.SplitView.view.resizing 
+        active: control.SplitView.view.resizing
         visible: active
         sourceComponent: Rectangle
-        {            
+        {
             color: Maui.Theme.backgroundColor
             opacity: (control.minimumWidth) / control.width
         }
     }
-    
+
     Loader
     {
         asynchronous: true
@@ -62,11 +62,11 @@ Item
         active: control.SplitView.view.currentIndex === splitIndex && control.SplitView.view.count > 1
         visible: active
         sourceComponent: Rectangle
-        {           
+        {
             color: Maui.Theme.highlightColor
         }
     }
-    
+
     Loader
     {
         asynchronous: true
@@ -76,12 +76,12 @@ Item
         sourceComponent: Maui.Chip
         {
             opacity: (control.minimumWidth) / control.width
-            
+
             Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
             label.text: i18nd("mauikit", "Close Split")
         }
     }
-    
+
     Loader
     {
         asynchronous: true
@@ -91,12 +91,12 @@ Item
         sourceComponent: Maui.Chip
         {
             opacity: (control.minimumHeight) / control.height
-            
+
             Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
             label.text: i18nd("mauikit", "Close Split")
         }
     }
-    
+
     
     Connections
     {
@@ -121,7 +121,7 @@ Item
         propagateComposedEvents: true
         preventStealing: false
                 cursorShape: undefined
-        
+
         //        hoverEnabled: true
         //        onEntered: _splitView.currentIndex = control.index
         onPressed:
@@ -134,5 +134,5 @@ Item
     function focusSplitItem()
     {
         control.SplitView.view.currentIndex = control.splitIndex
-    }    
+    }
 }

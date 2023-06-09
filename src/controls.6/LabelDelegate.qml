@@ -17,12 +17,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-
-import QtQuick.Templates 2.15 as T
+import org.mauikit.controls as Maui
 
 /**
  * LabelDelegate
@@ -34,13 +32,12 @@ import QtQuick.Templates 2.15 as T
  *
  *
  */
-T.Control
+Control
 {
     id: control
-    Maui.Theme.backgroundColor: isSection ? "transparent" : (index % 2 === 0 ? Qt.darker(Maui.Theme.backgroundColor) : "transparent")
+
     implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
-    
-    
+        
     focusPolicy: Qt.NoFocus
     hoverEnabled: false
     

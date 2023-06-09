@@ -23,6 +23,9 @@ Dialog 2.0 Dialog.qml
 DialogButtonBox 6.0 DialogButtonBox.qml
 DialogButtonBox 2.0 DialogButtonBox.qml
 
+Label 6.0 Label.qml
+Label 2.0 Label.qml
+
 Menu 6.0 Menu.qml
 Menu 2.0 Menu.qml
 
@@ -49,6 +52,9 @@ Slider 2.0 Slider.qml
 
 SpinBox 6.0 SpinBox.qml
 SpinBox 2.0 SpinBox.qml
+
+SplitView 6.0 SplitView.qml
+SplitView 2.0 SplitView.qml
 
 Switch 6.0 Switch.qml
 Switch 2.0 Switch.qml

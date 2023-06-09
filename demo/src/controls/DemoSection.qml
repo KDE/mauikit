@@ -9,6 +9,7 @@ Maui.SectionItem
     id: control
 
     default property alias content : _content.data
+    property alias column : _column.data
 
     property string title
     property string body
@@ -25,6 +26,30 @@ Maui.SectionItem
         id: _content
         Layout.fillWidth: true
         spacing: control.spacing
+        visible: children.length > 0
+
+    }
+
+    ColumnLayout
+    {
+        id: _column
+        Layout.fillWidth: true
+
+        visible: children.length > 0
+    }
+
+    Item
+    {
+        Layout.fillWidth: true
+        implicitHeight: Maui.Style.space.big
+    }
+
+    Label
+    {
+        visible: _textArea.visible
+        Layout.fillWidth: true
+        text: i18n("Sample Code")
+        font: Maui.Style.h2Font
     }
 
     TextArea
@@ -33,7 +58,7 @@ Maui.SectionItem
         visible: text.length > 0
         readOnly: true
         font.family: "Monospace"
-//        Layout.minimumHeight: 300
+        //        Layout.minimumHeight: 300
         Layout.fillWidth: true
     }
 
