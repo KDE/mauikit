@@ -38,6 +38,13 @@ DemoPage
                 text: "Checkable"
                 checkable: true
                 checked: true
+                onClicked:
+                {
+                    root.notify("dialog-info", i18n("Notification #1"), i18n("This is a body message regarding some inportant information about the application state"))
+
+                    root.notify("dialog-info", i18n("Notification #2"), i18n("This is a body message with a custom action"), ()=> { console.log("Notication action") }, i18n("Action"))
+
+                }
             }
 
             Button
@@ -202,16 +209,25 @@ Maui.ToolButtonMenu
         {
             title: i18n("CloseButton")
             body: i18n("MauiKit control for joint action buttons. Can be collapsed and have hidden actions too.")
-            Maui.CloseButton
-            {
 
-            }
+            sampleText: 'import org.mauikit.controls as Maui
+Maui.CloseButton
+{
+}'
+            Maui.CloseButton {}
         }
 
         DemoSection
         {
             title: i18n("ColorsRow")
             body: i18n("MauiKit control for joint action buttons. Can be collapsed and have hidden actions too.")
+
+            sampleText: 'import org.mauikit.controls as Maui
+Maui.ColorsRow
+{
+    colors: ["blue", "pink", "yellow", "magenta"]
+}'
+
             Maui.ColorsRow
             {
                 colors: ["blue", "pink", "yellow", "magenta"]
@@ -222,6 +238,15 @@ Maui.ToolButtonMenu
         {
             title: i18n("Chip")
             body: i18n("MauiKit control for joint action buttons. Can be collapsed and have hidden actions too.")
+
+            sampleText: 'import org.mauikit.controls as Maui
+Maui.Chip
+{
+    colors: "pink"
+    icon.name: "love"
+    text: "Chip"
+}'
+
             Maui.Chip
             {
                 text: "A chip"
@@ -314,7 +339,38 @@ Maui.ToolButtonMenu
                 text: "RadioButton"
             }
         }
+
+        DemoSection
+        {
+            title: i18n("FloatingButton")
+            body: i18n("MauiKit control for joint action buttons. Can be collapsed and have hidden actions too.")
+            sampleText: 'import org.mauikit.controls as Maui
+Maui.FloatingButton
+{
+    icon.name: "list-add"
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    anchors.margins: Maui.style.space.big
+}'
+
+            Pane
+            {
+                implicitHeight: 500
+                implicitWidth: 500
+
+                Maui.FloatingButton
+                {
+                    icon.name: "list-add"
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    anchors.margins: Maui.Style.space.big
+                }
+
+            }
+        }
     }
+
+
 
 
 }

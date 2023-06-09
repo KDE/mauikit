@@ -34,123 +34,123 @@ import org.mauikit.controls as Maui
  */
 Item
 {
-  id: control
-  implicitHeight: _layout.implicitHeight
-  
-  default property list<Action> actions
-  
-  property alias content : _layout.data
-  
-  /**
+    id: control
+    implicitHeight: _layout.implicitHeight
+
+    default property list<Action> actions
+
+    property alias content : _layout.data
+
+    /**
    * emoji : string
    */
-  property string emoji
-  
-  /**
+    property string emoji
+
+    /**
    * title : string
    */
-  property alias title : _template.text1
-  
-  /**
+    property alias title : _template.text1
+
+    /**
    * body : string
    */
-  property alias body : _template.text2
-  
-  /**
+    property alias body : _template.text2
+
+    /**
    * isMask : bool
    */
-  property bool isMask : true
-  
-  /**
+    property bool isMask : true
+
+    /**
    * isGif : bool
    */
-  property bool isGif : false
-  
-  /**
+    property bool isGif : false
+
+    /**
    * emojiSize : int
    */
-  property int emojiSize : Maui.Style.iconSizes.big
-  
-  /**
+    property int emojiSize : Maui.Style.iconSizes.big
+
+    /**
    * enabled : bool
    */
-  property bool enabled: true
-  
-  property alias label1 : _template.label1
-  property alias label2 : _template.label2
-  
-  /**
+    property bool enabled: true
+
+    property alias label1 : _template.label1
+    property alias label2 : _template.label2
+
+    /**
    * actionTriggered :
    */
-  signal actionTriggered()
-  
-  Component
-  {
-    id: imgComponent
-    
-    Maui.Icon
+    signal actionTriggered()
+
+    Component
     {
-      id: imageHolder
-      
-      color: Maui.Theme.textColor
-      isMask: control.isMask
-      opacity: isMask ? _template.opacity : 1
-      source: emoji      
-    }
-  }
-  
-  Component
-  {
-    id: animComponent
-    AnimatedImage
-    {
-      id: animation;
-      source: emoji
-    }
-  }
-  
-  Column
-  {
-    id: _layout
-    anchors.centerIn: parent
-    spacing: Maui.Style.defaultSpacing
-    
-    Loader
-    {
-      visible: active
-      active: control.height > (_template.implicitHeight + emojiSize) && control.emoji
-      height: control.emoji && visible ? emojiSize : 0
-      width: height
-      asynchronous: true
-      sourceComponent: isGif ? animComponent : imgComponent
-    }
-   
-    Maui.ListItemTemplate
-    {
-      id: _template
-      width: Math.min(control.width * 0.7, layout.implicitWidth)
-      
-      label1.font: Maui.Style.h1Font
-      label1.wrapMode: Text.Wrap
-      label2.wrapMode: Text.Wrap
+        id: imgComponent
+
+        Maui.Icon
+        {
+            id: imageHolder
+
+            color: isMask ? Maui.Theme.textColor : "transparent"
+            isMask: control.isMask
+            opacity: isMask ? _template.opacity : 1
+            source: emoji
+        }
     }
 
-    Item
+    Component
     {
-        height: Maui.Style.space.medium;
-        width: height
+        id: animComponent
+        AnimatedImage
+        {
+            id: animation;
+            source: emoji
+        }
     }
-    
-    Repeater
+
+    Column
     {
-      model: control.actions
-      
-      Button
-      {
-        id: _button
-        width: Math.max(120, implicitWidth)        
-        action: modelData        
-      }
+        id: _layout
+        anchors.centerIn: parent
+        spacing: Maui.Style.defaultSpacing
+
+        Loader
+        {
+            visible: active
+            active: control.height > (_template.implicitHeight + emojiSize) && control.emoji
+            height: control.emoji && visible ? emojiSize : 0
+            width: height
+            asynchronous: true
+            sourceComponent: isGif ? animComponent : imgComponent
+        }
+
+        Maui.ListItemTemplate
+        {
+            id: _template
+            width: Math.min(control.width * 0.7, layout.implicitWidth)
+
+            label1.font: Maui.Style.h1Font
+            label1.wrapMode: Text.Wrap
+            label2.wrapMode: Text.Wrap
+        }
+
+        Item
+        {
+            height: Maui.Style.space.medium;
+            width: height
+        }
+
+        Repeater
+        {
+            model: control.actions
+
+            Button
+            {
+                id: _button
+                width: Math.max(120, implicitWidth)
+                action: modelData
+            }
+        }
     }
-  }
 }

@@ -4,18 +4,16 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 SplitView
 {
     id: control
-    Maui.Theme.colorSet: Maui.Theme.Window
-    Maui.Theme.inherit: false
+
     clip: false
-    focus: true
     
     onCurrentItemChanged:
     {
@@ -42,13 +40,4 @@ SplitView
         
         return object
     }
-    
-    //    Component.onCompleted: control.restoreState(settings.splitView)
-    //    Component.onDestruction: settings.splitView = control.saveState()
-    
-    //    Settings {
-    //        id: settings
-    //        property var splitView
-    //    }
-    
 }

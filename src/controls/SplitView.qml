@@ -42,13 +42,13 @@ SplitView
         
         return object
     }
-    
+
     //    Component.onCompleted: control.restoreState(settings.splitView)
     //    Component.onDestruction: settings.splitView = control.saveState()
-    
+
     //    Settings {
     //        id: settings
     //        property var splitView
     //    }
-    
+
 }

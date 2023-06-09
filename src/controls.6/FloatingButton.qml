@@ -17,12 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.10
-import QtQuick.Controls 2.10
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls  as Maui
 
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 
 /**
  * FloatingButton
@@ -31,34 +31,34 @@ import QtGraphicalEffects 1.0
  */
 ToolButton
 {
-  id: control
-  
-  padding: Maui.Style.defaultPadding * 2
-  
-  icon.height: Maui.Style.iconSize
-  icon.width: Maui.Style.iconSize
-  
-  icon.color: Maui.Theme.highlightedTextColor
-  
-  display: ToolButton.IconOnly
-  
-  background: Rectangle
-  {
-    id: _rec
-    radius: Maui.Style.radiusV
-    color: control.hovered || control.pressed ? Qt.lighter( Maui.Theme.highlightColor, 1.2) :   Maui.Theme.highlightColor
-  }
-  
-  layer.enabled: true
-  layer.effect: DropShadow
-  {
-    id: rectShadow
-    cached: true
-    horizontalOffset: 0
-    verticalOffset: 0
-    radius: 8.0
-    samples: 16
-    color:  "#80000000"
-    smooth: true
-  }
+    id: control
+
+    padding: Maui.Style.defaultPadding * 2
+
+    icon.height: Maui.Style.iconSize
+    icon.width: Maui.Style.iconSize
+
+    icon.color: Maui.Theme.highlightedTextColor
+
+    display: ToolButton.IconOnly
+
+    background: Rectangle
+    {
+        id: _rec
+        radius: Maui.Style.radiusV
+        color: control.hovered || control.pressed ? Qt.lighter( Maui.Theme.highlightColor, 1.2) :   Maui.Theme.highlightColor
+    }
+
+    layer.enabled: true
+    layer.effect: DropShadow
+    {
+        id: rectShadow
+        cached: true
+        horizontalOffset: 0
+        verticalOffset: 0
+        radius: 8.0
+        samples: 16
+        color:  "#80000000"
+        smooth: true
+    }
 }

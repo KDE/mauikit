@@ -1,15 +1,14 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.2 as Maui
-import QtQuick.Templates 2.15 as T
+import org.mauikit.controls as Maui
 
 /*!
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
 
-T.Pane
+Pane
 {
     id: control
 

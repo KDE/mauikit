@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(MauiDemo VERSION 3.0.0 LANGUAGES CXX)
+project(MauiDemo VERSION ${MAUIKIT_VERSION} LANGUAGES CXX)
 
 #find_package(MauiKit REQUIRED)
 #find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)

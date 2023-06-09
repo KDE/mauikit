@@ -20,7 +20,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     app.setOrganizationName(QStringLiteral("Maui"));
-    app.setWindowIcon(QIcon(":/../assets/mauidemo.svg"));
+    app.setWindowIcon(QIcon(":/assets/mauidemo.svg"));
 
     KLocalizedString::setApplicationDomain("mauidemo");
 
@@ -36,7 +36,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     about.addComponent("KIO");
 
     KAboutData::setApplicationData(about);
-    MauiApp::instance()->setIconName("qrc:/../assets/mauidemo.svg");
+    MauiApp::instance()->setIconName("qrc:/assets/mauidemo.svg");
 
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:/qt/qml/MauiDemo/main.qml"_qs);

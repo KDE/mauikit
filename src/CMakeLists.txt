@@ -217,6 +217,11 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/EdgeShadow.qml
 
     controls.6/FlexListItem.qml
+    controls.6/FloatingButton.qml
+
+    controls.6/GridBrowser.qml
+    controls.6/GridBrowserDelegate.qml
+    controls.6/GridItemTemplate.qml
 
     controls.6/Holder.qml
 
@@ -226,6 +231,7 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/InfoDialog.qml
     controls.6/ItemDelegate.qml
 
+    controls.6/LabelDelegate.qml
     controls.6/ListBrowser.qml
     controls.6/ListBrowserDelegate.qml
     controls.6/ListDelegate.qml
@@ -243,6 +249,8 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/SearchField.qml
     controls.6/SideBarView.qml
     controls.6/ShadowedRectangle.qml
+    controls.6/SplitView.qml
+    controls.6/SplitViewItem.qml
 
     controls.6/ToolActions.qml
     controls.6/ToolBar.qml

@@ -158,13 +158,13 @@ Item
     /**
          * iconComponent : Component
          */
-    property Component iconComponent : _iconComponent 
+    property Component iconComponent : _iconComponent
 
     property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
     property bool hovered: false
     
     property bool highlighted: false
-        
+
     Component
     {
         id: _iconComponent
@@ -191,28 +191,28 @@ Item
     {
         id: _layout
         anchors.fill: parent
-        spacing: Maui.Style.space.medium
+        spacing: Maui.Style.space.small
         
         readonly property color labelColor: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
         
-            Loader
-            {
-                id: _iconLoader
-                
-                asynchronous: true
-                
-                visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
-                
-                active: visible
-                
-                Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: !control.labelsVisible
-                Layout.fillHeight: true
-                Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint)
-                Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint)
+        Loader
+        {
+            id: _iconLoader
 
-                sourceComponent: control.iconComponent
-            }
+            asynchronous: true
+
+            visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
+
+            active: visible
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: !control.labelsVisible
+            Layout.fillHeight: true
+            Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint)
+            Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint)
+
+            sourceComponent: control.iconComponent
+        }
         
 
         ColumnLayout
@@ -225,7 +225,6 @@ Item
             Layout.fillWidth: true
             
             spacing: 0
-            
 
             Label
             {
@@ -240,7 +239,7 @@ Item
                 elide: Text.ElideRight
                 //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
                 wrapMode: Text.NoWrap
-textFormat: Text.PlainText
+                textFormat: Text.PlainText
                 color: _layout.labelColor
             }
 
@@ -257,8 +256,8 @@ textFormat: Text.PlainText
                 //                wrapMode: Text.Wrap
                 wrapMode: Text.NoWrap
                 textFormat: Text.PlainText
- color: _layout.labelColor
- opacity: control.isCurrentItem ? 0.8 : 0.6
+                color: _layout.labelColor
+                opacity: control.isCurrentItem ? 0.8 : 0.6
             }
         }
 
@@ -266,7 +265,7 @@ textFormat: Text.PlainText
         {
             id: _rightLabels
             clip: true
-            // visible: (control.width >  Maui.Style.units.gridUnit * 15) && control.labelsVisible 
+            // visible: (control.width >  Maui.Style.units.gridUnit * 15) && control.labelsVisible
             
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -280,7 +279,7 @@ textFormat: Text.PlainText
                 id: _label3
                 visible: text.length > 0
                 
-                Layout.fillHeight: true               
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 
                 Layout.alignment: Qt.AlignRight
@@ -293,8 +292,8 @@ textFormat: Text.PlainText
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
                 textFormat: Text.PlainText
- color: _layout.labelColor
- opacity: control.isCurrentItem ? 0.8 : 0.6
+                color: _layout.labelColor
+                opacity: control.isCurrentItem ? 0.8 : 0.6
             }
 
             Label
@@ -302,7 +301,7 @@ textFormat: Text.PlainText
                 id: _label4
                 visible: text.length > 0
                 
-                Layout.fillHeight: true                
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 
                 Layout.alignment: Qt.AlignRight

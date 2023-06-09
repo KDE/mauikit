@@ -17,14 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQml 2.14
+import QtQuick
+import QtQml
 
-import QtQuick.Controls 2.15
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-
-import "private" as Private
+import org.mauikit.controls as Maui
 
 /**
  * GridBrowserDelegate
@@ -176,7 +174,7 @@ Maui.ItemDelegate
         maskRadius: control.radius
         spacing: control.spacing
         isCurrentItem: control.isCurrentItem
-        highlighted: control.containsPress 
+        highlighted: control.containsPress
     }
 
     Loader
@@ -184,7 +182,7 @@ Maui.ItemDelegate
         id: _checkboxLoader
         asynchronous: true
         active: control.checkable || control.checked
-     
+
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
