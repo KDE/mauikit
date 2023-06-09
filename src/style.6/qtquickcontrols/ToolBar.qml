@@ -90,8 +90,7 @@ T.ToolBar
                 {
                     color: _headBarBG.color
                     anchors.fill: parent
-                    opacity: 0.9
-                    
+                    opacity: 0.9                    
                 }   
             }
         }  

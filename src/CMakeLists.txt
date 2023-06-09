@@ -206,6 +206,10 @@ endif()
 ecm_target_qml_sources(MauiKit SOURCES
 
     controls.6/ApplicationWindow.qml
+    controls.6/AppViews.qml
+    controls.6/AppViewLoader.qml
+
+    controls.6/Badge.qml
 
     controls.6/ColorTransition.qml
     controls.6/ColorsRow.qml
@@ -240,6 +244,7 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/Page.qml
     controls.6/PasswordField.qml
     controls.6/PopupPage.qml
+    controls.6/ProgressIndicator.qml
 
     controls.6/ScrollColumn.qml
     controls.6/SectionHeader.qml
@@ -262,6 +267,7 @@ ecm_target_qml_sources(MauiKit SOURCES
 ecm_target_qml_sources(MauiKit PATH private SOURCES
 
     controls.6/private/AboutDialog.qml
+    controls.6/private/ActionGroup.qml
 
     controls.6/private/CheckBoxItem.qml
 

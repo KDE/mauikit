@@ -52,6 +52,7 @@ T.ProgressBar
             width: control.position * parent.width
 
             color: Maui.Theme.highlightColor
+            radius: control.background.radius
         }
         
         Repeater
@@ -69,7 +70,8 @@ T.ProgressBar
                 height: parent.height
 
                 color: Maui.Theme.highlightColor
-                
+                radius: control.background.radius
+
                 Behavior on color
                 {
                     Maui.ColorTransition{}

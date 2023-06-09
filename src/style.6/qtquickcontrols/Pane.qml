@@ -50,7 +50,7 @@ T.Pane
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding)
 
-    padding: Maui.Style.space.medium
+    padding: Maui.Style.contentMargins
 
     background: Rectangle
     {

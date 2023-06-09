@@ -17,14 +17,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
+import org.mauikit.controls as Maui
 
-T.Pane
+Pane
 {
     id: control
     
@@ -34,6 +33,7 @@ T.Pane
     spacing: Maui.Style.space.medium
     padding: 0
     background: null
+
     /**
      *
      */
@@ -85,7 +85,7 @@ T.Pane
         // Layout.alignment: Qt.AlignCenter
         autoExclusive: true
         visible: modelData.visible
-        checked:  index == control.currentIndex
+        checked:  index === control.currentIndex
 
         leftPadding: Maui.Style.space.big
         rightPadding: Maui.Style.space.big
@@ -107,15 +107,12 @@ T.Pane
             
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
-            border.color: Maui.Theme.textColor
-            
-            mouseArea.enabled: false
+            Maui.Theme.textColor: Maui.Theme.negativeTextColor            
         }
         
         onClicked:
         {
-            if(index == control.currentIndex )
+            if(index === control.currentIndex )
             {
                 return
             }

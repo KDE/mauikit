@@ -42,12 +42,12 @@ Pane
 {
     id: control
 
-    padding: 0    
+    padding: 0
     leftPadding: control.padding
     rightPadding: control.padding
     topPadding: control.padding
     bottomPadding: control.padding
-        
+
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
     
@@ -370,17 +370,17 @@ Pane
         visible: count > 0
         width: visible ? parent.width : 0
         position: control.altHeader ? ToolBar.Footer : ToolBar.Header
-//        translucencySource: ShaderEffectSource
-//        {
-//            sourceItem: _content
-//            sourceRect:  _headBar.background ? (control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)) : null
-//        }
+        translucencySource: ShaderEffectSource
+        {
+            sourceItem: _content
+            sourceRect:  _headBar.background ? (control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)) : null
+        }
         
         Binding on height
         {
             value: visible ? _headBar.implicitHeight : 0
             restoreMode: Binding.RestoreBindingOrValue
-        }               
+        }
 
         Behavior on height
         {
@@ -456,12 +456,12 @@ Pane
 
         position: ToolBar.Footer
 
-//        translucencySource: ShaderEffectSource
-//        {
-//            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
-//            sourceItem: _content
-//            sourceRect: _footBar.background ? (control.floatingFooter  ?  Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : null
-//        }
+        translucencySource: ShaderEffectSource
+        {
+            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
+            sourceItem: _content
+            sourceRect: _footBar.background ? (control.floatingFooter  ?  Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : null
+        }
         
         Behavior on height
         {
@@ -477,7 +477,7 @@ Pane
 
     states: [  State
         {
-            when: !altHeader 
+            when: !altHeader
             
             AnchorChanges
             {
@@ -496,7 +496,7 @@ Pane
         
         State
         {
-            when: altHeader 
+            when: altHeader
             
             AnchorChanges
             {
@@ -555,25 +555,25 @@ Pane
     //                 }
 
     contentItem: Item
-    {        
-            Item
-            {
-                id: _content
-                anchors.fill: parent
-                
-                anchors.topMargin: _private.topMargin                
-                anchors.bottomMargin: _private.bottomMargin
-                
-                anchors.leftMargin: control.leftMargin
-                anchors.rightMargin: control.rightMargin
-            }
-            
-            Column
-            {
-                id: _headerContent
-                anchors.left: parent.left
-                anchors.right: parent.right
-            }              
+    {
+        Item
+        {
+            id: _content
+            anchors.fill: parent
+
+            anchors.topMargin: _private.topMargin
+            anchors.bottomMargin: _private.bottomMargin
+
+            anchors.leftMargin: control.leftMargin
+            anchors.rightMargin: control.rightMargin
+        }
+
+        Column
+        {
+            id: _headerContent
+            anchors.left: parent.left
+            anchors.right: parent.right
+        }
         
         Column
         {
@@ -790,25 +790,25 @@ Pane
 
     //Keys.onBackPressed:
     //{
-        //control.goBackTriggered();
+    //control.goBackTriggered();
     //}
 
     //Shortcut
     //{
-        //sequence: "Forward"
-        //onActivated: control.goForwardTriggered();
+    //sequence: "Forward"
+    //onActivated: control.goForwardTriggered();
     //}
 
     //Shortcut
     //{
-        //sequence: StandardKey.Forward
-        //onActivated: control.goForwardTriggered();
+    //sequence: StandardKey.Forward
+    //onActivated: control.goForwardTriggered();
     //}
 
     //Shortcut
     //{
-        //sequence: StandardKey.Back
-        //onActivated: control.goBackTriggered();
+    //sequence: StandardKey.Back
+    //onActivated: control.goBackTriggered();
     //}
 
 
@@ -816,12 +816,12 @@ Pane
     {
         if(footer)
         {
-            _footerContent.data.push(footer)                   
+            _footerContent.data.push(footer)
         }
         
         if(header)
         {
-            let data = [header]            
+            let data = [header]
             
             for(var i in _headerContent.data)
             {
