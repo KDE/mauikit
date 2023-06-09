@@ -17,9 +17,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Controls
+import org.mauikit.controls as Maui
 
 
 /*!
@@ -32,21 +32,21 @@ import org.mauikit.controls 1.3 as Maui
  */
 Loader
 {
-  id: control
-  
-  /*!
+    id: control
+
+    /*!
    \ qmlprope*rty Component ApplicationWindow::content
    
    The source component to be loaded.
    */
-  asynchronous: true
-  default property alias content : control.sourceComponent
+    asynchronous: true
+    default property alias content : control.sourceComponent
     active: (SwipeView.view.visible && SwipeView.isCurrentItem) || item
     
     Maui.ProgressIndicator
     {
-      width: parent.width
-      anchors.bottom: parent.bottom
-      visible: control.status === Loader.Loading
+        width: parent.width
+        anchors.bottom: parent.bottom
+        visible: control.status === Loader.Loading
     }
 }

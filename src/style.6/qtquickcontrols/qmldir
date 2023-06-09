@@ -11,6 +11,9 @@ ApplicationWindow 2.0 ApplicationWindow.qml
 Button 6.0 Button.qml
 Button 2.0 Button.qml
 
+BusyIndicator 6.0 BusyIndicator.qml
+BusyIndicator 2.0 BusyIndicator.qml
+
 CheckBox 6.0 CheckBox.qml
 CheckBox 2.0 CheckBox.qml
 
@@ -31,6 +34,9 @@ Menu 2.0 Menu.qml
 
 MenuItem 6.0 MenuItem.qml
 MenuItem 2.0 MenuItem.qml
+
+Page 6.0 Page.qml
+Page 2.0 Page.qml
 
 Pane 6.0 Pane.qml
 Pane 2.0 Pane.qml

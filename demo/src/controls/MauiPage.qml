@@ -57,9 +57,7 @@ Maui.Page
                     title:  i18n("Maui Page")
                     body: i18n("Somethign to say here!")
                 }
-
             }
-
         }
 
 
@@ -68,7 +66,6 @@ Maui.Page
             title: "Page"
             body: i18n("A QQC page.")
 
-
             column: Page
             {
                 Layout.fillWidth: true
@@ -76,20 +73,14 @@ Maui.Page
 
                 title: i18n("Title")
 
-                header: Label
+                header: ToolBar
                 {
                     width: parent.width
-                    text: i18n("Header")
-                    font: Maui.Style.h1Font
                 }
 
-
-                footer: Label
+                footer: ToolBar
                 {
                     width: parent.width
-                    text: i18n("Footer")
-                    font: Maui.Style.h1Font
-
                 }
 
                 Maui.Holder

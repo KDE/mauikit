@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
 
 import org.mauikit.controls as Maui
 
@@ -10,6 +11,43 @@ Maui.ApplicationWindow
 {
     id: root
 
+    property color accentColor : Maui.Style.accentColor
+
+    ColorDialog {
+        id: colorDialog
+        selectedColor: root.accentColor
+        onAccepted: Maui.Style.accentColor = selectedColor
+    }
+
+    Component
+    {
+        id: _listBrowserPage
+        ListBrowserPage {}
+    }
+
+    Component
+    {
+        id: _gridBrowserPage
+        GridBrowserPage {}
+    }
+
+    Component
+    {
+        id: _sideBarPage
+        SideBarViewPage {}
+    }
+
+    Component
+    {
+        id: _appViewsPage
+        AppViewsPage {}
+    }
+
+    Component
+    {
+        id: _indicatorsPage
+        IndicatorsPage {}
+    }
 
     Component
     {
@@ -19,7 +57,6 @@ Maui.ApplicationWindow
             title: i18n("Buttons")
         }
     }
-
 
     Component
     {
@@ -47,7 +84,6 @@ Maui.ApplicationWindow
             title: i18n("SplitView")
         }
     }
-
 
     Maui.SideBarView
     {
@@ -86,7 +122,6 @@ Maui.ApplicationWindow
                             Layout.fillWidth: true
                             label: i18n("Page")
                             onClicked: root.pushPage(_pagePage)
-
                         }
 
                         Maui.ListDelegate
@@ -94,9 +129,21 @@ Maui.ApplicationWindow
                             Layout.fillWidth: true
                             label: i18n("SplitView")
                             onClicked: root.pushPage(_splitPage)
-
                         }
 
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("SidebarView")
+                            onClicked: root.pushPage(_sideBarPage)
+                        }
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("AppViews")
+                            onClicked: root.pushPage(_appViewsPage)
+                        }
                     }
 
                     Maui.SectionItem
@@ -104,32 +151,24 @@ Maui.ApplicationWindow
                         label1.text: i18n("Browsers")
                         columns: 1
 
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("ListBrowser")
+                            onClicked: root.pushPage(_listBrowserPage)
+                        }
 
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true
                             label: i18n("GridBrowser")
+                            onClicked: root.pushPage(_gridBrowserPage)
                         }
 
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true
                             label: i18n("AltBrowser")
-
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("SidebarView")
-
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("AppViews")
-
                         }
                     }
 
@@ -189,41 +228,38 @@ Maui.ApplicationWindow
                         Layout.fillWidth: true
                         label1.text: i18n("Templates")
                         label2.text: i18n("Adaptive views for contents")
+                        columns: 1
 
-                        Column
-                        {
-                            width: parent.parent.width
-                            spacing: Maui.Style.space.medium
 
                             Maui.ListDelegate
                             {
-                                width: parent.width
+                                Layout.fillWidth: true
                                 label: i18n("LisItemTemplate")
                             }
 
                             Maui.ListDelegate
                             {
-                                width: parent.width
+                                Layout.fillWidth: true
                                 label: i18n("GridItemTemplate")
 
                             }
 
                             Maui.ListDelegate
                             {
-                                width: parent.width
+                                Layout.fillWidth: true
                                 label: i18n("IconItem")
 
                             }
 
                             Maui.ListDelegate
                             {
-                                width: parent.width
+                                Layout.fillWidth: true
                                 label: i18n("CollageItem")
 
                             }
                         }
 
-                    }
+
 
 
                     Maui.SectionItem
@@ -250,7 +286,13 @@ Maui.ApplicationWindow
                             Layout.fillWidth: true
                             label: i18n("Input")
                             onClicked: root.pushPage(_inputsPage)
+                        }
 
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Indicators")
+                            onClicked: root.pushPage(_indicatorsPage)
                         }
 
                         Maui.ListDelegate
@@ -294,79 +336,86 @@ Maui.ApplicationWindow
 
             ]
 
-            headBar.rightContent: Maui.ToolButtonMenu
-            {
-                icon.name: "contrast"
-
-                MenuItem
+            headBar.rightContent:[ ToolButton
                 {
-                    text: i18n("Light")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = Maui.Style.Light
-                    checked:  Maui.Style.styleType === Maui.Style.Light
-                }
+                    icon.name: "color-management"
+                    onClicked: colorDialog.open()
+                },
 
-                MenuItem
+                Maui.ToolButtonMenu
                 {
-                    text: i18n("Dark")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = Maui.Style.Dark
-                    checked:  Maui.Style.styleType === Maui.Style.Dark
+                    icon.name: "contrast"
 
+                    MenuItem
+                    {
+                        text: i18n("Light")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = Maui.Style.Light
+                        checked:  Maui.Style.styleType === Maui.Style.Light
+                    }
+
+                    MenuItem
+                    {
+                        text: i18n("Dark")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = Maui.Style.Dark
+                        checked:  Maui.Style.styleType === Maui.Style.Dark
+
+                    }
+
+                    MenuItem
+                    {
+                        text: i18n("Adaptive")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = Maui.Style.Adaptive
+                        checked:  Maui.Style.styleType === Maui.Style.Adaptive
+
+                    }
+
+                    MenuItem
+                    {
+                        text: i18n("Custom")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = Maui.Style.Auto
+                        checked:  Maui.Style.styleType === Maui.Style.Auto
+
+                    }
+
+                    MenuItem
+                    {
+                        text: i18n("Black")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = Maui.Style.TrueBlack
+                        checked:  Maui.Style.styleType === Maui.Style.TrueBlack
+
+                    }
+
+                    MenuItem
+                    {
+                        text: i18n("White")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = Maui.Style.Inverted
+                        checked:  Maui.Style.styleType === Maui.Style.Inverted
+
+                    }
+
+                    MenuItem
+                    {
+                        text: i18n("System")
+                        checkable: true
+                        autoExclusive: true
+                        onTriggered: Maui.Style.styleType = undefined
+                        checked:  Maui.Style.styleType === undefined
+
+                    }
                 }
-
-                MenuItem
-                {
-                    text: i18n("Adaptive")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = Maui.Style.Adaptive
-                    checked:  Maui.Style.styleType === Maui.Style.Adaptive
-
-                }
-
-                MenuItem
-                {
-                    text: i18n("Custom")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = Maui.Style.Auto
-                    checked:  Maui.Style.styleType === Maui.Style.Auto
-
-                }
-
-                MenuItem
-                {
-                    text: i18n("Black")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = Maui.Style.TrueBlack
-                    checked:  Maui.Style.styleType === Maui.Style.TrueBlack
-
-                }
-
-                MenuItem
-                {
-                    text: i18n("White")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = Maui.Style.Inverted
-                    checked:  Maui.Style.styleType === Maui.Style.Inverted
-
-                }
-
-                MenuItem
-                {
-                    text: i18n("System")
-                    checkable: true
-                    autoExclusive: true
-                    onTriggered: Maui.Style.styleType = undefined
-                    checked:  Maui.Style.styleType === undefined
-
-                }
-            }
+            ]
 
             StackView
             {
@@ -392,6 +441,7 @@ Maui.ApplicationWindow
 
     function pushPage(page)
     {
+        _stackView.pop()
         _stackView.push(page)
     }
 

@@ -17,13 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQml 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
+import QtQuick
+import QtQml
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls as Maui
 
 import "private" as Private
 
@@ -107,7 +106,7 @@ Maui.Page
         }
     }
     
-    T.SwipeView
+    SwipeView
     {
         id:_swipeView   
         anchors.fill: parent
@@ -132,6 +131,7 @@ Maui.Page
         }
         
         background: null
+        padding: 0
         
         contentItem: ListView
         {
@@ -162,8 +162,7 @@ Maui.Page
             onCurrentIndexChanged:
             {
                 _listView.lastPos = _listView.contentX
-            }
-            
+            }            
         }
         
         Keys.enabled: true
@@ -201,8 +200,7 @@ Maui.Page
                     _swipeView.currentIndex = 3
                 }
             }
-        }
-        
+        }        
     }
     
     

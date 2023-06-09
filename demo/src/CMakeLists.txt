@@ -13,6 +13,11 @@ set(QML_SRCS
     controls/DemoPage.qml
     controls/DemoSection.qml
     controls/SplitViewPage.qml
+    controls/SideBarViewPage.qml
+    controls/AppViewsPage.qml
+    controls/IndicatorsPage.qml
+    controls/ListBrowserPage.qml
+    controls/GridBrowserPage.qml
 )
 
 qt_add_qml_module(${PROJECT_NAME}
