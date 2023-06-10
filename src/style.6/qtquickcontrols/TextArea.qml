@@ -76,15 +76,16 @@ T.TextArea
         }
     }
 
-    onPressAndHold:
+    onPressAndHold: (event) =>
     {
-        if (!Maui.Handy.isTouch) {
+        if (!Maui.Handy.isTouch)
+                        {
             return;
         }
         
-        forceActiveFocus();
-        cursorPosition = positionAt(event.x, event.y);
-        selectWord();
+        forceActiveFocus()
+        cursorPosition = positionAt(event.x, event.y)
+        selectWord()
     }
 
     Label
@@ -109,7 +110,7 @@ T.TextArea
     
     TapHandler
     {
-        onDoubleTapped:
+        onDoubleTapped: (eventPoint) =>
         {
             console.log("DOUBLE TAPPEDX")
             cursorPosition = positionAt(eventPoint.position.x, eventPoint.position.y)

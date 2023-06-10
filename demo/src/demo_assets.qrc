@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>assets/mauidemo.svg</file>
         <file>assets/mauikit-logo.png</file>
+        <file>assets/6588168.jpg</file>
+        <file>assets/6628908.jpg</file>
+        <file>assets/6919759.jpg</file>
     </qresource>
 </RCC>

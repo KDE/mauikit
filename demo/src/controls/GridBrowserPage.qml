@@ -7,7 +7,7 @@ import org.mauikit.controls as Maui
 DemoPage
 {
     id: control
-    title: i18n("ListBrowser")
+    title: i18n("GridBrowser")
 
     Maui.SectionGroup
     {
@@ -16,18 +16,27 @@ DemoPage
 
         DemoSection
         {
-            title: i18n("Holder")
+            title: i18n("Grid View")
+            body: i18n("Grid view layout with an uniform cell width. This is optional.")
 
-            column: Pane
+            column: Maui.Page
             {
                 Layout.fillWidth: true
                 implicitHeight: 500
 
+                headBar.leftContent: Switch
+                {
+                    checked:  _grid.adaptContent
+                    onToggled: _grid.adaptContent = !_grid.adaptContent
+                    text: i18n("Adaptive")
+                }
+
                 Maui.GridBrowser
                 {
+                    id: _grid
                     anchors.fill: parent
                     clip: true
-                    model: 100
+                    model: 30
 
                     itemSize: 160
 
@@ -41,6 +50,7 @@ DemoPage
                             anchors.margins: Maui.Style.space.small
                             label1.text: modelData
                             iconSource: "folder"
+                            imageSource: "qrc:/assets/6588168.jpg"
                         }
                     }
                 }

@@ -39,7 +39,7 @@ Item
     clip: false
     
     implicitHeight: contentHeight + topPadding + bottomPadding
-    implicitWidth: contentWidth + leftPadding + rightPadding    
+    implicitWidth: contentWidth + leftPadding + rightPadding
     
     /**
      * itemSize : int
@@ -138,35 +138,35 @@ Item
      */
     property alias padding: _scrollView.padding
     
-    property int verticalScrollBarPolicy: 
+    property int verticalScrollBarPolicy:
     {
         if(control.orientation === ListView.Horizontal)
-            return ScrollBar.AlwaysOff            
-            
-            switch(Maui.Style.scrollBarPolicy)
-            {
-                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
-                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
-                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
-                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
-            }
+            return ScrollBar.AlwaysOff
+
+        switch(Maui.Style.scrollBarPolicy)
+        {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+        }
     }
     
     /**
      * horizontalScrollBarPolicy : ScrollBar.policy
      */
-    property int horizontalScrollBarPolicy: 
+    property int horizontalScrollBarPolicy:
     {
         if(control.orientation === ListView.Vertical)
             return ScrollBar.AlwaysOff
-            
-            switch(Maui.Style.scrollBarPolicy)
-            {
-                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;   
-                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;   
-                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;   
-                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;   
-            }
+
+        switch(Maui.Style.scrollBarPolicy)
+        {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+        }
     }
     
     /**
@@ -178,6 +178,13 @@ Item
      * adaptContent : bool
      */
     property bool adaptContent: true
+    onAdaptContentChanged:
+    {
+        if(adaptContent)
+            control.adaptGrid()
+        else
+            control.resetCellWidth()
+    }
     
     /**
      * enableLassoSelection : bool
@@ -242,17 +249,17 @@ Item
             control.adaptGrid()
     }
     
-   ScrollView
+    ScrollView
     {
         id: _scrollView
-        anchors.fill: parent   
-        focus: true              
+        anchors.fill: parent
+        focus: true
         padding: Maui.Style.contentMargins
         
         clip: control.clip
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
-        ScrollBar.vertical.policy: control.verticalScrollBarPolicy  
+        ScrollBar.vertical.policy: control.verticalScrollBarPolicy
         
         GridView
         {
@@ -289,7 +296,7 @@ Item
             clip: control.clip
             
             displayMarginBeginning: Maui.Style.effectsEnabled ? Maui.Style.toolBarHeight * 4 : 0
-             displayMarginEnd: displayMarginBeginning
+            displayMarginEnd: displayMarginBeginning
             cacheBuffer: control.itemHeight * 4
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight
@@ -315,18 +322,18 @@ Item
                 anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
                 anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
             }
-                        
+
             onContentXChanged:
             {
                 updateContentDelay.restart()
             }
             
-            onContentYChanged: 
+            onContentYChanged:
             {
                 updateContentDelay.restart()
             }
             
-            Timer 
+            Timer
             {
                 id: updateContentDelay
                 interval: 500
@@ -347,7 +354,7 @@ Item
                     {
                         resizeContent(pinch.scale)
                     }
-                }                
+                }
             }
             
             Loader
@@ -480,13 +487,13 @@ Item
                         }
                         
                         if(lassoIndexes.length > 0)
-                        {                            
+                        {
                             control.itemsSelected(lassoIndexes)
                         }
                         
                         selectLayer.reset()
                     }
-                }                
+                }
             }
             
             Maui.Rectangle
@@ -521,11 +528,11 @@ Item
     }
     
     /**
-     * 
+     *
      */
     function resizeContent(factor)
     {
-        const newSize= control.itemSize * factor
+        const newSize = control.itemSize * factor
         
         if(newSize > control.itemSize)
         {
@@ -539,7 +546,7 @@ Item
     }
     
     /**
-     * 
+     *
      */
     function adaptGrid()
     {
@@ -551,5 +558,10 @@ Item
         var size = Math.min(amount, realAmount) >= control.count ? Math.max(control.cellWidth, control.itemSize) : parseInt((controlView.size_) + (parseInt(leftSpace/realAmount, 0)), 0)
         
         control.cellWidth = size
+    }
+
+    function resetCellWidth()
+    {
+        control.cellWidth = control.itemSize
     }
 }

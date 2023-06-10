@@ -18,6 +18,9 @@ set(QML_SRCS
     controls/IndicatorsPage.qml
     controls/ListBrowserPage.qml
     controls/GridBrowserPage.qml
+    controls/TemplatesPage.qml
+    controls/BarsPage.qml
+    controls/TabViewPage.qml
 )
 
 qt_add_qml_module(${PROJECT_NAME}

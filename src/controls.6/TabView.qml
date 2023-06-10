@@ -1,29 +1,30 @@
-import QtQuick 2.15
-import QtQml 2.14
+import QtQuick
+import QtQml
 
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.10
-import QtGraphicalEffects 1.15
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
-Control
+Pane
 {
     id: control
-       
-       default property alias content: _listView.contentData
-       property alias contentModel: _listView.contentModel
-       property alias currentIndex: _listView.currentIndex
-       property alias currentItem: _listView.currentItem
-       property alias count: _listView.count
-       
+
+    default property alias content: _listView.contentData
+    property alias contentModel: _listView.contentModel
+    property alias currentIndex: _listView.currentIndex
+    property alias currentItem: _listView.currentItem
+    property alias count: _listView.count
+
     property alias holder : _holder
     property bool mobile : control.width <= Maui.Style.units.gridUnit * 30
     property bool altTabBar : false
-    
+    property bool interactive: Maui.Handy.isTouch
+
     readonly property bool overviewMode :  _stackView.depth === 2
-    
-    property alias tabBar: _tabBar    
+
+    property alias tabBar: _tabBar
     
     property alias menu :_menu
     
@@ -33,14 +34,9 @@ Control
     
     onWidthChanged: _tabBar.positionViewAtIndex(control.currentIndex)
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
-    
-    property bool interactive: Maui.Handy.isTouch
-    
-    background: Rectangle
-    {
-        color: Maui.Theme.backgroundColor
-    }
-    
+
+    spacing: 0
+
     Component
     {
         id: _tabButtonComponent
@@ -56,8 +52,7 @@ Control
                 width: visible ? implicitWidth : 0
                 visible: control.mobile && _tabButton.checked && control.count > 1
                 text: control.count
-                radius: Maui.Style.radiusV
-            }                            
+            }
             
             onClicked:
             {
@@ -81,9 +76,7 @@ Control
             }
         }
     }
-    
-    spacing: 0
-        
+
     signal newTabClicked()
     signal closeTabClicked(int index)
     
@@ -168,101 +161,100 @@ Control
     {
         id: _quickSearchComponent
         
-        Maui.Dialog
+        Maui.PopupPage
         {
             id: _quickSearch
-            defaultButtons: false
-                persistent: false
-                headBar.visible: true
-                
-                onOpened: _quickSearchField.forceActiveFocus()
-                
-                function find(query)
+            persistent: false
+            headBar.visible: true
+
+            onOpened: _quickSearchField.forceActiveFocus()
+
+            function find(query)
+            {
+                for(var i = 0; i < control.count; i ++)
                 {
-                    for(var i = 0; i < control.count; i ++)
+                    var obj = _listView.contentModel.get(i)
+                    if(obj.Maui.TabViewInfo.tabTitle)
                     {
-                        var obj = _listView.contentModel.get(i)
-                        if(obj.Maui.TabViewInfo.tabTitle)
+                        console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
+
+                        if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
                         {
-                            console.log("Trying to find tab", i, query, obj.Maui.TabViewInfo.tabTitle, String(obj.Maui.TabViewInfo.tabTitle).indexOf(query))
-                            
-                            if(String(obj.Maui.TabViewInfo.tabTitle).toLowerCase().indexOf(query.toLowerCase()) !== -1)
-                            {
-                                return i
-                            }
-                        }
-                    }
-                    
-                    return -1
-                }
-                
-                Timer
-                {
-                    id: _typingTimer
-                    interval: 250
-                    onTriggered:
-                    {
-                        var index = _quickSearch.find(_quickSearchField.text)
-                        if(index > -1)
-                        {
-                            _filterTabsList.currentIndex = index
+                            return i
                         }
                     }
                 }
-                
-                headBar.middleContent: TextField
+
+                return -1
+            }
+
+            Timer
+            {
+                id: _typingTimer
+                interval: 250
+                onTriggered:
                 {
-                    id: _quickSearchField
-                    Layout.fillWidth: true
-                    Layout.maximumWidth: 500
-                    
-                    onTextChanged: _typingTimer.restart()
-                    
-                    onAccepted:
+                    var index = _quickSearch.find(_quickSearchField.text)
+                    if(index > -1)
                     {
-                        control.setCurrentIndex(_filterTabsList.currentIndex)
+                        _filterTabsList.currentIndex = index
+                    }
+                }
+            }
+
+            headBar.middleContent: TextField
+            {
+                id: _quickSearchField
+                Layout.fillWidth: true
+                Layout.maximumWidth: 500
+
+                onTextChanged: _typingTimer.restart()
+
+                onAccepted:
+                {
+                    control.setCurrentIndex(_filterTabsList.currentIndex)
+                    _quickSearch.close()
+                }
+
+                Keys.enabled: true
+
+                Keys.onPressed:
+                {
+                    if((event.key === Qt.Key_Up))
+                    {
+                        _filterTabsList.flickable.decrementCurrentIndex()
+                    }
+
+                    if((event.key === Qt.Key_Down))
+                    {
+                        _filterTabsList.flickable.incrementCurrentIndex()
+                    }
+                }
+            }
+
+            stack: Maui.ListBrowser
+            {
+                id: _filterTabsList
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                currentIndex: _listView.currentIndex
+
+                model: _listView.count
+
+                delegate: Maui.ListDelegate
+                {
+                    width: ListView.view.width
+
+                    label: _listView.contentModel.get(index).Maui.TabViewInfo.tabTitle
+
+                    onClicked:
+                    {
+                        currentIndex =index
+                        _listView.setCurrentIndex(index)
                         _quickSearch.close()
                     }
-                    
-                    Keys.enabled: true
-                    
-                    Keys.onPressed:
-                    {
-                        if((event.key === Qt.Key_Up))
-                        {
-                            _filterTabsList.flickable.decrementCurrentIndex()
-                        }
-                        
-                        if((event.key === Qt.Key_Down))
-                        {
-                            _filterTabsList.flickable.incrementCurrentIndex()
-                        }
-                    }
                 }
-                
-                stack: Maui.ListBrowser
-                {
-                    id: _filterTabsList
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    currentIndex: _listView.currentIndex
-                    
-                    model: _listView.count
-                    
-                    delegate: Maui.ListDelegate
-                    {
-                        width: ListView.view.width
-                        
-                        label: _listView.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                        
-                        onClicked:
-                        {
-                            currentIndex =index
-                            _listView.setCurrentIndex(index)
-                            _quickSearch.close()
-                        }
-                    }
-                }
+            }
         }
     }
     
@@ -284,15 +276,15 @@ Control
                     anchors.left: parent.left
                     anchors.right: parent.right
                     
-                    visible: _listView.count > 1   
+                    visible: _listView.count > 1
                     
-                    interactive: control.interactive                                   
+                    interactive: control.interactive
                     showNewTabButton: !control.mobile
                     
                     onNewTabClicked: control.newTabClicked()
-                    onNewTabFocused: 
+                    onNewTabFocused:
                     {
-                        if(control.mobile)                        
+                        if(control.mobile)
                         {
                             _listView.setCurrentIndex(index)
                         }
@@ -310,59 +302,59 @@ Control
                     {
                         if(event.key == Qt.Key_Return)
                         {
-                            _listView.setCurrentIndex(currentIndex)                        
+                            _listView.setCurrentIndex(currentIndex)
                         }
                         
                         if(event.key == Qt.Key_Down)
                         {
                             _listView.currentItem.forceActiveFocus()
                         }
-                    }      
+                    }
                     
                     states: [  State
-                    {
-                        when: !control.altTabBar && control.tabBar.visible
-                        
-                        AnchorChanges
                         {
-                            target: _tabBar
-                            anchors.top: parent.top
-                            anchors.bottom: undefined
-                        }
-                        
-                        PropertyChanges
+                            when: !control.altTabBar && control.tabBar.visible
+
+                            AnchorChanges
+                            {
+                                target: _tabBar
+                                anchors.top: parent.top
+                                anchors.bottom: undefined
+                            }
+
+                            PropertyChanges
+                            {
+                                target: _tabBar
+                                position: TabBar.Header
+                            }
+                        },
+
+                        State
                         {
-                            target: _tabBar
-                            position: TabBar.Header
-                        }
-                    },
-                    
-                    State
-                    {
-                        when: control.altTabBar && control.tabBar.visible
-                        
-                        AnchorChanges
-                        {
-                            target: _tabBar
-                            anchors.top: undefined
-                            anchors.bottom: parent.bottom
-                        }
-                        
-                        PropertyChanges
-                        {
-                            target: _tabBar
-                            position: ToolBar.Footer
-                        }
-                    } ]
+                            when: control.altTabBar && control.tabBar.visible
+
+                            AnchorChanges
+                            {
+                                target: _tabBar
+                                anchors.top: undefined
+                                anchors.bottom: parent.bottom
+                            }
+
+                            PropertyChanges
+                            {
+                                target: _tabBar
+                                position: ToolBar.Footer
+                            }
+                        } ]
                 }
                 
                 SwipeView
-                {  
+                {
                     id: _listView
                     anchors.fill: parent
                     
                     anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height : 0
-                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height : 0 
+                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height : 0
                     
                     interactive: false
                     
@@ -370,7 +362,7 @@ Control
                     
                     clip: control.clip
                     
-                    orientation: ListView.Horizontal                    
+                    orientation: ListView.Horizontal
                     background: null
                     
                     contentItem: ListView
@@ -406,7 +398,7 @@ Control
                         keyNavigationEnabled : false
                         keyNavigationWraps : false
                     }
-                }  
+                }
                 
                 Maui.Holder
                 {
@@ -415,12 +407,12 @@ Control
                     visible: !control.count
                     emojiSize: Maui.Style.iconSizes.huge
                 }
-            }  
+            }
             
             Component
             {
                 id: _overviewComponent
-               
+
                 Pane
                 {
                     Maui.Theme.colorSet: Maui.Theme.View
@@ -467,7 +459,7 @@ Control
                                 
                                 isCurrentItem : parent.GridView.isCurrentItem
                                 label1.text: _listView.contentModel.get(index).Maui.TabViewInfo.tabTitle
-//                                 template.labelSizeHint: 32
+                                //                                 template.labelSizeHint: 32
                                 iconSource: "tab-new"
                                 flat: false
                                 
@@ -480,7 +472,7 @@ Control
                                 onClicked:
                                 {
                                     control.closeOverview()
-                                    _listView.setCurrentIndex(index)                                    
+                                    _listView.setCurrentIndex(index)
                                 }
                                 
                                 onPressAndHold:
@@ -504,7 +496,7 @@ Control
                                         
                                         hideSource: false
                                         live: false
-//                                        mipmap: true
+                                        //                                        mipmap: true
                                         
                                         textureSize: Qt.size(width,height)
                                         sourceItem: _listView.contentModel.get(index)
@@ -516,24 +508,24 @@ Control
                                                 width: _effect.width
                                                 height: _effect.height
                                                 radius: Maui.Style.radiusV
-                                            }            
+                                            }
                                         }
                                     }
-                                                                        
+
                                     Maui.CloseButton
                                     {
                                         id: _closeButton
                                         visible: _delegate.isCurrentItem || _delegate.hovered || Maui.Handy.isMobile
                                         anchors.top: parent.top
                                         anchors.right: parent.right
-//                                         anchors.margins: Maui.Style.space.small
+                                        //                                         anchors.margins: Maui.Style.space.small
                                         
                                         onClicked: control.closeTabClicked(index)
                                         
                                         background: Rectangle
                                         {
                                             radius: height/2
-                                            color: _closeButton.hovered || _closeButton.containsPress ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor  
+                                            color: _closeButton.hovered || _closeButton.containsPress ? Maui.Theme.negativeBackgroundColor : Maui.Theme.backgroundColor
                                             
                                             Behavior on color
                                             {
@@ -548,7 +540,7 @@ Control
                 }
             }
         }
-    }    
+    }
     
     function closeTab(index)
     {
@@ -565,78 +557,78 @@ Control
         {
             control.closeOverview()
         }
-        
-        const object = component.createObject(control, properties);
-        
-        _listView.addItem(object)
-        
-        if(!quiet)
-        {
-            _listView.setCurrentIndex(Math.max(_listView.count -1, 0))
-            object.forceActiveFocus()
-        }
-        
-        return object
-    }
-    
-    function findTab()
-    {
-        if(control.count > 1)
-        {
-            _loader.sourceComponent = _quickSearchComponent
-            _loader.item.open()
-        }
-    }
-    
-    function openOverview()
-    {
-        if(_stackView.depth === 2)
-        {
-            return
-        }
-        _stackView.push(_overviewComponent)
-    }
-    
-    function closeOverview()
-    {
-        if(_stackView.depth === 1)
-        {
-            return
-        }
-        
-        _stackView.pop()
-    }
-    
-    function moveTab(from, to)
-    {       
-        _listView.moveItem(from, to)        
-        _tabBar.moveItem(from, to)
-        
-        _listView.setCurrentIndex(to)        
-        _tabBar.setCurrentIndex(_listView.currentIndex)
-                
-        _listView2.positionViewAtIndex(_listView.currentIndex, ListView.Contain)
-        
-        _listView.currentItemChanged()
-        _listView.currentItem.forceActiveFocus()
-        
-    }
-    
-    function setCurrentIndex(index)
-    {
-        _tabBar.setCurrentIndex(index)
-        _listView.setCurrentIndex(index)
-        _listView.currentItem.forceActiveFocus()        
-    }
-    
-    function tabAt(index)
-    {
-        return _listView.itemAt(index)
-    }
-    
-    function openTabMenu(index)
-    {
-        _menu.index = index
-        _menu.show()
-    }
-}
+
+            const object = component.createObject(control, properties);
+
+            _listView.addItem(object)
+
+            if(!quiet)
+            {
+                _listView.setCurrentIndex(Math.max(_listView.count -1, 0))
+                object.forceActiveFocus()
+            }
+
+                return object
+            }
+
+                function findTab()
+                {
+                    if(control.count > 1)
+                    {
+                        _loader.sourceComponent = _quickSearchComponent
+                        _loader.item.open()
+                    }
+                    }
+
+                        function openOverview()
+                        {
+                            if(_stackView.depth === 2)
+                            {
+                                return
+                            }
+                            _stackView.push(_overviewComponent)
+                        }
+
+                            function closeOverview()
+                            {
+                                if(_stackView.depth === 1)
+                                {
+                                    return
+                                }
+
+                                _stackView.pop()
+                            }
+
+                                function moveTab(from, to)
+                                {
+                                    _listView.moveItem(from, to)
+                                    _tabBar.moveItem(from, to)
+
+                                    _listView.setCurrentIndex(to)
+                                    _tabBar.setCurrentIndex(_listView.currentIndex)
+
+                                    _listView2.positionViewAtIndex(_listView.currentIndex, ListView.Contain)
+
+                                    _listView.currentItemChanged()
+                                    _listView.currentItem.forceActiveFocus()
+
+                                }
+
+                                    function setCurrentIndex(index)
+                                    {
+                                        _tabBar.setCurrentIndex(index)
+                                        _listView.setCurrentIndex(index)
+                                        _listView.currentItem.forceActiveFocus()
+                                    }
+
+                                        function tabAt(index)
+                                        {
+                                            return _listView.itemAt(index)
+                                        }
+
+                                            function openTabMenu(index)
+                                            {
+                                                _menu.index = index
+                                                _menu.show()
+                                            }
+                                            }

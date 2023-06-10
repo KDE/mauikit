@@ -7,10 +7,11 @@ import org.mauikit.controls as Maui
 DemoPage
 {
     id: control
+    title: i18n("Button")
 
     Maui.SectionGroup
     {
-        title: i18n("Button")
+        title: control.title
         spacing: control.spacing
 
         DemoSection
@@ -22,14 +23,7 @@ DemoPage
             {
                 icon.name: "folder"
                 text: "Button 1"
-                onClicked:
-                {
-                    //                    _dialogLoader.sourceComponent = _dialogComponent
-
-                    _dialog.open()
-                    //                    var obj =  _dialogComponent.createObject(window)
-                    //                    obj.open()
-                }
+                onClicked: {}
             }
 
             Button
@@ -269,20 +263,6 @@ Maui.Chip
 
         }
 
-
-
-        DemoSection
-        {
-            title: i18n("Switch")
-            body: i18n("MauiKit control for joint action buttons. Can be collapsed and have hidden actions too.")
-
-            Switch
-            {
-                text: "Switch"
-                icon.name: "contrast"
-            }
-        }
-
         DemoSection
         {
             title: i18n("Switch")
@@ -353,10 +333,10 @@ Maui.FloatingButton
     anchors.margins: Maui.style.space.big
 }'
 
-            Pane
+            column: Pane
             {
-                implicitHeight: 500
-                implicitWidth: 500
+                implicitHeight: 300
+                Layout.fillWidth: true
 
                 Maui.FloatingButton
                 {
@@ -365,12 +345,7 @@ Maui.FloatingButton
                     anchors.right: parent.right
                     anchors.margins: Maui.Style.space.big
                 }
-
             }
         }
     }
-
-
-
-
 }

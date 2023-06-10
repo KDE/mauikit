@@ -30,10 +30,10 @@ import org.mauikit.controls 1.3 as Maui
 Item
 {
     id: control
- 
-//     color: "transparent"
-implicitHeight: Math.max(iconSizeHint, imageSizeHint)
-implicitWidth: Math.max(iconSizeHint, imageSizeHint)
+
+    //     color: "transparent"
+    implicitHeight: Math.max(iconSizeHint, imageSizeHint)
+    implicitWidth: Math.max(iconSizeHint, imageSizeHint)
 
     /**
      * iconSizeHint : int
@@ -91,21 +91,21 @@ implicitWidth: Math.max(iconSizeHint, imageSizeHint)
         id: icon
         visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
         smooth: control.smooth
-         anchors.centerIn: parent
-//anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
+        //anchors.verticalCenter: parent.verticalCenter
 
-//        x: switch(control.alignment)
-//        {
-//            case Qt.AlignLeft: return 0
-//            case Qt.AlignHCenter: return control.width/2 - width/2
-//            case Qt.AlignRight: return control.width - width
-//        }
+        //        x: switch(control.alignment)
+        //        {
+        //            case Qt.AlignLeft: return 0
+        //            case Qt.AlignHCenter: return control.width/2 - width/2
+        //            case Qt.AlignRight: return control.width - width
+        //        }
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
         color: isMask ? (control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor) : "transparent"
         isMask: (height <= Maui.Style.iconSizes.small) || control.isMask
-//         selected: control.highlighted        
+        //         selected: control.highlighted
     }
 
     Image
@@ -115,14 +115,14 @@ implicitWidth: Math.max(iconSizeHint, imageSizeHint)
         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
 
-//         anchors.fill: parent
+        //         anchors.fill: parent
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
-        {
-            case Qt.AlignLeft: return 0
-            case Qt.AlignHCenter: return control.width/2 - width/2
-            case Qt.AlignRight: return control.width - width
-        }
+           {
+           case Qt.AlignLeft: return 0
+           case Qt.AlignHCenter: return control.width/2 - width/2
+           case Qt.AlignRight: return control.width - width
+           }
 
         sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : width)
         sourceSize.height: (control.imageHeight > -1 ? control.imageHeight : height)
@@ -151,7 +151,7 @@ implicitWidth: Math.max(iconSizeHint, imageSizeHint)
                 {
                     anchors.centerIn: parent
                     width: Math.min(parent.width, img.paintedWidth)
-                    height: Math.min(parent.height, img.paintedHeight)                    
+                    height: Math.min(parent.height, img.paintedHeight)
                     radius: control.maskRadius
                 }
             }

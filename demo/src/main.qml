@@ -19,6 +19,25 @@ Maui.ApplicationWindow
         onAccepted: Maui.Style.accentColor = selectedColor
     }
 
+
+    Component
+    {
+        id: _tabViewPage
+        TabViewPage {}
+    }
+
+    Component
+    {
+        id: _barsPage
+        BarsPage {}
+    }
+
+    Component
+    {
+        id: _templatesPage
+        TemplatesPage {}
+    }
+
     Component
     {
         id: _listBrowserPage
@@ -52,10 +71,7 @@ Maui.ApplicationWindow
     Component
     {
         id: _buttonsPage
-        ButtonsPage
-        {
-            title: i18n("Buttons")
-        }
+        ButtonsPage {}
     }
 
     Component
@@ -144,6 +160,13 @@ Maui.ApplicationWindow
                             label: i18n("AppViews")
                             onClicked: root.pushPage(_appViewsPage)
                         }
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("TabView")
+                            onClicked: root.pushPage(_tabViewPage)
+                        }
                     }
 
                     Maui.SectionItem
@@ -192,78 +215,6 @@ Maui.ApplicationWindow
 
                     Maui.SectionItem
                     {
-                        label1.text: i18n("Delegates")
-                        label2.text: i18n("Adaptive views for contents")
-                        columns: 1
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("ListBrowserDelegate")
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("GridBrowserDelegate")
-
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("CollageDelegate")
-
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("GalleryRollDelegate")
-                        }
-                    }
-
-                    Maui.SectionItem
-                    {
-                        Layout.fillWidth: true
-                        label1.text: i18n("Templates")
-                        label2.text: i18n("Adaptive views for contents")
-                        columns: 1
-
-
-                            Maui.ListDelegate
-                            {
-                                Layout.fillWidth: true
-                                label: i18n("LisItemTemplate")
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                Layout.fillWidth: true
-                                label: i18n("GridItemTemplate")
-
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                Layout.fillWidth: true
-                                label: i18n("IconItem")
-
-                            }
-
-                            Maui.ListDelegate
-                            {
-                                Layout.fillWidth: true
-                                label: i18n("CollageItem")
-
-                            }
-                        }
-
-
-
-
-                    Maui.SectionItem
-                    {
                         label1.text: i18n ("Common")
                         label2.text: i18n("Baseline controls")
                         columns: 1
@@ -278,7 +229,28 @@ Maui.ApplicationWindow
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true
+                            label: i18n("Delegates")
+                            onClicked: root.pushPage(_buttonsPage)
+                        }
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Containers")
+                            onClicked: root.pushPage(_buttonsPage)
+                        }
+
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
                             label: i18n("Labels")
+                        }
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Layouts")
                         }
 
                         Maui.ListDelegate
@@ -299,6 +271,14 @@ Maui.ApplicationWindow
                         {
                             Layout.fillWidth: true
                             label: i18n("Bars")
+                            onClicked: root.pushPage(_barsPage)
+                        }
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Templates")
+                            onClicked: root.pushPage(_templatesPage)
                         }
 
                         Maui.ListDelegate

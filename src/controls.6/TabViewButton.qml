@@ -1,11 +1,11 @@
-import QtQuick 2.15
-import QtQml 2.14
+import QtQuick
+import QtQml
 
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.10
-import QtGraphicalEffects 1.0
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 Maui.TabButton
 {
@@ -16,7 +16,7 @@ Maui.TabButton
     readonly property int mindex : control.TabBar.index
     property Item tabView : control.parent
     
-   readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
+    readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
     
     width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
     
@@ -30,7 +30,7 @@ Maui.TabButton
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && !Maui.Handy.isMobile && ToolTip.text.length
-    ToolTip.text: tabInfo.tabToolTipText    
+    ToolTip.text: tabInfo.tabToolTipText
     
     Drag.active: dragArea.active
     Drag.source: control
@@ -61,7 +61,7 @@ Maui.TabButton
         
         onActiveChanged:
         {
-            if (active) 
+            if (active)
             {
                 control.grabToImage(function(result)
                 {
@@ -69,7 +69,7 @@ Maui.TabButton
                 })
             }
         }
-    }                        
+    }
     
     Timer
     {
@@ -89,7 +89,7 @@ Maui.TabButton
         id: _dropArea
         anchors.fill: parent
         onDropped:
-        {                             
+        {
             const from = drop.source.mindex
             const to = control.mindex
             
@@ -98,17 +98,17 @@ Maui.TabButton
                 return
             }
             
-            console.log("Move ", drop.source.mindex, control.mindex)            
+            console.log("Move ", drop.source.mindex, control.mindex)
             control.tabView.moveTab(from , to)
         }
         
-        onEntered: 
+        onEntered:
         {
             if(drag.source &&  drag.source.mindex >= 0)
             {
                 return
             }
-            _dropAreaTimer.restart()    
+            _dropAreaTimer.restart()
         }
         
         onExited:
