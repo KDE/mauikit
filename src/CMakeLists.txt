@@ -211,6 +211,7 @@ ecm_target_qml_sources(MauiKit SOURCES
 
     controls.6/Badge.qml
 
+    controls.6/CollageItem.qml
     controls.6/ColorTransition.qml
     controls.6/ColorsRow.qml
     controls.6/ContextualMenu.qml
@@ -223,6 +224,8 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/FlexListItem.qml
     controls.6/FloatingButton.qml
 
+    controls.6/GalleryRollTemplate.qml
+    controls.6/GalleryRollItem.qml
     controls.6/GridBrowser.qml
     controls.6/GridBrowserDelegate.qml
     controls.6/GridItemTemplate.qml
@@ -257,6 +260,11 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/SplitView.qml
     controls.6/SplitViewItem.qml
 
+    controls.6/TabBar.qml
+    controls.6/TabButton.qml
+    controls.6/TabView.qml
+    controls.6/TabViewItem.qml
+    controls.6/TabViewButton.qml
     controls.6/ToolActions.qml
     controls.6/ToolBar.qml
     controls.6/ToolButtonMenu.qml

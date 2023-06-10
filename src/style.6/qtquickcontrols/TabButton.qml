@@ -20,72 +20,47 @@
  */
 
 
-import QtQuick 2.6
-import QtQml.Models 2.1
-//for TabBar.*
-import QtQuick.Controls 2.3
-import QtQuick.Templates 2.3 as T
-import org.mauikit.controls 1.2 as Maui
+import QtQuick
+import QtQml.Models
+import QtQuick.Templates as T
+import org.mauikit.controls  as Maui
 
 T.TabButton
 {
-    id: controlRoot
+    id: control
 
-    //Some qstyles like fusion don't have correct pixel metrics here and just return 0
-    implicitWidth: Math.max(styleitem.implicitWidth, textMetrics.width + Maui.Style.units.gridUnit * 2)
-//    implicitHeight: styleitem.implicitHeight || Maui.Style.units.gridUnit * 2
-    baselineOffset: contentItem.y + contentItem.baselineOffset
+    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.inherit: false
 
-    //This width: is important to make the tabbar internals not assume
-    //all tabs have the same width
-    width: implicitWidth
-    
+    opacity: enabled ? 1 : 0.5
+
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+
+    hoverEnabled: !Maui.Handy.isMobile
+
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing
-    
-    hoverEnabled: true
+    spacing: Maui.Style.space.small
 
-    contentItem: Item {}
+    font: Maui.Style.defaultFont
 
-//    background: StylePrivate.StyleItem {
-//        id: styleitem
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
 
-//        TextMetrics {
-//            id: textMetrics
-//            font.capitalization: Maui.Theme.defaultFont.capitalization
-//            font.family: Maui.Theme.defaultFont.family
-//            font.italic: Maui.Theme.defaultFont.italic
-//            font.letterSpacing: Maui.Theme.defaultFont.letterSpacing
-//            font.pointSize: Maui.Theme.defaultFont.pointSize
-//            font.strikeout: Maui.Theme.defaultFont.strikeout
-//            font.underline: Maui.Theme.defaultFont.underline
-//            font.weight: Maui.Theme.defaultFont.weight
-//            font.wordSpacing: Maui.Theme.defaultFont.wordSpacing
-//            text: controlRoot.text
-//        }
+    contentItem: Maui.IconLabel
+    {
+        text: control.text
+        font: control.font
+        icon: control.icon
+        color: Maui.Theme.textColor
+        spacing: control.spacing
+        display: control.display
+        alignment: Qt.AlignHCenter
+    }
 
-//        control: controlRoot
-//        anchors.fill: parent
-//        elementType: "tab"
-//        paintMargins: 0
-//        property Item tabBar: controlRoot.parent.parent.parent
-
-//        property string orientation: tabBar.position == TabBar.Header ? "Top" : "Bottom"
-//        property string selectedpos: tabBar.currentIndex == controlRoot.ObjectModel.index + 1 ? "next" :
-//                                    tabBar.currentIndex == controlRoot.ObjectModel.index - 1 ? "previous" : ""
-//        property string tabpos: tabBar.count === 1 ? "only" : controlRoot.ObjectModel.index === 0 ? "beginning" : controlRoot.ObjectModel.index === tabBar.count - 1 ? "end" : "middle"
-
-//        properties: {
-//            "hasFrame" : true,
-//            "orientation": orientation,
-//            "tabpos": tabpos,
-//            "selectedpos": selectedpos
-//        }
-
-//        enabled: controlRoot.enabled
-//        selected: controlRoot.checked
-//        text: controlRoot.text
-//        hover: controlRoot.hovered
-//        hasFocus: controlRoot.activeFocus
-//    }
+    background: Rectangle
+    {
+        color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
+        radius: Maui.Style.radiusV
+    }
 }

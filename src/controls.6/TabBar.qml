@@ -1,12 +1,9 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Controls as QQC
+import QtQuick.Layouts
+import QtQuick.Window
 
-import org.mauikit.controls 1.3 as Maui
-
-import "private" as Private
+import org.mauikit.controls as Maui
 
 /**
  * TabBar
@@ -18,7 +15,7 @@ import "private" as Private
  *
  *
  */
-T.TabBar
+QQC.TabBar
 {
     id: control
     
@@ -36,13 +33,6 @@ T.TabBar
     property bool showNewTabButton : true
     property bool showTabs : true
     
-    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
-        
-        padding: Maui.Style.defaultPadding
-        spacing: Maui.Style.space.small   
-        
-        font: Maui.Style.defaultFont
-                
     /**
      * newTabClicked :
      */
@@ -65,7 +55,7 @@ T.TabBar
             asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            active: !_content.atXEnd && !parent.fits 
+            active: !_content.atXEnd && !parent.fits
             visible: active
             
             anchors
@@ -75,9 +65,9 @@ T.TabBar
                 bottom: parent.bottom
             }
             
-            sourceComponent: Private.EdgeShadow
-            {                    
-                edge: Qt.RightEdge                    
+            sourceComponent: Maui.EdgeShadow
+            {
+                edge: Qt.RightEdge
             }
         }
         
@@ -88,7 +78,7 @@ T.TabBar
             asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
-            active: !_content.atXBeginning && !parent.fits 
+            active: !_content.atXBeginning && !parent.fits
             visible: active
             anchors
             {
@@ -97,15 +87,15 @@ T.TabBar
                 bottom: parent.bottom
             }
             
-            sourceComponent: Private.EdgeShadow
-            {                
-                edge: Qt.LeftEdge            
+            sourceComponent: Maui.EdgeShadow
+            {
+                edge: Qt.LeftEdge
             }
         }
     }
     
     contentItem: Item
-    {        
+    {
         implicitHeight: _layout.implicitHeight
         readonly property bool fits : _content.contentWidth <= width
         
@@ -116,7 +106,7 @@ T.TabBar
             DragHandler
             {
                 // enabled: !control.interactive
-                acceptedDevices: PointerDevice.Mouse
+//                acceptedDevices: PointerDevice.Mouse
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
             }
@@ -126,7 +116,7 @@ T.TabBar
         {
             id: _layout
             width: parent.width
-            spacing: control.spacing 
+            spacing: control.spacing
             
             Row
             {
@@ -134,14 +124,14 @@ T.TabBar
                 spacing: control.spacing
             }
             
-            ScrollView
+            QQC.ScrollView
             {
                 Layout.fillWidth: true
 
                 orientation : Qt.Horizontal
 
-               ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-                ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                QQC.ScrollBar.horizontal.policy: QQC.ScrollBar.AlwaysOff
+                QQC.ScrollBar.vertical.policy: QQC.ScrollBar.AlwaysOff
                 
                 contentHeight: availableHeight
                 implicitHeight: _content.currentItem ? _content.currentItem.height : 0
@@ -149,20 +139,20 @@ T.TabBar
                 ListView
                 {
                     id: _content
-                    opacity: control.showTabs ? 1 : 0 
+                    opacity: control.showTabs ? 1 : 0
                     visible: opacity > 0
                     
                     clip: true
                     
-                    orientation: ListView.Horizontal                    
-                  
+                    orientation: ListView.Horizontal
+
                     spacing: control.spacing
                     
                     model: control.contentModel
                     currentIndex: control.currentIndex
                     
                     interactive: Maui.Handy.isMobile
-                    snapMode: ListView.SnapOneItem  
+                    snapMode: ListView.SnapOneItem
                     
                     highlightFollowsCurrentItem: true
                     highlightMoveDuration: 0
@@ -188,19 +178,19 @@ T.TabBar
                             easing.type: Easing.InOutQuad
                         }
                     }
-                }                
+                }
             }
             
             Loader
             {
                 active: control.showNewTabButton
                 visible: active
-                asynchronous: true                
+                asynchronous: true
                 
-                sourceComponent: ToolButton
+                sourceComponent: QQC.ToolButton
                 {
                     icon.name: "list-add"
-                    onClicked: control.newTabClicked()              
+                    onClicked: control.newTabClicked()
                     flat: true
                 }
             }

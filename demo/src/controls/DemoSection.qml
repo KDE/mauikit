@@ -60,6 +60,18 @@ Maui.SectionItem
         font.family: "Monospace"
         //        Layout.minimumHeight: 300
         Layout.fillWidth: true
+        hoverEnabled: true
+
+        Maui.Chip
+        {
+            visible: parent.hovered
+            text: i18n("Copy")
+            color: Maui.Theme.positiveBackgroundColor
+            onClicked: Maui.Handy.copyTextToClipboard(_textArea.text)
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.margins: Maui.Style.space.big
+        }
     }
 
 }

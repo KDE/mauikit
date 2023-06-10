@@ -1,8 +1,8 @@
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-import QtGraphicalEffects 1.0
+import org.mauikit.controls  as Maui
+import Qt5Compat.GraphicalEffects
 
 /*!
   \since org.mauikit.controls.labs 1.0

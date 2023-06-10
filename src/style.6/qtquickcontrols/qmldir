@@ -65,6 +65,15 @@ SplitView 2.0 SplitView.qml
 Switch 6.0 Switch.qml
 Switch 2.0 Switch.qml
 
+SwipeView 6.0 SwipeView.qml
+SwipeView 2.0 SwipeView.qml
+
+TabBar 6.0 TabBar.qml
+TabBar 2.0 TabBar.qml
+
+TabButton 6.0 TabButton.qml
+TabButton 2.0 TabButton.qml
+
 TextField 6.0 TextField.qml
 TextField 2.0 TextField.qml
 

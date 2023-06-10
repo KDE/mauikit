@@ -26,12 +26,17 @@ DemoPage
                 Maui.ListBrowser
                 {
                     anchors.fill: parent
-                    model: 100
+                    model: 40
+                    clip: true
 
                     delegate: Maui.ListBrowserDelegate
                     {
                         width: ListView.view.width
-                        label1.text: modelData
+                        label1.text: i18n("Title %1", modelData)
+                        label2.text: "Subtitle"
+                        label3.text: "+300"
+                        label4.text: "Info"
+                        iconSource: "folder-music"
                     }
                 }
             }

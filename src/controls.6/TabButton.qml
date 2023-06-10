@@ -1,10 +1,9 @@
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
+import QtQuick
+import QtQuick.Controls as QQC
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * TabButton
@@ -16,28 +15,10 @@ import org.mauikit.controls 1.3 as Maui
  *
  *
  */
-T.TabButton
+QQC.TabButton
 {
     id: control
-    
-    opacity: enabled ? 1 : 0.5
-        
-    implicitWidth: implicitContentWidth + leftPadding + rightPadding
-        implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
-    hoverEnabled: !Maui.Handy.isMobile
-    
-    padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.small   
-    
-    font: Maui.Style.defaultFont
-    
-    icon.width: Maui.Style.iconSize
-    icon.height: Maui.Style.iconSize
-    
-    Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
-    
     property alias content: _content.data
     property alias leftContent: _leftContent.data
     property alias rightContent: _rightContent.data
@@ -49,12 +30,7 @@ T.TabButton
      */
     signal closeClicked()
     signal rightClicked(var mouse)
-    
-    background: Rectangle
-    {
-        color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
-        radius: Maui.Style.radiusV
-    }
+
     
     contentItem: MouseArea
     {
@@ -96,14 +72,14 @@ T.TabButton
                 icon: control.icon
                 color: Maui.Theme.textColor
                 alignment: Qt.AlignHCenter
-                display: ToolButton.TextBesideIcon
-                font: control.font          
+                display: QQC.ToolButton.TextBesideIcon
+                font: control.font
             }
             
             Row
             {
                 id: _rightContent
-            }            
+            }
             
             Loader
             {

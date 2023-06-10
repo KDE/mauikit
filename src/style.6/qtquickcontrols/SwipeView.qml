@@ -34,10 +34,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Templates 2.3 as T
-import org.mauikit.controls 1.3 as Maui
+import QtQuick
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.SwipeView 
 {
@@ -71,8 +70,7 @@ T.SwipeView
         preferredHighlightEnd: width
         
         maximumFlickVelocity: 4 * (control.orientation === Qt.Horizontal ? width : height)
-    }
-    
+    }    
     
     background: Rectangle
     {
