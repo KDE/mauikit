@@ -38,10 +38,7 @@ T.ToolBar
         
     implicitHeight: implicitContentHeight + topPadding + bottomPadding    
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
-    
-    contentWidth: contentChildren[0].implicitWidth
-    contentHeight: contentChildren[0].implicitHeight
-    
+
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
     

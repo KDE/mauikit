@@ -19,6 +19,29 @@ Maui.ApplicationWindow
         onAccepted: Maui.Style.accentColor = selectedColor
     }
 
+    Component
+    {
+        id: _popupsPage
+        PopupsPage {}
+    }
+
+    Component
+    {
+        id: _altBrowserPage
+        AltBrowserPage {}
+    }
+
+    Component
+    {
+        id: _imageViewerPage
+        ImagePage {}
+    }
+
+    Component
+    {
+        id: _delegatesPage
+        DelegatesPage {}
+    }
 
     Component
     {
@@ -77,10 +100,7 @@ Maui.ApplicationWindow
     Component
     {
         id: _inputsPage
-        InputsPage
-        {
-            title: i18n("Input Fields")
-        }
+        InputsPage {}
     }
 
     Component
@@ -167,6 +187,13 @@ Maui.ApplicationWindow
                             label: i18n("TabView")
                             onClicked: root.pushPage(_tabViewPage)
                         }
+
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("ImageViewer")
+                            onClicked: root.pushPage(_imageViewerPage)
+                        }
                     }
 
                     Maui.SectionItem
@@ -192,24 +219,7 @@ Maui.ApplicationWindow
                         {
                             Layout.fillWidth: true
                             label: i18n("AltBrowser")
-                        }
-                    }
-
-                    Maui.SectionItem
-                    {
-                        label1.text: i18n("Layouts")
-                        columns: 1
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("SectionColumn")
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("SectionTemplate")
+                            onClicked: root.pushPage(_altBrowserPage)
                         }
                     }
 
@@ -230,7 +240,7 @@ Maui.ApplicationWindow
                         {
                             Layout.fillWidth: true
                             label: i18n("Delegates")
-                            onClicked: root.pushPage(_buttonsPage)
+                            onClicked: root.pushPage(_delegatesPage)
                         }
 
                         Maui.ListDelegate
@@ -285,12 +295,11 @@ Maui.ApplicationWindow
                         {
                             Layout.fillWidth: true
                             label: i18n("Popups")
+                            onClicked: root.pushPage(_popupsPage)
                         }
                     }
                 }
             }
-
-
         }
 
         Maui.Page
@@ -313,7 +322,6 @@ Maui.ApplicationWindow
                     icon.name: "go-previous"
                     onClicked: _stackView.pop()
                 }
-
             ]
 
             headBar.rightContent:[ ToolButton

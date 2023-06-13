@@ -6,6 +6,7 @@ import org.mauikit.controls as Maui
 Dialog
 {
     id: control
+
     default property alias content: _content.content
 
     /*!
@@ -73,7 +74,6 @@ Dialog
                 PauseAnimation { duration: 50 } // This puts a bit of time between the loop
             }
         }
-
     }
 
     /**

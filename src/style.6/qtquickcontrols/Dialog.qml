@@ -33,38 +33,39 @@ T.Dialog
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
 
+    parent: Overlay.overlay
+
     anchors.centerIn: parent
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentWidth > 0 ? contentWidth + leftPadding + rightPadding : 0)
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding + implicitFooterHeight + implicitHeaderHeight
 
-    contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
-    contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0) + header.implicitHeight + footer.implicitHeight
+    implicitWidth: Math.min(300, control.parent.width)
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding + implicitFooterHeight + implicitHeaderHeight + topMargin + bottomMargin
 
+    spacing: Maui.Style.defaultSpacing
     padding: Maui.Style.contentMargins
+    margins: Maui.Style.space.medium
     modal: true
 
      closePolicy: control.modal ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    enter: Transition {
-        NumberAnimation {
-            property: "opacity"
-            from: 0
-            to: 1
-            easing.type: Easing.InOutQuad
-            duration: 250
-        }
-    }
+//    enter: Transition {
+//        NumberAnimation {
+//            property: "opacity"
+//            from: 0
+//            to: 1
+//            easing.type: Easing.InOutQuad
+//            duration: 250
+//        }
+//    }
 
-    exit: Transition {
-        NumberAnimation {
-            property: "opacity"
-            from: 1
-            to: 0
-            easing.type: Easing.InOutQuad
-            duration: 250
-        }
-    }  
+//    exit: Transition {
+//        NumberAnimation {
+//            property: "opacity"
+//            from: 1
+//            to: 0
+//            easing.type: Easing.InOutQuad
+//            duration: 250
+//        }
+//    }
 
     background: Rectangle
     {

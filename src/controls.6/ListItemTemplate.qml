@@ -160,7 +160,7 @@ Item
          */
     property Component iconComponent : _iconComponent
 
-    property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
+    property bool isMask : iconSizeHint <= Maui.Style.iconSizes.medium
     property bool hovered: false
     
     property bool highlighted: false

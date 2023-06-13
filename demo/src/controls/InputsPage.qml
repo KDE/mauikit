@@ -7,65 +7,107 @@ import org.mauikit.controls as Maui
 DemoPage
 {
     id: control
+    title: i18n("Inputs")
 
     Maui.SectionGroup
     {
         title: i18n("Input Fields")
         spacing: control.spacing
-    }
 
-    DemoSection
-    {
-        title: "Buttons"
-        body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
-
-        TextField
+        DemoSection
         {
-            placeholderText: "TextField"
+            title: "Buttons"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            TextField
+            {
+                placeholderText: "TextField"
+            }
+        }
+
+        DemoSection
+        {
+            title: "Buttons"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+
+            Maui.SearchField
+            {
+                placeholderText: "SearchField"
+            }
+
+        }
+
+        DemoSection
+        {
+            title: "Buttons"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            Maui.PasswordField
+            {
+                placeholderText: "PasswordField"
+            }
+        }
+
+        DemoSection
+        {
+            title: "Buttons"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            column: TextArea
+            {
+                Layout.fillWidth: true
+                implicitHeight: 250
+                placeholderText: "Text Area Input..."
+            }
         }
     }
 
-    DemoSection
+    Maui.SectionGroup
     {
-        title: "Buttons"
-        body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+        title: i18n("Input Fields")
+        spacing: control.spacing
 
-
-        Maui.SearchField
+        DemoSection
         {
-            placeholderText: "SearchField"
+            title: "Sliders"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            column:[
+
+                Slider
+                {
+                    Layout.fillWidth: true
+                    from: 0
+                    to: 100
+                    value: 50
+                }
+            ]
         }
 
-    }
-
-    DemoSection
-    {
-        title: "Buttons"
-        body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
-
-        Maui.PasswordField
+        DemoSection
         {
-            placeholderText: "PasswordField"
+            title: "ProgressBar"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            column:[
+                ProgressBar
+                {
+                    Layout.fillWidth: true
+                    from: 0
+                    to: 100
+                    value: 50
+                },
+
+                ProgressBar
+                {
+                    Layout.fillWidth: true
+                    indeterminate: true
+                    from: 0
+                    to: 100
+                    value: 50
+                }
+            ]
         }
-    }
-
-    DemoSection
-    {
-        title: "Buttons"
-        body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
-
-        column: TextArea
-        {
-            Layout.fillWidth: true
-            implicitHeight: 250
-            placeholderText: "Text Area Input..."
-        }
-    }
-
-    DemoSection
-    {
-        title: "Buttons"
-        body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
-
     }
 }

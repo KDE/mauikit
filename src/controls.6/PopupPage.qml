@@ -43,7 +43,6 @@ Popup
     id: control
     
     focus: true
-    //     focusPolicy: Qt.StrongFocus
     
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
@@ -58,7 +57,6 @@ Popup
     heightHint: 0.9
     spacing: Maui.Style.space.big
 
-    //     filling: mWidth === control.parent.width
     filling: persistent && mWidth === control.parent.width
     /*!
    *    \qmlproperty list<Item> ApplicationWindow::scrollable
@@ -76,11 +74,6 @@ Popup
      *    controlled by a ColumnLayout
      */
     property alias stack : _stack.data
-    
-    /*!
-     *    Default message text inside the scrollable layout.
-     */
-    property string message : ""
 
     /*!
      *    \qmlproperty string ApplicationWindow::title
@@ -88,14 +81,6 @@ Popup
      *    Default title text or title of the dialog page.
      */
     property alias title : _page.title
-    
-    /*!
-     *    \qmlproperty ListItemTemplate ApplicationWindow::template
-     *
-     *    The templated item used for the default dialog message, holding the icon emblem and the message body.
-     *    This property gives access to the template for more detailed tweaking, by adding items or changing its properties.
-     */
-    property alias template : _template
 
     /*!
      *    \qmlproperty bool ApplicationWindow::persistent
@@ -249,22 +234,6 @@ Popup
 
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
-
-                Maui.ListItemTemplate
-                {
-                    id: _template
-                    visible: control.message.length
-                    Layout.fillWidth: true
-                    label2.text: message
-                    label2.textFormat : TextEdit.AutoText
-                    label2.wrapMode: TextEdit.WordWrap
-                    iconVisible: control.width > Maui.Style.units.gridUnit * 20
-
-                    iconSizeHint: Maui.Style.iconSizes.large
-                    spacing: Maui.Style.space.big
-
-                    leftLabels.spacing: control.spacing
-                }
             }
         }
     }

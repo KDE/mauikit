@@ -21,6 +21,10 @@ set(QML_SRCS
     controls/TemplatesPage.qml
     controls/BarsPage.qml
     controls/TabViewPage.qml
+    controls/DelegatesPage.qml
+    controls/ImagePage.qml
+    controls/AltBrowserPage.qml
+    controls/PopupsPage.qml
 )
 
 qt_add_qml_module(${PROJECT_NAME}
