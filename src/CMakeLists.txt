@@ -205,6 +205,8 @@ endif()
 
 ecm_target_qml_sources(MauiKit SOURCES
 
+    controls.6/AltBrowser.qml
+    controls.6/AnimatedImageViewer.qml
     controls.6/ApplicationWindow.qml
     controls.6/AppViews.qml
     controls.6/AppViewLoader.qml
@@ -235,7 +237,9 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/Icon.qml
     controls.6/IconItem.qml
     controls.6/IconLabel.qml
+    controls.6/ImageViewer.qml
     controls.6/InfoDialog.qml
+    controls.6/InputDialog.qml
     controls.6/ItemDelegate.qml
 
     controls.6/LabelDelegate.qml
@@ -244,17 +248,23 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/ListDelegate.qml
     controls.6/ListItemTemplate.qml
 
+    controls.6/MenuItemActionRow.qml
+
     controls.6/Page.qml
     controls.6/PasswordField.qml
     controls.6/PopupPage.qml
     controls.6/ProgressIndicator.qml
 
     controls.6/ScrollColumn.qml
+
+    controls.6/SearchField.qml
+
     controls.6/SectionHeader.qml
     controls.6/SectionItem.qml
-    controls.6/SectionGroup.qml
+    controls.6/SectionGroup.qml    
     controls.6/Separator.qml
-    controls.6/SearchField.qml
+    controls.6/SettingsDialog.qml
+    controls.6/SettingsPage.qml
     controls.6/SideBarView.qml
     controls.6/ShadowedRectangle.qml
     controls.6/SplitView.qml

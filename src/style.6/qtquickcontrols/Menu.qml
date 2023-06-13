@@ -135,7 +135,6 @@ T.Menu
 
         implicitHeight: _listView.contentHeight + topPadding+bottomPadding
 
-
         ListView
         {
             id: _listView

@@ -62,6 +62,9 @@ SpinBox 2.0 SpinBox.qml
 SplitView 6.0 SplitView.qml
 SplitView 2.0 SplitView.qml
 
+StackView 6.0 StackView.qml
+StackView 2.0 StackView.qml
+
 Switch 6.0 Switch.qml
 Switch 2.0 Switch.qml
 

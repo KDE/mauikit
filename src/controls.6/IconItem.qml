@@ -31,7 +31,6 @@ Item
 {
     id: control
 
-    //     color: "transparent"
     implicitHeight: Math.max(iconSizeHint, imageSizeHint)
     implicitWidth: Math.max(iconSizeHint, imageSizeHint)
 
@@ -100,11 +99,12 @@ Item
         //            case Qt.AlignHCenter: return control.width/2 - width/2
         //            case Qt.AlignRight: return control.width - width
         //        }
+
         source: control.iconSource || "folder-images"
         height: Math.floor(Math.min(parent.height, control.iconSizeHint))
         width: height
         color: isMask ? (control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor) : "transparent"
-        isMask: (height <= Maui.Style.iconSizes.small) || control.isMask
+        isMask: (height <= Maui.Style.iconSizes.medium)
         //         selected: control.highlighted
     }
 
@@ -115,7 +115,6 @@ Item
         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
 
-        //         anchors.fill: parent
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
            {

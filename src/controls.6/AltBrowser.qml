@@ -1,8 +1,8 @@
-import QtQuick 2.13
-import QtQml 2.14
-import QtQuick.Controls 2.13
+import QtQuick
+import QtQml
+import QtQuick.Controls
 
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls as Maui
 
 /*!
 \since org.mauikit.controls 1.0
