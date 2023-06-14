@@ -17,11 +17,11 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.14
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * SwipeItemDelegate
@@ -36,8 +36,11 @@ import org.mauikit.controls 1.3 as Maui
 Maui.ItemDelegate
 {
     id: control
+
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing    
+    spacing: Maui.Style.space.small
+    readonly property int buttonsHeight: Math.max(_background.implicitHeight, _swipeDelegate.implicitHeight)
+
     isCurrentItem : ListView.isCurrentItem
 
     /**
@@ -45,7 +48,7 @@ Maui.ItemDelegate
       */
     default property alias content : _content.data
 
-        property alias actionRow : _background.data
+    property alias actionRow : _background.data
     /**
       * showQuickActions : bool
       */
@@ -67,7 +70,11 @@ Maui.ItemDelegate
             _swipeDelegate.swipe.close()
     }
     
-    background: null
+    background: Rectangle
+    {
+        color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.95))
+        radius: Maui.Style.radiusV
+    }
 
     SwipeDelegate
     {
@@ -82,30 +89,16 @@ Maui.ItemDelegate
         onPressAndHold: control.pressAndHold(null)
 
         swipe.enabled: control.collapse && control.showQuickActions
-        padding: Maui.Style.space.small
-        topPadding: padding
-        bottomPadding: padding
-        leftPadding: padding
-        rightPadding: padding
+        padding: 0
 
-        background: Rectangle
-        {
-            id: _bg
-//             anchors.fill: _swipeDelegate.background
-            //z: _swipeDelegate.background.z -1
-            color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.95))
-            radius: Maui.Style.radiusV
-            // 				opacity: Math.abs( _swipeDelegate.swipe.position)
-        }
+        background: null
+
 
         contentItem: RowLayout
         {
             spacing: control.spacing
             id: _background
 
-            //                transform: Translate {
-            //                           x: _swipeDelegate.swipe.position * control.width * 0.33
-            //                       }
             Item
             {
                 id: _content
@@ -113,51 +106,36 @@ Maui.ItemDelegate
                 Layout.fillHeight: true
             }
 
-            Row
+            Loader
             {
-                id: _buttonsRow
-                spacing: control.spacing
-                visible: control.hovered && control.showQuickActions && !control.collapse
-                Layout.fillHeight: true
-                Layout.preferredWidth: Math.max(Maui.Style.space.big, _buttonsRow.implicitWidth)
-                Layout.alignment: Qt.AlignRight
-//                 Layout.margins: Maui.Style.space.medium
+                active: control.showQuickActions && !control.collapse
+                visible: active && control.hovered
+                asynchronous: true
 
-                Behavior on Layout.preferredWidth
+                sourceComponent: Row
                 {
-                    NumberAnimation
-                    {
-                        duration: Maui.Style.units.longDuration
-                        easing.type: Easing.InOutQuad
-                    }
-                }
+                    spacing: control.spacing
+                    Layout.alignment: Qt.AlignRight
 
-                Repeater
-                {
-                    model: !control.collapse &&  control.showQuickActions ? control.quickActions : undefined
-
-                    ToolButton
+                    Repeater
                     {
-                        action: modelData
-                        anchors.verticalCenter: parent.verticalCenter
+                        model: control.quickActions
+
+                        ToolButton
+                        {
+                            action: modelData
+                        }
                     }
                 }
             }
 
-            Item
+            ToolButton
             {
                 visible: control.collapse && control.quickActions.length > 0 && control.showQuickActions
-                Layout.fillHeight: true
-                Layout.preferredWidth: Maui.Style.iconSizes.big + Maui.Style.space.small
-                Layout.margins: Maui.Style.space.small
-
-                ToolButton
-                {
-                    anchors.centerIn: parent
-                    icon.name: "overflow-menu"
-                    onClicked: _swipeDelegate.swipe.complete ? _swipeDelegate.swipe.close() : _swipeDelegate.swipe.open(SwipeDelegate.Right)
-                }
+                icon.name: _swipeDelegate.swipe.complete ? "go-next" : "go-previous"
+                onClicked: _swipeDelegate.swipe.complete ? _swipeDelegate.swipe.close() : _swipeDelegate.swipe.open(SwipeDelegate.Right)
             }
+
         }
 
         swipe.right: Row
@@ -171,23 +149,14 @@ Maui.ItemDelegate
             height: parent.height
 
             opacity: Math.abs(_swipeDelegate.swipe.position) > 0.5 ? 1 : 0
-            //                Behavior on width
-            //                {
-            //                    NumberAnimation
-            //                    {
-            //                        duration: Maui.Style.units.longDuration
-            //                        easing.type: Easing.InOutQuad
-            //                    }
-            //                }
 
             Repeater
             {
-                model: control.collapse && control.showQuickActions ? control.quickActions : undefined
+                model: control.quickActions
 
                 ToolButton
                 {
                     action: modelData
-                    anchors.verticalCenter: parent.verticalCenter
                     onClicked: _swipeDelegate.swipe.close()
                 }
             }

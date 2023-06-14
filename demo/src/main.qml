@@ -21,6 +21,12 @@ Maui.ApplicationWindow
 
     Component
     {
+        id: _othersPage
+        OthersPage {}
+    }
+
+    Component
+    {
         id: _popupsPage
         PopupsPage {}
     }
@@ -296,6 +302,13 @@ Maui.ApplicationWindow
                             Layout.fillWidth: true
                             label: i18n("Popups")
                             onClicked: root.pushPage(_popupsPage)
+                        }
+                        
+                        Maui.ListDelegate
+                        {
+                            Layout.fillWidth: true
+                            label: i18n("Other")
+                            onClicked: root.pushPage(_othersPage)
                         }
                     }
                 }

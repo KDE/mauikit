@@ -359,21 +359,23 @@ Item
             
             Loader
             {
-                asynchronous: true
-                z: -1
-                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
+//                asynchronous: true
+//                z: -1
+//                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
                 anchors.fill: parent
-                
+                active: true
+
                 sourceComponent: MouseArea
                 {
                     id: _mouseArea
                     
                     propagateComposedEvents: true
                     //                 preventStealing: true
-                    acceptedButtons:  Qt.RightButton | Qt.LeftButton
+//                    acceptedButtons:  Qt.RightButton | Qt.LeftButton
                     
-                    onClicked:
+                    onClicked: (mouse) =>
                     {
+                                   console.log("Area clicked")
                         control.areaClicked(mouse)
                         control.forceActiveFocus()
                         
@@ -384,7 +386,7 @@ Item
                         }
                     }
                     
-                    onWheel:
+                    onWheel: (wheel) =>
                     {
                         if (wheel.modifiers & Qt.ControlModifier)
                         {
@@ -397,8 +399,10 @@ Item
                             wheel.accepted = false
                     }
                     
-                    onPositionChanged:
+                    onPositionChanged: (mouse) =>
                     {
+                                           console.log("Area clicked >>> Moving")
+
                         if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
                         {
                             if(mouseX >= selectLayer.newX)
@@ -423,7 +427,7 @@ Item
                         }
                     }
                     
-                    onPressed:
+                    onPressed: (mouse) =>
                     {
                         if (mouse.source === Qt.MouseEventNotSynthesized)
                         {
@@ -440,7 +444,7 @@ Item
                         }
                     }
                     
-                    onPressAndHold:
+                    onPressAndHold: (mouse) =>
                     {
                         if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible )
                         {
@@ -459,7 +463,7 @@ Item
                         }
                     }
                     
-                    onReleased:
+                    onReleased: (mouse) =>
                     {
                         if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
                         {

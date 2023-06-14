@@ -185,4 +185,89 @@ Maui.CollageItem
         }
     }
 
+    DemoSection
+    {
+        title: i18n("SwipeBrowserDelegate")
+        body: i18n("This prototype uses a column layout to place an icon or image, above two lines of text. It uses the GridItemTemplate as base, adn adds the features such as checkable, draggable. Meant to be used with the GridBrowser or GridView.")
+        sampleText: 'import org.mauikit.controls as Maui
+Maui.ListBrowserDelegate
+{
+Layout.fillWidth: true
+label1.text: "Title"
+label2.text: "Subtitle"
+iconSource: "folder-green"
+iconSizeHint: Maui.Style.iconSizes.medium
+checkable: true
+checked: true
+}'
+
+        column: [
+
+
+            Maui.SwipeBrowserDelegate
+            {
+                Layout.fillWidth: true
+                label1.text: "Title"
+                label2.text: "Subtitle"
+                iconSource: "folder-green"
+                iconSizeHint: Maui.Style.iconSizes.medium
+
+                quickActions: [
+                    Action
+                    {
+                        icon.name: "love"
+                    },
+
+                    Action
+                    {
+                        icon.name: "love"
+                    }
+                ]
+            },
+
+            Maui.SwipeBrowserDelegate
+            {
+                Layout.fillWidth: true
+                label1.text: "Title"
+                label2.text: "Subtitle"
+                iconSource: "folder-green"
+                iconSizeHint: Maui.Style.iconSizes.medium
+                collapse: true
+                quickActions: [
+                    Action
+                    {
+                        icon.name: "love"
+                    },
+
+                    Action
+                    {
+                        icon.name: "love"
+                    }
+                ]
+            },
+
+
+            Maui.SwipeBrowserDelegate
+            {
+                Layout.fillWidth: true
+                label1.text: "Draggable"
+                label2.text: "Subtitle"
+                imageSource: "qrc:/assets/6919759.jpg"
+                template.headerSizeHint: 64
+                draggable: true
+
+                quickActions: Action
+                {
+                    icon.name: "love"
+                }
+
+                Button
+                {
+                    text: "Test"
+                }
+            }
+
+        ]
+    }
+
 }
