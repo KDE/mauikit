@@ -25,6 +25,7 @@ set(QML_SRCS
     controls/ImagePage.qml
     controls/AltBrowserPage.qml
     controls/PopupsPage.qml
+    controls/OthersPage.qml
 )
 
 qt_add_qml_module(${PROJECT_NAME}

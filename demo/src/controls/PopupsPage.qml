@@ -180,6 +180,25 @@ DemoPage
                 id: _menu
 
                 title: "Title"
+
+                Maui.MenuItemActionRow
+                {
+                    Action
+                    {
+                        icon.name: "love"
+                    }
+
+                    Action
+                    {
+                        icon.name: "list-add"
+                    }
+
+                    Action
+                    {
+                        icon.name: "view-list-icons"
+                    }
+                }
+
                 MenuItem
                 {
                     text: i18n("Menu 1")
@@ -323,7 +342,7 @@ DemoPage
 
             Button
             {
-                text: i18n("Open Menu")
+                text: i18n("Open Dialog")
                 onClicked: _settings.open()
             }
         }

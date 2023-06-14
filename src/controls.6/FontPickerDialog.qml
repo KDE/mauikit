@@ -17,24 +17,20 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-//this basic toolbutton provides a basic anima
-
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-import QtQuick.Layouts 1.3
-
-import org.mauikit.controls 1.3 as Maui
-import QtQuick.Templates 2.15 as T
-
+import org.mauikit.controls as Maui
 
 Maui.SettingsDialog
 {
     id: control
+
     property alias mfont : _picker.mfont   
-    title: i18n("Fonts")
-    defaultButtons: true
     property alias model : _picker.model
+
+    title: i18n("Fonts")
         
     FontPicker
     {

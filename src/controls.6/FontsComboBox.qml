@@ -34,15 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Window 2.2
+import QtQuick
+import QtQuick.Controls
 
-import QtQuick.Templates 2.12 as T
-
-import org.mauikit.controls 1.3 as Maui
-
-import QtGraphicalEffects 1.0
+import org.mauikit.controls as Maui
 
 ComboBox
 {
@@ -60,6 +55,5 @@ ComboBox
         hoverEnabled: control.hoverEnabled
         Maui.Theme.colorSet: control.Maui.Theme.inherit ? control.Maui.Theme.colorSet : Maui.Theme.View
         Maui.Theme.inherit: control.Maui.Theme.inherit
-
     }
 }

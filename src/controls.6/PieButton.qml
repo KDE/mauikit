@@ -17,13 +17,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Window
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls as Maui
 
-import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 /**
  * PieButton
@@ -35,7 +36,7 @@ import QtGraphicalEffects 1.0
  *
  *
  */
-Item
+Control
 {
     id: control
 
@@ -47,7 +48,7 @@ Item
     /**
       * maxWidth : int
       */
-    property int maxWidth :  ApplicationWindow.overlay.width - control.anchors.margins
+    property int maxWidth :  control.Window.window.width - control.anchors.margins
 
     /**
       * actions : list<Action>
@@ -69,7 +70,9 @@ Item
       */
     property alias display: _button.display
 
-    implicitWidth: _actionsBar.visible ? Math.min(maxWidth, height + _actionsBar.implicitWidth + Maui.Style.space.big) :  height
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+
+    implicitHeight: implicitContentHeight+ topPadding + bottomPadding
 
     Behavior on implicitWidth
     {
@@ -80,71 +83,74 @@ Item
         }
     }
 
-    MouseArea
-    {
-        id: _overlay
-        anchors.fill: parent
-        parent: control.parent
-        preventStealing: true
-        propagateComposedEvents: true
-        visible: _actionsBar.visible
-        opacity: visible ? 1 : 0
+//    MouseArea
+//    {
+//        id: _overlay
+//        anchors.fill: parent
 
-        Behavior on opacity
-        {
-            NumberAnimation
-            {
-                duration: Maui.Style.units.longDuration
-                easing.type: Easing.InOutQuad
-            }
-        }
-        Rectangle
-        {
-            color: Qt.rgba(control.Maui.Theme.backgroundColor.r,control.Maui.Theme.backgroundColor.g,control.Maui.Theme.backgroundColor.b, 0.5)
-            anchors.fill: parent
-        }
+//        parent: control.parent
 
-        onClicked:
-        {
-            control.close()
-            mouse.accepted = false
-        }
-    }
+//        preventStealing: true
+//        propagateComposedEvents: true
+//        visible: _actionsBar.visible
+//        opacity: visible ? 1 : 0
 
-    Rectangle
+//        Behavior on opacity
+//        {
+//            NumberAnimation
+//            {
+//                duration: Maui.Style.units.longDuration
+//                easing.type: Easing.InOutQuad
+//            }
+//        }
+//        Rectangle
+//        {
+//            color: Qt.rgba(control.Maui.Theme.backgroundColor.r,control.Maui.Theme.backgroundColor.g,control.Maui.Theme.backgroundColor.b, 0.5)
+//            anchors.fill: parent
+//        }
+
+//        onClicked: (mouse) =>
+//                   {
+//                       control.close()
+//                       mouse.accepted = false
+//                   }
+//    }
+
+    background: Rectangle
     {
         id: _background
         visible: control.implicitWidth > height
-        anchors.fill: parent
-        color: control.Maui.Theme.backgroundColor
+
+        color: Maui.Theme.backgroundColor
         radius: Maui.Style.radiusV
+        layer.enabled: true
+
+        layer.effect: DropShadow
+        {
+            cached: true
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 8.0
+            samples: 16
+            color: "#333"
+            opacity: 0.5
+            smooth: true
+            source: _background
+        }
     }
 
-    DropShadow
+    contentItem: RowLayout
     {
-        visible: _actionsBar.visible
-        anchors.fill: _background
-        cached: true
-        horizontalOffset: 0
-        verticalOffset: 0
-        radius: 8.0
-        samples: 16
-        color: "#333"
-        opacity: 0.5
-        smooth: true
-        source: _background
-    }
-
-    RowLayout
-    {
-        anchors.fill: parent
+        id: _layout
+        z :_overlay.z+999
 
         Maui.ToolBar
         {
             id: _actionsBar
             visible: false
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+
+            //            Layout.fillWidth: true
+            //            Layout.fillHeight: true
 
             background: null
 
@@ -165,8 +171,6 @@ Item
         Maui.FloatingButton
         {
             id: _button
-            Layout.preferredWidth: control.height
-            Layout.preferredHeight: control.height
             Layout.alignment:Qt.AlignRight
 
             onClicked: _actionsBar.visible = !_actionsBar.visible

@@ -17,69 +17,70 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQml 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQml
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 Maui.Page
 {
-id: control    
+    id: control
 
-property Component leftComponent : null
-property Component rightComponent : null
-property Component middleComponent: null
+    property Component leftComponent : null
+    property Component rightComponent : null
+    property Component middleComponent: null
 
-property bool mobile : false
+    property bool mobile : false
 
-headBar.leftContent: Loader
-{
-    active: !control.mobile && control.leftComponent
-    asynchronous: true
-    visible: active
-    sourceComponent: control.leftComponent
-}
-
-headBar.rightContent: Loader
-{
-    active: !control.mobile && control.rightComponent
-    asynchronous: true
-    visible: active
-    sourceComponent: control.leftComponent
-}
-
-headBar.middleComponent: Loader
-{
-    asynchronous: true
-    active: control.middleComponent
-    visible: active
-    sourceComponent: control.middleComponent
-}
-
-headerColumn: Maui.ToolBar
-{
-    visible: control.mobile
-    width: parent.width    
-    
-    leftContent: Loader
+    headBar.forceCenterMiddleContent: !control.mobile
+    headBar.leftContent: Loader
     {
-        active: control.mobile && control.leftComponent
+        active: !control.mobile && control.leftComponent
         asynchronous: true
         visible: active
         sourceComponent: control.leftComponent
     }
-    
-    rightContent: Loader
+
+    headBar.rightContent: Loader
     {
-        active: control.mobile && control.rightComponent
+        active: !control.mobile && control.rightComponent
         asynchronous: true
         visible: active
-        sourceComponent: control.leftComponent
-    }    
-}
+        sourceComponent: control.rightComponent
+    }
+
+    headBar.middleContent: Loader
+    {
+        asynchronous: true
+        active: control.middleComponent
+        visible: active
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignHCenter
+        sourceComponent: control.middleComponent
+    }
+
+    headerColumn: Maui.ToolBar
+    {
+        visible: control.mobile
+        width: parent.width
+
+        leftContent: Loader
+        {
+            active: control.mobile && control.leftComponent
+            asynchronous: true
+            visible: active
+            sourceComponent: control.leftComponent
+        }
+
+        rightContent: Loader
+        {
+            active: control.mobile && control.rightComponent
+            asynchronous: true
+            visible: active
+            sourceComponent: control.rightComponent
+        }
+    }
 
 }

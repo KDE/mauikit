@@ -225,6 +225,9 @@ ecm_target_qml_sources(MauiKit SOURCES
 
     controls.6/FlexListItem.qml
     controls.6/FloatingButton.qml
+    controls.6/FontsComboBox.qml
+    controls.6/FontPicker.qml
+    controls.6/FontPickerDialog.qml
 
     controls.6/GalleryRollTemplate.qml
     controls.6/GalleryRollItem.qml
@@ -251,7 +254,9 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/MenuItemActionRow.qml
 
     controls.6/Page.qml
+    controls.6/PageLayout.qml
     controls.6/PasswordField.qml
+    controls.6/PieButton.qml
     controls.6/PopupPage.qml
     controls.6/ProgressIndicator.qml
 
@@ -262,6 +267,7 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/SectionHeader.qml
     controls.6/SectionItem.qml
     controls.6/SectionGroup.qml    
+    controls.6/SelectionBar.qml
     controls.6/Separator.qml
     controls.6/SettingsDialog.qml
     controls.6/SettingsPage.qml
@@ -269,6 +275,8 @@ ecm_target_qml_sources(MauiKit SOURCES
     controls.6/ShadowedRectangle.qml
     controls.6/SplitView.qml
     controls.6/SplitViewItem.qml
+    controls.6/SwipeBrowserDelegate.qml
+    controls.6/SwipeItemDelegate.qml
 
     controls.6/TabBar.qml
     controls.6/TabButton.qml

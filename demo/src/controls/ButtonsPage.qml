@@ -347,5 +347,48 @@ Maui.FloatingButton
                 }
             }
         }
+
+        DemoSection
+        {
+            title: i18n("PieButton")
+            body: i18n("MauiKit control for joint action buttons. Can be collapsed and have hidden actions too.")
+            sampleText: 'import org.mauikit.controls as Maui
+Maui.FloatingButton
+{
+    icon.name: "list-add"
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    anchors.margins: Maui.style.space.big
+}'
+
+            column: Pane
+            {
+                implicitHeight: 300
+                Layout.fillWidth: true
+
+                Maui.PieButton
+                {
+                    icon.name: "go-previous"
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    anchors.margins: Maui.Style.space.big
+
+                    Action
+                    {
+                        icon.name: "list-add"
+                    }
+
+                    Action
+                    {
+                        icon.name: "love"
+                    }
+
+                    Action
+                    {
+                        icon.name: "view-list-icons"
+                    }
+                }
+            }
+        }
     }
 }

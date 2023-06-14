@@ -17,15 +17,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.3
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
-import QtGraphicalEffects 1.0
-import QtQuick.Templates 2.15 as T
+import Qt5Compat.GraphicalEffects
 
 /**
  * SelectionBar
@@ -256,274 +255,272 @@ Item
         }
     }
 
-        ParallelAnimation
+    ParallelAnimation
+    {
+        id: _openAnimation
+        NumberAnimation
         {
-            id: _openAnimation
-            NumberAnimation
-            {
-                target: _layout
-                property: "y"
-                from: _layout.height
-                to: Maui.Style.space.big/2
-                duration: Maui.Style.units.longDuration*1
-                easing.type: Easing.OutBack
+            target: _layout
+            property: "y"
+            from: _layout.height
+            to: Maui.Style.space.big/2
+            duration: Maui.Style.units.longDuration*1
+            easing.type: Easing.OutBack
 
-            }
-
-            NumberAnimation
-            {
-                target: _layout
-                property: "scale"
-                from: 0.5
-                to: 1
-                duration: Maui.Style.units.longDuration*1
-                easing.type: Easing.OutQuad
-            }
-
-            //NumberAnimation
-            //{
-            //target: _imp
-            //property: "opacity"
-            //from: 0
-            //to: 1
-            //duration: Maui.Style.units.longDuration*2
-            //easing.type: Easing.InBack
-            //}
         }
 
-        ParallelAnimation
+        NumberAnimation
         {
-            id: _closeAnimation
-            NumberAnimation
-            {
-                target: _layout
-                property: "y"
-                from: Maui.Style.space.big/2
-                to: _layout.height
-                duration: Maui.Style.units.longDuration*1
-                easing.type: Easing.InBack
-
-            }
-
-            NumberAnimation
-            {
-                target: _layout
-                property: "scale"
-                from: 1
-                to: 0.5
-                duration: Maui.Style.units.longDuration*1
-                easing.type: Easing.InQuad
-
-            }
-
-            //NumberAnimation
-            //{
-            //target: _imp
-            //property: "opacity"
-            //from: 1
-            //to: 0
-            //duration: Maui.Style.units.longDuration*2
-            //easing.type: Easing.OutBack
-
-            //}
-
-            onFinished: control.visible = false
+            target: _layout
+            property: "scale"
+            from: 0.5
+            to: 1
+            duration: Maui.Style.units.longDuration*1
+            easing.type: Easing.OutQuad
         }
 
-        Maui.ToolBar
+        //NumberAnimation
+        //{
+        //target: _imp
+        //property: "opacity"
+        //from: 0
+        //to: 1
+        //duration: Maui.Style.units.longDuration*2
+        //easing.type: Easing.InBack
+        //}
+    }
+
+    ParallelAnimation
+    {
+        id: _closeAnimation
+        NumberAnimation
         {
-            id: _layout
-            width: control.width
-            padding: Maui.Style.space.medium
-            forceCenterMiddleContent: false
-            position: ToolBar.Footer
+            target: _layout
+            property: "y"
+            from: Maui.Style.space.big/2
+            to: _layout.height
+            duration: Maui.Style.units.longDuration*1
+            easing.type: Easing.InBack
 
-            leftContent: Maui.Badge
+        }
+
+        NumberAnimation
+        {
+            target: _layout
+            property: "scale"
+            from: 1
+            to: 0.5
+            duration: Maui.Style.units.longDuration*1
+            easing.type: Easing.InQuad
+
+        }
+
+        //NumberAnimation
+        //{
+        //target: _imp
+        //property: "opacity"
+        //from: 1
+        //to: 0
+        //duration: Maui.Style.units.longDuration*2
+        //easing.type: Easing.OutBack
+
+        //}
+
+        onFinished: control.visible = false
+    }
+
+    Maui.ToolBar
+    {
+        id: _layout
+        width: control.width
+        padding: Maui.Style.space.medium
+        forceCenterMiddleContent: false
+        position: ToolBar.Footer
+
+        leftContent: Maui.Chip
+        {
+            id: _counter
+            text: control.count
+            font.pointSize: Maui.Style.fontSizes.big
+            Maui.Theme.colorSet: control.Maui.Theme.colorSet
+            Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
+                                            Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+
+            //                 onTextChanged: _counterAnimation.start()
+            //
+            //                     ColorAnimation on color
+            //                     {
+            //                         id:  _counterAnimation
+            //
+            //                         from: Maui.Theme.highlightColor
+            //                         to: Maui.Theme.backgroundColor
+            //                         loops:3
+            //                         easing {
+            //                             type: Easing.OutElastic
+            //                             amplitude: 1.0
+            //                             period: 0.5
+            //                         }
+            //                     }
+
+            onClicked:
             {
-                id: _counter
-                text: control.count
-                radius: Maui.Style.radiusV
-                font.pointSize: Maui.Style.fontSizes.big
-                Maui.Theme.colorSet: control.Maui.Theme.colorSet
-                Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
-                                                    Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                border.color: "transparent"
+                _loader.sourceComponent = _listContainerComponent
+                _loader.item.open()
+            }
 
-                //                 onTextChanged: _counterAnimation.start()
-                //
-                //                     ColorAnimation on color
-                //                     {
-                //                         id:  _counterAnimation
-                //
-                //                         from: Maui.Theme.highlightColor
-                //                         to: Maui.Theme.backgroundColor
-                //                         loops:3
-                //                         easing {
-                //                             type: Easing.OutElastic
-                //                             amplitude: 1.0
-                //                             period: 0.5
-                //                         }
-                //                     }
+            Maui.Rectangle
+            {
+                opacity: 0.3
+                anchors.fill: parent
+                anchors.margins: 4
+                visible: _counter.hovered
+                color: "transparent"
+                borderColor: "white"
+                solidBorder: false
+            }
 
-                onClicked:
+            MouseArea
+            {
+                id: _mouseArea
+                anchors.fill: parent
+                propagateComposedEvents: true
+                property int startX
+                property int startY
+                Drag.active: drag.active
+                Drag.hotSpot.x: 0
+                Drag.hotSpot.y: 0
+                Drag.dragType: Drag.Automatic
+                Drag.supportedActions: Qt.CopyAction
+                Drag.keys: ["text/plain","text/uri-list"]
+
+                onPressed: (mouse) =>
                 {
-                    _loader.sourceComponent = _listContainerComponent
-                    _loader.item.open()
-                }
-
-                Maui.Rectangle
-                {
-                    opacity: 0.3
-                    anchors.fill: parent
-                    anchors.margins: 4
-                    visible: _counter.hovered
-                    color: "transparent"
-                    borderColor: "white"
-                    solidBorder: false
-                }
-
-                MouseArea
-                {
-                    id: _mouseArea
-                    anchors.fill: parent
-                    propagateComposedEvents: true
-                    property int startX
-                    property int startY
-                    Drag.active: drag.active
-                    Drag.hotSpot.x: 0
-                    Drag.hotSpot.y: 0
-                    Drag.dragType: Drag.Automatic
-                    Drag.supportedActions: Qt.CopyAction
-                    Drag.keys: ["text/plain","text/uri-list"]
-
-                    onPressed:
+                    if( mouse.source !== Qt.MouseEventSynthesizedByQt)
                     {
-                        if( mouse.source !== Qt.MouseEventSynthesizedByQt)
+                        drag.target = _counter
+                        _counter.grabToImage(function(result)
                         {
-                            drag.target = _counter
-                            _counter.grabToImage(function(result)
-                            {
-                                _mouseArea.Drag.imageSource = result.url
-                            })
+                            _mouseArea.Drag.imageSource = result.url
+                        })
 
-                            _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
+                        _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
 
-                            startX = _counter.x
-                            startY = _counter.y
+                        startX = _counter.x
+                        startY = _counter.y
 
-                        }else mouse.accepted = false
-                    }
-
-                    onReleased :
-                    {
-                        _counter.x = startX
-                        _counter.y = startY
-                    }
-
+                    }else mouse.accepted = false
                 }
-            }
 
+                onReleased :
+                {
+                    _counter.x = startX
+                    _counter.y = startY
+                }
+
+            }
+        }
+
+        Repeater
+        {
+            model: control.actions
+
+            ToolButton
+            {
+                action: modelData
+                display: control.display
+                ToolTip.delay: 1000
+                ToolTip.timeout: 5000
+                ToolTip.visible: hovered || pressed && action.text
+                ToolTip.text: action.text
+            }
+        }
+
+        Maui.ToolButtonMenu
+        {
+            icon.name: "overflow-menu"
+            visible: control.hiddenActions.length > 0
             Repeater
             {
-                model: control.actions
-
-                ToolButton
-                {
-                    action: modelData
-                    display: control.display
-                    ToolTip.delay: 1000
-                    ToolTip.timeout: 5000
-                    ToolTip.visible: hovered || pressed && action.text
-                    ToolTip.text: action.text
-                }
-            }
-
-            Maui.ToolButtonMenu
-            {
-                icon.name: "overflow-menu"
-                visible: control.hiddenActions.length > 0
-                Repeater
-                {
-                    model:  control.hiddenActions
-                    delegate: MenuItem{ action: modelData}
-                }
-            }
-
-           rightContent: Maui.CloseButton
-            {
-                onClicked:
-                {
-                    control.exitClicked()
-                }
-            }
-
-            background: Rectangle
-            {
-                id: bg
-                color: Maui.Theme.backgroundColor
-                radius: control.radius
-
-                Behavior on color
-                {
-                    Maui.ColorTransition {  }
-                }
-
-                MouseArea
-                {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton | Qt.LeftButton
-                    propagateComposedEvents: false
-                    preventStealing: true
-
-                    onClicked:
-                    {
-                        if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
-                            control.rightClicked(mouse)
-                            else
-                                control.clicked(mouse)
-                    }
-
-                    onPressAndHold :
-                    {
-                        if(Maui.Handy.isMobile)
-                            control.rightClicked(mouse)
-                    }
-                }
-
-                Maui.Rectangle
-                {
-                    opacity: 0.2
-                    anchors.fill: parent
-                    anchors.margins: 4
-                    visible: _dropArea.containsDrag
-                    color: "transparent"
-                    borderColor: Maui.Theme.textColor
-                    solidBorder: false
-                }
-
-                DropArea
-                {
-                    id: _dropArea
-                    anchors.fill: parent
-                    onDropped:
-                    {
-                        control.urisDropped(drop.urls)
-                    }
-                }
-
-                layer.enabled: true
-                layer.effect: DropShadow
-                {
-                    cached: true
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 8.0
-                    samples: 16
-                    color:  "#80000000"
-                    smooth: true
-                }
+                model:  control.hiddenActions
+                delegate: MenuItem{ action: modelData}
             }
         }
+
+        rightContent: Maui.CloseButton
+        {
+            onClicked:
+            {
+                control.exitClicked()
+            }
+        }
+
+        background: Rectangle
+        {
+            id: bg
+            color: Maui.Theme.backgroundColor
+            radius: control.radius
+
+            Behavior on color
+            {
+                Maui.ColorTransition {}
+            }
+
+            MouseArea
+            {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                propagateComposedEvents: false
+                preventStealing: true
+
+                onClicked: (mouse) =>
+                {
+                    if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
+                        control.rightClicked(mouse)
+                    else
+                        control.clicked(mouse)
+                }
+
+                onPressAndHold : (mouse) =>
+                {
+                    if(Maui.Handy.isMobile)
+                        control.rightClicked(mouse)
+                }
+            }
+
+            Maui.Rectangle
+            {
+                opacity: 0.2
+                anchors.fill: parent
+                anchors.margins: 4
+                visible: _dropArea.containsDrag
+                color: "transparent"
+                borderColor: Maui.Theme.textColor
+                solidBorder: false
+            }
+
+            DropArea
+            {
+                id: _dropArea
+                anchors.fill: parent
+                onDropped:
+                {
+                    control.urisDropped(drop.urls)
+                }
+            }
+
+            layer.enabled: true
+            layer.effect: DropShadow
+            {
+                cached: true
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 16
+                color:  "#80000000"
+                smooth: true
+            }
+        }
+    }
 
     Keys.onEscapePressed:
     {

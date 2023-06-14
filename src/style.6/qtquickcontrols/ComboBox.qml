@@ -136,7 +136,6 @@ T.ComboBox
         radius: Maui.Style.radiusV
         
         color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
-
         
         MouseArea
         {
@@ -151,21 +150,21 @@ T.ComboBox
             
             acceptedButtons: Qt.NoButton
             
-            onWheel:
-            {
-                var delta = wheel.angleDelta.y || wheel.angleDelta.x
-                wheelDelta += delta;
-                // magic number 120 for common "one click"
-                // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
-                while (wheelDelta >= 120) {
-                    wheelDelta -= 120;
-                    control.decrementCurrentIndex();
-                }
-                while (wheelDelta <= -120) {
-                    wheelDelta += 120;
-                    control.incrementCurrentIndex();
-                }
-            }
+            onWheel: (wheel) =>
+                     {
+                         var delta = wheel.angleDelta.y || wheel.angleDelta.x
+                         wheelDelta += delta;
+                         // magic number 120 for common "one click"
+                         // See: https://doc.qt.io/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                         while (wheelDelta >= 120) {
+                             wheelDelta -= 120;
+                             control.decrementCurrentIndex();
+                         }
+                         while (wheelDelta <= -120) {
+                             wheelDelta += 120;
+                             control.incrementCurrentIndex();
+                         }
+                     }
         }
         
         Behavior on color

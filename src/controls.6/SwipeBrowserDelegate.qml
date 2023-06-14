@@ -17,7 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import org.mauikit.controls 1.0 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * SwipeBrowserDelegate
@@ -32,9 +32,8 @@ import org.mauikit.controls 1.0 as Maui
 Maui.SwipeItemDelegate
 {
     id: control
-    padding: 0
     
-    implicitHeight: _template.implicitHeight + topPadding + bottomPadding
+    implicitHeight: Math.max(_template.implicitHeight, buttonsHeight) + topPadding + bottomPadding
 
     /**
       * label1 : Label
@@ -85,6 +84,7 @@ Maui.SwipeItemDelegate
       * template : ListItemTemplate
       */
     property alias template : _template
+
 
     Maui.ListItemTemplate
     {
