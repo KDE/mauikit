@@ -92,7 +92,7 @@ msgstr "Tipos de letra monoespazo"
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr "Mostrar só os tipos de letra monoespazo."
+msgstr "Amosar só os tipos de letra monoespazo."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
