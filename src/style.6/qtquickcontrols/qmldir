@@ -26,6 +26,9 @@ Dialog 2.0 Dialog.qml
 DialogButtonBox 6.0 DialogButtonBox.qml
 DialogButtonBox 2.0 DialogButtonBox.qml
 
+ItemDelegate 6.0 ItemDelegate.qml
+ItemDelegate 2.0 ItemDelegate.qml
+
 Label 6.0 Label.qml
 Label 2.0 Label.qml
 

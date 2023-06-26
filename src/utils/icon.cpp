@@ -23,8 +23,6 @@
 
 Q_GLOBAL_STATIC(ImageTexturesCache, s_iconImageCache)
 
-#include <MauiMan/thememanager.h>
-
 Icon::Icon(QQuickItem *parent)
     : QQuickItem(parent)
     , m_changed(false)

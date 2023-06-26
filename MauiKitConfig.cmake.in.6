@@ -6,20 +6,20 @@ find_dependency(Qt6Qml @REQUIRED_QT_VERSION@)
 find_dependency(Qt6Quick @REQUIRED_QT_VERSION@)
 # Any changes in this ".cmake" file will be overwritten by CMake, the source is the ".cmake.in" file.
 
-foreach(PKG IN LISTS MauiKit_FIND_COMPONENTS)
-    find_package(MauiKit${PKG})
-    if(MauiKit_FIND_REQUIRED_${PKG})
-        set_package_properties(MauiKit${PKG} PROPERTIES TYPE REQUIRED)
+foreach(PKG IN LISTS MauiKit4_FIND_COMPONENTS)
+    find_package(MauiKit4${PKG})
+    if(MauiKit4_FIND_REQUIRED_${PKG})
+        set_package_properties(MauiKit4${PKG} PROPERTIES TYPE REQUIRED)
     else()
-        set_package_properties(MauiKit${PKG} PROPERTIES TYPE OPTIONAL)
+        set_package_properties(MauiKit4${PKG} PROPERTIES TYPE OPTIONAL)
     endif()
 
-    set(MauiKit_${PKG}_FOUND ${MauiKit${PKG}_FOUND})
+    set(MauiKit4_${PKG}_FOUND ${MauiKit4${PKG}_FOUND})
 endforeach()
 
-include("${CMAKE_CURRENT_LIST_DIR}/MauiKitTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/MauiKit4Targets.cmake")
 
-set(MauiKit_INSTALL_PREFIX "@PACKAGE_CMAKE_INSTALL_PREFIX@")
+set(MauiKit4_INSTALL_PREFIX "@PACKAGE_CMAKE_INSTALL_PREFIX@")
 
 #set(Kirigami2_LIBRARIES KF5::Kirigami2)
 

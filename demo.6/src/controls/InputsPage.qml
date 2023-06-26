@@ -11,12 +11,12 @@ DemoPage
 
     Maui.SectionGroup
     {
-        title: i18n("Input Fields")
+        title: control.title
         spacing: control.spacing
 
         DemoSection
         {
-            title: "Buttons"
+            title: "TextField"
             body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
 
             TextField
@@ -27,9 +27,8 @@ DemoPage
 
         DemoSection
         {
-            title: "Buttons"
+            title: "SearchField"
             body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
-
 
             Maui.SearchField
             {
@@ -40,7 +39,7 @@ DemoPage
 
         DemoSection
         {
-            title: "Buttons"
+            title: "PasswordField"
             body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
 
             Maui.PasswordField
@@ -51,7 +50,20 @@ DemoPage
 
         DemoSection
         {
-            title: "Buttons"
+            title: "TextFieldPopup"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            column: Maui.TextFieldPopup
+            {
+                Layout.fillWidth: true
+                Layout.minimumWidth: 500
+                placeholderText: "PasswordField"
+            }
+        }
+
+        DemoSection
+        {
+            title: "TextArea"
             body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
 
             column: TextArea

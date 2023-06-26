@@ -25,7 +25,7 @@ import QtGraphicalEffects 1.12
 
 import org.mauikit.controls 1.3 as Maui
 
-Maui.Dialog
+Maui.PopupPage
 {
     id: control
     defaultButtons: false

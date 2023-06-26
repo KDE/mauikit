@@ -6,9 +6,15 @@
 #include <QApplication>
 #include <QFontDatabase>
 
-#include <MauiMan/thememanager.h>
-#include <MauiMan/backgroundmanager.h>
-#include <MauiMan/accessibilitymanager.h>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <MauiMan3/thememanager.h>
+#include <MauiMan3/backgroundmanager.h>
+#include <MauiMan3/accessibilitymanager.h>
+#else
+#include <MauiMan4/thememanager.h>
+#include <MauiMan4/backgroundmanager.h>
+#include <MauiMan4/accessibilitymanager.h>
+#endif
 
 #ifdef Q_OS_ANDROID
 #include "mauiandroid.h"

@@ -35,7 +35,7 @@ Control
 {
     id: control
     focus: true
-    
+
     padding: Maui.Style.contentMargins
     visible: _container.count > 0
     
@@ -97,7 +97,8 @@ Control
         ItemDelegate
         {
             id: _toast
-            
+            clip: false
+
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.inherit: false
 
@@ -216,7 +217,7 @@ Control
         Container
         {
             id: _container
-
+            clip: false
             hoverEnabled: true
             
             width:  Math.min(400, parent.width)
@@ -230,7 +231,7 @@ Control
                 id: _listView
 
                 property bool expanded : true
-
+                clip: false
                 orientation: ListView.Vertical
                 snapMode: ListView.SnapOneItem
 
@@ -260,37 +261,37 @@ Control
     function add(icon, title, body, callback = ({}), buttonText = "")
     {
         const properties = ({
-                                'iconSource': icon,
-                                'title': title,
-                                'body': body,
-                                'callback': callback,
-                                'buttonText': buttonText
-                            })
-        const object = _toastComponent.createObject(_listView.flickable, properties);
-        _container.insertItem(0, object)
-        playSound.play()
-    }
-    
-    
-    function dismiss()
-    {
-        let count = _container.count
-        let items = []
-        for(var i = 0; i< count; i++)
-        {
-            items.push(_container.itemAt(i))
+            'iconSource': icon,
+            'title': title,
+            'body': body,
+            'callback': callback,
+            'buttonText': buttonText
+        })
+            const object = _toastComponent.createObject(_listView.flickable, properties);
+            _container.insertItem(0, object)
+            playSound.play()
         }
-        
-        for(var j of items)
-        {
-            _container.removeItem(j)
-        }
-        
-        _dismissSound.play()
-    }
-    
-    function remove(index)
-    {
-        _container.removeItem(_container.itemAt(index))
-    }
-}
+
+
+            function dismiss()
+            {
+                let count = _container.count
+                let items = []
+                for(var i = 0; i< count; i++)
+                {
+                    items.push(_container.itemAt(i))
+                }
+
+                    for(var j of items)
+                    {
+                        _container.removeItem(j)
+                    }
+
+                        _dismissSound.play()
+                    }
+
+                        function remove(index)
+                        {
+                            _container.removeItem(_container.itemAt(index))
+                        }
+                        }

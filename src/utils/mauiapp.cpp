@@ -35,7 +35,11 @@
 
 #include <QQuickStyle>
 
-#include <MauiMan/thememanager.h>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <MauiMan3/thememanager.h>
+#else
+#include <MauiMan4/thememanager.h>
+#endif
 
 #include "../mauikit_version.h"
 
@@ -45,7 +49,6 @@ KAboutComponent MauiApp::aboutMauiKit()
 {
     return KAboutComponent("MauiKit", i18n("Multi-adaptable user interfaces."), MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);
 }
-
 
 MauiApp::MauiApp()
     : QObject(nullptr)
@@ -81,7 +84,6 @@ MauiApp::MauiApp()
     KAboutData::setApplicationData(aboutData);
 
     setDefaultMauiStyle();
-   
 }
 
 QString MauiApp::getMauikitVersion()
@@ -130,8 +132,11 @@ void MauiApp::setDefaultMauiStyle()
     QIcon::setThemeName("Luv");
 #endif
     
-//    Q_INIT_RESOURCE(style);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QQuickStyle::setStyle("maui-style");
+#else
     QQuickStyle::setStyle("QtQuick.Controls.Maui");
+#endif
 }
 
 QQuickWindow * MauiApp::window() const
@@ -188,9 +193,16 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
     getWindowControlsSettings();
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+
+static QString CSDLookupPath = "org.mauikit.controls/csd.5/%1/config.conf";
+#else
+static QString CSDLookupPath = "org.mauikit.controls/csd.6/%1/config.conf";
+#endif
+
 void CSDControls::setStyle()
 {
-    auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_styleName));
+    auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString(CSDLookupPath).arg(m_styleName));
     QFileInfo file(confFile);
     if(file.exists ())
     {
@@ -312,7 +324,7 @@ QUrl CSDButton::source() const
 
 void CSDButton::setSources()
 {
-    const auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString("org.mauikit.controls/csd/%1/config.conf").arg(m_style));
+    const auto confFile = QStandardPaths::locate (QStandardPaths::GenericDataLocation, QString(CSDLookupPath).arg(m_style));
 
     QFileInfo file(confFile);
     if(file.exists ())

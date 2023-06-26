@@ -98,7 +98,7 @@ T.TextField
     signal contentDropped(var drop)
     
     onPressAndHold: !Maui.Handy.isMobile ? entryMenu.show() : undefined
-    onPressed:
+    onPressed: (event) =>
     {
         if(!Maui.Handy.isMobile && event.button === Qt.RightButton)
             entryMenu.show()
@@ -222,8 +222,7 @@ T.TextField
                 }
             }
         }
-    }
-    
+    }    
     
     Maui.ContextualMenu
     {
@@ -278,9 +277,10 @@ T.TextField
     Loader
     {
         asynchronous: true
+        anchors.fill: parent
         sourceComponent: DropArea
         {
-            onDropped:
+            onDropped: (drop) =>
             {
                 console.log(drop.text, drop.html)
                 if (drop.hasText)

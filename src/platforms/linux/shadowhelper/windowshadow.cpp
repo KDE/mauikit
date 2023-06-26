@@ -110,8 +110,7 @@ void WindowShadow::classBegin()
 }
 
 void WindowShadow::componentComplete()
-{
-    
+{    
     configureTiles();    
 }
 

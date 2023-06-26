@@ -17,14 +17,13 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.15 as T
-import QtGraphicalEffects 1.0
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
+import QtQuick.Window
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 AbstractButton
 {
@@ -42,9 +41,9 @@ AbstractButton
     hoverEnabled: true
     
     default property alias content: _page.content
-   
-        property alias popup: _popup
-        property alias textField : _textField
+
+    property alias popup: _popup
+    property alias textField : _textField
     
     property alias popupVisible: _popup.visible
     property alias closePolicy: _popup.closePolicy
@@ -82,7 +81,7 @@ AbstractButton
     function close()
     {
         _popup.close()
-    }  
+    }
     
     function clear()
     {
@@ -92,48 +91,73 @@ AbstractButton
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
     
-    contentItem:  RowLayout
+    contentItem: Item
     {
-        id: _layout       
-        spacing: control.spacing 
-        
-        Maui.Icon
+        RowLayout
         {
-            visible: source ? true : false
-            source: control.icon.name
-            implicitHeight: visible ? 16 : 0
-            implicitWidth: height
-            color: control.color   
-        }
-        
-        Item
-        {
-            Layout.fillWidth: true
-            visible: !placeholder.visible
-        }
-        
-        Label
-        {
-            id: placeholder
-            Layout.fillWidth: true
-            text: control.text.length > 0 ? control.text : control.placeholderText
-            font: control.font
-            color: control.color
-            verticalAlignment: control.verticalAlignment
-            elide: Text.ElideRight
-            wrapMode: Text.NoWrap
-            
-            opacity: !_textField.activeFocus ? 1 : 0.5 
-                        
-            Behavior on opacity 
+            id: _layout
+            anchors.fill: parent
+            spacing: control.spacing
+
+            Maui.Icon
             {
-                NumberAnimation
+                visible: source ? true : false
+                source: control.icon.name
+                implicitHeight: visible ? 16 : 0
+                implicitWidth: height
+                color: control.color
+            }
+
+            Item
+            {
+                Layout.fillWidth: true
+                visible: !placeholder.visible
+            }
+
+            Label
+            {
+                id: placeholder
+                Layout.fillWidth: true
+                text: control.text.length > 0 ? control.text : control.placeholderText
+                font: control.font
+                color: control.color
+                verticalAlignment: control.verticalAlignment
+                elide: Text.ElideRight
+                wrapMode: Text.NoWrap
+
+                opacity: control.text.length > 0  ? 1 : 0.5
+
+                Behavior on opacity
                 {
-                    duration: Maui.Style.units.longDuration
-                    easing.type: Easing.InOutQuad
+                    NumberAnimation
+                    {
+                        duration: Maui.Style.units.longDuration
+                        easing.type: Easing.InOutQuad
+                    }
                 }
-            }  
-        }      
+            }
+        }
+
+        Loader
+        {
+            asynchronous: true
+            anchors.fill: parent
+            sourceComponent: DropArea
+            {
+                onDropped: (drop) =>
+                           {
+                               if (drop.hasText)
+                               {
+                                   control.text += drop.text
+
+                               }else if(drop.hasUrls)
+                               {
+                                   control.text = drop.urls
+                               }
+                           }
+            }
+        }
+
     }
     
     data: Popup
@@ -150,17 +174,19 @@ AbstractButton
         
         width: Math.min(Math.max(control.minimumWidth, parent.width), control.Window.window.width - Maui.Style.defaultPadding*2)
         height: Math.min(control.Window.window.height- Maui.Style.defaultPadding*2, control.minimumHeight)
-        
+
+        anchors.centerIn: undefined
+
         margins: 0
         padding: 0
         
-        onClosed: 
+        onClosed:
         {
-            _textField.clear()
+//            _textField.clear()
             control.closed()
         }
         
-        onOpened: 
+        onOpened:
         {
             _textField.forceActiveFocus()
             _textField.selectAll()
@@ -172,29 +198,29 @@ AbstractButton
             id:_page
             anchors.fill: parent
             altHeader: control.position === ToolBar.Footer
-                                    
-                                    headBar.visible: false
-                                    headerColumn: TextField
-                                    {
-                                        implicitHeight: control.height
-               width: parent.width
+
+            headBar.visible: false
+            headerColumn: TextField
+            {
+                implicitHeight: control.height
+                width: parent.width
                 
                 id: _textField
                 text: control.text
-                               
+
                 icon.source: control.icon.name
                 
                 onTextChanged: control.text = text
-                onAccepted: 
+                onAccepted:
                 {
                     control.text = text
                     control.accepted()
                 }
                 
-                onCleared: 
+                onCleared:
                 {
                     control.cleared()
-                }                
+                }
                 
                 Keys.enabled: true
                 Keys.forwardTo: control
@@ -220,39 +246,38 @@ AbstractButton
                     }
                     
                     states: [  State
-                    {
-                        when: control.position === ToolBar.Header
-                        
-                        AnchorChanges
                         {
-                            target: _border
-                            anchors.top: undefined
-                            anchors.bottom: parent.bottom
-                        }
-                    },
-                    
-                    State
-                    {
-                        when: control.position === ToolBar.Footer
-                        
-                        AnchorChanges
+                            when: control.position === ToolBar.Header
+
+                            AnchorChanges
+                            {
+                                target: _border
+                                anchors.top: undefined
+                                anchors.bottom: parent.bottom
+                            }
+                        },
+
+                        State
                         {
-                            target: _border
-                            anchors.top: parent.top
-                            anchors.bottom: undefined
+                            when: control.position === ToolBar.Footer
+
+                            AnchorChanges
+                            {
+                                target: _border
+                                anchors.top: parent.top
+                                anchors.bottom: undefined
+                            }
                         }
-                    }
                     ]
                 }
             }
-            
         }
         
         background: Rectangle
         {
             color: Maui.Theme.backgroundColor
             
-            radius: Maui.Style.radiusV    
+            radius: Maui.Style.radiusV
             layer.enabled: true
             layer.effect: DropShadow
             {
@@ -267,12 +292,12 @@ AbstractButton
             Behavior on color
             {
                 Maui.ColorTransition{}
-            }          
+            }
         }
     }
     
-    background: Rectangle 
-    {       
+    background: Rectangle
+    {
         color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
         
         radius: Maui.Style.radiusV

@@ -20,37 +20,48 @@
  */
 
 
-import QtQuick 2.5
-import QtQuick.Templates 2.3 as T
-import org.mauikit.controls 1.3 as Maui
-
-import "private"
+import QtQuick
+import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.ItemDelegate
 {
-    id: controlRoot
+    id: control
+    opacity: control.enabled ? 1 : 0.5
 
-    implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
-    implicitHeight: Math.max(contentItem.implicitHeight,
-                                      indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: Math.max(implicitContentHeight,
+                             indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
     hoverEnabled: true
 
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.space.medium
+    spacing: Maui.Style.space.small
 
-    contentItem: Label 
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
+
+    font: Maui.Style.defaultFont
+
+    contentItem: Maui.IconLabel
     {
-        leftPadding: controlRoot.mirrored ? (controlRoot.indicator ? controlRoot.indicator.width : 0) + controlRoot.spacing : 0
-        rightPadding: !controlRoot.mirrored ? (controlRoot.indicator ? controlRoot.indicator.width : 0) + controlRoot.spacing : 0
+        text: control.text
+        font: control.font
+        spacing: control.spacing
+        color: control.highlighted || control.checked || (control.pressed && !control.checked && !control.sectionDelegate) ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+        icon: control.icon
+        alignment: Qt.AlignLeft
 
-        text: controlRoot.text
-        font: controlRoot.font
-        color: controlRoot.highlighted || controlRoot.checked || (controlRoot.pressed && !controlRoot.checked && !controlRoot.sectionDelegate) ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
-        elide: Text.ElideRight
-        visible: controlRoot.text
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
     }
 
-    background: DefaultListItemBackground {}
+    background: Rectangle
+    {
+        color: control.checked || control.pressed ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : "transparent")
+
+        radius: Maui.Style.radiusV
+
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+    }
 }

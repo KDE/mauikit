@@ -73,7 +73,7 @@ Pane
      *      preferredWidth : int
      *      The preferred width of the sidebar in the expanded state.
      */
-    readonly property int constrainedWidth : Math.min(control.preferredWidth, control.Window.window.width*0.9)
+    readonly property int constrainedWidth : Math.min(control.preferredWidth, Window.window.width*0.9)
     property int preferredWidth : Maui.Style.units.gridUnit * 12
     property int maximumWidth:  Maui.Style.units.gridUnit * 20
     property int minimumWidth:  Maui.Style.units.gridUnit * 4
@@ -182,7 +182,6 @@ Pane
 
         Loader
         {
-
             active: control.resizing
             sourceComponent: Item
             {
@@ -192,7 +191,7 @@ Pane
                     id: _resizeTarget
                     width: Math.max(Math.min(_private.finalWidth, control.maximumWidth), control.minimumWidth)
                     height: parent.height
-                    color: Maui.Theme.alternateBackgroundColor
+                    color: control.Maui.Theme.backgroundColor
 
                     HoverHandler
                     {
