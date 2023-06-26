@@ -45,8 +45,13 @@
 #include <QApplication>
 #endif
 
-#include <MauiMan/formfactormanager.h>
-#include <MauiMan/accessibilitymanager.h>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <MauiMan3/formfactormanager.h>
+#include <MauiMan3/accessibilitymanager.h>
+#else
+#include <MauiMan4/formfactormanager.h>
+#include <MauiMan4/accessibilitymanager.h>
+#endif
 
 Handy *Handy::m_instance = nullptr;
 

@@ -11,7 +11,7 @@
 #include <QGuiApplication>
 #include <QPalette>
 
-#include "controls/libs/style.h"
+#include "libs/style.h"
 #include "imagecolors.h"
 
 namespace Maui

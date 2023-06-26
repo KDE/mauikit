@@ -48,7 +48,7 @@ Control
     /**
       * maxWidth : int
       */
-    property int maxWidth :  control.Window.window.width - control.anchors.margins
+    property int maxWidth : Window.window.width - control.anchors.margins
 
     /**
       * actions : list<Action>
@@ -142,7 +142,6 @@ Control
     contentItem: RowLayout
     {
         id: _layout
-        z :_overlay.z+999
 
         Maui.ToolBar
         {

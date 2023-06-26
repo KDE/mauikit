@@ -303,7 +303,7 @@ Maui.ApplicationWindow
                             label: i18n("Popups")
                             onClicked: root.pushPage(_popupsPage)
                         }
-                        
+
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true

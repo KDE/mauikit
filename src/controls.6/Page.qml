@@ -368,7 +368,7 @@ Pane
     {
         id: _headBar
         visible: count > 0
-        width: visible ? parent.width : 0
+        width: visible ? _headerContent.width : 0
         position: control.altHeader ? ToolBar.Footer : ToolBar.Header
         translucencySource: ShaderEffectSource
         {
@@ -451,7 +451,7 @@ Pane
     {
         id: _footBar
         visible: count > 0
-        width: visible ? parent.width : 0
+        width: visible ? _footerContent.width : 0
         height: visible ? implicitHeight : 0
 
         position: ToolBar.Footer

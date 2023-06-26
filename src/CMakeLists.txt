@@ -1,4 +1,3 @@
-
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/utils
     ${CMAKE_CURRENT_BINARY_DIR}/utils
@@ -9,22 +8,21 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/utils/model_template
     ${CMAKE_CURRENT_BINARY_DIR}/utils/model_template
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/controls/libs
-    ${CMAKE_CURRENT_BINARY_DIR}/controls/libs
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs
+    ${CMAKE_CURRENT_BINARY_DIR}/libs
 
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms
 )
 
-ecm_add_qml_module(MauiKit URI "org.mauikit.controls" VERSION 3.0)
-#ecm_add_qml_module_dependencies(MauiKit DEPENDS
-#    "QtQuick.Controls 2.15"
-#    "QtGraphicalEffects 1.0"
-#)
+ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION} URI "org.mauikit.controls" VERSION 3.0 CLASSNAME MauiKit)
+ecm_add_qml_module_dependencies(MauiKit${MAUI_MAJOR_VERSION} DEPENDS
+    "QtGraphicalEffects 1.0"
+)
 
 set(mauikit_SRCS
     mauikit.cpp
-    controls/libs/style.cpp
+    libs/style.cpp
     utils/appsettings.cpp
     utils/fmh.cpp
     utils/mauiapp.cpp
@@ -59,18 +57,18 @@ set(mauikit_HDRS
     utils/wheelhandler.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
-    controls/libs/appview.h
-    controls/libs/tabview.h
-    controls/libs/style.h
+    libs/appview.h
+    libs/tabview.h
+    libs/style.h
     platforms/abstractplatform.h
     platforms/platform.h
 )
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     if(QUICK_COMPILER)
-        qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+        qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc style.5/style.qrc)
     else()
-        qt5_add_resources(mauikit_QML_QRC mauikit.qrc maui-style/style.qrc)
+        qt5_add_resources(mauikit_QML_QRC mauikit.qrc style.5/style.qrc)
     endif()
 endif()
 
@@ -203,108 +201,109 @@ set(window_PLATFORM_HDRS
 )
 endif()
 
-ecm_target_qml_sources(MauiKit SOURCES
+ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
 
-    controls.6/AltBrowser.qml
-    controls.6/AnimatedImageViewer.qml
-    controls.6/ApplicationWindow.qml
-    controls.6/AppViews.qml
-    controls.6/AppViewLoader.qml
+    controls.${QT_MAJOR_VERSION}/AltBrowser.qml
+    controls.${QT_MAJOR_VERSION}/AnimatedImageViewer.qml
+    controls.${QT_MAJOR_VERSION}/ApplicationWindow.qml
+    controls.${QT_MAJOR_VERSION}/AppViews.qml
+    controls.${QT_MAJOR_VERSION}/AppViewLoader.qml
 
-    controls.6/Badge.qml
+    controls.${QT_MAJOR_VERSION}/Badge.qml
 
-    controls.6/CollageItem.qml
-    controls.6/ColorTransition.qml
-    controls.6/ColorsRow.qml
-    controls.6/ContextualMenu.qml
-    controls.6/Chip.qml
-    controls.6/CloseButton.qml
-    controls.6/CSDControls.qml
+    controls.${QT_MAJOR_VERSION}/CollageItem.qml
+    controls.${QT_MAJOR_VERSION}/ColorTransition.qml
+    controls.${QT_MAJOR_VERSION}/ColorsRow.qml
+    controls.${QT_MAJOR_VERSION}/ContextualMenu.qml
+    controls.${QT_MAJOR_VERSION}/Chip.qml
+    controls.${QT_MAJOR_VERSION}/CloseButton.qml
+    controls.${QT_MAJOR_VERSION}/CSDControls.qml
 
-    controls.6/EdgeShadow.qml
+    controls.${QT_MAJOR_VERSION}/EdgeShadow.qml
 
-    controls.6/FlexListItem.qml
-    controls.6/FloatingButton.qml
-    controls.6/FontsComboBox.qml
-    controls.6/FontPicker.qml
-    controls.6/FontPickerDialog.qml
+    controls.${QT_MAJOR_VERSION}/FlexListItem.qml
+    controls.${QT_MAJOR_VERSION}/FloatingButton.qml
+    controls.${QT_MAJOR_VERSION}/FontsComboBox.qml
+    controls.${QT_MAJOR_VERSION}/FontPicker.qml
+    controls.${QT_MAJOR_VERSION}/FontPickerDialog.qml
 
-    controls.6/GalleryRollTemplate.qml
-    controls.6/GalleryRollItem.qml
-    controls.6/GridBrowser.qml
-    controls.6/GridBrowserDelegate.qml
-    controls.6/GridItemTemplate.qml
+    controls.${QT_MAJOR_VERSION}/GalleryRollTemplate.qml
+    controls.${QT_MAJOR_VERSION}/GalleryRollItem.qml
+    controls.${QT_MAJOR_VERSION}/GridBrowser.qml
+    controls.${QT_MAJOR_VERSION}/GridBrowserDelegate.qml
+    controls.${QT_MAJOR_VERSION}/GridItemTemplate.qml
 
-    controls.6/Holder.qml
+    controls.${QT_MAJOR_VERSION}/Holder.qml
 
-    controls.6/Icon.qml
-    controls.6/IconItem.qml
-    controls.6/IconLabel.qml
-    controls.6/ImageViewer.qml
-    controls.6/InfoDialog.qml
-    controls.6/InputDialog.qml
-    controls.6/ItemDelegate.qml
+    controls.${QT_MAJOR_VERSION}/Icon.qml
+    controls.${QT_MAJOR_VERSION}/IconItem.qml
+    controls.${QT_MAJOR_VERSION}/IconLabel.qml
+    controls.${QT_MAJOR_VERSION}/ImageViewer.qml
+    controls.${QT_MAJOR_VERSION}/InfoDialog.qml
+    controls.${QT_MAJOR_VERSION}/InputDialog.qml
+    controls.${QT_MAJOR_VERSION}/ItemDelegate.qml
 
-    controls.6/LabelDelegate.qml
-    controls.6/ListBrowser.qml
-    controls.6/ListBrowserDelegate.qml
-    controls.6/ListDelegate.qml
-    controls.6/ListItemTemplate.qml
+    controls.${QT_MAJOR_VERSION}/LabelDelegate.qml
+    controls.${QT_MAJOR_VERSION}/ListBrowser.qml
+    controls.${QT_MAJOR_VERSION}/ListBrowserDelegate.qml
+    controls.${QT_MAJOR_VERSION}/ListDelegate.qml
+    controls.${QT_MAJOR_VERSION}/ListItemTemplate.qml
 
-    controls.6/MenuItemActionRow.qml
+    controls.${QT_MAJOR_VERSION}/MenuItemActionRow.qml
 
-    controls.6/Page.qml
-    controls.6/PageLayout.qml
-    controls.6/PasswordField.qml
-    controls.6/PieButton.qml
-    controls.6/PopupPage.qml
-    controls.6/ProgressIndicator.qml
+    controls.${QT_MAJOR_VERSION}/Page.qml
+    controls.${QT_MAJOR_VERSION}/PageLayout.qml
+    controls.${QT_MAJOR_VERSION}/PasswordField.qml
+    controls.${QT_MAJOR_VERSION}/PieButton.qml
+    controls.${QT_MAJOR_VERSION}/PopupPage.qml
+    controls.${QT_MAJOR_VERSION}/ProgressIndicator.qml
 
-    controls.6/ScrollColumn.qml
+    controls.${QT_MAJOR_VERSION}/ScrollColumn.qml
 
-    controls.6/SearchField.qml
+    controls.${QT_MAJOR_VERSION}/SearchField.qml
 
-    controls.6/SectionHeader.qml
-    controls.6/SectionItem.qml
-    controls.6/SectionGroup.qml    
-    controls.6/SelectionBar.qml
-    controls.6/Separator.qml
-    controls.6/SettingsDialog.qml
-    controls.6/SettingsPage.qml
-    controls.6/SideBarView.qml
-    controls.6/ShadowedRectangle.qml
-    controls.6/SplitView.qml
-    controls.6/SplitViewItem.qml
-    controls.6/SwipeBrowserDelegate.qml
-    controls.6/SwipeItemDelegate.qml
+    controls.${QT_MAJOR_VERSION}/SectionHeader.qml
+    controls.${QT_MAJOR_VERSION}/SectionItem.qml
+    controls.${QT_MAJOR_VERSION}/SectionGroup.qml
+    controls.${QT_MAJOR_VERSION}/SelectionBar.qml
+    controls.${QT_MAJOR_VERSION}/Separator.qml
+    controls.${QT_MAJOR_VERSION}/SettingsDialog.qml
+    controls.${QT_MAJOR_VERSION}/SettingsPage.qml
+    controls.${QT_MAJOR_VERSION}/SideBarView.qml
+    controls.${QT_MAJOR_VERSION}/ShadowedRectangle.qml
+    controls.${QT_MAJOR_VERSION}/SplitView.qml
+    controls.${QT_MAJOR_VERSION}/SplitViewItem.qml
+    controls.${QT_MAJOR_VERSION}/SwipeBrowserDelegate.qml
+    controls.${QT_MAJOR_VERSION}/SwipeItemDelegate.qml
 
-    controls.6/TabBar.qml
-    controls.6/TabButton.qml
-    controls.6/TabView.qml
-    controls.6/TabViewItem.qml
-    controls.6/TabViewButton.qml
-    controls.6/ToolActions.qml
-    controls.6/ToolBar.qml
-    controls.6/ToolButtonMenu.qml
+    controls.${QT_MAJOR_VERSION}/TabBar.qml
+    controls.${QT_MAJOR_VERSION}/TabButton.qml
+    controls.${QT_MAJOR_VERSION}/TabView.qml
+    controls.${QT_MAJOR_VERSION}/TabViewItem.qml
+    controls.${QT_MAJOR_VERSION}/TabViewButton.qml
+    controls.${QT_MAJOR_VERSION}/TextFieldPopup.qml
+    controls.${QT_MAJOR_VERSION}/ToolActions.qml
+    controls.${QT_MAJOR_VERSION}/ToolBar.qml
+    controls.${QT_MAJOR_VERSION}/ToolButtonMenu.qml
 
-    controls.6/WindowControlsLinux.qml
+    controls.${QT_MAJOR_VERSION}/WindowControlsLinux.qml
 )
 
-ecm_target_qml_sources(MauiKit PATH private SOURCES
+ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
 
-    controls.6/private/AboutDialog.qml
-    controls.6/private/ActionGroup.qml
+    controls.${QT_MAJOR_VERSION}/private/AboutDialog.qml
+    controls.${QT_MAJOR_VERSION}/private/ActionGroup.qml
 
-    controls.6/private/CheckBoxItem.qml
+    controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml
 
-    controls.6/private/ToastArea.qml
-    controls.6/private/ToolBarSection.qml
+    controls.${QT_MAJOR_VERSION}/private/ToastArea.qml
+    controls.${QT_MAJOR_VERSION}/private/ToolBarSection.qml
 
-    controls.6/private/Rectangle.qml
-    controls.6/private/SideBar.qml
+    controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml
 )
 
-target_sources(MauiKit
+target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     PRIVATE
 
@@ -321,20 +320,20 @@ target_sources(MauiKit
 )
 
 if (QT_MAJOR_VERSION STREQUAL "5")
-    target_sources(MauiKit  PRIVATE  ${mauikit_QML_QRC})
-
     if(QUICK_COMPILER)
+        target_sources(MauiKit${MAUI_MAJOR_VERSION} PRIVATE ${mauikit_QML_QRC})
+
         add_definitions(-DQUICK_COMPILER)
-        target_compile_definitions(MauiKit PUBLIC QUICK_COMPILER)
+        target_compile_definitions(MauiKit${MAUI_MAJOR_VERSION} PUBLIC QUICK_COMPILER)
     endif()
 endif()
 
 add_definitions(-DBUNDLE_MAUI_STYLE)
-target_compile_definitions(MauiKit PUBLIC BUNDLE_MAUI_STYLE)
+target_compile_definitions(MauiKit${MAUI_MAJOR_VERSION} PUBLIC BUNDLE_MAUI_STYLE)
 
 if(BUNDLE_LUV_ICONS)
     add_definitions(-DBUNDLE_LUV_ICONS)
-    target_compile_definitions(MauiKit PUBLIC BUNDLE_LUV_ICONS)
+    target_compile_definitions(MauiKit${MAUI_MAJOR_VERSION} PUBLIC BUNDLE_LUV_ICONS)
 endif()
 
 if(ANDROID)
@@ -342,19 +341,19 @@ if(ANDROID)
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/android
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/android
     )
-target_include_directories(MauiKit PRIVATE platforms/android)
+target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PRIVATE platforms/android)
 elseif(WIN32)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/windows
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/windows
     )
-target_include_directories(MauiKit PRIVATE platforms/windows)
+target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PRIVATE platforms/windows)
 elseif(UNIX AND NOT APPLE)
     include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux
         ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux
     )
-target_include_directories(MauiKit PRIVATE platforms/linux)
+target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PRIVATE platforms/linux)
 elseif(APPLE)
     # Temporarily share blur, shawdow implementation for Windows
     include_directories(
@@ -365,42 +364,42 @@ elseif(APPLE)
 #     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/macos
 #     ${CMAKE_CURRENT_BINARY_DIR}/platforms/macos
 #     )
-target_include_directories(MauiKit PRIVATE platforms/macos)
+target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PRIVATE platforms/macos)
 endif()
 
 if(ANDROID)
     #   add_subdirectory(platforms/android)
-    target_link_libraries(MauiKit PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
+    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
-    install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit COMPONENT Devel)
+    install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION} COMPONENT Devel)
 
-    install(DIRECTORY platforms/android/ DESTINATION ${KDE_INSTALL_DATAROOTDIR}/MauiKitAndroid COMPONENT Devel)
+    install(DIRECTORY platforms/android/ DESTINATION ${KDE_INSTALL_DATAROOTDIR}/MauiKit${MAUI_MAJOR_VERSION}Android COMPONENT Devel)
 
     if (Qt5Core_VERSION VERSION_LESS 5.14.0)
         install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR})
     else()
-        install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
+        install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit${MAUI_MAJOR_VERSION}_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
     endif()
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
-        target_link_libraries(MauiKit
+        target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
             PRIVATE
             KF${KF_MAJOR_VERSION}::WindowSystem
         )
     if (QT_MAJOR_VERSION STREQUAL "5")
-        target_link_libraries(MauiKit PRIVATE Qt5::X11Extras)
+        target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE Qt5::X11Extras)
     endif()
 endif()
 endif()
 
-target_link_libraries(MauiKit
+target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
     PUBLIC
     Qt${QT_MAJOR_VERSION}::Core
     KF${KF_MAJOR_VERSION}::CoreAddons
 
     PRIVATE
     ${kwin_XCB_LIBS}
-    MauiMan::MauiMan
+    MauiMan${MAUI_MAJOR_VERSION}::MauiMan${MAUI_MAJOR_VERSION}
     KF${KF_MAJOR_VERSION}::Notifications
     KF${KF_MAJOR_VERSION}::I18n
     Qt${QT_MAJOR_VERSION}::Qml
@@ -410,32 +409,29 @@ target_link_libraries(MauiKit
     Qt${QT_MAJOR_VERSION}::QuickControls2
 )
 
-ecm_finalize_qml_module(MauiKit DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
 ecm_generate_qmltypes(org.mauikit.controls 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
-generate_export_header(MauiKit BASE_NAME MauiKit)
-install(TARGETS MauiKit EXPORT MauiKitTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+generate_export_header(MauiKit${MAUI_MAJOR_VERSION} BASE_NAME MauiKit)
+install(TARGETS MauiKit${MAUI_MAJOR_VERSION} EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
-target_include_directories(MauiKit
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core>")
+target_include_directories(MauiKit${MAUI_MAJOR_VERSION}
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Core>")
 
 install(FILES
     ${mauikit_HDRS}
     ${mauikit_PLATFORM_HDRS}
     ${CMAKE_CURRENT_BINARY_DIR}/mauikit_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit/Core
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Core
     COMPONENT Devel)
 
 ##INSTALL MAUI STYLE
 if (QT_MAJOR_VERSION STREQUAL "5")
-    install(DIRECTORY maui-style DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2)
-
-    ##INSTALL THE DECO FOR CSD
-    install(DIRECTORY csd DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
+    install(DIRECTORY style.5/ DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2/maui-style)
+    install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
 
 else()
     add_subdirectory(style.6)
-    ##INSTALL THE DECO FOR CSD
-    install(DIRECTORY csd.6 DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
+    install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
 endif()
 

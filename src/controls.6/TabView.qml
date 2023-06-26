@@ -46,14 +46,7 @@ Pane
             id: _tabButton
             tabView: control
             closeButtonVisible: !control.mobile
-            
-            leftContent: Maui.Badge
-            {
-                width: visible ? implicitWidth : 0
-                visible: control.mobile && _tabButton.checked && control.count > 1
-                text: control.count
-            }
-            
+
             onClicked:
             {
                 if(_tabButton.mindex === control.currentIndex)
@@ -297,6 +290,13 @@ Pane
                         model: control.count
                         delegate: control.tabViewButton
                     }
+
+                    rightContent: Button
+                    {
+                        visible: control.mobile && control.count > 1
+                        text: control.count
+                        onClicked: openOverview()
+                    }
                     
                     Keys.onPressed:
                     {
@@ -415,22 +415,19 @@ Pane
 
                 Pane
                 {
+                    id: _pane
                     Maui.Theme.colorSet: Maui.Theme.View
                     Maui.Theme.inherit: false
                     
-                    Maui.GridBrowser
+                    contentItem: Maui.GridBrowser
                     {
                         id: _overviewGrid
-                        
-                        anchors.fill: parent
-                        
                         model: control.count
                         
                         currentIndex: control.currentIndex
                         
-                        itemSize: Math.floor(flickable.width / 3)
-                        itemHeight:  Math.floor(flickable.height / 3)
-                        
+                        itemSize: Math.floor(_overviewGrid.flickable.width / 3)
+
                         Maui.FloatingButton
                         {
                             icon.name: "list-add"
