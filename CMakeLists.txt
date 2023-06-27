@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 Camilo Higuita <milo.h@aol.com>
+#
+# SPDX-License-Identifier: BSD-2-Clause
+
 cmake_minimum_required(VERSION 3.16)
 
 option(BUILD_WITH_QT5 "Use Qt 5" OFF)
@@ -20,7 +24,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     set(MAUIKIT_VERSION 4.0.0)
 
 else()
-    set(REQUIRED_QT_VERSION 5.15)
+    set(REQUIRED_QT_VERSION 5.15.2)
     set(REQUIRED_KF_VERSION 5.91.0)
     set(KF_MAJOR_VERSION 5)
     set(MAUI_MAJOR_VERSION 3)
@@ -33,7 +37,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
@@ -66,6 +69,7 @@ include(ECMGenerateHeaders)
 include(ECMFindQmlModule)
 include(ECMQmlModule)
 include(ECMGenerateQmlTypes)
+
 include(KDEClangFormat)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -75,40 +79,36 @@ option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources 
 ##option to be removed in qt6 migration
 if (QT_MAJOR_VERSION STREQUAL "5")
     option(QUICK_COMPILER ON)
+    if(ANDROID OR WIN32 OR APPLE)
+        set(QUICK_COMPILER ON)
+        set(BUNDLE_LUV_ICONS ON)
+    endif()
 else()
     option(QUICK_COMPILER OFF)
 endif()
 
 option(BUNDLE_LUV_ICONS "Ship Luv icon bundled." OFF)
 
-if(ANDROID OR WIN32 OR APPLE)
-    set(QUICK_COMPILER ON)
-    set(BUNDLE_LUV_ICONS ON)
-endif()
-
-find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
     Core
     Concurrent
     Qml
     Quick
     QuickControls2
     Svg
-    Widgets
-)
+    Widgets)
 
-find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS
+find_package(KF${KF_MAJOR_VERSION} ${REQUIRED_KF_VERSION} REQUIRED COMPONENTS
     I18n
     CoreAddons
-    Notifications
-)
+    Notifications)
 
-find_package(MauiMan${MAUI_MAJOR_VERSION} 1.1.0 REQUIRED)
+find_package(MauiMan${MAUI_MAJOR_VERSION} ${MAUIKIT_VERSION} REQUIRED)
 set_package_properties(MauiMan${MAUI_MAJOR_VERSION} PROPERTIES
     TYPE REQUIRED
     DESCRIPTION "MauiMan is a server and API for syncing global system setting preferences."
     URL "https://invent.kde.org/maui/mauiman"
-    PURPOSE "Sync to system setting preferences."
-)
+    PURPOSE "Sync to system setting preferences.")
 
 ecm_find_qmlmodule(QtQuick.Effects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
@@ -127,10 +127,9 @@ elseif(UNIX AND NOT ANDROID)
         find_package(XCB 1.10 REQUIRED COMPONENTS
             ICCCM
             SHAPE
-            XCB
-        )
-    set_package_properties(XCB PROPERTIES TYPE REQUIRED)
-endif()
+            XCB)
+        set_package_properties(XCB PROPERTIES TYPE REQUIRED)
+    endif()
 endif()
 
 if (QT_MAJOR_VERSION STREQUAL "5")
@@ -138,9 +137,8 @@ if (QT_MAJOR_VERSION STREQUAL "5")
         find_package(Qt5QuickCompiler)
         set_package_properties(Qt5QuickCompiler PROPERTIES
             DESCRIPTION "Compile QML at build time"
-            TYPE OPTIONAL
-        )
-endif()
+            TYPE OPTIONAL)
+    endif()
 endif()
 
 ##Translations stuff with KI18n
@@ -162,22 +160,19 @@ ecm_setup_version(${MAUIKIT_VERSION}
     VARIABLE_PREFIX MAUIKIT
     VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/mauikit_version.h"
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/MauiKit${MAUI_MAJOR_VERSION}ConfigVersion.cmake"
-    SOVERSION ${PROJECT_VERSION_MAJOR}
-)
+    SOVERSION ${PROJECT_VERSION_MAJOR})
 
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/MauiKitConfig.cmake.in.${QT_MAJOR_VERSION}"
     "${CMAKE_CURRENT_BINARY_DIR}/MauiKit${MAUI_MAJOR_VERSION}Config.cmake"
     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
-    PATH_VARS CMAKE_INSTALL_PREFIX
-)
+    PATH_VARS CMAKE_INSTALL_PREFIX)
 
 install(FILES
     "${CMAKE_CURRENT_BINARY_DIR}/MauiKit${MAUI_MAJOR_VERSION}Config.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/MauiKit${MAUI_MAJOR_VERSION}ConfigVersion.cmake"
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-    COMPONENT Devel
-)
+    COMPONENT Devel)
 
 install(EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"

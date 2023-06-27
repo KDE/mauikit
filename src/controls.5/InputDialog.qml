@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 
-import org.mauikit.controls 1.2 as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
  * NewDialog
@@ -14,40 +14,38 @@ import org.mauikit.controls 1.2 as Maui
  *
  *
  */
-Maui.Dialog
+Maui.InfoDialog
 {
     id: control
-   property bool entryField: true
-property alias textEntry: _textEntry
+    property bool entryField: true
+    property alias textEntry: _textEntry
     /**
       * finished :
       */
     signal finished(string text)
 
-    acceptButton.text: i18nd("mauikit", "Accept")
-    rejectButton.text: i18nd("mauikit", "Cancel")
-    closeButtonVisible: false
-    
+    standardButtons: Dialog.Ok | Dialog.Cancel
+
     TextField
     {
         id: _textEntry
-        Layout.fillWidth: true    
-        onAccepted: control.acceptButton.forceActiveFocus()
+        Layout.fillWidth: true
+//        onAccepted: control.acceptButton.forceActiveFocus()
     }
-    
+
     onAccepted: done()
     onRejected:
     {
         textEntry.clear()
         control.close()
     }
-    
-    onOpened: 
+
+    onOpened:
     {
         textEntry.forceActiveFocus()
         textEntry.selectAll()
     }
-    
+
     function done()
     {
         finished(textEntry.text)

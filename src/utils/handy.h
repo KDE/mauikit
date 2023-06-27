@@ -91,7 +91,7 @@ private:
     bool m_mobile = 1;
     bool m_hasTransientTouchInput = 1;
 
-public slots:
+public Q_SLOTS:
     /*!
      * \brief Returns the major version of the current OS
      *
@@ -218,7 +218,7 @@ public slots:
     
     FFactor formFactor();
     
-signals:
+Q_SIGNALS:
     /**
      * @brief singleClickChanged
      */

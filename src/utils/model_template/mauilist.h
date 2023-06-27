@@ -16,8 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAUILIST_H
-#define MAUILIST_H
+#pragma once
 
 /**
  * @todo write docs
@@ -54,14 +53,14 @@ public:
 
    FMH::MODEL getItem(const int &index) const;
    
-public slots:
+public Q_SLOTS:
     QVariantMap get(const int &index) const;
     
 protected:
     bool exists(const FMH::MODEL_KEY &key, const QString &value) const;
     int indexOf(const FMH::MODEL_KEY &key, const QString &value) const;
 
-signals:
+Q_SIGNALS:
     void preItemAppended();
     void preItemsAppended(uint count);
     void postItemAppended();
@@ -75,5 +74,3 @@ signals:
 
     void countChanged();
 };
-
-#endif // MAUILIST_H

@@ -61,7 +61,7 @@ void WindowBlur::setView(QWindow *view)
     if (view != m_view) {
         m_view = view;
         updateBlur();
-        emit viewChanged();
+        Q_EMIT viewChanged();
         
         connect(m_view, &QWindow::visibleChanged, this, &WindowBlur::onViewVisibleChanged);
     }
@@ -81,7 +81,7 @@ void WindowBlur::setGeometry(const QRect &rect)
         {
             updateBlur();
         }
-        emit geometryChanged();
+        Q_EMIT geometryChanged();
     }
 }
 
@@ -95,7 +95,7 @@ void WindowBlur::setEnabled(bool enabled)
     if (enabled != m_enabled) {
         m_enabled = enabled;
         updateBlur();
-        emit enabledChanged();
+        Q_EMIT enabledChanged();
     }
 }
 
@@ -113,7 +113,7 @@ void WindowBlur::setWindowRadius(qreal radius)
         {
             updateBlur();
         }
-        emit windowRadiusChanged();
+        Q_EMIT windowRadiusChanged();
     }
 }
 
