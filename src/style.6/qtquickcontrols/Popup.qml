@@ -39,7 +39,7 @@ T.Popup
 {
     id: control
     
-    parent: Overlay.overlay
+    parent: T.Overlay.overlay
     Maui.Theme.colorSet: Maui.Theme.View
 
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside

@@ -17,6 +17,7 @@ import org.mauikit.controls 1.3 as Maui
 Maui.InfoDialog
 {
     id: control
+
     property bool entryField: true
     property alias textEntry: _textEntry
     /**

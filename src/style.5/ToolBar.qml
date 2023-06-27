@@ -22,7 +22,6 @@
 
 
 import QtQuick 2.15
-import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
 
 import QtQuick.Templates 2.15 as T
@@ -33,13 +32,13 @@ T.ToolBar
     id: control
     
     default property alias content : _layout.data
-        
+
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
     
     property Item translucencySource : null
-        
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding    
+
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     
     contentWidth: contentChildren[0].implicitWidth
@@ -62,8 +61,8 @@ T.ToolBar
     {
         id: _headBarBG
         color: Maui.Theme.backgroundColor
-       
-       Behavior on color
+
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
@@ -76,7 +75,7 @@ T.ToolBar
             sourceComponent: Item
             {
                 FastBlur
-                {    
+                {
                     anchors.fill: parent
                     
                     layer.enabled: true
@@ -87,7 +86,7 @@ T.ToolBar
                     
                     source: control.translucencySource
                     radius: 64
-                }  
+                }
                 
                 Rectangle
                 {
@@ -95,47 +94,47 @@ T.ToolBar
                     anchors.fill: parent
                     opacity: 0.9
                     
-                }   
+                }
             }
-        }  
+        }
         
-         Maui.Separator
-         {
-             id: _border
-             anchors.left: parent.left
-             anchors.right: parent.right
-             weight: Maui.Separator.Weight.Light
-             opacity: 0.4
-             
-             Behavior on color
-             {
-                 Maui.ColorTransition{}
-             }
-         }
+        Maui.Separator
+        {
+            id: _border
+            anchors.left: parent.left
+            anchors.right: parent.right
+            weight: Maui.Separator.Weight.Light
+            opacity: 0.4
 
-         states: [  State
-         {
-             when: control.position === ToolBar.Header
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
+        }
 
-             AnchorChanges
-             {
-                 target: _border
-                 anchors.top: undefined
-                 anchors.bottom: parent.bottom
-             }
-         },
+        states: [  State
+            {
+                when: control.position === ToolBar.Header
 
-         State
-         {
-             when: control.position === ToolBar.Footer
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                }
+            },
 
-             AnchorChanges
-             {
-                 target: _border
-                 anchors.top: parent.top
-                 anchors.bottom: undefined
-             }
-         }
-         ]
+            State
+            {
+                when: control.position === ToolBar.Footer
+
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: parent.top
+                    anchors.bottom: undefined
+                }
+            }
+        ]
     }
 }
