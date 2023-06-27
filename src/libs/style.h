@@ -62,7 +62,7 @@ public:
     uint m_huge;
     uint m_enormous;
     
-signals:
+Q_SIGNALS:
     void sizesChanged();
 };
 

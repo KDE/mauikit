@@ -56,13 +56,13 @@ public:
     void setWindowRadius(qreal radius);
     qreal windowRadius() const;
 
-private slots:
+private Q_SLOTS:
     void onViewVisibleChanged(bool);
 
 private:
     void updateBlur();
 
-signals:
+Q_SIGNALS:
     void viewChanged();
     void enabledChanged();
     void windowRadiusChanged();

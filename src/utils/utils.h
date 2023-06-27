@@ -34,9 +34,9 @@ namespace UTIL
 static const inline QString whoami()
 {
 #ifdef Q_OS_UNIX
-    return qgetenv("USER"); /// for Mac or Linux
+    return QString::fromStdString(qgetenv("USER").toStdString()); /// for Mac or Linux
 #else
-    return qgetenv("USERNAME"); // for windows
+    return QString::fromStdString(qgetenv("USERNAME").toStdString()); // for windows
 #endif
 }
 

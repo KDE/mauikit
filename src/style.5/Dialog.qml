@@ -20,75 +20,96 @@
  */
 
 
-import QtQuick 2.6
-import QtGraphicalEffects 1.0
-import QtQuick.Templates 2.3 as T
+import QtQuick 2.15
+import QtQuick.Layouts 1.15
+
+import QtQuick.Templates 2.15 as T
 import org.mauikit.controls 1.3 as Maui
+
+import QtGraphicalEffects 1.0
 
 T.Dialog
 {
     id: control
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentWidth > 0 ? contentWidth + leftPadding + rightPadding : 0)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentWidth > 0 ? contentHeight + topPadding + bottomPadding : 0)
+    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
 
-    contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
-    contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0) + header.implicitHeight + footer.implicitHeight
+    parent: Overlay.overlay
 
-    padding: Maui.Style.units.gridUnit
+    anchors.centerIn: parent
 
-    enter: Transition {
-        NumberAnimation {
-            property: "opacity"
-            from: 0
-            to: 1
-            easing.type: Easing.InOutQuad
-            duration: 250
-        }
-    }
+    implicitWidth: Math.min(300, control.parent.width)
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding + implicitFooterHeight + implicitHeaderHeight + topMargin + bottomMargin
 
-    exit: Transition {
-        NumberAnimation {
-            property: "opacity"
-            from: 1
-            to: 0
-            easing.type: Easing.InOutQuad
-            duration: 250
-        }
-    }
+    spacing: Maui.Style.defaultSpacing
+    padding: Maui.Style.contentMargins
+    margins: Maui.Style.space.medium
+    modal: true
 
-    contentItem: Item {}
+     closePolicy: control.modal ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    background: Rectangle {
-        radius: height * 0.005
-        color: Maui.Theme.viewBackgroundColor
-        property color borderColor: Maui.Theme.textColor
-        border.color: Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3)
+//    enter: Transition {
+//        NumberAnimation {
+//            property: "opacity"
+//            from: 0
+//            to: 1
+//            easing.type: Easing.InOutQuad
+//            duration: 250
+//        }
+//    }
+
+//    exit: Transition {
+//        NumberAnimation {
+//            property: "opacity"
+//            from: 1
+//            to: 0
+//            easing.type: Easing.InOutQuad
+//            duration: 250
+//        }
+//    }
+
+    background: Rectangle
+    {
+        radius: Maui.Style.radiusV
+        color: Maui.Theme.backgroundColor
 
         layer.enabled: true
-        layer.effect: DropShadow {
-            transparentBorder: true
-            radius: 8
-            samples: 16
+        layer.effect: DropShadow
+        {
             horizontalOffset: 0
             verticalOffset: 0
-            color: Qt.rgba(0, 0, 0, 0.3)
+            radius: 8
+            samples: 16
+            color: "#80000000"
+            transparentBorder: true
+        }
+
+        Behavior on color
+        {
+            Maui.ColorTransition{}
         }
     }
 
-    //header: Kirigami.Heading {
-        //text: control.title
-        //level: 2
-        //visible: control.title
-        //elide: Label.ElideRight
-        //padding: Maui.Style.space.medium
-        //bottomPadding: 0
-    //}
+    header: Maui.ToolBar
+    {
+        visible: control.title.length >0
+        background: null
 
-    footer: DialogButtonBox {
+        middleContent: Label
+        {
+            text: control.title
+            horizontalAlignment: Qt.AlignHCenter
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            font: Maui.Style.h2Font
+        }
+    }
+
+    footer: DialogButtonBox
+    {
         visible: count > 0
-        padding: Maui.Style.space.medium
+        width: parent.width
+        padding: control.padding
     }
 }

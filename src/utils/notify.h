@@ -40,7 +40,7 @@ public:
 private:
     QString m_text;
     
-signals:
+Q_SIGNALS:
     void triggered(Notify* notify);
     void textChanged();
 };

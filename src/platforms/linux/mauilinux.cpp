@@ -50,7 +50,7 @@ bool MAUIKDE::hasMouse()
 
 void MAUIKDE::shareFiles(const QList<QUrl> &urls)
 {
-    emit this->shareFilesRequest(QUrl::toStringList(urls));
+    Q_EMIT this->shareFilesRequest(QUrl::toStringList(urls));
 }
 
 void MAUIKDE::shareText(const QString &)

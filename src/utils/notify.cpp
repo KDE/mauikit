@@ -33,7 +33,7 @@ void NotifyAction::setText(const QString& text)
     }
     
     m_text = text;
-    emit textChanged();
+    Q_EMIT textChanged();
 }
 
 QString NotifyAction::text() const
@@ -158,7 +158,7 @@ void Notify::send()
   connect(notification, &KNotification::defaultActivated,[this]()
   {
       if(m_defaultAction)
-       emit m_defaultAction->triggered (this);
+       Q_EMIT m_defaultAction->triggered (this);
     });
 
   notification->sendEvent();
@@ -174,7 +174,7 @@ void Notify::setComponentName(const QString &newComponentName)
   if (m_componentName == newComponentName)
     return;
   m_componentName = newComponentName;
-  emit componentNameChanged(m_componentName);
+  Q_EMIT componentNameChanged(m_componentName);
 }
 
 void Notify::actionActivated(int index)
@@ -187,7 +187,7 @@ if(index == 0)
 
   if(index >= 1 && index-1 < m_actions.count ())
     {
-      emit m_actions.at (index-1)->triggered (this);
+      Q_EMIT m_actions.at (index-1)->triggered (this);
     }
 }
 
@@ -211,7 +211,7 @@ void Notify::setTitle(const QString &newTitle)
   if (m_title == newTitle)
     return;
   m_title = newTitle;
-  emit titleChanged(m_title);
+  Q_EMIT titleChanged(m_title);
 }
 
 const QString &Notify::message() const
@@ -224,7 +224,7 @@ void Notify::setMessage(const QString &newMessage)
   if (m_message == newMessage)
     return;
   m_message = newMessage;
-  emit messageChanged(m_message);
+  Q_EMIT messageChanged(m_message);
 }
 
 const QString &Notify::iconName() const
@@ -237,7 +237,7 @@ void Notify::setIconName(const QString &newIconName)
   if (m_iconName == newIconName)
     return;
   m_iconName = newIconName;
-  emit iconNameChanged(m_iconName);
+  Q_EMIT iconNameChanged(m_iconName);
 }
 
 const QUrl &Notify::imageSource() const
@@ -250,7 +250,7 @@ void Notify::setImageSource(const QUrl &newImageSource)
   if (m_imageSource == newImageSource)
     return;
   m_imageSource = newImageSource;
-  emit imageSourceChanged(m_imageSource);
+  Q_EMIT imageSourceChanged(m_imageSource);
 }
 
 NotifyAction *Notify::defaultAction() const
@@ -263,7 +263,7 @@ void Notify::setDefaultAction(NotifyAction *newDefaultAction)
   if (m_defaultAction == newDefaultAction)
     return;
   m_defaultAction = newDefaultAction;
-  emit defaulActionChanged();
+  Q_EMIT defaulActionChanged();
 }
 
 const QList<QUrl> &Notify::urls() const
@@ -276,5 +276,5 @@ void Notify::setUrls(const QList<QUrl> &newUrls)
   if (m_urls == newUrls)
     return;
   m_urls = newUrls;
-  emit urlsChanged(m_urls);
+  Q_EMIT urlsChanged(m_urls);
 }

@@ -68,7 +68,7 @@ public:
      */
     static AppSettings &global()
     {
-        static AppSettings settings("mauiproject", "org.kde.maui");
+        static AppSettings settings(QStringLiteral("mauiproject"), QStringLiteral("org.kde.maui"));
         return settings;
     }
 
@@ -99,7 +99,7 @@ public:
     void save(const QString &key, const QVariant &value, const QString &group);
 
 private:
-    explicit AppSettings(QString app = qApp->applicationName(), QString org = qApp->organizationName().isEmpty() ? QString("org.kde.maui") : qApp->organizationName());
+    explicit AppSettings(QString app = qApp->applicationName(), QString org = qApp->organizationName().isEmpty() ? QStringLiteral("org.kde.maui") : qApp->organizationName());
 
     QString m_app;
     QString m_org;

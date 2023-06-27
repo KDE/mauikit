@@ -51,7 +51,7 @@ public:
 private:
     MAUIKDE(QObject *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     /**
      * @brief setColorScheme
      * @param schemeName
@@ -66,7 +66,7 @@ public slots:
     bool hasMouse() override final;
 
     // AbstractPlatform interface
-public slots:
+public Q_SLOTS:
     bool darkModeEnabled() override final;
 };
 

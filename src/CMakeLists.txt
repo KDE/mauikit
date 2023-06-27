@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 Camilo Higuita <milo.h@aol.com>
+#
+# SPDX-License-Identifier: BSD-2-Clause
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/utils
     ${CMAKE_CURRENT_BINARY_DIR}/utils
@@ -221,6 +225,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
 
     controls.${QT_MAJOR_VERSION}/EdgeShadow.qml
 
+    controls.${QT_MAJOR_VERSION}/FileListingDialog.qml
     controls.${QT_MAJOR_VERSION}/FlexListItem.qml
     controls.${QT_MAJOR_VERSION}/FloatingButton.qml
     controls.${QT_MAJOR_VERSION}/FontsComboBox.qml
@@ -286,8 +291,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/ToolBar.qml
     controls.${QT_MAJOR_VERSION}/ToolButtonMenu.qml
 
-    controls.${QT_MAJOR_VERSION}/WindowControlsLinux.qml
-)
+    controls.${QT_MAJOR_VERSION}/WindowControlsLinux.qml)
 
 ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
 
@@ -300,8 +304,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/ToolBarSection.qml
 
     controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
-    controls.${QT_MAJOR_VERSION}/private/SideBar.qml
-)
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml)
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
@@ -316,8 +319,7 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
     ${window_PLATFORM_HDRS}
     ${window_PLATFORM_SRCS}
 
-    assets.qrc
-)
+    assets.qrc)
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     if(QUICK_COMPILER)

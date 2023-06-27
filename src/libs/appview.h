@@ -50,7 +50,7 @@ public:
             return;
 
         m_title = title;
-        emit titleChanged();
+        Q_EMIT titleChanged();
     }
 
     /**
@@ -63,7 +63,7 @@ public:
             return;
 
         m_iconName = iconName;
-        emit iconNameChanged();
+        Q_EMIT iconNameChanged();
     }
     
     /**
@@ -76,7 +76,7 @@ public:
             return;
         
         m_badgeText = text;
-        emit badgeTextChanged();
+        Q_EMIT badgeTextChanged();
     }
 
     /**
@@ -110,7 +110,7 @@ private:
     QString m_iconName;
     QString m_badgeText;
 
-signals:
+Q_SIGNALS:
     void titleChanged();
     void iconNameChanged();
     void badgeTextChanged();
