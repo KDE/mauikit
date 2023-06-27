@@ -33,7 +33,7 @@ T.Dialog
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
 
-    parent: Overlay.overlay
+    parent: T.Overlay.overlay
 
     anchors.centerIn: parent
 

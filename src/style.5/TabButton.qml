@@ -22,8 +22,6 @@
 
 import QtQuick 2.6
 import QtQml.Models 2.1
-//for TabBar.*
-import QtQuick.Controls 2.3
 import QtQuick.Templates 2.3 as T
 import org.mauikit.controls 1.2 as Maui
 

@@ -22,7 +22,6 @@
 
 import QtQuick 2.6
 import QtGraphicalEffects 1.0
-import QtQuick.Controls 2.3 as Controls
 import QtQuick.Templates 2.3 as T
 import org.mauikit.controls 1.3 as Maui
 
@@ -43,7 +42,7 @@ T.ToolTip {
 
     closePolicy: T.Popup.CloseOnEscape | T.Popup.CloseOnPressOutsideParent | T.Popup.CloseOnReleaseOutsideParent
 
-    contentItem: Controls.Label {
+    contentItem: Label {
         text: controlRoot.text
         font: controlRoot.font
         Maui.Theme.colorSet: Maui.Theme.Tooltip

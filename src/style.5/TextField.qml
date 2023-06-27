@@ -18,7 +18,6 @@
  */
 
 import QtQuick 2.15
-import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
@@ -82,7 +81,7 @@ T.TextField
     /**
      * actions : RowLayout
      */
-    property list<Action> actions
+    property list<T.Action> actions
     
     property alias icon : _icon
 
