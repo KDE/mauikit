@@ -28,7 +28,7 @@ import org.mauikit.controls 1.3 as Maui
 Maui.PopupPage
 {
     id: control
-    defaultButtons: false
+
     persistent: false
     widthHint: 0.9
     heightHint: 0.8

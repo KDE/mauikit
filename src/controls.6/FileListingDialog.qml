@@ -28,7 +28,7 @@ import org.mauikit.filebrowsing 1.3 as FB
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.Dialog
+Maui.InfoDialog
 {
     id: control
 
@@ -37,9 +37,6 @@ Maui.Dialog
 
     readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
 
-    maxWidth: 400
-    closeButtonVisible: false
-    
     template.headerSizeHint: template.iconSizeHint + Maui.Style.space.big
     template.iconSource: singleItem.icon
     template.imageSource: singleItem.thumbnail

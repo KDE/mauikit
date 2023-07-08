@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2020 Camilo Higuita <milo.h@aol.com>
 #
-# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 cmake_minimum_required(VERSION 3.16)
 

@@ -187,7 +187,7 @@ private:
     bool m_enabledCSD_blocked = false;
 
     QUrl m_source;
-    QString m_styleName = "Nitrux";
+    QString m_styleName = QStringLiteral("Nitrux");
     QStringList m_rightWindowControls;
 
     void getWindowControlsSettings();
