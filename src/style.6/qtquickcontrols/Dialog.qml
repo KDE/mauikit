@@ -45,27 +45,27 @@ T.Dialog
     margins: Maui.Style.space.medium
     modal: true
 
-     closePolicy: control.modal ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    closePolicy: control.modal ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-//    enter: Transition {
-//        NumberAnimation {
-//            property: "opacity"
-//            from: 0
-//            to: 1
-//            easing.type: Easing.InOutQuad
-//            duration: 250
-//        }
-//    }
+    //    enter: Transition {
+    //        NumberAnimation {
+    //            property: "opacity"
+    //            from: 0
+    //            to: 1
+    //            easing.type: Easing.InOutQuad
+    //            duration: 250
+    //        }
+    //    }
 
-//    exit: Transition {
-//        NumberAnimation {
-//            property: "opacity"
-//            from: 1
-//            to: 0
-//            easing.type: Easing.InOutQuad
-//            duration: 250
-//        }
-//    }
+    //    exit: Transition {
+    //        NumberAnimation {
+    //            property: "opacity"
+    //            from: 1
+    //            to: 0
+    //            easing.type: Easing.InOutQuad
+    //            duration: 250
+    //        }
+    //    }
 
     background: Rectangle
     {
