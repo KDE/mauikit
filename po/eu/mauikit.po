@@ -1,16 +1,16 @@
 # Translation for mauikit.po to Euskara/Basque (eu).
-# Copyright (C) 2022 This file is copyright:
+# Copyright (C) 2022-2023 This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 # KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
 #
 # Translators:
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2022.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-13 00:45+0000\n"
-"PO-Revision-Date: 2022-11-18 07:46+0100\n"
+"PO-Revision-Date: 2023-07-21 12:29+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: src/controls/Dialog.qml:358 src/controls/NewDialog.qml:28
 #, kde-format
@@ -65,57 +65,59 @@ msgstr "Neurria"
 #: src/controls/FontPicker.qml:56
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "Familia"
 
 #: src/controls/FontPicker.qml:57
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "Aukeratu letra-tipo familia."
 
 #: src/controls/FontPicker.qml:80
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "Estiloa"
 
 #: src/controls/FontPicker.qml:81
 #, kde-format
 msgid "Font style."
-msgstr ""
+msgstr "Letra-tipoaren estiloa."
 
 #: src/controls/FontPicker.qml:100
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "Letra-tipoen neurria, gomendatutako balioetatik."
 
 #: src/controls/FontPicker.qml:118
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "Zabalera finkoko letra-tipoak"
 
 #: src/controls/FontPicker.qml:119
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "Azaldu bakarrik zabalera finkoko letra-tipoak."
 
 #: src/controls/FontPicker.qml:130
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "Aurreikusi"
 
 #: src/controls/FontPicker.qml:131
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "Probatu letra-tipoa."
 
 #: src/controls/FontPicker.qml:139
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
 msgstr ""
+"Iñaki Gorrotxategiren familia jatorrak ez ditu probatu nahi Quebec-eko vodka "
+"eta whiskya"
 
 #: src/controls/FontPickerDialog.qml:35
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "Letra-tipoak"
 
 #: src/controls/ImageViewer.qml:177
 #, kde-format
@@ -170,7 +172,7 @@ msgstr "Orri nagusia"
 #: src/controls/private/ToastArea.qml:254
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "Baztertu guztia"
 
 #: src/controls/SettingsPage.qml:10
 #, kde-format
