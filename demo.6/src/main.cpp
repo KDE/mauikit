@@ -24,8 +24,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain("mauidemo");
 
-    KAboutData about(QStringLiteral("mauidemo"), i18n("Maui Demo"), "3.0.0", i18n("MauiKit Qt6 Demo."),
-                     KAboutLicense::LGPL_V3, i18n("© 2023-%1 Maui Development Team", QString::number(QDate::currentDate().year())), "qt6-2");
+    KAboutData about(QStringLiteral("mauidemo"),
+                     i18n("Maui Demo"),
+                     "3.0.0",
+                     i18n("MauiKit Qt6 Demo."),
+                     KAboutLicense::LGPL_V3,
+                     i18n("© 2023-%1 Maui Development Team", QString::number(QDate::currentDate().year())), "qt6-2");
 
     about.addAuthor(i18n("Camilo Higuita"), i18n("Developer"), QStringLiteral("milo.h@aol.com"));
     about.setHomepage("https://mauikit.org");

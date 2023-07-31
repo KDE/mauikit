@@ -122,7 +122,7 @@ Item
 
     property int imageHeight: -1
 
-    property bool smooth : false
+    smooth : false
 
     property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
 
