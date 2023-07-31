@@ -47,7 +47,7 @@ T.ToolTip
     {
         text: controlRoot.text
         font: controlRoot.font
-        color: Maui.Theme.textColor
+        color: controlRoot.Maui.Theme.textColor
     }
 
     background: Rectangle
@@ -57,7 +57,8 @@ T.ToolTip
         color: Maui.Theme.backgroundColor
         Maui.Theme.colorSet: Maui.Theme.Tooltip
         layer.enabled: true
-        layer.effect: DropShadow {
+        layer.effect: DropShadow
+        {
             transparentBorder: true
             radius: 4
             samples: 8

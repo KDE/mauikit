@@ -135,7 +135,7 @@ void MauiApp::setDefaultMauiStyle()
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QQuickStyle::setStyle("maui-style");
 #else
-    QQuickStyle::setStyle("QtQuick.Controls.Maui");
+    QQuickStyle::setStyle(QStringLiteral("QtQuick.Controls.Maui"));
 #endif
 }
 

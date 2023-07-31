@@ -77,7 +77,7 @@ Item
     property int imageWidth : -1
     property int imageHeight : -1
     
-    property bool smooth: false
+    smooth: false
 
     property alias isMask : icon.isMask
     property alias image : img
