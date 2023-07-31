@@ -1,63 +1,63 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the mauikit package.
+#
+# Geraldo Simiao <geraldosimiao@fedoraproject.org>, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version: kdeorg\n"
+"Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-13 00:45+0000\n"
-"PO-Revision-Date: 2023-07-30 07:10\n"
-"Last-Translator: \n"
-"Language-Team: Chinese Simplified\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2023-07-29 22:20-0300\n"
+"Last-Translator: Geraldo Simiao <geraldosimiao@fedoraproject.org>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: kdeorg\n"
-"X-Crowdin-Project-ID: 269464\n"
-"X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/mauikit/mauikit.pot\n"
-"X-Crowdin-File-ID: 41195\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: src/controls/Dialog.qml:358 src/controls/NewDialog.qml:28
 #, kde-format
 msgid "Cancel"
-msgstr "取消"
+msgstr ""
 
 #: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
 #: src/controls/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
-msgstr "同意"
+msgstr ""
 
 #: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
-msgstr "高亮笔"
+msgstr ""
 
 #: src/controls/Doodle.qml:137
 #, kde-format
 msgid "Marker"
-msgstr "标记"
+msgstr ""
 
 #: src/controls/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
-msgstr "橡皮"
+msgstr ""
 
 #: src/controls/Doodle.qml:174
 #, kde-format
 msgid "Color"
-msgstr "颜色"
+msgstr ""
 
 #: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
-msgstr "不透明度"
+msgstr ""
 
 #: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
 #: src/controls/FontPicker.qml:99
 #, kde-format
 msgid "Size"
-msgstr "体积"
+msgstr "Tamanho"
 
 #: src/controls/FontPicker.qml:56
 #, kde-format
@@ -117,52 +117,52 @@ msgstr ""
 #: src/controls/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
-msgstr "哎呀！"
+msgstr ""
 
 #: src/controls/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
-msgstr "无法加载图像。"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:107
 #, kde-format
 msgid "Authors"
-msgstr "作者"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:152
 #, kde-format
 msgid "Translators"
-msgstr "翻译人员"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:195
 #, kde-format
 msgid "Credits"
-msgstr "鸣谢"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:243
 #, kde-format
 msgid "Licenses"
-msgstr "许可证"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:275
 #, kde-format
 msgid "Components"
-msgstr "组件"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:313
 #, kde-format
 msgid "Links"
-msgstr "链接"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:328
 #, kde-format
 msgid "Reports"
-msgstr "报告"
+msgstr ""
 
 #: src/controls/private/AboutDialog.qml:335
 #, kde-format
 msgid "Home Page"
-msgstr "主页"
+msgstr ""
 
 #: src/controls/private/ToastArea.qml:254
 #, kde-format
@@ -172,77 +172,77 @@ msgstr ""
 #: src/controls/SettingsPage.qml:10
 #, kde-format
 msgid "Settings"
-msgstr "设置"
+msgstr ""
 
 #: src/controls/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
-msgstr "分享到"
+msgstr ""
 
 #: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
 #, kde-format
 msgid "Close Split"
-msgstr "取消分割"
+msgstr ""
 
 #: src/controls/TabView.qml:116
 #, kde-format
 msgid "Open"
-msgstr "打开"
+msgstr "Abrir"
 
 #: src/controls/TabView.qml:127
 #, kde-format
 msgid "Duplicate"
-msgstr "复制"
+msgstr ""
 
 #: src/controls/TabView.qml:135
 #, kde-format
 msgid "Close"
-msgstr "关闭"
+msgstr ""
 
 #: src/controls/TabView.qml:145
 #, kde-format
 msgid "Close Other"
-msgstr "关闭其他文档"
+msgstr ""
 
 #: src/controls/TabView.qml:154
 #, kde-format
 msgid "Close All"
-msgstr "全部关闭"
+msgstr ""
 
 #: src/maui-style/TextField.qml:235
 #, kde-format
 msgid "Copy"
-msgstr "复制"
+msgstr ""
 
 #: src/maui-style/TextField.qml:242
 #, kde-format
 msgid "Cut"
-msgstr "剪切"
+msgstr "Recortar"
 
 #: src/maui-style/TextField.qml:249
 #, kde-format
 msgid "Paste"
-msgstr "粘贴"
+msgstr ""
 
 #: src/maui-style/TextField.qml:259
 #, kde-format
 msgid "Select All"
-msgstr "全部选择"
+msgstr ""
 
 #: src/maui-style/TextField.qml:266
 #, kde-format
 msgid "Undo"
-msgstr "撤销"
+msgstr ""
 
 #: src/maui-style/TextField.qml:273
 #, kde-format
 msgid "Redo"
-msgstr "恢复"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:46
 #, kde-format
 msgid "Multi-adaptable user interfaces."
-msgstr "多用途的用户接口。"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:67
 #, kde-format
@@ -259,14 +259,14 @@ msgstr ""
 #: src/utils/mauiapp.cpp:73
 #, kde-format
 msgid "KDE Frameworks"
-msgstr "KDE 程序框架"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:75
 #, kde-format
 msgid "MauiKit Frameworks"
-msgstr "MauiKit 程序框架"
+msgstr ""
 
 #: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "Luv Icon Theme"
-msgstr "Luv 图标主题"
+msgstr ""
