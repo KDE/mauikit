@@ -155,6 +155,7 @@ Popup
      */
     property list<Action> actions
 
+    property alias actionBar : _defaultButtonsLayout
 
     /*!
      * Triggered when the accepted button is clicked.
