@@ -19,9 +19,11 @@ QQC.TabBar
 {
     id: control
 
-    property alias content : _layout.data
+    implicitHeight: _layout.implicitHeight + topPadding +bottomPadding
+
+    property alias content : _rightLayout.data
     property alias leftContent: _leftLayout.data
-    property alias rightContent: _layout.data
+    property alias rightContent: _rightLayout.data
 
     property alias interactive: _content.interactive
     /**
@@ -176,6 +178,12 @@ QQC.TabBar
                         }
                     }
                 }
+            }
+
+            Row
+            {
+                id: _rightLayout
+                spacing: control.spacing
             }
 
             Loader
