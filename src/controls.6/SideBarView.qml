@@ -11,7 +11,6 @@ Item
     property alias sideBarContent: _sideBar.content
     property alias sideBar : _sideBar
 
-
     Private.SideBar
     {
         id: _sideBar

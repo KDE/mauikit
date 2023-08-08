@@ -151,6 +151,12 @@ Popup
     property bool autoClose : true
 
     /*!
+     *    List of actions to be added to the dialog footer bar as styled buttons.
+     */
+    property list<Action> actions
+
+
+    /*!
      * Triggered when the accepted button is clicked.
      */
     signal accepted()
@@ -166,7 +172,7 @@ Popup
     {
         id: _layout
         anchors.fill: parent
-        spacing: 2
+        spacing: 0
 
         Maui.Page
         {
@@ -234,6 +240,38 @@ Popup
 
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
+            }
+        }
+
+        GridLayout
+        {
+            id: _defaultButtonsLayout
+
+            rowSpacing: Maui.Style.space.small
+            columnSpacing: Maui.Style.space.small
+
+            Layout.fillWidth: true
+            Layout.margins: Maui.Style.contentMargins
+
+            property bool isWide : control.width > Maui.Style.units.gridUnit*10
+
+            visible: control.actions.length
+
+            rows: isWide? 1 : _defaultButtonsLayout.children.length
+            columns: isWide ? _defaultButtonsLayout.children.length : 1
+
+            Repeater
+            {
+                model: control.actions
+
+                Button
+                {
+                    id: _actionButton
+                    focus: true
+                    Layout.fillWidth: true
+
+                    action: modelData
+                }
             }
         }
     }

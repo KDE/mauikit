@@ -2,12 +2,11 @@
 
 include(CMakeFindDependencyMacro)
 find_dependency(Qt5Core @REQUIRED_QT_VERSION@)
-
 # Any changes in this ".cmake" file will be overwritten by CMake, the source is the ".cmake.in" file.
 
 foreach(PKG IN LISTS MauiKit3_FIND_COMPONENTS)
     find_package(MauiKit${PKG}3)
-    if(MauiKit_FIND_REQUIRED_${PKG}3)
+    if(MauiKit3_FIND_REQUIRED_${PKG})
         set_package_properties(MauiKit${PKG}3 PROPERTIES TYPE REQUIRED)
     else()
         set_package_properties(MauiKit${PKG}3 PROPERTIES TYPE OPTIONAL)

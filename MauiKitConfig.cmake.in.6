@@ -6,7 +6,7 @@ find_dependency(Qt6Core @REQUIRED_QT_VERSION@)
 
 foreach(PKG IN LISTS MauiKit4_FIND_COMPONENTS)
     find_package(MauiKit${PKG}4)
-    if(MauiKit_FIND_REQUIRED_${PKG}4)
+    if(MauiKit4_FIND_REQUIRED_${PKG})
         set_package_properties(MauiKit${PKG}4 PROPERTIES TYPE REQUIRED)
     else()
         set_package_properties(MauiKit${PKG}4 PROPERTIES TYPE OPTIONAL)

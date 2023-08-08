@@ -133,8 +133,8 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("FileListingDialog.qml")), uri, 1, 3, "FileListingDialog");
     qmlRegisterType(componentUrl(QStringLiteral("SectionHeader.qml")), uri, 1, 3, "SectionHeader");
     qmlRegisterType(componentUrl(QStringLiteral("IconItem.qml")), uri, 1, 3, "IconItem");
-    //    qmlRegisterType(componentUrl(QStringLiteral("DoodleCanvas.qml")), uri, 1, 3, "DoodleCanvas");
-    //    qmlRegisterType(componentUrl(QStringLiteral("Doodle.qml")), uri, 1, 3, "Doodle");
+        qmlRegisterType(componentUrl(QStringLiteral("DoodleCanvas.qml")), uri, 1, 3, "DoodleCanvas");
+        qmlRegisterType(componentUrl(QStringLiteral("Doodle.qml")), uri, 1, 3, "Doodle");
     qmlRegisterType(componentUrl(QStringLiteral("FlexListItem.qml")), uri, 1, 3, "FlexListItem");
     qmlRegisterType(componentUrl(QStringLiteral("Chip.qml")), uri, 1, 3, "Chip");
     qmlRegisterType(componentUrl(QStringLiteral("ContextualMenu.qml")), uri, 1, 3, "ContextualMenu");

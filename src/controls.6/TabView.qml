@@ -36,6 +36,7 @@ Pane
     onCurrentIndexChanged: _tabBar.positionViewAtIndex(control.currentIndex)
 
     spacing: 0
+    padding: 0
 
     Component
     {

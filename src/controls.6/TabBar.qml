@@ -18,10 +18,7 @@ import org.mauikit.controls as Maui
 QQC.TabBar
 {
     id: control
-    
-    Maui.Theme.colorSet: Maui.Theme.Header
-    Maui.Theme.inherit: false
-    
+
     property alias content : _layout.data
     property alias leftContent: _leftLayout.data
     property alias rightContent: _layout.data
