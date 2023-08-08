@@ -20,54 +20,56 @@
  */
 
 
-import QtQuick 2.6
-import QtQuick.Templates 2.3 as T
+import QtQuick 2.15
+import QtQuick.Templates 2.15 as T
 
 import org.mauikit.controls 1.3 as Maui
 
-T.TabBar {
+
+T.TabBar
+{
     id: controlRoot
 
-    Maui.Theme.colorSet: Maui.Theme.Button
+    Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
 
-    implicitWidth: contentItem.implicitWidth
-    implicitHeight: contentItem.implicitHeight
-    
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+
     padding: Maui.Style.defaultPadding
-    spacing: Maui.Style.defaultSpacing
-    
-    contentItem: ListView {
+    spacing: Maui.Style.space.small
+
+    font: Maui.Style.defaultFont
+
+    contentItem: ListView
+    {
         implicitWidth: contentWidth
         implicitHeight: controlRoot.contentModel.get(0).height
 
         model: controlRoot.contentModel
         currentIndex: controlRoot.currentIndex
 
-        spacing: 0
+        spacing: controlRoot.spacing
         orientation: ListView.Horizontal
-        boundsBehavior: Flickable.StopAtBounds
-        flickableDirection: Flickable.AutoFlickIfNeeded
-        snapMode: ListView.SnapToItem
 
+        interactive: Maui.Handy.isMobile
+        snapMode: ListView.SnapOneItem
+
+        highlightFollowsCurrentItem: true
         highlightMoveDuration: 0
-        highlightRangeMode: ListView.ApplyRange
-        preferredHighlightBegin: 40
-        preferredHighlightEnd: width - 40
+        highlightResizeDuration : 0
+
+        boundsBehavior: Flickable.StopAtBounds
+        boundsMovement: Flickable.StopAtBounds
     }
 
-    background: Item
+    background: Rectangle
     {
-        Rectangle {
-            anchors {
-                left: parent.left
-                right: parent.right
-                bottom : controlRoot.position == T.TabBar.Header ? parent.bottom : undefined
-                top : controlRoot.position == T.TabBar.Header ? undefined : parent.top
-            }
-            height: 1
-            color: Maui.Theme.textColor
-            opacity: 0.4
+        color: Maui.Theme.backgroundColor
+
+        Behavior on color
+        {
+            Maui.ColorTransition{}
         }
     }
 }

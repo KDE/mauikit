@@ -8,7 +8,7 @@ import org.mauikit.controls 1.3 as Maui
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.Dialog
+Maui.PopupPage
 {
     id: control
 
@@ -59,7 +59,7 @@ Maui.Dialog
       */
     property alias paintColor: _canvas.paintColor
 
-    onRejected: control.close()
+//    onRejected: control.close()
 
     onOpened:
     {

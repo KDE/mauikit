@@ -12,123 +12,129 @@ import org.mauikit.controls 1.3 as Maui
 T.SplitView
 {
     id: control
+
+    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
-    
+
     clip: true
     focus: true
     padding: 0
-        
+
     Component
     {
         id: _horizontalHandleComponent
-        
+
         Rectangle
         {
-           
-            implicitWidth: 20
-            implicitHeight: 20
-            
+            Maui.Theme.colorSet: Maui.Theme.Window
+            Maui.Theme.inherit: false
+
+            implicitWidth: Maui.Handy.isMobile ? 8 : 4
+            implicitHeight: Maui.Handy.isMobile ? 8 : 4
+
             color: Maui.Theme.backgroundColor
-            
+
             Behavior on color
             {
                 Maui.ColorTransition{}
             }
-            
+
             Rectangle
             {
                 property int length: pressed ? 80 : 48
-                
+
                 Behavior on length
-                {
-                    NumberAnimation 
-                    {
-                        duration: Maui.Style.units.shortDuration
-                    }
-                }                
-                
-                Behavior on opacity 
                 {
                     NumberAnimation
                     {
                         duration: Maui.Style.units.shortDuration
                     }
-                }  
-                
+                }
+
+                Behavior on opacity
+                {
+                    NumberAnimation
+                    {
+                        duration: Maui.Style.units.shortDuration
+                    }
+                }
+
                 opacity: pressed ? 1 : 0.2
-                
+
                 anchors.centerIn: parent
-                height: 6
+                height: Maui.Handy.isMobile ? 6 : 4
                 width: length
                 radius: height
-                
+
                 color: pressed || control.T.SplitHandle.hovered  ? Maui.Theme.highlightColor : Maui.Theme.textColor
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }                
-            }            
-        }
-    }
-    
-    Component
-    {
-        id: _verticalHandleComponent
-        
-        Rectangle
-        {
-            Maui.Theme.colorSet: Maui.Theme.Header
-            Maui.Theme.inherit: false
-            implicitWidth: 20
-            implicitHeight: 20
-            
-            color: Maui.Theme.backgroundColor
-            
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }                       
-                        
-            Rectangle
-            {
-                property int length: pressed ? 80 : 48
-                
-                Behavior on length
-                {
-                    NumberAnimation 
-                    {
-                        duration: 100
-                    }
-                }    
-                
-                Behavior on opacity 
-                {
-                    NumberAnimation
-                    {
-                        duration: 100
-                    }
-                }  
-                
+
                 Behavior on color
                 {
                     Maui.ColorTransition{}
                 }
-                
-                
+            }
+        }
+    }
+
+    Component
+    {
+        id: _verticalHandleComponent
+
+        Rectangle
+        {
+            Maui.Theme.colorSet: Maui.Theme.Window
+            Maui.Theme.inherit: false
+
+            implicitWidth: Maui.Handy.isMobile ? 8 : 4
+            implicitHeight: Maui.Handy.isMobile ? 8 : 4
+
+            color: Maui.Theme.backgroundColor
+
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
+
+            Rectangle
+            {
+                property int length: pressed ? 80 : 48
+
+                Behavior on length
+                {
+                    NumberAnimation
+                    {
+                        duration: 100
+                    }
+                }
+
+                Behavior on opacity
+                {
+                    NumberAnimation
+                    {
+                        duration: 100
+                    }
+                }
+
+                Behavior on color
+                {
+                    Maui.ColorTransition{}
+                }
+
                 opacity: pressed ? 1 : 0.2
                 anchors.centerIn: parent
                 height: length
-                width: 6
+                width: Maui.Handy.isMobile ? 6 : 4
                 radius: width
                 color: pressed || control.T.SplitHandle.hovered ? Maui.Theme.highlightColor : Maui.Theme.textColor
             }
         }
     }
-    
+
     handle: Loader
     {
         //        asynchronous: true

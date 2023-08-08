@@ -56,9 +56,12 @@ void MauiModel::setFilter(const QString &filter)
     if (this->m_filter == filter)
         return;
 
+
     this->m_filter = filter;
-    this->setFilterFixedString(this->m_filter);
+    this->setFilterRegularExpression(this->m_filter);
     Q_EMIT this->filterChanged(this->m_filter);
+    qDebug() << "Setting model filter" << m_filter;
+
 }
 
 const QString MauiModel::getFilter() const

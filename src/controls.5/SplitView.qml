@@ -12,43 +12,32 @@ import org.mauikit.controls 1.3 as Maui
 SplitView
 {
     id: control
-    Maui.Theme.colorSet: Maui.Theme.Window
-    Maui.Theme.inherit: false
+
     clip: false
-    focus: true
-    
+
     onCurrentItemChanged:
     {
         currentItem.forceActiveFocus()
     }
-    
+
     function closeSplit(index)
     {
         if(control.count === 1)
         {
             return // do not close aall
         }
-        
+
         control.removeItem(control.takeItem(index))
     }
-    
+
     function addSplit(component, properties)
     {
         const object = component.createObject(control.contentModel, properties);
-        
+
         control.addItem(object)
         control.currentIndex = Math.max(control.count -1, 0)
         object.forceActiveFocus()
-        
+
         return object
     }
-
-    //    Component.onCompleted: control.restoreState(settings.splitView)
-    //    Component.onDestruction: settings.splitView = control.saveState()
-
-    //    Settings {
-    //        id: settings
-    //        property var splitView
-    //    }
-
 }

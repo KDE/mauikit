@@ -1,14 +1,14 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /*!
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.Dialog
+Maui.PopupPage
 {
     id: control
 
@@ -59,7 +59,7 @@ Maui.Dialog
       */
     property alias paintColor: _canvas.paintColor
 
-    onRejected: control.close()
+//    onRejected: control.close()
 
     onOpened:
     {

@@ -38,6 +38,14 @@ Pane
     clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0
 
     padding: compact ? 0 : Maui.Style.contentMargins
+    Behavior on padding
+    {
+        NumberAnimation
+        {
+            duration: Maui.Style.units.shortDuration
+            easing.type: Easing.InQuad
+        }
+    }
 
     property bool compact : Maui.Handy.isMobile || SplitView.view.count === 1
 
