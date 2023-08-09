@@ -18,8 +18,8 @@
         <file alias="SettingsDialog.qml">controls.5/SettingsDialog.qml</file>
         <file alias="SettingsPage.qml">controls.5/SettingsPage.qml</file>
         <file alias="ShadowedRectangle.qml">controls.5/ShadowedRectangle.qml</file>
-        <file alias="ShareDialog.qml">controls.5/ShareDialog.qml</file>
-        <file alias="ShareDialogLinux.qml">controls.5/ShareDialogLinux.qml</file>
+        <file alias="private/ShareDialog.qml">controls.5/private/ShareDialog.qml</file>
+        <file alias="private/ShareDialogLinux.qml">controls.5/private/ShareDialogLinux.qml</file>
         <file alias="SideBarView.qml">controls.5/SideBarView.qml</file>
         <file alias="SplitView.qml">controls.5/SplitView.qml</file>
         <file alias="SplitViewItem.qml">controls.5/SplitViewItem.qml</file>
