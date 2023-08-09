@@ -3,7 +3,7 @@ import QtQuick 2.14
 import org.mauikit.controls 1.2 as Maui
 import org.mauikit.filebrowsing 1.0 as FB
 
-import "."
+import "private"
 
 /*!
   \since org.mauikit.controls.labs 1.0
@@ -27,7 +27,7 @@ Item
     {
         id: _shareDialogLoader
         active: !Maui.Handy.isAndroid
-        source: "ShareDialogLinux.qml"
+        source: "private/ShareDialogLinux.qml"
     }
 
     /**
