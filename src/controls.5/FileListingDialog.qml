@@ -28,20 +28,110 @@ import org.mauikit.filebrowsing 1.3 as FB
   \since org.mauikit.controls.labs 1.0
   \inqmlmodule org.mauikit.controls.labs
 */
-Maui.InfoDialog
+Maui.PopupPage
 {
     id: control
 
     default property alias content : _content.data
     property var urls: []
 
-    readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
+    property string message : ""
 
-    template.headerSizeHint: template.iconSizeHint + Maui.Style.space.big
-    template.iconSource: singleItem.icon
-    template.imageSource: singleItem.thumbnail
-    template.iconSizeHint: Maui.Style.iconSizes.huge
-    template.implicitHeight: Math.max(template.leftLabels.implicitHeight, 64)
+    readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
+    property alias template : _template
+
+    hint: 1
+    maxWidth: 350
+
+    headBar.visible: false
+
+    Maui.ListItemTemplate
+    {
+        id: _template
+        visible: control.message.length
+        Layout.fillWidth: true
+        label2.text: message
+        label2.textFormat : TextEdit.AutoText
+        label2.wrapMode: TextEdit.WordWrap
+        iconVisible: control.width > Maui.Style.units.gridUnit * 10
+
+        iconSizeHint: Maui.Style.iconSizes.large
+        spacing: Maui.Style.space.big
+
+        leftLabels.spacing: control.spacing
+
+        headerSizeHint: template.iconSizeHint + Maui.Style.space.big
+        iconSource: singleItem.icon
+        imageSource: singleItem.thumbnail
+        implicitHeight: Math.max(template.leftLabels.implicitHeight, 64)
+
+
+        leftLabels.data: ColumnLayout
+        {
+            id: _content
+            Layout.fillWidth: true
+            spacing: control.spacing
+        }
+
+        iconComponent: Item
+        {
+            Item
+            {
+                height: Math.min(parent.height, 120, width)
+                width: parent.width
+                anchors.centerIn: parent
+                layer.enabled: true
+
+                Rectangle
+                {
+                    visible: control.urls ? control.urls.length > 1 : false
+                    anchors.fill: parent
+
+                    anchors.leftMargin: Maui.Style.space.small
+                    anchors.rightMargin: Maui.Style.space.small
+
+                    radius: Maui.Style.radiusV
+                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                    border.color: Maui.Theme.backgroundColor
+                }
+
+                Rectangle
+                {
+                    visible: control.urls ? control.urls.length > 1 : false
+                    anchors.fill: parent
+
+                    anchors.topMargin: Maui.Style.space.tiny
+                    anchors.leftMargin: Maui.Style.space.tiny
+                    anchors.rightMargin: Maui.Style.space.tiny
+
+                    radius: Maui.Style.radiusV
+                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                    border.color: Maui.Theme.backgroundColor
+                }
+
+                Rectangle
+                {
+                    anchors.fill: parent
+                    anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
+                    border.color: Maui.Theme.backgroundColor
+
+                    radius: Maui.Style.radiusV
+                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+
+                    Maui.GridItemTemplate
+                    {
+                        anchors.fill: parent
+                        anchors.margins: Maui.Style.space.tiny
+                        iconSizeHint: Math.min(height, width)
+
+                        iconSource: control.template.iconSource
+                        imageSource:  control.template.imageSource
+                    }
+                }
+            }
+        }
+
+    }
 
     property Component listDelegate : Maui.ListItemTemplate
     {
@@ -78,71 +168,6 @@ Maui.InfoDialog
                 }
 
                 control.urls = array
-            }
-        }
-    }
-
-    template.leftLabels.data: ColumnLayout
-    {
-        id: _content
-        Layout.fillWidth: true
-        spacing: control.spacing
-    }
-
-    template.iconComponent: Item
-    {
-        Item
-        {
-            height: Math.min(parent.height, 120, width)
-            width: parent.width
-            anchors.centerIn: parent
-            layer.enabled: true
-
-            Rectangle
-            {
-                visible: control.urls ? control.urls.length > 1 : false
-                anchors.fill: parent
-                
-                anchors.leftMargin: Maui.Style.space.small
-                anchors.rightMargin: Maui.Style.space.small
-                
-                radius: Maui.Style.radiusV
-                color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                border.color: Maui.Theme.backgroundColor
-            }
-
-            Rectangle
-            {
-                visible: control.urls ? control.urls.length > 1 : false
-                anchors.fill: parent
-                
-                anchors.topMargin: Maui.Style.space.tiny
-                anchors.leftMargin: Maui.Style.space.tiny
-                anchors.rightMargin: Maui.Style.space.tiny
-                
-                radius: Maui.Style.radiusV
-                color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                border.color: Maui.Theme.backgroundColor
-            }
-
-            Rectangle
-            {
-                anchors.fill: parent
-                anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
-                border.color: Maui.Theme.backgroundColor
-
-                radius: Maui.Style.radiusV
-                color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-
-                Maui.GridItemTemplate
-                {
-                    anchors.fill: parent
-                    anchors.margins: Maui.Style.space.tiny
-                    iconSizeHint: Math.min(height, width)
-
-                    iconSource: control.template.iconSource
-                    imageSource:  control.template.imageSource
-                }
             }
         }
     }
