@@ -338,7 +338,7 @@ Window
         ignoreUnknownSignals: true
         function onShareFilesRequest(urls)
         {
-            dialogLoader.source = "ShareDialog.qml"
+            dialogLoader.source = "private/ShareDialog.qml"
             dialog.urls = urls
             dialog.open()
         }
