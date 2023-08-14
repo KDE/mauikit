@@ -5,6 +5,8 @@ import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
 
+import "private" as Private
+
 /**
  * TabBar
  * A global sidebar for the application window that can be collapsed.
@@ -21,9 +23,9 @@ QQC.TabBar
 
     implicitHeight: _layout.implicitHeight + topPadding +bottomPadding
 
-    property alias content : _rightLayout.data
-    property alias leftContent: _leftLayout.data
-    property alias rightContent: _rightLayout.data
+    property alias content : _rightLayout.content
+    property alias leftContent: _leftLayout.content
+    property alias rightContent: _rightLayout.content
 
     property alias interactive: _content.interactive
     /**
@@ -114,12 +116,15 @@ QQC.TabBar
         RowLayout
         {
             id: _layout
-            width: parent.width
+            anchors.fill: parent
             spacing: control.spacing
 
-            Row
+            Private.ToolBarSection
             {
                 id: _leftLayout
+                Layout.fillHeight: true
+                Layout.maximumWidth: implicitWidth
+                Layout.minimumWidth: implicitWidth
                 spacing: control.spacing
             }
 
@@ -180,9 +185,12 @@ QQC.TabBar
                 }
             }
 
-            Row
+            Private.ToolBarSection
             {
                 id: _rightLayout
+                Layout.fillHeight: true
+                Layout.maximumWidth: implicitWidth
+                Layout.minimumWidth: implicitWidth
                 spacing: control.spacing
             }
 
