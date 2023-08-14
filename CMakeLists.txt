@@ -25,7 +25,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
 
 else()
     set(REQUIRED_QT_VERSION 5.15.2)
-    set(REQUIRED_KF_VERSION 5.91.0)
+    set(REQUIRED_KF_VERSION 5.108.0)
     set(KF_MAJOR_VERSION 5)
     set(MAUI_MAJOR_VERSION 3)
 
@@ -123,7 +123,7 @@ elseif(UNIX AND NOT ANDROID)
             find_package(Qt5 REQUIRED COMPONENTS X11Extras)
         endif()
         find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS WindowSystem)
-        
+
         find_package(XCB 1.10 REQUIRED COMPONENTS
             ICCCM
             SHAPE
