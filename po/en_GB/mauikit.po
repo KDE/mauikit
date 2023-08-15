@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-13 00:45+0000\n"
+"POT-Creation-Date: 2023-08-15 00:44+0000\n"
 "PO-Revision-Date: 2023-04-08 11:09+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -17,259 +17,272 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.03.70\n"
 
-#: src/controls/Dialog.qml:358 src/controls/NewDialog.qml:28
-#, kde-format
-msgid "Cancel"
-msgstr "Cancel"
-
-#: src/controls/Dialog.qml:380 src/controls/NewDialog.qml:27
-#: src/controls/private/ToastArea.qml:178
-#, kde-format
-msgid "Accept"
-msgstr "Accept"
-
-#: src/controls/Doodle.qml:126 src/controls/Doodle.qml:148
+#: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
+#: src/controls.6/Doodle.qml:126 src/controls.6/Doodle.qml:148
 #, kde-format
 msgid "Highlighter"
 msgstr "Highlighter"
 
-#: src/controls/Doodle.qml:137
+#: src/controls.5/Doodle.qml:137 src/controls.6/Doodle.qml:137
 #, kde-format
 msgid "Marker"
 msgstr "Marker"
 
-#: src/controls/Doodle.qml:159
+#: src/controls.5/Doodle.qml:159 src/controls.6/Doodle.qml:159
 #, kde-format
 msgid "Eraser"
 msgstr "Eraser"
 
-#: src/controls/Doodle.qml:174
+#: src/controls.5/Doodle.qml:174 src/controls.6/Doodle.qml:174
 #, kde-format
 msgid "Color"
 msgstr "Colour"
 
-#: src/controls/Doodle.qml:181 src/controls/Doodle.qml:235
+#: src/controls.5/Doodle.qml:181 src/controls.5/Doodle.qml:235
+#: src/controls.6/Doodle.qml:181 src/controls.6/Doodle.qml:235
 #, kde-format
 msgid "Opacity"
 msgstr "Opacity"
 
-#: src/controls/Doodle.qml:189 src/controls/Doodle.qml:205
-#: src/controls/FontPicker.qml:99
+#: src/controls.5/Doodle.qml:189 src/controls.5/Doodle.qml:205
+#: src/controls.5/FontPicker.qml:99 src/controls.6/Doodle.qml:189
+#: src/controls.6/Doodle.qml:205 src/controls.6/FontPicker.qml:96
 #, kde-format
 msgid "Size"
 msgstr "Size"
 
-#: src/controls/FontPicker.qml:56
+#: src/controls.5/FontPicker.qml:56 src/controls.6/FontPicker.qml:54
 #, kde-format
 msgid "Family"
 msgstr "Family"
 
-#: src/controls/FontPicker.qml:57
+#: src/controls.5/FontPicker.qml:57 src/controls.6/FontPicker.qml:55
 #, kde-format
 msgid "Pick the font family."
 msgstr "Pick the font family."
 
-#: src/controls/FontPicker.qml:80
+#: src/controls.5/FontPicker.qml:80 src/controls.6/FontPicker.qml:77
 #, kde-format
 msgid "Style"
 msgstr "Style"
 
-#: src/controls/FontPicker.qml:81
+#: src/controls.5/FontPicker.qml:81 src/controls.6/FontPicker.qml:78
 #, kde-format
 msgid "Font style."
 msgstr "Font style."
 
-#: src/controls/FontPicker.qml:100
+#: src/controls.5/FontPicker.qml:100 src/controls.6/FontPicker.qml:97
 #, kde-format
 msgid "Font size from recommended values."
 msgstr "Font size from recommended values."
 
-#: src/controls/FontPicker.qml:118
+#: src/controls.5/FontPicker.qml:118 src/controls.6/FontPicker.qml:115
 #, kde-format
 msgid "Monospaced Fonts"
 msgstr "Monospaced Fonts"
 
-#: src/controls/FontPicker.qml:119
+#: src/controls.5/FontPicker.qml:119 src/controls.6/FontPicker.qml:116
 #, kde-format
 msgid "Display only monospaced fonts."
 msgstr "Display only monospaced fonts."
 
-#: src/controls/FontPicker.qml:130
+#: src/controls.5/FontPicker.qml:130 src/controls.6/FontPicker.qml:127
 #, kde-format
 msgid "Preview"
 msgstr "Preview"
 
-#: src/controls/FontPicker.qml:131
+#: src/controls.5/FontPicker.qml:131 src/controls.6/FontPicker.qml:128
 #, kde-format
 msgid "Test the font."
 msgstr "Test the font."
 
-#: src/controls/FontPicker.qml:139
+#: src/controls.5/FontPicker.qml:139 src/controls.6/FontPicker.qml:136
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
 msgstr "The Quick Brown Fox Jumps Over The Lazy Dog"
 
-#: src/controls/FontPickerDialog.qml:35
+#: src/controls.5/FontPickerDialog.qml:35
+#: src/controls.6/FontPickerDialog.qml:33
 #, kde-format
 msgid "Fonts"
 msgstr "Fonts"
 
-#: src/controls/ImageViewer.qml:177
+#: src/controls.5/ImageViewer.qml:177 src/controls.6/ImageViewer.qml:177
 #, kde-format
 msgid "Oops!"
 msgstr "Oops!"
 
-#: src/controls/ImageViewer.qml:178
+#: src/controls.5/ImageViewer.qml:178 src/controls.6/ImageViewer.qml:178
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "The image could not be loaded."
 
-#: src/controls/private/AboutDialog.qml:107
+#: src/controls.5/private/AboutDialog.qml:107
+#: src/controls.6/private/AboutDialog.qml:106
 #, kde-format
 msgid "Authors"
 msgstr "Authors"
 
-#: src/controls/private/AboutDialog.qml:152
+#: src/controls.5/private/AboutDialog.qml:152
+#: src/controls.6/private/AboutDialog.qml:151
 #, kde-format
 msgid "Translators"
 msgstr "Translators"
 
-#: src/controls/private/AboutDialog.qml:195
+#: src/controls.5/private/AboutDialog.qml:195
+#: src/controls.6/private/AboutDialog.qml:194
 #, kde-format
 msgid "Credits"
 msgstr "Credits"
 
-#: src/controls/private/AboutDialog.qml:243
+#: src/controls.5/private/AboutDialog.qml:243
+#: src/controls.6/private/AboutDialog.qml:242
 #, kde-format
 msgid "Licenses"
 msgstr "Licences"
 
-#: src/controls/private/AboutDialog.qml:275
+#: src/controls.5/private/AboutDialog.qml:275
+#: src/controls.6/private/AboutDialog.qml:274
 #, kde-format
 msgid "Components"
 msgstr "Components"
 
-#: src/controls/private/AboutDialog.qml:313
+#: src/controls.5/private/AboutDialog.qml:313
+#: src/controls.6/private/AboutDialog.qml:312
 #, kde-format
 msgid "Links"
 msgstr "Links"
 
-#: src/controls/private/AboutDialog.qml:328
+#: src/controls.5/private/AboutDialog.qml:328
+#: src/controls.6/private/AboutDialog.qml:327
 #, kde-format
 msgid "Reports"
 msgstr "Reports"
 
-#: src/controls/private/AboutDialog.qml:335
+#: src/controls.5/private/AboutDialog.qml:335
+#: src/controls.6/private/AboutDialog.qml:334
 #, kde-format
 msgid "Home Page"
 msgstr "Home Page"
 
-#: src/controls/private/ToastArea.qml:254
-#, kde-format
-msgid "Dismiss All"
-msgstr "Dismiss All"
-
-#: src/controls/SettingsPage.qml:10
-#, kde-format
-msgid "Settings"
-msgstr "Settings"
-
-#: src/controls/ShareDialogLinux.qml:59
+#: src/controls.5/private/ShareDialogLinux.qml:53
+#: src/controls.6/private/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
 msgstr "Share with"
 
-#: src/controls/SplitViewItem.qml:81 src/controls/SplitViewItem.qml:96
+#: src/controls.5/private/ToastArea.qml:178
+#: src/controls.6/private/ToastArea.qml:179
+#, kde-format
+msgid "Accept"
+msgstr "Accept"
+
+#: src/controls.5/private/ToastArea.qml:254
+#: src/controls.6/private/ToastArea.qml:253
+#, kde-format
+msgid "Dismiss All"
+msgstr "Dismiss All"
+
+#: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsPage.qml:8
+#, kde-format
+msgid "Settings"
+msgstr "Settings"
+
+#: src/controls.5/SplitViewItem.qml:100 src/controls.5/SplitViewItem.qml:115
+#: src/controls.6/SplitViewItem.qml:99 src/controls.6/SplitViewItem.qml:114
 #, kde-format
 msgid "Close Split"
 msgstr "Close Split"
 
-#: src/controls/TabView.qml:116
+#: src/controls.5/TabView.qml:103 src/controls.6/TabView.qml:103
 #, kde-format
 msgid "Open"
 msgstr "Open"
 
-#: src/controls/TabView.qml:127
+#: src/controls.5/TabView.qml:114 src/controls.6/TabView.qml:114
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplicate"
 
-#: src/controls/TabView.qml:135
+#: src/controls.5/TabView.qml:122 src/controls.6/TabView.qml:122
 #, kde-format
 msgid "Close"
 msgstr "Close"
 
-#: src/controls/TabView.qml:145
+#: src/controls.5/TabView.qml:132 src/controls.6/TabView.qml:132
 #, kde-format
 msgid "Close Other"
 msgstr "Close Other"
 
-#: src/controls/TabView.qml:154
+#: src/controls.5/TabView.qml:141 src/controls.6/TabView.qml:141
 #, kde-format
 msgid "Close All"
 msgstr "Close All"
 
-#: src/maui-style/TextField.qml:235
+#: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
 msgid "Copy"
 msgstr "Copy"
 
-#: src/maui-style/TextField.qml:242
+#: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
 msgid "Cut"
 msgstr "Cut"
 
-#: src/maui-style/TextField.qml:249
+#: src/style.5/TextField.qml:248 src/style.6/qtquickcontrols/TextField.qml:247
 #, kde-format
 msgid "Paste"
 msgstr "Paste"
 
-#: src/maui-style/TextField.qml:259
+#: src/style.5/TextField.qml:258 src/style.6/qtquickcontrols/TextField.qml:257
 #, kde-format
 msgid "Select All"
 msgstr "Select All"
 
-#: src/maui-style/TextField.qml:266
+#: src/style.5/TextField.qml:265 src/style.6/qtquickcontrols/TextField.qml:264
 #, kde-format
 msgid "Undo"
 msgstr "Undo"
 
-#: src/maui-style/TextField.qml:273
+#: src/style.5/TextField.qml:272 src/style.6/qtquickcontrols/TextField.qml:271
 #, kde-format
 msgid "Redo"
 msgstr "Redo"
 
-#: src/utils/mauiapp.cpp:46
+#: src/utils/mauiapp.cpp:50
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Multi-adaptable user interfaces."
 
-#: src/utils/mauiapp.cpp:67
+#: src/utils/mauiapp.cpp:70
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Steve Allewell"
 
-#: src/utils/mauiapp.cpp:68
+#: src/utils/mauiapp.cpp:71
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "steve.allewell@gmail.com"
 
-#: src/utils/mauiapp.cpp:73
+#: src/utils/mauiapp.cpp:76
 #, kde-format
 msgid "KDE Frameworks"
 msgstr "KDE Frameworks"
 
-#: src/utils/mauiapp.cpp:75
+#: src/utils/mauiapp.cpp:78
 #, kde-format
 msgid "MauiKit Frameworks"
 msgstr "MauiKit Frameworks"
 
-#: src/utils/mauiapp.cpp:78
+#: src/utils/mauiapp.cpp:81
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv Icon Theme"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancel"
 
 #~ msgid "Find"
 #~ msgstr "Find"
