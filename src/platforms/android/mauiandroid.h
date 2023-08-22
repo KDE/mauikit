@@ -67,7 +67,7 @@ private:
     void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject &data);
 
 
-public slots:
+public Q_SLOTS:
 
     /**
      * @brief statusbarColor
@@ -129,7 +129,7 @@ public slots:
     bool hasKeyboard() override final;
     bool hasMouse() override final;
 
-signals:
+Q_SIGNALS:
     /**
      * @brief folderPicked
      * @param path
@@ -137,7 +137,7 @@ signals:
     void folderPicked(QString path);
 
     // AbstractPlatform interface
-public slots:
+public Q_SLOTS:
     bool darkModeEnabled() override final;
 };
 

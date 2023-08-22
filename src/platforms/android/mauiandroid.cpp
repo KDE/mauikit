@@ -234,15 +234,15 @@ QStringList MAUIAndroid::sdDirs()
 {
     QStringList res;
 
-    QAndroidJniObject mediaDir = QAndroidJniObject::callStaticObjectMethod("com/kde/maui/tools/SDCard", "findSdCardPath", "(Landroid/content/Context;)Ljava/io/File;", QtAndroid::androidActivity().object<jobject>());
+//    QAndroidJniObject mediaDir = QAndroidJniObject::callStaticObjectMethod("com/kde/maui/tools/SDCard", "findSdCardPath", "(Landroid/content/Context;)Ljava/io/File;", QtAndroid::androidActivity().object<jobject>());
 
-    if (mediaDir == NULL)
-        return res;
+//    if (mediaDir == NULL)
+//        return res;
 
-    QAndroidJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
-    QString dataAbsPath = mediaPath.toString();
+//    QAndroidJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
+//    QString dataAbsPath = mediaPath.toString();
 
-    res << QUrl::fromLocalFile(dataAbsPath).toString();
+//    res << QUrl::fromLocalFile(dataAbsPath).toString();
     return res;
 }
 
