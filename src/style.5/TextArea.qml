@@ -27,7 +27,7 @@ import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
 
-T.TextArea 
+T.TextArea
 {
     id: control
 
@@ -65,7 +65,7 @@ clip: false
     activeFocusOnPress: true
     activeFocusOnTab: true
 
-    cursorDelegate: Maui.Handy.isTouch ? mobileCursor : null
+    cursorDelegate: Maui.Handy.isTouch && Maui.Handy.isLinux ? mobileCursor : null
     Component
     {
         id: mobileCursor
@@ -73,14 +73,14 @@ clip: false
         {
             target: control
         }
-    }   
+    }
 
     onPressAndHold:
     {
         if (!Maui.Handy.isTouch) {
             return;
         }
-        
+
         forceActiveFocus();
         cursorPosition = positionAt(event.x, event.y);
         selectWord();
@@ -105,16 +105,8 @@ clip: false
         visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
         elide: Text.ElideRight
     }
-    
-    TapHandler
-    {
-        onDoubleTapped: 
-        {
-            console.log("DOUBLE TAPPEDX")
-             cursorPosition = positionAt(eventPoint.position.x, eventPoint.position.y)
-        selectWord()
-        }
-    }
+
+
 
     background: Rectangle
     {

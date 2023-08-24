@@ -57,6 +57,8 @@ Popup
     heightHint: 0.9
     spacing: Maui.Style.space.big
 
+    margins: 0
+
     filling: persistent && mWidth === control.parent.width
     /*!
    *    \qmlproperty list<Item> ApplicationWindow::scrollable

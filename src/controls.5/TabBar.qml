@@ -106,8 +106,8 @@ QQC.TabBar
             anchors.fill: parent
             DragHandler
             {
-                // enabled: !control.interactive
-//                acceptedDevices: PointerDevice.Mouse
+                enabled: !control.interactive
+                acceptedDevices: PointerDevice.GenericPointer
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
             }

@@ -158,13 +158,13 @@ Item
     /**
          * iconComponent : Component
          */
-    property Component iconComponent : _iconComponent 
+    property Component iconComponent : _iconComponent
 
     property bool isMask : iconSizeHint <= Maui.Style.iconSizes.small
     property bool hovered: false
-    
+
     property bool highlighted: false
-        
+
     Component
     {
         id: _iconComponent
@@ -192,19 +192,19 @@ Item
         id: _layout
         anchors.fill: parent
         spacing: Maui.Style.space.medium
-        
+
         readonly property color labelColor: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
-        
+
             Loader
             {
                 id: _iconLoader
-                
+
                 asynchronous: true
-                
+
                 visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
-                
+
                 active: visible
-                
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: !control.labelsVisible
                 Layout.fillHeight: true
@@ -213,28 +213,27 @@ Item
 
                 sourceComponent: control.iconComponent
             }
-        
+
 
         ColumnLayout
         {
             id: _leftLabels
             clip: true
             visible: control.labelsVisible
-            
+
             Layout.fillHeight: true
             Layout.fillWidth: true
-            
+
             spacing: 0
-            
 
             Label
             {
                 id: _label1
                 visible: text.length
-                
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                
+
                 verticalAlignment: _label2.visible ? Qt.AlignBottom :  Qt.AlignVCenter
 
                 elide: Text.ElideRight
@@ -248,7 +247,7 @@ textFormat: Text.PlainText
             {
                 id: _label2
                 visible: text.length
-                
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 verticalAlignment: _label1.visible ? Qt.AlignTop : Qt.AlignVCenter
@@ -266,8 +265,8 @@ textFormat: Text.PlainText
         {
             id: _rightLabels
             clip: true
-            // visible: (control.width >  Maui.Style.units.gridUnit * 15) && control.labelsVisible 
-            
+            // visible: (control.width >  Maui.Style.units.gridUnit * 15) && control.labelsVisible
+
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.maximumWidth: control.width/2
@@ -279,17 +278,17 @@ textFormat: Text.PlainText
             {
                 id: _label3
                 visible: text.length > 0
-                
-                Layout.fillHeight: true               
+
+                Layout.fillHeight: true
                 Layout.fillWidth: true
-                
+
                 Layout.alignment: Qt.AlignRight
-                
+
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label4.visible ? Qt.AlignBottom :  Qt.AlignVCenter
-                
+
                 font.pointSize: Maui.Style.fontSizes.tiny
-                
+
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
                 textFormat: Text.PlainText
@@ -301,16 +300,16 @@ textFormat: Text.PlainText
             {
                 id: _label4
                 visible: text.length > 0
-                
-                Layout.fillHeight: true                
+
+                Layout.fillHeight: true
                 Layout.fillWidth: true
-                
+
                 Layout.alignment: Qt.AlignRight
                 horizontalAlignment: Qt.AlignRight
                 verticalAlignment: _label3.visible ? Qt.AlignTop : Qt.AlignVCenter
-                
+
                 font.pointSize: Maui.Style.fontSizes.tiny
-                
+
                 wrapMode: Text.NoWrap
                 elide: Text.ElideMiddle
                 textFormat: Text.PlainText

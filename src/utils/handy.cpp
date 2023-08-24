@@ -62,19 +62,19 @@ Handy::Handy(QObject *parent)
     ,m_accessibility(new MauiMan::AccessibilityManager(this))
 {
     qDebug() << "CREATING INSTANCE OF MAUI HANDY";
-    
+
     connect(m_accessibility, &MauiMan::AccessibilityManager::singleClickChanged, [&](bool value)
     {
         m_singleClick = value;
         Q_EMIT singleClickChanged();
     });
-    
-    m_singleClick = m_accessibility->singleClick();   
-    
+
+    m_singleClick = m_accessibility->singleClick();
+
 // #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
 
 connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
-{    
+{
    m_ffactor = static_cast<FFactor>(value);
    m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
    Q_EMIT formFactorChanged();
@@ -82,7 +82,7 @@ connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](
 });
 
 connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
-{    
+{
     m_isTouch = value;
     Q_EMIT isTouchChanged();
 });
@@ -91,15 +91,13 @@ m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
 m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
 m_isTouch = m_formFactor->hasTouchscreen();
 
-
-    connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win) 
+    connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win)
     {
-        if (win) 
+        if (win)
         {
             win->installEventFilter(this);
         }
     });
-
 
 connect(qApp, &QCoreApplication::aboutToQuit, []()
 {
@@ -129,15 +127,15 @@ void Handy::setTransientTouchInput(bool touch)
     if (touch == m_hasTransientTouchInput) {
         return;
     }
-    
+
     m_hasTransientTouchInput = touch;
-     Q_EMIT hasTransientTouchInputChanged();    
+     Q_EMIT hasTransientTouchInputChanged();
 }
 
 bool Handy::eventFilter(QObject *watched, QEvent *event)
 {
     Q_UNUSED(watched)
-    switch (event->type()) 
+    switch (event->type())
     {
         case QEvent::TouchBegin:
             setTransientTouchInput(true);
@@ -145,7 +143,7 @@ bool Handy::eventFilter(QObject *watched, QEvent *event)
         case QEvent::MouseButtonPress:
         case QEvent::MouseMove: {
             QMouseEvent *me = static_cast<QMouseEvent *>(event);
-            if (me->source() == Qt::MouseEventNotSynthesized) 
+            if (me->source() == Qt::MouseEventNotSynthesized)
             {
                 setTransientTouchInput(false);
             }
@@ -156,7 +154,7 @@ bool Handy::eventFilter(QObject *watched, QEvent *event)
         default:
             break;
     }
-    
+
     return false;
 }
 
@@ -217,16 +215,16 @@ QVariantMap Handy::getClipboard()
     auto clipboard = QApplication::clipboard();
 
     auto mime = clipboard->mimeData();
-    
+
     if(!mime)
         return res;
-    
+
     if (mime->hasUrls())
         res.insert("urls", QUrl::toStringList(mime->urls()));
 
     if (mime->hasText())
         res.insert("text", mime->text());
-    
+
     if(mime->hasImage())
         res.insert("image", mime->imageData());
 
@@ -345,7 +343,7 @@ QString Handy::formatTime(const qint64 &value)
         }
         tStr = time.toString(format);
     }
-    
+
     return tStr.isEmpty() ? "00:00" : tStr;
 }
 

@@ -50,7 +50,7 @@ Pane
 
             onClicked:
             {
-                if(_tabButton.mindex === control.currentIndex)
+                if(_tabButton.mindex === control.currentIndex && control.count > 1)
                 {
                     control.openOverview()
                     return
@@ -292,12 +292,12 @@ Pane
                         delegate: control.tabViewButton
                     }
 
-                    rightContent: Button
-                    {
-                        visible: control.mobile && control.count > 1
-                        text: control.count
-                        onClicked: openOverview()
-                    }
+                    // rightContent: Button
+                    // {
+                    //     visible: control.mobile && control.count > 1
+                    //     text: control.count
+                    //     onClicked: openOverview()
+                    // }
 
                     Keys.onPressed:
                     {
