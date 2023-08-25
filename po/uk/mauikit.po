@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-15 00:44+0000\n"
+"POT-Creation-Date: 2023-08-25 00:45+0000\n"
 "PO-Revision-Date: 2023-04-05 12:35+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -118,12 +118,6 @@ msgstr "Отакої!"
 msgid "The image could not be loaded."
 msgstr "Не вдається завантажити образ."
 
-#: src/controls.5/private/AboutDialog.qml:107
-#: src/controls.6/private/AboutDialog.qml:106
-#, kde-format
-msgid "Authors"
-msgstr "Автори"
-
 #: src/controls.5/private/AboutDialog.qml:152
 #: src/controls.6/private/AboutDialog.qml:151
 #, kde-format
@@ -148,19 +142,13 @@ msgstr "Ліцензування"
 msgid "Components"
 msgstr "Компоненти"
 
-#: src/controls.5/private/AboutDialog.qml:313
-#: src/controls.6/private/AboutDialog.qml:312
-#, kde-format
-msgid "Links"
-msgstr "Посилання"
-
-#: src/controls.5/private/AboutDialog.qml:328
+#: src/controls.5/private/AboutDialog.qml:327
 #: src/controls.6/private/AboutDialog.qml:327
 #, kde-format
 msgid "Reports"
 msgstr "Звіти"
 
-#: src/controls.5/private/AboutDialog.qml:335
+#: src/controls.5/private/AboutDialog.qml:334
 #: src/controls.6/private/AboutDialog.qml:334
 #, kde-format
 msgid "Home Page"
@@ -219,6 +207,16 @@ msgstr "Закрити інші"
 #, kde-format
 msgid "Close All"
 msgstr "Закрити всі"
+
+#: src/controls.6/private/AboutDialog.qml:106
+#, kde-format
+msgid "Authors"
+msgstr "Автори"
+
+#: src/controls.6/private/AboutDialog.qml:312
+#, kde-format
+msgid "Links"
+msgstr "Посилання"
 
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-15 00:44+0000\n"
+"POT-Creation-Date: 2023-08-25 00:45+0000\n"
 "PO-Revision-Date: 2023-07-29 22:20-0300\n"
 "Last-Translator: Geraldo Simiao <geraldosimiao@fedoraproject.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -117,12 +117,6 @@ msgstr ""
 msgid "The image could not be loaded."
 msgstr ""
 
-#: src/controls.5/private/AboutDialog.qml:107
-#: src/controls.6/private/AboutDialog.qml:106
-#, kde-format
-msgid "Authors"
-msgstr ""
-
 #: src/controls.5/private/AboutDialog.qml:152
 #: src/controls.6/private/AboutDialog.qml:151
 #, kde-format
@@ -147,19 +141,13 @@ msgstr ""
 msgid "Components"
 msgstr ""
 
-#: src/controls.5/private/AboutDialog.qml:313
-#: src/controls.6/private/AboutDialog.qml:312
-#, kde-format
-msgid "Links"
-msgstr ""
-
-#: src/controls.5/private/AboutDialog.qml:328
+#: src/controls.5/private/AboutDialog.qml:327
 #: src/controls.6/private/AboutDialog.qml:327
 #, kde-format
 msgid "Reports"
 msgstr ""
 
-#: src/controls.5/private/AboutDialog.qml:335
+#: src/controls.5/private/AboutDialog.qml:334
 #: src/controls.6/private/AboutDialog.qml:334
 #, kde-format
 msgid "Home Page"
@@ -217,6 +205,16 @@ msgstr ""
 #: src/controls.5/TabView.qml:141 src/controls.6/TabView.qml:141
 #, kde-format
 msgid "Close All"
+msgstr ""
+
+#: src/controls.6/private/AboutDialog.qml:106
+#, kde-format
+msgid "Authors"
+msgstr ""
+
+#: src/controls.6/private/AboutDialog.qml:312
+#, kde-format
+msgid "Links"
 msgstr ""
 
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
