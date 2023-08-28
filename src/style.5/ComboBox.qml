@@ -183,7 +183,7 @@ T.ComboBox
         Maui.Theme.colorSet: Maui.Theme.Window
         Maui.Theme.inherit: false
         
-        parent: control.responsive ? control.parent.Window.window.contentItem : control
+        parent: control.responsive ? T.Overlay.overlay : control
                 
         readonly property int finalY : control.responsive ? control.parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
         readonly property int preferredWidth: control.responsive ? 600 : 300 
