@@ -186,7 +186,7 @@ T.ComboBox
         parent: control.responsive ? T.Overlay.overlay : control
                 
         readonly property int finalY : control.responsive ? control.parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
-        readonly property int preferredWidth: control.responsive ? 600 : 300 
+        readonly property int preferredWidth: control.width
         
         y: finalY
         x: control.responsive ? Math.round(control.parentWindow.width/2 - width/2) : 0
