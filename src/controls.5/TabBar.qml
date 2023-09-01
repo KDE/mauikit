@@ -108,6 +108,7 @@ QQC.TabBar
             {
                 enabled: !control.interactive
                 acceptedDevices: PointerDevice.GenericPointer
+
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
             }
@@ -116,6 +117,7 @@ QQC.TabBar
         RowLayout
         {
             id: _layout
+
             anchors.fill: parent
             spacing: control.spacing
 
@@ -125,6 +127,7 @@ QQC.TabBar
                 Layout.fillHeight: true
                 Layout.maximumWidth: implicitWidth
                 Layout.minimumWidth: implicitWidth
+
                 spacing: control.spacing
             }
 
@@ -191,6 +194,7 @@ QQC.TabBar
                 Layout.fillHeight: true
                 Layout.maximumWidth: implicitWidth
                 Layout.minimumWidth: implicitWidth
+
                 spacing: control.spacing
             }
 
