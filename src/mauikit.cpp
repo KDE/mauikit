@@ -204,19 +204,19 @@ void MauiKit::registerTypes(const char *uri)
 #endif
 #endif
 
-    //#ifdef Q_OS_ANDROID
-    //    qmlRegisterSingletonType<MAUIAndroid>(uri, 1, 0, "Android", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-    //        Q_UNUSED(engine)
-    //        Q_UNUSED(scriptEngine)
-    //        return new MAUIAndroid;
-    //    });
-    //#elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
-    //    qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE");
-    //#elif defined Q_OS_WIN32
-    //    // here window platform integration interfaces
-    //#elif defined Q_OS_MACOS
+    #ifdef Q_OS_ANDROID
+       qmlRegisterSingletonType<MAUIAndroid>(uri, 1, 0, "Android", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+           Q_UNUSED(engine)
+           Q_UNUSED(scriptEngine)
+           return new MAUIAndroid;
+       });
+    #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
+       qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE");
+    #elif defined Q_OS_WIN32
+       // here window platform integration interfaces
+    #elif defined Q_OS_MACOS
 
-    //#endif
+    #endif
 
     qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
     qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
