@@ -278,6 +278,3 @@ msgstr ""
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr ""
-
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"
