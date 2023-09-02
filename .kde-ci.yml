@@ -10,3 +10,4 @@ Dependencies:
     'frameworks/ki18n': '@latest'
     'frameworks/kcoreaddons': '@latest'
     'frameworks/knotifications': '@latest'
+    'maui/mauiman': '@latest'
