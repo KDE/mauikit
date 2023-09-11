@@ -106,7 +106,6 @@ set_package_properties(MauiMan${MAUI_MAJOR_VERSION} PROPERTIES
     URL "https://invent.kde.org/maui/mauiman"
     PURPOSE "Sync to system setting preferences.")
 
-ecm_find_qmlmodule(QtQuick.Effects 1.0)
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 
 if(ANDROID)
