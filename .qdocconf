@@ -5,5 +5,5 @@ description = MauiKit Reference
 version = 5.15
 tagfile = Mauikit.tags
 
-sourcedirs = src/controls src/controls/labs
+sourcedirs = src/controls.6 
 headerdirs = src

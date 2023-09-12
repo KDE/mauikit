@@ -17,42 +17,72 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick
-import QtCore
-import QtQuick.Window
-import QtQuick.Controls
+import QtQuick 
+import QtCore 
+import QtQuick.Window 
+import QtQuick.Controls 
 
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
+
+
 /*!
- \ since or*g.mauikit.controls 1.0
- \inqmlmodule org.mauikit.controls
- \brief A window that provides some basic features needed for all apps
+ @brief A window that provides some basic features needed for most applications.
 
  It's usually used as a root QML component for the application.
- By default it makes usage of the Maui Page control, so it packs a header and footer bar.
- The header can be moved to the bottom for better reachability in hand held devices.
- The Application window has some components already built in like an AboutDialog, a main application menu,
- and an optional property to add a global sidebar.
-
- The application can have client side decorations CSD by setting the attached property Maui.App.enabledCSD  to true,
+ By default the window is empty - and if used with CSD (Client Side Decorations) enabled, not window controls are visible. 
+ 
+ Commonly it is paired with another container control, such as a Page, an AppView or a SidebarView.
+ @see Page
+ @see AppView
+ 
+ The application windo can make use of client side decorations - CSD - by setting the attached property Maui.App.enabledCSD to true,
  or globally by editing the configuration file located at /.config/Maui/mauiproject.conf.
+ 
+ @image html ApplicationWindow/empty_dark.webp
+ @note This is an ApplicationWindow filled with a Page and with the CSD controls enabled.
+ 
+ If used with a Page, you can enable the CSD buttons with the property showCSDControls, this will make the window control buttons visible.
+ If a custom control is used instead, and CSD is still enabled, you can place the window controls manually by using the WindowControls component.
+ @see WindowControls
+ 
+ The Application window has some components already built in like an AboutDialog, which can be invoked using the functions about()
+ @see about
+ 
+ It also includes an overlay space for displaying inline notifications, which can be triggered by sending notifications using the function notify()
+ @see notify
+ 
+ By default the window geometry is saved and restored.
+ 
+ The ApplicationWindow and MauiKit controls style can be tweaked, from dark and light variant, but also true black, high contrast, and an adaptive style which picks colors from an image source, such as the wallpaper.
+ All these can be tweaked by each application individually or follow the global system preferences.
+ @see Style
+  
+  You can check out our quick tutorial on creating a simple Maui application here 
 
- For more details you can refer to the Maui Page documentation for fine tweaking the application window main content.
- \code
- ApplicationWindow {
- id: root
+ <a href="QuickApp.dox">External file</a>
 
- AppViews {
- anchors.fill: parent
- }
- }
- \endcode
+  The most basic use case is to use a Page inside of the ApplicationWIndow as shown below.
+@code
+ApplicationWindow
+{
+    id: root    
+    
+    Page
+    {
+        anchors.fill: parent
+        showCSDControls: true
+    }    
+}
+@endcode
+
+A more complete example file can be found in the examples directory
  */
+
 Window
 {
     id: root
@@ -91,50 +121,48 @@ Window
     /*************************************************/
     Maui.Theme.colorSet: Maui.Theme.View
 
-    /*!
-     \ qm*lproperty Item ApplicationWindow::content
-
-     Items to be placed inside the ApplicationWindow.
-     */
+    /**
+     * @brief Items to be placed inside the ApplicationWindow.
+     * This is used as the default container, and it helps to correctly mask the contents when using CSD with rounder border corners.
+     * @note This is a `default` property
+     * @property list<QtObject> content
+     **/
     default property alias content : _content.data
 
     /***************************************************/
     /******************** ALIASES *********************/
     /*************************************************/
 
-
-    /*!
-       \ qm*lproperty Dialog ApplicationWindow::dialog
-
-       The internal dialogs used in the ApplicationWindow are loaded dynamically, so the current loaded dialog can be accessed
-       via this property.
-       */
-    property alias dialog: dialogLoader.item
-
-
-    /*!
-       I f *the application window size is wide enough.
-       This property can be changed to any random condition.
-       Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
-       */
+    /**
+     * @brief  If the application window size is wide enought.
+     * This property can be changed to any random condition. This will affect how some controls are layout and displayed - as for a true wide value, it will assume there is more space to place contents, or for a false value it will assume the opposite.
+     * Keep in mind this property is widely used in other MauiKit components to determined if items should be hidden or collapsed, etc.
+     **/
     property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
 
     /***************************************************/
     /**************** READONLY PROPS ******************/
     /*************************************************/
-    /*!
-       I f *the screen where the application is drawn is in portrait mode or not,
-       other wise it is in landscape mode.
-       */
+    /**
+     * @brief Convinient property to check if the application window is maximized.
+     **/
     readonly property bool isMaximized: root.visibility === Window.Maximized
+    
+    /**
+     * @brief Convinient property to check if the application window is in full screen mode.
+     **/
     readonly property bool isFullScreen: root.visibility === Window.FullScreen
+    
+    /**
+     * @brief Convinient property to check if the application window is in portrait mode, other wise it is in landscape mode.
+     **/
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
-
-    readonly property bool showBorders: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
 
     Item
     {
+        id: _container
         anchors.fill: parent
+        readonly property bool showBorders: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
 
         Item
         {
@@ -148,7 +176,7 @@ Window
             anchors.fill: parent
         }
 
-        layer.enabled: root.showBorders
+        layer.enabled: _container.showBorders
 
         layer.effect: OpacityMask
         {
@@ -163,7 +191,7 @@ Window
 
     Loader
     {
-        active: root.showBorders
+        active: _container.showBorders
         visible: active
         z:  Overlay.overlay.z
         anchors.fill: parent
@@ -262,39 +290,6 @@ Window
 
     Overlay.overlay.modal: Item
     {
-        //       Loader
-        //       {
-        //         anchors.fill: parent
-        //         active: Maui.Style.enableEffects
-        //       sourceComponent: Item
-        //       {
-        //       ShaderEffectSource
-        //       {
-        //         id:_shaderSource
-        //        anchors.fill: parent
-        //         sourceItem: _content
-        //       }
-        //
-        //       FastBlur
-        //       {
-        //         anchors.fill: parent
-        //         source: _shaderSource
-        //         radius: 64
-        //       }
-        //
-        //       layer.enabled: true
-        //       layer.effect: OpacityMask
-        //       {
-        //         maskSource: Rectangle
-        //         {
-        //           width: _content.width
-        //           height: _content.height
-        //           radius: Maui.Style.radiusV
-        //         }
-        //       }
-        //       }
-        //       }
-        //
         Rectangle
         {
             color: Maui.Theme.backgroundColor
@@ -339,28 +334,28 @@ Window
         function onShareFilesRequest(urls)
         {
             dialogLoader.source = "private/ShareDialog.qml"
-            dialog.urls = urls
-            dialog.open()
+            dialogLoader.item.urls = urls
+            dialogLoader.item.open()
         }
     }
 
     /**
-       * Send an inline notification.
-       * icon = icon to be used
-       * title = the title
-       * body = message of the notification
-       * callback = function to be triggered if the notification dialog is accepted
-       * timeout = time in milliseconds before the notification dialog is dismissed
-       * buttonText = text in the accepted button
-       */
+       * @brief Send an inline notification.
+       * @param {String} icon = icon name to be used
+       * @param {String} title = the title
+       * @param {String} body = message of the notification
+       * @param {Function} callback = function to be triggered if the notification dialog is accepted
+       * @param {int} timeout = time in milliseconds before the notification dialog is dismissed
+       * @param {String} buttonText = text in the accepted button
+       **/
     function notify(icon, title, body, callback, buttonText)
     {
         _toastArea.add(icon, title, body, callback, buttonText)
     }
 
     /**
-       * Switch from full screen to normal size.
-       */
+       * @brief Switch between maximized to a normal size.
+       **/
     function toggleMaximized()
     {
         if (root.isMaximized)
@@ -372,6 +367,9 @@ Window
         }
     }
 
+    /**
+     * @brief Switch between full screen mode and normal mode.
+     **/
     function toggleFullscreen()
     {
         if (root.isFullScreen)
@@ -384,13 +382,8 @@ Window
     }
 
     /**
-       * Reference to the application main page
-       */
-    function window()
-    {
-        return root.contentItem;
-    }
-
+     * @brief Invokes the AboutDialog with information about the application.
+     */
     function about()
     {
         var about = _aboutDialogComponent.createObject(root)

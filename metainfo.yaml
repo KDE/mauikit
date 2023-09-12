@@ -1,4 +1,5 @@
 maintainer: milohr
+fancyname: MauiKit Controls
 description: QtQuick plugins to build user interfaces based on the Maui style
 platforms:
     - name: Linux
@@ -7,27 +8,42 @@ platforms:
     - name: iOS
       note: maintainer needed
     - name: Windows
+      note: maintainer needed
     - name: macOS
+      note: maintainer needed
 public_lib: true
 deprecated: false
+type: functional
 release: true
 logo: logo.png
 irc: '#kde-maui'
 mailinglist: '' # do we have one?
-group: Maui
-qdoc: true
+group: mauikit
+qdoc: false
+public_doc_dir:
+    - docs
+public_source_dirs:  # optional, default to src, must be a list
+  - src/platforms
+  - src/utils
+  - src/libs
+  - src/controls.6
+public_example_dirs: examples
+libraries:
+    - cmake: MauiKit4
+cmakename: MauiKit4
+
 group_info:
-    name: maui
-    fancyname: Maui Libraries
+    name: mauikit
+    fancyname: MauiKit Frameworks
     maintainer: milohr
     mailinglist: '' # doesn't exist?
     platforms:
       - Linux
       - FreeBSD (partial)
-      - Windows
-      - macOS
+      - Windows (unmantained)
+      - macOS (unmantained)
       - Android
     description: Provides utilities to build applications according to the Maui style
     long_description:
-        - The Maui libraries build on top of the KDE frameworks to provide tools for building
+        - The MauiKit Framework is build on top of the KDE frameworks and provides tools for building
           convergent applications according to the Maui guidelines.

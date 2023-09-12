@@ -23,20 +23,39 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /*!
- * \since org.mauikit.controls 1.0
- * \inqmlmodule org.mauikit.controls
- * \brief A page with a header and footer bar, that can be switched among many other features.
- *
- * This page has a header and footer bar that by default are a MauiKit ToolBar,
- * the header bar can be dinamically moved to the bottom under the footer for better
- * reachability on hand held devices like phones.
- *
- * Among other features, the page can have a reference to a flickable element to allow to have pull back
- * toolbar behaviour, floating toolbars, etc.
- *
+  @since org.mauikit.controls 1.0
+
+  @brief A page with a header and footer bar, that can be switched among many other features.
+ 
+  This page has a header and footer bar that by default are a MauiKit ToolBar,
+  the header bar can be dinamically moved to the bottom under the footer for better
+  reachability on hand held devices like phones.
+ 
+  Among other features, the page can have a reference to a flickable element to allow to have pull back
+  toolbar behaviour, floating toolbars, etc.
+
+   
+ @image html Page/alt_header_dark.png
+ @note This is an ApplicationWindow filled with a Page and with the CSD controls enabled.
+ 
+ @code
+    Page
+    {
+        id: _page
+
+        headBar.rightContent: Switch
+        {
+            text: "Alt Header"
+            checked: _page.altHeader
+            onToggled: _page.altHeader = checked
+        }
+    }
+@endcode
+
+A more complete example file can be found in the examples directory
  */
 Pane
 {
@@ -51,11 +70,13 @@ Pane
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
     
-    /*!
-     *      \qmlproperty list<Object> Item::content
+     /**
+     * The default content of the page.
+     * To position child elements use anchors or do it manually.
      *
-     *      The default content of the page.
-     *      To position child elements use anchors or do it manually.
+     * @note This is a `default` property
+     *
+     * @property list<QtObject> content
      */
     default property alias content: _content.data
 
