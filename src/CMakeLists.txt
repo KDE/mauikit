@@ -18,10 +18,12 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
-ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION} URI "org.mauikit.controls" CLASSNAME MauiKit)
-
-ecm_add_qml_module_dependencies(MauiKit${MAUI_MAJOR_VERSION} DEPENDS
-    "QtGraphicalEffects 1.0")
+ecm_add_qml_module(
+	MauiKit${MAUI_MAJOR_VERSION}
+	URI "org.mauikit.controls"
+	CLASS_NAME MauiKit
+	DEPENDENCIES
+		"QtGraphicalEffects 1.0")
 
 set(mauikit_SRCS
     mauikit.cpp

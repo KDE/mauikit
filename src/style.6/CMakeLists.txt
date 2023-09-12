@@ -1,10 +1,12 @@
 project(MauiStyle)
 
-ecm_add_qml_module(MauiStyle URI "org.mauikit.style" CLASSNAME MauiStylePlugin)
-ecm_add_qml_module_dependencies(MauiStyle
-DEPENDS
-    "QtQuick.Controls 2.15"
-    "org.kde.kirigami 2.14"
+ecm_add_qml_module(
+	MauiStyle
+	URI "org.mauikit.style"
+	CLASS_NAME MauiStylePlugin
+	DEPENDENCIES
+		"QtQuick.Controls 2.15"
+		"org.kde.kirigami 2.14"
 )
 
 target_sources(MauiStyle PRIVATE
