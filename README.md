@@ -1,32 +1,34 @@
 # MauiKit
-Kit for developing MAUI Apps.
+A Toolkit for Multi Adaptable User Interfaces.
 
-MauiKit is a set of utilities and "templated" controls based on Kirigami and QCC2 that follow the ongoing work on the Maui HIG.
-It let you quickly create a Maui application and access utilities and widgets shared among the other Maui apps.
+Built on the foundations of Qt Quick Controls and QML, MauiKit empowers developers to create adaptable and seamless user interfaces across a range of devices. 
 
-## Controls
 
-### Basic:
+![Maui Apps using MauiKit Controls](https://mauikit.org/wp-content/uploads/2023/05/app-4-scaled.jpg)
 
-#### Maui.ApplicationWindow
+## Bulding
 
-Contains a head and foot toolbar that are movable, so when using the app on mobile or touch devices the headbar moves to the bottom
-for reachability. It also contains a Kirigami PagaRow as the default contain layout, but any other type of content contol can be used instead.
+### Compiling Instructions
 
-### Maui.ToolBar
 
-#### Maui.ToolBar
 
-#### Maui.Drawer
+## Using
 
-#### Maui.PieButton
+### Demo Application
 
-#### Maui.ShareDialog
+### Basic Example
 
-#### Maui.SelectionBox
+### Examples
 
-#### Maui.FloatBar
 
-#### Maui.FloatingBox
+
+## Documentation
+
+
+
+
+## Platforms
+
+
 
 
