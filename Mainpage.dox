@@ -17,6 +17,8 @@ Its goal is to enable creation of convergent applications that look and feel gre
 
 MauiKit works on a variety of platforms, such as <a href="https://plasma-mobile.org/">Plasma Mobile</a>, Desktop Linux and Android.
 
+@image html maui_apps.png
+
 @subsection tutorial Tutorial
 A tutorial for MauiKit Controls is available on <a href="https://develop.kde.org/docs/getting-started/kirigami/">our developer platform</a>.
 

@@ -2,8 +2,7 @@ qt_policy(SET QTP0001 NEW)
 
 qt_add_executable(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
     demo_assets.qrc
-    main.cpp
-)
+    main.cpp)
 
 set(QML_SRCS
     main.qml
@@ -25,21 +24,18 @@ set(QML_SRCS
     controls/ImagePage.qml
     controls/AltBrowserPage.qml
     controls/PopupsPage.qml
-    controls/OthersPage.qml
-)
+    controls/OthersPage.qml)
 
 if(${QT_MAJOR_VERSION} STREQUAL 6)
-	qt6_add_qml_module(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
-		URI ${PROJECT_NAME}${MAUI_MAJOR_VERSION}
-		VERSION 3.0
-		QML_FILES ${QML_SRCS}
-	)
+    qt6_add_qml_module(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
+        URI ${PROJECT_NAME}${MAUI_MAJOR_VERSION}
+        VERSION 3.0
+        QML_FILES ${QML_SRCS})
 else()
-	qt_add_qml_module(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
-		URI ${PROJECT_NAME}${MAUI_MAJOR_VERSION}
-		VERSION 3.0
-		QML_FILES ${QML_SRCS}
-	)
+    qt_add_qml_module(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
+        URI ${PROJECT_NAME}${MAUI_MAJOR_VERSION}
+        VERSION 3.0
+        QML_FILES ${QML_SRCS})
 endif()
 
 if (ANDROID)
