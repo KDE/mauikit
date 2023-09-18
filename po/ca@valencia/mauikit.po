@@ -280,6 +280,3 @@ msgstr "Frameworks de MauiKit"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Tema d'icones Luv"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancel·la"
