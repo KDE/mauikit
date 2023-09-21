@@ -20,19 +20,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQml
-import org.mauikit.controls as Maui
-import QtQuick.Templates as T
-import QtQuick.Window
+import org.mauikit.controls 1.3 as Maui
 
 /**
- * SideBar
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
+ @brief The SideBar section container in the SideBarView.
+ This is the container for the sidebar section in the SideBarView.
+ @note This control is private and can not be used independetly. It exists only as part of the SideBarView and can only be accessed via the exposed alias property in said control.
+ @see SideBarView
+ 
  */
 Pane
 {
@@ -40,51 +35,84 @@ Pane
 
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
+    
+    /**
+     * @brief The SideBarView item to which this sidebar section belongs.
+     */
+    property Item sideBarView : null
 
+    /**
+     * @brief The position of the sidebar. 1 means it is full opened, while 0 means it has been hidden. 
+     * Values in-between can be used to determined the actual position between the open and hidden states.
+     * @property double SideBar::position
+     */
     readonly property alias position : _private.position
+    
+    /**
+     * @brief True when the sidebar is collapse but it is still visible.
+     */
     readonly property bool peeking : control.collapsed && control.position > 0
+    
+    /**
+     * @brief True when the resizing the sidebar by the user action.
+     */
     readonly property bool resizing: _dragHandler.active
 
+    /**
+     * @brief Where all the sidebar section contents go.
+     * @property list<QtObject> AbstractSideBar::content
+     */
+    default property alias content : _content.data    
+    
+    /**
+     * @brief If the sidebar should be collapsed or not, this property can be used to dynamically collapse the sidebar on constrained spaces.
+     * For example, using unit metrics to determine an appropriate size-width restriction: if the application window width is less than 400 pixels then collapse the sidebar, or if the SideBarView main content area width is less than an ideal width size, then collapse the sidebar.
+     */
+    property bool collapsed: false
+    
+    /**
+     * @brief Wether the sidebar area can be resized manually by using a cursor or touch gesture. The resizing will be stopped at reaching the minimum and/or maximum values.
+     */
+    property bool resizeable : !Maui.Handy.isMobile
+    
+    /**
+     * @brief If when collapsed the sidebar should automatically be hidden or stay in place.
+     * By default the sidebar will stay in place, and the SideBarView main area content will be displaced.
+     */
+    property bool autoHide: false
+    
+     /**
+     * @brief If when opened/un-collapsed - after have been hidden - the sidebar should automatically be shown or remain hidden.
+     * By default the sidebar will be shown as soon as it is un-collapsed.
+     */
+    property bool autoShow: true
+    
+    /**
+     * @brief The actual size of the width that the sidebar will have in order to reserve a right margin to never exceed the SideBarView full width.
+     * Most of the time this value will be the same as the sidebar preferred width
+     */
+    readonly property int constrainedWidth : Math.min(control.preferredWidth, control.sideBarView.width*0.9)
+    
+     /**
+     * @brief The preferred width of the sidebar in the expanded state.
+     * This value can be changed by the user action of manually resizing the sidebar.
+     */
+    property int preferredWidth : Maui.Style.units.gridUnit * 12
+    
+    /**
+     * @brief The maximum width the sidebar can have when being resized.
+     */
+    property int maximumWidth:  Maui.Style.units.gridUnit * 20
+    
+     /**
+     * @brief The minimum width the sidebar can have when being resized.
+     */
+    property int minimumWidth:  Maui.Style.units.gridUnit * 4
+    
+    
     visible: position > 0
 
     width: position * constrainedWidth
-
-    /*!
-   *      \qmlproperty Item AbstractSideBar::content
-   *
-   *      The main content is added to an Item contents, it can anchored or sized normally.
-   */
-    default property alias content : _content.data
-    
-    
-    /*!
-     *      If the sidebar should be collapsed or not, this property can be used to dynamically collapse
-     *      the sidebar on constrained spaces.
-     */
-    property bool collapsed: false
-    property bool resizeable : !Maui.Handy.isMobile
-    /*!
-     *   If when collapsed the sidebar should automatically hide or stay in place
-     */
-    property bool autoHide: false
-    property bool autoShow: true
-    
-    /*!
-     *      preferredWidth : int
-     *      The preferred width of the sidebar in the expanded state.
-     */
-    readonly property int constrainedWidth : Math.min(control.preferredWidth, Window.window.width*0.9)
-    property int preferredWidth : Maui.Style.units.gridUnit * 12
-    property int maximumWidth:  Maui.Style.units.gridUnit * 20
-    property int minimumWidth:  Maui.Style.units.gridUnit * 4
-    /*!
-     *      \qmlproperty MouseArea AbstractSideBar::overlay
-     *
-     *      When the application has a constrained width to fit the sidebar and main contain,
-     *      the sidebar is in a constrained state, and the app main content gets dimmed by an overlay.
-     *      This property gives access to such ovelay element drawn on top of the app contents.
-     */
-    //readonly property alias overlay : _overlayLoader.item
     
     clip: true
     
@@ -107,12 +135,6 @@ Pane
         }
     }
     
-    //     Component.onCompleted:
-    //     {
-    //       if(control.autoShow && control.collapsed)
-    //         control.open()
-    //     }
-    //
     QtObject
     {
         id: _private
@@ -164,13 +186,11 @@ Pane
             {
                 control.open()
             }
-
         }
     }
     
     contentItem: Item
     {
-
         Item
         {
             id: _content
@@ -285,16 +305,25 @@ Pane
         }
     }
     
+    /**
+     * @brief Force to open the sidebar and expand it.
+     */
     function open()
     {
         _private.position = 1
     }
     
+    /**
+     * @brief Force to close the sidebar. This will make the position of the sidebar equal to 0.
+     */
     function close()
     {
         _private.position = 0
     }
     
+    /**
+     * @brief Switch between the open and closed states.
+     */
     function toggle()
     {
         if(_private.position === 0)

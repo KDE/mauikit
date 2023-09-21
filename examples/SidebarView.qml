@@ -8,6 +8,7 @@ Maui.ApplicationWindow
 
     Maui.SideBarView
     {
+        id: _sideBar
         anchors.fill: parent
 
         sideBarContent: Maui.Page
@@ -26,16 +27,33 @@ Maui.ApplicationWindow
                 }
             }
 
-            headBar.rightContent: ToolButton
+            Maui.Holder
             {
-                icon.name: "love"
+                anchors.fill: parent
+                title: "SideBar"
+                body: "Collapsable."
+                emoji: "folder"
             }
         }
 
         Maui.Page
         {
             anchors.fill: parent
-            showCSDControls: true
+            Maui.Controls.showCSD: true
+
+            headBar.leftContent: ToolButton
+            {
+                icon.name: _sideBar.sideBar.visible ? "sidebar-collapse" : "sidebar-expand"
+                onClicked: _sideBar.sideBar.toggle()
+            }
+
+            Maui.Holder
+            {
+                anchors.fill: parent
+                title: "Page"
+                body: "Page main content."
+                emoji: "application-x-addon-symbolic"
+            }
         }
     }
 }

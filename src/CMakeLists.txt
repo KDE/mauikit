@@ -27,6 +27,7 @@ ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
 set(mauikit_SRCS
     mauikit.cpp
     libs/style.cpp
+    libs/controls.cpp
     utils/appsettings.cpp
     utils/fmh.cpp
     utils/mauiapp.cpp

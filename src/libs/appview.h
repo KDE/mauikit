@@ -16,8 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef APPVIEW_H
-#define APPVIEW_H
+#pragma once
 #include <QObject>
 #include <QQmlEngine>
 
@@ -117,5 +116,3 @@ Q_SIGNALS:
 };
 
 QML_DECLARE_TYPEINFO(AppView, QML_HAS_ATTACHED_PROPERTIES)
-
-#endif // APPVIEW_H

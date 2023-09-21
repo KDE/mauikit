@@ -31,14 +31,17 @@
 
 /**
  * @brief The MauiApp class
- * The MauiApp is a global instance and is declared to QML as an attached property, so it can be used widely by importing the org.kde.maui namespace
+ * The MauiApp is a global singleton instance, can be accessed from QML as an attached property, so it can be used widely by importing @codeline org.mauikit.controls
  * Example:
+ * @code
  * import org.mauikit.controls 1.2 as Maui
  *
  * Maui.ApplicationWindow
  * {
- *      title: Maui.App.name
+ *      title: Maui.App.about.name
+ *      Maui.App.controls.enableCSD: true
  * }
+ * @endcode
  */
 
 class QQuickWindow;

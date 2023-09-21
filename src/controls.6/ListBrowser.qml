@@ -209,7 +209,7 @@ Item
     /**
      * lassoRec : Rectangle
      */
-    property alias lassoRec : selectLayer
+    property bool lassoRec
     
     property alias header : _listView.header
     property alias footer : _listView.footer
@@ -245,7 +245,7 @@ Item
     {
         id: _scrollView
         anchors.fill: parent
-        clip: false
+        clip: control.clip
         // visible: !_holder.visible
         focus: true
         padding: Maui.Style.contentMargins
@@ -257,135 +257,12 @@ Item
         contentHeight: _listView.contentHeight
         contentWidth: availableWidth
 
-
-        Item
-        {
-            height: _listView.contentHeight
-            width: parent.width
-            clip: false
-
-            Loader
-            {
-                asynchronous: true
-                anchors.fill: parent
-                //                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
-
-                sourceComponent: MouseArea
-                {
-                    id: _mouseArea
-
-                    propagateComposedEvents: true
-                    preventStealing: true
-                    acceptedButtons: Qt.RightButton | Qt.LeftButton
-
-                    onClicked: (mouse) =>
-                               {
-                                   console.log("Area clicked")
-
-                                   control.areaClicked(mouse)
-                                   control.forceActiveFocus()
-
-                                   if(mouse.button === Qt.RightButton)
-                                   {
-                                       control.areaRightClicked()
-                                       return
-                                   }
-                               }
-
-                    onPositionChanged: (mouse) =>
-                                       {
-                                           if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
-                                           {
-                                               if(mouseX >= selectLayer.newX)
-                                               {
-                                                   selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
-                                               } else {
-                                                   selectLayer.x = mouseX < control.x ? control.x : mouseX;
-                                                   selectLayer.width = selectLayer.newX - selectLayer.x;
-                                               }
-
-                                               if(mouseY >= selectLayer.newY) {
-                                                   selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
-                                                   if(!_listView.atYEnd &&  mouseY > (control.y + control.height))
-                                                   _listView.contentY += 10
-                                               } else {
-                                                   selectLayer.y = mouseY < control.y ? control.y : mouseY;
-                                                   selectLayer.height = selectLayer.newY - selectLayer.y;
-
-                                                   if(!_listView.atYBeginning && selectLayer.y === 0)
-                                                   _listView.contentY -= 10
-                                               }
-                                           }
-                                       }
-
-                    onPressed: (mouse) =>
-                               {
-                                   if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
-                                   {
-                                       selectLayer.visible = true;
-                                       selectLayer.x = mouseX;
-                                       selectLayer.y = mouseY;
-                                       selectLayer.newX = mouseX;
-                                       selectLayer.newY = mouseY;
-                                       selectLayer.width = 0
-                                       selectLayer.height = 0;
-                                   }
-                               }
-
-                    onPressAndHold: (mouse) =>
-                                    {
-                                        if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isAndroid)
-                                        {
-                                            selectLayer.visible = true;
-                                            selectLayer.x = mouseX;
-                                            selectLayer.y = mouseY;
-                                            selectLayer.newX = mouseX;
-                                            selectLayer.newY = mouseY;
-                                            selectLayer.width = 0
-                                            selectLayer.height = 0;
-                                            mouse.accepted = true
-                                        }else
-                                        {
-                                            mouse.accepted = false
-                                        }
-                                    }
-
-                    onReleased: (mouse) =>
-                                {
-                                    if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
-                                    {
-                                        mouse.accepted = false
-                                        return;
-                                    }
-
-                                    if(selectLayer.y > _listView.contentHeight)
-                                    {
-                                        return selectLayer.reset();
-                                    }
-
-                                    var lassoIndexes = []
-                                    var limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
-
-                                    for(var y = lassoRec.y; y < limitY; y+=10)
-                                    {
-                                        const index = _listView.indexAt(_listView.width/2,y+_listView.contentY)
-                                        if(!lassoIndexes.includes(index) && index>-1 && index< _listView.count)
-                                        lassoIndexes.push(index)
-                                    }
-
-                                    control.itemsSelected(lassoIndexes)
-                                    selectLayer.reset()
-                                }
-                }
-            }
-
-
+      
             ListView
             {
                 id: _listView
                 focus: true
-                anchors.fill: parent
-                clip: false
+                clip: control.cip
 
                 property var selectedIndexes : []
 
@@ -419,38 +296,8 @@ Item
                     anchors.topMargin: _listView.headerItem ? _listView.headerItem.height : 0
                     anchors.bottomMargin: _listView.footerItem ?  _listView.footerItem.height : 0
                 }
-
-
-                Maui.Rectangle
-                {
-                    id: selectLayer
-                    property int newX: 0
-                    property int newY: 0
-                    height: 0
-                    width: 0
-                    x: 0
-                    y: 0
-                    visible: false
-                    color: Qt.rgba(control.Maui.Theme.highlightColor.r,control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.2)
-                    opacity: 0.7
-
-                    borderColor: control.Maui.Theme.highlightColor
-                    borderWidth: 2
-                    solidBorder: false
-
-                    function reset()
-                    {
-                        selectLayer.x = 0;
-                        selectLayer.y = 0;
-                        selectLayer.newX = 0;
-                        selectLayer.newY = 0;
-                        selectLayer.visible = false;
-                        selectLayer.width = 0;
-                        selectLayer.height = 0;
-                    }
-                }
             }
-        }
+        
     }
 }
 
