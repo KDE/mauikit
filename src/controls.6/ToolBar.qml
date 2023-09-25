@@ -108,8 +108,12 @@ import "private" as Private
  }
  @endcode
  
+   @note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD.
+
+ 
   @image html ToolBar/footbar_sections.png
   @note Using the example as the footer of a page, ToolButtons are placed in the different sections.
+  
  */
 QQC.ToolBar
 {
@@ -480,6 +484,16 @@ QQC.ToolBar
                     Layout.minimumWidth: implicitWidth
                     spacing: control.spacing
                 }
+                
+                Loader
+        {
+            active: control.Maui.Controls.showCSD === true
+            visible: active
+
+            asynchronous: true
+
+            sourceComponent: Maui.WindowControls {}
+        }
             }
         }
     }

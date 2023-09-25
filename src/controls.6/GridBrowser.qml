@@ -264,20 +264,20 @@ Item
         contentHeight: controlView.contentHeight
         contentWidth: availableWidth
 
-        background: Rectangle
-        {
-            color: "magenta"
+        // background: Rectangle
+        // {
+        //     color: "magenta"
+        // 
+        //     MouseArea
+        //     {
+        //         anchors.fill: parent
+        //         onClicked: console.log("clickcycky")
+        //     }
+        // }
 
-            MouseArea
-            {
-                anchors.fill: parent
-                onClicked: console.log("clickcycky")
-            }
-        }
-
-        Rectangle
+        Item
         {
-            color: "orange"
+            // color: "orange"
             height: controlView.contentHeight
             width: parent.width
 

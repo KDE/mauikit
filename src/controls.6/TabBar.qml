@@ -1,39 +1,106 @@
 import QtQuick
-import QtQuick.Controls as QQC
+import QtQuick.Controls 2.15 as QQC
 import QtQuick.Layouts
 import QtQuick.Window
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
- * TabBar
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
+ @brief Tab bar alternative to QQC TabBar, and based on it. 
+ 
+ Mostly used together with the TabView control.
+ 
+ The layout of this control is divided into three sections: left, middle and right area.
+ The middle area is reserved for placing the tab buttons. The right and left side areas can be populated with any child item.
+ 
+ All the child items are expected to be a TabButton or inherit from it. If you need to add an extra button, label or other item, consider adding them using the left and right containerizes.
+ @see leftContent
+ @see rightContent
+ 
+ @code
+ TabBar
+ {
+    leftContent: Button
+    {
+        text: "Button1"
+    }    
+    
+    rightContent: [
+        
+        Button
+        {
+            text: "Button2"
+        },
+        
+        Button
+        {
+            text: "Button3"
+        }
+    ]
+ }
+ @endcode
+  
+ @section notes Notes
+ 
+ The contents of this bar will become flickable/scrollable if the implicit width of the child elements is higher than the available width.
+ When using it on a mobile device and a flick/swipe action is performed by the user, a signal will be emitted informing about the tab focused in the view port.
+ @see newTabFocused
+ 
+@note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD.
+
+ 
  */
 QQC.TabBar
 {
     id: control
 
+    /**
+     * @brief An alias to manually add elements to the container directly. This is the middle section of the control. 
+     * @property list<QtObject> TabBar::content
+     */    
     property alias content : _layout.data
+    
+    /**
+     * @brief An alias to add elements to the left area section.
+     * @property list<QtObject> TabBar::leftContent
+     */    
     property alias leftContent: _leftLayout.data
+    
+    /**
+     * @brief An alias to add elements to the right area section.
+     * @property list<QtObject> TabBar::rightContent
+     */   
     property alias rightContent: _layout.data
     
-    property alias interactive: _content.interactive
     /**
-     * showNewTabButton : bool
-     */
+     * @brief Whether the control will react to touch events to flick the tabs.
+     * @property bool TabBar::interactive
+     */    
+    property alias interactive: _content.interactive
+    
+    /**
+     * @brief Whether to display a button which represents the "add new tab" action.
+     * If this button is clicked a signal is triggered.
+     * @see newTabClicked  
+     */    
     property bool showNewTabButton : true
+    
+    /**
+     * @brief Whether the tab buttons will be visible or not. 
+     */
     property bool showTabs : true
     
     /**
-     * newTabClicked :
-     */
+     * @brief This signal is emitted when the "add new tab" button has been clicked.
+     * @see showNewTabButton
+     */    
     signal newTabClicked()
+    
+    /**
+     * @brief This signal is emitted when a new tab button is focused after a swipe/flick action has been performed. 
+     * To set the new focused tab as the current one, use the index value passed as the argument to the currentIndex property. To make sure the tab is fully visible in the view port you can use the positioning function.
+     * @see positionViewAtIndex
+     */    
     signal newTabFocused(int index)
     
     background: Rectangle
@@ -191,9 +258,22 @@ QQC.TabBar
                     flat: true
                 }
             }
+            
+            Loader
+        {
+            active: control.Maui.Controls.showCSD === true
+            visible: active
+
+            asynchronous: true
+
+            sourceComponent: Maui.WindowControls {}
+        }
         }
     }
     
+    /**
+     * @brief
+     */  
     function positionViewAtIndex(index : int)
     {
         _content.positionViewAtIndex(index, ListView.SnapPosition)

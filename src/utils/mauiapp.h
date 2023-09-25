@@ -21,8 +21,6 @@
 #include <QObject>
 #include <QQmlEngine>
 
-#include "fmh.h"
-
 #include "mauikit_export.h"
 
 #include <QSettings>

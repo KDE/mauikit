@@ -20,68 +20,75 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
- * Holder
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
+ @brief  Holder
+ A component meant to be used as a placeholder element with support for a title, message, icon image animated or not, and a set of contextual action buttons.
  */
 Item
 {
     id: control
     implicitHeight: _layout.implicitHeight
 
+    /**
+     * @brief
+     */  
     default property list<Action> actions
 
+    /**
+     * @brief
+     */  
     property alias content : _layout.data
 
-    /**
-   * emoji : string
-   */
+   /**
+     * @brief
+     */  
     property string emoji
 
     /**
-   * title : string
-   */
+     * @brief
+     */  
     property alias title : _template.text1
 
-    /**
-   * body : string
-   */
+   /**
+     * @brief
+     */  
     property alias body : _template.text2
 
     /**
-   * isMask : bool
-   */
+     * @brief
+     */  
     property bool isMask : true
 
     /**
-   * isGif : bool
-   */
+     * @brief
+     */  
     property bool isGif : false
 
     /**
-   * emojiSize : int
-   */
+     * @brief
+     */  
     property int emojiSize : Maui.Style.iconSizes.big
 
     /**
-   * enabled : bool
-   */
+     * @brief
+     */  
     property bool enabled: true
 
+    /**
+     * @brief
+     */  
     property alias label1 : _template.label1
+    
+    /**
+     * @brief
+     */  
     property alias label2 : _template.label2
 
     /**
-   * actionTriggered :
-   */
+     * @brief
+     */  
     signal actionTriggered()
 
     Component
