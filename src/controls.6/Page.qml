@@ -129,8 +129,8 @@ import org.mauikit.controls 1.3 as Maui
  @see autoHideFooterMargins 
  @see autoHideHeaderMargins
  
-   @image html Page/floating_header.png
-   @note A Page with a floating header - and a translucent effect.
+@image html Page/floating_header.png
+@note A Page with a floating header - and a translucent effect.
 
  @section notes Notes
  This component is an alternative to the QQC2 Page control, where the header and footer can not be moved easily - and it adds a few more functionality.
@@ -160,7 +160,10 @@ import org.mauikit.controls 1.3 as Maui
  @note This is an ApplicationWindow filled with a Page and with the CSD controls enabled.
  
 
-A more complete example file can be found in the examples directory
+A more complete example file can be found in the examples directory.
+
+@note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD. This is only supported if used with the MauiKit ToolBar as the header bar - which is the default. If use with another header element, the window control buttons need to be added manually.
+
  */
 Pane
 {
@@ -530,6 +533,7 @@ Pane
         visible: count > 0
         width: visible ? _headerContent.width : 0
         position: control.altHeader ? ToolBar.Footer : ToolBar.Header
+        Maui.Controls.showCSD : control.Maui.Controls.showCSD === true
         translucencySource: ShaderEffectSource
         {
             sourceItem: _content
@@ -572,16 +576,6 @@ Pane
                     verticalAlignment :  Text.AlignVCenter
                 }
             }
-        }
-
-        farRightContent: Loader
-        {
-            active: control.Maui.Controls.showCSD === true
-            visible: active
-
-            asynchronous: true
-
-            sourceComponent: Maui.WindowControls {}
         }
 
         middleContent: Loader

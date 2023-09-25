@@ -32,6 +32,8 @@ import "private" as Private
 
 /*!
  @brief A window that provides some basic features needed for most applications.
+  
+  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
 
  The ApplicationWinow is the best component to start creating a new MauiKit application, it's usually used as the root QML component for the application.
  By default the window is completely empty (and transparent since it doesn't have any container) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible.
@@ -198,7 +200,7 @@ ApplicationWindow
 }
 @endcode
 
-A more complete set of examples can be found in the examples directory.
+ <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ApplicationWindow.qml">You can find a more complete example at this link.</a>
  */
 
 Window
