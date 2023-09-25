@@ -1,9 +1,12 @@
 qt_policy(SET QTP0001 NEW)
 
+# include_directories(${MauiKit4_INCLUDE_DIRS})
+
 qt_add_executable(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
     demo_assets.qrc
     main.cpp)
 
+    
 set(QML_SRCS
     main.qml
     controls/ButtonsPage.qml
@@ -49,7 +52,7 @@ endif()
 
 target_link_libraries(${PROJECT_NAME}${MAUI_MAJOR_VERSION}
     PRIVATE
-    MauiKit${MAUI_MAJOR_VERSION}
+    $<TARGET_OBJECTS:MauiKit4>
     Qt${QT_MAJOR_VERSION}::Quick
     Qt${QT_MAJOR_VERSION}::Qml
     KF${KF_MAJOR_VERSION}::CoreAddons

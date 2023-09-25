@@ -395,7 +395,9 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::QuickControls2)
 
-ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} 
+    DESTINATION ${KDE_INSTALL_QMLDIR})
+
 ecm_generate_qmltypes(org.mauikit.controls 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 generate_export_header(MauiKit${MAUI_MAJOR_VERSION} BASE_NAME MauiKit)
@@ -403,6 +405,11 @@ install(TARGETS MauiKit${MAUI_MAJOR_VERSION} EXPORT MauiKit${MAUI_MAJOR_VERSION}
 
 target_include_directories(MauiKit${MAUI_MAJOR_VERSION}
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Core>")
+    
+target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};>")
+
+set(MauiKit${MAUI_MAJOR_VERSION}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
+CACHE INTERNAL "(MauiKit${MAUI_MAJOR_VERSION}: Include Directories" FORCE)
 
 install(FILES
     ${mauikit_HDRS}
