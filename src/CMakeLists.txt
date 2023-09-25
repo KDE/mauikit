@@ -414,10 +414,8 @@ install(FILES
 ##INSTALL MAUI STYLE
 if (QT_MAJOR_VERSION STREQUAL "5")
     install(DIRECTORY style.5/ DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2/maui-style)
-    install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
-
 else()
     add_subdirectory(style.6)
-    install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)
 endif()
 
+install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)

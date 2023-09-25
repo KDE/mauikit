@@ -4,20 +4,18 @@ ecm_add_qml_module(MauiStyle
     URI "org.mauikit.style"
     CLASS_NAME MauiStylePlugin
     DEPENDENCIES
-    "QtQuick.Controls 2.15"
-    "org.kde.kirigami 2.14")
+    "QtQuick.Controls")
 
 target_sources(MauiStyle
     PRIVATE
     mauistyleplugin.cpp)
 
 target_link_libraries(MauiStyle
+    PRIVATE
     Qt::Core
     Qt::Gui
     Qt::Qml
-    Qt::Quick
-    Qt::QuickControls2
-    Qt::QuickTemplates2)
+    Qt::Quick)
 
 add_subdirectory(impl)
 add_subdirectory(qtquickcontrols)
