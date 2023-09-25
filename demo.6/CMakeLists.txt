@@ -10,8 +10,7 @@ find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS
 
 find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS
     I18n
-    CoreAddons
-)
+    CoreAddons)
 
 include(KDEInstallDirs)
 

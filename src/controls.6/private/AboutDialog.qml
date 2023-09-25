@@ -103,10 +103,10 @@ Maui.PopupPage
     Maui.SectionItem
     {
         id: _authorsSection
-        label1.text: i18nd("mauikit", "Authors")
+        // label1.text: i18nd("mauikit", "Authors")
         visible: Maui.App.about.authors.length > 0
 
-        iconSource: "view-media-artist"
+        // iconSource: "view-media-artist"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
         columns: 1
@@ -150,7 +150,7 @@ Maui.PopupPage
         id: _translatorsSection
         label1.text: i18nd("mauikit", "Translators")
         visible: Maui.App.about.translators.length > 0
-        iconSource: "folder-language"
+        // iconSource: "folder-language"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
         columns: 1
@@ -193,7 +193,7 @@ Maui.PopupPage
         id: _creditsSection
         label1.text: i18nd("mauikit", "Credits")
         visible: Maui.App.about.credits.length > 0
-        iconSource: "love"
+        // iconSource: "love"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
         columns: 1
@@ -234,7 +234,7 @@ Maui.PopupPage
     {
         id: _licensesSection
         visible: Maui.App.about.licenses.length > 0
-        iconSource: "license"
+        // iconSource: "license"
 
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
@@ -265,7 +265,7 @@ Maui.PopupPage
     Maui.SectionItem
     {
         id: _componentsSection
-        iconSource: "code-context"
+        // iconSource: "code-context"
         visible: Maui.App.about.components.length > 0
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
@@ -309,8 +309,8 @@ Maui.PopupPage
     Maui.SectionItem
     {
         id: _linksssSection
-        label1.text: i18nd("mauikit", "Links")
-        iconSource: "link"
+        // label1.text: i18nd("mauikit", "Links")
+        // iconSource: "link"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
         columns: 1

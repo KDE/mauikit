@@ -29,6 +29,7 @@
 #include "notify.h"
 #include "style.h"
 #include "tabview.h"
+#include "controls.h"
 
 #ifdef Q_OS_ANDROID
 #include "platforms/android/mauiandroid.h"
@@ -167,6 +168,7 @@ void MauiKit::registerTypes(const char *uri)
     /// NON UI CONTROLS
     qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
     qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
+    qmlRegisterUncreatableType<Controls>(uri, 1, 3, "Controls", "Attached properties for different purposes.");
 
     //    //     qmlRegisterSingletonInstace<Platform>(uri, 1, 2, "Platform", Platform::instance());
     qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {

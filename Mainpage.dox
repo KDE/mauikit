@@ -1,0 +1,153 @@
+/*
+ *  This file is part of MauiKit
+ *  SPDX-FileCopyrightText: 2016 Marco Martin <mart@kde.org>
+ *  SPDX-FileCopyrightText: 2023 Camilo Higuita <milo.h@aol.com>
+ *
+ *  SPDX-License-Identifier: LGPL-2.0-or-later
+ */
+
+
+/** @mainpage mauikit
+
+
+@subsection overview Introduction
+MauiKit is a set of <a href="https://doc.qt.io/qt-6/qtquick-index.html">QtQuick</a> components for building adaptable UIs based on <a href="https://doc.qt.io/qt-6/qtquickcontrols-index.html">QtQuick Controls 2</a>.
+
+Its goal is to enable creation of convergent applications that look and feel great on mobile as well as desktop devices and follow the <a href="https://develop.kde.org/hig">Maui Human Interface Guidelines</a> while being easy to use and not adding many dependencies.
+
+MauiKit works on a variety of platforms, such as <a href="https://plasma-mobile.org/">Plasma Mobile</a>, Desktop Linux and Android.
+
+@image html maui_apps.png
+
+@subsection tutorial Tutorial
+A tutorial for MauiKit Controls is available on <a href="https://develop.kde.org/docs/getting-started/kirigami/">our developer platform</a>.
+
+It is possible to make short mockups using QtQuick and MauiKit Controls and briefly test individual QML files using the <a href="https://doc.qt.io/qt-6/qtquick-qml-runtime.html">qml tool</a>.
+
+A list of additional QML learning resources is available in the <a href="https://community.kde.org/Get_Involved/development/Learn#QtQuick/QML">Community Wiki</a>. If you are not familiar with QML at all, the <a href="https://www.qt.io/product/qt6/qml-book">QML book</a> should be a good head start.
+
+If you have any questions about MauiKit, feel free to drop by the <a href="https://go.kde.org/matrix/#/#kirigami:kde.org">Maui Project group on Telegram</a>.
+
+@subsection components Main Views Components
+- \link ApplicationWindow  ApplicationWindow \endlink
+- \link AppViews AppViews \endlink
+- \link SidebarView SidebarView \endlink
+- \link TabView TabView \endlink
+- \link SplitView SplitView \endlink
+- \link Page Page  \endlink
+
+@subsection controls Common Kirigami Controls
+
+- \link org::kde::kirigami::Card Card \endlink
+- \link org::kde::kirigami::templates::OverlaySheet  OverlaySheet \endlink
+- \link org::kde::kirigami::BasicListItem BasicListItem  \endlink
+- \link org::kde::kirigami::SwipeListItem  SwipeListItem \endlink
+- \link org::kde::kirigami::Heading Heading  \endlink
+- \link org::kde::kirigami::PlaceholderMessage PlaceholderMessage  \endlink
+- \link org::kde::kirigami::SearchField SearchField \endlink
+- \link org::kde::kirigami::Dialog Dialog \endlink
+- \link org::kde::kirigami::NavigationTabBar NavigationTabBar \endlink
+- \link Icon Icon  \endlink
+
+@subsection example Minimal Example
+
+@code
+import QtQuick
+import QtQuick.Controls
+import org.mauikit.controls as Maui
+
+Maui.ApplicationWindow
+{
+    id: root
+    
+    Maui.SideBarView
+    {
+        anchors.fill: parent
+        
+        sideBarContent: Maui.Page
+        {
+            Maui.Theme.colorSet: Maui.Theme.Window
+            anchors.fill: parent
+            
+            headBar.leftContent: Maui.ToolButtonMenu
+            {
+                icon.name: "application-menu"
+                MenuItem
+                {
+                    text: "About"
+                    icon.name: "info-dialog"
+                    onTriggered: root.about()
+                }
+            }
+            
+            headBar.rightContent: ToolButton
+            {
+                icon.name: "love"
+            }
+        }
+        
+        Maui.Page
+        {
+            anchors.fill: parent
+            showCSDControls: true
+        }
+    }
+}
+@endcode
+
+@image html ApplicationWindow/minimal_dark.png
+
+@subsection deployment Deployment
+CMake is used for both building Kirigami and projects using it, allowing for several configurations depending on how the deployment needs to be done.
+
+Kirigami can be built in two ways: both as a module or statically linked to the application, leading to four combinations:
+
+- Kirigami built as a module with CMake
+- Kirigami statically built with CMake (needed to link statically from applications built with CMake)
+
+The simplest and recommended way to use Kirigami is to just use the packages provided by your Linux distribution, or build it as a module and deploy it together with the main application.
+
+For example, when building an application on Android with CMake, if Kirigami for Android is built and installed in the same temporary directory before the application, the create-apk step of the application will include the Kirigami files as well in the APK.
+
+Statically linked Kirigami will be used only on Android, while on desktop systems it will use the version provided by the distribution. Which platforms use the static version and which use the dynamic one can be freely adjusted.
+
+The application needs to have a folder called "3rdparty" containing clones of two KDE repositories: kirigami and breeze-icons (available at git://anongit.kde.org/kirigami.git and git://anongit.kde.org/breeze-icons.git).
+
+The main.cpp file should then have something like:
+
+@code
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#ifdef Q_OS_ANDROID
+#include "./3rdparty/kirigami/src/kirigamiplugin.h"
+#endif
+
+int main(int argc, char *argv[])
+{
+    QGuiApplication app(argc, argv);
+
+    QQmlApplicationEngine engine;
+
+#ifdef Q_OS_ANDROID
+    KirigamiPlugin::getInstance().registerTypes(&engine);
+#endif
+    ...
+}
+@endcode
+
+@authors
+Camilo Higuita \<milo.h@aol.com.com\><br>
+
+@maintainers
+Camilo Higuita \<milo.h@aol.com.com\><br>
+
+@licenses
+@lgpl
+
+*/
+
+
+// DOXYGEN_SET_RECURSIVE = YES
+// DOXYGEN_SET_EXCLUDE_PATTERNS += *_p.h */private/* */examples/* */doc/* */styles/*
+// DOXYGEN_SET_PROJECT_NAME = MauiKit
+// vim:ts=4:sw=4:expandtab:filetype=doxygen

@@ -17,51 +17,135 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick
 import QtQml
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
 
-/*!
- * \since org.mauikit.controls 1.2
- * \inqmlmodule org.mauikit.controls
- * \brief View switcher component
- *
- * Lists the different views declared into a swipe view, that does not jump around
- * when resizing the application window and that takes care of different gestures for switching the views.
- *
- * This component takes care of creating the app views port as buttons in the application main header
- * for switching the views.
- *
- * By default this component is not interactive when using touch gesture, to not steal fcous from other horizontal
- * flickable gestures.
+/**
+ @since org.mauikit.controls 1.2
+ 
+ @brief Views switcher component.
+ 
+ Presents a set of different items as views - into an horizontal swipe view, that does not jump around when resizing the application window and that takes care of different gestures and keyboard shortcuts for switching/navigating between the views.
+ 
+ This component takes care of creating the button view-ports in its page header.
+ 
+ Each child element represents a view - and each one should have the AppView attached properties to give a title and icon to the view - so that it can be used as the text and icon  for the view-port buttons. Some of the supported attached properties to be used are:
+ - AppView.title
+ - AppView.iconName
+ - AppView.badgeText
+ 
+ @see AppView
+ 
+  @image html AppViews/viewports.png
+  @note An AppViews in action. The view ports as buttons in the header - the title is expanded for the current view on a wide mode, but compacted in a narrow space.
+ 
+ @code
+AppViews
+{
+    id: _page
+    anchors.fill: parent
+    Controls.showCSD: true
+    headBar.forceCenterMiddleContent: true
+
+    Rectangle
+    {
+        AppView.title: "View1"
+        AppView.iconName: "love"
+
+        color: "blue"
+    }
+
+    Rectangle
+    {
+        AppView.title: "View2"
+        AppView.iconName: "folder"
+        AppView.badgeText: "30"
+        color: "pink"
+    }
+
+    Rectangle
+    {
+        AppView.title: "View3"
+        AppView.iconName: "tag"
+
+        color: "blue"
+    }
+}
+ @endcode
+ 
+ @section notes Notes 
+ 
+ @subsection positioning Positioning & Behaviours
+ There is not need to set the size or position of the child elements aka "views" - this component will take care of positioning them in the order they have been declared.
+ 
+ If a child-item or a "view" is hidden via the visible property, then it is also hidden for the view port buttons.
+ 
+  By default this component is not interactive with touch gestures, in order to not steal focus from other horizontal flickable elements - however you can enable it manually.
+ @see interactive
+ 
+ @subsection performance Performance
+ Ideally do not add too many views, that are loaded simultaneously, since it will affect the application startup time. Instead you can load the views dinamically by using a Loader or the friend control AppViewLoader, which will take care of much of the loading task.
+ @see AppViewLoader
+ 
+ Besides taking longer to load - too many views - will also make the header bar too busy with the view-port buttons. This can also be tweaked by setting the maximum number of views visible - the other ones will be tucked away into an overflow menu.
+ @see maxViews
+ 
+ @subsection inheritance Inheritance & Shortcuts
+ This component inherits for the MauiKit Page control, so you can customize it by using the same properties that can be applied to a Page, such as moving the header to the bottom, adding extra toolbars, enabling the pull-back behaviours, etc.
+ @see Page
+ 
+ The first four [4] views can be navigated by using keyboard shortcuts: [Ctrl + 1] [Ctrl + 2] [Ctrl + 3] [Ctrl + 4]
  */
 Maui.Page
 {
     id: control
     
+    /**
+     * @brief All the child items declared will become part of the views. For each child element to be visible in the view port buttons, you need to use the AppView attached properties.
+     * @see AppView
+     * The content layout is handled by a swipe view.
+     */
     default property alias content: _swipeView.contentData
 
+    /**
+     * @brief The index number of the current view.
+     * @property int AppViews::currentIndex
+     */
     property alias currentIndex : _swipeView.currentIndex
+    
+    /**
+     * @brief The current item in the view.
+     * @property Item AppViews::currentItem
+     */
     property alias currentItem : _swipeView.currentItem
+    
+    /**
+     * @brief The total amount of items/views. 
+     * @property int AppViews::count
+     */
     property alias count : _swipeView.count
+    
+    /**
+     * @brief Sets the views to be interactive by using touch gestures to flick between them.
+     * @property bool AppViews::interactive
+     */
     property alias interactive : _swipeView.interactive
     
     focus: true
     
-    /*!
-     *     Maximum number of views to be shown in the app* view port in the header.
-     *     The rest of views buttons will be collapsed into a menu button.
+    /**
+     * @brief Maximum number of views to be shown in the view port buttons at the header bar.
+     * The rest of views buttons will be collapsed into a menu button.
+     * By default the maximum number is set to 4.
      */
     property int maxViews : 4
     
-    /*!
-     *     The toolbar where the app view buttons will be* added.
-     */
     headBar.forceCenterMiddleContent: !isWide
     headBar.middleContent: Loader
     {
@@ -226,7 +310,8 @@ Maui.Page
     }
     
     /**
-     * 
+     * @brief A quick function to request the control to go back to the previously visited view.
+     * A history of visited views is kept, and invoking this method will pop the history one by one .
      */
     function goBack()
     {

@@ -12,7 +12,7 @@
 #include <KLocalizedString>
 #include <KAboutData>
 
-#include <MauiKit4/Core/mauiapp.h>
+#include "utils/mauiapp.h"
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])

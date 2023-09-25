@@ -318,7 +318,7 @@ Maui.ApplicationWindow
         Maui.Page
         {
             anchors.fill: parent
-            showCSDControls: true
+            Maui.Controls.showCSD: true
             title: _stackView.currentItem.title
 
             headBar.leftContent: [
