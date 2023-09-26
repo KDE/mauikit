@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 00:41+0000\n"
 "PO-Revision-Date: 2023-04-15 10:20+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -208,16 +208,6 @@ msgstr "Zapri ostalo"
 msgid "Close All"
 msgstr "Zapri vse"
 
-#: src/controls.6/private/AboutDialog.qml:106
-#, kde-format
-msgid "Authors"
-msgstr "Avtorji"
-
-#: src/controls.6/private/AboutDialog.qml:312
-#, kde-format
-msgid "Links"
-msgstr "Povezave"
-
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
 msgid "Copy"
@@ -279,6 +269,12 @@ msgstr "MauiKit Frameworks"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Tema ikone Luv"
+
+#~ msgid "Authors"
+#~ msgstr "Avtorji"
+
+#~ msgid "Links"
+#~ msgstr "Povezave"
 
 #~ msgid "Cancel"
 #~ msgstr "Prekliči"

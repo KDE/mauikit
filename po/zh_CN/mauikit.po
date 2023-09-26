@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 00:41+0000\n"
 "PO-Revision-Date: 2023-09-16 10:10\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -207,16 +207,6 @@ msgstr "关闭其他文档"
 msgid "Close All"
 msgstr "全部关闭"
 
-#: src/controls.6/private/AboutDialog.qml:106
-#, kde-format
-msgid "Authors"
-msgstr "作者"
-
-#: src/controls.6/private/AboutDialog.qml:312
-#, kde-format
-msgid "Links"
-msgstr "链接"
-
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
 msgid "Copy"
@@ -278,3 +268,9 @@ msgstr "MauiKit 程序框架"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv 图标主题"
+
+#~ msgid "Authors"
+#~ msgstr "作者"
+
+#~ msgid "Links"
+#~ msgstr "链接"

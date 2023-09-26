@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 00:41+0000\n"
 "PO-Revision-Date: 2023-04-08 11:09+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -207,16 +207,6 @@ msgstr "Close Other"
 msgid "Close All"
 msgstr "Close All"
 
-#: src/controls.6/private/AboutDialog.qml:106
-#, kde-format
-msgid "Authors"
-msgstr "Authors"
-
-#: src/controls.6/private/AboutDialog.qml:312
-#, kde-format
-msgid "Links"
-msgstr "Links"
-
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
 msgid "Copy"
@@ -278,6 +268,12 @@ msgstr "MauiKit Frameworks"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv Icon Theme"
+
+#~ msgid "Authors"
+#~ msgstr "Authors"
+
+#~ msgid "Links"
+#~ msgstr "Links"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancel"

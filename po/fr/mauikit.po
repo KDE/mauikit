@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-25 00:45+0000\n"
+"POT-Creation-Date: 2023-09-26 00:41+0000\n"
 "PO-Revision-Date: 2023-04-08 10:28+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -204,16 +204,6 @@ msgstr "Fermer les autres"
 msgid "Close All"
 msgstr "Tout fermer"
 
-#: src/controls.6/private/AboutDialog.qml:106
-#, kde-format
-msgid "Authors"
-msgstr "Auteurs"
-
-#: src/controls.6/private/AboutDialog.qml:312
-#, kde-format
-msgid "Links"
-msgstr "Liens"
-
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
 msgid "Copy"
@@ -275,6 +265,12 @@ msgstr "Environnements de développement de Mauikit"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Thème pour l'icône « Luv »"
+
+#~ msgid "Authors"
+#~ msgstr "Auteurs"
+
+#~ msgid "Links"
+#~ msgstr "Liens"
 
 #~ msgid "Cancel"
 #~ msgstr "Annuler"
