@@ -32,8 +32,8 @@ import "private" as Private
 
 /*!
  @brief A window that provides some basic features needed for most applications.
-  
-  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
+ 
+ <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
 
  The ApplicationWinow is the best component to start creating a new MauiKit application, it's usually used as the root QML component for the application.
  By default the window is completely empty (and transparent since it doesn't have any container) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible.
@@ -56,7 +56,9 @@ import "private" as Private
  
  The radius of the corners is configured via MauiMan. To know more about how to configure at a user level take a look at MauiMan documentation. This property can not be overriden by the application itself.
   
- If used with a Page, you can easily enable the CSD buttons using the attached property @qmlattachedproperty Maui.Controls.showCSD, this will make the window-control buttons visible. A few other MauiKit controls support this property, such as the TabView.
+ If used with a Page, you can easily enable the CSD buttons using the attached property Maui.Controls.showCSD, this will make the window-control buttons visible. A few other MauiKit controls support this property, such as the TabView.
+ @see Controls
+ 
 @code
 ApplicationWindow
 {
@@ -71,7 +73,7 @@ ApplicationWindow
 @endcode
  
  If a custom control is used instead, and CSD is still enabled, you can place the window controls manually by using the WindowControls component.
- @see WindowControls
+ @see WindowControlsLinux
  
  @code
 ApplicationWindow

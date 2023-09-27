@@ -24,7 +24,50 @@ import org.mauikit.controls 1.3 as Maui
 
 /**
  @brief  Holder
- A component meant to be used as a placeholder element with support for a title, message, icon image animated or not, and a set of contextual action buttons.
+ A component meant to be used as a placeholder element with support for a title, message body, icon image - animated or not -, and a set of contextual actions.
+ 
+   <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a>
+
+   This control is meant to display messages, such as warning messages with a title and icon, and with a set of possible actions.
+   The default content children of this component are QQC2 Actions.
+   
+     @image html Holder/holder_actions.png
+@note A placeholder message using a colorful icon image.
+   
+   @notes Notes
+   By default the icon is supossed to be symbolic and will be colored - if a colorful icon is to be used, the coloring mask should toggle off.
+   @see isMask
+   @see emoji
+   
+   It is possible to add an animated image source as the icon. To enable the animation toggle on the animation property.
+   @see isGif
+   
+@code
+Holder
+{
+    title: "Holder"
+    body: "Placeholder message."
+
+    emoji: "dialog-warning"
+    isMask: false
+
+    QQC2.Action
+    {
+        text: "Action1"
+    }
+
+    QQC2.Action
+    {
+        text: "Action2"
+    }
+
+    QQC2.Action
+    {
+        text: "Action3"
+    }
+}
+@endcode
+ 
  */
 Item
 {

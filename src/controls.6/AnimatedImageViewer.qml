@@ -10,106 +10,115 @@ import QtQuick
 import QtQuick.Controls
 import org.mauikit.controls as Maui
 
+/**
+ * @brief A view for displaying animated images, such as GIF documents.
+ * 
+ *  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-flickable.html">This controls inherits from QQC2 Flickable, to checkout its inherited properties refer to the Qt Docs.</a>
+ * 
+ *  This control along with the ImageViewer are meant to display images and support to zoom in and out with touch and mouse gestures and keyboard shortcuts.  
+ *  
+ */
+
 Flickable
 {
     id: flick
     property string currentImageSource
-
+    
     contentWidth: width
     contentHeight: height
     boundsBehavior: Flickable.StopAtBounds
     boundsMovement: Flickable.StopAtBounds
     interactive: contentWidth > width || contentHeight > height
     clip: true
-
+    
     ScrollBar.vertical: ScrollBar {
         visible: false
     }
     ScrollBar.horizontal: ScrollBar {
         visible: false
     }
-
+    
     /**
-      * image : Image
-      */
+     * image : Image
+     */
     property alias image:  image
-
+    
     property alias sourceSize : image.sourceSize
     /**
-      * fillMode : Image.fillMode
-      */
+     * fillMode : Image.fillMode
+     */
     property int fillMode: Image.PreserveAspectFit
-
+    
     /**
-      * asynchronous : bool
-      */
+     * asynchronous : bool
+     */
     property alias asynchronous : image.asynchronous
-
+    
     /**
-      * cache : bool
-      */
+     * cache : bool
+     */
     property alias cache: image.cache
-
+    
     /**
-      * imageWidth : int
-      */
+     * imageWidth : int
+     */
     property alias imageWidth: image.sourceSize.width
-
+    
     /**
-      * imageHeight : int
-      */
+     * imageHeight : int
+     */
     property alias imageHeight: image.sourceSize.height
-
+    
     /**
-      * source : url
-      */
+     * source : url
+     */
     property alias source : image.source
-
+    
     /**
-      * rightClicked
-      */
+     * rightClicked
+     */
     signal rightClicked()
-
+    
     /**
-      * pressAndHold
-      */
+     * pressAndHold
+     */
     signal pressAndHold()
-
+    
     PinchArea {
         width: Math.max(flick.contentWidth, flick.width)
         height: Math.max(flick.contentHeight, flick.height)
-
+        
         property real initialWidth
         property real initialHeight
-
+        
         onPinchStarted: {
             initialWidth = flick.contentWidth
             initialHeight = flick.contentHeight
         }
-
+        
         onPinchUpdated: {
             // adjust content pos due to drag
             flick.contentX += pinch.previousCenter.x - pinch.center.x
             flick.contentY += pinch.previousCenter.y - pinch.center.y
-
+            
             // resize content
             flick.resizeContent(Math.max(flick.width*0.7, initialWidth * pinch.scale), Math.max(flick.height*0.7, initialHeight * pinch.scale), pinch.center)
         }
-
+        
         onPinchFinished: {
             // Move its content within bounds.
             if (flick.contentWidth < flick.width ||
-                    flick.contentHeight < flick.height) {
+                flick.contentHeight < flick.height) {
                 zoomAnim.x = 0;
-                zoomAnim.y = 0;
-                zoomAnim.width = flick.width;
-                zoomAnim.height = flick.height;
-                zoomAnim.running = true;
-            } else {
-                flick.returnToBounds();
-            }
+            zoomAnim.y = 0;
+            zoomAnim.width = flick.width;
+            zoomAnim.height = flick.height;
+            zoomAnim.running = true;
+                } else {
+                    flick.returnToBounds();
+                }
         }
-
+        
         ParallelAnimation {
             id: zoomAnim
             property real x: 0
@@ -149,7 +158,7 @@ Flickable
                 easing.type: Easing.InOutQuad
             }
         }
-
+        
         AnimatedImage
         {
             id: image
@@ -162,103 +171,103 @@ Flickable
             {
                 playing = (status == AnimatedImage.Ready)
             }
-
+            
             BusyIndicator
             {
                 anchors.centerIn: parent
                 running: parent.status === AnimatedImage.Loading
             }
-
+            
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons:  Qt.RightButton | Qt.LeftButton
                 onClicked:  (mouse) =>
-                            {
-                                if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
-                                {
-                                    flick.rightClicked()
-                                }
-                            }
-
+                {
+                    if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
+                    {
+                        flick.rightClicked()
+                    }
+                }
+                
                 onPressAndHold: flick.pressAndHold()
                 onDoubleClicked:  (mouse) =>
-                                  {
-                                      if (flick.interactive) {
-                                          zoomAnim.x = 0;
-                                          zoomAnim.y = 0;
-                                          zoomAnim.width = flick.width;
-                                          zoomAnim.height = flick.height;
-                                          zoomAnim.running = true;
-                                          flick.interactive = !flick.interactive
-                                      } else {
-                                          zoomAnim.x = mouse.x * 2;
-                                          zoomAnim.y = mouse.y *2;
-                                          zoomAnim.width = flick.width * 3;
-                                          zoomAnim.height = flick.height * 3;
-                                          zoomAnim.running = true;
-                                          flick.interactive = !flick.interactive
-                                      }
-                                  }
+                {
+                    if (flick.interactive) {
+                        zoomAnim.x = 0;
+                        zoomAnim.y = 0;
+                        zoomAnim.width = flick.width;
+                        zoomAnim.height = flick.height;
+                        zoomAnim.running = true;
+                        flick.interactive = !flick.interactive
+                    } else {
+                        zoomAnim.x = mouse.x * 2;
+                        zoomAnim.y = mouse.y *2;
+                        zoomAnim.width = flick.width * 3;
+                        zoomAnim.height = flick.height * 3;
+                        zoomAnim.running = true;
+                        flick.interactive = !flick.interactive
+                    }
+                }
                 onWheel: (wheel) =>
-                         {
-                             if (wheel.modifiers & Qt.ControlModifier) {
-                                 if (wheel.angleDelta.y != 0) {
-                                     var factor = 1 + wheel.angleDelta.y / 600;
-                                     zoomAnim.running = false;
-
-                                     zoomAnim.width = Math.min(Math.max(flick.width, zoomAnim.width * factor), flick.width * 4);
-                                     zoomAnim.height = Math.min(Math.max(flick.height, zoomAnim.height * factor), flick.height * 4);
-
-                                     //actual factors, may be less than factor
-                                     var xFactor = zoomAnim.width / flick.contentWidth;
-                                     var yFactor = zoomAnim.height / flick.contentHeight;
-
-                                     zoomAnim.x = flick.contentX * xFactor + (((wheel.x - flick.contentX) * xFactor) - (wheel.x - flick.contentX))
-                                     zoomAnim.y = flick.contentY * yFactor + (((wheel.y - flick.contentY) * yFactor) - (wheel.y - flick.contentY))
-                                     zoomAnim.running = true;
-
-                                 } else if (wheel.pixelDelta.y != 0) {
-                                     flick.resizeContent(Math.min(Math.max(flick.width, flick.contentWidth + wheel.pixelDelta.y), flick.width * 4),
-                                                         Math.min(Math.max(flick.height, flick.contentHeight + wheel.pixelDelta.y), flick.height * 4),
-                                                         wheel);
-                                 }
-                             } else {
-                                 flick.contentX += wheel.pixelDelta.x;
-                                 flick.contentY += wheel.pixelDelta.y;
-                             }
-                         }
+                {
+                    if (wheel.modifiers & Qt.ControlModifier) {
+                        if (wheel.angleDelta.y != 0) {
+                            var factor = 1 + wheel.angleDelta.y / 600;
+                            zoomAnim.running = false;
+                            
+                            zoomAnim.width = Math.min(Math.max(flick.width, zoomAnim.width * factor), flick.width * 4);
+                            zoomAnim.height = Math.min(Math.max(flick.height, zoomAnim.height * factor), flick.height * 4);
+                            
+                            //actual factors, may be less than factor
+                            var xFactor = zoomAnim.width / flick.contentWidth;
+                            var yFactor = zoomAnim.height / flick.contentHeight;
+                            
+                            zoomAnim.x = flick.contentX * xFactor + (((wheel.x - flick.contentX) * xFactor) - (wheel.x - flick.contentX))
+                            zoomAnim.y = flick.contentY * yFactor + (((wheel.y - flick.contentY) * yFactor) - (wheel.y - flick.contentY))
+                            zoomAnim.running = true;
+                            
+                        } else if (wheel.pixelDelta.y != 0) {
+                            flick.resizeContent(Math.min(Math.max(flick.width, flick.contentWidth + wheel.pixelDelta.y), flick.width * 4),
+                                                Math.min(Math.max(flick.height, flick.contentHeight + wheel.pixelDelta.y), flick.height * 4),
+                                                wheel);
+                        }
+                    } else {
+                        flick.contentX += wheel.pixelDelta.x;
+                        flick.contentY += wheel.pixelDelta.y;
+                    }
+                }
             }
         }
     }
-
-
+    
+    
     /**
-      *
-      */
+     * @brief Forces the image to fit in the viewport.
+     */
     function fit()
     {
         image.width = image.sourceSize.width
     }
-
+    
     /**
-      *
-      */
+     * @brief Forces the image to fill-in the viewport, this is done horizontally, so the image might be out of view vertically.
+     */
     function fill()
     {
         image.width = parent.width
     }
-
+    
     /**
-      *
-      */
+     * @brief Forces the image to be rotated 90 degrees to the left.
+     */
     function rotateLeft()
     {
         image.rotation = image.rotation - 90
     }
-
+    
     /**
-      *
-      */
+     * @brief Forces the image to be rotated 90 degrees to the right.
+     */
     function rotateRight()
     {
         image.rotation = image.rotation + 90

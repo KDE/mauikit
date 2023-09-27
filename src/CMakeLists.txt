@@ -18,11 +18,11 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
+# add_library(MauiKit${MAUI_MAJOR_VERSION} SHARED)
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     URI "org.mauikit.controls"
     CLASS_NAME MauiKit
-    DEPENDENCIES
-    "QtGraphicalEffects 1.0")
+    VERSION 1.3)
 
 set(mauikit_SRCS
     mauikit.cpp
@@ -398,7 +398,7 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
 ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} 
     DESTINATION ${KDE_INSTALL_QMLDIR})
 
-ecm_generate_qmltypes(org.mauikit.controls 3.0 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+ecm_generate_qmltypes(org.mauikit.controls 1.3 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 generate_export_header(MauiKit${MAUI_MAJOR_VERSION} BASE_NAME MauiKit)
 install(TARGETS MauiKit${MAUI_MAJOR_VERSION} EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
@@ -407,9 +407,6 @@ target_include_directories(MauiKit${MAUI_MAJOR_VERSION}
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Core>")
     
 target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};>")
-
-set(MauiKit${MAUI_MAJOR_VERSION}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
-CACHE INTERNAL "(MauiKit${MAUI_MAJOR_VERSION}: Include Directories" FORCE)
 
 install(FILES
     ${mauikit_HDRS}

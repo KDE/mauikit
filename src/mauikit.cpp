@@ -199,11 +199,11 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
     qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
-#if defined Q_PROCESSOR_ARM
-    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
-#else
-    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
-#endif
+    # if defined Q_PROCESSOR_ARM
+        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+    # else
+        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+    # endif
 #endif
 
     #ifdef Q_OS_ANDROID
