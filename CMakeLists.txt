@@ -145,7 +145,7 @@ add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 add_subdirectory(src)
 
 if(${QT_MAJOR_VERSION} STREQUAL 6)
-    # add_subdirectory(demo.6) //Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
+    # add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
 endif()
 
 ##CMAKE PARTS

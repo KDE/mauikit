@@ -31,7 +31,9 @@ import "private" as Private
  
  @brief Views switcher component.
  
- Presents a set of different items as views - into an horizontal swipe view, that does not jump around when resizing the application window and that takes care of different gestures and keyboard shortcuts for switching/navigating between the views.
+ This controls inherits from MauiKit Page, to checkout its inherited properties refer to docs.
+ 
+ The AppViews control presents a set of children items as views - into an horizontal swipe view, that does not jump around when resizing the application window and that takes care of different gestures and keyboard shortcuts for switching/navigating between the views.
  
  This component takes care of creating the button view-ports in its page header.
  

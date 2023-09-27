@@ -1,7 +1,8 @@
 import QtQuick
-import QtQuick.Controls 2.15 as QQC
 import QtQuick.Layouts
 import QtQuick.Window
+
+import QtQuick.Controls 2.15 as QQC
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -46,9 +47,7 @@ import org.mauikit.controls 1.3 as Maui
  When using it on a mobile device and a flick/swipe action is performed by the user, a signal will be emitted informing about the tab focused in the view port.
  @see newTabFocused
  
-@note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD.
-
- 
+@note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD. 
  */
 QQC.TabBar
 {
