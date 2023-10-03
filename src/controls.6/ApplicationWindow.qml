@@ -30,35 +30,23 @@ import org.mauikit.controls 1.3 as Maui
 
 import "private" as Private
 
-/*!
+/**
  @brief A window that provides some basic features needed for most applications.
  
  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
 
- The ApplicationWinow is the best component to start creating a new MauiKit application, it's usually used as the root QML component for the application.
- By default the window is completely empty (and transparent since it doesn't have any container) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible.
+ The ApplicationWindow is the best component to start creating a new MauiKit application. It's usually used as the root QML component for the application.
  
- Commonly it is paired with another container control, such as a Page, an AppViews or a SideBarView, to name a few MauiKit controls, or with other QQC2 elements, such as a StackView, SwipeView, etc..
+ By default the window is completely empty (and transparent since it doesn't have any container background) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible.
+ 
+ Commonly, it is paired with another child container control, such as a Page, an AppViews or a SideBarView; to name a few MauiKit controls, or with any other QQC2 element, such as a StackView, SwipeView, etc..
  @see Page
  @see AppViews
  @see SideBarView
+ @see TabView
  
- @image html ApplicationWindow/empty_dark.webp
- @note This is an ApplicationWindow filled with a Page and with the CSD controls enabled.
- 
- @section csd Client Side Decorations 
- @note Client-side decorations concept is refer to when the application window takes care of drawing the surface window borders, shadows, and the window control buttons - and to provides the resizing and moving functionality.
-  
- The application window can make use of client side decorations - CSD - by setting the attached property Maui.App.controls.enabledCSD to true,
- or globally by making use of MauiMan configuration options - that said, even if the system is configured to use CSD, you can override this in your application.
- 
- When using CSD - the ApplicationWindow will take care of drawing the window borders, the shadow and the clipping for the rounded corners.
- 
- The radius of the corners is configured via MauiMan. To know more about how to configure at a user level take a look at MauiMan documentation. This property can not be overriden by the application itself.
-  
- If used with a Page, you can easily enable the CSD buttons using the attached property Maui.Controls.showCSD, this will make the window-control buttons visible. A few other MauiKit controls support this property, such as the TabView.
- @see Controls
- 
+ @image html ApplicationWindow/empty_dark.png
+ @note This is an ApplicationWindow filled with a Page and with the CSD controls enabled.   
 @code
 ApplicationWindow
 {
@@ -72,7 +60,22 @@ ApplicationWindow
 }
 @endcode
  
- If a custom control is used instead, and CSD is still enabled, you can place the window controls manually by using the WindowControls component.
+ @section csd Client Side Decorations 
+ 
+ @note Client-side decorations is refereed when the application window takes care of drawing the window borders, shadows, and the window control buttons - and also provides the resizing and moving/dragging functionality.
+  
+ The application window can make use of client side decorations (CSD) by setting the attached property `Maui.App.controls.enabledCSD` to `true` in the root element once,
+ or globally by making use of MauiMan configuration options - that said, even if the system is configured to use CSD globally, you can override this property in your application, and the other way around too, force to use CSD when the global preference is to use server side decorations.
+ @see MauiMan
+ 
+ When using CSD, the ApplicationWindow will take care of drawing the window borders, the shadow and clipping its content for the rounded corners.
+ 
+ The radius of the corners is configured via MauiMan. To know more about how to configure from a user level take a look at MauiMan documentation. This property can not be overridden by the application itself.
+  
+ If used with a Page, you can easily enable the CSD buttons using the attached property `Maui.Controls.showCSD`, this will make the window-control-buttons visible. A few other MauiKit controls support this property, such as the TabView, ToolBar, AppViews, AltBrowser and TabView.
+ @see Controls
+ 
+ If a custom control is used instead of the ones formerly mentioned, and CSD is still enabled, you can place the window controls manually by using the WindowControls component.
  @see WindowControlsLinux
  
  @code
@@ -96,32 +99,37 @@ ApplicationWindow
  @section functionality Built-in Functionality
  
  @subsection aboutdialog About Dialog
- The Application window has some components already built-in, such as an about dialog, which can be invoked using the function about()
+ The Application window has some components already built-in, such as an about dialog, which can be invoked using the function `about()`.
  @see about
  
    @image html ApplicationWindow/aboutdialog.png
- @note About dialog witn information provided by the application.
+ @note About dialog with information provided by the application.
+ 
+ The information presented in the dialog is taken from the data set with KAboutData at the application entry method. In the code snippet below is a example of how to set the information.
  
   @subsection toastarea Toast Area - Notifications
-
- It also includes an overlay layer for displaying inline notifications, which can be triggered and sent by using the function notify()
+ The ApplicationWindow also includes an overlay layer for displaying inline notifications, which can be triggered and sent by using the function `notify()`.
  @see notify
+ 
+ @note If you want to use the system notifications instead, take a look at the Notify object class, to configure the needed steps.
+ @see Notify
  
    @image html ApplicationWindow/toastarea.png
  @note Inline notifications in the toast area.
  
  @section notes Notes
- By default the window geometry is saved and restored.
+ By default the window geometry is saved and restored automatically.
  
- In order for the style and other functionality to work correctly the MauiApp singleton instance must have been initialize before the ApplicationWindow is created. This is usually done on the main entry point of the application.
+ In order for the style and other functionality to work correctly the `MauiApp` singleton instance must have been initialize before the ApplicationWindow is created. This is usually done on the main entry point of the application.
  
- Is also important to notice that some of the application information needs to be provided beforehand as well, using the KAboutData methods, this way the built-in about dialog can pick up all the relevant information.
+ Is also important to notice that some of the application information needs to be provided beforehand as well, using the `KAboutData` methods, this way the built-in about dialog can pick up all the relevant information.
+ @see KAboutData
  
  @code 
- #include <MauiKit4/Core/mauiapp.h>
+#include <MauiKit4/Core/mauiapp.h>
 #include <KAboutData>
 
- int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
@@ -129,10 +137,10 @@ ApplicationWindow
     app.setWindowIcon(QIcon(":/assets/mauidemo.svg"));
 
     KAboutData about(QStringLiteral("mauidemo"),
-                     i18n("Maui Demo"),
-                     "3.0.0",
-                     i18n("MauiKit Qt6 Demo."),
-                     KAboutLicense::LGPL_V3); //here you can set information about the application , which will be fetched by the about dialog.
+                        i18n("Maui Demo"),
+                        "3.0.0",
+                        i18n("MauiKit Qt6 Demo."),
+                        KAboutLicense::LGPL_V3); //here you can set information about the application , which will be fetched by the about dialog.
 
     about.addAuthor(i18n("Camilo Higuita"), i18n("Developer"), QStringLiteral("milo.h@aol.com"));
     about.setHomepage("https://mauikit.org");
@@ -148,22 +156,24 @@ ApplicationWindow
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:/qt/qml/MauiDemo4/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
+                        &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    
+
     engine.load(url);
 
     return app.exec();
 }
 @endcode
  
- @section styling  Styling
- The ApplicationWindow as other MauiKit controls style can be tweaked, for example the color scheme: from dark and light variant, but also true-black, high-contrast, and an adaptive style which picks colors from an image source, such as a wallpaper.
- All these can be tweaked by each application individually or follow the global system preferences set by MauiMan.
+ @section styling Styling
+ The ApplicationWindow style - as another MauiKit controls - can be tweaked, for example its color scheme: from dark to light variants, but also true-black, high-contrast, and an adaptive style which picks colors from an image source, such as a wallpaper.
+ All these can be tweaked by each application individually or follow the global system preferences set from MauiMan.
  
- @note When mixing Kirigami components with MauiKit controls, it is best to set the style type to the System option, for it to correctly pick up the same color-scheme Kirigami uses, since Kirigami uses another methods for setting the color palette. The option can be set using Maui.Style.styleType: 3
+ The accent color can also be changed easily to distinguish the app own branding, by using the `Style.accentColor` property once.
+ 
+ @warning When mixing Kirigami components with MauiKit controls, it is best to set the style type to the System (which value is 3) option, for it to correctly pick up the same color-scheme Kirigami uses - since Kirigami uses another methods for setting the color palette. The option can be set using `Maui.Style.styleType: 3`
  @see Style
 
  @code
@@ -184,9 +194,11 @@ ApplicationWindow
   @image html ApplicationWindow/color_styles.png
  @note All the different color styles available.
  
- You can check out our quick tutorial on creating a simple Maui application here
+ You can check out our quick tutorial on creating a simple Maui application here:
 
  <a href="QuickApp.dox">External file</a>
+ 
+ @section example Example
 
  The most basic use case is to use a Page inside of the ApplicationWindow as shown below.
 @code
@@ -246,7 +258,6 @@ Window
     /**
      * @brief Items to be placed inside the ApplicationWindow.
      * This is used as the default container, and it helps to correctly mask the contents when using CSD with rounded border corners.
-     * @note This is a `default` property.
      * @property list<QtObject> content
      **/
     default property alias content : _content.data
@@ -257,8 +268,8 @@ Window
 
     /**
      * @brief  Determines when the application window size is wide enough.
-     * This property can be changed to any arbitrary condition. This will affect how some controls are positioned and displayed - as for a true wide value, it will assume there is more space to place contents, or for a false value it will work in the opposite way.
-     * Keep in mind this property is widely used in other MauiKit components to determined if items should be hidden,  collapsed, or exapanded, etc.
+     * This property can be changed to any arbitrary condition. This will affect how some controls are positioned and displayed - as for a true wide value, it will assume there is more space to place contents, or for a `false` value it will work in the opposite way.
+     * Keep in mind this property is widely used in other MauiKit components to determined if items should be hidden,  collapsed, or expanded, etc.
      **/
     property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
 
@@ -374,9 +385,9 @@ Window
                 onActiveChanged: (active) => 
                 {
                     if (active)
-                                 {
-                                     root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
-                                 }
+                    {
+                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
+                    }
                 }
             }
         }
@@ -466,12 +477,11 @@ Window
 
     /**
        * @brief Send an inline notification.
-       * @param {String} icon = icon name to be used
-       * @param {String} title = the title
-       * @param {String} body = message of the notification
-       * @param {Function} callback = function to be triggered if the notification dialog is accepted
-       * @param {int} timeout = time in milliseconds before the notification dialog is dismissed
-       * @param {String} buttonText = text in the accepted button
+       * @param icon Icon name to be used.
+       * @param title The notification title.
+       * @param body The message body of the notification
+       * @param callback A function callback to be triggered, this is represented as a button.
+       * @param buttonText The text associated to the previous callback function, to be used in the button.
        **/
     function notify(icon, title, body, callback, buttonText)
     {
@@ -508,7 +518,7 @@ Window
 
     /**
      * @brief Invokes the about dialog with information of the application.
-     * This information is taken from KAboutInfo and MauiApp singleton instance.
+     * This information is taken from `KAboutData` and `MauiApp` singleton instance.
      */
     function about()
     {

@@ -149,15 +149,10 @@ Maui.ApplicationWindow
                     onClicked: root.about()
                 }
 
-                Maui.SectionGroup
-                {
-                    title: i18n ("Core")
-                    description: i18n("MauiKit Core components")
-
-                    Maui.SectionItem
+             
+                    Maui.SectionGroup
                     {
-                        label1.text: i18n("Views")
-                        columns: 1
+                        title: i18n("Views")
 
                         Maui.ListDelegate
                         {
@@ -202,11 +197,10 @@ Maui.ApplicationWindow
                         }
                     }
 
-                    Maui.SectionItem
+                    Maui.SectionGroup
                     {
-                        label1.text: i18n("Browsers")
-                        columns: 1
-
+                       title: i18n("Browsers")
+                       
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true
@@ -229,12 +223,11 @@ Maui.ApplicationWindow
                         }
                     }
 
-                    Maui.SectionItem
+                    Maui.SectionGroup
                     {
-                        label1.text: i18n ("Common")
-                        label2.text: i18n("Baseline controls")
-                        columns: 1
-
+                        title: i18n ("Common")
+                        description: i18n("Baseline controls")
+                      
                         Maui.ListDelegate
                         {
                             Layout.fillWidth: true
@@ -311,7 +304,7 @@ Maui.ApplicationWindow
                             onClicked: root.pushPage(_othersPage)
                         }
                     }
-                }
+                
             }
         }
 

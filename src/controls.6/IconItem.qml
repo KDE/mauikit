@@ -31,9 +31,11 @@ Item
 {
     id: control
 
-    implicitHeight: Math.max(iconSizeHint, imageSizeHint)
-    implicitWidth: Math.max(iconSizeHint, imageSizeHint)
-
+    visible: icon.valid || img.status === Image.Ready
+    
+    implicitHeight: visible ? Math.max(iconSizeHint, imageSizeHint) : 0
+    implicitWidth: implicitHeight
+    
     /**
      * iconSizeHint : int
      */
@@ -83,37 +85,28 @@ Item
     property alias image : img
     property alias icon: icon
     
+    property color color : isMask ? (control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor) : "transparent"
+    
     property int alignment: Qt.AlignHCenter
     
     Maui.Icon
     {
         id: icon
-        visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
         smooth: control.smooth
         anchors.centerIn: parent
-        //anchors.verticalCenter: parent.verticalCenter
-
-        //        x: switch(control.alignment)
-        //        {
-        //            case Qt.AlignLeft: return 0
-        //            case Qt.AlignHCenter: return control.width/2 - width/2
-        //            case Qt.AlignRight: return control.width - width
-        //        }
-
-        source: control.iconSource || "folder-images"
-        height: Math.floor(Math.min(parent.height, control.iconSizeHint))
+        source: control.iconSource
+        height: valid ? Math.floor(Math.min(parent.height, control.iconSizeHint)) : 0
         width: height
-        color: isMask ? (control.highlighted ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor) : "transparent"
+        color: control.color
         isMask: (height <= Maui.Style.iconSizes.medium)
-        //         selected: control.highlighted
     }
 
     Image
     {
-        id: img
-
+        id: img        
+       
         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
-        height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
+        height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height) 
 
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)

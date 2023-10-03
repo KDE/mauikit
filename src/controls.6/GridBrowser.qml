@@ -20,17 +20,93 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
- * GridBrowser
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
+ @brief A browser view with a grid layout.
+ 
+   <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a>
+
+   This component might seem similar to QQC2 GridView - and it does uses it underneath - but this one includes a few more predefined elements, such as auto adaptable uniform cell width, a placeholder element, pinch to zoom gestures, and lasso selection support. 
+ 
+  @section structure Structure
+ The browser has a dedicated placeholder element handled by MauiKit Holder, where a message can be set when the view is on s determined state the user should be warned about, such as if the view is empty, or not search results were found.
+ @see Holder
+ 
+ The lasso selection feature works with a mouse or a trackpad, and allows to select multiple items in the browser-view that are under the lasso rectangle area. A signal is emitted when the selection has been triggered - this is when the lasso rectangle is released - sending as an argument an array of numbers representing the indexes of the selected items.
+ @see itemsSelected 
+ 
+ @image html Browsers/gridbrowser_resize.gif
+ @note The GridBrowser with adaptable content enabled. Notice the yellow rectangles vs the grey ones. The yellow rectangles will preserve the `itemSize` dimensions, while the cell area, represented by the gray rectangle, will vary. The example below demonstrates this behavior.
+ 
+ @section notes Notes
+ Use the `itemSize` property to set an uniform size for the cell item. At first the `cellWidth` will have the same value as the `itemSize`.
+ 
+ If the `adaptContent` is enabled, the cell width will vary, while the cell height will maintain the same value as the `itemSize`. 
+ @see adaptContent
+ 
+ When the view is resized and the `adaptContent` is enabled, the cell width - `cellWidth` - values will be updated to a value that can fill the width of the view-port uniformly. The modified values of the `cellWidth` will never be less than the value defined in the `itemSize` property.
+ @see itemSize
+ 
+ @warning Keep in mind that the `cellWidth` values will be changed when enabling the `adaptContent` property. So any binding to this property will break.
+ 
+
+ @code
+Maui.Page
+{
+    id: _page
+    anchors.fill: parent
+    Maui.Controls.showCSD: true
+    headBar.forceCenterMiddleContent: true
+
+    headBar.leftContent: Switch
+    {
+        text: "Adapt Content"
+        checked: _gridBrowser.adaptContent
+        onToggled: _gridBrowser.adaptContent = !_gridBrowser.adaptContent
+    }
+
+    Maui.GridBrowser
+    {
+        id: _gridBrowser
+        anchors.fill: parent
+        model: 30
+
+        itemSize: 200
+        itemHeight: 300
+
+        adaptContent: true
+
+        delegate: Rectangle
+        {
+            width: GridView.view.cellWidth
+            height: GridView.view.cellHeight
+            color: "gray"
+            border.color: "white"
+
+            Rectangle
+            {
+                width: _gridBrowser.itemSize
+                height: _gridBrowser.itemSize
+
+                color: "yellow"
+
+                anchors.centerIn: parent
+            }
+        }
+    }
+}
+ @endcode
+ 
+ 
+ @note You can use the GridView attached properties to refer to the control properties from the delegates. For example, you could use `GridView.view.itemSize` or GridView.view.cellWidth`.
+ 
+  
+ @image html Browsers/gridbrowser_alt.png
+ @note The GridBrowser with adaptable content disabled. Notice the yellow rectangles vs the grey ones. The yellow rectangles will preserve the `itemSize` dimensions, and the cell width - as the gray area- will also keep the same dimensions as `itemSize`.
+ 
+ 
+   <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/GridBrowser.qml">You can find a more complete example at this link.</a>
  */
 Item
 {
@@ -42,105 +118,160 @@ Item
     implicitWidth: contentWidth + leftPadding + rightPadding
     
     /**
-     * itemSize : int
+     * @brief The uniform size of the element in the cell. This value is used for the width and height. This value will stay the same even when the width of the cell changes.
+     * 
+     * The dimensions of the item can be changed manually for its height and its width.
+     * @see itemHeight
+     * @see itemWidth
+     * 
+     * @note This is meant to set an initial uniform size, so notice this value will be use for the `cellWidth`, `cellHeight`, `itemHeight` and `itemWidth`.
+     * 
+     * @property int GridBrowser::itemSize
      */
     property alias itemSize: controlView.itemSize
     
     /**
-     * itemWidth : int
+     * @brief The width of the element in the cell. This value will vary even if `adaptContent` is enabled.
+     * This value is used as the `cellWidth` value by default.
+     * @property int GridBrowser::itemWidth
      */
     property alias itemWidth : controlView.itemWidth
     
     /**
-     * itemHeight : int
+     * @brief The height of the element in the cell. This value will vary even if `adaptContent` is enabled.
+     * This value is used as the `cellHeight` value by default. 
+     * @property int GridBrowser::itemHeight
      */
     property alias itemHeight : controlView.itemHeight
     
     /**
-     * cellWidth : int
+     * @brief The width size of the cell area.
+     * 
+     * @warning This value will be modified when the viewport area is resized and the `adaptContent` is enabled. So any binding will be lost. To have a fixed cell width value, set `adaptContent: false`.
+     * @see adaptContent
+     * @property int GridBrowser::cellWidth
      */
     property alias cellWidth: controlView.cellWidth
     
     /**
-     * cellHeight : int
+     * @brief The height size of the cell area.
+     * This value is set to the `itemHeight` value, or `itemSize` if the formerly one has not been set.
+     * This value will not be modified by the adaptable behaviour.
+     * Notice you can make the cell bigger than the itemHeight, in order to create a sense of vertical padding for each cell element.
+     * @property int GridBrowser::cellHeight
      */
     property alias cellHeight: controlView.cellHeight
     
     /**
-     * model : var
+     * @brief The model to be use to populate the browsing view.
+     * @property var GridBrowser::model
      */
     property alias model : controlView.model
     
     /**
-     * delegate : Component
+     * @brief The component to be used as the delegate.
+     * @note Consider using the MauiKit delegate controls, such as GridBrowserDelegate, GalleryRollItem or CollageItem.
+     * @property Component GridBrowser::delegate
      */
     property alias delegate : controlView.delegate
     
     /**
-     * contentY : int
+     * @brief The position of the view contents in the Y axis.
+     * @property double GridBrowser::contentY
      */
     property alias contentY: controlView.contentY
     
     /**
-     * currentIndex : int
+     * @brief The index number of the current element selected.
+     * @property int GridBrowser::currentIndex
      */
     property alias currentIndex : controlView.currentIndex
     
     /**
-     * count : int
+     * @brief The total amount of elements listed in the view.
+     * @property int GridBrowser::count
      */
     property alias count : controlView.count
     
     /**
-     * cacheBuffer : int
+     * @brief The cache buffer. 
+     * Refer to the QQC2 GridView documentation.
+     * @property int GridBrowser::cacheBuffer
      */
     property alias cacheBuffer : controlView.cacheBuffer
     
     /**
-     * flickable : Flickable
+     * @brief The element controlling the layout fo element, AKA the flickable element.
+     * This is an alias to the QQC2 GridView control.
+     * @property GridView GridBrowser::flickable
      */
     property alias flickable : controlView
     
     /**
-     * contentHeight : int
+     * @brief The total height of all the elements listed in the view.
+     * @property int GridBrowser::contentHeight
      */
     property alias contentHeight : controlView.contentHeight
     
     /**
-     * contentWidth : int
+     * @brief The total width of all the elements.
+     * @property int GridBrowser::contentWidth 
      */
     property alias contentWidth : controlView.contentWidth
     
+    /**
+     * @brief An alias to the QQC2 ScrollView element attached to the view.
+     * @property ScrollView GridBrowser::scrollView
+     */
     property alias scrollView: _scrollView
     
     /**
-     * topPadding : int
+     * @brief Top padding of the view. This padding is added to the scroll view container.
+     * @see scrollView
+     * @property int GridBrowser::topPadding
      */
     property alias topPadding: _scrollView.topPadding
     
     /**
-     * bottomPadding : int
+     * @brief Bottom padding of the view. This padding is added to the scroll view container.
+     * @see scrollView
+     * @property int GridBrowser::bottomPadding
      */
     property alias bottomPadding: _scrollView.bottomPadding
     
     /**
-     * rightPadding : int
+     * @brief Right padding of the view. This padding is added to the scroll view container.
+     * @see scrollView
+     * @property int GridBrowser::rightPadding
      */
     property alias rightPadding: _scrollView.rightPadding
     
     /**
-     * leftPadding : int
+     * @brief Left padding of the view. This padding is added to the scroll view container.
+     * @see scrollView
+     * @property int GridBrowser::leftPadding
      */
     property alias leftPadding: _scrollView.leftPadding
     
     /**
-     * padding : int
+     * @brief Padding of the view. This padding is added to the scroll view container.
+     * @see scrollView
+     * @property int GridBrowser::padding
      */
     property alias padding: _scrollView.padding
     
+    /**
+     * @brief The policy of the vertical scroll bar from the scroll view.
+     * @see scrollView
+     * The default value of this is picked from the Style properties `Style.scrollBarPolicy`, unless the orientation of the view is set to horizontal, in which case this is set to 'ScrollBar.AlwaysOff`.
+     * Possible values are:
+     * - ScrollBar.AlwaysOff
+     * - ScrollBar.AlwaysOn
+     * - ScrollBar.AsNeeded
+     */
     property int verticalScrollBarPolicy:
     {
-        if(control.orientation === ListView.Horizontal)
+        if(control.orientation === GridView.Horizontal)
             return ScrollBar.AlwaysOff
 
         switch(Maui.Style.scrollBarPolicy)
@@ -153,11 +284,17 @@ Item
     }
     
     /**
-     * horizontalScrollBarPolicy : ScrollBar.policy
+     * @brief The policy of the horizontal scroll bar from the scroll view.
+     * @see scrollView
+     * The default value of this is picked from the Style properties `Style.scrollBarPolicy`, unless the orientation of the view is set to vertical, in which case this is set to 'ScrollBar.AlwaysOff`.
+     * Possible values are:
+     * - ScrollBar.AlwaysOff
+     * - ScrollBar.AlwaysOn
+     * - ScrollBar.AsNeeded
      */
     property int horizontalScrollBarPolicy:
     {
-        if(control.orientation === ListView.Vertical)
+        if(control.orientation === GridView.Vertical)
             return ScrollBar.AlwaysOff
 
         switch(Maui.Style.scrollBarPolicy)
@@ -170,12 +307,17 @@ Item
     }
     
     /**
-     * holder : Holder
+     * @brief An alias to access the placeholder properties. This is handled by a MauiKit Holder.
+     * @see Holder::title
+     * @see Holder::body
+     * 
+     * @property Holder GridBrowser::holder
      */
     property alias holder : _holder
     
     /**
-     * adaptContent : bool
+     * @brief Whether the width value of the cells should be recalculated when the view-port is resized. This will result in a uniform set of cells. The minimum width of the cells is constrained by the `itemSize` property.
+     * By default this is set to `true`.
      */
     property bool adaptContent: true
     onAdaptContentChanged:
@@ -187,53 +329,89 @@ Item
     }
     
     /**
-     * enableLassoSelection : bool
+     * @brief Whether to enable the lasso selection, to select multiple items.
+     * By default this is set to `false`.
+     * @see itemsSelected
      */
     property bool enableLassoSelection : false
     
     /**
-     * selectionMode : bool
+     * @brief 
      */
     property bool selectionMode: false
     
     /**
-     * lassoRec : Rectangle
+     * @brief An alias to the lasso rectangle.
+     * @property Rectangle GridBrowser::lassoRec
      */
-    property alias lassoRec : selectLayer
+    readonly property alias lassoRec : selectLayer
     
     /**
-     * pinchEnabled : bool
+     * @brief Whether the pinch-to-zoom gesture is enabled.
+     * By default this is set to `false`.
      */
     property bool pinchEnabled : false
     
+    /**
+     * @brief The current item selected.
+     * @property Item GridBrowser::currentItem
+     */
     property alias currentItem : controlView.currentItem
     
+    /**
+     * @brief The header section of the GridView element.
+     * @see flickable
+     * @property Component GridBrowser::header
+     */
     property alias header : controlView.header
+    
+    /**
+     * @brief The footer section of the GridView element
+     * @see flickable
+     * @property Component GridBrowser::footer
+     */
     property alias footer : controlView.footer
     
-    property alias availableWidth: controlView.width
+    /**
+     * @brief The actual width of the view-port. This is the actual width without any padding.
+     * @property int GridBrowser::availableWidth
+     */
+    readonly property alias availableWidth: controlView.width
+        
+      /**
+     * @brief The actual height of the view-port. This is the actual height without any padding.
+     * @property int GridBrowser::availableHeight
+     */
+    readonly property alias availableHeight: controlView.height
     
-    property alias availableHeight: controlView.height
-    
+    /**
+     * @brief Whether the view is moving horizontally or vertically. This reacts to changes in the content Y and/or X axis.
+     * @see contentY
+     * @see contentX
+     * @property bool GridBrowser::moving
+     */
     property alias moving: updateContentDelay.running
     
     /**
-     * itemsSelected :
+     * @brief Emitted when the lasso selection has been released.
+     * @param indexes A array of index numbers is sent as the argument, representing the index value of the items under the lasso rectangle area.
      */
     signal itemsSelected(var indexes)
     
     /**
-     * areaClicked :
+     * @brief Emitted when an empty space of the background area has been clicked.
+     * @param mouse Object with information about the click event.
      */
     signal areaClicked(var mouse)
     
     /**
-     * areaRightClicked :
+     * @brief Emitted when an empty space of the area area background has been right clicked.
      */
     signal areaRightClicked()
     
     /**
-     * keyPress :
+     * @brief Emitted when a physical key from the device has been pressed.
+     * @param event The object with information about the event.
      */
     signal keyPress(var event)
     
@@ -460,6 +638,7 @@ Item
                 displayMarginBeginning: Maui.Style.effectsEnabled ? Maui.Style.toolBarHeight * 4 : 0
                 displayMarginEnd: displayMarginBeginning
                 cacheBuffer: control.itemHeight * 4
+                
                 cellWidth: control.itemWidth
                 cellHeight: control.itemHeight
 
@@ -552,7 +731,9 @@ Item
     }
     
     /**
-     *
+     * @brief Request to resize the view elements. This will result in the `itemSize` property being modified.
+     * @param factor A factor for resizing.
+     * The minimum size is `Style.iconSizes.small`.
      */
     function resizeContent(factor)
     {
@@ -570,7 +751,7 @@ Item
     }
     
     /**
-     *
+     * @brief Forces to adapt the width of the grid cells. This will result on the `cellWidth` property being modified.
      */
     function adaptGrid()
     {
@@ -584,6 +765,9 @@ Item
         control.cellWidth = size
     }
 
+    /**
+     * @brief Resets the value of the `cellWidth` back to the initial size set with `itemSize`.
+     */
     function resetCellWidth()
     {
         control.cellWidth = control.itemSize

@@ -28,26 +28,33 @@ A list of additional QML learning resources is available in the <a href="https:/
 
 If you have any questions about MauiKit, feel free to drop by the <a href="https://go.kde.org/matrix/#/#kirigami:kde.org">Maui Project group on Telegram</a>.
 
-@subsection components Main Views Components
+@section component Components
+The MauiKit Controls could be divided into a few sections, there are the views containers, the browsers, the delegates, and the common elements, such as buttons, cards, etc.
+
+@subsection views Main Views Components
+These are usually used as the main application window container.
+
 - \link ApplicationWindow  ApplicationWindow \endlink
 - \link AppViews AppViews \endlink
-- \link SidebarView SidebarView \endlink
+- \link SideBarView SideBarView \endlink
 - \link TabView TabView \endlink
-- \link SplitView SplitView \endlink
 - \link Page Page  \endlink
 
-@subsection controls Common Kirigami Controls
+Another views are:
+- \link SplitView  SplitView \endlink
 
-- \link org::kde::kirigami::Card Card \endlink
-- \link org::kde::kirigami::templates::OverlaySheet  OverlaySheet \endlink
-- \link org::kde::kirigami::BasicListItem BasicListItem  \endlink
-- \link org::kde::kirigami::SwipeListItem  SwipeListItem \endlink
-- \link org::kde::kirigami::Heading Heading  \endlink
-- \link org::kde::kirigami::PlaceholderMessage PlaceholderMessage  \endlink
-- \link org::kde::kirigami::SearchField SearchField \endlink
-- \link org::kde::kirigami::Dialog Dialog \endlink
-- \link org::kde::kirigami::NavigationTabBar NavigationTabBar \endlink
-- \link Icon Icon  \endlink
+@subsection browsers Browsing Views
+
+- \link GridBrowser  GridBrowser \endlink
+- \link ListBrowser ListBrowser \endlink
+- \link AltBrowser AltBrowser \endlink
+
+@subsection common Common Controls
+
+- \link GridBrowser  GridBrowser \endlink
+- \link ListBrowser ListBrowser \endlink
+- \link AltBrowser AltBrowser \endlink
+
 
 @subsection example Minimal Example
 
@@ -97,23 +104,22 @@ Maui.ApplicationWindow
 
 @image html ApplicationWindow/minimal_dark.png
 
-@subsection deployment Deployment
+@section deployment Deployment
+
+@subsection building Building
+
+@subsection installation Installation
+
+@subsection usage Usage
 CMake is used for both building Kirigami and projects using it, allowing for several configurations depending on how the deployment needs to be done.
 
-Kirigami can be built in two ways: both as a module or statically linked to the application, leading to four combinations:
+The simplest and recommended way to use MauiKit is to just use the packages provided by your Linux distribution, or build it as a module and deploy it together with the main application.
 
-- Kirigami built as a module with CMake
-- Kirigami statically built with CMake (needed to link statically from applications built with CMake)
-
-The simplest and recommended way to use Kirigami is to just use the packages provided by your Linux distribution, or build it as a module and deploy it together with the main application.
-
-For example, when building an application on Android with CMake, if Kirigami for Android is built and installed in the same temporary directory before the application, the create-apk step of the application will include the Kirigami files as well in the APK.
-
-Statically linked Kirigami will be used only on Android, while on desktop systems it will use the version provided by the distribution. Which platforms use the static version and which use the dynamic one can be freely adjusted.
+For example, when building an application on Android with CMake, if MauiKit for Android is built and installed in the same temporary directory before the application, the create-apk step of the application will include the Kirigami files as well in the APK.
 
 The application needs to have a folder called "3rdparty" containing clones of two KDE repositories: kirigami and breeze-icons (available at git://anongit.kde.org/kirigami.git and git://anongit.kde.org/breeze-icons.git).
 
-The main.cpp file should then have something like:
+The `main.cpp` file should then have something like:
 
 @code
 #include <QGuiApplication>
@@ -134,6 +140,18 @@ int main(int argc, char *argv[])
     ...
 }
 @endcode
+
+@subsection examples Examples
+
+@subsection android Android
+
+@section notes Notes
+
+@subsection contributing Contributing
+
+If you find any syntax errors, missing documentation, or not working code snippets or code examples, please consider reporting the issue at:
+
+If you want to contribute with the documentation efforts, you can contact the Maui Project at Telegram.
 
 @authors
 Camilo Higuita \<milo.h@aol.com.com\><br>

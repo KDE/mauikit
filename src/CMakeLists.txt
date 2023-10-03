@@ -20,9 +20,8 @@ include_directories(
 
 # add_library(MauiKit${MAUI_MAJOR_VERSION} SHARED)
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
-    URI "org.mauikit.controls"
-    CLASS_NAME MauiKit
-    VERSION 1.3)
+    URI "org.mauikit.controls" 
+    CLASS_NAME MauiKit)
 
 set(mauikit_SRCS
     mauikit.cpp
@@ -196,7 +195,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/Badge.qml
 
     controls.${QT_MAJOR_VERSION}/CollageItem.qml
-    controls.${QT_MAJOR_VERSION}/ColorTransition.qml
+
     controls.${QT_MAJOR_VERSION}/ColorsRow.qml
     controls.${QT_MAJOR_VERSION}/ContextualMenu.qml
     controls.${QT_MAJOR_VERSION}/Chip.qml
@@ -206,10 +205,9 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/Doodle.qml
     controls.${QT_MAJOR_VERSION}/DoodleCanvas.qml
 
-    controls.${QT_MAJOR_VERSION}/EdgeShadow.qml
-
     controls.${QT_MAJOR_VERSION}/FileListingDialog.qml
     controls.${QT_MAJOR_VERSION}/FlexListItem.qml
+    controls.${QT_MAJOR_VERSION}/FlexSectionItem.qml
     controls.${QT_MAJOR_VERSION}/FloatingButton.qml
     controls.${QT_MAJOR_VERSION}/FontsComboBox.qml
     controls.${QT_MAJOR_VERSION}/FontPicker.qml
@@ -272,16 +270,17 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/TextFieldPopup.qml
     controls.${QT_MAJOR_VERSION}/ToolActions.qml
     controls.${QT_MAJOR_VERSION}/ToolBar.qml
-    controls.${QT_MAJOR_VERSION}/ToolButtonMenu.qml
-
-    controls.${QT_MAJOR_VERSION}/WindowControlsLinux.qml)
+    controls.${QT_MAJOR_VERSION}/ToolButtonMenu.qml)
 
 ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
 
     controls.${QT_MAJOR_VERSION}/private/AboutDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ActionGroup.qml
 
-    controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml
+    controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml    
+    controls.${QT_MAJOR_VERSION}/private/ColorTransition.qml
+    
+    controls.${QT_MAJOR_VERSION}/private/EdgeShadow.qml
 
     controls.${QT_MAJOR_VERSION}/private/ToastArea.qml
     controls.${QT_MAJOR_VERSION}/private/ToolBarSection.qml
@@ -289,7 +288,9 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialogLinux.qml
-    controls.${QT_MAJOR_VERSION}/private/SideBar.qml)
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml   
+
+    controls.${QT_MAJOR_VERSION}/private/WindowControlsLinux.qml)
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}
 

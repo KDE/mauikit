@@ -21,25 +21,93 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
+/**
+ @brief The Mauikit FontPicker component wrapped inside a popup dialog for convenience.
+ @see FontPicker
+ 
+  This controls inherits from MauiKit SettingsDialog, to checkout its inherited properties refer to docs.
+  
+  The control has two `actions` predefined: accept and reject/cancel. 
+  The cancel action discards changes and closes the dialog, while the accept one emits the `accepted(var font)` signal with the modified font as the argument.
+  @see accepted 
+  
+   @image html Misc/fontpickerdialog.png
+     
+@code     
+Maui.Page
+{
+    anchors.fill: parent
+    Maui.Controls.showCSD: true
+
+    Button
+    {
+        anchors.centerIn: parent
+        text: "Font Picker"
+        onClicked: _fontPickerDialog.open()
+    }
+
+    Maui.FontPickerDialog
+    {
+        id: _fontPickerDialog
+    }
+}     
+@endcode
+
+  <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/FontPickerDialog.qml">You can find a more complete example at this link.</a>
+  
+  */ 
 Maui.SettingsDialog
 {
     id: control
-
+    
+    /**
+     * @brief The current font object selected.
+     * @property font FontPickerDialog::mfont
+     */
     property alias mfont : _picker.mfont   
-    property alias model : _picker.model
-
+    
+    /**
+     * @brief An alias to expose the font picker model and its properties.
+     * @see FontModel
+     * @property FontModel FontPickerDialog::model
+     */
+    readonly property alias model : _picker.model
+    
     title: i18n("Fonts")
-        
+    
+    /**
+     * @brief Emitted when the accepted action/button is triggered.
+     * @param font The modified font object.
+     */
+    signal accepted(var font)
+    
     FontPicker
     {
         id: _picker
         Layout.fillWidth: true
     }
     
-    onRejected:
-    {
-        control.close()
-    }
+    actions: [        
+        Action
+        {
+            text: i18n("Cancel")
+            
+            onTriggered:
+            {
+                control.close()
+            }
+        },
+        
+        Action
+        {
+            text: i18n("Accept")
+            onTriggered: 
+            {
+                control.accepted(_picker.mfont)
+            }            
+        }        
+    ]   
+    
 }

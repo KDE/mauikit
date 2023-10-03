@@ -1,15 +1,79 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Templates as T
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
-/*!
- \ since org.mauikit.controls.*labs 1.0
- \inqmlmodule org.mauikit.controls.labs
- */
-T.ItemDelegate
+/**
+    @since org.mauikit.controls 1.0
+
+    @brief This an information element, similar to a button, but more compact.
+
+    Chips allow users to enter information, make selections, filter content, or trigger actions. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.
+
+    This component is similar to the MauiKit Badge control, but this one is triggable.
+    @see Badge
+
+    @image html Chip/chips.png
+    @note A placeholder message using a colorful icon image.
+
+    @code
+    Flow
+    {
+        width: 400
+        anchors.centerIn: parent
+        spacing: Maui.Style.space.big
+
+        Maui.Chip
+        {
+            text: "Chip1"
+            color: "#757575"
+        }
+
+        Maui.Chip
+        {
+            text: "Chip2"
+            icon.name: "actor"
+            color: "#03A9F4"
+        }
+
+        Maui.Chip
+        {
+            text: "Chip3"
+            icon.name: "anchor"
+            color: "#4CAF50"
+        }
+
+        Maui.Chip
+        {
+            text: "Chip4"
+            color: "#E1BEE7"
+        }
+
+        Maui.Chip
+        {
+            text: "Chip5"
+            color: "#FFC107"
+        }
+
+        Maui.Chip
+        {
+            text: "Chip6"
+            color: "#607D8B"
+        }
+
+        Maui.Chip
+        {
+            text: "Chip7"
+            color: "#FF5722"
+            icon.source: "/home/camiloh/Downloads/5911329.jpeg"
+        }
+    }
+    @endcode
+
+    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/Chip.qml">You can find a more complete example at this link.</a>
+*/
+ItemDelegate
 {
     id: control
     
@@ -24,22 +88,50 @@ T.ItemDelegate
     
     icon.height: Maui.Style.iconSize
     icon.width: Maui.Style.iconSize
-
+    
+    /**
+     * @brief The Label element used for the title text.
+     * This is exposed to tweak the text font properties.
+     * @property Label Chip::label
+     */
     property alias label : _label1
+    
+    /**
+     * @brief The name of the icon to be used.
+     * This is an alias to the `icon.name` group property.
+     * @property string Chip::iconSource
+     */
     property alias iconSource : control.icon.name
     
+     /**
+     * @brief The name of the image source to be used.
+     * This is an alias to the `icon.source` group property.
+     * @property url Chip::imageSource
+     */
+    property alias imageSource : control.icon.source
+    
+    /**
+     * @brief Whether a close button should be displayed, to dismiss the chip.
+     * By default it is set to `false`.
+     */
     property bool showCloseButton : false
     
+    /**
+     * @brief The background color for the chip. The label text color will be adpated from this color considering the brightness, to use either a light or dark text color.
+     */
     property color color : Maui.Theme.backgroundColor
     
     ToolTip.visible: hovered &&  ToolTip.text.length > 0
     
+    /**
+     * @brief Emitted once the close button is clicked. To enable the close button see the `showCloseButton: true` property.
+     * @see showCloseButton
+     */
     signal close()
     
     background: Rectangle
     {
         id: _background
-        //         opacity: 0.5
         
         color:  control.checked ? Maui.Theme.highlightColor : (control.pressed ? Qt.darker(control.color) : (control.hovered ? Qt.lighter(control.color): control.color))
         radius:  Maui.Style.radiusV   
@@ -49,17 +141,20 @@ T.ItemDelegate
     {
         id: _layout
         spacing: control.spacing        
-
-            Maui.Icon
-            {
-                id: _icon
-                visible: valid
-                implicitWidth: control.icon.width
-                implicitHeight: control.icon.height
-                color: _label1.color
-                source: control.icon.name
-            }            
-
+        
+        Maui.IconItem
+        {            
+            iconSizeHint: Math.max(control.icon.width, control.icon.height)
+            imageSizeHint:  Math.max(control.icon.width, control.icon.height)
+            
+            fillMode: Image.PreserveAspectCrop
+            
+            color: _label1.color
+            iconSource: control.icon.name
+            imageSource: control.icon.source
+            
+            maskRadius: height
+        }  
         
         Label
         {

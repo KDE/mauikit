@@ -42,6 +42,9 @@ import "private" as Private
  - AppView.iconName
  - AppView.badgeText
  
+ The badge item is handled by a MauiKit Badge control.
+ @see Badge
+ 
  @see AppView
  
   @image html AppViews/viewports.png
@@ -103,6 +106,9 @@ AppViews
  @see Page
  
  The first four [4] views can be navigated by using keyboard shortcuts: [Ctrl + 1] [Ctrl + 2] [Ctrl + 3] [Ctrl + 4]
+ 
+  <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/AppViews.qml">You can find a more complete example at this link.</a>
+
  */
 Maui.Page
 {
@@ -289,7 +295,10 @@ Maui.Page
         }        
     }
     
-    
+    /**
+     * @brief The private object that handles the history workflow.
+     * @warning This is a private property and can not be accesed.
+     */
     property QtObject history : QtObject
     {
         property var historyIndexes : []

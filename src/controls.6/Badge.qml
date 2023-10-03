@@ -22,10 +22,32 @@ import QtQuick.Controls
 
 import org.mauikit.controls 1.3 as Maui
 
-/*!
-\since org.mauikit.controls 1.0
-\inqmlmodule org.mauikit.controls
-\brief Badge to show a counter or an icon as a notification hint.
+/**
+    @since org.mauikit.controls 1.0
+    @brief A Badge item to display text - as a counter - or an icon as a notification hint.
+
+    <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This controls inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a>
+
+    @image html Badge/badges.png
+    @note A set of badges with different sizes and colors, and using text or icons.
+
+    @code
+    Button
+    {
+        text: "Example1"
+
+        Maui.Badge
+        {
+            icon.name: "actor"
+            color: Maui.Theme.neutralBackgroundColor
+            anchors.horizontalCenter: parent.right
+            anchors.verticalCenter: parent.top
+        }
+    }
+    @endcode
+
+    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/Badge.qml">You can find a more complete example at this link.</a>
+
 */
 Control
 {
@@ -34,11 +56,30 @@ Control
     Maui.Theme.inherit: false
     Maui.Theme.colorSet: Maui.Theme.Complementary
 
-    /*!
-      Size of the badge. Can be used as width and height, unless the implicitWidth is wider.
+    /**
+     * @brief Size of the badge. Used as width and height, unless the `implicitWidth` is wider.
+     * It is also used as the icon size doimentions.
+     * By default is set to `Style.iconSizes.small`
     */
     property int size: Maui.Style.iconSizes.small
 
+    /**
+     * @brief The icon group property. Exposed to define the icon name, color, and width and height.
+     * To know more about it you can check the QQC2 icon property.
+     */
+    property alias icon : _dummyButton.icon
+    
+    /**
+     * @brief The text to be used in the label.
+     * Consider using short text, as this is meant to work as a notification hint.
+     */
+    property alias text : _dummyButton.text
+    
+    /**
+     * @brief The color for the background of the badge
+     */
+    property color color:  Maui.Theme.backgroundColor
+    
     font.weight: Font.Bold
     font.bold: true
     font.pointSize: Maui.Style.fontSizes.small
@@ -47,9 +88,6 @@ Control
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
     padding: Maui.Style.space.tiny
-
-    property alias icon : _dummyButton.icon
-    property alias text : _dummyButton.text
 
     AbstractButton
     {
@@ -63,8 +101,8 @@ Control
     background: Rectangle
     {
         radius: Math.min(width, height)
-        color: Maui.Theme.backgroundColor
-        border.color: Maui.Theme.textColor
+        color: control.color
+        border.color: Qt.lighter(control.color)
 
         Behavior on color
         {

@@ -60,6 +60,8 @@ QUrl MauiKit::componentUrl(const QString &fileName) const
 
 void MauiKit::registerTypes(const char *uri)
 {
+    
+    qDebug() << "REGISTER MAUIKIT TYPES <<<<<<<<<<<<<<<<<<<<<<";
 #if defined(Q_OS_ANDROID)
     QResource::registerResource(QStringLiteral("assets:/android_rcc_bundle.rcc"));
 #endif
@@ -126,6 +128,7 @@ void MauiKit::registerTypes(const char *uri)
 
     //    /** 1.2 **/
     qmlRegisterType(componentUrl(QStringLiteral("SectionItem.qml")), uri, 1, 2, "SectionItem");
+    qmlRegisterType(componentUrl(QStringLiteral("FlexSectionItem.qml")), uri, 1, 2, "FlexSectionItem");
     qmlRegisterType(componentUrl(QStringLiteral("Separator.qml")), uri, 1, 2, "Separator");
 
     //    /** 1.3 **/
@@ -134,8 +137,8 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("FileListingDialog.qml")), uri, 1, 3, "FileListingDialog");
     qmlRegisterType(componentUrl(QStringLiteral("SectionHeader.qml")), uri, 1, 3, "SectionHeader");
     qmlRegisterType(componentUrl(QStringLiteral("IconItem.qml")), uri, 1, 3, "IconItem");
-        qmlRegisterType(componentUrl(QStringLiteral("DoodleCanvas.qml")), uri, 1, 3, "DoodleCanvas");
-        qmlRegisterType(componentUrl(QStringLiteral("Doodle.qml")), uri, 1, 3, "Doodle");
+    qmlRegisterType(componentUrl(QStringLiteral("DoodleCanvas.qml")), uri, 1, 3, "DoodleCanvas");
+    qmlRegisterType(componentUrl(QStringLiteral("Doodle.qml")), uri, 1, 3, "Doodle");
     qmlRegisterType(componentUrl(QStringLiteral("FlexListItem.qml")), uri, 1, 3, "FlexListItem");
     qmlRegisterType(componentUrl(QStringLiteral("Chip.qml")), uri, 1, 3, "Chip");
     qmlRegisterType(componentUrl(QStringLiteral("ContextualMenu.qml")), uri, 1, 3, "ContextualMenu");
@@ -162,8 +165,8 @@ void MauiKit::registerTypes(const char *uri)
     //    //backwars compatible
     qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
     qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
-    qmlRegisterType(componentUrl(QStringLiteral("ColorTransition.qml")), uri, 1, 0, "ColorTransition");
-    qmlRegisterType(componentUrl(QStringLiteral("EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
+    qmlRegisterType(componentUrl(QStringLiteral("private/ColorTransition.qml")), uri, 1, 0, "ColorTransition");
+    qmlRegisterType(componentUrl(QStringLiteral("private/EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
     
     /// NON UI CONTROLS
     qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
@@ -192,17 +195,17 @@ void MauiKit::registerTypes(const char *uri)
     
     //    /** Experimental **/
 #ifdef Q_OS_WIN32
-    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_MAC
-    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_ANDROID
-    qmlRegisterType(componentUrl(QStringLiteral("WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
 #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
     qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
     # if defined Q_PROCESSOR_ARM
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+        qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
     # else
-        qmlRegisterType(componentUrl(QStringLiteral("WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+        qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
     # endif
 #endif
 

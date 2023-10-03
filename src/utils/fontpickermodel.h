@@ -5,6 +5,9 @@
 #include <QStringList>
 #include <QFontDatabase>
 
+/**
+ * @brief A model of fonts and its properties.
+ */
 class FontPickerModel : public QObject
 {
     Q_OBJECT

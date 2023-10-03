@@ -5,26 +5,71 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
-@since org.mauikit.controls 1.0
+    @since org.mauikit.controls 1.0
 
-@brief A convinient way of switching between a grid an a list view.
+    @brief A convinient way of switching between a grid an a list view.
 
-This controls inherits from MauiKit Page, to checkout its inherited properties refer to the docs.
-@see Page
+    This controls inherits from MauiKit Page, to checkout its inherited properties refer to the docs.
+    @see Page
 
-The AltBrowser makes use of the GridView and ListBrowser components, there is a property to dinamically switch between the two.
+    @note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD.
 
-For some navigation patterns is a good idea to provide a grid view when the application screen size is wide enough to fit numerous items and a list view when the space is contrained - since the list is much more compact - and makes navigation quicker. For this use cases one could use the view type property binded to a size condition.
-@see viewType
+    The AltBrowser makes use of the GridView and ListBrowser components, there is a property to dinamically switch between the two.
 
-@section notes Notes
-The data model is shared by both of the view types, but the delagates to be used have to be assigment for each one.
-@see listDelegate
-@see gridDelegate
+    For some navigation patterns is a good idea to provide a grid view when the application screen size is wide enough to fit numerous items and a list view when the space is contrained - since the list is much more compact - and makes navigation quicker. For this use cases one could use the view type property binded to a size condition.
+    @see viewType
+    
+    @image html AltBrowser/views.gif
+    @note A Page with a header and footer - and then the header moved to the bottom under the footer.
 
-There is a MauiKit Holder element that can be used to display a placeholder message, for example, when the views are empty.
-@see holder
+    @section notes Notes
+    The data model is shared by both of the view types, but the delagates to be used have to be assigment for each one.
+    @see listDelegate
+    @see gridDelegate
 
+    There is a MauiKit Holder element that can be used to display a placeholder message, for example, when the views are empty.
+    @see holder
+
+    @code
+    Maui.AltBrowser
+    {
+        id: _altBrowser
+        anchors.fill: parent
+
+        Maui.Controls.showCSD: true
+        viewType: Maui.AltBrowser.ViewType.Grid
+
+        gridView.itemSize: 120
+
+        headBar.leftContent: ToolButton
+        {
+            icon.name: _altBrowser.viewType === Maui.AltBrowser.ViewType.Grid ? "view-list-details" : "view-list-icons"
+            onClicked: _altBrowser.toggle()
+        }
+
+        model: 20
+
+        listDelegate: Maui.ListBrowserDelegate
+        {
+            width:ListView.view.width
+            label1.text: index
+            label2.text: "Example"
+            iconSource: "folder"
+        }
+
+        gridDelegate: Maui.GridBrowserDelegate
+        {
+            height: GridView.view.cellHeight
+            width: GridView.view.itemSize
+
+            iconSource: "folder"
+            label1.text: index
+            label2.text: "Example"
+        }
+    }
+    @endcode
+    
+      <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/AltBrowser.qml">You can find a more complete example at this link.</a>
 */
 Maui.Page
 {
@@ -61,8 +106,8 @@ Maui.Page
      * @brief Sets the view type that's going to be in use.
      * 
      * The type can be one of:
-     * @value ViewType.Grid
-     * @value ViewType.List      The default
+     * - ViewType.Grid
+     * - ViewType.List      The default
      * 
      * @see ViewType
      */
@@ -168,8 +213,11 @@ Maui.Page
         visible: false
     }
     
+    /**
+     * @brief Toggle between the two views. If in list view then switches to grid, and from grid to list.
+     */
     function toggle()
     {
-        control.viewType = control.viewType === Maui.AltBrowser.Grid ? Maui.AltBrowser.Grid : Maui.AltBrowser.List
+        control.viewType = (control.viewType == Maui.AltBrowser.ViewType.Grid ? Maui.AltBrowser.ViewType.List : Maui.AltBrowser.ViewType.Grid)
     }
 }

@@ -330,7 +330,7 @@ DemoPage
                     {
                         label1.text: "Sample title"
                         label2.text: "Description"
-                        columns: 1
+
                         TextField
                         {
                             Layout.fillWidth: true

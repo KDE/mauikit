@@ -37,11 +37,22 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
+
+/**
+ @brief A combo-box element to list the system fonts with a inline style preview. 
+ 
+  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-combobox.html">This controls inherits from QQC2 ComboBox, to checkout its inherited properties refer to the Qt Docs.</a>
+  
+  The default model is set to `Qt.fontFamilies`. If a custom model is to be used instead, set the right role to pick up the data using the `textRole` inherited property.
+  
+  @image html Misc/fontscombobox.png
+  */
 
 ComboBox
 {
     id: control
+    
     font.family: control.displayText
     model: Qt.fontFamilies()
     icon.source: "font"
