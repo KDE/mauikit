@@ -19,30 +19,55 @@
 
 import QtQuick
 import QtQuick.Controls
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
-
-/*!
- \ since org.maui*kit.controls 1.0
- \inqmlmodule org.mauikit.controls
- \brief Lazy-loads app views
+/**
+ @since org.maui*kit.controls 1.0
  
- Wraps a component into a loader that is active only if it is the next, current or previous view in used, or if it has already been created.
- This component is useful when the AppViews has more then 4 different views to relief the loading of many views at the same time.
+ @brief A companion for the AppViews control, for lazy-loading the views to not drain too much resources.
+ 
+  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-loader.html">This controls inherits from QQC2 Loader, to checkout its inherited properties refer to the Qt Docs.</a>
+ 
+ This element wraps a component into a loader that is active only if it is the next, current or previous view in use, or if it has already been created once.
+ This component is useful when the AppViews has more then 4 different views to relief the loading of many views at the same time all at once.
+ 
+ This control will also display a progressbar element at the bottom of the view - indicating the progress of loading the hosted component.
+ 
+ @note Remeber to set the AppView information, such as title and icon, using the attached properties.
+ @see AppView
+ 
+ @code
+ AppViews
+ {
+    AppViewLoader
+    {
+        AppView.title: i18n("Songs")
+        AppView.iconName: "view-media-track"
+        
+        Item { } ///The child element to be used as the Component to be loaded.
+    }
+ } 
+ @endcode 
+ 
+ @note To improve the efficiency of loading time, this control will load its component asynchronously. This can be disabled by setting `asynchronous: false`
+ 
+   <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/AppViewLoader.qml">You can find a more complete example at this link.</a>
+
+ 
  */
 Loader
 {
     id: control
-
-    /*!
-   \ qmlprope*rty Component ApplicationWindow::content
-   
-   The source component to be loaded.
-   */
+    
     asynchronous: true
-    default property alias content : control.sourceComponent
     active: (SwipeView.view.visible && SwipeView.isCurrentItem) || item
     
+    /**
+     * @brief By default the single element declared as the child will be used as the component to be loaded.
+     * @property Component AppViewLoader::content
+     */
+    default property alias content : control.sourceComponent
+
     Maui.ProgressIndicator
     {
         width: parent.width

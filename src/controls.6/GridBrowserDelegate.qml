@@ -22,17 +22,14 @@ import QtQml
 
 import QtQuick.Controls
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
- * GridBrowserDelegate
- * A GridItemTemplate wrapped into a ItemDelegate to make it clickable and draggable.
- *
- * For more details check the ItemDelegate and GridItemTemplate documentation.
- *
- * This mix adds a drop area, tooltip information and a custom styling.
- *
- *
+ @brief A ItemDelegate with extra functionality and with a column layout.
+ 
+  For more details check the ItemDelegate and GridItemTemplate documentation.
+ 
+  This mix adds a drop area, tooltip information and a custom styling.
  */
 Maui.ItemDelegate
 {

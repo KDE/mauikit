@@ -18,7 +18,6 @@ Maui.SectionItem
 
     label1.text: control.title
     label2.text: control.body
-    columns: 1
     flat: false
 
     Flow

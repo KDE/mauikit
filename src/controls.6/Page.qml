@@ -29,6 +29,8 @@ import org.mauikit.controls 1.3 as Maui
   @since org.mauikit.controls 1.0
 
   @brief A page with a header and footer, that can be flipped among many other features.
+  
+<a href="https://doc.qt.io/qt-6/qml-qtquick-controls-pane.html">This controls inherits from QQC2 Pane, to checkout its inherited properties refer to the Qt Docs.</a>
  
   This page has a header and footer bars that by default are set to a MauiKit ToolBar,
   the header bar can be dynamically moved to the bottom under the footer for better
@@ -55,7 +57,6 @@ import org.mauikit.controls 1.3 as Maui
  
    @image html Page/page_structure.png
   @note A Page with a header and footer - and then the header moved to the bottom under the footer.
-
       
   @section features Features 
   
@@ -153,14 +154,11 @@ import org.mauikit.controls 1.3 as Maui
         }
     }
 @endcode
-
-
-   
+ 
  @image html Page/alt_header_dark.png
  @note This is an ApplicationWindow filled with a Page and with the CSD controls enabled.
  
-
-A more complete example file can be found in the examples directory.
+  <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/Page.qml">You can find a more complete example at this link.</a>
 
 @note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD. This is only supported if used with the MauiKit ToolBar as the header bar - which is the default. If use with another header element, the window control buttons need to be added manually.
 
@@ -224,7 +222,9 @@ Pane
          * @brief The header bar can be place static and always visible with the InlineHeader value, or moved along with the flickable contents when using the PullBackHeader value.
          * This is only supported if a flickable element has been set.
          * @see flickable
-         * By default this is set to InlineHeader unless a Flickable has been attached, in which case it is PullBackHeader.
+         * 
+         * By default this is set to `InlineHeader` unless a Flickable has been attached, in which case it is set to `PullBackHeader`.
+         * 
          * Possible values are:
          * - ListView.PullBackHeader
          * - ListView.InlineHeader
@@ -325,7 +325,7 @@ Pane
     property int bottomMargin: margins
 
     /**
-     * @brief If set to true the header bar will be positioned to the bottom under the footer bar.
+     * @brief If set to `true` the header bar will be positioned to the bottom under the footer bar.
      * This makes sense in some cases for better reachability, or custom design patterns.
      */
     property bool altHeader : false
@@ -344,13 +344,13 @@ Pane
 
     /**
      * @brief Size in pixels for the cursor enter/exit threshold for when the header should autohide.
-     * The default value is set to Maui.Style.toolBarHeight.
+     * The default value is set to `Style.toolBarHeight`.
      */
     property int autoHideHeaderMargins : Maui.Style.toolBarHeight
 
      /**
      * @brief Size in pixels for the cursor enter/exit threshold for when the footer should autohide.
-     * The default value is set to Maui.Style.toolBarHeight.
+     * The default value is set to `Style.toolBarHeight`.
      */
     property int autoHideFooterMargins : Maui.Style.toolBarHeight
 
@@ -368,12 +368,12 @@ Pane
 
 
     /**
-     * @brief If the header bar should float over the page contents, if set- then the default footer bar will have a translucent ShaderEffect to hint about the content under it.
+     * @brief If the header bar should float over the page contents, if set- then the default footer bar will have a translucent `ShaderEffect` to hint about the content under it.
      */
     property bool floatingHeader : false
 
     /**
-     * @brief If the footer bar should float over the page contents, if a flickable has been set then the default footer bar will have a translucent ShaderEffect
+     * @brief If the footer bar should float over the page contents, if a flickable has been set then the default footer bar will have a translucent `ShaderEffect`
      * to hint about the content under it.
      */
     property bool floatingFooter: false

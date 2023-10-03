@@ -55,7 +55,6 @@ T.MenuSeparator
     contentItem: Maui.Separator
     {
         implicitWidth: Maui.Style.units.gridUnit * 8
-        weight: Maui.Separator.Weight.Light        
-        
+        weight: Maui.Separator.Weight.Light  
     }
 }

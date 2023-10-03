@@ -109,7 +109,6 @@ Maui.PopupPage
         // iconSource: "view-media-artist"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
-        columns: 1
 
         Column
         {
@@ -153,7 +152,6 @@ Maui.PopupPage
         // iconSource: "folder-language"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
-        columns: 1
 
         Column
         {
@@ -196,7 +194,6 @@ Maui.PopupPage
         // iconSource: "love"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
-        columns: 1
 
         Column
         {
@@ -240,7 +237,6 @@ Maui.PopupPage
         template.iconSizeHint: Maui.Style.iconSize
 
         label1.text: i18nd("mauikit", "Licenses")
-        columns: 1
 
         Column
         {
@@ -269,7 +265,6 @@ Maui.PopupPage
         visible: Maui.App.about.components.length > 0
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
-        columns: 1
 
         label1.text: i18nd("mauikit", "Components")
 
@@ -313,7 +308,6 @@ Maui.PopupPage
         // iconSource: "link"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
-        columns: 1
 
         Column
         {

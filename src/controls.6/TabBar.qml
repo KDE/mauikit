@@ -9,6 +9,8 @@ import org.mauikit.controls 1.3 as Maui
 /**
  @brief Tab bar alternative to QQC TabBar, and based on it. 
  
+  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-tabbar.html">This controls inherits from QQC2 TabBar, to checkout its inherited properties refer to the Qt Docs.</a>
+  
  Mostly used together with the TabView control.
  
  The layout of this control is divided into three sections: left, middle and right area.
@@ -271,9 +273,9 @@ QQC.TabBar
     }
     
     /**
-     * @brief
+     * @brief Positions the TabButton at the given index to be centered and visible.
      */  
-    function positionViewAtIndex(index : int)
+    function positionViewAtIndex(index)
     {
         _content.positionViewAtIndex(index, ListView.SnapPosition)
     }

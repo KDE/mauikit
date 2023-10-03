@@ -25,7 +25,7 @@ import org.mauikit.controls 1.3 as Maui
 /**
  @brief The container for the sidebar section in the SideBarView.
  This is the container for the sidebar section in the SideBarView.
- @note This control is private and can not be used independetly. It exists only as part of the SideBarView and can only be accessed via the exposed alias property in said control.
+ @warning This control is private and can not be used independently. It exists only as part of the SideBarView implementation and can only be accessed via the exposed alias property `sideBar` in said control.
  @see SideBarView
  
  */

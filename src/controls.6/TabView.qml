@@ -73,8 +73,7 @@ TabView
     Controls.showCSD : true
 }
   @endcode
-  
-  
+    
   The TabView has two main sections, [1] the main contents area and [2] the tab bar, where the tab buttons - representing all the tab views - are listed. 
   
   The tab bar listing has two "modes": one designed to fit desktop computers as a horizontal set of tab buttons; and the other one - more mobile friendly - as a grid overview of miniatures of the tab-views. Both modes can be toggle by using the mobile property.
@@ -88,8 +87,7 @@ TabView
   @see TabBar
   
   @image html TabView/tabviews.png
-@note TabView different states/sections. Further down the regular tab view with a tab bar on top, in the middle the tab view overview mode, and in the front the mobile mode wiht a single tab - other tab buttons can be flicked.
-
+@note TabView different states/sections. Further down the regular tab view with a tab bar on top, in the middle the tab view overview mode, and in the front the mobile mode with a single tab - other tab buttons can be flicked.
   
   @subsection finder Finder
   The TabView has an integrated dialog to quickly perform searchers for an tab. 
@@ -97,7 +95,7 @@ TabView
   @section notes Notes
   
   @subsection tabinfo Tabs Info
-  To add information, such as title, icon, etc, to the views, there is the TabViewInfo attached property.
+  To add information, such as title, icon, etc, to the views, there is the `TabViewInfo` attached property.
   Some of the available properties are:
   - TabViewInfo.tabTitle
   - TabViewInfo.tabToolTipText
@@ -122,7 +120,7 @@ TabView
   @see openOverview
   @see closeOverview
   
-  <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ApplicationWindow.qml">You can find a more complete example at this link.</a>
+  <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/TabView.qml">You can find a more complete example at this link.</a>
     
  */
 Pane
@@ -173,7 +171,7 @@ Pane
     property bool mobile : control.width <= Maui.Style.units.gridUnit * 30
     
     /**
-     * @brief Whether the tab bar hosting the tab buttons, should go in the bottom section or not. Moving it to the bottom section is a good idea for reachability in hand-held devices, such a phones. You can check if the current platform is a mobile one using the Handy attached property: Handy.isMobile
+     * @brief Whether the tab bar hosting the tab buttons, should go in the bottom section or not. Moving it to the bottom section is a good idea for reachability in hand-held devices, such a phones. You can check if the current platform is a mobile one using the Handy attached property `Handy.isMobile`
      * @see Handy
      * 
      */
@@ -273,7 +271,7 @@ Pane
     signal newTabClicked()
     
      /**
-     * @brief Emitted when the close button has been clicked on a tab button, or tab miniature in the overview. This signal sends the index of the tab. To correctly close the tab and release the resources, use the function closeTab.
+     * @brief Emitted when the close button has been clicked on a tab button, or tab miniature in the overview. This signal sends the index of the tab. To correctly close the tab and release the resources, use the function `closeTab()`.
      * @param The index of the tab requested to be closed.
      * @see closeTab
      */
@@ -761,7 +759,7 @@ Pane
      * @brief Adds a new tab view element, the passed element must be a component which will be created by the function and then added to the container.
      * @param component A Component element hosting the actual element to be created.
      * @param properties Another argument value that can be passed is a map of properties to be assigned to the component when created.
-     * @param quiet An optionally you can choose to create the tab quietly or not: by quietly it means that the tab-component will be instantiated and created but will not be focused right away. If quiet is set to false - to which it defaults - then after the creation of the component the new tab will get focused.
+     * @param quiet An optionally you can choose to create the tab quietly or not: by quietly it means that the tab-component will be instantiated and created but will not be focused right away. If quiet is set to `false` - to which it defaults - then after the creation of the component the new tab will get focused.
      */
     function addTab(component, properties, quiet = false) : Item
     {
@@ -840,7 +838,7 @@ Pane
     }
     
      /**
-     * @brief This allows to change the current tab without breaking the bindings to the 'currentIndex' property.
+     * @brief This allows to change the current tab without breaking the bindings to the `currentIndex` property.
      */
     function setCurrentIndex(index)
     {

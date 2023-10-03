@@ -26,6 +26,9 @@ import QtQuick.Layouts
 
 import org.mauikit.controls as Maui
 
+/**
+ @brief
+ */
 Item
 {
     id: control

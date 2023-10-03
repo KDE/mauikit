@@ -57,6 +57,8 @@ Popup
     heightHint: 0.9
     spacing: Maui.Style.space.big
 
+    margins: 0
+
     filling: persistent && mWidth === control.parent.width
     /*!
    *    \qmlproperty list<Item> ApplicationWindow::scrollable
@@ -149,16 +151,14 @@ Popup
     property int horizontalScrollBarPolicy: ScrollBar.AlwaysOff
     
     property bool autoClose : true
-    
-    /*!
-     * Triggered when the accepted button is clicked.
-     */
-    signal accepted()
 
     /*!
-     * Triggered when the rejected button is clicked.
+     *    List of actions to be added to the dialog footer bar as styled buttons.
      */
-    signal rejected()
+    property list<Action> actions
+
+    property alias actionBar : _defaultButtonsLayout
+
 
     signal closeTriggered()
 
@@ -166,7 +166,7 @@ Popup
     {
         id: _layout
         anchors.fill: parent
-        spacing: 2
+        spacing: 0
 
         Maui.Page
         {
@@ -234,6 +234,38 @@ Popup
 
                 ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
                 ScrollBar.vertical.policy: control.verticalScrollBarPolicy
+            }
+        }
+
+        GridLayout
+        {
+            id: _defaultButtonsLayout
+
+            rowSpacing: Maui.Style.space.small
+            columnSpacing: Maui.Style.space.small
+
+            Layout.fillWidth: true
+            Layout.margins: Maui.Style.contentMargins
+
+            property bool isWide : control.width > Maui.Style.units.gridUnit*10
+
+            visible: control.actions.length
+
+            rows: isWide? 1 : _defaultButtonsLayout.children.length
+            columns: isWide ? _defaultButtonsLayout.children.length : 1
+
+            Repeater
+            {
+                model: control.actions
+
+                Button
+                {
+                    id: _actionButton
+                    focus: true
+                    Layout.fillWidth: true
+
+                    action: modelData
+                }
             }
         }
     }

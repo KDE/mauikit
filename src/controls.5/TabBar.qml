@@ -106,7 +106,7 @@ QQC.TabBar
             anchors.fill: parent
             DragHandler
             {
-                enabled: !control.interactive
+                // enabled: !control.interactive
                 acceptedDevices: PointerDevice.GenericPointer
 
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything

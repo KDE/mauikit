@@ -8,7 +8,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
  * @brief A view for displaying animated images, such as GIF documents.
@@ -22,7 +22,6 @@ import org.mauikit.controls as Maui
 Flickable
 {
     id: flick
-    property string currentImageSource
     
     contentWidth: width
     contentHeight: height
@@ -39,48 +38,63 @@ Flickable
     }
     
     /**
-     * image : Image
+     * @brief This an alias to the actual control painting the image. 
+     * This control is handled by a QQC2 AnimatedImage.
+     * @property AnimatedImage AnimatedImageViewer::image
      */
     property alias image:  image
     
-    property alias sourceSize : image.sourceSize
     /**
-     * fillMode : Image.fillMode
+     * @brief The painted size of the image.
+     * As taken from Qt documentation: This property holds the scaled width and height of the full-frame image.
+     * Unlike the width and height properties, which scale the painting of the image, this property sets the maximum number of pixels stored for the loaded image so that large images do not use more memory than necessary. 
+     * @property size AnimatedImageViewer::sourceSize
      */
-    property int fillMode: Image.PreserveAspectFit
+    property alias sourceSize : image.sourceSize
     
     /**
-     * asynchronous : bool
+     * @brief The fill mode of the image. The possible values can be found on the Image control documentation from Qt.
+     * @property enumaration AnimatedImageViewer::fillMode
+     */
+    property alias fillMode: image.fillMode
+    
+    /**
+     * @brief Whether the image should be loaded asynchronously. 
+     * @property bool AnimatedImageViewer::asynchronous
      */
     property alias asynchronous : image.asynchronous
     
     /**
-     * cache : bool
+     * @brief If the image should be cached in memory. The default value is set to `true`
+     * @property bool AnimatedImageViewer::cache
      */
     property alias cache: image.cache
     
-    /**
-     * imageWidth : int
+     /**
+     * @brief The painted width of the image. This the same as using the image `sourceSize` property to set the width.
+     * @property int AnimatedImageViewer::imageWidth
      */
     property alias imageWidth: image.sourceSize.width
     
     /**
-     * imageHeight : int
+     * @brief The painted height of the image. This the same as using the image `sourceSize` property to set the height.
+     * @property int AnimatedImageViewer::imageHeight
      */
     property alias imageHeight: image.sourceSize.height
     
     /**
-     * source : url
+     * @brief The source of the image. Can be a remote or local file URL.
+     * @property url AnimatedImageViewer::source
      */
     property alias source : image.source
     
     /**
-     * rightClicked
+     * @brief Emitted when the image area has been right clicked with a mouse event.
      */
     signal rightClicked()
     
     /**
-     * pressAndHold
+     * @brief Emitted when the image area has been pressed for a few seconds. 
      */
     signal pressAndHold()
     
