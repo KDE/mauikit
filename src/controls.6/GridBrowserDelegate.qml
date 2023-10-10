@@ -25,11 +25,80 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
- @brief A ItemDelegate with extra functionality and with a column layout.
- 
-  For more details check the ItemDelegate and GridItemTemplate documentation.
- 
-  This mix adds a drop area, tooltip information and a custom styling.
+ * @brief A MauiKit ItemDelegate with some extra functionality and an informational column layout.
+ * 
+ *  This controls inherits from MauiKit ItemDelegate, to checkout its inherited properties refer to docs.
+ *  
+ *  @note This is essentially different from QQC2 ItemDelegate control, where the QQC2 can have a text, an icon etc; this one is only a container with some predefined behavior. 
+ *  @see ItemDelegate
+ * 
+ * @image html Delegates/gridbrowserdelegate.png
+ * @note An example of GridBrowserDelegates in the Index -file manager - application.
+ * 
+ *  @section structure Structure
+ *  The GridBrowserDelegate layouts the information vertically. It's composed of three main sections: the top icon header, a title label and finally an extra label message. Those sections are all handled by a MauiKit GridItemTemplate control, which is exposed by the alias property `template`.
+ *  @see GridItemTemplate
+ *  
+ *  The top icon section is handled by default by a MauiKit IconItem, which hosts an image or icon. Those can be set via the `imageSource` or the `iconSource` properties. 
+ *  @see IconItem
+ *  
+ *  The top icon header can also be replaced by any other component using the `template.iconComponent` property. An example of a custom icon header is the Mauikit controls GalleryItem and CollageItem, both of which inherit from GridBrowserDelegate and set a custom `template.iconComponent`.
+ *  
+ *  @section notes Notes
+ *  This control can be `checkable`, and a CheckBox element will be placed on top of it. It also supports features from the Button type, such as the `autoExclusive`, `checked` properties and the press events.
+ *  
+ *  By inheritance this component can be `dragable`.
+ *  
+ *  @note This control is usually used as the delegate component for the GridBrowser or QQC2 GridView.
+ *  
+ *  @subsection dnd Drag & Drop
+ *  To set up the drag and drop, use the Drag attached properties.
+ * The most relevant part for this control is to set the `Drag.keys` and `Drag.mimeData`
+ * 
+ * @code
+ * Drag.keys: ["text/uri-list"]
+ * Drag.mimeData: Drag.active ?
+ * {
+ *    "text/uri-list": "" //here a list of file separated by a comma.
+ * } : {}
+ * @endcode
+ *  
+ * @image html Delegates/gridbrowserdelegate2.png
+ *  
+ * @code
+ * Maui.GridBrowser
+ * {
+ *    id: _gridBrowser
+ *    anchors.fill: parent
+ *    model: 30
+ * 
+ *    itemSize: 120
+ *    itemHeight: 120
+ * 
+ *    adaptContent: true
+ * 
+ *    delegate: Item
+ *    {
+ *        width: GridView.view.cellWidth
+ *        height: GridView.view.cellHeight
+ * 
+ *        Maui.GridBrowserDelegate
+ *        {
+ *            width: _gridBrowser.itemSize
+ *            height: width
+ * 
+ *            iconSource: "folder"
+ *            iconSizeHint: Maui.Style.iconSizes.big
+ *            label1.text: "Title"
+ *            label2.text: "Message"
+ * 
+ *            anchors.centerIn: parent
+ *        }
+ *    }
+ * }
+ * @endcode
+ *  
+ * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/GridBrowserDelegate.qml">You can find a more complete example at this link.</a>
  */
 Maui.ItemDelegate
 {
@@ -44,104 +113,128 @@ Maui.ItemDelegate
     spacing: Maui.Style.space.medium
     
     radius: Maui.Style.radiusV
-
-    /**
-     * template : GridItemTemplate
-     */
-    property alias template : _template
-    
     
     /**
-     * label1 : Label
+     * @brief An alias to access the GridItemTemplate control properties. This is the template element that layouts all the information: labels and icon/image.
+     * @see GridItemTemplate
+     * @property GridItemTemplate GridBrowserDelegate::template.
      */
-    property alias label1 : _template.label1
-
+    readonly property alias template : _template
+    
     /**
-     * label2 : Label
+     * @see GridItemTemplate::label1
      */
-    property alias label2 : _template.label2
-
-
+    readonly property alias label1 : _template.label1
+    
     /**
-     * iconItem : Item
+     * @see GridItemTemplate::label2
+     */
+    readonly property alias label2 : _template.label2
+    
+    /**
+     * @see GridItemTemplate::iconItem
      */
     property alias iconItem : _template.iconItem
-
+    
     /**
-     * iconVisible : bool
+     * @see GridItemTemplate::iconVisible
      */
     property alias iconVisible : _template.iconVisible
+    
+    /**
+     * @see GridItemTemplate::imageSizeHint
+     */
     property alias imageSizeHint : _template.imageSizeHint
     
     /**
-     * iconSizeHint : int
+     * @see GridItemTemplate::iconSizeHint
      */
     property alias iconSizeHint : _template.iconSizeHint
-
+    
     /**
-     * imageSource : string
+     * @see GridItemTemplate::imageSource
      */
     property alias imageSource : _template.imageSource
-
+    
     /**
-     * iconSource : string
+     * @see GridItemTemplate::iconSource
      */
     property alias iconSource : _template.iconSource
-
+    
     /**
-     * showLabel : bool
+     * @see GridItemTemplate::labelsVisible
      */
-    //property alias showLabel : _template.labelsVisible
-
     property alias labelsVisible : _template.labelsVisible
-
+    
     /**
-     * checked : bool
+     * @brief Whether the control is checked or not.
+     * By default this is set to `false`.
      */
     property bool checked : false
-
-    property alias fillMode : _template.fillMode
-
-    property alias maskRadius : _template.maskRadius
-
+    
     /**
-     * checkable : bool
+     * @see GridItemTemplate::fillMode
+     */
+    property alias fillMode : _template.fillMode
+    
+    /**
+     * @see GridItemTemplate::maskRadius
+     */
+    property alias maskRadius : _template.maskRadius
+    
+    /**
+     * @brief Whether the control should become checkable. If it is checkable a CheckBox element  will become visible to allow to toggle between the checked states.
+     * By default this is set to `false`.
      */
     property bool checkable: false
     
-    property bool autoExclusive: false
-
     /**
-     * dropArea : DropArea
+     * @brief Whether the control should be auto exclusive, this means that among other related elements - sharing the same parent- only one can be selected/checked at the time.
+     * By default this is set to `false`.
      */
-    property alias dropArea : _dropArea
-
+    property bool autoExclusive: false
+    
+    /**
+     * @brief An alias to expose the DropArea component in charge of the drag&drop events.
+     * @see contentDropped
+     */
+    readonly property alias dropArea : _dropArea
+    
+    /**
+     * @see GridItemTemplate::imageWidth
+     */
     property alias imageWidth : _template.imageWidth
+    
+    /**
+     * @see GridItemTemplate::imageHeight
+     */
     property alias imageHeight : _template.imageHeight
     
     /**
-     * contentDropped :
+     * @brief Emitted when a drop event has been triggered on this control.
+     * @param drop The object with information about the event.
      */
     signal contentDropped(var drop)
-
+    
     /**
-     * toggled :
+     * @brief Emitted when the control checked state has been changed.
+     * @param state The checked state value. 
      */
     signal toggled(bool state)
-
+    
     background: Rectangle
     {
         color: (control.isCurrentItem || control.containsPress ? Maui.Theme.highlightColor : ( control.hovered ? Maui.Theme.hoverColor : (control.flat ? "transparent" : Maui.Theme.alternateBackgroundColor)))
         
         radius: control.radius
-
+        
         Behavior on color
         {
             enabled: !control.flat
             Maui.ColorTransition{}
         }
     }
-
+    
     DropArea
     {
         id: _dropArea
@@ -155,13 +248,13 @@ Maui.ItemDelegate
             border.color: control.Maui.Theme.highlightColor
             visible: parent.containsDrag
         }
-
+        
         onDropped:
         {
             control.contentDropped(drop)
         }
     }
-
+    
     Maui.GridItemTemplate
     {
         id: _template
@@ -173,19 +266,19 @@ Maui.ItemDelegate
         isCurrentItem: control.isCurrentItem
         highlighted: control.containsPress
     }
-
+    
     Loader
     {
         id: _checkboxLoader
         asynchronous: true
         active: control.checkable || control.checked
-
+        
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: Maui.Style.space.medium
         
         scale: active ? 1 : 0
-
+        
         Behavior on scale
         {
             NumberAnimation
@@ -194,7 +287,7 @@ Maui.ItemDelegate
                 easing.type: Easing.OutBack
             }
         }
-
+        
         sourceComponent: CheckBox
         {
             checkable: control.checkable

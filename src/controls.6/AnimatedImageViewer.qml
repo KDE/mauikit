@@ -18,7 +18,6 @@ import org.mauikit.controls 1.3 as Maui
  *  This control along with the ImageViewer are meant to display images and support to zoom in and out with touch and mouse gestures and keyboard shortcuts.  
  *  
  */
-
 Flickable
 {
     id: flick
@@ -54,18 +53,21 @@ Flickable
     
     /**
      * @brief The fill mode of the image. The possible values can be found on the Image control documentation from Qt.
+     * By default this is set to `Image.PreserveAspectFit`.
      * @property enumaration AnimatedImageViewer::fillMode
      */
     property alias fillMode: image.fillMode
     
     /**
      * @brief Whether the image should be loaded asynchronously. 
+     * By default this is set to `true`.
      * @property bool AnimatedImageViewer::asynchronous
      */
     property alias asynchronous : image.asynchronous
     
     /**
-     * @brief If the image should be cached in memory. The default value is set to `true`
+     * @brief If the image should be cached in memory. 
+     * The default value is set to `true`
      * @property bool AnimatedImageViewer::cache
      */
     property alias cache: image.cache
@@ -252,8 +254,7 @@ Flickable
                 }
             }
         }
-    }
-    
+    }    
     
     /**
      * @brief Forces the image to fit in the viewport.

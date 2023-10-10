@@ -8,12 +8,19 @@
 
 import QtQuick
 import QtQuick.Controls
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
+/**
+ * @brief A view container for displaying images.
+ * 
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-flickable.html">This controls inherits from QQC2 Flickable, to checkout its inherited properties refer to the Qt Docs.</a>
+ * 
+ *  This control along with the AnimatedImageViewer are meant to display images, with support for zooming in and out with touch or mouse gestures, and keyboard shortcuts.  
+ *  
+ */
 Flickable
 {
     id: flick
-    property string currentImageSource
     
     contentWidth: width
     contentHeight: height
@@ -31,50 +38,69 @@ Flickable
     {
         visible: false
     }
+
+    /**
+     * @brief This an alias to the actual control painting the image. 
+     * This control is handled by a QQC2 Image.
+     * @note See Qt documentation for more information about the Image control.
+     * @property Image ImageViewer::image
+     */
+    property alias image: image
     
     /**
-     * image : Image
+     * @brief The painted size of the image.
+     * As taken from Qt documentation: This property holds the scaled width and height of the full-frame image.
+     * Unlike the width and height properties, which scale the painting of the image, this property sets the maximum number of pixels stored for the loaded image so that large images do not use more memory than necessary. 
+     * @property size ImageViewer::sourceSize
      */
-    property alias image:  image
-    
     property alias sourceSize : image.sourceSize
-    /**
-     * fillMode : Image.fillMode
+    
+     /**
+     * @brief The fill mode of the image. The possible values can be found on the Image control documentation from Qt.
+     * By default this is set to `Image.PreserveAspectFit`.
+     * @property enumaration ImageViewer::fillMode
      */
-    property int fillMode: Image.PreserveAspectFit
+    property alias fillMode: image.fillMode
     
     /**
-     * asynchronous : bool
+     * @brief Whether the image should be loaded asynchronously. 
+     * By default this is set to `true`.
+     * @property bool ImageViewer::asynchronous
      */
     property alias asynchronous : image.asynchronous
     
     /**
-     * cache : bool
+     * @brief If the image should be cached in memory. 
+     * The default value is set to `true`
+     * @property bool ImageViewer::cache
      */
     property alias cache: image.cache
     
-    /**
-     * imageWidth : int
+     /**
+     * @brief The painted width of the image. This the same as using the image `sourceSize` property to set the width.
+     * @property int ImageViewer::imageWidth
      */
     property alias imageWidth: image.sourceSize.width
     
     /**
-     * imageHeight : int
+     * @brief The painted height of the image. This the same as using the image `sourceSize` property to set the height.
+     * @property int ImageViewer::imageHeight
      */
     property alias imageHeight: image.sourceSize.height
     
     /**
-     * source : url
+     * @brief The source of the image. Can be a remote or local file URL.
+     * @property url ImageViewer::source
      */
     property alias source : image.source
     
     /**
-     * rightClicked
+     * @brief Emitted when the image area has been right clicked with a mouse event.
      */
     signal rightClicked()
     
     /**
-     * pressAndHold
+     * @brief Emitted when the image area has been pressed for a few seconds. 
      */
     signal pressAndHold()
     
@@ -252,9 +278,8 @@ Flickable
         }
     }
     
-    
     /**
-     *
+     * @brief Forces the image to fit in the viewport.
      */
     function fit()
     {
@@ -262,7 +287,7 @@ Flickable
     }
     
     /**
-     *
+     * @brief Forces the image to fill-in the viewport, this is done horizontally, so the image might be out of view vertically.
      */
     function fill()
     {
@@ -270,7 +295,7 @@ Flickable
     }
     
     /**
-     *
+     * @brief Forces the image to be rotated 90 degrees to the left.
      */
     function rotateLeft()
     {
@@ -278,7 +303,7 @@ Flickable
     }
     
     /**
-     *
+     * @brief Forces the image to be rotated 90 degrees to the right.
      */
     function rotateRight()
     {

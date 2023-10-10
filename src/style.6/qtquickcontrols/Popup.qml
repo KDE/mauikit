@@ -69,7 +69,7 @@ T.Popup
         }
     }
     
-    readonly property int mWidth:  Math.round(Math.min(control.parent.width * widthHint, maxWidth))
+    readonly property int mWidth: Math.round(Math.min(control.parent.width * widthHint, maxWidth))
     readonly property int mHeight: Math.round(Math.min(control.parent.height * heightHint, maxHeight))
     
     anchors.centerIn: parent

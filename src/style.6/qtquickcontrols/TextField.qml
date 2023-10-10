@@ -76,7 +76,7 @@ T.TextField
     /**
      * menu : Menu
      */
-    property alias menu : entryMenu
+    readonly property alias menu : entryMenu
     
     /**
      * actions : RowLayout

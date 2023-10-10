@@ -22,15 +22,68 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
+/**
+ * @brief A QQC2 ScrollView setup ready for adding any children into a column layout that is scrollable.
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-scrollview.html">This control inherits from QQC2 ScrollView, to checkout its inherited properties refer to the Qt Docs.</a>
+ * 
+ * @note The children content is added to a ColumnLayout, so to position the elements use the Layout attached properties.
+ *  
+ * @image html Misc/scrollcolumn.gif
+ * 
+ * @code
+ * Maui.ScrollColumn
+{
+    anchors.fill: parent
+
+    Rectangle
+    {
+        implicitHeight: 600
+        Layout.fillWidth: true
+        color: "purple"
+    }
+
+    Rectangle
+    {
+        implicitHeight: 200
+        Layout.fillWidth: true
+        color: "orange"
+    }
+
+    Rectangle
+    {
+        implicitHeight: 300
+        Layout.fillWidth: true
+        color: "yellow"
+    }
+}
+ * @endcode
+ 
+ <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ScrollColumn.qml">You can find a more complete example at this link.</a>
+ */
 ScrollView
 {
     id: control
 
+    /**
+     * @brief The default content declared as the children is placed unser a ColumnLayout.
+     * @property list<QtObject> ScrollColumn::content
+     */
     default property alias content : _pageContent.data
-    property alias container : _pageContent
-    property alias flickable: _flickable
+        
+    /**
+     * @brief An alias to the children container hanlded by a QQC2 ColumnLayout.
+     * @property ColumnLayout ScrollColumn::container
+     */    
+    readonly property alias container : _pageContent
+    
+    /**
+     * @brief An alias to the QQC2 Flickable element that allows to flick the content. This is exposed to allow to access the Flcikable properties.
+     * @note See Qt documentation on the Flickable type.
+     *@property Flickable ScrollColumn::flickable
+     */
+    readonly property alias flickable: _flickable
 
     padding: Maui.Style.contentMargins
 
