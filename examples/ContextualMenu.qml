@@ -29,16 +29,25 @@ Maui.ApplicationWindow
                 title: "Menu Title"
                 titleIconSource: "folder"
 
-                Action
+                Maui.MenuItemActionRow
                 {
-                    text: "Action1"
-                    icon.name: "love"
-                }
+                    Action
+                    {
+                        text: "Action1"
+                        icon.name: "love"
+                    }
 
-                Action
-                {
-                    text: "Action2"
-                    icon.name: "folder"
+                    Action
+                    {
+                        text: "Action2"
+                        icon.name: "folder"
+                    }
+
+                    Action
+                    {
+                        text: "Action3"
+                        icon.name: "anchor"
+                    }
                 }
 
                 MenuSeparator {}

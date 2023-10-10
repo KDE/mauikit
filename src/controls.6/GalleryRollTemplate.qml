@@ -5,14 +5,14 @@ import org.mauikit.controls 1.3 as Maui
 import Qt5Compat.GraphicalEffects
 
 /**
-@brief A template control to display images in a carousel form. This element is use with the GalleryRollItem to display the images, so consider using that control instead of this one.
-
-This control inherits all properties from the MauiKit ShadowedRectangle control. Thus, the corners radius can be modified individually, and a drop shadow can be added, using the `corners` and `shadow` properties respectively.
-
-The transition of the images can be set as vertical or horizontal using the `orientation` property, and the transition time is picked randomly.
-@see orientation 
-
-@note If not images are set, then the area is filled with a solid color block. This color can be changed using the `color` property. 
+ * @brief A template control to display images in a carousel form. This element is use with the GalleryRollItem to display the images, so consider using that control instead of this one.
+ * 
+ * This control inherits all properties from the MauiKit ShadowedRectangle control. Thus, the corners radius can be modified individually, and a drop shadow can be added, using the `corners` and `shadow` properties respectively.
+ * 
+ * The transition of the images can be set as vertical or horizontal using the `orientation` property, and the transition time is picked randomly.
+ * @see orientation 
+ * 
+ * @note If not images are set, then the area is filled with a solid color block. This color can be changed using the `color` property. 
  */
 Maui.ShadowedRectangle
 {
@@ -41,8 +41,8 @@ Maui.ShadowedRectangle
      * By default this is set to `true`.
      */
     property bool cache : true
-        
-     /**
+    
+    /**
      * @brief A callback function to manage what image is positioned. This callback function is called for each image source set in the model `images`, so the final source can be modified. This function should return a - new or modified - image source URL.   
      *
      * As an example, if the `images` model looks like: `["page1", "page2", "page3"]` - which are not file URLs, this callback function can be use to map each individual source to an actual file URL. 
@@ -56,7 +56,7 @@ Maui.ShadowedRectangle
      */
     property var cb
     
-   /**
+    /**
      * @brief A list of images to be used. This will be use as the model.
      */
     property var images : []
@@ -78,7 +78,7 @@ Maui.ShadowedRectangle
      * @property bool GalleryRollTemplate::running
      */
     property alias running: _featuredTimer.running
-
+    
     /**
      * @brief Sets the painted width size of the image. 
      * @note If the image has a big resolution it will take longer to load, so make it faster set this property to a lower value.
@@ -96,7 +96,7 @@ Maui.ShadowedRectangle
      * This is the same as setting the QQC2 Image `sourceSize.height` property.
      */
     property int imageHeight : -1
-
+    
     corners
     {
         topLeftRadius: control.radius
@@ -104,24 +104,24 @@ Maui.ShadowedRectangle
         bottomLeftRadius: control.radius
         bottomRightRadius: control.radius
     }
-
+    
     ListView
     {
         id: _featuredRoll
         anchors.fill: parent
-
+        
         interactive: false
         orientation: Qt.Horizontal
         snapMode: ListView.SnapOneItem
         clip: true
-
+        
         boundsBehavior: Flickable.StopAtBounds
         boundsMovement: Flickable.StopAtBounds
-
+        
         model: control.images
-
+        
         Component.onCompleted: _featuredTimer.start()
-
+        
         Timer
         {
             id: _featuredTimer
@@ -129,14 +129,14 @@ Maui.ShadowedRectangle
             repeat: true
             onTriggered: _featuredRoll.cycleSlideForward()
         }
-
+        
         function cycleSlideForward()
         {
             if(_featuredRoll.dragging)
             {
                 return
             }
-
+            
             if (_featuredRoll.currentIndex === _featuredRoll.count - 1)
             {
                 _featuredRoll.currentIndex = 0
@@ -146,14 +146,14 @@ Maui.ShadowedRectangle
             }
             _featuredTimer.restart()
         }
-
+        
         function cycleSlideBackward()
         {
             if(_featuredRoll.dragging)
             {
                 return
             }
-
+            
             if (_featuredRoll.currentIndex === 0)
             {
                 _featuredRoll.currentIndex = _featuredRoll.count - 1;
@@ -161,20 +161,20 @@ Maui.ShadowedRectangle
             {
                 _featuredRoll.decrementCurrentIndex();
             }
-
+            
             _featuredTimer.restart()
         }        
-    
-    function randomInteger(min, max)
-    {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
+        
+        function randomInteger(min, max)
+        {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
         delegate: Item
         {
             width: ListView.view.width
             height: ListView.view.height
-
+            
             Image
             {
                 anchors.fill: parent
@@ -186,7 +186,7 @@ Maui.ShadowedRectangle
                 source: control.cb ? control.cb(modelData) : modelData
                 fillMode: control.fillMode
             }
-
+            
             Behavior on height
             {
                 NumberAnimation
@@ -196,7 +196,7 @@ Maui.ShadowedRectangle
                 }
             }
         }
-
+        
         layer.enabled: control.radius
         layer.effect: OpacityMask
         {
@@ -204,7 +204,7 @@ Maui.ShadowedRectangle
             {
                 width: control.width
                 height: control.height
-
+                
                 corners
                 {
                     topLeftRadius: control.corners.topLeftRadius

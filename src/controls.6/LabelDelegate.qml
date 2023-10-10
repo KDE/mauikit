@@ -20,71 +20,135 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
-/**
- * LabelDelegate
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
+/** 
+ * @brief A basic MauiKit delegate for displaying a text label with an icon in a horizontal layout.
+ * 
+ * @warning This item is not interactive and is meant to be use as an information label. Not press events are handled.
+ * For a similar interactive delegate checkout ListDelegate.
+ * @see ListDelegate
+ * 
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-itemdelegate.html">This controls inherits from QQC2 ItemDelegate, to checkout its inherited properties refer to the Qt Docs.</a>
+ * 
+ * @image html Misc/labeldelegate.png
+ * 
+ * @code
+ * Column
+ * {
+ *    width: Math.min(600, parent.width)
+ *    anchors.centerIn: parent
+ * 
+ *    Maui.LabelDelegate
+ *    {
+ *        width: parent.width
+ *        text: "Hola!"
+ *        icon.name: "love"
+ *    }
+ * 
+ *    Maui.LabelDelegate
+ *    {
+ *        width: parent.width
+ *        text: "Section Header"
+ *        icon.name: "anchor"
+ *        isSection: true
+ *    }
+ * 
+ * 
+ *    Maui.LabelDelegate
+ *    {
+ *        width: parent.width
+ *        text: "Regular label thingy."
+ *    }
+ * 
+ *    Maui.LabelDelegate
+ *    {
+ *        width: parent.width
+ *        text: "Hola!"
+ *        icon.name: "folder"
+ *    }
+ * }
+ * @endcode
+ * 
+ * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/LabelDelegate.qml">You can find a more complete example at this link.</a>
+ * 
  */
 Control
 {
     id: control
-
+    
     implicitHeight: Maui.Style.rowHeight + topPadding + bottomPadding
-        
+    
     focusPolicy: Qt.NoFocus
     hoverEnabled: false
     
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.defaultSpacing
     
-    //   highlighted:  ListView.isCurrentItem
     /**
-   * isCurrentListItem : bool
-   */
-    //property alias isCurrentListItem : control.highlighted
-
-    /**
-   * isSection : bool
-   */
+     * @brief Whether the label should be styled as a section header.
+     * @see SectionHeader
+     * By default this is set to `false`.
+     */
     property bool isSection : false
-
-    /**
-   * label : string
-   */
-    property alias label: labelTxt.text
-
-    /**
-   * labelTxt : Label
-   */
-    property alias labelTxt : labelTxt
     
-    property alias color :labelTxt.color
-
+    /**
+     * @see IconLabel::label 
+     */
+    property alias label: _labelTxt.label
+    
+    /**
+     * @see IconLabel::color
+     */
+    property alias color: _labelTxt.color
+    
+    /**
+     * @brief The group icon properties, to set the icon name, source, and size.
+     */
+    property alias icon : _dummyButton.icon
+    
+    /**
+     * @see IconLabel::text
+     */
+    property alias text : _labelTxt.text
+    
+    /**
+     * @brief An alias to the IconLabel control handling the information.
+     * @see IconLabel for properties.
+     * @property IconLabel LabelDelegate::template
+     */
+    property alias template : _labelTxt
+    
     background: Item{}
-
+    
+    AbstractButton
+    {
+        id: _dummyButton
+        visible: false
+        icon.height: Maui.Style.iconSize
+        icon.width: Maui.Style.iconSize
+        icon.color: control.color
+    }
+    
     contentItem: MouseArea
     {
         propagateComposedEvents: true
         preventStealing: false
-//        onPressed: mouse.accepted= false
-
-        Label
+        //        onPressed: mouse.accepted= false
+        
+        Maui.IconLabel
         {
+            id: _labelTxt
+            
             anchors.fill: parent
-            id: labelTxt
+            
+            display: ToolButton.TextBesideIcon
+            icon: control.icon
             font: control.isSection ? Maui.Style.h2Font : Maui.Style.defaultFont
-            horizontalAlignment: Qt.AlignLeft
-            verticalAlignment: Qt.AlignVCenter
-            text: labelTxt.text
-            elide: Text.ElideRight
-            wrapMode: Text.NoWrap
+            
+            alignment: Qt.AlignLeft
+            
+            text: control.text
             color: control.isCurrentListItem ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor
         }
     }

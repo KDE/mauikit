@@ -21,14 +21,14 @@ import QtQuick
 import QtQuick.Controls
 
 /**
- * TextField
- * A global sidebar for the application window that can be collapsed.
+ * @brief A text field meant to enter passwords.
  *
- *
- *
- *
- *
- *
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-textfield.html">This control inherits from QQC2 TextField, to checkout its inherited properties refer to the Qt Docs.</a>
+ *  
+ * This control allows to mask the password as it is typed, and also includes a button action to toggle between unmask and masking the password.
+ * 
+ * @note Some extra properties inherited from the TextField style, have been obscured, and can be discovered on the SearchField documentation.
+ * @see SearchField
  */
 TextField
 {
