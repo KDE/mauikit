@@ -268,9 +268,3 @@ msgstr ""
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr ""
-
-#~ msgid "Authors"
-#~ msgstr "Autoři"
-
-#~ msgid "Links"
-#~ msgstr "Odkazy"
