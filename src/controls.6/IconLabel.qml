@@ -24,14 +24,16 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
- *  @brief A icon and a label put together in two possible positions, a horizontal or vertical layout.
+ * @inherit QtQuick.Item
+ * @brief A icon and a label put together in two possible positions, a horizontal or vertical layout.
  * 
- * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a> 
- * This is a sort of base template for other controls, such as for ToolButton, Button, MenuItem, etc.
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This control inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a> 
+ * 
+ * This is a base template for other controls, such as for setting the contents of the ToolButton, Button, MenuItem, etc, in the style.
  *  
- *  @note This control is only a visual item, and does not handle any event or gets any focus.
+ * @note This control is only a visual item, and does not handle any event or gets any focus.
  *  
- *  @image html Misc/iconlabel.png
+ * @image html Misc/iconlabel.png
  *  
  * @code
  * ColumnLayout
@@ -68,7 +70,6 @@ import org.mauikit.controls 1.3 as Maui
  * @see icon 
  * 
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/IconLabel.qml">You can find a more complete example at this link.</a>
- * 
  */
 Item
 {

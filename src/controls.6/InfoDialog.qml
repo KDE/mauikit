@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Controls.Dialog
  * @brief A Dialog with a built-in template container for displaying information, with a title, image and message body.
  * 
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-dialog.html">This controls inherits from QQC2 Dialog, to checkout its inherited properties refer to the Qt Docs.</a>

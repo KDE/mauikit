@@ -26,6 +26,7 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit ItemDelegate
  * @brief A MauiKit ItemDelegate with an informational row layout.
  * This controls inherits from MauiKit ItemDelegate, to checkout its inherited properties refer to docs.
  * 
@@ -305,7 +306,7 @@ Maui.ItemDelegate
             restoreMode: Binding.RestoreBinding
           }
           
-          onToggled: (state) => control.toggled(state)
+          onToggled: control.toggled(checked)
         }
       }
       

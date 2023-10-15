@@ -14,6 +14,12 @@ class BackgroundManager;
 class AccessibilityManager;
 }
 
+/**
+ * @brief The Unit group properties.
+ * These properties are standard values meant to be used across the UI elements for a cohesive look and feel.
+ * 
+ * @note This object can not be instantiated. It only exists as part of the Style::units implementation, which ca be accessed via the global Style singleton.
+ */
 class Units : public QObject
 {
     Q_OBJECT
@@ -39,6 +45,11 @@ private:
     uint m_toolTipDelay;
 };
 
+/**
+ * @brief The sizes group for some Style properties, such as Style::iconSize, Style::space, etc.
+ * 
+ * @note This object can not be instantiated. It only exists as part of some of the Style property implementations, which ca be accessed via the global Style singleton.
+ */
 class GroupSizes : public QObject
 {
     Q_OBJECT
@@ -66,59 +77,187 @@ Q_SIGNALS:
     void sizesChanged();
 };
 
+/**
+ * @brief The MauiKit Style preferences singleton object.
+ * 
+ */
 class Style : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Style)
 
+    /**
+     * 
+     */
     Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint radiusV MEMBER m_radiusV NOTIFY radiusVChanged FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint iconSize READ iconSize NOTIFY iconSizeChanged FINAL)
 
+    /**
+     * 
+     */
     Q_PROPERTY(uint rowHeight MEMBER m_rowHeight CONSTANT FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
+    
+/**
+     * 
+     */
     Q_PROPERTY(uint contentMargins MEMBER m_contentMargins  NOTIFY contentMarginsChanged)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint defaultPadding MEMBER m_defaultPadding NOTIFY defaultPaddingChanged)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(uint defaultSpacing MEMBER m_defaultSpacing NOTIFY defaultSpacingChanged)
     
+    /**
+     * 
+     */
     Q_PROPERTY(QFont defaultFont MEMBER m_defaultFont NOTIFY defaultFontChanged)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(QFont h1Font MEMBER m_h1Font NOTIFY h1FontChanged)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(QFont h2Font MEMBER m_h2Font NOTIFY h2FontChanged)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(QFont monospacedFont MEMBER m_monospacedFont NOTIFY monospacedFontChanged)
     
+    /**
+     * 
+     */
     Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes NOTIFY fontSizesChanged)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
+    
+    /**
+     * 
+     */
     Q_PROPERTY(Units *units MEMBER m_units CONSTANT FINAL)
 
+    /**
+     * Sets the color to be used for highlighted, active, checked and such states of the UI elements.
+     * By default this color is set to the global preferences via MauiMan.
+     * This can be overridden by each application to a custom color. To reset it back to the system preference set the property to `undefined`. 
+     */
     Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged FINAL RESET unsetAccentColor)
 
+    /**
+     * 
+     */
     Q_PROPERTY(QVariant adaptiveColorSchemeSource READ adaptiveColorSchemeSource WRITE setAdaptiveColorSchemeSource NOTIFY adaptiveColorSchemeSourceChanged RESET unsetAdaptiveColorSchemeSource)
 
+    /**
+     * 
+     */
     Q_PROPERTY(StyleType styleType READ styleType WRITE setStyleType NOTIFY styleTypeChanged RESET unsetStyeType)
 
+    /**
+     * 
+     */
     Q_PROPERTY(bool enableEffects READ enableEffects NOTIFY enableEffectsChanged FINAL)
 
+    /**
+     * 
+     */
     Q_PROPERTY(QString currentIconTheme READ currentIconTheme NOTIFY currentIconThemeChanged)
 
+    /**
+     * 
+     */
     Q_PROPERTY(bool menusHaveIcons READ menusHaveIcons CONSTANT FINAL)
     
+    /**
+     * 
+     */
     Q_PROPERTY(uint scrollBarPolicy READ scrollBarPolicy NOTIFY scrollBarPolicyChanged FINAL)
+    /**
+     * 
+     */
     Q_PROPERTY(bool playSounds READ playSounds NOTIFY playSoundsChanged FINAL)
         
 public:
+    /**
+     * @brief The different options for the color scheme style.
+     */
     enum StyleType : uint
     {
+        /**
+         * A light variant designed for Maui.
+         */
         Light = 0,
+        
+        /**
+         * A dark variant designed for Maui.
+         */
         Dark,
+        
+         /**
+         * Picks the color scheme based on an source input, such as an image. The generated color palette determines if it is a dark or light scheme, and also its accent color.
+         */
         Adaptive,
+        
+         /**
+         * Picks the colors from the system palette, usually from Plasma color-scheme files.
+         * @note Use this type when mixing MauiKit with Kirigami controls, so both frameworks pick up the color palette from the same source.
+         */
         Auto,
+        
+         /**
+         * A fully black color palette with a full white accent color. This is might be useful as a accessibility enhance or for performance on E-Ink and AMOLED displays.
+         */
         TrueBlack,
+        
+         /**
+         * A fully white color palette with a true black accent color. This is the inverted version of the TrueBlack type.
+         */
         Inverted
     }; Q_ENUM(StyleType)
     
+    /**
+     * 
+     */
     enum ScrollBarPolicy : uint
     {
         AlwaysOn= 0,
@@ -127,8 +266,14 @@ public:
         AutoHide
     }; Q_ENUM(ScrollBarPolicy)
 
+    /**
+     * @private
+     */
     static Style *qmlAttachedProperties(QObject *object);
 
+    /**
+     * @private
+     */
     static Style *instance()
     {
         if (m_instance)
@@ -163,6 +308,9 @@ public:
     uint scrollBarPolicy() const;
 
 public Q_SLOTS:
+    /**
+     * @brief
+     */
     int mapToIconSizes(const int &size);
 
 private:

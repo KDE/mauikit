@@ -5,6 +5,7 @@ import org.mauikit.controls 1.3 as Maui
 import Qt5Compat.GraphicalEffects
 
 /**
+ * @inherit ShadowedRectangle
  * @brief A template control to display images in a carousel form. This element is use with the GalleryRollItem to display the images, so consider using that control instead of this one.
  * 
  * This control inherits all properties from the MauiKit ShadowedRectangle control. Thus, the corners radius can be modified individually, and a drop shadow can be added, using the `corners` and `shadow` properties respectively.

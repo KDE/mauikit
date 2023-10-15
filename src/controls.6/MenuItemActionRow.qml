@@ -10,6 +10,7 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Controls.MenuItem
  * @brief A menu item entry for placing a set of actions as the children.
  * The actions will be represented as row of QQC2 ToolButton.
  * 

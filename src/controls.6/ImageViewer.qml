@@ -11,6 +11,7 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Flickable
  * @brief A view container for displaying images.
  * 
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-flickable.html">This controls inherits from QQC2 Flickable, to checkout its inherited properties refer to the Qt Docs.</a>

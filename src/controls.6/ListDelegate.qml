@@ -23,6 +23,7 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit ItemDelegate
  * @brief A basic delagate for a label and an icon, to be used in a list browser.
  * This controls inherits from MauiKit ItemDelegate, to checkout its inherited properties refer to docs.
  * 

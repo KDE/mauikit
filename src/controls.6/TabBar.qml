@@ -7,54 +7,55 @@ import QtQuick.Controls 2.15 as QQC
 import org.mauikit.controls 1.3 as Maui
 
 /**
- @brief Tab bar alternative to QQC TabBar, and based on it. 
- 
-  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-tabbar.html">This controls inherits from QQC2 TabBar, to checkout its inherited properties refer to the Qt Docs.</a>
-  
- Mostly used together with the TabView control.
- 
- The layout of this control is divided into three sections: left, middle and right area.
- The middle area is reserved for placing the tab buttons. The right and left side areas can be populated with any child item.
- 
- All the child items are expected to be a TabButton or inherit from it. If you need to add an extra button, label or other item, consider adding them using the left and right containerizes.
- @see leftContent
- @see rightContent
- 
- @code
- TabBar
- {
-    leftContent: Button
-    {
-        text: "Button1"
-    }    
-    
-    rightContent: [
-        
-        Button
-        {
-            text: "Button2"
-        },
-        
-        Button
-        {
-            text: "Button3"
-        }
-    ]
- }
- @endcode
-  
- @section notes Notes
- 
- The contents of this bar will become flickable/scrollable if the implicit width of the child elements is higher than the available width.
- When using it on a mobile device and a flick/swipe action is performed by the user, a signal will be emitted informing about the tab focused in the view port.
- @see newTabFocused
- 
-@note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD. 
+ * @inherit QtQuick.Controls.TabBar
+ * @brief Tab bar alternative to QQC TabBar, and based on it. 
+ * 
+ *  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-tabbar.html">This controls inherits from QQC2 TabBar, to checkout its inherited properties refer to the Qt Docs.</a>
+ *  
+ * Mostly used together with the TabView control.
+ * 
+ * The layout of this control is divided into three sections: left, middle and right area.
+ * The middle area is reserved for placing the tab buttons. The right and left side areas can be populated with any child item.
+ * 
+ * All the child items are expected to be a TabButton or inherit from it. If you need to add an extra button, label or other item, consider adding them using the left and right containerizes.
+ * @see leftContent
+ * @see rightContent
+ * 
+ * @code
+ * TabBar
+ * {
+ *    leftContent: Button
+ *    {
+ *        text: "Button1"
+ *    }    
+ *    
+ *    rightContent: [
+ *        
+ *        Button
+ *        {
+ *            text: "Button2"
+ *        },
+ *        
+ *        Button
+ *        {
+ *            text: "Button3"
+ *        }
+ *    ]
+ * }
+ * @endcode
+ *  
+ * @section notes Notes
+ * 
+ * The contents of this bar will become flickable/scrollable if the implicit width of the child elements is higher than the available width.
+ * When using it on a mobile device and a flick/swipe action is performed by the user, a signal will be emitted informing about the tab focused in the view port.
+ * @see newTabFocused
+ * 
+ * @note This control supports the attached Controls.showCSD property to display the window control buttons when using CSD. 
  */
 QQC.TabBar
 {
     id: control
-
+    
     /**
      * @brief An alias to manually add elements to the container directly. This is the middle section of the control. 
      * @property list<QtObject> TabBar::content
@@ -171,7 +172,7 @@ QQC.TabBar
             DragHandler
             {
                 // enabled: !control.interactive
-//                acceptedDevices: PointerDevice.Mouse
+                //                acceptedDevices: PointerDevice.Mouse
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
             }
@@ -192,9 +193,9 @@ QQC.TabBar
             QQC.ScrollView
             {
                 Layout.fillWidth: true
-
+                
                 orientation : Qt.Horizontal
-
+                
                 QQC.ScrollBar.horizontal.policy: QQC.ScrollBar.AlwaysOff
                 QQC.ScrollBar.vertical.policy: QQC.ScrollBar.AlwaysOff
                 
@@ -210,7 +211,7 @@ QQC.TabBar
                     clip: true
                     
                     orientation: ListView.Horizontal
-
+                    
                     spacing: control.spacing
                     
                     model: control.contentModel
@@ -261,14 +262,14 @@ QQC.TabBar
             }
             
             Loader
-        {
-            active: control.Maui.Controls.showCSD === true
-            visible: active
-
-            asynchronous: true
-
-            sourceComponent: Maui.WindowControls {}
-        }
+            {
+                active: control.Maui.Controls.showCSD === true
+                visible: active
+                
+                asynchronous: true
+                
+                sourceComponent: Maui.WindowControls {}
+            }
         }
     }
     

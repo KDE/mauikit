@@ -24,6 +24,7 @@ import Qt5Compat.GraphicalEffects
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Item
  *    @since org.mauikit.controls 1.0
  *    @brief An element to display an icon from the icon theme or file asset; or an image from a local file or a remote URL.
  *        

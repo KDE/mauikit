@@ -25,52 +25,52 @@ import org.mauikit.controls 1.3 as Maui
 import org.mauikit.filebrowsing 1.3 as FB
 
 /**
-    @since org.mauikit.controls.labs 1.0
-    @brief A dialog for listing file URLs and for suggesting to perform an action[s].
-
-    This controls inherits from MauiKit PopupPage, to checkout its inherited properties refer to the docs.
-    @see PopupPage
-
-    The listed files can also be removed from the dialog itself, and the `urls` property will be updated properly.
-    The delegate used to display the files can be assigned to a custom element.
-
-    To add actions use the inherited property `actions` from the PopupPage control.
-
-    @image html Misc/filelistingdialog.png
-    @note The dialog listing a group of file and with three actions set.
-
-    @code
-    Maui.FileListingDialog
-    {
-        id: _dialog
-        title: "File Listing"
-        message: "This is a file listing dialog. Used to list files and suggest to perfom an action upon them."
-
-        urls: ["/home/camiloh/Downloads/premium_photo-1664203068007-52240d0ca48f.avif", "/home/camiloh/Downloads/ide_4x.webp", "/home/camiloh/Downloads/photo-app-fereshtehpb.webp", "/home/camiloh/Downloads/ide-reskin.webp", "/home/camiloh/Downloads/nx-software-center-latest-x86_64.AppImage", "/home/camiloh/Downloads/hand-drawn-flat-design-metaverse-background.zip"]
-
-        actions: [
-            Action
-            {
-                text: "Action1"
-            },
-
-            Action
-            {
-                text: "Action2"
-            },
-
-            Action
-            {
-                text: "Action3"
-            }
-        ]
-    }
-    @endcode
-
-    @section notes Notes
-    The title will not be visible by default as the `headBar` is hidden. To force show it use the `headBar.visible` property.
-
-    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/FileListingDialog.qml">You can find a more complete example at this link.</a>
+ * @inherit PopupPage
+ *    @since org.mauikit.controls
+ *    @brief A dialog for listing file URLs and for suggesting to perform an action[s].
+ * 
+ *    This controls inherits from MauiKit PopupPage, to checkout its inherited properties refer to the docs.
+ *    @see PopupPage
+ * 
+ *    The listed files can also be removed from the dialog itself, and the `urls` property will be updated properly.
+ *    The delegate used to display the files can be assigned to a custom element.
+ * 
+ *    To add actions use the inherited property `actions` from the PopupPage control.
+ * 
+ *    @image html Misc/filelistingdialog.png "Listing a group of files and three actions"
+ * 
+ *    @code
+ *    Maui.FileListingDialog
+ *    {
+ *        id: _dialog
+ *        title: "File Listing"
+ *        message: "This is a file listing dialog. Used to list files and suggest to perfom an action upon them."
+ * 
+ *        urls: ["/home/camiloh/Downloads/premium_photo-1664203068007-52240d0ca48f.avif", "/home/camiloh/Downloads/ide_4x.webp", "/home/camiloh/Downloads/photo-app-fereshtehpb.webp", "/home/camiloh/Downloads/ide-reskin.webp", "/home/camiloh/Downloads/nx-software-center-latest-x86_64.AppImage", "/home/camiloh/Downloads/hand-drawn-flat-design-metaverse-background.zip"]
+ * 
+ *        actions: [
+ *            Action
+ *            {
+ *                text: "Action1"
+ *            },
+ * 
+ *            Action
+ *            {
+ *                text: "Action2"
+ *            },
+ * 
+ *            Action
+ *            {
+ *                text: "Action3"
+ *            }
+ *        ]
+ *    }
+ *    @endcode
+ * 
+ *    @section notes Notes
+ *    The title will not be visible by default as the `headBar` is hidden. To force show it use the `headBar.visible` property.
+ * 
+ *    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/FileListingDialog.qml">You can find a more complete example at this link.</a>
  */
 Maui.PopupPage
 {
@@ -82,182 +82,182 @@ Maui.PopupPage
      */
     default property alias content : _content.data
         
-    /**
-    * @brief The array of URLs to be listed. This will be used as the model for the file listing section.
-    */
-    property var urls: []
-    
-    /**
-    * @brief The body of the message. This will go right under the title.
-    */
-    property string message : ""
-    
-    /**
-    * @brief This is a information map of the first file in the `urls` list. It is used to display a miniature image in the dialog information section.
-    */
-    readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
-    
-    /**
-    * @brief An alias for the template element handling the information section. This is exposed to access it and fine tune details, or embed more element into it. This template is handled by a ListItemTemplate.
-    * @see ListItemTemplate
-    * @property ListItemTemplate FileListingDialog::template.
-    */
-    readonly property alias template : _template
-    
-    hint: 1
-    maxWidth: 350
-    
-    headBar.visible: false
-    
-    Maui.ListItemTemplate
-    {
-        id: _template
-        visible: control.message.length
-        Layout.fillWidth: true
-        label2.text: message
-        label2.textFormat : TextEdit.AutoText
-        label2.wrapMode: TextEdit.WordWrap
-        iconVisible: control.width > Maui.Style.units.gridUnit * 10
+        /**
+         * @brief The array of URLs to be listed. This will be used as the model for the file listing section.
+         */
+        property var urls: []
         
-        iconSizeHint: Maui.Style.iconSizes.large
-        spacing: Maui.Style.space.big
+        /**
+         * @brief The body of the message. This will go right under the title.
+         */
+        property string message : ""
         
-        leftLabels.spacing: control.spacing
+        /**
+         * @brief This is a information map of the first file in the `urls` list. It is used to display a miniature image in the dialog information section.
+         */
+        readonly property var singleItem : FB.FM.getFileInfo(control.urls[0])
         
-        headerSizeHint: template.iconSizeHint + Maui.Style.space.big
-        iconSource: singleItem.icon
-        imageSource: singleItem.thumbnail
-        implicitHeight: Math.max(template.leftLabels.implicitHeight, 64)
-                
-        leftLabels.data: ColumnLayout
+        /**
+         * @brief An alias for the template element handling the information section. This is exposed to access it and fine tune details, or embed more element into it. This template is handled by a ListItemTemplate.
+         * @see ListItemTemplate
+         * @property ListItemTemplate FileListingDialog::template.
+         */
+        readonly property alias template : _template
+        
+        hint: 1
+        maxWidth: 350
+        
+        headBar.visible: false
+        
+        Maui.ListItemTemplate
         {
-            id: _content
+            id: _template
+            visible: control.message.length
             Layout.fillWidth: true
-            spacing: control.spacing
-        }
-        
-        iconComponent: Item
-        {
-            Item
+            label2.text: message
+            label2.textFormat : TextEdit.AutoText
+            label2.wrapMode: TextEdit.WordWrap
+            iconVisible: control.width > Maui.Style.units.gridUnit * 10
+            
+            iconSizeHint: Maui.Style.iconSizes.large
+            spacing: Maui.Style.space.big
+            
+            leftLabels.spacing: control.spacing
+            
+            headerSizeHint: template.iconSizeHint + Maui.Style.space.big
+            iconSource: singleItem.icon
+            imageSource: singleItem.thumbnail
+            implicitHeight: Math.max(template.leftLabels.implicitHeight, 64)
+            
+            leftLabels.data: ColumnLayout
             {
-                height: Math.min(parent.height, 120, width)
-                width: parent.width
-                anchors.centerIn: parent
-                layer.enabled: true
-                
-                Rectangle
+                id: _content
+                Layout.fillWidth: true
+                spacing: control.spacing
+            }
+            
+            iconComponent: Item
+            {
+                Item
                 {
-                    visible: control.urls ? control.urls.length > 1 : false
-                    anchors.fill: parent
+                    height: Math.min(parent.height, 120, width)
+                    width: parent.width
+                    anchors.centerIn: parent
+                    layer.enabled: true
                     
-                    anchors.leftMargin: Maui.Style.space.small
-                    anchors.rightMargin: Maui.Style.space.small
+                    Rectangle
+                    {
+                        visible: control.urls ? control.urls.length > 1 : false
+                        anchors.fill: parent
+                        
+                        anchors.leftMargin: Maui.Style.space.small
+                        anchors.rightMargin: Maui.Style.space.small
+                        
+                        radius: Maui.Style.radiusV
+                        color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                        border.color: Maui.Theme.backgroundColor
+                    }
                     
-                    radius: Maui.Style.radiusV
-                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                    border.color: Maui.Theme.backgroundColor
-                }
-                
-                Rectangle
-                {
-                    visible: control.urls ? control.urls.length > 1 : false
-                    anchors.fill: parent
+                    Rectangle
+                    {
+                        visible: control.urls ? control.urls.length > 1 : false
+                        anchors.fill: parent
+                        
+                        anchors.topMargin: Maui.Style.space.tiny
+                        anchors.leftMargin: Maui.Style.space.tiny
+                        anchors.rightMargin: Maui.Style.space.tiny
+                        
+                        radius: Maui.Style.radiusV
+                        color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                        border.color: Maui.Theme.backgroundColor
+                    }
                     
-                    anchors.topMargin: Maui.Style.space.tiny
-                    anchors.leftMargin: Maui.Style.space.tiny
-                    anchors.rightMargin: Maui.Style.space.tiny
-                    
-                    radius: Maui.Style.radiusV
-                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                    border.color: Maui.Theme.backgroundColor
-                }
-                
-                Rectangle
-                {
-                    anchors.fill: parent
-                    anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
-                    border.color: Maui.Theme.backgroundColor
-                    
-                    radius: Maui.Style.radiusV
-                    color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                    
-                    Maui.GridItemTemplate
+                    Rectangle
                     {
                         anchors.fill: parent
-                        anchors.margins: Maui.Style.space.tiny
-                        iconSizeHint: Math.min(height, width)
+                        anchors.topMargin:  control.urls.length > 1 ? Maui.Style.space.small : 0
+                        border.color: Maui.Theme.backgroundColor
                         
-                        iconSource: control.template.iconSource
-                        imageSource:  control.template.imageSource
+                        radius: Maui.Style.radiusV
+                        color: Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+                        
+                        Maui.GridItemTemplate
+                        {
+                            anchors.fill: parent
+                            anchors.margins: Maui.Style.space.tiny
+                            iconSizeHint: Math.min(height, width)
+                            
+                            iconSource: control.template.iconSource
+                            imageSource:  control.template.imageSource
+                        }
                     }
                 }
             }
         }
-    }
-    
-    /**
-    * @brief The list delegate item to be used to display the file URLs.
-    * This is set to a MauiKit ListItemTemplate element by default with a image  or icon preview and the file name.
-    * This can be changed to any other element. The model is populated by the `urls` property, so to extract information for a custom element, use the `modelData` attribute to get the URL for each instance.
-    */
-    property Component listDelegate : Maui.ListItemTemplate
-    {
-        width: ListView.view.width
-        height: Maui.Style.rowHeight
-        property var item : FB.FM.getFileInfo(modelData)
-        label1.text: item.label
-        label3.text: Maui.Handy.formatSize(item.size)
-        rightLabels.visible: true
-        iconVisible: true
-        iconSource: item.icon
-        imageSource: item.thumbnail
-        iconSizeHint: Maui.Style.iconSizes.medium
         
-        ToolButton
+        /**
+         * @brief The list delegate item to be used to display the file URLs.
+         * This is set to a MauiKit ListItemTemplate element by default with a image  or icon preview and the file name.
+         * This can be changed to any other element. The model is populated by the `urls` property, so to extract information for a custom element, use the `modelData` attribute to get the URL for each instance.
+         */
+        property Component listDelegate : Maui.ListItemTemplate
         {
-            //text: i18nd("mauikit", "Clear")
-            icon.name: "edit-clear"
-            icon.width: Maui.Style.iconSizes.small
-            icon.height: Maui.Style.iconSizes.small
+            width: ListView.view.width
+            height: Maui.Style.rowHeight
+            property var item : FB.FM.getFileInfo(modelData)
+            label1.text: item.label
+            label3.text: Maui.Handy.formatSize(item.size)
+            rightLabels.visible: true
+            iconVisible: true
+            iconSource: item.icon
+            imageSource: item.thumbnail
+            iconSizeHint: Maui.Style.iconSizes.medium
             
-            onClicked:
+            ToolButton
             {
-                var array = control.urls
-                const index = array.indexOf(modelData);
-                if (index > -1) {
-                    array.splice(index, 1);
-                }
+                //text: i18nd("mauikit", "Clear")
+                icon.name: "edit-clear"
+                icon.width: Maui.Style.iconSizes.small
+                icon.height: Maui.Style.iconSizes.small
                 
-                if(array.length === 0)
+                onClicked:
                 {
-                    control.close()
-                    return
+                    var array = control.urls
+                    const index = array.indexOf(modelData);
+                    if (index > -1) {
+                        array.splice(index, 1);
+                    }
+                    
+                    if(array.length === 0)
+                    {
+                        control.close()
+                        return
+                    }
+                    
+                    control.urls = array
                 }
-                
-                control.urls = array
             }
         }
-    }
-    
-    Loader
-    {
-        id: _listViewLoader
         
-        asynchronous: true
-        active: control.urls.length > 0
-        visible: active
-        
-        Layout.fillWidth: true
-        
-        sourceComponent: Maui.ListBrowser
+        Loader
         {
-            clip: true
-            implicitHeight: Math.min(contentHeight, 300)
-            model: urls
-            spacing: Maui.Style.defaultSpacing
-            padding: 0
+            id: _listViewLoader
             
-            delegate: control.listDelegate
+            asynchronous: true
+            active: control.urls.length > 0
+            visible: active
+            
+            Layout.fillWidth: true
+            
+            sourceComponent: Maui.ListBrowser
+            {
+                clip: true
+                implicitHeight: Math.min(contentHeight, 300)
+                model: urls
+                spacing: Maui.Style.defaultSpacing
+                padding: 0
+                
+                delegate: control.listDelegate
+            }
         }
-    }
 }

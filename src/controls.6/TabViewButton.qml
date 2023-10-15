@@ -5,27 +5,53 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
+/**
+ * @inherit TabButton
+ * @brief A TabButton crafted to be use along with the MauiKit TabView.
+ * 
+ * This control only adds some extra functionality to integrate well with MauiKit TabView. If you consider changing the tab button of the TabView for a custom one, use this as the base.
+ * 
+ * This control adds the DnD features, and integrates wiht the TabViewInfo data.
+ */
 Maui.TabButton
 {
     id: control
     
     autoExclusive: true
     
+    /**
+     * @brief The index of this tab button in the TabBar
+     */
     readonly property int mindex : control.TabBar.index
+    
+    /**
+     * @brief The TabView to which this tab button belongs.
+     * By default this is set to its parent.
+     * @warning When creating a custom tab button for the TabView, you might need to bind this to the TabView ID.
+     */
     property Item tabView : control.parent
     
+    /**
+     * @brief The object map containing information about this tab.
+     * The information was provided using the TabViewInfo attached properties.
+     * @see TabViewInfo
+     */
     readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
+    
+    /**
+     * @brief The color to be used in a bottom strip.
+     * By default this checks for the TabViewInfo.tabColor attached property, if it has not been set, it fallbacks to being transparent.
+     */
+    property color color : tabInfo.tabColor ? tabInfo.tabColor : "transparent"
     
     width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
     
     checked: control.mindex === control.tabView.currentIndex
     text: tabInfo.tabTitle
     
-    icon.name: tabInfo.tabIcon
-    
-    property color color : tabInfo.tabColor ? tabInfo.tabColor : "transparent"
+    icon.name: tabInfo.tabIcon    
     
     ToolTip.delay: 1000
     ToolTip.timeout: 5000

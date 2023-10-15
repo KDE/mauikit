@@ -26,6 +26,7 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 /**
+ * @inherit QtQuick.Controls.Control
  * @brief A group of actions positioned in a plegable ribbon that fold/unfolds from a big floating colored button.
  * 
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This control inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a>

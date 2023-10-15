@@ -23,6 +23,7 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Controls.Control
  * @brief ItemDelegate is the base for the MauiKit delegate controls. 
  * It is radically different from QQC2 ItemDelegate.
  * 
