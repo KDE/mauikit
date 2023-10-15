@@ -20,25 +20,47 @@
 import QtQuick
 import QtQuick.Layouts
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
-/*!
- \ since org.*mauikit.controls.labs 1.0
- \inqmlmodule org.mauikit.controls.labs
+/**
+ * @inherit FlexListItem
+ * @since org.mauikit.controls
+ * @brief An item used for holding information in a responsive layout.
+ * This control inherits from MauiKit FlexListItem, to checkout its inherited properties refer to the docs.
+ * 
+ *  @note There is also the SectionItem, which uses a static column layout for positioning its content.
+ * @see FlexSectionItem
+ * 
+ * This control is a wrapper around the FlexListItem, with some added functionality.
+ * 
+ * @image html Misc/flexsectionitem.png "Demo of a flex section being wrapped"
+ * 
+ * @note If the first and single child element of this control is `checkable`, then the state of such control will be toggled by clicking on the area of the FlexSectionItem.
+ * 
+ * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/FlexSectionItem.qml">You can find a more complete example at this link.</a> 
  */
 Maui.FlexListItem
 {
     id: control
-   
-   padding: Maui.Style.defaultPadding
-   spacing: Maui.Style.space.small
-   
-   Layout.fillWidth: true
-   property bool flat : !Maui.Handy.isMobile
-   
+    
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.small
+    
+    Layout.fillWidth: true
     hoverEnabled: !Maui.Handy.isMobile
-
-    readonly property bool childCheckable : control.content.length >= 2 && control.content[1].hasOwnProperty("checkable") ? control.content[1].checkable : false
+    
+    /**
+     * @brief Whether the control should be styled as flat, as in not having a background or hover/pressed visual effect hints.
+     * By default this is set to `!Handy.isMobile`
+     * @see Handy::isMobile
+     */
+    property bool flat : !Maui.Handy.isMobile
+    
+    /**
+     * @brief Whether the first children element from the `content` is checkable. 
+     * If it is the the control will have a hover effct to hint about the item being checkable.
+     */ 
+    readonly property bool childCheckable : control.content.length === 1 && control.content[0].hasOwnProperty("checkable") ? control.content[0].checkable : false
     
     background: Rectangle
     {       
@@ -56,7 +78,7 @@ Maui.FlexListItem
     {
         if(control.childCheckable)
         {
-            control.content[1].toggled()
+            control.content[0].toggled()
         }        
     }
 }

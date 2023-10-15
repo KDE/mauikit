@@ -23,6 +23,7 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Item
  * @brief A browser view with a grid layout.
  * 
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a>
@@ -101,6 +102,7 @@ import org.mauikit.controls 1.3 as Maui
  * @note You can use the GridView attached properties to refer to the control properties from the delegates. For example, you could use `GridView.view.itemSize` or GridView.view.cellWidth`. * 
  *  
  * @image html Browsers/gridbrowser_alt.png "The GridBrowser with adaptable content disabled"
+ * 
  * @note Notice the yellow rectangles vs the grey ones. The yellow rectangles will preserve the `itemSize` dimensions, and the cell width - as the gray area- will also keep the same dimensions as `itemSize`.
  *  
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/GridBrowser.qml">You can find a more complete example at this link.</a>

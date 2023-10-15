@@ -25,3 +25,16 @@ void Controls::setShowCSD(bool newShowCSD)
     m_showCSD = newShowCSD;
     Q_EMIT showCSDChanged();
 }
+
+QString Controls::title() const
+{
+    return m_title;
+}
+
+void Controls::setTitle(const QString &title)
+{
+    if (m_title == title)
+        return;
+    m_title = title;
+    Q_EMIT titleChanged();
+}

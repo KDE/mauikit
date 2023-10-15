@@ -3,6 +3,7 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Controls.ProgressBar
  * @brief A QQC2 ProgressBar bu styled to be used as a indetermined progress indicator.
  * Usually used at the bottom of a view.
  * 

@@ -220,7 +220,8 @@ Pane
         property list<Action> menuActions
         
         /**
-         * @brief The delegate tab button used in the tab bar. This can be changed to any other item, but it is recommend it to use TabViewButton as the base of the new custom control for the existing integration work.
+         * @brief The component to be used as the tab button in the tab bar. This can be changed to any other item, but it is recommend it to use TabViewButton as the base of the new custom control for the better integration.
+         * @see TabViewButton
          */
         property Component tabViewButton :  _tabButtonComponent
         

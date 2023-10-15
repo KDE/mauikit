@@ -21,6 +21,7 @@ import QtQuick
 import QtQuick.Controls
 
 /**
+ * @inherit QtQuick.Controls.TextField
  * @brief A text field meant to enter passwords.
  *
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-textfield.html">This control inherits from QQC2 TextField, to checkout its inherited properties refer to the Qt Docs.</a>

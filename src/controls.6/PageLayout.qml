@@ -25,6 +25,7 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit Page
  * @brief A MauiKit Page with a toolbar bar content that is dynamically split onto two bars upon request.
  * This control inherits from MauiKit Page, to checkout its inherited properties refer to docs.
  * 
@@ -41,7 +42,7 @@ import org.mauikit.controls 1.3 as Maui
  * 
  * @image html Misc/pagelayout.png
  * 
- * @warning It is important to not change the `header` to a different control. This element depends on MauiKit ToolBar being used.
+ * @warning It is important to not change the `header` to a different control. PageLayout depends on MauiKit ToolBar being used.
  *  
  * @code
  * Maui.PageLayout

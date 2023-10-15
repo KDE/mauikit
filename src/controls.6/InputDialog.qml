@@ -5,9 +5,10 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit InfoDialog
  * @brief An InfoDialog with a text entry field.
  * 
- *  This controls inherits from MauiKit InfoDialog, to checkout its inherited properties refer to docs.
+ *  This control inherits from MauiKit InfoDialog, to checkout its inherited properties refer to docs.
  * 
  *  This dialog can have information labels and icon/image, any number of children, and more. Refer to the structure of the Info Dialog.
  *  @see InfoDialog::structure Structure

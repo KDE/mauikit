@@ -21,28 +21,53 @@
 #include <QQmlEngine>
 
 /**
- * @brief The AppView class
- * representsthe attached properties to handled the application main views following the Maui HIG
+ * @brief The AppView class.
+ * Represents the possible attachable properties to be use with the MauiKit AppViews control.
+ * 
+ * With this properties information can be attached to the AppViews children views, so the AppViews can - for example - place the view port buttons with the indicated icon and text title.
+ * @see AppViews
+ * @see AppViewLoader
+ * 
+ * @note This class is exposed as AppView to QML, and is meant to be used as n attached property in the AppViews children views.
+ * 
+ * @code
+ * Item
+ * {
+ *  Maui.AppView.title: "View1"
+ *  Maui.AppView.iconName: "folder"
+ * }
+ * @endcode
  */
 class AppView : public QObject
 {
     Q_OBJECT
+    
+    /**
+     * The title of the view
+     */
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    
+    /**
+     * The icon name to be used in the AppViews button port
+     */
     Q_PROPERTY(QString iconName READ iconName WRITE setIconName NOTIFY iconNameChanged)
+    
+    /**
+     * The text to be used as a badge in the AppViews button port.
+     * If this is left empty, then not badge will be shown.
+     */
     Q_PROPERTY(QString badgeText READ badgeText WRITE setBadgeText NOTIFY badgeTextChanged)
     
 public:
+    /**
+     * @private
+     */
     static AppView *qmlAttachedProperties(QObject *object)
     {
         Q_UNUSED(object)
-
         return new AppView(object);
     }
-
-    /**
-     * @brief setTitle
-     * @param title
-     */
+    
     inline void setTitle(const QString &title)
     {
         if (title == m_title)
@@ -52,10 +77,6 @@ public:
         Q_EMIT titleChanged();
     }
 
-    /**
-     * @brief setIconName
-     * @param iconName
-     */
     inline void setIconName(const QString &iconName)
     {
         if (iconName == m_iconName)
@@ -65,10 +86,6 @@ public:
         Q_EMIT iconNameChanged();
     }
     
-    /**
-     * @brief setIconName
-     * @param iconName
-     */
     inline void setBadgeText(const QString &text)
     {
         if (text == m_badgeText)
@@ -78,19 +95,11 @@ public:
         Q_EMIT badgeTextChanged();
     }
 
-    /**
-     * @brief title
-     * @return
-     */
     inline const QString title() const
     {
         return m_title;
     }
 
-    /**
-     * @brief iconName
-     * @return
-     */
     inline const QString iconName() const
     {
         return m_iconName;
@@ -99,8 +108,7 @@ public:
     inline const QString badgeText() const
     {
         return m_badgeText;
-    }
-    
+    }    
 
 private:
     using QObject::QObject;

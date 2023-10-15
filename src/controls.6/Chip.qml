@@ -5,74 +5,74 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
-    @since org.mauikit.controls 1.0
-
-    @brief This an information element, similar to a button, but more compact.
-
-    Chips allow users to enter information, make selections, filter content, or trigger actions. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.
-
-    This component is similar to the MauiKit Badge control, but this one is triggable.
-    @see Badge
-
-    @image html Chip/chips.png
-    @note A placeholder message using a colorful icon image.
-
-    @code
-    Flow
-    {
-        width: 400
-        anchors.centerIn: parent
-        spacing: Maui.Style.space.big
-
-        Maui.Chip
-        {
-            text: "Chip1"
-            color: "#757575"
-        }
-
-        Maui.Chip
-        {
-            text: "Chip2"
-            icon.name: "actor"
-            color: "#03A9F4"
-        }
-
-        Maui.Chip
-        {
-            text: "Chip3"
-            icon.name: "anchor"
-            color: "#4CAF50"
-        }
-
-        Maui.Chip
-        {
-            text: "Chip4"
-            color: "#E1BEE7"
-        }
-
-        Maui.Chip
-        {
-            text: "Chip5"
-            color: "#FFC107"
-        }
-
-        Maui.Chip
-        {
-            text: "Chip6"
-            color: "#607D8B"
-        }
-
-        Maui.Chip
-        {
-            text: "Chip7"
-            color: "#FF5722"
-            icon.source: "/home/camiloh/Downloads/5911329.jpeg"
-        }
-    }
-    @endcode
-
-    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/Chip.qml">You can find a more complete example at this link.</a>
-*/
+ * @inherit QtQuick.Controls.ItemDelegate
+ * @since org.mauikit.controls 1.0
+ * 
+ *    @brief This an information element, similar to a button, but more compact.
+ * 
+ *    Chips allow users to enter information, make selections, filter content, or trigger actions. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.
+ * 
+ *    This component is similar to the MauiKit Badge control, but this one is interactive.
+ *    @see Badge
+ * 
+ *    @image html Chip/chips.png "Colorful chips"
+ * 
+ *    @code
+ *    Flow
+ *    {
+ *        width: 400
+ *        anchors.centerIn: parent
+ *        spacing: Maui.Style.space.big
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip1"
+ *            color: "#757575"
+ *        }
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip2"
+ *            icon.name: "actor"
+ *            color: "#03A9F4"
+ *        }
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip3"
+ *            icon.name: "anchor"
+ *            color: "#4CAF50"
+ *        }
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip4"
+ *            color: "#E1BEE7"
+ *        }
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip5"
+ *            color: "#FFC107"
+ *        }
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip6"
+ *            color: "#607D8B"
+ *        }
+ * 
+ *        Maui.Chip
+ *        {
+ *            text: "Chip7"
+ *            color: "#FF5722"
+ *            icon.source: "/home/camiloh/Downloads/5911329.jpeg"
+ *        }
+ *    }
+ *    @endcode
+ * 
+ *    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/Chip.qml">You can find a more complete example at this link.</a>
+ */
 ItemDelegate
 {
     id: control
@@ -103,7 +103,7 @@ ItemDelegate
      */
     property alias iconSource : control.icon.name
     
-     /**
+    /**
      * @brief The name of the image source to be used.
      * This is an alias to the `icon.source` group property.
      * @property url Chip::imageSource
@@ -117,7 +117,7 @@ ItemDelegate
     property bool showCloseButton : false
     
     /**
-     * @brief The background color for the chip. The label text color will be adpated from this color considering the brightness, to use either a light or dark text color.
+     * @brief The background color for the chip. The label text color will be adapted from this color considering the brightness, to use either a light or dark text color.
      */
     property color color : Maui.Theme.backgroundColor
     

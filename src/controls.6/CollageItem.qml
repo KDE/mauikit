@@ -7,42 +7,41 @@ import Qt5Compat.GraphicalEffects
 import org.mauikit.controls 1.3 as Maui
 
 /**
-    @since org.mauikit.controls 1.0
-    @brief A custom item to be used as a delegate in the browsing views or as a standalone card. This element presents a group of images in a vignette-form.
-
-    This control inherits all properties from the MauiKit GridBrowserDelegate control.
-
-    @image html Delegates/collageitem.png
-    @note A GridBrowser filled with CollageItem as delegates. Some have three and others four images layout.
-
-    @code
-    Maui.GridBrowser
-    {
-        anchors.fill: parent
-        model: 30
-
-        itemSize: 200
-
-        delegate: Item
-        {
-            width: GridView.view.cellWidth
-            height: GridView.view.cellHeight
-
-            Maui.CollageItem
-            {
-                anchors.fill: parent
-                anchors.margins: Maui.Style.space.small
-
-                label1.text: "Demo"
-                label2.text: index
-                images: index %2 === 0 ? ['/home/camiloh/Downloads/street-1234360.jpg', '/home/camiloh/Downloads/flat-coated-retriever-1339154.jpg', '/home/camiloh/Downloads/5911329.jpeg'] : ['/home/camiloh/Downloads/street-1234360.jpg', '/home/camiloh/Downloads/flat-coated-retriever-1339154.jpg', '/home/camiloh/Downloads/5911329.jpeg', '/home/camiloh/Pictures/LastLights_by_Mushcube/LastLightsScreenPreview.png']
-            }
-        }
-    }
-    @endcode
-
-    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/CollageItem.qml">You can find a more complete example at this link.</a>
-
+ * @inherit GridBrowserDelegate
+ *    @since org.mauikit.controls 1.0
+ *    @brief A custom item to be used as a delegate in the browsing views or as a standalone card. This element presents a group of images in a vignette-form.
+ * 
+ *    This control inherits all properties from the MauiKit GridBrowserDelegate control.
+ * 
+ *    @image html Delegates/collageitem.png "As delegate with a vary number of images"
+ *    @code
+ *    Maui.GridBrowser
+ *    {
+ *        anchors.fill: parent
+ *        model: 30
+ * 
+ *        itemSize: 200
+ * 
+ *        delegate: Item
+ *        {
+ *            width: GridView.view.cellWidth
+ *            height: GridView.view.cellHeight
+ * 
+ *            Maui.CollageItem
+ *            {
+ *                anchors.fill: parent
+ *                anchors.margins: Maui.Style.space.small
+ * 
+ *                label1.text: "Demo"
+ *                label2.text: index
+ *                images: index %2 === 0 ? ['/home/camiloh/Downloads/street-1234360.jpg', '/home/camiloh/Downloads/flat-coated-retriever-1339154.jpg', '/home/camiloh/Downloads/5911329.jpeg'] : ['/home/camiloh/Downloads/street-1234360.jpg', '/home/camiloh/Downloads/flat-coated-retriever-1339154.jpg', '/home/camiloh/Downloads/5911329.jpeg', '/home/camiloh/Pictures/LastLights_by_Mushcube/LastLightsScreenPreview.png']
+ *            }
+ *        }
+ *    }
+ *    @endcode
+ * 
+ *    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/CollageItem.qml">You can find a more complete example at this link.</a>
+ * 
  */
 Maui.GridBrowserDelegate
 {

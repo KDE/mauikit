@@ -3,23 +3,96 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQml
 
-import QtQuick.Templates as T
-
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
- * ToolActions
- * A global sidebar for the application window that can be collapsed.
- *
- *
- *
- *
- *
- *
+ * @inherit QtQuick.Controls.Control
+ * @brief A set of grouped action visually joined together. 
+ * 
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This control inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a> 
+ * 
+ * The set actions can be checkable and auto-exclusive or not.
+ * 
+ * @image html Misc/toolactions.png "[1] Non-checkable. [2] Checkable non-auto-exclusive. [3] Checkable and autoexclusive"
+ * 
+ * @section features Features
+ * This control supports checkable and non-checkable actions. Also auto-exclusive and non-auto-exclusive actions.
+ * 
+ * When enabling the `autoExclusive` property, then only one action in the group can be marked as checked at the time.
+ * 
+ * There is also the option to collapse the actions into a single button with a popup menu where the actions are listed, this is useful when the available space changes and the control needs to be made more compact to save space.
+ * 
+ * @image html Misc/toolactions2.png "The collapsed actions into a menu"
+ * 
+ * If only two actions are added and marked as auto-exclusive, then this control has the option to enable a `cyclic` behavior, which means that toggling one button will activate the next action in line and cyclic around.
+ * @see canCyclic
+ * @see cyclic
+ * 
+ * Heres a example of how to achieve such behavior:
+ * @code
+ * Maui.ToolActions
+ * {
+ *    id: _actions
+ *    checkable: true
+ *    autoExclusive: true
+ *    cyclic: true //enable the cyclic behavior
+ *    expanded: false //the cyclic behavior needs to be in the collapsed mode
+ * 
+ *    property int currentAction: 0 //here we keep the state for the current action checked
+ * 
+ *    Action
+ *    {
+ *        id: _action1
+ *        icon.name: "view-list-details"
+ *        checked: _actions.currentAction === 0
+ *        onTriggered:
+ *        {
+ *            _actions.currentAction = 0
+ *        }
+ *    }
+ * 
+ *    Action
+ *    {
+ *        id: _action2
+ *        icon.name: "view-list-icons"
+ *        checked: _actions.currentAction === 1
+ *        onTriggered:
+ *        {
+ *            _actions.currentAction = 1
+ *        }
+ *    }
+ * }
+ * @endcode
+ * 
+ * @code
+ * Maui.ToolActions
+ * {
+ *    checkable: true
+ *    autoExclusive: true
+ *    
+ *    Action
+ *    {
+ *        text: "Pick"
+ *    }
+ *    
+ *    Action
+ *    {
+ *        text: "Only"
+ *    }
+ *    
+ *    Action
+ *    {
+ *        text: "One"
+ *    }
+ * }
+ * @endcode
+ * 
+ * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ToolActions.qml">You can find a more complete example at this link.</a>
  */
-T.Control
+Control
 {
     id: control
+    
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
     
@@ -30,56 +103,78 @@ T.Control
     
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
+    
     /**
-     * actions : list<Action>
+     * @brief The list of QQC2 Action to be listed. These can be declared a children elements of this control.
      */
     default property list<Action> actions
     
     /**
-     * autoExclusive : bool
+     * @brief Whether this control should only allow one action to be checked at the time.
+     * By default this is set to `true`
      */
     property bool autoExclusive: true
     
     /**
-     * checkable : bool
+     * @brief Whether the action button can be checked. If enabled, then the state will be styled accordingly.
+     * @By default this is set to `true`.
      */
     property bool checkable: true
     
     /**
-     * display : int
+     * @brief Options on how to display the button text and icon.
+     * Available options are:
+     * - ToolButton.IconOnly
+     * - ToolButton.TextBesideIcon
+     * - ToolButton.TextOnly
+     * - ToolButton.TextUnderIcon
+     * By default this is set to `ToolButton.TextBesideIcon`
      */
     property int display: ToolButton.TextBesideIcon
     
     /**
-     * cyclic : bool
+     * @brief Whether two action can be triggered in a cyclic manner. So one press will activate the next action and then cycle around again.
+     * @see canCyclic
+     * By default this is set to `false`
      */
     property bool cyclic: false
     
+    /**
+     * @brief Whether the `cyclic` behavior can be activated.
+     * For it to be possible, the conditions are: only two actions and those must be auto-exclusive.
+     * @see cyclic
+     * @see autoExclusive
+     * @see count
+     */
     readonly property bool canCyclic : control.cyclic && control.count === 2  && control.autoExclusive
     
     /**
-     * flat : bool
+     * @brief Whether the style of this control should be styled as flat.
+     * By default this is set to `false`.
      */
     property bool flat : false
     
     /**
-     * count : int
+     * @brief The total amount of actions declared.
      */
     readonly property int count : actions.length
     
-
+    
     /**
-     * expanded : bool
+     * @brief Whether the control should display all the actions as buttons in a  row, or to collapse them into a popup menu.
+     * By default this is set to `true`.
      */
     property bool expanded : true
     
     /**
-     * defaultIconName : string
+     * @brief The icon name to be used in the button that opens the menu popup, when the view is collapsed.
+     * By default this is set to `application-menu`.
      */
     property string defaultIconName: "application-menu"
-
+    
     /**
-     *
+     * @brief Forces to uncheck all the actions except the one action sent as the argument.
+     * @param except the action that should not be unchecked.
      */
     function uncheck(except)
     {
@@ -112,7 +207,7 @@ T.Control
             id: _row
             property int biggerHeight : 0
             spacing: control.spacing
-
+            
             Behavior on width
             {
                 enabled: Maui.Style.enableEffects
@@ -153,7 +248,7 @@ T.Control
                     height: Math.max(implicitHeight, _row.biggerHeight)
                     
                     onImplicitHeightChanged: _row.biggerHeight = _row.calculateBiggerHeight()
-
+                    
                     autoExclusive: control.autoExclusive
                     enabled: action.enabled
                     
@@ -187,11 +282,11 @@ T.Control
         ToolButton
         {
             id: _defaultButtonIcon
-
+            
             property Action m_action
-
+            
             Component.onCompleted: _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
-
+            
             function buttonAction()
             {
                 if(control.autoExclusive)
@@ -208,11 +303,11 @@ T.Control
                             console.log("Found current action", i, actionIndex)
                         }
                     }
-
+                    
                     if(control.canCyclic)
                     {
                         actionIndex++
-
+                        
                         let m_index = actionIndex >= control.actions.length ? 0 : actionIndex
                         //
                         console.log("Setting current action at", m_index)
@@ -221,13 +316,13 @@ T.Control
                             return control.actions[m_index];
                         }
                     }
-
+                    
                     return currentAction
                 }
-
+                
                 return null
             }
-
+            
             Row
             {
                 visible: false
@@ -241,15 +336,15 @@ T.Control
                     }
                 }
             }
-
+            
             data: Maui.ContextualMenu
             {
                 id: _menu
-
+                
                 Repeater
                 {
                     model: control.autoExclusive && control.canCyclic ? undefined : control.actions
-
+                    
                     delegate: MenuItem
                     {
                         action: modelData
@@ -259,7 +354,7 @@ T.Control
                     }
                 }
             }
-
+            
             onClicked:
             {
                 if(_defaultButtonIcon.m_action && control.canCyclic && control.autoExclusive)
@@ -268,46 +363,45 @@ T.Control
                     // var previousAction = _defaultButtonIcon.action
                     _defaultButtonIcon.m_action.triggered()
                     _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
-
+                    
                 }else
                 {
                     if(!_menu.visible)
                     {
                         _menu.show(0, control.height, control)
-
+                        
                     }else
                     {
                         _menu.close()
                     }
                 }
             }
-
+            
             icon.width:  Maui.Style.iconSize
             icon.height: Maui.Style.iconSize
             icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : (pressed ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
-
+            
             icon.name: m_action ? m_action.icon.name : control.defaultIconName
             text: m_action ? m_action.text: ""
-
+            
             enabled: m_action ? m_action.enabled : true
-
+            
             subMenu: !control.canCyclic
-
+            
             display: control.display
-
+            
             checkable: control.checkable && (action ? action.checkable : false)
-
+            
             background: Rectangle
             {
                 color: Maui.Theme.backgroundColor
                 radius: Maui.Style.radiusV
-
+                
                 Behavior on color
                 {
                     Maui.ColorTransition{}
                 }
             }
-        }
-        
+        }        
     }
 }

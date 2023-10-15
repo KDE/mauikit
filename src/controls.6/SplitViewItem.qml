@@ -9,8 +9,17 @@ import QtQuick.Controls
 import QtQml.Models
 import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
+/**
+ * @inherit QtQuick.Controls.Pane
+ * @brief An item to be used as a view container for the MauiKit SplitView.
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-pane.html">This controls inherits from QQC2 Pane, to checkout its inherited properties refer to the Qt Docs.</a>
+ * This is the preferred control to use when adding a new view into the SplitView, since it follows the Maui Style HIG.
+ * @see SplitView
+ * 
+ * @note When this element is being resized by the SplitView handle, and reaches the minimum width, an action to close the view is then suggested and triggered if the pressed event of the handle is released at that minimum width.
+ */
 Pane
 {
     id: control
@@ -18,13 +27,35 @@ Pane
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
 
+    /**
+     * @brief By default the children content of this item needs to be positioned manually.
+     * @property list<QtObject> SplitViewItem::content
+     */
     default property alias content: _container.data
 
-    // the index of the item in the split view layout
+    /**
+     * @brief The index of this view in the SplitView control.
+     */
     readonly property int splitIndex : ObjectModel.index
 
+    /**
+     * @brief The minimum width of this view when resizing the SplitView.
+     * By default this is set to a fixed value of `200`.
+     */
     property int minimumWidth : 200
+    
+    /**
+     * @brief The minimum height of this view when resizing the SplitView.
+     * By default this is set to a fixed value of `100`.
+     */
     property int minimumHeight : 100
+
+    /**
+     * @brief Whether the style of this view will be more compact. A compact style has not border corners or styling.
+     * While a non-compact mode means there is more than on view in the parent SplitView and the views will have rounded corners.
+     * This is `true` for mobile devices and one there is a single item in the SplitView.
+     */
+    readonly property bool compact : Maui.Handy.isMobile || SplitView.view.count === 1
 
     SplitView.fillHeight: true
     SplitView.fillWidth: true
@@ -47,7 +78,6 @@ Pane
         }
     }
 
-    property bool compact : Maui.Handy.isMobile || SplitView.view.count === 1
 
     contentItem: Item
     {
@@ -159,6 +189,9 @@ Pane
         }
     }
 
+    /**
+     * @brief Forces to focus this item in the SplitView, and marks it as the current view.
+     */
     function focusSplitItem()
     {
         control.SplitView.view.currentIndex = control.splitIndex

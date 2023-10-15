@@ -23,6 +23,7 @@ import QtQuick.Controls
 import org.mauikit.controls 1.3 as Maui
 
 /** 
+ * @inherit QtQuick.Controls.Control
  * @brief A basic MauiKit delegate for displaying a text label with an icon in a horizontal layout.
  * 
  * @warning This item is not interactive and is meant to be use as an information label. Not press events are handled.

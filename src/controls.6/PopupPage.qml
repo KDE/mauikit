@@ -27,6 +27,7 @@ import org.mauikit.controls 1.3 as Maui
 import Qt5Compat.GraphicalEffects
 
 /**
+ * @inherit QtQuick.Controls.Popup
  * @since org.mauikit.controls 1.0
  * @brief A QQC2 Popup with extra built-in features, such as a snapping surface, scrollable contents, and action buttons.
  * 

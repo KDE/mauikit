@@ -21,6 +21,7 @@ import QtQuick
 import QtQuick.Controls
 
 /**
+ * @inherit QtQuick.Controls.TextField
  * @brief This is just a QQC2 TextField with a icon to more clearly indicate its intended use case for entering search queries
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-textfield.html">This control inherits from QQC2 TextField, to checkout its inherited properties refer to the Qt Docs.</a>
  *  

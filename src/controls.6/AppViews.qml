@@ -17,8 +17,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQml
 import QtQuick
+import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
 
@@ -27,6 +27,7 @@ import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
 /**
+ * 
  * @since org.mauikit.controls 1.2
  * 
  * @brief Views switcher component.
@@ -107,6 +108,7 @@ import "private" as Private
  * The first four [4] views can be navigated by using keyboard shortcuts: [Ctrl + 1] [Ctrl + 2] [Ctrl + 3] [Ctrl + 4]
  * 
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/AppViews.qml">You can find a more complete example at this link.</a> 
+ * @inherit org::mauikit::controls::Page
  */
 Maui.Page
 {

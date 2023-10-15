@@ -31,20 +31,21 @@ import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
 /**
+ * @inherit QtQuick.Window
  * @brief A window that provides some basic features needed for most applications.
  * 
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
  * 
  * The ApplicationWindow is the best component to start creating a new MauiKit application. It's usually used as the root QML component for the application.
  * 
- * @warning By default the window is completely empty (and transparent since it doesn't have any container's background) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible.
- * @see ApplicationWindow#csd
- * 
+ * @warning By default the window is completely empty (and transparent since it doesn't have any container's background) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible. See the example below to set the ApplicationWindow to a basic functional state.
+ *  
  * Commonly, this is paired with another child container control, such as a Page, an AppViews or a SideBarView, to name a few MauiKit controls; or with any other QQC2 element, such as a StackView, SwipeView, etc..
  * @see Page
  * @see AppViews
  * @see SideBarView
  * @see TabView
+ * @see PageLayout
  *  
  * @code
  * ApplicationWindow
@@ -59,24 +60,26 @@ import "private" as Private
  * }
  * @endcode
  * 
- * @image html ApplicationWindow/empty_dark.png "This is an ApplicationWindow filled with a Page and with the CSD controls enabled"
+ * @image html ApplicationWindow/empty_dark.png "ApplicationWindow filled with a Page and the CSD controls enabled"
  * 
  * @section csd Client Side Decorations 
  * 
  * @note Client-side decorations refers to an application window that takes care of drawing its own window borders, shadows, and the window control buttons - and also provides the resizing and moving/dragging functionality.
  *  
- * The application window can make use of client side decorations (CSD) by setting the attached property `Maui.App.controls.enabledCSD` to `true` in the root element once,
- * or globally by making use of MauiMan configuration options - that said, even if the system is configured to use CSD globally, you can override this property in your application, and the other way around too, force to use CSD when the global preference is to use server side decorations.
+ * The application window can make use of client side decorations (CSD) by setting the attached property `Maui.App.controls.enabledCSD: true` in the root element just once,
+ * or globally by making use of MauiMan configuration options - that said, even if the system is configured to use CSD globally, you can override this property in your application, to force to use CSD  (or not). 
  * @see MauiMan
  * 
- * When using CSD, the ApplicationWindow will take care of drawing the window borders, the shadow and masking its content to support the rounded corners.
- * 
- * The radius of the corners is configured via MauiMan. To know more about how to configure from a user level take a look at MauiMan documentation. This property can not be overridden by the application itself.
+ * @note The alternative is to use the server side decorations (SSD).
  *  
- * If used with a Page, you can easily enable the CSD buttons using the attached property `Maui.Controls.showCSD`, this will make the window-control-buttons visible. A few other MauiKit controls support this property, such as the TabView, ToolBar, AppViews, AltBrowser and TabView.
+ * When using CSD, the ApplicationWindow will take care of drawing the window borders, the shadow and masking its content to support the border rounded corners.
+ * 
+ * The radius of the corners is configured via MauiMan. To know more about how to configure it from a user level take a look at MauiMan documentation. This property can not be overridden by the application itself.
+ *  
+ * If used with a Page, you can easily enable the CSD window buttons using the attached property `Maui.Controls.showCSD`, this will make the window-control-buttons visible. A few other MauiKit controls support this property, such as the TabView, ToolBar, AppViews, AltBrowser and TabView, and any other control that inherits from Page.
  * @see Controls
  * 
- * If a custom control is used instead of the ones formerly mentioned, and CSD is still enabled, you can place the window controls manually by using the WindowControls component.
+ * If a custom control is to be used instead, and CSD is still enabled, you can place the window control buttons manually, by using the WindowControls component.
  * @see WindowControlsLinux
  * 
  * @code
@@ -103,15 +106,17 @@ import "private" as Private
  * The Application window has some components already built-in, such as an about dialog, which can be invoked using the function `about()`.
  * @see about
  * 
- * The information presented in the dialog is taken from the data set with KAboutData at the application entry method. In the code snippet below is a example of how to set the information.
+ * The information presented in the dialog is taken from the data set with KAboutData at the application entry point. There is an example on how to set the information in the code snippet below.
  * 
- * @image html ApplicationWindow/aboutdialog.png "About dialog with information provided by the application"
+ * Some extra information can be added via the MauiApp singleton instance, such as more links.
+ * 
+ * @image html ApplicationWindow/aboutdialog.png "About dialog with information provided by the app"
  * 
  * @subsection toastarea Toast Area - Notifications
- * The ApplicationWindow also includes an overlay layer for displaying inline notifications, which can be triggered and sent by using the function `notify()`.
+ * The ApplicationWindow also includes an overlay layer for displaying inline notifications, which can be dispatched by using the function `notify()`. The notifications sent can be interactive.
  * @see notify
  * 
- * @note If you want to use the system notifications instead, take a look at the Notify object class, to configure the needed steps.
+ * @note If you want to use the system notifications instead, take a look at the Notify object class, and the docs on how to configure the needed steps to set it up.
  * @see Notify
  * 
  * @image html ApplicationWindow/toastarea.png "Inline notifications in the toast area"
@@ -120,8 +125,9 @@ import "private" as Private
  * By default the window geometry is saved and restored automatically.
  * 
  * In order for the style and other functionality to work correctly the `MauiApp` singleton instance must have been initialize before the ApplicationWindow is created. This is usually done on the main entry point of the application.
+ * @see MauiApp
  * 
- * Is also important to notice that some of the application information needs to be provided beforehand as well, using the `KAboutData` methods, this way the built-in about dialog can pick up all the relevant information.
+ * It is important to notice that some of the application information needs to be provided beforehand as well, using the `KAboutData` methods, this way the built-in about dialog can pick up all the relevant information.
  * @see KAboutData
  * 
  * @code 
@@ -139,7 +145,7 @@ import "private" as Private
  *                        i18n("Maui Demo"),
  *                        "3.0.0",
  *                        i18n("MauiKit Qt6 Demo."),
- *                        KAboutLicense::LGPL_V3); //here you can set information about the application , which will be fetched by the about dialog.
+ *                        KAboutLicense::LGPL_V3); //here you can set information about the application, which will be fetched by the about dialog.
  * 
  *    about.addAuthor(i18n("Camilo Higuita"), i18n("Developer"), QStringLiteral("milo.h@aol.com"));
  *    about.setHomepage("https://mauikit.org");
@@ -167,19 +173,29 @@ import "private" as Private
  * @endcode
  * 
  * @section styling Styling
- * The ApplicationWindow style - as another MauiKit controls - can be tweaked, for example its color scheme: from dark to light variants, but also true-black, high-contrast, and an adaptive style which picks colors from an image source, such as a wallpaper.
- * All these can be tweaked by each application individually or follow the global system preferences set from MauiMan.
+ * The ApplicationWindow style - as other MauiKit controls - can be tweaked, for example its color scheme: from dark to light variant, but also true-black, high-contrast, and an adaptive style which picks colors from an image source, such as a wallpaper.
+ * The available options are:
+ * - Style.Light
+ * - Style.Dark
+ * - Style.Adaptive
+ * - Style.Auto
+ * - Style.TrueBlack
+ * - Style.Inverted
+ * @see Style::StyleType
+ * 
+ * All these can be individually changed by the application or set to `undefined` to rest it back to follow the global system preference from MauiMan.
  * 
  * The accent color can also be changed easily to distinguish the app own branding, by using the `Style.accentColor` property once.
+ * @see Style::accentColor
  * 
- * @warning When mixing Kirigami components with MauiKit controls, it is best to set the style type to the System (which value is 3) option, for it to correctly pick up the same color-scheme Kirigami uses - since Kirigami uses another methods for setting the color palette. The option can be set using `Maui.Style.styleType: 3`
+ * @warning When mixing Kirigami components with MauiKit controls, it is best to set the style type to the `Maui.Style.Auto` option  (which value is 3), for it to correctly pick up the same color-scheme Kirigami uses - since Kirigami uses another methods for setting the color palette. The option can be set using `Maui.Style.styleType: Maui.Style.Auto`. With this set Maui will pickup the colors from the Plasma color scheme.
  * @see Style
  * 
  * @code
  * ApplicationWindow
  * {
  *    id: root
- *    Maui.Style.styleType: 1 // 0-light, 1-dark, 2-adaptive, 3-system etc
+ *    Maui.Style.styleType: 1 // 0-light, 1-dark, 2-adaptive, 3-auto etc
  *    Maui.Style.accentColor: "pink"
  *    
  *    Page

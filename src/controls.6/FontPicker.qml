@@ -25,6 +25,7 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Controls.Control
  * @brief A custom control use to pick a font and its properties.
  * 
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This controls inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a>

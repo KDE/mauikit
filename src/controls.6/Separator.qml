@@ -9,9 +9,10 @@ import QtQuick
 import org.mauikit.controls 1.3 as Maui
 
 /**
+ * @inherit QtQuick.Rectangle
  * @brief A visual separator.
  *
- * Useful for splitting one set of items from another.
+ * Useful as a visual hint for diciding grouped elements.
  *
  * @inherit QtQuick.Rectangle
  */
@@ -22,22 +23,22 @@ Rectangle
     implicitWidth: 1
     Accessible.role: Accessible.Separator
 
+    /**
+     * @brief Types of weight.
+     */
     enum Weight {
         Light,
         Normal
     }
 
     /**
-     * This property holds the visual weight of the separator.
+     * @brief This property holds the visual weight of the separator.
      * 
      * Weight values:
      * * `Separator.Weight.Light`
      * * `Separator.Weight.Normal`
      * 
      * The default is `Separator.Weight.Normal`
-     * 
-     * @since 5.72
-     * @since org.kde.kirigami 2.12
      */
     property int weight: Separator.Weight.Normal
 
