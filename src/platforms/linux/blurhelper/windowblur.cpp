@@ -32,7 +32,7 @@
 #include <xcb/xcb_icccm.h>
 #include <KWindowSystem>
 #include <KWindowEffects>
-#include "mauiapp.h"
+#include "style.h"
 
 WindowBlur::WindowBlur(QObject *parent) noexcept
 : QObject(parent)
@@ -52,7 +52,7 @@ void WindowBlur::classBegin()
 
 void WindowBlur::componentComplete()
 {
-    MauiApp::instance()->setTranslucencyAvailable(m_enabled);
+    Style::instance()->setTranslucencyAvailable(m_enabled);
     updateBlur();
 }
 

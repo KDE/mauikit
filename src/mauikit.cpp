@@ -19,7 +19,6 @@
 
 #include "mauikit.h"
 
-#include "appsettings.h"
 #include "appview.h"
 
 #include "handy.h"

@@ -27,7 +27,6 @@ set(mauikit_SRCS
     mauikit.cpp
     libs/style.cpp
     libs/controls.cpp
-    utils/appsettings.cpp
     utils/fmh.cpp
     utils/mauiapp.cpp
     utils/handy.cpp
@@ -47,9 +46,7 @@ set(mauikit_SRCS
 
 set(mauikit_HDRS
     mauikit.h
-    utils/appsettings.h
     utils/fmh.h
-    utils/utils.h
     utils/handy.h
     utils/notify.h
     utils/mauiapp.h

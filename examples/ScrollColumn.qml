@@ -1,3 +1,4 @@
+//! [Adding a resource]
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -42,4 +43,4 @@ Maui.ApplicationWindow
         }
     }
 }
-
+//! [Adding a resource]

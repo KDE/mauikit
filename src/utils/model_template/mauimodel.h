@@ -26,66 +26,85 @@
 class MauiList;
 
 /**
- * @brief The MauiModel class
- * The MauiModel is a template model to use with a MauiList, it aims to be a generic and simple data model to quickly model string based models using the FMH::MODEL_LIST and FMH::MODEL_KEY types.
- * The idea is that the sorting and filtering is independent to the data list aka MauiList. Now to get the right items keep in mind: MauiList::get() gets the item at the original list index, while MauiModel::get() will get the item at the model, if it is filtered or sorted, then thats the item you get. If you want to get a item from the source list and the model has been filtered or sorted you will need to use the MauiModel::mappedToSource() to map the index to the right index from the source list. Now, if you have a index from the source list and the model has been filtered or ordered you will use MauiModel::mappedFromSource() to get the right index from the model.
- * This type is exposed to QML to quickly create a modle that can be filtered, sorted and has another usefull functionalities.
- */
+ * @brief The MauiModel class.
+ * 
+ * The MauiModel is a template model to be uses with MauiList, it aims to be a simple data model to quickly setup string based models using the FMH::MODEL_LIST and FMH::MODEL_KEY types.
+ * 
+ * @note This class is exposed as the type `BaseModel` to the QML engine.
+ * 
+ * @code
+ * Maui.BaseModel
+ * {
+ *  
+ * }
+ * @endcode
+ * 
+ * The idea is that the sorting and filtering is independent to the data list - MauiList.
+ * Now, to get the right items keep in mind: MauiList::get() gets the item at the original list index, while MauiModel::get() will get the item at the model index, if it is filtered or sorted, then that's the item you'd get. 
+ * 
+ * If you want to get a item from the source list and the model has been filtered or sorted you will need to use the MauiModel::mappedToSource() to map the index to the right index from the source list. 
+ * 
+ * Now, if you have a index from the source list and the model has been filtered or ordered you will use MauiModel::mappedFromSource() to get the right index from the model.
+ * 
+ * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/mauilist/">You can find a more complete example at this link.</a>
+*/
 class MAUIKIT_EXPORT MauiModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(MauiModel)
     
+    /*
+     * The data list to be consumed by the model. All the operations and features of this class depend on having an actual MauiList to act upon.
+     * @see MauiList
+     */
     Q_PROPERTY(MauiList *list READ getList WRITE setList NOTIFY listChanged)
+    
+    /*
+     * A single filter string. To clear the filter just set it to a empty string or invoke the `clearFilters()`method.
+     * @see clearFilters
+     */
     Q_PROPERTY(QString filter READ getFilter WRITE setFilter NOTIFY filterChanged)
+    
+    /*
+     * Multiple filtering strings.
+     * @see clearFilters
+     */
     Q_PROPERTY(QStringList filters READ getFilters WRITE setFilters NOTIFY filtersChanged)
+    
+    /*
+     * The key to be used for filtering. The sort keys can be found in the FMH::MODEL_NAME map of keys.
+     * For example, to filter by `FMH::MODEL_KEY::TITLE`, use `"title"`. 
+     */
     Q_PROPERTY(QString filterRole READ getFilterRoleName WRITE setFilterRoleName NOTIFY filterRoleNameChanged)
+    
+    /*
+     * The sorting order.
+     * By default the list is unsorted.
+     * @see Qt::SortOrder
+     */
     Q_PROPERTY(Qt::SortOrder sortOrder READ getSortOrder WRITE setSortOrder NOTIFY sortOrderChanged)
+    
+    /*
+     * The sorting key value. The sort keys can be found in the FMH::MODEL_NAME map of keys.
+     */
     Q_PROPERTY(QString sort READ getSort WRITE setSort NOTIFY sortChanged)
+    
+    /*
+     * The total amount fo elements in the model.
+     */
     Q_PROPERTY(int count READ count NOTIFY countChanged FINAL)
 
 public:
     MauiModel(QObject *parent = nullptr);
 
-    /**
-     * @brief getList
-     * The list being handled by the model
-     * @return
-     */
     MauiList *getList() const;
 
-    /**
-     * @brief setList
-     * For the model to work you need to set a MauiList, by subclassing it and exposing it to the QML engine
-     * @param value
-     */
     void setList(MauiList *);
-
-    /**
-     * @brief getSortOrder
-     * The current sort order being applied
-     * @return
-     */
+    
     Qt::SortOrder getSortOrder() const;
-
-    /**
-     * @brief getSort
-     * The current sorting key
-     * @return
-     */
     QString getSort() const;
 
-    /**
-     * @brief getFilter
-     * The filter being applied to the model
-     * @return
-     */
-    const QString getFilter() const;
-    /**
-     * @brief getFilter
-     * The filter being applied to the model
-     * @return
-     */
+    const QString getFilter() const;    
     const QStringList getFilters() const;
 
     QString getFilterRoleName() const;
@@ -110,65 +129,47 @@ private:
     QString m_sort;
 
 public Q_SLOTS:
-    /**
-     * @brief setFilter
-     * Filter the model using a simple string, to clear the filter just set it to a empty string
-     * @param filter
-     * Simple filter string
-     */
+    
     void setFilter(const QString &filter);
     void setFilters(const QStringList &filters);
     
-    /**
-     * @brief setSortOrder
-     * Set the sort order, asc or dec
-     * @param sortOrder
-     */
     void setSortOrder(const Qt::SortOrder &sortOrder);
 
-    /**
-     * @brief setSort
-     * Set the sort key. The sort keys can be found in the FMH::MODEL_KEY keys
-     * @param sort
-     */
     void setSort(const QString &sort);
 
     /**
-     * @brief get
-     * Returns an item in the model/list. This method correctly maps the given index in case the modle has been sorted or filtered
-     * @param index
-     * Index of the item in the list
-     * @return
+     * @brief Returns an item in the model. This method correctly maps the given index in case the model has been sorted or filtered.
+     * @param index the position index of the item in the list
+     * @return a convenient QVariantMap that can be parsed on QML easily
      */
     QVariantMap get(const int &index) const;
 
     /**
-     * @brief getAll
-     * Returns all the items in the list represented as a QVariantList to be able to be used in QML. This operation performs a transformation from FMH::MODEL_LIST to QVariantList
-     * @return
-     * All the items in the list
+     * @brief Returns all the items in the list represented as a QVariantList to be able to be used in QML. This operation performs a transformation from FMH::MODEL_LIST to QVariantList
+     * @return all the items in the list
      */
     QVariantList getAll() const;
 
     /**
-     * @brief mappedFromSource
-     * Maps an index from the base list to the model, incase the modle has been filtered or sorted, this gives you the right mapped index
-     * @param index
-     * @return
+     * @brief Maps a given index from the base list to the model, in case the model has been filtered or sorted, this gives you the right mapped index
+     * @param index the original position index in the list
+     * @return the mapped index in the model
      */
     int mappedFromSource(const int &index) const;
 
     /**
-     * @brief mappedToSource
-     * given an index from the filtered or sorted model it return the mapped index to the original list index
-     * @param index
-     * @return
+     * @brief Given an index from the filtered or sorted model it returns the mapped index to the original list index.
+     * @param index the model index
+     * @return the original position index in the list
      */
     int mappedToSource(const int &) const;
-    void setFilterRoleName(QString );
     
+    void setFilterRoleName(QString );    
     bool move(const int &index, const int &to);
     
+    /**
+     * @brief Restores the model if filtered, and clears all the filters set with the `filter` and `filters` properties.
+     */
     void clearFilters();
 
 Q_SIGNALS:
@@ -181,6 +182,9 @@ Q_SIGNALS:
     void countChanged();
 };
 
+/**
+ * @private
+ */
 class MauiModel::PrivateAbstractListModel : public QAbstractListModel
 {
     Q_OBJECT
