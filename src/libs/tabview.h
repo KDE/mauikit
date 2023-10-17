@@ -22,15 +22,41 @@
 #include <QQmlEngine>
 
 /**
- * @brief The TabViewInfo class
- * representsthe attached properties to handled the application main views following the Maui HIG
+ * @brief The TabViewInfo class.
+ * Groups the attached properties used for setting the data information for the TabView children views.
+ * @see TabView
+ * @see TabViewItem
+ * 
+ * @code
+ * Item
+ * {
+ *  Maui.TabVieInfo.tabTitle: "Tab1"
+ *  Maui.TabViewInfo.tabIcon: "folder"
+ * }
+ * @endcode
  */
 class TabViewInfo : public QObject
 {
     Q_OBJECT
+    
+    /**
+     * The title for the tab view. Used in the tab button.
+     */
     Q_PROPERTY(QString tabTitle READ tabTitle WRITE setTabTitle NOTIFY tabTitleChanged)
+    
+    /**
+     * The text to be shown in the tool-tip when hovering over the tab button representing the view.
+     */
     Q_PROPERTY(QString tabToolTipText READ tabToolTipText WRITE setTabToolTipText NOTIFY tabToolTipTextChanged)
+    
+    /**
+     * The color to be used as an indicator in the tab button representing the view.
+     */
     Q_PROPERTY(QString tabColor READ tabColor WRITE setTabColor NOTIFY tabColorChanged)
+    
+    /**
+     * The icon to be used in the tab button representing the view.
+     */
     Q_PROPERTY(QString tabIcon READ tabIcon WRITE setTabIcon NOTIFY tabIconChanged)
         
 public:
@@ -41,10 +67,6 @@ public:
         return new TabViewInfo(object);
     }
     
-    /**
-     * @brief setTitle
-     * @param title
-     */
     inline void setTabTitle(const QString &value)
     {
         if (value == m_tabTitle)
@@ -54,10 +76,6 @@ public:
         Q_EMIT tabTitleChanged();
     }
     
-    /**
-     * @brief setTabToolTipText
-     * @param iconName
-     */
     inline void setTabToolTipText(const QString &value)
     {
         if (value == m_tabToolTipText)
@@ -74,8 +92,7 @@ public:
         
         m_tabColor = value;
         Q_EMIT tabColorChanged();
-    }
-    
+    }    
     
     inline void setTabIcon(const QString &value)
     {
@@ -86,20 +103,11 @@ public:
         Q_EMIT tabIconChanged();
     }
     
-    
-    /**
-     * @brief title
-     * @return
-     */
     inline const QString tabTitle() const
     {
         return m_tabTitle;
     }
     
-    /**
-     * @brief iconName
-     * @return
-     */
     inline const QString tabToolTipText() const
     {
         return m_tabToolTipText;

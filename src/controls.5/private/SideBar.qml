@@ -99,7 +99,7 @@ T.Pane
     
     background: Rectangle
     {
-      opacity: Maui.App.translucencyAvailable && Maui.Style.enableEffects ? 0.8 :  1
+      opacity: Maui.Style.translucencyAvailable && Maui.Style.enableEffects ? 0.8 :  1
       color: Maui.Theme.backgroundColor
       Behavior on color
       {

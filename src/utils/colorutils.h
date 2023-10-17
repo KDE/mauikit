@@ -209,6 +209,17 @@ public:
     // Not for QML, returns the comvertion from srgb of a QColor and Lab colorspace
     static ColorUtils::LabColor colorToLab(const QColor &color);
     
+    /**
+ * @brief isDark
+ * @param color
+ * @return
+ */
+static inline bool isDark(const QColor &color)
+{
+    const double darkness = 1 - (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255;
+    return (darkness > 0.5);
+}
+    
 private:
     static qreal relativeLuminance(const QColor & color);
     static qreal convertChannel(qreal c);

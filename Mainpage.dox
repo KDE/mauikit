@@ -13,47 +13,60 @@
 @subsection overview Introduction
 MauiKit is a set of <a href="https://doc.qt.io/qt-6/qtquick-index.html">QtQuick</a> components for building adaptable UIs based on <a href="https://doc.qt.io/qt-6/qtquickcontrols-index.html">QtQuick Controls 2</a>.
 
-Its goal is to enable creation of convergent applications that look and feel great on mobile as well as desktop devices and follow the <a href="https://develop.kde.org/hig">Maui Human Interface Guidelines</a> while being easy to use and not adding many dependencies.
+Its goal is to enable creation of convergent applications that look and feel great on mobile as well as on desktop devices and follow the <a href="https://develop.kde.org/hig">Maui Human Interface Guidelines</a> while being easy to use.
 
 MauiKit works on a variety of platforms, such as <a href="https://plasma-mobile.org/">Plasma Mobile</a>, Desktop Linux and Android.
 
-@image html maui_apps.png
+@image html maui_apps.png "Maui Apps - Index, Station & Vvave"
 
 @subsection tutorial Tutorial
-A tutorial for MauiKit Controls is available on <a href="https://develop.kde.org/docs/getting-started/kirigami/">our developer platform</a>.
+A tutorial for getting started on creating a MauiKit application is available on <a href="https://develop.kde.org/docs/getting-started/mauikit/">our developer platform</a>.
 
-It is possible to make short mockups using QtQuick and MauiKit Controls and briefly test individual QML files using the <a href="https://doc.qt.io/qt-6/qtquick-qml-runtime.html">qml tool</a>.
+It is possible to make short mockups using QtQuick and MauiKit Controls and briefly test individual QML files using the <a href="https://doc.qt.io/qt-6/qtquick-qml-runtime.html">qml tool</a>. Notice that for it to work correctly you also need to export the enviroment variable `QT_QUICK_CONTROLS_STYLE=QtQuick.Controls.Maui`. This will make sure the Maui style is being used.
 
 A list of additional QML learning resources is available in the <a href="https://community.kde.org/Get_Involved/development/Learn#QtQuick/QML">Community Wiki</a>. If you are not familiar with QML at all, the <a href="https://www.qt.io/product/qt6/qml-book">QML book</a> should be a good head start.
 
-If you have any questions about MauiKit, feel free to drop by the <a href="https://go.kde.org/matrix/#/#kirigami:kde.org">Maui Project group on Telegram</a>.
+If you have any questions about MauiKit, feel free to drop by the Maui Project group on Telegram as `[at]mauiproject`.
 
 @section component Components
-The MauiKit Controls could be divided into a few sections, there are the views containers, the browsers, the delegates, and the common elements, such as buttons, cards, etc.
+The MauiKit Controls could be divided into a few sections: there are the container views, the browsers, the delegates, and the common elements, such as buttons, cards, etc.
 
 @subsection views Main Views Components
-These are usually used as the main application window container.
 
-- \link ApplicationWindow  ApplicationWindow \endlink
-- \link AppViews AppViews \endlink
-- \link SideBarView SideBarView \endlink
-- \link TabView TabView \endlink
-- \link Page Page  \endlink
+- @link ApplicationWindow  ApplicationWindow @endlink
+- @link AppViews AppViews @endlink
+- @link SideBarView SideBarView @endlink
+- @link TabView TabView @endlink
+- @link Page Page  @endlink
+- @link PageLayout Page  @endlink
 
-Another views are:
-- \link SplitView  SplitView \endlink
+Another views include:
+- @link SplitView  SplitView @endlink
 
 @subsection browsers Browsing Views
 
-- \link GridBrowser  GridBrowser \endlink
-- \link ListBrowser ListBrowser \endlink
-- \link AltBrowser AltBrowser \endlink
+- @link GridBrowser  GridBrowser @endlink
+- @link ListBrowser ListBrowser @endlink
+- @link AltBrowser AltBrowser @endlink
+- @link ScrollColumn ScrollColumn @endlink
+
+@subsection delegates Delegates & Templates
+
+- @link ListBrowserDelegate  ListBrowserDelegate @endlink
+- @link GridBrowserDelegate GridBrowserDelegate @endlink
+- @link GalleryRollItem GalleryRollItem @endlink
+- @link ListItemTemplate ListItemTemplate @endlink
+- @link GridItemTemplate GridItemTemplate @endlink
 
 @subsection common Common Controls
 
-- \link GridBrowser  GridBrowser \endlink
-- \link ListBrowser ListBrowser \endlink
-- \link AltBrowser AltBrowser \endlink
+- @link ToolActions  ToolActions @endlink
+- @link ContextualMenu ContextualMenu @endlink
+- @link Holder Holder @endlink
+- @link PopupPage PopupPage @endlink
+- @link TextFieldPopup TextFieldPopup @endlink
+- @link InfoDialog InfoDialog @endlink
+- @link MenuItemActionRow MenuItemActionRow @endlink
 
 
 @subsection example Minimal Example
@@ -102,44 +115,68 @@ Maui.ApplicationWindow
 }
 @endcode
 
-@image html ApplicationWindow/minimal_dark.png
+@image html ApplicationWindow/minimal_dark.png "Minimal application setup"
 
 @section deployment Deployment
 
 @subsection building Building
+For building MauiKit from source, you will need to be familiar with some basic shell commands, with a terminal emulator and your distribution package manager.
+
+Before building MauiKit, make sure you have all the dependencies already installed with its development files.
+
+`git cmake make kf6-ki18n kf6-kcoreaddons qt6-svg qt6-base mauiman ...`
+
+Then you can clone the project to your machine.
+
+`git clone https://invent.kde.org/maui/mauikit.git`
+
+Now that you have the sources, go into the `mauikit` folder and start the building process.
+
+`cd mauikit`
+
+Let's build the project into a separate directory
+
+`mkdir build`
+
+Then.
+
+`cd build`
+
+An lets build it. 
+In this example the installation prefix path is set to the `/usr` directory; you can modify it if you want to, but bare in mind that you will also need to let know Qt where else it can find the installed QML plugins.
+
+`cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_WITH_QT6=ON`
+
+If everything goes right, the next step is to install it on the system for it to be ready to be used.
 
 @subsection installation Installation
 
-@subsection usage Usage
-CMake is used for both building Kirigami and projects using it, allowing for several configurations depending on how the deployment needs to be done.
+Once the project has been built from source - as explained in the previous section, you can install it.
 
+`sudo make install`
+
+This step will install the QML plugin to the right location, the Maui Style and a few other items, such as the CSD styles.
+
+If you don't want to build it from source, you can also look for it in your distribution packages.
+
+For example, to install it on Arch based distributions:
+
+`sudo pacman install mauikit4`
+
+Debian based distros:
+
+`sudo apt install mauikit4`
+
+
+For Android, you will need to build it from source and install it at your Qt for Android root directory. 
+
+The easiest way is to build it using Qt Creator. Go to the project settings page, and enable the CMake build step for installation. That will install MauiKit into the right location. Remember you need to set the Kit to be Android.
+You can read more about setting up Qt from Android on their website.
+
+@subsection usage Usage
 The simplest and recommended way to use MauiKit is to just use the packages provided by your Linux distribution, or build it as a module and deploy it together with the main application.
 
-For example, when building an application on Android with CMake, if MauiKit for Android is built and installed in the same temporary directory before the application, the create-apk step of the application will include the Kirigami files as well in the APK.
-
-The application needs to have a folder called "3rdparty" containing clones of two KDE repositories: kirigami and breeze-icons (available at git://anongit.kde.org/kirigami.git and git://anongit.kde.org/breeze-icons.git).
-
-The `main.cpp` file should then have something like:
-
-@code
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#ifdef Q_OS_ANDROID
-#include "./3rdparty/kirigami/src/kirigamiplugin.h"
-#endif
-
-int main(int argc, char *argv[])
-{
-    QGuiApplication app(argc, argv);
-
-    QQmlApplicationEngine engine;
-
-#ifdef Q_OS_ANDROID
-    KirigamiPlugin::getInstance().registerTypes(&engine);
-#endif
-    ...
-}
-@endcode
+Once MauiKit has been installed you can start using it in your QML files. Checkout the ApplicationWindow for a quick example.
 
 @subsection examples Examples
 
@@ -149,9 +186,10 @@ int main(int argc, char *argv[])
 
 @subsection contributing Contributing
 
-If you find any syntax errors, missing documentation, or not working code snippets or code examples, please consider reporting the issue at:
+If you find any syntax errors, missing documentation, or not working code snippets or examples, please consider reporting the issue at 
+<a href="https://invent.kde.org/maui/mauikit/-/issues">MauiKit</a> issues page, with the **documentation** tag.
 
-If you want to contribute with the documentation efforts, you can contact the Maui Project at Telegram.
+If you want to contribute with the documentation efforts, you can contact the Maui Project at Telegram [at]mauiproject.
 
 @authors
 Camilo Higuita \<milo.h@aol.com.com\><br>
@@ -161,9 +199,7 @@ Camilo Higuita \<milo.h@aol.com.com\><br>
 
 @licenses
 @lgpl
-
 */
-
 
 // DOXYGEN_SET_RECURSIVE = YES
 // DOXYGEN_SET_EXCLUDE_PATTERNS += *_p.h */private/* */examples/* */doc/* */styles/*

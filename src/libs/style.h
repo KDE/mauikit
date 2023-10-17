@@ -87,92 +87,109 @@ class Style : public QObject
     Q_DISABLE_COPY(Style)
 
     /**
-     * 
+     * The standard height size for the toolbars, such as ToolBar, TabBar, etc. Usually this is used as the minimum height fo those bars.
+     * @note This property is read only.
      */
     Q_PROPERTY(uint toolBarHeight MEMBER m_toolBarHeight CONSTANT FINAL)
     
     /**
+     * An alternative size for the tab bars, this is a bit smaller then the `toolBarHeight`.
+     * @see toolBarHeight
      * 
      */
     Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
     
     /**
-     * 
+     * The preferred radius for the border corners of the UI elements.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences. 
      */
     Q_PROPERTY(uint radiusV MEMBER m_radiusV NOTIFY radiusVChanged FINAL)
     
     /**
-     * 
+     * The preferred size for painting the icons in places, such as menus, buttons and delegates.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences. 
      */
     Q_PROPERTY(uint iconSize READ iconSize NOTIFY iconSizeChanged FINAL)
 
     /**
-     * 
+     * The standard size for the height of elements represented as a row. Such as items in lists.
+     * This can be used for keeping a coherent look, when an implicit height is not desired, or as the minimum height.
      */
     Q_PROPERTY(uint rowHeight MEMBER m_rowHeight CONSTANT FINAL)
     
     /**
-     * 
+     * An alternative height to the `rowHeight`, this size is a bit smaller.
      */
     Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
     
 /**
-     * 
+     * The preferred size for the margins in the browsing views, such as the ListBrowser and GridBrowser, but also for the margins in menus. 
+     * @note This property is read only. It can only be modified from the MauiMan global preferences. 
      */
-    Q_PROPERTY(uint contentMargins MEMBER m_contentMargins  NOTIFY contentMarginsChanged)
+    Q_PROPERTY(uint contentMargins MEMBER m_contentMargins NOTIFY contentMarginsChanged)
     
     /**
-     * 
+     * The preferred font size for the text labels in the UI elements.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.  
      */
     Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
     
     /**
-     * 
+     * The preferred padding size for the UI elements, such a menu entries, buttons, bars, etc.
+     * The padding refers to the outer-space around the visible background area of the elements.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(uint defaultPadding MEMBER m_defaultPadding NOTIFY defaultPaddingChanged)
     
     /**
-     * 
+     * The preferred spacing size between elements in rows or columns, etc.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(uint defaultSpacing MEMBER m_defaultSpacing NOTIFY defaultSpacingChanged)
     
     /**
-     * 
+     * The preferred font for the text in labels.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(QFont defaultFont MEMBER m_defaultFont NOTIFY defaultFontChanged)
     
     /**
-     * 
+     * The preferred font for titles and headers.
      */
     Q_PROPERTY(QFont h1Font MEMBER m_h1Font NOTIFY h1FontChanged)
     
     /**
-     * 
+     * The preferred font for subtitles.
      */
     Q_PROPERTY(QFont h2Font MEMBER m_h2Font NOTIFY h2FontChanged)
     
     /**
-     * 
+     * The preferred mono spaced font.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(QFont monospacedFont MEMBER m_monospacedFont NOTIFY monospacedFontChanged)
     
     /**
-     * 
+     * The group of different standard font sizes for the MauiKit applications.
+     * @see GroupSizes
      */
     Q_PROPERTY(GroupSizes *fontSizes MEMBER m_fontSizes NOTIFY fontSizesChanged)
     
     /**
-     * 
+     * The group of different standard spacing values for consistency in the MauiKit apps.
+     * @see GroupSizes
      */
     Q_PROPERTY(GroupSizes *space MEMBER m_space CONSTANT FINAL)
     
     /**
-     * 
+     * The group of different standard icon sizes for consistency in the MauiKit apps.
+     * @see GroupSizes
+     * Values are the standard: 16, 22, 32 ,48, 64, 128 [pixels]
      */
     Q_PROPERTY(GroupSizes *iconSizes MEMBER m_iconSizes CONSTANT FINAL)
     
     /**
-     * 
+     * The standard units group. See the Units documentation for more information.
      */
     Q_PROPERTY(Units *units MEMBER m_units CONSTANT FINAL)
 
@@ -184,38 +201,57 @@ class Style : public QObject
     Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged FINAL RESET unsetAccentColor)
 
     /**
-     * 
+     * The source for picking up the application color palette when the style type is set to Style.Adaptive.
+     * The source can be an image URL, and QQC2 Image, or a QQC2 Item, or even an icon name.
+     * By default the source for this is set to the MauiMan wallpaper source preference.
      */
     Q_PROPERTY(QVariant adaptiveColorSchemeSource READ adaptiveColorSchemeSource WRITE setAdaptiveColorSchemeSource NOTIFY adaptiveColorSchemeSourceChanged RESET unsetAdaptiveColorSchemeSource)
 
     /**
-     * 
+     * The preferred style type for setting the color scheme of the application.
+     * @see StyleType
+     * By default this is set to the MauiMan global preference.
+     * It can be overridden by the application, and to reset it - back to the original system preference - by setting this to `undefined`.
      */
     Q_PROPERTY(StyleType styleType READ styleType WRITE setStyleType NOTIFY styleTypeChanged RESET unsetStyeType)
 
     /**
-     * 
+     * Whether special effects are desired. This can be tweaked in the MauiMan system preferences in cases where the resources need to be preserved.
+     * Consider using this property when using special effects in your applications.
+     * @note This property is read-only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(bool enableEffects READ enableEffects NOTIFY enableEffectsChanged FINAL)
 
     /**
-     * 
+     * The current system icon theme picked up by the user.
+     * @note This property is read-only. It can only be modified from the MauiMan global preferences.
+     * @warning This only works when using the Maui Shell ecosystem. There is not support for Plasma or GNOME desktops.
      */
     Q_PROPERTY(QString currentIconTheme READ currentIconTheme NOTIFY currentIconThemeChanged)
 
     /**
-     * 
+     * Whether the menu entries should display the icon image.
+     * @note This property is read-only. This is picked by from the QPA Qt Theme integration platform, so its default value will depend on the desktop shell being used.
      */
     Q_PROPERTY(bool menusHaveIcons READ menusHaveIcons CONSTANT FINAL)
     
     /**
-     * 
+     * The preferred scroll bars policy for displaying them or not.
+     * @note This property is read-only. This is picked by from the QPA Qt Theme integration platform, so its default value will depend on the desktop shell being used.
      */
     Q_PROPERTY(uint scrollBarPolicy READ scrollBarPolicy NOTIFY scrollBarPolicyChanged FINAL)
+    
     /**
-     * 
+     * Whether the user desires for the application to play sounds or not.
+     * @note This property is read-only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(bool playSounds READ playSounds NOTIFY playSoundsChanged FINAL)
+        
+    /**
+     * Whether the application window surface should be transparent and request the compositor to blur the background area of the window surface.
+     * By default this is set to `false`.
+     */
+    Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
         
 public:
     /**
@@ -256,17 +292,6 @@ public:
     }; Q_ENUM(StyleType)
     
     /**
-     * 
-     */
-    enum ScrollBarPolicy : uint
-    {
-        AlwaysOn= 0,
-        AsNeeded,
-        AlwaysOff,
-        AutoHide
-    }; Q_ENUM(ScrollBarPolicy)
-
-    /**
      * @private
      */
     static Style *qmlAttachedProperties(QObject *object);
@@ -305,11 +330,15 @@ public:
     
     bool menusHaveIcons() const;
     bool playSounds() const;
-    uint scrollBarPolicy() const;
+    uint scrollBarPolicy() const;    
+
+    bool translucencyAvailable() const;
+    void setTranslucencyAvailable(const bool &value);
 
 public Q_SLOTS:
     /**
-     * @brief
+     * @brief Given a `size` as argument this function will return the best fitted icon size from the standard icon sizes.
+     * For example for the a size of 36, this function should return a size of 32.
      */
     int mapToIconSizes(const int &size);
 
@@ -354,6 +383,7 @@ private:
     MauiMan::AccessibilityManager *m_accessibilitySettings;
     
     bool m_enableEffects = true;
+    bool m_translucencyAvailable = false;
 
     QString m_currentIconTheme;
     
@@ -380,6 +410,7 @@ Q_SIGNALS:
     void defaultSpacingChanged();
     void scrollBarPolicyChanged(uint);
     void playSoundsChanged(bool);
+    void translucencyAvailableChanged(bool translucencyAvailable);
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

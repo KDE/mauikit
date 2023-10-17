@@ -27,115 +27,199 @@
 
 #include <KAboutData>
 
-/**
- * @brief The MauiApp class
- * The MauiApp is a global singleton instance, can be accessed from QML as an attached property, so it can be used widely by importing @codeline org.mauikit.controls
- * Example:
- * @code
- * import org.mauikit.controls 1.2 as Maui
- *
- * Maui.ApplicationWindow
- * {
- *      title: Maui.App.about.name
- *      Maui.App.controls.enableCSD: true
- * }
- * @endcode
- */
-
 class QQuickWindow;
 class QQuickItem;
 class QWindow;
 
 namespace MauiMan
 {
-class ThemeManager;
+  class ThemeManager;
 }
 
+/**
+ * @brief An abstraction for a client-side-decoration button.
+ * 
+ * This class is exposed as the type `CSDButton` to the QML engine, and it is used for creating the CSD window control themes.
+ * 
+ * CSDButton represents a button and its states. By reading the theme configuration, this class changes the images used as its state changes. The states need to be set manually.
+ */
 class CSDButton : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(CSDButton)
-
+    
+    /**
+     * Whether the button is currently being hovered.
+     * Uses the `Hover` config entry to read the image file asset.
+     */
     Q_PROPERTY(bool isHovered READ isHovered WRITE setIsHovered NOTIFY isHoveredChanged)
+    
+    /**
+     * Whether the window is currently maximized.
+     * Uses the `Restore` config section to read the image file assets.
+     */
     Q_PROPERTY(bool isMaximized READ isMaximized WRITE setIsMaximized NOTIFY isMaximizedChanged)
+    
+    /**
+     * Whether the button is currently being pressed.
+     * Uses the `Pressed` config entry to read the image file asset.
+     */
     Q_PROPERTY(bool isPressed READ isPressed WRITE setIsPressed NOTIFY isPressedChanged)
+    
+    /**
+     * Whether the window is currently focused.
+     * Uses the `Normal` config entry to read the image file asset, if focused, other wise, the `Backdrop` entry.
+     */
     Q_PROPERTY(bool isFocused READ isFocused WRITE setIsFocused NOTIFY isFocusedChanged)
+    
+    /**
+     * The button type.
+     * @see CSDButtonType
+     */
     Q_PROPERTY(CSDButtonType type READ type WRITE setType NOTIFY typeChanged)
+    
+    /**
+     * The source file path of the theme being used.
+     */
     Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
+    
+    /**
+     * The style to be used for picking up the image assets and config.
+     * By default this will be set to the current preferred window controls style preference from MauiMan.
+     * However, this can be overridden to another existing style. 
+     */
     Q_PROPERTY(QString style READ style WRITE setStyle NOTIFY styleChanged)
-
+    
 public:
+    
+    /**
+     * @brief The states of a window control button.
+     */
     enum CSDButtonState
     {
+        /**
+         * The window surface is focused
+         */
         Normal,
+        
+        /**
+         * The button is being hovered but has not been activated
+         */
         Hover,
+        
+        /**
+         * The button is being pressed and has not been released
+         */
         Pressed,
+        
+        /**
+         * The window surface is in not focused
+         */
         Backdrop,
+        
+        /**
+         * The window or the button are not enabled
+         */
         Disabled
     }; Q_ENUM(CSDButtonState)
-
+    
+    /**
+     * @brief The possible types of supported window control buttons
+     */
     enum CSDButtonType
     {
+        /**
+         * Closes the window surface
+         */
         Close,
-                Minimize,
-                Maximize,
-                Restore,
-                Fullscreen,
-                None
+        
+        /**
+         * Minimizes/hides the window surface
+         */
+        Minimize,
+        
+        /**
+         * Maximizes the window surface
+         */
+        Maximize,
+        
+        /**
+         * Restores the window surface to the previous geometry it had before being maximized
+         */
+        Restore,
+        
+        /**
+         * Makes the window surface occupy the whole screen area
+         */
+        Fullscreen,
+        
+        /**
+         * No button
+         */
+        None
     };Q_ENUM(CSDButtonType)
-
-    typedef  QHash<CSDButtonState, QUrl> CSDButtonSources;
-
+        
     explicit CSDButton(QObject *parent =nullptr);
-
+    
     CSDButtonState state() const;
     void setState(const CSDButtonState &state);
     QUrl source() const;
-
+    
     bool isHovered() const;
     void setIsHovered(bool newIsHovered);
-
+    
     bool isMaximized() const;
     void setIsMaximized(bool newIsMaximized);
-
+    
     bool isPressed() const;
     void setIsPressed(bool newIsPressed);
-
+    
     bool isFocused() const;
     void setIsFocused(bool newIsFocused);
-
+    
     CSDButton::CSDButtonType type() const;
     void setType(CSDButton::CSDButtonType newType);
-
+    
     QString style() const;
     void setStyle(const QString &style);
-
+    
 public Q_SLOTS:
+    
+    /**
+     * @brief Maps a based string value convention representing a button type to a CSDButton::CSDButtonType
+     * 
+     * Usually each window control button is represented as a single letter, and the order of the window control buttons are an array of those string values. 
+     * 
+     * An example would be the following array `{"I", "A", "X"}`, which represents the following order: minimize, maximize, close
+     * 
+     */
     CSDButton::CSDButtonType mapType(const QString &value);
-
+    
 private:
+    typedef QHash<CSDButtonState, QUrl> CSDButtonSources;
+
     CSDButtonType m_type = CSDButtonType::None;
     QUrl m_source;
     QUrl m_dir;
     CSDButtonState m_state = CSDButtonState::Normal;
-
+    
     CSDButtonSources m_sources; //the state and the source associated
     QString m_style;
-
+    
     bool m_isHovered;
-
+    
     bool m_isMaximized;
-
+    
     bool m_isPressed;
-
+    
     bool m_isFocused;
-
+    
     QString mapButtonType(const CSDButtonType &type);
     QString mapButtonState(const CSDButtonState &type);
     QUrl extractStateValue(QSettings &settings, const CSDButton::CSDButtonState &state);
     void setSources();
     void requestCurrentSource();
-
+    
 Q_SIGNALS:
     void stateChanged();
     void sourceChanged();
@@ -147,53 +231,65 @@ Q_SIGNALS:
     void styleChanged();
 };
 
+/**
+ * @brief The client-side-decorations manager for the MauiKit application.
+ */
 class CSDControls : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(CSDControls)
-
+    
+    /**
+     * Whether the application shall use CSD (client side decorations).
+     * 
+     * @note This property by default uses the MauiMan global preference, but can it be overridden. To reset it back to the original system preference value set it to `undefined`.
+     */
     Q_PROPERTY(bool enableCSD READ enableCSD WRITE setEnableCSD RESET resetEnableCSD NOTIFY enableCSDChanged)
+    
+    /**
+     * The source file path of the style being used.
+     */
     Q_PROPERTY(QUrl source READ source NOTIFY sourceChanged FINAL)
+    
+    /**
+     * The name of the style/theme being used.
+     * This is picked up from the global MauiMan preferences and can not be overridden by the application.
+     * This preference is exposed to the end user in the Maui Settings.
+     */
     Q_PROPERTY(QString styleName READ styleName NOTIFY styleNameChanged FINAL)
+    
+    /**
+     * The model of the window control buttons to be shown, and the order in which they should appear in the right side.
+     * Although the WindowControlsLinux type can be placed arbitrary, it is strongly suggested to always placed them in a right-side area
+     */
     Q_PROPERTY(QStringList rightWindowControls MEMBER m_rightWindowControls FINAL CONSTANT)
-
-public:
-    typedef QHash<CSDButton::CSDButtonType, CSDButton*> CSDButtons;
-
+    
+public:    
     explicit CSDControls(QObject *parent =nullptr);
-
-    /**
-     * @brief enableCSD
-     * If the apps supports CSD (client side decorations) the window controls are drawn within the app main header, following the system buttons order, and allows to drag to move windows and resizing.
-     * @return
-     * If the application has been marked manually to use CSD or if in the mauiproject.conf file the CSD field has been set
-     */
+    
     bool enableCSD() const;
-
-    /**
-     * @brief setEnableCSD
-     * Manually enable CSD for this single application ignoreing the system wide mauiproject.conf CSD field value
-     * @param value
-     */
+    
     void setEnableCSD(const bool &value);
     void resetEnableCSD();
-
+    
     QUrl source() const;
     QString styleName() const;
-
+    
 private:
-    MauiMan::ThemeManager *m_themeSettings;
+    typedef QHash<CSDButton::CSDButtonType, CSDButton*> CSDButtons;
 
+    MauiMan::ThemeManager *m_themeSettings;
+    
     bool m_enableCSD = false;
     bool m_enabledCSD_blocked = false;
-
+    
     QUrl m_source;
     QString m_styleName = QStringLiteral("Nitrux");
     QStringList m_rightWindowControls;
-
+    
     void getWindowControlsSettings();
     void setStyle();
-
+    
 Q_SIGNALS:
     void enableCSDChanged();
     void styleNameChanged();
@@ -203,103 +299,126 @@ Q_SIGNALS:
 class Notify;
 class KAboutComponent;
 
+
+/**
+ * @brief The MauiApp class
+ * The MauiApp is a global singleton instance, can be accessed from QML as an attached property, so it can be used by importing `org.mauikit.controls`
+ *
+ * @warning It is needed that the first instance creation is made on the application main entry point before the QML engine creates the window surface, so the style and other parts are correctly loaded.
+ * 
+ * Example:
+ * @code
+ * import org.mauikit.controls as Maui
+ *
+ * Maui.ApplicationWindow
+ * {
+ *      title: Maui.App.about.name
+ *      Maui.App.controls.enableCSD: true
+ * }
+ * @endcode
+ */
 class MAUIKIT_EXPORT MauiApp : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(MauiApp)
-
+    
+    /**
+     * The information metadata about the application.
+     * See the KAboutData documentation for more details.
+     * @note This is the information parsed for feeding the ApplicationWindow's about dialog.
+     */
     Q_PROPERTY(KAboutData about READ getAbout CONSTANT FINAL)
+    
+    /**
+     * The URL to the image asset for the application icon.
+     */
     Q_PROPERTY(QString iconName READ getIconName WRITE setIconName NOTIFY iconNameChanged)
+    
+    /**
+     * An URL link to the application donation page.
+     */
     Q_PROPERTY(QString donationPage READ getDonationPage WRITE setDonationPage NOTIFY donationPageChanged)
+    
+    /**
+     * The client-side-decorations manager.
+     * @see CSDControls
+     */
     Q_PROPERTY(CSDControls * controls READ controls CONSTANT FINAL)
+    
+    /**
+     * The formatted MauiKit string version.
+     */
     Q_PROPERTY(QString mauikitVersion READ getMauikitVersion CONSTANT FINAL)
-    Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
-    //   Q_PROPERTY(QQuickWindow *window READ window WRITE setWindow NOTIFY windowChanged)
-    //   Q_PROPERTY(QQuickItem *windowPage READ windowPage WRITE setWindowPage NOTIFY windowPageChanged)
-
+    
 public:
+    /**
+     * @brief Retrieves information of the MauiKit framework wrapped into a KAboutComponent object.
+     */
     static KAboutComponent aboutMauiKit();
+    
+    /**
+     * @private
+     */
     static MauiApp *qmlAttachedProperties(QObject *object);
-
+    
+    /**
+     * @brief Retrieves the single instance of MauiApp. 
+     */
     static MauiApp *instance()
     {
         if (m_instance)
             return m_instance;
-
+        
         m_instance = new MauiApp;
         return m_instance;
     }
-
-    //  MauiApp(MauiApp &&) = delete;
-    //  MauiApp &operator=(MauiApp &&) = delete;
-
+    
     /**
-     * @brief getMauikitVersion
-     * MauiKit string version
-     * @return
+     * @brief The formatted MauiKit version string
      */
     static QString getMauikitVersion();
-
+    
     /**
-     * @brief getIconName
-     * Application icon name as a URL to the image asset
-     * @return
+     * @brief The file URL to the application icon
      */
     QString getIconName() const;
-
+    
     /**
-     * @brief setIconName
-     * Set URL to the image asset to be set as the application icon
-     * @param value
+     * @brief Set the file URL to the application icon.
+     * Usually it is a self contained URL
      */
     void setIconName(const QString &value);
-
+    
     /**
-     * @brief getDonationPage
-     * Application donation web page link
-     * @return
+     * @brief Donation web page link
+     * @return URL link
      */
     QString getDonationPage() const;
-
+    
     /**
-     * @brief setDonationPage
-     * Set application web page link
-     * @param value
+     * @brief Set the donation web page link
+     * @param value the URL link
      */
     void setDonationPage(const QString &value);
-
-    /**
-     * @brief getCredits
-     * Returns a model of the credits represented as a QVariantList, some of the fields used are: name, email, year.
-     * @return
-     */
+    
     KAboutData getAbout() const;
-
-    static void setDefaultMauiStyle();
-
+    
     CSDControls *controls() const;
-
-    QQuickWindow *window() const;
-    QQuickItem *windowPage() const;
-
-    bool translucencyAvailable() const;
-    void setTranslucencyAvailable(const bool &value);
-
+    
 private:
     static MauiApp *m_instance;
     MauiMan::ThemeManager *m_themeSettings;
-
+    
     MauiApp();
     CSDControls * m_controls;
     QString m_iconName;
     QString m_donationPage;
-
-    bool m_translucencyAvailable = false;
-
+    
+    static void setDefaultMauiStyle();
+    
 Q_SIGNALS:
     void iconNameChanged();
     void donationPageChanged();
-    void translucencyAvailableChanged(bool translucencyAvailable);
     void currentIconThemeChanged(QString currentIconTheme);
 };
 

@@ -224,6 +224,23 @@ bool Style::enableEffects() const
     return m_enableEffects;
 }
 
+bool Style::translucencyAvailable() const
+{
+    return m_translucencyAvailable;
+}
+
+void Style::setTranslucencyAvailable(const bool &value)
+{
+    if(value == m_translucencyAvailable)
+    {
+        return;
+    }
+
+    m_translucencyAvailable = value;
+    Q_EMIT this->translucencyAvailableChanged(m_translucencyAvailable);
+}
+
+
 Style *Style::qmlAttachedProperties(QObject *object)
 {
     Q_UNUSED(object)

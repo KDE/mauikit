@@ -34,9 +34,11 @@ import "private" as Private
  * @inherit QtQuick.Window
  * @brief A window that provides some basic features needed for most applications.
  * 
- * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
  * 
  * The ApplicationWindow is the best component to start creating a new MauiKit application. It's usually used as the root QML component for the application.
+ * It is different from the QQC2 alternative, as this one does not include a header or footer section, and does not have either a menu-bar.
+ * For a header and footer section use a MauiKit Page, and for the menu-bar alternative, use a MauiKit ToolButtonMenu.
  * 
  * @warning By default the window is completely empty (and transparent since it doesn't have any container's background) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible. See the example below to set the ApplicationWindow to a basic functional state.
  *  

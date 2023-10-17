@@ -53,7 +53,7 @@ KAboutComponent MauiApp::aboutMauiKit()
 MauiApp::MauiApp()
     : QObject(nullptr)
     , m_controls(new CSDControls(this))
-    ,m_themeSettings( new MauiMan::ThemeManager(this))
+    , m_themeSettings( new MauiMan::ThemeManager(this))
 
 {
     qDebug() << "CREATING INSTANCE OF MAUI APP";
@@ -82,7 +82,6 @@ MauiApp::MauiApp()
 #endif
 
     KAboutData::setApplicationData(aboutData);
-
     setDefaultMauiStyle();
 }
 
@@ -137,32 +136,6 @@ void MauiApp::setDefaultMauiStyle()
 #else
     QQuickStyle::setStyle(QStringLiteral("QtQuick.Controls.Maui"));
 #endif
-}
-
-QQuickWindow * MauiApp::window() const
-{
-    return nullptr; //for now until figure out how ot get root window
-}
-
-QQuickItem * MauiApp::windowPage() const
-{
-    return nullptr;
-}
-
-bool MauiApp::translucencyAvailable() const
-{
-    return m_translucencyAvailable;
-}
-
-void MauiApp::setTranslucencyAvailable(const bool &value)
-{
-    if(value == m_translucencyAvailable)
-    {
-        return;
-    }
-
-    m_translucencyAvailable = value;
-    Q_EMIT this->translucencyAvailableChanged(m_translucencyAvailable);
 }
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)

@@ -18,7 +18,6 @@
  */
 
 #include "handy.h"
-#include "utils.h"
 #include "fmh.h"
 
 #include <QDateTime>
@@ -345,17 +344,6 @@ QString Handy::formatTime(const qint64 &value)
     }
 
     return tStr.isEmpty() ? "00:00" : tStr;
-}
-
-
-void Handy::saveSettings(const QString &key, const QVariant &value, const QString &group)
-{
-    UTIL::saveSettings(key, value, group);
-}
-
-QVariant Handy::loadSettings(const QString &key, const QString &group, const QVariant &defaultValue)
-{
-    return UTIL::loadSettings(key, group, defaultValue);
 }
 
 bool Handy::isMobile() const

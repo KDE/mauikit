@@ -28,42 +28,38 @@
 #include "mauikit_export.h"
 
 /**
- * A set of helpers related to file management and modeling of data
+ * @brief A set of helpers for managing the key-value model data type. And other functionality helpers.
  */
 namespace FMH
 {
 /**
- * @brief isAndroid
- * @return
+ * @brief Whether the platform running is Android.
  */
 bool MAUIKIT_EXPORT isAndroid();
 
 /**
- * @brief isWindows
- * @return
+ * @brief Whether the platform running is Window.
  */
 bool MAUIKIT_EXPORT isWindows();
 
 /**
- * @brief isLinux
- * @return
+ * @brief Whether the platform running is GNU/Linux.
+
  */
 bool MAUIKIT_EXPORT isLinux();
 
 /**
- * @brief isMac
- * @return
+ * @brief Whether the platform running is Mac.
  */
 bool MAUIKIT_EXPORT isMac();
 
 /**
- * @brief isIOS
- * @return
+ * @brief Whether the platform running is IOS.
  */
 bool MAUIKIT_EXPORT isIOS();
 
 /**
- * @brief The MODEL_KEY enum
+ * @brief The MODEL_KEY enum values.
  */
 enum MODEL_KEY : int {
     ICON,
@@ -211,6 +207,15 @@ enum MODEL_KEY : int {
     UPDATABLE
 };
 
+/**
+ * @brief The mapping of the FMH::MODEL_KEY enum values to its string representation.
+ * For example, `FMH::MODEL_KEY::LABEL` is mapped to`"label"`.
+ * @code
+ * QString keyName = FMH::MODEL_NAME[FMH::MODEL_KEY::LABEL]; //resulting in "label"
+ * @endcode
+ * 
+ * @note All the string representations of the FMH::MODEL_KEY are always lower cased, and with no special character division. 
+ */
 static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, QStringLiteral("icon")},
                                                      {MODEL_KEY::LABEL, QStringLiteral("label")},
                                                      {MODEL_KEY::PATH, QStringLiteral("path")},
@@ -362,7 +367,14 @@ static const QHash<MODEL_KEY, QString> MODEL_NAME = {{MODEL_KEY::ICON, QStringLi
                                                      {MODEL_KEY::AUTHOR, QStringLiteral("author")},
                                                      {MODEL_KEY::UPDATABLE, QStringLiteral("updatable")},
                                                      {MODEL_KEY::LONGITUDE, QStringLiteral("lastsync")}};
-                                                     
+                          
+/**
+ * @brief The mapping of a string text into a FMH::MODEL_KEY.
+ * For example, `"label"` is mapped to `FMH::MODEL_KEY::LABEL`.
+ * @code
+ * FMH::MODEL_KEY key = FMH::MODEL_NAME_KEY["label"]; //resulting in FMH::MODEL_KEY::LABEL
+ * @endcode
+ */                                                     
 static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::ICON], MODEL_KEY::ICON},
                                                          {MODEL_NAME[MODEL_KEY::LABEL], MODEL_KEY::LABEL},
                                                          {MODEL_NAME[MODEL_KEY::PATH], MODEL_KEY::PATH},
@@ -515,99 +527,81 @@ static const QHash<QString, MODEL_KEY> MODEL_NAME_KEY = {{MODEL_NAME[MODEL_KEY::
                                                          {MODEL_NAME[MODEL_KEY::UPDATABLE], MODEL_KEY::UPDATABLE},
                                                          {MODEL_NAME[MODEL_KEY::BRANCH], MODEL_KEY::BRANCH}};
                                                          /**
- * @brief MODEL
+ * @brief The key-value pair model structure, where the values are strings. This is just a tydef to `QHash<MODEL_KEY, QString>`.
  */
 typedef QHash<MODEL_KEY, QString> MODEL;
 
 /**
- * @brief MODEL_LIST
+ * @brief An alias for a container of multiple FMH::MODEL key-value pairs.
  */
 typedef QVector<MODEL> MODEL_LIST;
 
 /**
- * @brief modelRoles
- * @param model
- * @return
+ * @brief Given a FMH::MODEL, this function will extract all the FMH::MODEL_KEY values used as the keys/roles.
+ * @param model the given key-value pair model
+ * @return A list of keys/roles in the given model
  */
 const QVector<int> MAUIKIT_EXPORT modelRoles(const MODEL &model);
 
 /**
- * @brief mapValue
- * @param map
- * @param key
- * @return
+ * @brief Extracts a value associated with that given FMH::MODEL_KEY key in a map.
+ * @param map the map with the data
+ * @param key the key to look for in the map
+ * @return if found, the string value is returned, otherwise an empty string.
  */
 const QString MAUIKIT_EXPORT mapValue(const QVariantMap &map, const MODEL_KEY &key);
 
 /**
- * @brief toMap
- * @param model
- * @return
+ * @brief Converts a FMH::MODEL object to a QVariantMap.
+ * This is basically doing a convertion from `QHash<MODEL_KEY, QString>` to a `QMap<QString, QString>`.
+ * @param model the data model to convert
+ * @return a new QVariantMap
  */
 const QVariantMap MAUIKIT_EXPORT toMap(const MODEL &model);
 
 /**
- * @brief toModel
- * @param map
- * @return
+ * @brief Converts a QVariantMap to a FMH::MODEl.
+ * @note For this to be successful, the original map keys should be mappable in the FMH::MODEL_NAME.
+ * @param map the map to be converted
+ * @return the resulting FMH::MODEL if all the keys in the original map were successfully mapped.
  */
 const MODEL MAUIKIT_EXPORT toModel(const QVariantMap &map);
 
 /**
- * Creates a MODEL_LIST from a QVariantList
- * */
-/**
- * @brief toModelList
+ * @brief Creates a FMH::MODEL_LIST from a QVariantList
  * @param list
- * @return
+ * @note For this to be successful, the original map keys - in the list - should be mappable in the FMH::MODEL_NAME.
+ * @return the resulting FMH::MODEL_LIST
  */
 const MODEL_LIST MAUIKIT_EXPORT toModelList(const QVariantList &list);
 
 /**
- * Creates a QVariantList from a MODEL_LIST
- * */
-/**
- * @brief toMapList
+ * @brief Creates a QVariantList from a MODEL_LIST
  * @param list
  * @return
  */
 const QVariantList MAUIKIT_EXPORT toMapList(const MODEL_LIST &list);
 
 /**
- * Creates a new MODEL from another filtered by the given array of MODEL_KEY
- * */
-/**
- * @brief filterModel
- * @param model
- * @param keys
- * @return
+ * @brief Creates a new MODEL from another by filtering in the given array of MODEL_KEY
+ * @param model the source model used to filter
+ * @param keys the keys of the values to be filtered-in
+ * @return a new FMH::MODEL with the values filtered from the original model source
  */
 const MODEL MAUIKIT_EXPORT filterModel(const MODEL &model, const QVector<MODEL_KEY> &keys);
 
 /**
- * Extracts from a MODEL_LIST the values from a given MODEL::KEY into a QStringList
- * */
-
-/**
- * @brief modelToList
- * @param list
- * @param key
- * @return
+ * @brief Extracts from a MODEL_LIST the values from a given MODEL::KEY into a QStringList
+ * @param list the source list of model pairs
+ * @param key the keys to use to extract the values
+ * @return a list of the values extracted
  */
 const QStringList MAUIKIT_EXPORT modelToList(const MODEL_LIST &list, const MODEL_KEY &key);
 
-
-
 /**
- * Checks if a local file exists.
- * The URL must represent a local file path, by using the scheme file://
- **/
-/**
- * @brief fileExists
- * @param path
- * @return
+ * @brief Checks if a local file exists.
+ * @param path the URL must represent a local file path, by using the scheme file://
+ * @return whether the files exists
  */
 bool MAUIKIT_EXPORT fileExists(const QUrl &path);
-
-
 }
