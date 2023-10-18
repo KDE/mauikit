@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-26 00:41+0000\n"
+"POT-Creation-Date: 2023-10-18 00:41+0000\n"
 "PO-Revision-Date: 2023-06-07 09:15+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -18,137 +18,137 @@ msgstr ""
 "X-Generator: Lokalize 23.04.1\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
-#: src/controls.6/Doodle.qml:126 src/controls.6/Doodle.qml:148
+#: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
 msgid "Highlighter"
 msgstr "Realzador"
 
-#: src/controls.5/Doodle.qml:137 src/controls.6/Doodle.qml:137
+#: src/controls.5/Doodle.qml:137 src/controls.6/Doodle.qml:178
 #, kde-format
 msgid "Marker"
 msgstr "Marcador"
 
-#: src/controls.5/Doodle.qml:159 src/controls.6/Doodle.qml:159
+#: src/controls.5/Doodle.qml:159 src/controls.6/Doodle.qml:200
 #, kde-format
 msgid "Eraser"
 msgstr "Borrador"
 
-#: src/controls.5/Doodle.qml:174 src/controls.6/Doodle.qml:174
+#: src/controls.5/Doodle.qml:174 src/controls.6/Doodle.qml:215
 #, kde-format
 msgid "Color"
 msgstr "Cor"
 
 #: src/controls.5/Doodle.qml:181 src/controls.5/Doodle.qml:235
-#: src/controls.6/Doodle.qml:181 src/controls.6/Doodle.qml:235
+#: src/controls.6/Doodle.qml:222 src/controls.6/Doodle.qml:276
 #, kde-format
 msgid "Opacity"
 msgstr "Opacidade"
 
 #: src/controls.5/Doodle.qml:189 src/controls.5/Doodle.qml:205
-#: src/controls.5/FontPicker.qml:99 src/controls.6/Doodle.qml:189
-#: src/controls.6/Doodle.qml:205 src/controls.6/FontPicker.qml:96
+#: src/controls.5/FontPicker.qml:99 src/controls.6/Doodle.qml:230
+#: src/controls.6/Doodle.qml:246 src/controls.6/FontPicker.qml:140
 #, kde-format
 msgid "Size"
 msgstr "Tamaño"
 
-#: src/controls.5/FontPicker.qml:56 src/controls.6/FontPicker.qml:54
+#: src/controls.5/FontPicker.qml:56 src/controls.6/FontPicker.qml:97
 #, kde-format
 msgid "Family"
 msgstr "Familia"
 
-#: src/controls.5/FontPicker.qml:57 src/controls.6/FontPicker.qml:55
+#: src/controls.5/FontPicker.qml:57 src/controls.6/FontPicker.qml:98
 #, kde-format
 msgid "Pick the font family."
 msgstr "Escolla a familia do tipo de letra."
 
-#: src/controls.5/FontPicker.qml:80 src/controls.6/FontPicker.qml:77
+#: src/controls.5/FontPicker.qml:80 src/controls.6/FontPicker.qml:120
 #, kde-format
 msgid "Style"
 msgstr "Estilo"
 
-#: src/controls.5/FontPicker.qml:81 src/controls.6/FontPicker.qml:78
+#: src/controls.5/FontPicker.qml:81 src/controls.6/FontPicker.qml:121
 #, kde-format
 msgid "Font style."
 msgstr "Estilo do tipo de letra."
 
-#: src/controls.5/FontPicker.qml:100 src/controls.6/FontPicker.qml:97
+#: src/controls.5/FontPicker.qml:100 src/controls.6/FontPicker.qml:141
 #, kde-format
 msgid "Font size from recommended values."
 msgstr "Tipo de letra dos valores recomendados."
 
-#: src/controls.5/FontPicker.qml:118 src/controls.6/FontPicker.qml:115
+#: src/controls.5/FontPicker.qml:118 src/controls.6/FontPicker.qml:160
 #, kde-format
 msgid "Monospaced Fonts"
 msgstr "Tipos de letra monoespazo"
 
-#: src/controls.5/FontPicker.qml:119 src/controls.6/FontPicker.qml:116
+#: src/controls.5/FontPicker.qml:119 src/controls.6/FontPicker.qml:161
 #, kde-format
 msgid "Display only monospaced fonts."
 msgstr "Amosar só os tipos de letra monoespazo."
 
-#: src/controls.5/FontPicker.qml:130 src/controls.6/FontPicker.qml:127
+#: src/controls.5/FontPicker.qml:130 src/controls.6/FontPicker.qml:172
 #, kde-format
 msgid "Preview"
 msgstr "Vista previa"
 
-#: src/controls.5/FontPicker.qml:131 src/controls.6/FontPicker.qml:128
+#: src/controls.5/FontPicker.qml:131 src/controls.6/FontPicker.qml:173
 #, kde-format
 msgid "Test the font."
 msgstr "Probar o tipo de letra."
 
-#: src/controls.5/FontPicker.qml:139 src/controls.6/FontPicker.qml:136
+#: src/controls.5/FontPicker.qml:139 src/controls.6/FontPicker.qml:180
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
 msgstr "Fíxate, o mesquiño bacharel pide vinganza"
 
 #: src/controls.5/FontPickerDialog.qml:35
-#: src/controls.6/FontPickerDialog.qml:33
+#: src/controls.6/FontPickerDialog.qml:79
 #, kde-format
 msgid "Fonts"
 msgstr "Fontes"
 
-#: src/controls.5/ImageViewer.qml:177 src/controls.6/ImageViewer.qml:177
+#: src/controls.5/ImageViewer.qml:177 src/controls.6/ImageViewer.qml:204
 #, kde-format
 msgid "Oops!"
 msgstr "Oh oh!"
 
-#: src/controls.5/ImageViewer.qml:178 src/controls.6/ImageViewer.qml:178
+#: src/controls.5/ImageViewer.qml:178 src/controls.6/ImageViewer.qml:205
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "Non foi posíbel cargar a imaxe."
 
 #: src/controls.5/private/AboutDialog.qml:152
-#: src/controls.6/private/AboutDialog.qml:151
+#: src/controls.6/private/AboutDialog.qml:150
 #, kde-format
 msgid "Translators"
 msgstr "Tradución"
 
 #: src/controls.5/private/AboutDialog.qml:195
-#: src/controls.6/private/AboutDialog.qml:194
+#: src/controls.6/private/AboutDialog.qml:192
 #, kde-format
 msgid "Credits"
 msgstr "Recoñecementos"
 
 #: src/controls.5/private/AboutDialog.qml:243
-#: src/controls.6/private/AboutDialog.qml:242
+#: src/controls.6/private/AboutDialog.qml:239
 #, kde-format
 msgid "Licenses"
 msgstr "Licenzas"
 
 #: src/controls.5/private/AboutDialog.qml:275
-#: src/controls.6/private/AboutDialog.qml:274
+#: src/controls.6/private/AboutDialog.qml:269
 #, kde-format
 msgid "Components"
 msgstr "Compoñentes"
 
 #: src/controls.5/private/AboutDialog.qml:327
-#: src/controls.6/private/AboutDialog.qml:327
+#: src/controls.6/private/AboutDialog.qml:321
 #, kde-format
 msgid "Reports"
 msgstr "Informes"
 
 #: src/controls.5/private/AboutDialog.qml:334
-#: src/controls.6/private/AboutDialog.qml:334
+#: src/controls.6/private/AboutDialog.qml:328
 #, kde-format
 msgid "Home Page"
 msgstr "Páxina web"
@@ -160,6 +160,7 @@ msgid "Share with"
 msgstr "Compartir con"
 
 #: src/controls.5/private/ToastArea.qml:178
+#: src/controls.6/FontPickerDialog.qml:106
 #: src/controls.6/private/ToastArea.qml:179
 #, kde-format
 msgid "Accept"
@@ -171,41 +172,46 @@ msgstr "Aceptar"
 msgid "Dismiss All"
 msgstr "Ignoralo todo"
 
-#: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsPage.qml:8
+#: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "Configuración"
 
 #: src/controls.5/SplitViewItem.qml:100 src/controls.5/SplitViewItem.qml:115
-#: src/controls.6/SplitViewItem.qml:99 src/controls.6/SplitViewItem.qml:114
+#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
 #, kde-format
 msgid "Close Split"
 msgstr "Pechar a división"
 
-#: src/controls.5/TabView.qml:103 src/controls.6/TabView.qml:103
+#: src/controls.5/TabView.qml:103 src/controls.6/TabView.qml:306
 #, kde-format
 msgid "Open"
 msgstr "Abrir"
 
-#: src/controls.5/TabView.qml:114 src/controls.6/TabView.qml:114
+#: src/controls.5/TabView.qml:114 src/controls.6/TabView.qml:317
 #, kde-format
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: src/controls.5/TabView.qml:122 src/controls.6/TabView.qml:122
+#: src/controls.5/TabView.qml:122 src/controls.6/TabView.qml:325
 #, kde-format
 msgid "Close"
 msgstr "Pechar"
 
-#: src/controls.5/TabView.qml:132 src/controls.6/TabView.qml:132
+#: src/controls.5/TabView.qml:132 src/controls.6/TabView.qml:335
 #, kde-format
 msgid "Close Other"
 msgstr "Pechar o resto"
 
-#: src/controls.5/TabView.qml:141 src/controls.6/TabView.qml:141
+#: src/controls.5/TabView.qml:141 src/controls.6/TabView.qml:344
 #, kde-format
 msgid "Close All"
 msgstr "Pechalo todo"
+
+#: src/controls.6/FontPickerDialog.qml:96
+#, kde-format
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
@@ -274,6 +280,3 @@ msgstr "Tema de iconas Luv"
 
 #~ msgid "Links"
 #~ msgstr "Ligazóns"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
