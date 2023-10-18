@@ -335,6 +335,17 @@ Window
         }
     }
     
+     Component.onCompleted:
+        {
+            // Explicitly break the binding as we need this to be set only at startup.
+            // if the bindings are active, after this the window is resized by the
+            // compositor and then the bindings are reevaluated, then the window
+            // size would reset ignoring what the compositor asked.
+            // see BUG 433849
+            root.width = root.width;
+            root.height = root.height;
+        }   
+    
     /**
      * Send an inline notification.
      * icon = icon to be used

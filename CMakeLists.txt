@@ -26,7 +26,7 @@ else()
     set(REQUIRED_KF_VERSION 5.95.0)
     set(KF_MAJOR_VERSION 5)
     set(MAUI_MAJOR_VERSION 3)
-    set(MAUIKIT_VERSION 3.0.1)
+    set(MAUIKIT_VERSION 3.0.2)
 endif()
 
 set(CMAKE_CXX_STANDARD 17)
@@ -83,6 +83,7 @@ else()
     option(QUICK_COMPILER OFF)
 endif()
 
+option(BUILD_DEMO "Build the MauiKit Demo application." OFF)
 option(BUNDLE_LUV_ICONS "Ship Luv icon bundled." OFF)
 
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
@@ -145,7 +146,9 @@ add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 add_subdirectory(src)
 
 if(${QT_MAJOR_VERSION} STREQUAL 6)
-    add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
+    if(BUILD_DEMO)
+        add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
+    endif()
 endif()
 
 ##CMAKE PARTS

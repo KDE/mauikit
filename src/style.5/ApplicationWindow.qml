@@ -38,7 +38,14 @@ import QtQuick 2.10
 import QtQuick.Window 2.3
 import QtQuick.Templates 2.3 as T
 
+import org.mauikit.controls 1.3 as Maui
+
 T.ApplicationWindow {
     id: window
-
+    
+    Maui.Theme.colorSet: Maui.Theme.Window
+    background: Rectangle
+    {
+        color: Maui.Theme.backgroundColor
+    }
 }

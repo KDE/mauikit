@@ -40,7 +40,7 @@ import "private" as Private
  * It is different from the QQC2 alternative, as this one does not include a header or footer section, and does not have either a menu-bar.
  * For a header and footer section use a MauiKit Page, and for the menu-bar alternative, use a MauiKit ToolButtonMenu.
  * 
- * @warning By default the window is completely empty (and transparent since it doesn't have any container's background) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible. See the example below to set the ApplicationWindow to a basic functional state.
+ * @warning By default the window is completely empty (and transparent since it doesn't have any container's background) - and if used with CSD (Client Side Decorations) enabled, not window controls are visible. See the example below on how to fill the application window.
  *  
  * Commonly, this is paired with another child container control, such as a Page, an AppViews or a SideBarView, to name a few MauiKit controls; or with any other QQC2 element, such as a StackView, SwipeView, etc..
  * @see Page
@@ -269,7 +269,7 @@ Window
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
-    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.colorSet: Maui.Theme.Window
     
     /**
      * @brief Items to be placed inside the ApplicationWindow.
@@ -350,8 +350,8 @@ Window
             {
                 radius: Maui.Style.radiusV
                 color: "transparent"
-                border.color: Qt.darker(Maui.Theme.backgroundColor, 2.3)
-                opacity: 0.5
+                border.color: Qt.darker(Maui.Theme.backgroundColor, 3)
+                opacity: 0.7
                 
                 Behavior on color
                 {
@@ -490,6 +490,17 @@ Window
                 dialogLoader.item.open()
             }
         }
+        
+        Component.onCompleted:
+        {
+            // Explicitly break the binding as we need this to be set only at startup.
+            // if the bindings are active, after this the window is resized by the
+            // compositor and then the bindings are reevaluated, then the window
+            // size would reset ignoring what the compositor asked.
+            // see BUG 433849
+            root.width = root.width;
+            root.height = root.height;
+        }        
         
         /**
          * @brief Send an inline notification

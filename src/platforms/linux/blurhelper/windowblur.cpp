@@ -77,10 +77,9 @@ void WindowBlur::setGeometry(const QRect &rect)
     if (rect != m_rect) {
         m_rect = rect;
         
-        if(KWindowSystem::isPlatformX11())
-        {
+       
             updateBlur();
-        }
+        
         Q_EMIT geometryChanged();
     }
 }
@@ -109,10 +108,8 @@ void WindowBlur::setWindowRadius(qreal radius)
     if (radius != m_windowRadius) {
         m_windowRadius = radius;
         
-        if(KWindowSystem::isPlatformX11())
-        {
             updateBlur();
-        }
+        
         Q_EMIT windowRadiusChanged();
     }
 }
@@ -135,15 +132,13 @@ void WindowBlur::updateBlur()
 
     if(KWindowSystem::isPlatformWayland())
     {
-        KWindowEffects::enableBlurBehind(m_view, m_enabled);
+        qDebug() << "SETTING BLURRED WINDOW BG WAYLAND KDE;" << m_enabled << m_view;
+        KWindowEffects::enableBlurBehind(m_view, m_enabled, m_rect);
         KWindowEffects::enableBackgroundContrast(m_view, m_enabled);
         return;
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-
-
-    
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)    
     xcb_connection_t *c = QX11Info::connection();
     if (!c)
         return;

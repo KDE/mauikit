@@ -35,7 +35,6 @@ Control
 {
     id: control
     focus: true
-
     padding: Maui.Style.contentMargins
     visible: _container.count > 0
     
