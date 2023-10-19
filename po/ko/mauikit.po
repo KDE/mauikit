@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 00:41+0000\n"
+"POT-Creation-Date: 2023-10-19 00:41+0000\n"
 "PO-Revision-Date: 2023-07-26 00:35+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -161,13 +161,13 @@ msgstr "다음으로 공유"
 
 #: src/controls.5/private/ToastArea.qml:178
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:179
+#: src/controls.6/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
 msgstr "수락"
 
 #: src/controls.5/private/ToastArea.qml:254
-#: src/controls.6/private/ToastArea.qml:253
+#: src/controls.6/private/ToastArea.qml:252
 #, kde-format
 msgid "Dismiss All"
 msgstr "모두 알림 끄기"
@@ -177,8 +177,8 @@ msgstr "모두 알림 끄기"
 msgid "Settings"
 msgstr "설정"
 
-#: src/controls.5/SplitViewItem.qml:100 src/controls.5/SplitViewItem.qml:115
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
+#: src/controls.5/SplitViewItem.qml:116 src/controls.5/SplitViewItem.qml:131
+#: src/controls.6/SplitViewItem.qml:145 src/controls.6/SplitViewItem.qml:160
 #, kde-format
 msgid "Close Split"
 msgstr "분할 닫기"

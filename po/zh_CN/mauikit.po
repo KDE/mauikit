@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 00:41+0000\n"
+"POT-Creation-Date: 2023-10-19 00:41+0000\n"
 "PO-Revision-Date: 2023-10-10 14:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -161,13 +161,13 @@ msgstr "分享到"
 
 #: src/controls.5/private/ToastArea.qml:178
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:179
+#: src/controls.6/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
 msgstr "同意"
 
 #: src/controls.5/private/ToastArea.qml:254
-#: src/controls.6/private/ToastArea.qml:253
+#: src/controls.6/private/ToastArea.qml:252
 #, kde-format
 msgid "Dismiss All"
 msgstr ""
@@ -177,8 +177,8 @@ msgstr ""
 msgid "Settings"
 msgstr "设置"
 
-#: src/controls.5/SplitViewItem.qml:100 src/controls.5/SplitViewItem.qml:115
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
+#: src/controls.5/SplitViewItem.qml:116 src/controls.5/SplitViewItem.qml:131
+#: src/controls.6/SplitViewItem.qml:145 src/controls.6/SplitViewItem.qml:160
 #, kde-format
 msgid "Close Split"
 msgstr "取消分割"

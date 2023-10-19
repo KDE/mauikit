@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-18 00:41+0000\n"
+"POT-Creation-Date: 2023-10-19 00:41+0000\n"
 "PO-Revision-Date: 2023-04-05 11:39+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -161,13 +161,13 @@ msgstr "Şununla Paylaş"
 
 #: src/controls.5/private/ToastArea.qml:178
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:179
+#: src/controls.6/private/ToastArea.qml:178
 #, kde-format
 msgid "Accept"
 msgstr "Kabul Et"
 
 #: src/controls.5/private/ToastArea.qml:254
-#: src/controls.6/private/ToastArea.qml:253
+#: src/controls.6/private/ToastArea.qml:252
 #, kde-format
 msgid "Dismiss All"
 msgstr "Tümünü At"
@@ -177,8 +177,8 @@ msgstr "Tümünü At"
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: src/controls.5/SplitViewItem.qml:100 src/controls.5/SplitViewItem.qml:115
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
+#: src/controls.5/SplitViewItem.qml:116 src/controls.5/SplitViewItem.qml:131
+#: src/controls.6/SplitViewItem.qml:145 src/controls.6/SplitViewItem.qml:160
 #, kde-format
 msgid "Close Split"
 msgstr "Bölünmüşü Kapat"
