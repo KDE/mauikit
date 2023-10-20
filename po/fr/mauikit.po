@@ -206,8 +206,7 @@ msgid "Close All"
 msgstr "Tout fermer"
 
 #: src/controls.6/FontPickerDialog.qml:96
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgid "Cancel"
 msgstr "Annuler"
 
