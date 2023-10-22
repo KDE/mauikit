@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-19 00:41+0000\n"
-"PO-Revision-Date: 2023-10-15 11:24+0200\n"
+"PO-Revision-Date: 2023-10-21 10:23+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -212,7 +212,7 @@ msgstr "Zamknij wszystkie"
 #: src/controls.6/FontPickerDialog.qml:96
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
