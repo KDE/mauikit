@@ -38,24 +38,26 @@ Pane
         spacing: Maui.Style.defaultSpacing
         
         Layout.fillWidth: true
-        padding: 0
+        padding: Maui.Style.contentMargins
         
-        implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+        implicitHeight: implicitContentHeight + topPadding + bottomPadding
         
         background: null
         
         contentItem: ColumnLayout
         {
-            id: _layout
-            
+            id: _layout            
             spacing: control.spacing
             
             Maui.SectionHeader
             {
                 id: _template
                 Layout.fillWidth: true
+                label1.font: Maui.Style.defaultFont
                 label1.text: control.title
                 label2.text: control.description
+                label1.opacity: 0.7
+                label2.opacity: 0.7
                 template.iconSizeHint: Maui.Style.iconSizes.medium
             }
         }

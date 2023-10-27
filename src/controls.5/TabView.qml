@@ -111,34 +111,8 @@ Pane
 
         MenuItem
         {
-            text: i18nd("mauikit", "Duplicate")
-            icon.name: "tab-duplicate"
-            onTriggered: {}
-        }
-
-
-        MenuItem
-        {
             text: i18nd("mauikit", "Close")
             icon.name: "tab-close"
-            onTriggered:
-            {
-                control.closeTabClicked(_menu.index)
-            }
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Close Other")
-            onTriggered:
-            {
-                control.closeTabClicked(_menu.index)
-            }
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Close All")
             onTriggered:
             {
                 control.closeTabClicked(_menu.index)

@@ -97,23 +97,23 @@ T.ToolButton
         color: control.color
     }
     
-    Behavior on implicitHeight
-    {
-        NumberAnimation
-        {
-            duration: Maui.Style.units.shortDuration
-            easing.type: Easing.InQuad
-        }
-    }
-    
-    Behavior on implicitWidth
-    {
-        NumberAnimation
-        {
-            duration: Maui.Style.units.shortDuration
-            easing.type: Easing.InQuad
-        }
-    }
+//     Behavior on implicitHeight
+//     {
+//         NumberAnimation
+//         {
+//             duration: Maui.Style.units.shortDuration
+//             easing.type: Easing.InQuad
+//         }
+//     }
+//     
+//     Behavior on implicitWidth
+//     {
+//         NumberAnimation
+//         {
+//             duration: Maui.Style.units.shortDuration
+//             easing.type: Easing.InQuad
+//         }
+//     }
     
     ToolTip.delay: 1000
     ToolTip.timeout: 5000

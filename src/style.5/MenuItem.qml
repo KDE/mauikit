@@ -112,7 +112,7 @@ T.MenuItem
     {               
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)) : "transparent"
+        color: control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)
 
         Behavior on color
         {

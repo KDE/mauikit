@@ -45,34 +45,35 @@ Maui.PopupPage
         id: _header
         Layout.fillWidth: true
         implicitHeight: _div1.implicitHeight + topPadding + bottomPadding
-        padding: Maui.Style.space.big
+        padding: Maui.Style.defaultPadding
         background: null
-
+        
         contentItem: Maui.ListItemTemplate
         {
             id: _div1
-
+            
             imageSource: Maui.App.iconName
-
+            
             fillMode: Image.PreserveAspectFit
+            
             iconSizeHint: Maui.Style.iconSizes.huge
             imageSizeHint: iconSizeHint
             isMask: false
-
-            spacing: Maui.Style.space.medium
+            
+            // spacing: Maui.Style.space.medium
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             label1.text: Maui.App.about.displayName
             label1.font.weight: Font.Black
-            label1.font.pointSize: Maui.Style.fontSizes.enormous * 1.5
-
+            label1.font.pointSize: Maui.Style.fontSizes.enormous
+            
             label2.text: Maui.App.about.shortDescription
             label2.font.pointSize: Maui.Style.fontSizes.big
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            leftLabels.spacing: Maui.Style.space.medium
-
+            // leftLabels.spacing: Maui.Style.space.medium
+            
             leftLabels.data: [
-
+                
                 Label
                 {
                     Maui.Theme.inherit: true
@@ -82,7 +83,7 @@ Maui.PopupPage
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
                     color: _div1.label1.color
-
+                    
                     MouseArea
                     {
                         anchors.fill: parent
@@ -92,12 +93,6 @@ Maui.PopupPage
                 }
             ]
         }
-    }
-
-    Item
-    {
-        Layout.fillWidth: true
-        implicitHeight: Maui.Style.space.big
     }
 
     Maui.SectionItem
