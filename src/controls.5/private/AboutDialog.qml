@@ -61,7 +61,7 @@ Maui.PopupPage
             imageSizeHint: iconSizeHint
             isMask: false
 
-            // spacing: Maui.Style.space.medium
+            spacing: Maui.Style.space.big
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             label1.text: Maui.App.about.displayName
             label1.font.weight: Font.Black
@@ -99,7 +99,7 @@ Maui.PopupPage
     Maui.SectionItem
     {
         id: _authorsSection
-        // label1.text: i18nd("mauikit", "Authors")
+        label1.text: i18nd("mauikit", "Authors")
         visible: Maui.App.about.authors.length > 0
 
         // iconSource: "view-media-artist"
@@ -124,10 +124,8 @@ Maui.PopupPage
                     width: parent.width
 
                     label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
-                    label1.textFormat: Text.AutoText
-                    // label1.linkColor: Maui.Theme.textColor
+                    label1.textFormat: Text.RichText
                     label3.text: modelData.task
-
                     Connections
                     {
                         target: _credits.label1
@@ -168,8 +166,8 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
-                    label1.textFormat: Text.AutoText
+                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
                     {
@@ -210,8 +208,8 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1'>%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
-                    label1.textFormat: Text.AutoText
+                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
                     {
@@ -280,10 +278,9 @@ Maui.PopupPage
                 Maui.ListItemTemplate
                 {
                     width: parent.width
-                    label1.textFormat: Text.AutoText
-
-                    label1.text: modelData.webAddress ? String("<a href='%1'>%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name
-
+                    label1.textFormat: Text.RichText
+                                        
+                    label1.text: modelData.webAddress ? String("<a href='%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name
 
                     label2.text: modelData.description
                     label3.text: modelData.version
@@ -337,11 +334,6 @@ Maui.PopupPage
         Layout.fillWidth: true
         implicitHeight: Maui.Style.space.big
     }
-    
-    Maui.Separator
-    {
-        Layout.fillWidth: true
-    }
 
     ColumnLayout
     {
@@ -393,6 +385,4 @@ Maui.PopupPage
             opacity: 0.15
         }
     }
-
-
 }
