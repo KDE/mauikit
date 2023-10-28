@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-19 00:41+0000\n"
+"POT-Creation-Date: 2023-10-28 00:42+0000\n"
 "PO-Revision-Date: 2023-04-05 11:39+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -117,38 +117,38 @@ msgstr "Ups!"
 msgid "The image could not be loaded."
 msgstr "Görsel yüklenemedi."
 
-#: src/controls.5/private/AboutDialog.qml:152
-#: src/controls.6/private/AboutDialog.qml:150
+#: src/controls.5/private/AboutDialog.qml:147
+#: src/controls.6/private/AboutDialog.qml:145
 #, kde-format
 msgid "Translators"
 msgstr "Çevirmenler"
 
-#: src/controls.5/private/AboutDialog.qml:195
-#: src/controls.6/private/AboutDialog.qml:192
+#: src/controls.5/private/AboutDialog.qml:190
+#: src/controls.6/private/AboutDialog.qml:187
 #, kde-format
 msgid "Credits"
 msgstr "Emeği Geçenler"
 
-#: src/controls.5/private/AboutDialog.qml:243
-#: src/controls.6/private/AboutDialog.qml:239
+#: src/controls.5/private/AboutDialog.qml:238
+#: src/controls.6/private/AboutDialog.qml:234
 #, kde-format
 msgid "Licenses"
 msgstr "Lisanslar"
 
-#: src/controls.5/private/AboutDialog.qml:275
-#: src/controls.6/private/AboutDialog.qml:269
+#: src/controls.5/private/AboutDialog.qml:270
+#: src/controls.6/private/AboutDialog.qml:264
 #, kde-format
 msgid "Components"
 msgstr "Bileşenler"
 
-#: src/controls.5/private/AboutDialog.qml:327
-#: src/controls.6/private/AboutDialog.qml:321
+#: src/controls.5/private/AboutDialog.qml:322
+#: src/controls.6/private/AboutDialog.qml:316
 #, kde-format
 msgid "Reports"
 msgstr "Raporlar"
 
-#: src/controls.5/private/AboutDialog.qml:334
-#: src/controls.6/private/AboutDialog.qml:328
+#: src/controls.5/private/AboutDialog.qml:329
+#: src/controls.6/private/AboutDialog.qml:323
 #, kde-format
 msgid "Home Page"
 msgstr "Ana Sayfa"
@@ -190,23 +190,8 @@ msgstr "Aç"
 
 #: src/controls.5/TabView.qml:114 src/controls.6/TabView.qml:317
 #, kde-format
-msgid "Duplicate"
-msgstr "Çoğalt"
-
-#: src/controls.5/TabView.qml:122 src/controls.6/TabView.qml:325
-#, kde-format
 msgid "Close"
 msgstr "Kapat"
-
-#: src/controls.5/TabView.qml:132 src/controls.6/TabView.qml:335
-#, kde-format
-msgid "Close Other"
-msgstr "Diğerini Kapat"
-
-#: src/controls.5/TabView.qml:141 src/controls.6/TabView.qml:344
-#, kde-format
-msgid "Close All"
-msgstr "Tümünü Kapat"
 
 #: src/controls.6/FontPickerDialog.qml:96
 #, kde-format
@@ -274,6 +259,15 @@ msgstr "MauKit Frameworks"
 #, kde-format
 msgid "Luv Icon Theme"
 msgstr "Luv Simge Teması"
+
+#~ msgid "Duplicate"
+#~ msgstr "Çoğalt"
+
+#~ msgid "Close Other"
+#~ msgstr "Diğerini Kapat"
+
+#~ msgid "Close All"
+#~ msgstr "Tümünü Kapat"
 
 #~ msgid "Authors"
 #~ msgstr "Yazarlar"
