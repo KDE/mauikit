@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-28 00:42+0000\n"
+"POT-Creation-Date: 2023-10-29 00:41+0000\n"
 "PO-Revision-Date: 2023-07-30 11:24+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -118,38 +118,43 @@ msgstr "Ho!"
 msgid "The image could not be loaded."
 msgstr "La bildo ne povis esti ŝargita."
 
-#: src/controls.5/private/AboutDialog.qml:147
+#: src/controls.5/private/AboutDialog.qml:102
+#, kde-format
+msgid "Authors"
+msgstr "Aŭtoroj"
+
+#: src/controls.5/private/AboutDialog.qml:145
 #: src/controls.6/private/AboutDialog.qml:145
 #, kde-format
 msgid "Translators"
 msgstr "Tradukistoj"
 
-#: src/controls.5/private/AboutDialog.qml:190
+#: src/controls.5/private/AboutDialog.qml:188
 #: src/controls.6/private/AboutDialog.qml:187
 #, kde-format
 msgid "Credits"
 msgstr "Kreditoj"
 
-#: src/controls.5/private/AboutDialog.qml:238
+#: src/controls.5/private/AboutDialog.qml:236
 #: src/controls.6/private/AboutDialog.qml:234
 #, kde-format
 msgid "Licenses"
 msgstr "Licencoj"
 
-#: src/controls.5/private/AboutDialog.qml:270
+#: src/controls.5/private/AboutDialog.qml:268
 #: src/controls.6/private/AboutDialog.qml:264
 #, kde-format
 msgid "Components"
 msgstr "Komponentoj"
 
-#: src/controls.5/private/AboutDialog.qml:322
-#: src/controls.6/private/AboutDialog.qml:316
+#: src/controls.5/private/AboutDialog.qml:319
+#: src/controls.6/private/AboutDialog.qml:315
 #, kde-format
 msgid "Reports"
 msgstr "Raportoj"
 
-#: src/controls.5/private/AboutDialog.qml:329
-#: src/controls.6/private/AboutDialog.qml:323
+#: src/controls.5/private/AboutDialog.qml:326
+#: src/controls.6/private/AboutDialog.qml:322
 #, kde-format
 msgid "Home Page"
 msgstr "Hejmpaĝo"
@@ -269,9 +274,6 @@ msgstr "Luv Piktrogram-Etoso"
 
 #~ msgid "Close All"
 #~ msgstr "Fermi Ĉion"
-
-#~ msgid "Authors"
-#~ msgstr "Aŭtoroj"
 
 #~ msgid "Links"
 #~ msgstr "Ligiloj"
