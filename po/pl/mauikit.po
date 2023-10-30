@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-29 00:41+0000\n"
-"PO-Revision-Date: 2023-10-21 10:23+0200\n"
+"PO-Revision-Date: 2023-10-29 09:27+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -121,7 +121,7 @@ msgstr "Nie można wczytać obrazu."
 #: src/controls.5/private/AboutDialog.qml:102
 #, kde-format
 msgid "Authors"
-msgstr ""
+msgstr "Autorzy"
 
 #: src/controls.5/private/AboutDialog.qml:145
 #: src/controls.6/private/AboutDialog.qml:145

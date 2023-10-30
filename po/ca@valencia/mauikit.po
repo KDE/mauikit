@@ -4,20 +4,21 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Josep M. Ferrer <txemaq@gmail.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-29 00:41+0000\n"
-"PO-Revision-Date: 2023-04-05 09:40+0100\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"PO-Revision-Date: 2023-10-29 16:43+0100\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -122,7 +123,7 @@ msgstr "No s'ha pogut carregar la imatge."
 #: src/controls.5/private/AboutDialog.qml:102
 #, kde-format
 msgid "Authors"
-msgstr ""
+msgstr "Autors"
 
 #: src/controls.5/private/AboutDialog.qml:145
 #: src/controls.6/private/AboutDialog.qml:145
