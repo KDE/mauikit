@@ -115,8 +115,7 @@ msgid "The image could not be loaded."
 msgstr "Il est impossible de charger l'image."
 
 #: src/controls.5/private/AboutDialog.qml:102
-#, fuzzy, kde-format
-#| msgid "Authors"
+#, kde-format
 msgid "Authors"
 msgstr "Auteurs"
 
