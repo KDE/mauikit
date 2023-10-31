@@ -38,42 +38,32 @@ Maui.PopupPage
     Maui.Theme.inherit: false
     Maui.Theme.colorSet: Maui.Theme.Complementary
 
-    property alias mainHeader : _header
-
-    Control
+    Maui.SectionItem
     {
         id: _header
-        Layout.fillWidth: true
-        implicitHeight: _div1.implicitHeight + topPadding + bottomPadding
-        padding: Maui.Style.defaultPadding
-        background: null
-        
-        contentItem: Maui.ListItemTemplate
-        {
-            id: _div1
-            
             imageSource: Maui.App.iconName
-            
-            fillMode: Image.PreserveAspectFit
-            
-            iconSizeHint: Maui.Style.iconSizes.huge
-            imageSizeHint: iconSizeHint
-            isMask: false
-            
-            spacing: Maui.Style.space.big
+
+            template.fillMode: Image.PreserveAspectFit
+
+            template.iconSizeHint: Maui.Style.iconSizes.huge
+            template.imageSizeHint: template.iconSizeHint
+            template.isMask: false
+            template.headerSizeHint: template.iconSizeHint
+
+            // spacing: Maui.Style.space.big
             label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             label1.text: Maui.App.about.displayName
             label1.font.weight: Font.Black
             label1.font.pointSize: Maui.Style.fontSizes.enormous
-            
+
             label2.text: Maui.App.about.shortDescription
             label2.font.pointSize: Maui.Style.fontSizes.big
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             // leftLabels.spacing: Maui.Style.space.medium
+
+            template.leftLabels.data: [
             
-            leftLabels.data: [
-                
                 Label
                 {
                     Maui.Theme.inherit: true
@@ -82,8 +72,8 @@ Maui.PopupPage
                     font.family: "Monospace"
                     opacity: 0.6
                     font.pointSize: Maui.Style.fontSizes.small
-                    color: _div1.label1.color
-                    
+                    color: _header.label1.color
+            
                     MouseArea
                     {
                         anchors.fill: parent
@@ -93,7 +83,7 @@ Maui.PopupPage
                 }
             ]
         }
-    }
+    
 
     Maui.SectionItem
     {
@@ -292,7 +282,6 @@ Maui.PopupPage
                 }
             }
         }
-
     }
 
     Maui.SectionItem
