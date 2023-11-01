@@ -66,6 +66,7 @@ Pane
                 layer.smooth: true
                 layer.effect: OpacityMask
                 {
+                    cached: true
                     maskSource: Rectangle
                     {
                         width: _container.width
