@@ -60,7 +60,13 @@ Maui.InfoDialog
         onAccepted: control.standardButton(Dialog.Ok).forceActiveFocus()
     }
     
-    onAccepted: done()
+    onAccepted: 
+     {
+        finished(textEntry.text)
+        textEntry.clear()
+        close()
+    }
+    
     onRejected:
     {
         textEntry.clear()
@@ -71,16 +77,5 @@ Maui.InfoDialog
     {
         textEntry.forceActiveFocus()
         textEntry.selectAll()
-    }
-    
-    /**
-     * @brief Call to finish the dialog "accepted" action.
-     * This will emit the `finished` signal, clear the text entry field and close the dialog.
-     */
-    function done()
-    {
-        finished(textEntry.text)
-        textEntry.clear()
-        close()
-    }
+    }   
 }

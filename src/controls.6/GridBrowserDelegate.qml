@@ -291,7 +291,7 @@ Maui.ItemDelegate
         
         sourceComponent: CheckBox
         {
-            checkable: control.checkable || control.checked
+            checkable: control.checkable 
             autoExclusive: control.autoExclusive
             
             Binding on checked

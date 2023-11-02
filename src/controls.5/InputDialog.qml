@@ -34,7 +34,13 @@ Maui.InfoDialog
 //        onAccepted: control.acceptButton.forceActiveFocus()
     }
 
-    onAccepted: done()
+    onAccepted: 
+    {
+        finished(control.textEntry.text)
+        textEntry.clear()
+        close()
+    }
+    
     onRejected:
     {
         textEntry.clear()
@@ -45,12 +51,5 @@ Maui.InfoDialog
     {
         textEntry.forceActiveFocus()
         textEntry.selectAll()
-    }
-
-    function done()
-    {
-        finished(textEntry.text)
-        textEntry.clear()
-        close()
-    }
+    }    
 }
