@@ -291,7 +291,7 @@ Maui.ItemDelegate
         
         sourceComponent: CheckBox
         {
-            checkable: control.checkable
+            checkable: control.checkable || control.checked
             autoExclusive: control.autoExclusive
             
             Binding on checked
@@ -300,7 +300,11 @@ Maui.ItemDelegate
                 restoreMode: Binding.RestoreBinding
             }
             
-             onToggled: control.toggled(checked)
+             onToggled:
+             {
+                 console.log("CHECKEDDDD STATE")
+                  control.toggled(checked)
+             }
         }
     }
 }

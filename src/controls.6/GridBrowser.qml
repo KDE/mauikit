@@ -652,7 +652,10 @@ Item
                 
                 keyNavigationEnabled : true
                 keyNavigationWraps : true
-                Keys.onPressed: control.keyPress(event)
+                Keys.onPressed: (event) =>
+                {
+                    control.keyPress(event)
+                }
                 
                 Maui.Holder
                 {
@@ -690,7 +693,7 @@ Item
                     
                     sourceComponent: PinchArea
                     {
-                        onPinchFinished:
+                        onPinchFinished: (pinch) =>
                         {
                             resizeContent(pinch.scale)
                         }
