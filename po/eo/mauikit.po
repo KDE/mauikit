@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-01 00:41+0000\n"
+"POT-Creation-Date: 2023-11-02 00:41+0000\n"
 "PO-Revision-Date: 2023-07-30 11:24+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -183,7 +183,7 @@ msgstr "Forĵeti Ĉion"
 msgid "Settings"
 msgstr "Agordoj"
 
-#: src/controls.5/SplitViewItem.qml:116 src/controls.5/SplitViewItem.qml:131
+#: src/controls.5/SplitViewItem.qml:117 src/controls.5/SplitViewItem.qml:132
 #: src/controls.6/SplitViewItem.qml:145 src/controls.6/SplitViewItem.qml:160
 #, kde-format
 msgid "Close Split"
