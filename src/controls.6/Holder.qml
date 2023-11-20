@@ -103,9 +103,14 @@ Item
     property alias content : _layout.data
     
     /**
-     * @brief The image or icon source to be used as the emoji place holder.
+     * @brief The icon source to be used as the heading.
      */  
     property string emoji
+    
+    /**
+     * @brief The image to be used as the heading.
+     */
+    property string imageSource
     
     /**
      * @brief The title of the place holder element.
@@ -156,14 +161,15 @@ Item
     {
         id: imgComponent
         
-        Maui.Icon
+        Maui.IconItem
         {
             id: imageHolder
             
-            color: isMask ? Maui.Theme.textColor : "transparent"
             isMask: control.isMask
             opacity: isMask ? _template.opacity : 1
-            source: emoji
+            iconSource: control.emoji
+            imageSource: control.imageSource
+            fillMode: Image.PreserveAspectFit
         }
     }
     
@@ -172,8 +178,8 @@ Item
         id: animComponent
         AnimatedImage
         {
-            id: animation;
-            source: emoji
+            id: animation
+            source: control.emoji
         }
     }
     
@@ -185,12 +191,12 @@ Item
         
         Loader
         {
-            visible: active
-            active: control.height > (_template.implicitHeight + emojiSize) && control.emoji
-            height: control.emoji && visible ? emojiSize : 0
+            visible: active && (control.emoji || control.imageSource)
+            active: control.height > (_template.implicitHeight + control.emojiSize)
+            height: visible ? control.emojiSize : 0
             width: height
             asynchronous: true
-            sourceComponent: isGif ? animComponent : imgComponent
+            sourceComponent: control.isGif ? animComponent : imgComponent
         }
         
         Maui.ListItemTemplate

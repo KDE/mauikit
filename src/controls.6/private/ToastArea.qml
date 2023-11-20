@@ -101,7 +101,7 @@ Control
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.inherit: false
 
-            readonly property int mindex :  ObjectModel.index
+            readonly property int mindex : ObjectModel.index
             width: ListView.view.width
             height: _layout.implicitHeight + topPadding +bottomPadding
             
@@ -124,6 +124,32 @@ Control
                 radius: Maui.Style.radiusV
                 color: _toast.hovered? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
                 
+                ProgressBar
+                {
+                    id: _progressBar
+                    anchors.bottom: parent.bottom
+                    height: 2
+                    width: parent.width
+                    from: 0
+                    to : _toastTimer.interval
+                    value: _progressTimer.progress
+                    
+                    Timer
+                    {
+                        id: _progressTimer
+                        property int progress : 0
+                        interval: 5
+                        repeat: _toastTimer.running
+                        onTriggered: progress += _progressTimer.interval
+                    }
+                    
+                    function restart()
+                    {
+                        _progressTimer.progress = 0
+                        _progressTimer.restart()
+                    }
+                }
+                
                 layer.enabled: true
                 layer.effect: DropShadow
                 {
@@ -136,7 +162,11 @@ Control
                 }
             }
             
-            Component.onCompleted: _toastTimer.restart()
+            Component.onCompleted: 
+            {
+                _progressTimer.start()
+                _toastTimer.start()    
+            }
             
             Timer
             {
@@ -148,8 +178,10 @@ Control
                     if(_toast.hovered || _container.hovered || !control.autoClose)
                     {
                         _toastTimer.restart()
+                        _progressBar.restart()
                         return;
                     }
+                                            _progressTimer.stop()
                     control.remove(_toast.mindex)
                 }
             }

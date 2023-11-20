@@ -38,7 +38,7 @@ The MauiKit Controls could be divided into a few sections: there are the contain
 - @link SideBarView SideBarView @endlink
 - @link TabView TabView @endlink
 - @link Page Page  @endlink
-- @link PageLayout Page  @endlink
+- @link PageLayout PageLayout  @endlink
 
 Another views include:
 - @link SplitView  SplitView @endlink
