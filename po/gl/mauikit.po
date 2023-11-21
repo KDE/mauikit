@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:29+0000\n"
+"POT-Creation-Date: 2023-11-21 00:41+0000\n"
 "PO-Revision-Date: 2023-06-07 09:15+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -166,13 +166,13 @@ msgstr "Compartir con"
 
 #: src/controls.5/private/ToastArea.qml:178
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:178
+#: src/controls.6/private/ToastArea.qml:210
 #, kde-format
 msgid "Accept"
 msgstr "Aceptar"
 
 #: src/controls.5/private/ToastArea.qml:254
-#: src/controls.6/private/ToastArea.qml:252
+#: src/controls.6/private/ToastArea.qml:284
 #, kde-format
 msgid "Dismiss All"
 msgstr "Ignoralo todo"
