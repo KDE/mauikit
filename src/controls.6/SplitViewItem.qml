@@ -80,87 +80,70 @@ Pane
         
         
         contentItem: Item
-        {
+        {                
             Item
             {
+                id:  _container
                 anchors.fill: parent
-                
-                Item
+            }                  
+            
+            Loader
+            {
+                asynchronous: true
+                anchors.fill: parent
+                active: control.SplitView.view.resizing
+                visible: active
+                sourceComponent: Rectangle
                 {
-                    id:  _container
-                    anchors.fill: parent
-                }                
-                
-                layer.enabled: !control.compact   
-                layer.smooth: true
-                layer.effect: OpacityMask
-                {
-                    maskSource: Rectangle
-                    {
-                        width: _container.width
-                        height: _container.height
-                        radius: Maui.Style.radiusV
-                    }
-                }                
-                
-                Loader
-                {
-                    asynchronous: true
-                    anchors.fill: parent
-                    active: control.SplitView.view.resizing
-                    visible: active
-                    sourceComponent: Rectangle
-                    {
-                        color: Maui.Theme.backgroundColor
-                        opacity: (control.minimumWidth) / control.width
-                    }
-                }
-                
-                Loader
-                {
-                    asynchronous: true
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: 2
-                    active: control.SplitView.view.currentIndex === splitIndex && control.SplitView.view.count > 1
-                    visible: active
-                    sourceComponent: Rectangle
-                    {
-                        color: Maui.Theme.highlightColor
-                    }
-                }
-                
-                Loader
-                {
-                    asynchronous: true
-                    anchors.centerIn: parent
-                    active: control.SplitView.view.resizing && control.width < control.minimumWidth + 60
-                    visible: active
-                    sourceComponent: Maui.Chip
-                    {
-                        opacity: (control.minimumWidth) / control.width
-                        
-                        Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
-                        label.text: i18nd("mauikit", "Close Split")
-                    }
-                }
-                
-                Loader
-                {
-                    asynchronous: true
-                    anchors.centerIn: parent
-                    active: control.SplitView.view.resizing && control.height < control.minimumHeight + 60
-                    visible: active
-                    sourceComponent: Maui.Chip
-                    {
-                        opacity: (control.minimumHeight) / control.height
-                        
-                        Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
-                        label.text: i18nd("mauikit", "Close Split")
-                    }
+                    color: Maui.Theme.backgroundColor
+                    opacity: (control.minimumWidth) / control.width
                 }
             }
+            
+            Loader
+            {
+                asynchronous: true
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: 2
+                active: control.SplitView.view.currentIndex === splitIndex && control.SplitView.view.count > 1
+                visible: active
+                sourceComponent: Rectangle
+                {
+                    color: Maui.Theme.highlightColor
+                }
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                anchors.centerIn: parent
+                active: control.SplitView.view.resizing && control.width < control.minimumWidth + 60
+                visible: active
+                sourceComponent: Maui.Chip
+                {
+                    opacity: (control.minimumWidth) / control.width
+                    
+                    Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
+                    label.text: i18nd("mauikit", "Close Split")
+                }
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                anchors.centerIn: parent
+                active: control.SplitView.view.resizing && control.height < control.minimumHeight + 60
+                visible: active
+                sourceComponent: Maui.Chip
+                {
+                    opacity: (control.minimumHeight) / control.height
+                    
+                    Maui.Theme.backgroundColor: Maui.Theme.negativeTextColor
+                    label.text: i18nd("mauikit", "Close Split")
+                }
+            }            
             
             MouseArea
             {
@@ -174,19 +157,19 @@ Pane
                     control.SplitView.view.currentIndex = control.splitIndex
                     mouse.accepted = false
                 }
-            }
+            }    
             
-            layer.enabled: !control.compact && control.SplitView.view.currentIndex === splitIndex            
-            layer.effect: DropShadow
+            layer.enabled: !control.compact   
+            layer.smooth: true
+            layer.effect: OpacityMask
             {
-                cached: true
-                horizontalOffset: 0
-                verticalOffset: 0
-                radius: 8.0
-                samples: 16
-                color:  "#80000000"
-                smooth: true
-            }
+                maskSource: Rectangle
+                {
+                    width: _container.width
+                    height: _container.height
+                    radius: Maui.Style.radiusV
+                }
+            }     
         }
         
         Connections
