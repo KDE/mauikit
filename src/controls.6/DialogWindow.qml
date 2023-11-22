@@ -34,24 +34,27 @@ Private.BaseWindow
 {
     id: control
     
-    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Dialog ): (Qt.Dialog & ~Qt.FramelessWindowHint)
+    isDialog: true
     
-    
-    /***************************************************/
-    /********************* COLORS *********************/
-    /*************************************************/
-    Maui.Theme.colorSet: Maui.Theme.View         
-    
+    /**
+     * @brief The default content of this dialog window. This is handled by a MauiKit Page
+     * @property list<QtObject> DialogWindow::content
+     */
     default property alias content : _page.content
+        
+        /**
+         * @brief An alias to the MauiKit Page filling the dialog window. All the children content of this control will be parented by the Page.
+         * @property Page DialogWindow::page
+         */
         readonly property alias page: _page
-        // maximumHeight: 700
         maximumWidth: 900
         
         Maui.Page
         {
             id: _page
-             anchors.fill: parent
-             title: control.title
-        Maui.Controls.showCSD: true
+            anchors.fill: parent
+            title: control.title
+            Maui.Controls.showCSD: true
+            Maui.Theme.inherit: true
         }
 }

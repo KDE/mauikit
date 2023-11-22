@@ -42,7 +42,7 @@ Window
     minimumWidth: Maui.Handy.isMobile ? 0 : Math.min(200, Screen.desktopAvailableWidth)
     
     color: "transparent"
-    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
+    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | (root.isDialog ? Qt.Dialog : Qt.Window) ): ((root.isDialog ? Qt.Dialog : Qt.Window) & ~Qt.FramelessWindowHint)
     
     // Window shadows for CSD
     Loader
@@ -60,7 +60,7 @@ Window
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
-    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.colorSet: isDialog ? Maui.Theme.Window : Maui.Theme.Window
     
     /**
      * @brief Items to be placed inside the ApplicationWindow.
@@ -68,6 +68,8 @@ Window
      * @property list<QtObject> content
      **/
     default property alias content : _content.data
+        
+        property bool isDialog : false
         
         /***************************************************/
         /**************** READONLY PROPS ******************/

@@ -127,59 +127,57 @@ import QtQuick
 Loader
 {
     id: control
-
+    
     /**
      * @brief By default all the children content will be placed into a MauiKit SettingsPage, which has a scrollable column layout.
      * @property list<QtObject> SettingsDialog::content
      */
     default property list<QtObject> content
-
+    
     Component
     {
         id: _appComponent
-
+        
         Maui.DialogWindow
         {
             id: _window
             width: 400
             maximumWidth: 800
             height: Math.max(500, Math.min(900, implicitHeight))
+            modality: Qt.ApplicationModal
+            
             readonly property int implicitHeight: Math.max(_content.implicitHeight, _stackView.currentItem.implicitHeight)+_stackView.topPadding + _stackView.bottomPadding
-
+            
             title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
             onClosing: (close) =>
             {
                 _window.hide()
-                                close.accepted = true
+                close.accepted = true
             }
-
-            /**
-                   * @brief An alias to the QQC2 StackView which handles the stacking of the sub-pages added.
-                   * @see addPage
-                   */
+            
             readonly property alias stackView: _stackView
-
+            
             page.headBar.forceCenterMiddleContent: true
             page.headBar.leftContent: ToolButton
             {
                 icon.name: "go-previous"
                 visible: _stackView.depth > 1
-
+                
                 onClicked: _stackView.pop()
             }
-
+            
             StackView
             {
                 id: _stackView
                 anchors.fill: parent
-
+                
                 initialItem: Maui.SettingsPage
                 {
                     id:_content
                     content: control.content
                 }
             }
-
+            
             function addPage(component, properties)
             {
                 _stackView.push(component, properties)
@@ -187,73 +185,68 @@ Loader
             
             function open()
             {
-               _window.show() 
+                _window.show() 
             }
         }
     }
-
+    
     Component
     {
         id: _dialogComponent
-
-
-            Maui.PopupPage
+        
+        Maui.PopupPage
+        {
+            id: control
+            
+            readonly property alias stackView: _stackView
+            
+            maxHeight: implicitHeight
+            maxWidth: 500
+            
+            hint: 1
+            
+            page.title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
+            
+            headBar.visible: true
+            
+            headBar.leftContent: ToolButton
             {
-                id: control
-
-                // onClosed: control.sourceComponent = null
-                /**
-                     * @brief An alias to the QQC2 StackView which handles the stacking of the sub-pages added.
-                     * @see addPage
-                     */
-                readonly property alias stackView: _stackView
-
-                maxHeight: implicitHeight
-                maxWidth: 500
-
-                hint: 1
-
-                page.title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
-
-                headBar.visible: true
-
-                headBar.leftContent: ToolButton
+                icon.name: "go-previous"
+                visible: _stackView.depth > 1
+                
+                onClicked: _stackView.pop()
+            }
+            
+            stack: StackView
+            {
+                id: _stackView
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                implicitHeight: Math.max(_content.implicitHeight, currentItem.implicitHeight)+topPadding +bottomPadding
+                
+                initialItem: Maui.SettingsPage
                 {
-                    icon.name: "go-previous"
-                    visible: _stackView.depth > 1
-
-                    onClicked: _stackView.pop()
-                }
-
-                stack: StackView
-                {
-                    id: _stackView
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    implicitHeight: Math.max(_content.implicitHeight, currentItem.implicitHeight)+topPadding +bottomPadding
-
-                    initialItem: Maui.SettingsPage
-                    {
-                        id: _content
-                        content: control.content
-                    }
-                }
-
-                function addPage(component, properties)
-                {
-                    _stackView.push(component, properties)
+                    id: _content
+                    content: control.content
                 }
             }
+            
+            function addPage(component, properties)
+            {
+                _stackView.push(component, properties)
+            }
+        }
         
     }
-
+    
     function open()
     {
         if(control.item)
         {
             control.item.open()
+            return
         }
-
+        
         if(Maui.Handy.isMobile)
         {
             control.sourceComponent = _dialogComponent
@@ -261,18 +254,18 @@ Loader
         {
             control.sourceComponent = _appComponent
         }        
-                    control.item.open()
-
+        control.item.open()
+        
     }
-
+    
     /**
-             * @brief Adds a new sub page to the control. Use a MauiKit SettingsPage for the component.
-             * @param component the QQC2 Component wrapping a MauiKit SettingsPage
-             * @param properties optional properties map for the newly added sub page component
-             *
-             * @note The optional properties argument specifies a map of initial property values for the pushed item. For dynamically created items, these values are applied before the creation is finalized. This is more efficient than setting property values after creation, particularly where large sets of property values are defined, and also allows property bindings to be set up (using Qt.binding()) before the item is created.
-             * Checkout QT documentation on the StackView methods.
-             */
+     * @brief Adds a new sub page to the control. Use a MauiKit SettingsPage for the component.
+     * @param component the QQC2 Component wrapping a MauiKit SettingsPage
+     * @param properties optional properties map for the newly added sub page component
+     *
+     * @note The optional properties argument specifies a map of initial property values for the pushed item. For dynamically created items, these values are applied before the creation is finalized. This is more efficient than setting property values after creation, particularly where large sets of property values are defined, and also allows property bindings to be set up (using Qt.binding()) before the item is created.
+     * Checkout QT documentation on the StackView methods.
+     */
     function addPage(component, properties)
     {
         control.item.addPage(component, properties)

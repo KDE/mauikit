@@ -233,8 +233,7 @@ Private.BaseWindow
 {
     id: root    
    
-    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
-    
+    isDialog: false     
     Settings
     {
         property alias x: root.x

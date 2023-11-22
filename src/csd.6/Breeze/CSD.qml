@@ -38,7 +38,12 @@ Control
         AbstractButton
         {
             id: _button
-            visible: modelData === "A" ? canMaximize : true
+            visible: switch(modelData)
+            {
+                case "A" : return canMaximize 
+                case "I": return canMinimize
+                default: return true
+            }
             
             hoverEnabled: true
             width: 16
