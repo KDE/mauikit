@@ -19,7 +19,6 @@
 #pragma once
 
 #include <QObject>
-#include <QtQml/qqmlregistration.h>
 
 #include "fmh.h"
 
@@ -181,7 +180,6 @@ class MAUIKIT_EXPORT MauiList : public QObject, public QQmlParserStatus
 {
     
     Q_OBJECT
-    QML_ANONYMOUS 
     Q_INTERFACES(QQmlParserStatus)
 
     Q_DISABLE_COPY(MauiList)
