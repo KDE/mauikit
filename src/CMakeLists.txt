@@ -20,6 +20,7 @@ include_directories(
 
 # add_library(MauiKit${MAUI_MAJOR_VERSION} SHARED)
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
+    VERSION 1.3
     URI "org.mauikit.controls" 
     CLASS_NAME MauiKit)
 
@@ -199,6 +200,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/CloseButton.qml
     controls.${QT_MAJOR_VERSION}/CSDControls.qml
 
+    controls.${QT_MAJOR_VERSION}/DialogWindow.qml
     controls.${QT_MAJOR_VERSION}/Doodle.qml
     controls.${QT_MAJOR_VERSION}/DoodleCanvas.qml
 
@@ -273,6 +275,8 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
 
     controls.${QT_MAJOR_VERSION}/private/AboutDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ActionGroup.qml
+
+    controls.${QT_MAJOR_VERSION}/private/BaseWindow.qml
 
     controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml    
     controls.${QT_MAJOR_VERSION}/private/ColorTransition.qml

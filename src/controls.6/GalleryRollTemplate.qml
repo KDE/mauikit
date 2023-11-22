@@ -66,7 +66,7 @@ Maui.ShadowedRectangle
      * @brief The border radius of the images.
      * By default this is set to `0`.
      */
-    property int radius : 0
+    radius : 0
     
     /**
      * @brief The fill mode of the images. To see possible values refer to the QQC2 Image documentation form Qt.

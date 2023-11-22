@@ -46,6 +46,7 @@ namespace MauiMan
 class CSDButton : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_DISABLE_COPY(CSDButton)
     
     /**
@@ -237,6 +238,7 @@ Q_SIGNALS:
 class CSDControls : public QObject
 {
     Q_OBJECT
+    QML_ANONYMOUS
     Q_DISABLE_COPY(CSDControls)
     
     /**

@@ -16,18 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NOTIFY_H
-#define NOTIFY_H
+#pragma once
 
 #include <QObject>
 #include <QList>
 #include <QQmlListProperty>
+#include <QtQml/qqmlregistration.h>
 #include <QUrl>
 
 class Notify;
 class NotifyAction : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_DISABLE_COPY(NotifyAction)
     
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
@@ -52,6 +53,7 @@ class KNotification;
 class Notify : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_DISABLE_COPY(Notify)
     
     Q_PROPERTY(QString componentName READ componentName WRITE setComponentName NOTIFY componentNameChanged)
@@ -143,4 +145,3 @@ private:
     QList<QUrl> m_urls;
 };
 
-#endif // NOTIFY_H

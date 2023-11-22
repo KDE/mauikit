@@ -149,6 +149,8 @@ In this example the installation prefix path is set to the `/usr` directory; you
 
 If everything goes right, the next step is to install it on the system for it to be ready to be used.
 
+To build the demo app, use the build flag `-DBUILD_DEMO=ON`
+
 @subsection installation Installation
 
 Once the project has been built from source - as explained in the previous section, you can install it.
@@ -168,19 +170,20 @@ Debian based distros:
 `sudo apt install mauikit4`
 
 
-For Android, you will need to build it from source and install it at your Qt for Android root directory. 
+@subsection android Android
+For Android, you will need to build it from source and install it at your Qt-for-Android root directory. 
 
-The easiest way is to build it using Qt Creator. Go to the project settings page, and enable the CMake build step for installation. That will install MauiKit into the right location. Remember you need to set the Kit to be Android.
-You can read more about setting up Qt from Android on their website.
+The easiest way is to build it using the Qt Creator IDE. Go to the project settings page, and enable the installation build step for CMake. That will take care of installing MauiKit into the right location. Remember you need to set the Kit to be Android.
+You can read more about setting up Qt from Android on their documentation website.
 
 @subsection usage Usage
 The simplest and recommended way to use MauiKit is to just use the packages provided by your Linux distribution, or build it as a module and deploy it together with the main application.
 
-Once MauiKit has been installed you can start using it in your QML files. Checkout the ApplicationWindow for a quick example.
+Once MauiKit has been installed you can start using it in your QML files by importing it `import org.mauikit.controls`. 
+Checkout the ApplicationWindow for a quick example.
 
 @subsection examples Examples
-
-@subsection android Android
+A group of examples for all of the QQC2 controls can be found in the source code under the `examples` directory.
 
 @section notes Notes
 
@@ -189,7 +192,7 @@ Once MauiKit has been installed you can start using it in your QML files. Checko
 If you find any syntax errors, missing documentation, or not working code snippets or examples, please consider reporting the issue at 
 <a href="https://invent.kde.org/maui/mauikit/-/issues">MauiKit</a> issues page, with the **documentation** tag.
 
-If you want to contribute with the documentation efforts, you can contact the Maui Project at Telegram [at]mauiproject.
+If you want to contribute with the documentation efforts, you can contact the Maui Project at Telegram `[at]mauiproject`.
 
 @authors
 Camilo Higuita \<milo.h@aol.com.com\><br>

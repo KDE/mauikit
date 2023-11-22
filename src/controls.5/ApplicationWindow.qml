@@ -143,11 +143,11 @@ Window
         }
 
 
-        Private.ToastArea
-        {
-            id: _toastArea
-            anchors.fill: parent
-        }
+         Loader
+            {
+                id: _toastAreaLoader
+                anchors.fill: parent
+            }
 
         layer.enabled: root.showBorders
 
@@ -357,7 +357,12 @@ Window
      */
     function notify(icon, title, body, callback, buttonText)
     {
-        _toastArea.add(icon, title, body, callback, buttonText)
+        if(!_toastAreaLoader.item)
+            {
+                _toastAreaLoader.setSource("qrc:/maui/kit/private/ToastArea.qml")
+            }
+            
+        _toastAreaLoader.add(icon, title, body, callback, buttonText)
     }
     
     /**

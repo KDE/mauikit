@@ -17,8 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WINDOWBLUR_H
-#define WINDOWBLUR_H
+#pragma once
 
 #include <QApplication>
 #include <QObject>
@@ -31,11 +30,13 @@
 class WindowBlur : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
+    // QML_ELEMENT
+    Q_INTERFACES(QQmlParserStatus)
+
     Q_PROPERTY(QWindow *view READ view WRITE setView NOTIFY viewChanged)
     Q_PROPERTY(QRect geometry READ geometry WRITE setGeometry NOTIFY geometryChanged)
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(qreal windowRadius READ windowRadius WRITE setWindowRadius NOTIFY windowRadiusChanged)
-    Q_INTERFACES(QQmlParserStatus)
 
 public:
     WindowBlur(QObject *parent = nullptr) noexcept;
@@ -74,5 +75,3 @@ private:
     bool m_enabled;
     qreal m_windowRadius;
 };
-
-#endif

@@ -131,17 +131,17 @@ void Notify::send()
 
 
   QStringList actionsLabels;
-  for(const auto &action : qAsConst(m_actions))
-    {
-      actionsLabels << action->text ();
-      qDebug() << "Setting notify actions first" << actionsLabels;
-    }
-  notification->setActions (actionsLabels);
-
-  if(m_defaultAction)
-    {
-      notification->setDefaultAction (m_defaultAction->text ());
-    }
+  // for(const auto &action : qAsConst(m_actions))
+  //   {
+  //     actionsLabels << action->text ();
+  //     qDebug() << "Setting notify actions first" << actionsLabels;
+  //   }
+  // notification->setActions (actionsLabels);
+  // 
+  // if(m_defaultAction)
+  //   {
+  //     notification->setDefaultAction (m_defaultAction->text ());
+  //   }
 
   notification->setComponentName (m_componentName);
   notification->setText (m_message);
@@ -153,13 +153,13 @@ void Notify::send()
   qDebug() << notification->eventId ();
   
 
-  connect(notification, QOverload<unsigned int>::of(&KNotification::activated), this, &Notify::actionActivated);
-
-  connect(notification, &KNotification::defaultActivated,[this]()
-  {
-      if(m_defaultAction)
-       Q_EMIT m_defaultAction->triggered (this);
-    });
+  // connect(notification, QOverload<unsigned int>::of(&KNotification::activated), this, &Notify::actionActivated);
+  // 
+  // connect(notification, &KNotification::defaultActivated,[this]()
+  // {
+  //     if(m_defaultAction)
+  //      Q_EMIT m_defaultAction->triggered (this);
+  //   });
 
   notification->sendEvent();
 }

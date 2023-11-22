@@ -231,7 +231,6 @@ DemoPage
             {
                 id: _settings
 
-                title: "Title"
 
                 Component
                 {

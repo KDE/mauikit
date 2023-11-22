@@ -59,7 +59,7 @@ import org.mauikit.controls 1.3 as Maui
  *  <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/FontPickerDialog.qml">You can find a more complete example at this link.</a>
  *  
  */ 
-Maui.SettingsDialog
+Maui.PopupPage
 {
     id: control
     

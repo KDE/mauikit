@@ -84,6 +84,9 @@ Q_SIGNALS:
 class Style : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_ATTACHED(Style)
+    QML_UNCREATABLE("Cannot be created Style")
     Q_DISABLE_COPY(Style)
 
     /**

@@ -17,11 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WINDOWSHADOW_H
-#define WINDOWSHADOW_H
+#pragma once
 
 #include "tileset.h"
-
 
 #include <QGuiApplication>
 #include <QMap>
@@ -72,6 +70,7 @@ struct CompositeShadowParams
 class WindowShadow : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
+    // QML_ELEMENT
     Q_INTERFACES(QQmlParserStatus)
     Q_PROPERTY(QWindow *view READ view WRITE setView NOTIFY viewChanged)
     Q_PROPERTY(QRect geometry READ geometry WRITE setGeometry NOTIFY geometryChanged)
@@ -124,4 +123,3 @@ private:
     qreal m_strength = 1.2;
 };
 
-#endif
