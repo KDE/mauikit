@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-21 00:41+0000\n"
+"POT-Creation-Date: 2023-11-23 00:41+0000\n"
 "PO-Revision-Date: 2023-05-05 19:32+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -184,8 +184,8 @@ msgstr "Alle schließen"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/controls.5/SplitViewItem.qml:117 src/controls.5/SplitViewItem.qml:132
-#: src/controls.6/SplitViewItem.qml:145 src/controls.6/SplitViewItem.qml:160
+#: src/controls.5/SplitViewItem.qml:101 src/controls.5/SplitViewItem.qml:116
+#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
 #, kde-format
 msgid "Close Split"
 msgstr "Ansicht schließen"
