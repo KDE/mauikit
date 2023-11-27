@@ -41,23 +41,6 @@ Maui.PopupPage
 
     property alias mainHeader : _header
 
-    component Link : Button
-    {
-        id: _buttonLink
-        property url link
-        contentItem: Label
-        {
-            text: _buttonLink.text
-            color: hovered? Maui.Theme.highlightColor : Maui.Theme.textColor
-            horizontalAlignment: Qt.AlignLeft
-            font: _buttonLink.font
-        }
-
-        background: null
-
-        onClicked: Qt.openUrlExternally(link)
-    }
-
     Control
     {
         id: _header

@@ -42,9 +42,9 @@ AbstractButton
     hoverEnabled: true
     
     default property alias content: _page.content
-   
-        property alias popup: _popup
-        property alias textField : _textField
+
+    property alias popup: _popup
+    property alias textField : _textField
     
     property alias popupVisible: _popup.visible
     property alias closePolicy: _popup.closePolicy
@@ -82,7 +82,7 @@ AbstractButton
     function close()
     {
         _popup.close()
-    }  
+    }
     
     function clear()
     {
@@ -94,8 +94,8 @@ AbstractButton
     
     contentItem:  RowLayout
     {
-        id: _layout       
-        spacing: control.spacing 
+        id: _layout
+        spacing: control.spacing
         
         Maui.Icon
         {
@@ -103,7 +103,7 @@ AbstractButton
             source: control.icon.name
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
-            color: control.color   
+            color: control.color
         }
         
         Item
@@ -123,29 +123,31 @@ AbstractButton
             elide: Text.ElideRight
             wrapMode: Text.NoWrap
             
-            opacity: !_textField.activeFocus ? 1 : 0.5 
-                        
-            Behavior on opacity 
+            opacity: !_textField.activeFocus ? 1 : 0.5
+
+            Behavior on opacity
             {
                 NumberAnimation
                 {
                     duration: Maui.Style.units.longDuration
                     easing.type: Easing.InOutQuad
                 }
-            }  
-        }      
+            }
+        }
     }
     
-    data: Popup
+    Popup
     {
         id: _popup
         
         parent: control
+        anchors.centerIn: undefined
         
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
         modal: false
-        
-        y: control.position === ToolBar.Header ? 0 : (0 - (height) + control.height)
+
+        y: control.position === ToolBar.Header ? 0 : (control.height - (_popup.height))
+
         x: width === control.width ? 0 : 0 - ((width - control.width)/2)
         
         width: Math.min(Math.max(control.minimumWidth, parent.width), control.Window.window.width - Maui.Style.defaultPadding*2)
@@ -154,13 +156,13 @@ AbstractButton
         margins: 0
         padding: 0
         
-        onClosed: 
+        onClosed:
         {
             _textField.clear()
             control.closed()
         }
         
-        onOpened: 
+        onOpened:
         {
             _textField.forceActiveFocus()
             _textField.selectAll()
@@ -172,29 +174,29 @@ AbstractButton
             id:_page
             anchors.fill: parent
             altHeader: control.position === ToolBar.Footer
-                                    
-                                    headBar.visible: false
-                                    headerColumn: TextField
-                                    {
-                                        implicitHeight: control.height
-               width: parent.width
+
+            headBar.visible: false
+            headerColumn: TextField
+            {
+                implicitHeight: control.height
+                width: parent.width
                 
                 id: _textField
                 text: control.text
-                               
+
                 icon.source: control.icon.name
                 
                 onTextChanged: control.text = text
-                onAccepted: 
+                onAccepted:
                 {
                     control.text = text
                     control.accepted()
                 }
                 
-                onCleared: 
+                onCleared:
                 {
                     control.cleared()
-                }                
+                }
                 
                 Keys.enabled: true
                 Keys.forwardTo: control
@@ -220,28 +222,28 @@ AbstractButton
                     }
                     
                     states: [  State
-                    {
-                        when: control.position === ToolBar.Header
-                        
-                        AnchorChanges
                         {
-                            target: _border
-                            anchors.top: undefined
-                            anchors.bottom: parent.bottom
-                        }
-                    },
-                    
-                    State
-                    {
-                        when: control.position === ToolBar.Footer
-                        
-                        AnchorChanges
+                            when: control.position === ToolBar.Header
+
+                            AnchorChanges
+                            {
+                                target: _border
+                                anchors.top: undefined
+                                anchors.bottom: parent.bottom
+                            }
+                        },
+
+                        State
                         {
-                            target: _border
-                            anchors.top: parent.top
-                            anchors.bottom: undefined
+                            when: control.position === ToolBar.Footer
+
+                            AnchorChanges
+                            {
+                                target: _border
+                                anchors.top: parent.top
+                                anchors.bottom: undefined
+                            }
                         }
-                    }
                     ]
                 }
             }
@@ -252,7 +254,7 @@ AbstractButton
         {
             color: Maui.Theme.backgroundColor
             
-            radius: Maui.Style.radiusV    
+            radius: Maui.Style.radiusV
             layer.enabled: true
             layer.effect: DropShadow
             {
@@ -267,12 +269,12 @@ AbstractButton
             Behavior on color
             {
                 Maui.ColorTransition{}
-            }          
+            }
         }
     }
     
-    background: Rectangle 
-    {       
+    background: Rectangle
+    {
         color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
         
         radius: Maui.Style.radiusV
