@@ -42,6 +42,7 @@
 #endif
 
 #include "../mauikit_version.h"
+#include "moduleinfo.h"
 
 MauiApp *MauiApp::m_instance = nullptr;
 
@@ -52,9 +53,8 @@ KAboutComponent MauiApp::aboutMauiKit()
 
 MauiApp::MauiApp()
     : QObject(nullptr)
-    , m_controls(new CSDControls(this))
     , m_themeSettings( new MauiMan::ThemeManager(this))
-
+    , m_controls(new CSDControls(this))
 {
     qDebug() << "CREATING INSTANCE OF MAUI APP";
     connect(qApp, &QCoreApplication::aboutToQuit, []()
@@ -71,14 +71,26 @@ MauiApp::MauiApp()
                                 i18ndc(nullptr, "EMAIL OF TRANSLATORS", "Your emails"));
 
     }
+
+    const auto MauiData = MauiKitCore::aboutData();
+    aboutData.addComponent(MauiData.name(),
+                           MauiKitCore::buildVersion(),
+                           MauiData.version(),
+                           MauiData.webAddress(),
+                           MauiData.license().key());
+
     aboutData.addComponent("Qt", "", QT_VERSION_STR, "https://qt.io");
 
-    aboutData.addComponent(i18n("KDE Frameworks"), "", KCoreAddons::versionString(), "https://kde.org");
+    aboutData.addComponent(QStringLiteral("KDE Frameworks"), "", KCoreAddons::versionString(), "https://kde.org");
 
-    aboutData.addComponent(i18n("MauiKit Frameworks"), "", MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);
 
 #if defined BUNDLE_LUV_ICONS
-    aboutData.addComponent(i18n("Luv Icon Theme"), "", "", "https://github.com/Nitrux/luv-icon-theme", KAboutLicense::Artistic);
+    const auto luvData = MauiKitCore::aboutLuv();
+    aboutData.addComponent(luvData.name(),
+                           "",
+                           luvData.version(),
+                           luvData.webAddress(),
+                           luvData.license().key());
 #endif
 
     KAboutData::setApplicationData(aboutData);

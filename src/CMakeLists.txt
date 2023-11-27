@@ -43,6 +43,7 @@ set(mauikit_SRCS
     platforms/platform.cpp
     utils/icon.cpp
     utils/managedtexturenode.cpp
+    utils/moduleinfo.cpp
     utils/fontpickermodel.cpp)
 
 set(mauikit_HDRS
@@ -58,6 +59,7 @@ set(mauikit_HDRS
     utils/wheelhandler.h
     utils/model_template/mauilist.h
     utils/model_template/mauimodel.h
+    utils/moduleinfo.h
     libs/appview.h
     libs/tabview.h
     libs/style.h
@@ -291,6 +293,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/ShareDialogLinux.qml
     controls.${QT_MAJOR_VERSION}/private/SideBar.qml   
 
+    controls.${QT_MAJOR_VERSION}/private/WindowControlsWindows.qml
     controls.${QT_MAJOR_VERSION}/private/WindowControlsLinux.qml)
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}

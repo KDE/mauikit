@@ -402,7 +402,11 @@ public:
      * @param value the URL link
      */
     void setDonationPage(const QString &value);
-    
+
+    /**
+     * @brief Gather information about this module.
+     * @return
+     */
     KAboutData getAbout() const;
     
     CSDControls *controls() const;

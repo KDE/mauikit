@@ -65,6 +65,7 @@ include(ECMGenerateHeaders)
 include(ECMFindQmlModule)
 include(ECMQmlModule)
 include(ECMGenerateQmlTypes)
+include(ECMSourceVersionControl)
 
 include(KDEClangFormat)
 include(KDEInstallDirs)
@@ -137,18 +138,25 @@ if (QT_MAJOR_VERSION STREQUAL "5")
     endif()
 endif()
 
-##Translations stuff with KI18n
-add_definitions(-DTRANSLATION_DOMAIN="mauikit")
-ki18n_install(po)
+if(${ECM_SOURCE_UNDER_VERSION_CONTROL})
+    execute_process(
+        COMMAND git rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
+    # Get the latest abbreviated commit hash of the working branch
+    execute_process(
+        COMMAND git log -1 --format=%h
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_HASH
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-add_subdirectory(src)
-
-if(${QT_MAJOR_VERSION} STREQUAL 6)
-    if(BUILD_DEMO)
-        add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
-    endif()
+    add_definitions(-DGIT_COMMIT_HASH="${GIT_COMMIT_HASH}")
+    add_definitions(-DGIT_BRANCH="${GIT_BRANCH}")
+else()
+    add_definitions(-DGIT_COMMIT_HASH="${PROJECT_VERSION}")
+    add_definitions(-DGIT_BRANCH="Stable")
 endif()
 
 ##CMAKE PARTS
@@ -175,6 +183,20 @@ install(FILES
 install(EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     FILE MauiKit${MAUI_MAJOR_VERSION}Targets.cmake)
+
+##Translations stuff with KI18n
+add_definitions(-DTRANSLATION_DOMAIN="mauikit")
+ki18n_install(po)
+
+add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
+
+add_subdirectory(src)
+
+if(${QT_MAJOR_VERSION} STREQUAL 6)
+    if(BUILD_DEMO)
+        add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
+    endif()
+endif()
 
 ##Clang formatting
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)

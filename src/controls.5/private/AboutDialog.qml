@@ -41,6 +41,23 @@ Maui.PopupPage
 
     property alias mainHeader : _header
 
+    component Link : Button
+    {
+        id: _buttonLink
+        property url link
+        contentItem: Label
+        {
+            text: _buttonLink.text
+            color: hovered? Maui.Theme.highlightColor : Maui.Theme.textColor
+            horizontalAlignment: Qt.AlignLeft
+            font: _buttonLink.font
+        }
+
+        background: null
+
+        onClicked: Qt.openUrlExternally(link)
+    }
+
     Control
     {
         id: _header
@@ -123,7 +140,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -166,7 +183,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -208,7 +225,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -272,6 +289,7 @@ Maui.PopupPage
             spacing: Maui.Style.defaultSpacing
             Layout.fillWidth: true
             opacity: 0.8
+
             Repeater
             {
                 model: Maui.App.about.components
@@ -280,7 +298,7 @@ Maui.PopupPage
                     width: parent.width
                     label1.textFormat: Text.RichText
                                         
-                    label1.text: modelData.webAddress ? String("<a href='%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.webAddress ? String("<a href='%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name
 
                     label2.text: modelData.description
                     label3.text: modelData.version
