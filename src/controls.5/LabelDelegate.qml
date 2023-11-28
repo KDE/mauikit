@@ -76,7 +76,7 @@ T.Control
     {
         propagateComposedEvents: true
         preventStealing: false
-       onPressed: mouse.accepted= false
+        onPressed: (mouse) => mouse.accepted= false
 
         Label
         {

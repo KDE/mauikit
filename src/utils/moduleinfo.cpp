@@ -14,7 +14,7 @@ QString MauiKitCore::buildVersion()
 
 KAboutComponent MauiKitCore::aboutData()
 {
-    return KAboutComponent(QStringLiteral("MauiKit Core Controls"),
+    return KAboutComponent(QStringLiteral("MauiKit Core"),
                          i18n("Maui convergent controls."),
                          QStringLiteral(MAUIKIT_VERSION_STRING),
                          QStringLiteral("http://mauikit.org"),
