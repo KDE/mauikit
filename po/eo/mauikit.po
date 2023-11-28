@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-23 00:41+0000\n"
+"POT-Creation-Date: 2023-11-28 00:40+0000\n"
 "PO-Revision-Date: 2023-07-30 11:24+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -147,13 +147,13 @@ msgstr "Licencoj"
 msgid "Components"
 msgstr "Komponentoj"
 
-#: src/controls.5/private/AboutDialog.qml:319
+#: src/controls.5/private/AboutDialog.qml:320
 #: src/controls.6/private/AboutDialog.qml:304
 #, kde-format
 msgid "Reports"
 msgstr "Raportoj"
 
-#: src/controls.5/private/AboutDialog.qml:326
+#: src/controls.5/private/AboutDialog.qml:327
 #: src/controls.6/private/AboutDialog.qml:311
 #, kde-format
 msgid "Home Page"
@@ -234,7 +234,7 @@ msgstr "Malfari"
 msgid "Redo"
 msgstr "Refari"
 
-#: src/utils/mauiapp.cpp:50
+#: src/utils/mauiapp.cpp:51
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Plur-adapteblaj uzantinterfacoj."
@@ -251,20 +251,26 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "okellogg@users.sourceforge.net"
 
-#: src/utils/mauiapp.cpp:76
+#: src/utils/moduleinfo.cpp:18
 #, kde-format
-msgid "KDE Frameworks"
-msgstr "KDE-Kadroj"
+msgid "Maui convergent controls."
+msgstr ""
 
-#: src/utils/mauiapp.cpp:78
+#: src/utils/moduleinfo.cpp:27
 #, kde-format
-msgid "MauiKit Frameworks"
-msgstr "Kadroj MauiKit"
+msgid ""
+"Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
+"freedesktop environments."
+msgstr ""
 
-#: src/utils/mauiapp.cpp:81
-#, kde-format
-msgid "Luv Icon Theme"
-msgstr "Luv Piktrogram-Etoso"
+#~ msgid "KDE Frameworks"
+#~ msgstr "KDE-Kadroj"
+
+#~ msgid "MauiKit Frameworks"
+#~ msgstr "Kadroj MauiKit"
+
+#~ msgid "Luv Icon Theme"
+#~ msgstr "Luv Piktrogram-Etoso"
 
 #~ msgid "Duplicate"
 #~ msgstr "Duobligi"

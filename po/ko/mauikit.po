@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-23 00:41+0000\n"
+"POT-Creation-Date: 2023-11-28 00:40+0000\n"
 "PO-Revision-Date: 2023-07-26 00:35+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -146,13 +146,13 @@ msgstr "라이선스"
 msgid "Components"
 msgstr "구성 요소"
 
-#: src/controls.5/private/AboutDialog.qml:319
+#: src/controls.5/private/AboutDialog.qml:320
 #: src/controls.6/private/AboutDialog.qml:304
 #, kde-format
 msgid "Reports"
 msgstr "보고서"
 
-#: src/controls.5/private/AboutDialog.qml:326
+#: src/controls.5/private/AboutDialog.qml:327
 #: src/controls.6/private/AboutDialog.qml:311
 #, kde-format
 msgid "Home Page"
@@ -233,7 +233,7 @@ msgstr "실행 취소"
 msgid "Redo"
 msgstr "다시 실행"
 
-#: src/utils/mauiapp.cpp:50
+#: src/utils/mauiapp.cpp:51
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "다양하게 적응 가능한 사용자 인터페이스입니다."
@@ -250,20 +250,26 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kde@peremen.name"
 
-#: src/utils/mauiapp.cpp:76
+#: src/utils/moduleinfo.cpp:18
 #, kde-format
-msgid "KDE Frameworks"
-msgstr "KDE 프레임워크"
+msgid "Maui convergent controls."
+msgstr ""
 
-#: src/utils/mauiapp.cpp:78
+#: src/utils/moduleinfo.cpp:27
 #, kde-format
-msgid "MauiKit Frameworks"
-msgstr "MauiKit 프레임워크"
+msgid ""
+"Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
+"freedesktop environments."
+msgstr ""
 
-#: src/utils/mauiapp.cpp:81
-#, kde-format
-msgid "Luv Icon Theme"
-msgstr "Luv 아이콘 테마"
+#~ msgid "KDE Frameworks"
+#~ msgstr "KDE 프레임워크"
+
+#~ msgid "MauiKit Frameworks"
+#~ msgstr "MauiKit 프레임워크"
+
+#~ msgid "Luv Icon Theme"
+#~ msgstr "Luv 아이콘 테마"
 
 #~ msgid "Duplicate"
 #~ msgstr "복제"
