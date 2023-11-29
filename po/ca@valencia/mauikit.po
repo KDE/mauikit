@@ -4,21 +4,20 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Josep M. Ferrer <txemaq@gmail.com>, 2022, 2023.
-# SPDX-FileCopyrightText: 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-28 00:40+0000\n"
-"PO-Revision-Date: 2023-10-29 16:43+0100\n"
-"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"PO-Revision-Date: 2023-11-28 13:03+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -123,7 +122,7 @@ msgstr "No s'ha pogut carregar la imatge."
 #: src/controls.5/private/AboutDialog.qml:102
 #, kde-format
 msgid "Authors"
-msgstr "Autors"
+msgstr "Autoria"
 
 #: src/controls.5/private/AboutDialog.qml:145
 #: src/controls.6/private/AboutDialog.qml:135
@@ -256,7 +255,7 @@ msgstr "txemaq@gmail.com"
 #: src/utils/moduleinfo.cpp:18
 #, kde-format
 msgid "Maui convergent controls."
-msgstr ""
+msgstr "Controls convergents de Maui."
 
 #: src/utils/moduleinfo.cpp:27
 #, kde-format
@@ -264,21 +263,5 @@ msgid ""
 "Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
 "freedesktop environments."
 msgstr ""
-
-#~ msgid "KDE Frameworks"
-#~ msgstr "Frameworks de KDE"
-
-#~ msgid "MauiKit Frameworks"
-#~ msgstr "Frameworks de MauiKit"
-
-#~ msgid "Luv Icon Theme"
-#~ msgstr "Tema d'icones Luv"
-
-#~ msgid "Duplicate"
-#~ msgstr "Duplica"
-
-#~ msgid "Close Other"
-#~ msgstr "Tanca els altres"
-
-#~ msgid "Close All"
-#~ msgstr "Tanca-ho tot"
+"Lüv és el successor espiritual de Flattr, un tema d'icones pla però complex "
+"per als entorns «freedesktop»."
