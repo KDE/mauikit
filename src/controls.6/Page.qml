@@ -745,7 +745,7 @@ Pane
                     
                     //        hoverEnabled: true
                     //        onEntered: _splitView.currentIndex = control.index
-                    onPressed:
+                    onPressed: (mouse) =>
                     {
                         mouse.accepted = false
                         if(mouse.button === Qt.BackButton)
@@ -809,7 +809,7 @@ Pane
                         }
                     }
                     
-                    onPressed:
+                    onPressed: (mouse) =>
                     {
                         doubleClickTimer.restart();
                         mouse.accepted = false
