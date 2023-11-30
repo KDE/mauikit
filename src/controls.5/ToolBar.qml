@@ -189,8 +189,7 @@ ToolBar
                 width: parent.width
                 
                 property bool isHeader: control.position === ToolBar.Header
-                state: isHeader? "headerState" : "footerState"
-             
+                state: isHeader? "headerState" : "footerState"             
                 
                 Loader
                 {
@@ -205,7 +204,7 @@ ToolBar
                 
                 Loader
                 {
-                    active: !Maui.Handy.isMobile
+                    active: !Maui.Handy.isMobile || control.draggable
                     asynchronous: true
                     anchors.fill: parent
                     sourceComponent: Item

@@ -492,7 +492,7 @@ Pane
                                         smooth: true
 
                                         sourceItem: _listView.contentModel.get(index)
-                                        layer.enabled: true
+                                        layer.enabled: Maui.Style.enableEffects
                                         layer.smooth: true
                                         layer.effect: OpacityMask
                                         {

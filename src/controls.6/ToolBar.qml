@@ -300,30 +300,32 @@ text: "Hello"
                 property bool isHeader: control.position === ToolBar.Header
                 state: isHeader? "headerState" : "footerState"
                 
-                
                 Loader
                 {
                     asynchronous: true
+                    active: !Maui.Handy.isMobile
                     sourceComponent: Maui.WheelHandler
                     {
                         target: mainFlickable
                         primaryOrientation : Qt.Horizontal
                     }
                 }
-                
-                Item
+
+                Loader
                 {
-                    id: _dragHandler
+                    active: !Maui.Handy.isMobile || control.draggable
+                    asynchronous: true
                     anchors.fill: parent
-                    
-                    DragHandler
+                    sourceComponent: Item
                     {
-                        //                        acceptedDevices: PointerDevice.Mouse
-                        grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                        onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                        DragHandler
+                        {
+                            grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                            onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                        }
                     }
                 }
-                
+
                 states: [State
                 {
                     name: "headerState"
