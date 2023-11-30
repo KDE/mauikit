@@ -424,13 +424,17 @@ Pane
 
                         itemSize: Math.min(200, availableWidth /2)
 
-                        Maui.FloatingButton
+                        Loader
                         {
-                            icon.name: "list-add"
+                            asynchronous: true
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
                             anchors.margins: Maui.Style.space.big
-                            onClicked: control.newTabClicked()
+                            sourceComponent: Maui.FloatingButton
+                            {
+                                icon.name: "list-add"
+                                onClicked: control.newTabClicked()
+                            }
                         }
 
                         onAreaClicked:
@@ -455,6 +459,18 @@ Pane
                                 template.labelSizeHint: 32
                                 iconSource: "tab-new"
                                 flat: false
+
+                                tooltipText:  _listView.contentModel.get(index).Maui.TabViewInfo.tabToolTipText
+
+                                Rectangle
+                                {
+                                    parent: _delegate.background
+                                    color:  _listView.contentModel.get(index).Maui.TabViewInfo.tabColor
+                                    height: 2
+                                    width: parent.width*0.9
+                                    anchors.bottom: parent.bottom
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
 
                                 onRightClicked:
                                 {
