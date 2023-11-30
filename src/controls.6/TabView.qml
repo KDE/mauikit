@@ -596,6 +596,22 @@ Pane
                         id: _pane
                         Maui.Theme.colorSet: Maui.Theme.View
                         Maui.Theme.inherit: false
+
+                        background: Loader
+                        {
+                            active: !Maui.Handy.isMobile
+                            asynchronous: true
+                            anchors.fill: parent
+                            sourceComponent: Item
+                            {
+                                DragHandler
+                                {
+                                    acceptedDevices: PointerDevice.GenericPointer
+                                    grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                                    onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                                }
+                            }
+                        }
                         
                         contentItem: Maui.GridBrowser
                         {
@@ -604,8 +620,8 @@ Pane
                             
                             currentIndex: control.currentIndex
                             
-                            itemSize: Math.floor(_overviewGrid.flickable.width / 3)
-                            
+                            itemSize: Math.min(200, availableWidth /2)
+
                             Maui.FloatingButton
                             {
                                 icon.name: "list-add"
@@ -666,15 +682,19 @@ Pane
                                             
                                             anchors.centerIn: parent
                                             
-                                            height: Math.round(sourceItem.height * (parent.height/control.height))
-                                            width: Math.round(sourceItem.width * (parent.width/control.width))
-                                            
+                                            readonly property double m_scale: Math.min(parent.height/sourceItem.height, parent.width/sourceItem.width)
+
+                                            height: sourceItem.height * m_scale
+                                            width: sourceItem.width * m_scale
+
                                             hideSource: false
                                             live: false
-                                            
+                                            smooth: true
+
                                             textureSize: Qt.size(width,height)
                                             sourceItem: _listView.contentModel.get(index)
-                                            layer.enabled: true
+                                            layer.enabled: Maui.Style.enableEffects
+                                            layer.smooth: true
                                             layer.effect: OpacityMask
                                             {
                                                 maskSource: Rectangle

@@ -4,6 +4,7 @@ import QtQml 2.14
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.10
 import QtGraphicalEffects 1.15
+import QtQuick.Window 2.15
 
 import org.mauikit.controls 1.3 as Maui
 
@@ -394,6 +395,22 @@ Pane
                     Maui.Theme.colorSet: Maui.Theme.View
                     Maui.Theme.inherit: false
 
+                    background: Loader
+                    {
+                        active: !Maui.Handy.isMobile
+                        asynchronous: true
+                        anchors.fill: parent
+                        sourceComponent: Item
+                        {
+                            DragHandler
+                            {
+                                acceptedDevices: PointerDevice.GenericPointer
+                                grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                                onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                            }
+                        }
+                    }
+
                     contentItem: Maui.GridBrowser
                     {
                         id: _overviewGrid
@@ -401,7 +418,7 @@ Pane
 
                         currentIndex: control.currentIndex
 
-                        itemSize: 200
+                        itemSize: Math.min(200, availableWidth /2)
 
                         Maui.FloatingButton
                         {
@@ -463,16 +480,20 @@ Pane
 
                                         anchors.centerIn: parent
 
-                                        height: Math.round(sourceItem.height * (parent.height/control.height))
-                                        width: Math.round(sourceItem.width * (parent.width/control.width))
+                                        readonly property double m_scale: Math.min(parent.height/sourceItem.height, parent.width/sourceItem.width)
+
+                                        height: sourceItem.height * m_scale
+                                        width: sourceItem.width * m_scale
+                                        textureSize: Qt.size(width,height)
 
                                         hideSource: false
                                         live: false
-                                        //                                        mipmap: true
 
-                                        textureSize: Qt.size(width,height)
+                                        smooth: true
+
                                         sourceItem: _listView.contentModel.get(index)
                                         layer.enabled: true
+                                        layer.smooth: true
                                         layer.effect: OpacityMask
                                         {
                                             maskSource: Rectangle
@@ -543,64 +564,64 @@ Pane
                 return object
             }
 
-    function findTab()
-    {
-        if(control.count > 1)
-        {
-            _loader.sourceComponent = _quickSearchComponent
-            _loader.item.open()
-        }
-    }
+                function findTab()
+                {
+                    if(control.count > 1)
+                    {
+                        _loader.sourceComponent = _quickSearchComponent
+                        _loader.item.open()
+                    }
+                    }
 
-    function openOverview()
-    {
-        if(_stackView.depth === 2)
-        {
-            return
-        }
-        _stackView.push(_overviewComponent)
-    }
+                        function openOverview()
+                        {
+                            if(_stackView.depth === 2)
+                            {
+                                return
+                            }
+                            _stackView.push(_overviewComponent)
+                        }
 
-    function closeOverview()
-    {
-        if(_stackView.depth === 1)
-        {
-            return
-        }
+                            function closeOverview()
+                            {
+                                if(_stackView.depth === 1)
+                                {
+                                    return
+                                }
 
-        _stackView.pop()
-    }
+                                _stackView.pop()
+                            }
 
-    function moveTab(from, to)
-    {
-        _listView.moveItem(from, to)
-        _tabBar.moveItem(from, to)
+                                function moveTab(from, to)
+                                {
+                                    _listView.moveItem(from, to)
+                                    _tabBar.moveItem(from, to)
 
-        _listView.setCurrentIndex(to)
-        _tabBar.setCurrentIndex(_listView.currentIndex)
+                                    _listView.setCurrentIndex(to)
+                                    _tabBar.setCurrentIndex(_listView.currentIndex)
 
-        _listView2.positionViewAtIndex(_listView.currentIndex, ListView.Contain)
+                                    _listView2.positionViewAtIndex(_listView.currentIndex, ListView.Contain)
 
-        _listView.currentItemChanged()
-        _listView.currentItem.forceActiveFocus()
+                                    _listView.currentItemChanged()
+                                    _listView.currentItem.forceActiveFocus()
 
-    }
+                                }
 
-    function setCurrentIndex(index)
-    {
-        _tabBar.setCurrentIndex(index)
-        _listView.setCurrentIndex(index)
-        _listView.currentItem.forceActiveFocus()
-    }
+                                    function setCurrentIndex(index)
+                                    {
+                                        _tabBar.setCurrentIndex(index)
+                                        _listView.setCurrentIndex(index)
+                                        _listView.currentItem.forceActiveFocus()
+                                    }
 
-    function tabAt(index)
-    {
-        return _listView.itemAt(index)
-    }
+                                        function tabAt(index)
+                                        {
+                                            return _listView.itemAt(index)
+                                        }
 
-    function openTabMenu(index)
-    {
-        _menu.index = index
-        _menu.show()
-    }
-}
+                                            function openTabMenu(index)
+                                            {
+                                                _menu.index = index
+                                                _menu.show()
+                                            }
+                                            }

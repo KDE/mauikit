@@ -195,6 +195,7 @@ ToolBar
                 Loader
                 {
                     asynchronous: true
+                    active: !Maui.Handy.isMobile
                     sourceComponent: Maui.WheelHandler
                     {
                         target: mainFlickable
@@ -202,17 +203,21 @@ ToolBar
                     }
                 }
                 
-                Item
+                Loader
                 {
-                    id: _dragHandler
+                    active: !Maui.Handy.isMobile
+                    asynchronous: true
                     anchors.fill: parent
-                    DragHandler
+                    sourceComponent: Item
                     {
-                        acceptedDevices: PointerDevice.GenericPointer
-                        grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                        onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                        DragHandler
+                        {
+                            acceptedDevices: PointerDevice.GenericPointer
+                            grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                            onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                        }
                     }
-                }                
+                }
                
                 states: [State
                 {
