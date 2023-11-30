@@ -401,7 +401,7 @@ Pane
 
                         currentIndex: control.currentIndex
 
-                        itemSize: Math.floor(_overviewGrid.flickable.width / 3)
+                        itemSize: 200
 
                         Maui.FloatingButton
                         {
@@ -431,7 +431,7 @@ Pane
 
                                 isCurrentItem : parent.GridView.isCurrentItem
                                 label1.text: _listView.contentModel.get(index).Maui.TabViewInfo.tabTitle
-                                //                                 template.labelSizeHint: 32
+                                template.labelSizeHint: 32
                                 iconSource: "tab-new"
                                 flat: false
 
