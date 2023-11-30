@@ -395,18 +395,22 @@ Pane
                     Maui.Theme.colorSet: Maui.Theme.View
                     Maui.Theme.inherit: false
 
-                    background: Loader
+                    background: Rectangle
                     {
-                        active: !Maui.Handy.isMobile
-                        asynchronous: true
-                        anchors.fill: parent
-                        sourceComponent: Item
+                        color: Maui.Theme.backgroundColor
+                        Loader
                         {
-                            DragHandler
+                            active: !Maui.Handy.isMobile
+                            asynchronous: true
+                            anchors.fill: parent
+                            sourceComponent: Item
                             {
-                                acceptedDevices: PointerDevice.GenericPointer
-                                grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                                onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                                DragHandler
+                                {
+                                    acceptedDevices: PointerDevice.GenericPointer
+                                    grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                                    onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                                }
                             }
                         }
                     }
