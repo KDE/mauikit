@@ -1,18 +1,18 @@
-# Xavier BESNARD <xavier.besnard@neuf.fr>, 2023.
+# SPDX-FileCopyrightText: 2023 Xavier BESNARD <xavier.besnard@neuf.fr>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-28 00:40+0000\n"
-"PO-Revision-Date: 2023-04-08 10:28+0200\n"
+"POT-Creation-Date: 2023-12-01 00:40+0000\n"
+"PO-Revision-Date: 2023-11-29 09:06+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
-"Language-Team: fr\n"
+"Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.3\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -185,12 +185,12 @@ msgstr "Configuration"
 msgid "Close Split"
 msgstr "Fermer la vue scindée"
 
-#: src/controls.5/TabView.qml:103 src/controls.6/TabView.qml:306
+#: src/controls.5/TabView.qml:104 src/controls.6/TabView.qml:306
 #, kde-format
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/controls.5/TabView.qml:114 src/controls.6/TabView.qml:317
+#: src/controls.5/TabView.qml:115 src/controls.6/TabView.qml:317
 #, kde-format
 msgid "Close"
 msgstr "Fermer"
@@ -250,7 +250,7 @@ msgstr "xavier.besnard@neuf.fr"
 #: src/utils/moduleinfo.cpp:18
 #, kde-format
 msgid "Maui convergent controls."
-msgstr ""
+msgstr "Contrôles convergents pour Maui."
 
 #: src/utils/moduleinfo.cpp:27
 #, kde-format
@@ -258,6 +258,8 @@ msgid ""
 "Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
 "freedesktop environments."
 msgstr ""
+"Lüv est le successeur spirituel de Flattr, un thème d’icônes à plat mais "
+"complexe pour les environnements « freedesktop »."
 
 #~ msgid "KDE Frameworks"
 #~ msgstr "Environnements de développement de KDE"

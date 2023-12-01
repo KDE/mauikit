@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-28 00:40+0000\n"
+"POT-Creation-Date: 2023-12-01 00:40+0000\n"
 "PO-Revision-Date: 2023-03-12 10:37+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -186,12 +186,12 @@ msgstr "Nastavenia"
 msgid "Close Split"
 msgstr ""
 
-#: src/controls.5/TabView.qml:103 src/controls.6/TabView.qml:306
+#: src/controls.5/TabView.qml:104 src/controls.6/TabView.qml:306
 #, kde-format
 msgid "Open"
 msgstr "Otvoriť"
 
-#: src/controls.5/TabView.qml:114 src/controls.6/TabView.qml:317
+#: src/controls.5/TabView.qml:115 src/controls.6/TabView.qml:317
 #, kde-format
 msgid "Close"
 msgstr "Zavrieť"
