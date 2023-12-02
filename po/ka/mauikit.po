@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-01 00:40+0000\n"
-"PO-Revision-Date: 2023-04-06 06:00+0200\n"
+"PO-Revision-Date: 2023-12-01 07:10+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -254,7 +254,7 @@ msgstr "Temuri.doghonadze@gmail.com"
 #: src/utils/moduleinfo.cpp:18
 #, kde-format
 msgid "Maui convergent controls."
-msgstr ""
+msgstr "Maui-ის კონვერგენტული კონტროლები."
 
 #: src/utils/moduleinfo.cpp:27
 #, kde-format
@@ -262,6 +262,8 @@ msgid ""
 "Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
 "freedesktop environments."
 msgstr ""
+"'Lüv' Flattr-ის სულიერი შთამომავალია, ბრტყელი, მაგრამ კომპლექსური ხატულების "
+"თემა freedesktop გარემოებისთვის."
 
 #~ msgid "KDE Frameworks"
 #~ msgstr "KDE-სი გამოყენებული ბიბლიოთეკები"
