@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the mauikit package.
-# Vincenzo Reale <smart2128vr@gmail.com>, 2023.
+# SPDX-FileCopyrightText: 2023 Vincenzo Reale <smart2128vr@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-01 00:40+0000\n"
-"PO-Revision-Date: 2023-04-06 09:48+0200\n"
+"PO-Revision-Date: 2023-11-28 14:12+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.3\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -253,7 +253,7 @@ msgstr "smart2128vr@gmail.com"
 #: src/utils/moduleinfo.cpp:18
 #, kde-format
 msgid "Maui convergent controls."
-msgstr ""
+msgstr "Controlli convergenti di Maui."
 
 #: src/utils/moduleinfo.cpp:27
 #, kde-format
@@ -261,6 +261,8 @@ msgid ""
 "Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
 "freedesktop environments."
 msgstr ""
+"Lüv è il successore spirituale di Flattr, un tema di icone piatto, ma "
+"complesso perambienti desktop liberi."
 
 #~ msgid "KDE Frameworks"
 #~ msgstr "KDE Frameworks"
