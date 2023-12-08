@@ -157,6 +157,17 @@ Item
      */  
     property alias label2 : _template.label2
     
+    /**
+     * @brief Alias to the DropArea exposed to tweak its properties.
+     */
+    readonly property alias dropArea: _dropArea
+    
+    /**
+     * @brief Emitted when a drop event has occurred 
+     * @param drop the drop object with the event information
+     */
+    signal contentDropped(var drop)
+    
     Component
     {
         id: imgComponent
@@ -180,6 +191,22 @@ Item
         {
             id: animation
             source: control.emoji
+        }
+    }
+    
+    Rectangle
+    {
+        anchors.fill: parent
+        opacity: _dropArea.containsDrag ? 0.4 : 0
+        color: Maui.Theme.textColor 	
+        DropArea
+        {
+            id: _dropArea
+            anchors.fill: parent
+            onDropped: (drop) =>
+            {
+                control.contentDropped(drop)
+            }
         }
     }
     

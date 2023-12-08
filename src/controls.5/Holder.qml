@@ -78,11 +78,14 @@ Item
   
   property alias label1 : _template.label1
   property alias label2 : _template.label2
+
+readonly property alias dropArea: _dropArea
   
   /**
    * actionTriggered :
    */
   signal actionTriggered()
+signal contentDropped(var drop)
   
   Component
   {
@@ -108,6 +111,22 @@ Item
       source: emoji
     }
   }
+
+Rectangle
+{
+anchors.fill: parent
+opacity: _dropArea.containsDrag ? 0.4 : 0
+color: Maui.Theme.textColor 	
+DropArea
+{
+id: _dropArea
+anchors.fill: parent
+onDropped: (drop) =>
+{
+ control.contentDropped(drop)
+}
+}
+}
   
   Column
   {
