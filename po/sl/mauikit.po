@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-01 00:40+0000\n"
+"POT-Creation-Date: 2023-12-09 00:40+0000\n"
 "PO-Revision-Date: 2023-11-28 10:02+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -251,19 +251,15 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "matjaz.jeran@amis.net"
 
-#: src/utils/moduleinfo.cpp:18
-#, kde-format
-msgid "Maui convergent controls."
-msgstr "Maui konvergentne kontrole."
+#~ msgid "Maui convergent controls."
+#~ msgstr "Maui konvergentne kontrole."
 
-#: src/utils/moduleinfo.cpp:27
-#, kde-format
-msgid ""
-"Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
-"freedesktop environments."
-msgstr ""
-"Lüv je duhovni naslednik Flattr, ploske, a kompleksne teme ikon za okolja "
-"freedesktop."
+#~ msgid ""
+#~ "Lüv is the spiritual successor to Flattr, a flat but complex icon theme "
+#~ "for freedesktop environments."
+#~ msgstr ""
+#~ "Lüv je duhovni naslednik Flattr, ploske, a kompleksne teme ikon za okolja "
+#~ "freedesktop."
 
 #~ msgid "KDE Frameworks"
 #~ msgstr "KDE Frameworks"

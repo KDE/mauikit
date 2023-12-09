@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-01 00:40+0000\n"
+"POT-Creation-Date: 2023-12-09 00:40+0000\n"
 "PO-Revision-Date: 2023-11-28 17:23+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -251,19 +251,15 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "yurchor@ukr.net"
 
-#: src/utils/moduleinfo.cpp:18
-#, kde-format
-msgid "Maui convergent controls."
-msgstr "Однорідні засоби керування Maui."
+#~ msgid "Maui convergent controls."
+#~ msgstr "Однорідні засоби керування Maui."
 
-#: src/utils/moduleinfo.cpp:27
-#, kde-format
-msgid ""
-"Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
-"freedesktop environments."
-msgstr ""
-"Lüv є духовним наступником Flattr, плоска, але складна тема піктограм для "
-"середовищ freedesktop."
+#~ msgid ""
+#~ "Lüv is the spiritual successor to Flattr, a flat but complex icon theme "
+#~ "for freedesktop environments."
+#~ msgstr ""
+#~ "Lüv є духовним наступником Flattr, плоска, але складна тема піктограм для "
+#~ "середовищ freedesktop."
 
 #~ msgid "KDE Frameworks"
 #~ msgstr "KDE Frameworks"

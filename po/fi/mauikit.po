@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-01 00:40+0000\n"
+"POT-Creation-Date: 2023-12-09 00:40+0000\n"
 "PO-Revision-Date: 2023-04-20 12:35+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -250,18 +250,6 @@ msgstr "Tommi Nieminen"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "translator@legisign.org"
-
-#: src/utils/moduleinfo.cpp:18
-#, kde-format
-msgid "Maui convergent controls."
-msgstr ""
-
-#: src/utils/moduleinfo.cpp:27
-#, kde-format
-msgid ""
-"Lüv is the spiritual successor to Flattr, a flat but complex icon theme for "
-"freedesktop environments."
-msgstr ""
 
 #~ msgid "KDE Frameworks"
 #~ msgstr "KDE Frameworks"
