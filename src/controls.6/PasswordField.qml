@@ -36,6 +36,11 @@ TextField
     id: control
     echoMode: TextInput.Password
     passwordMaskDelay: 300
+    inputMethodHints: Qt.ImhNoAutoUppercase
+
+    /**
+     * @private
+     */
     property int previousEchoMode
     
     icon.source: "lock"    

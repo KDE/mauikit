@@ -310,10 +310,12 @@ Maui.ApplicationWindow
 
         Maui.Page
         {
+            id: _page
             anchors.fill: parent
             Maui.Controls.showCSD: true
             title: _stackView.currentItem.title
 
+        
             headBar.leftContent: [
                 ToolButton
                 {
@@ -330,7 +332,14 @@ Maui.ApplicationWindow
                 }
             ]
 
-            headBar.rightContent:[ ToolButton
+            headBar.rightContent:[
+                Switch
+        {
+            checked: _page.altHeader
+            onToggled: _page.altHeader = !_page.altHeader
+        },
+                
+                ToolButton
                 {
                     icon.name: "color-management"
                     onClicked: colorDialog.open()

@@ -18,7 +18,7 @@ Maui.TabButton
     
    readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
     
-    width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
+    width: Math.max(control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth), 80)
     
     checked: control.mindex === control.tabView.currentIndex
     text: tabInfo.tabTitle

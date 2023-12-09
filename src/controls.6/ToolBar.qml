@@ -238,8 +238,9 @@ text: "Hello"
         
         /**
          * @brief Allow to move the window around by dragging from the toolbar area.
+         * By default this is set to `!Maui.Handy.isMobile`
          */
-        property bool draggable : true
+        property bool draggable : !Maui.Handy.isMobile 
         
         Loader
         {
@@ -313,15 +314,21 @@ text: "Hello"
 
                 Loader
                 {
-                    active: !Maui.Handy.isMobile || control.draggable
-                    asynchronous: true
+                    // active: control.draggable
+                    // asynchronous: true
                     anchors.fill: parent
                     sourceComponent: Item
                     {
                         DragHandler
                         {
-                            grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                            onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                            grabPermissions: PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
+                            onActiveChanged: 
+                            {
+                             if (active) 
+                             {
+                                 control.Window.window.startSystemMove()                                 
+                            }   
+                            }
                         }
                     }
                 }

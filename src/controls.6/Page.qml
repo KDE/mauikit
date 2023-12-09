@@ -528,7 +528,7 @@ Pane
             visible: count > 0
             width: visible ? _headerContent.width : 0
             position: control.altHeader ? ToolBar.Footer : ToolBar.Header
-            Maui.Controls.showCSD : control.Maui.Controls.showCSD === true
+            Maui.Controls.showCSD: control.Maui.Controls.showCSD === true && !control.altHeader
             translucencySource: ShaderEffectSource
             {
                 sourceItem: _content
@@ -716,8 +716,34 @@ Pane
                 anchors.bottomMargin: _private.bottomMargin
                 
                 anchors.leftMargin: control.leftMargin
-                anchors.rightMargin: control.rightMargin
+                anchors.rightMargin: control.rightMargin                
             }
+            
+                Loader
+                {
+                  active: control.Maui.Controls.showCSD === true && control.altHeader  
+                    asynchronous: true
+                                        width: parent.width
+
+                  sourceComponent: Maui.ToolBar
+                {
+                    anchors.top: parent.top
+                    Maui.Controls.showCSD: true
+                    background: Rectangle
+                    {
+                        Maui.Theme.colorSet: control.Maui.Theme.colorSet
+                        Maui.Theme.inherit: false
+                        opacity: 0.8
+                        scale: -1 //for mirroring
+                        gradient: Gradient {
+                            orientation: Gradient.Horizontal
+        GradientStop { position: 0.0; color: Maui.Theme.backgroundColor }
+        GradientStop { position: 0.33; color: "transparent" }
+        GradientStop { position: 1.0; color: "transparent" }
+    }
+                    }
+                }
+                }
             
             Column
             {
@@ -743,8 +769,6 @@ Pane
                     acceptedButtons: Qt.BackButton | Qt.ForwardButton
                     cursorShape: undefined
                     
-                    //        hoverEnabled: true
-                    //        onEntered: _splitView.currentIndex = control.index
                     onPressed: (mouse) =>
                     {
                         mouse.accepted = false
@@ -828,8 +852,7 @@ Pane
                 active: control.autoHideHeader && !control.altHeader && !Maui.Handy.isTouch
                 
                 sourceComponent: Item
-                {
-                    
+                {                    
                     HoverHandler
                     {
                         target: parent

@@ -186,7 +186,9 @@ install(EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets
 
 ##Translations stuff with KI18n
 add_definitions(-DTRANSLATION_DOMAIN="mauikit")
+if(${QT_MAJOR_VERSION} STREQUAL 5) ##for now skip installing translations for mauikit4 to avoid packaging conflicts with translation files
 ki18n_install(po)
+endif()
 
 add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 

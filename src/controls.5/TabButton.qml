@@ -23,7 +23,7 @@ T.TabButton
     opacity: enabled ? 1 : 0.5
         
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
-        implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
     hoverEnabled: !Maui.Handy.isMobile
     
