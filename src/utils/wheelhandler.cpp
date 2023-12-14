@@ -95,6 +95,8 @@ WheelHandler::WheelHandler(QObject *parent)
     m_wheelScrollingTimer.callOnTimeout([this]() {
         setScrolling(false);
     });
+    
+     m_yScrollAnimation.setEasingCurve(QEasingCurve::OutCubic);
 
     connect(QGuiApplication::styleHints(), &QStyleHints::wheelScrollLinesChanged, this, [this](int scrollLines) {
         m_defaultPixelStepSize = 20 * scrollLines;
@@ -109,7 +111,10 @@ WheelHandler::WheelHandler(QObject *parent)
     });
 }
 
-WheelHandler::~WheelHandler() = default;
+WheelHandler::~WheelHandler()
+{
+    delete m_filterItem;
+}
 
 QQuickItem *WheelHandler::target() const
 {
@@ -129,14 +134,18 @@ void WheelHandler::setTarget(QQuickItem *target)
 
     if (m_flickable) {
         m_flickable->removeEventFilter(this);
-        disconnect(m_flickable, nullptr, m_filterItem, nullptr);
+         disconnect(m_flickable, nullptr, m_filterItem, nullptr);
+        disconnect(m_flickable, &QQuickItem::parentChanged, this, &WheelHandler::_k_rebindScrollBars);
     }
 
     m_flickable = target;
     m_filterItem->setParentItem(target);
-
-    QQuickItem *vscrollbar = nullptr;
-    QQuickItem *hscrollbar = nullptr;
+if (m_yScrollAnimation.targetObject()) {
+        m_yScrollAnimation.stop();
+    }
+    m_yScrollAnimation.setTargetObject(target);
+    
+  
 
     if (target) {
         target->installEventFilter(this);
@@ -152,53 +161,117 @@ void WheelHandler::setTarget(QQuickItem *target)
         connect(target, &QQuickItem::heightChanged, m_filterItem, [this, target](){
             m_filterItem->setHeight(target->height());
         });
+    }
+    
+     _k_rebindScrollBars();
 
-        // Get ScrollBars so that we can filter them too, even if they're not in the bounds of the Flickable
-        auto targetChildren = target->children();
-        for (auto child : targetChildren) {
+    Q_EMIT targetChanged();
+
+}
+
+void WheelHandler::_k_rebindScrollBars()
+{
+    struct ScrollBarAttached {
+        QObject *attached = nullptr;
+        QQuickItem *vertical = nullptr;
+        QQuickItem *horizontal = nullptr;
+    };
+
+    ScrollBarAttached attachedToFlickable;
+    ScrollBarAttached attachedToScrollView;
+
+    if (m_flickable) {
+        // Get ScrollBars so that we can filter them too, even if they're not
+        // in the bounds of the Flickable
+        const auto flickableChildren = m_flickable->children();
+        for (const auto child : flickableChildren) {
             if (child->inherits("QQuickScrollBarAttached")) {
-                vscrollbar = child->property("vertical").value<QQuickItem*>();
-                hscrollbar = child->property("horizontal").value<QQuickItem*>();
+                attachedToFlickable.attached = child;
+                attachedToFlickable.vertical = child->property("vertical").value<QQuickItem *>();
+                attachedToFlickable.horizontal = child->property("horizontal").value<QQuickItem *>();
                 break;
             }
         }
+
         // Check ScrollView if there are no scrollbars attached to the Flickable.
         // We need to check if the parent inherits QQuickScrollView in case the
         // parent is another Flickable that already has a Kirigami WheelHandler.
-        auto targetParent = target->parentItem();
-        if (targetParent && targetParent->inherits("QQuickScrollView") && !vscrollbar && !hscrollbar) {
-            auto targetParentChildren = targetParent->children();
-            for (auto child : targetParentChildren) {
+        auto flickableParent = m_flickable->parentItem();
+        if (flickableParent && flickableParent->inherits("QQuickScrollView")) {
+            const auto siblings = flickableParent->children();
+            for (const auto child : siblings) {
                 if (child->inherits("QQuickScrollBarAttached")) {
-                    vscrollbar = child->property("vertical").value<QQuickItem*>();
-                    hscrollbar = child->property("horizontal").value<QQuickItem*>();
+                    attachedToScrollView.attached = child;
+                    attachedToScrollView.vertical = child->property("vertical").value<QQuickItem *>();
+                    attachedToScrollView.horizontal = child->property("horizontal").value<QQuickItem *>();
                     break;
                 }
             }
         }
     }
 
-    if (m_verticalScrollBar != vscrollbar) {
+    // Dilemma: ScrollBars can be attached to both ScrollView and Flickable,
+    // but only one of them should be shown anyway. Let's prefer Flickable.
+
+    struct ChosenScrollBar {
+        QObject *attached = nullptr;
+        QQuickItem *scrollBar = nullptr;
+    };
+
+    ChosenScrollBar vertical;
+    if (attachedToFlickable.vertical) {
+        vertical.attached = attachedToFlickable.attached;
+        vertical.scrollBar = attachedToFlickable.vertical;
+    } else if (attachedToScrollView.vertical) {
+        vertical.attached = attachedToScrollView.attached;
+        vertical.scrollBar = attachedToScrollView.vertical;
+    }
+
+    ChosenScrollBar horizontal;
+    if (attachedToFlickable.horizontal) {
+        horizontal.attached = attachedToFlickable.attached;
+        horizontal.scrollBar = attachedToFlickable.horizontal;
+    } else if (attachedToScrollView.horizontal) {
+        horizontal.attached = attachedToScrollView.attached;
+        horizontal.scrollBar = attachedToScrollView.horizontal;
+    }
+
+    // Flickable may get re-parented to or out of a ScrollView, so we need to
+    // redo the discovery process. This is especially important for
+    // Kirigami.ScrollablePage component.
+    if (m_flickable) {
+        if (attachedToFlickable.horizontal && attachedToFlickable.vertical) {
+            // But if both scrollbars are already those from the preferred
+            // Flickable, there's no need for rediscovery.
+            disconnect(m_flickable, &QQuickItem::parentChanged, this, &WheelHandler::_k_rebindScrollBars);
+        } else {
+            connect(m_flickable, &QQuickItem::parentChanged, this, &WheelHandler::_k_rebindScrollBars, Qt::UniqueConnection);
+        }
+    }
+
+    if (m_verticalScrollBar != vertical.scrollBar) {
         if (m_verticalScrollBar) {
             m_verticalScrollBar->removeEventFilter(this);
+            disconnect(m_verticalChangedConnection);
         }
-        m_verticalScrollBar = vscrollbar;
-        if (vscrollbar) {
-            vscrollbar->installEventFilter(this);
+        m_verticalScrollBar = vertical.scrollBar;
+        if (vertical.scrollBar) {
+            vertical.scrollBar->installEventFilter(this);
+            m_verticalChangedConnection = connect(vertical.attached, SIGNAL(verticalChanged()), this, SLOT(_k_rebindScrollBars()));
         }
     }
 
-    if (m_horizontalScrollBar != hscrollbar) {
+    if (m_horizontalScrollBar != horizontal.scrollBar) {
         if (m_horizontalScrollBar) {
             m_horizontalScrollBar->removeEventFilter(this);
+            disconnect(m_horizontalChangedConnection);
         }
-        m_horizontalScrollBar = hscrollbar;
-        if (hscrollbar) {
-            hscrollbar->installEventFilter(this);
+        m_horizontalScrollBar = horizontal.scrollBar;
+        if (horizontal.scrollBar) {
+            horizontal.scrollBar->installEventFilter(this);
+            m_horizontalChangedConnection = connect(horizontal.attached, SIGNAL(horizontalChanged()), this, SLOT(_k_rebindScrollBars()));
         }
     }
-
-    Q_EMIT targetChanged();
 }
 
 qreal WheelHandler::verticalStepSize() const
@@ -308,6 +381,21 @@ void WheelHandler::setKeyNavigationEnabled(bool enabled)
     Q_EMIT keyNavigationEnabledChanged();
 }
 
+void WheelHandler::classBegin()
+{
+    // Initializes smooth scrolling
+    m_engine = qmlEngine(this);
+    // auto units = m_engine->singletonInstance<Style *>("org.kde.kirigami.platform", "Units");
+    m_yScrollAnimation.setDuration(400);
+    // connect(units, &Kirigami::Platform::Units::longDurationChanged, this, [this] {
+    //     m_yScrollAnimation.setDuration(static_cast<Kirigami::Platform::Units *>(sender())->longDuration());
+    // });
+}
+
+void WheelHandler::componentComplete()
+{
+}
+
 void WheelHandler::setScrolling(bool scrolling)
 {
     if (m_wheelScrolling == scrolling) {
@@ -317,7 +405,6 @@ void WheelHandler::setScrolling(bool scrolling)
         return;
     }
     m_wheelScrolling = scrolling;
-    m_verticalScrollBar->setProperty("active", scrolling);
     m_filterItem->setEnabled(m_wheelScrolling);
 }
 
@@ -479,7 +566,7 @@ bool WheelHandler::scrollRight(qreal stepSize)
 
 bool WheelHandler::eventFilter(QObject *watched, QEvent *event)
 {
-    auto item = qobject_cast<QQuickItem*>(watched);
+    auto item = qobject_cast<QQuickItem *>(watched);
     if (!item || !item->isEnabled()) {
         return false;
     }
@@ -509,21 +596,24 @@ bool WheelHandler::eventFilter(QObject *watched, QEvent *event)
         }
         QWheelEvent *wheelEvent = static_cast<QWheelEvent *>(event);
 
+        // Can't use wheelEvent->deviceType() to determine device type since on Wayland mouse is always regarded as touchpad
+        // https://invent.kde.org/qt/qt/qtwayland/-/blob/e695a39519a7629c1549275a148cfb9ab99a07a9/src/client/qwaylandinputdevice.cpp#L445
+        // and we can only expect a touchpad never generates the same angle delta as a mouse
+        m_wasTouched = std::abs(wheelEvent->angleDelta().y()) != 120 && std::abs(wheelEvent->angleDelta().x()) != 120;
+
         // NOTE: On X11 with libinput, pixelDelta is identical to angleDelta when using a mouse that shouldn't use pixelDelta.
         // If faulty pixelDelta, reset pixelDelta to (0,0).
         if (wheelEvent->pixelDelta() == wheelEvent->angleDelta()) {
             // In order to change any of the data, we have to create a whole new QWheelEvent from its constructor.
-            QWheelEvent newWheelEvent(
-                wheelEvent->position(),
-                wheelEvent->globalPosition(),
-                QPoint(0,0), // pixelDelta
-                wheelEvent->angleDelta(),
-                wheelEvent->buttons(),
-                wheelEvent->modifiers(),
-                wheelEvent->phase(),
-                wheelEvent->inverted(),
-                wheelEvent->source()
-            );
+            QWheelEvent newWheelEvent(wheelEvent->position(),
+                                      wheelEvent->globalPosition(),
+                                      QPoint(0, 0), // pixelDelta
+                                      wheelEvent->angleDelta(),
+                                      wheelEvent->buttons(),
+                                      wheelEvent->modifiers(),
+                                      wheelEvent->phase(),
+                                      wheelEvent->inverted(),
+                                      wheelEvent->source());
             m_kirigamiWheelEvent.initializeFromEvent(&newWheelEvent);
         } else {
             m_kirigamiWheelEvent.initializeFromEvent(wheelEvent);
@@ -540,13 +630,10 @@ bool WheelHandler::eventFilter(QObject *watched, QEvent *event)
             // Don't use pixelDelta from the event unless angleDelta is not available
             // because scrolling by pixelDelta is too slow on Wayland with libinput.
             QPointF pixelDelta = m_kirigamiWheelEvent.angleDelta().isNull() ? m_kirigamiWheelEvent.pixelDelta() : QPoint(0, 0);
-            scrolled = scrollFlickable(pixelDelta,
-                                       m_kirigamiWheelEvent.angleDelta(),
-                                       Qt::KeyboardModifiers(m_kirigamiWheelEvent.modifiers()));
+            scrolled = scrollFlickable(pixelDelta, m_kirigamiWheelEvent.angleDelta(), Qt::KeyboardModifiers(m_kirigamiWheelEvent.modifiers()));
         }
         setScrolling(scrolled);
 
-        qDebug() << "Wheel event" << scrolled << m_blockTargetWheel;
         // NOTE: Wheel events created by touchpad gestures with pixel deltas will cause scrolling to jump back
         // to where scrolling started unless the event is always accepted before it reaches the Flickable.
         bool flickableWillUseGestureScrolling = !(wheelEvent->source() == Qt::MouseEventNotSynthesized || wheelEvent->pixelDelta().isNull());
@@ -625,20 +712,30 @@ bool WheelHandler::eventFilter(QObject *watched, QEvent *event)
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         bool horizontalScroll = keyEvent->modifiers() & m_defaultHorizontalScrollModifiers;
         switch (keyEvent->key()) {
-        case Qt::Key_Up: return scrollUp();
-        case Qt::Key_Down: return scrollDown();
-        case Qt::Key_Left: return scrollLeft();
-        case Qt::Key_Right: return scrollRight();
-        case Qt::Key_PageUp: return horizontalScroll ? scrollLeft(pageWidth) : scrollUp(pageHeight);
-        case Qt::Key_PageDown: return horizontalScroll ? scrollRight(pageWidth) : scrollDown(pageHeight);
-        case Qt::Key_Home: return horizontalScroll ? scrollLeft(contentWidth) : scrollUp(contentHeight);
-        case Qt::Key_End: return horizontalScroll ? scrollRight(contentWidth) : scrollDown(contentHeight);
-        default: break;
+        case Qt::Key_Up:
+            return scrollUp();
+        case Qt::Key_Down:
+            return scrollDown();
+        case Qt::Key_Left:
+            return scrollLeft();
+        case Qt::Key_Right:
+            return scrollRight();
+        case Qt::Key_PageUp:
+            return horizontalScroll ? scrollLeft(pageWidth) : scrollUp(pageHeight);
+        case Qt::Key_PageDown:
+            return horizontalScroll ? scrollRight(pageWidth) : scrollDown(pageHeight);
+        case Qt::Key_Home:
+            return horizontalScroll ? scrollLeft(contentWidth) : scrollUp(contentHeight);
+        case Qt::Key_End:
+            return horizontalScroll ? scrollRight(contentWidth) : scrollDown(contentHeight);
+        default:
+            break;
         }
         break;
     }
 
-    default: break;
+    default:
+        break;
     }
 
     return false;

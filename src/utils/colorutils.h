@@ -18,6 +18,8 @@
 class ColorUtils : public QObject
 {
     Q_OBJECT
+     QML_ELEMENT
+    QML_SINGLETON
 public:
     /**
      * Describes the contrast of an item.

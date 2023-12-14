@@ -30,7 +30,9 @@ class PlatformThemePrivate;
 class PlatformTheme : public QObject
 {
     Q_OBJECT
-
+    QML_NAMED_ELEMENT(Theme)
+    QML_ATTACHED(Maui::PlatformTheme)
+    QML_UNCREATABLE("Attached Property")
     /**
      * This enumeration describes the color set for which a color is being selected.
      *
@@ -361,6 +363,6 @@ using FontChangedEvent = PropertyChangedEvent<QFont>;
 
 } // namespace Maui
 
-QML_DECLARE_TYPEINFO(Maui::PlatformTheme, QML_HAS_ATTACHED_PROPERTIES)
+// QML_DECLARE_TYPEINFO(Maui::PlatformTheme, QML_HAS_ATTACHED_PROPERTIES)
 
 #endif // PLATFORMTHEME_H

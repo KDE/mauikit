@@ -19,8 +19,8 @@
 #pragma once
 
 #include <QAbstractListModel>
-
-#include <QObject>
+ #include <QQmlEngine>
+ #include <QObject>
 #include <QSortFilterProxyModel>
 
 #include "mauikit_export.h"
@@ -53,6 +53,7 @@ class MauiList;
 class MAUIKIT_EXPORT MauiModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(BaseModel)
     Q_DISABLE_COPY(MauiModel)
     
     /*

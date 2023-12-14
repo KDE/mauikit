@@ -52,9 +52,41 @@
 #include <QDebug>
 #include <QQmlContext>
 
+// we can't do this in the plugin object directly, as that can live in a different thread
+// and event filters are only allowed in the same thread as the filtered object
+class LanguageChangeEventFilter : public QObject
+{
+    Q_OBJECT
+public:
+    bool eventFilter(QObject *receiver, QEvent *event) override
+    {
+        if (event->type() == QEvent::LanguageChange && receiver == QCoreApplication::instance()) {
+            Q_EMIT languageChangeEvent();
+        }
+        return QObject::eventFilter(receiver, event);
+    }
+
+Q_SIGNALS:
+    void languageChangeEvent();
+};
+
+MauiKit::MauiKit(QObject *parent) : QQmlExtensionPlugin(parent)
+{
+ auto filter = new LanguageChangeEventFilter;
+    filter->moveToThread(QCoreApplication::instance()->thread());
+    QCoreApplication::instance()->installEventFilter(filter);
+    connect(filter, &LanguageChangeEventFilter::languageChangeEvent, this, &MauiKit::languageChangeEvent);   
+}
+
 QUrl MauiKit::componentUrl(const QString &fileName) const
 {
     return QUrl(resolveFileUrl(fileName));
+}
+
+void MauiKit::initializeEngine(QQmlEngine* engine, const char* uri)
+{
+    Q_UNUSED(uri);
+    connect(this, &MauiKit::languageChangeEvent, engine, &QQmlEngine::retranslate);
 }
 
 void MauiKit::registerTypes(const char *uri)
@@ -169,29 +201,28 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("private/EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
     
     /// NON UI CONTROLS
-    qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
-    qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
-    qmlRegisterUncreatableType<Controls>(uri, 1, 3, "Controls", "Attached properties for different purposes.");
+    // qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
+    // qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
+    // qmlRegisterUncreatableType<Controls>(uri, 1, 3, "Controls", "Attached properties for different purposes.");
 
-    //    //     qmlRegisterSingletonInstace<Platform>(uri, 1, 2, "Platform", Platform::instance());
-    qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-        Q_UNUSED(scriptEngine)
-        auto platform = Platform::instance();
-        engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
-        return platform;
-    });
+    // qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+    //     Q_UNUSED(scriptEngine)
+    //     auto platform = Platform::instance();
+    //     engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
+    //     return platform;
+    // });
 
-    qmlRegisterUncreatableType<Maui::PlatformTheme>(uri, 1, 0, "Theme", QStringLiteral("Cannot create objects of type Theme, use it as an attached property"));
-    qmlRegisterSingletonType<ColorUtils>(uri, 1, 3, "ColorUtils", [](QQmlEngine *, QJSEngine *) -> QObject*
-    {
-        return new ColorUtils;
-    });
+    // qmlRegisterUncreatableType<Maui::PlatformTheme>(uri, 1, 0, "Theme", QStringLiteral("Cannot create objects of type Theme, use it as an attached property"));
+    // qmlRegisterSingletonType<ColorUtils>(uri, 1, 3, "ColorUtils", [](QQmlEngine *, QJSEngine *) -> QObject*
+    // {
+    //     return new ColorUtils;
+    // });
     
-    qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
-    qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
-    qmlRegisterType<Icon>(uri, 1, 0, "PrivateIcon");
+    // qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
+    // qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
+    // qmlRegisterType<Icon>(uri, 1, 0, "PrivateIcon");
 
-    qmlRegisterType<FontPickerModel>(uri, 1, 3, "FontPickerModel");
+    // qmlRegisterType<FontPickerModel>(uri, 1, 3, "FontPickerModel");
     
     //    /** Experimental **/
 #ifdef Q_OS_WIN32
@@ -223,29 +254,29 @@ void MauiKit::registerTypes(const char *uri)
 
     #endif
 
-    qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
-    qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
+    // qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
+    // qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
 
     /** DATA MODELING TEMPLATED INTERFACES **/
-    qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST
-    qmlRegisterType<MauiModel>(uri, 1, 0, "BaseModel"); // BASE MODELz
+    // qmlRegisterAnonymousType<MauiList>(uri, 1); // ABSTRACT BASE LIST
+    // qmlRegisterType<MauiModel>(uri, 1, 0, "BaseModel"); // BASE MODELz
 
 
     //    /** MAUI APPLICATION SPECIFIC PROPS **/
     //    /** HELPERS **/
-    qmlRegisterAnonymousType<CSDControls>(uri, 1);
-    qmlRegisterType<CSDButton>(uri, 1, 3, "CSDButton");
+    // qmlRegisterAnonymousType<CSDControls>(uri, 1);
+    // qmlRegisterType<CSDButton>(uri, 1, 3, "CSDButton");
     qmlRegisterType<Notify>(uri, 1, 3, "Notify");
     qmlRegisterType<NotifyAction>(uri, 1, 3, "NotifyAction");
 
-    qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
-    qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
-    qmlRegisterSingletonType<Handy>(uri, 1, 2, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-        Q_UNUSED(scriptEngine)
-        auto handy = Handy::instance();
-        engine->setObjectOwnership(handy, QQmlEngine::CppOwnership);
-        return handy;
-    });
+    // qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
+    // qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
+    // qmlRegisterSingletonType<Handy>(uri, 1, 2, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+    //     Q_UNUSED(scriptEngine)
+    //     auto handy = Handy::instance();
+    //     engine->setObjectOwnership(handy, QQmlEngine::CppOwnership);
+    //     return handy;
+    // });
     
 
     //    /** MAUI PLUGIN SUPPORT **/
@@ -256,7 +287,8 @@ void MauiKit::registerTypes(const char *uri)
     //    qmlRegisterType(componentUrl(QStringLiteral("PluginsInfo.qml")), uri, 1, 2, "PluginsInfo");
     //#endif
 
-    qmlProtectModule(uri, 3);
+    // qmlProtectModule(uri, 3);
 }
 
-//#include "moc_mauikit.cpp"
+#include "mauikit.moc"
+#include "moc_mauikit.cpp"

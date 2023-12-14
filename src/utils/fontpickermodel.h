@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QObject>
+#include <QQmlEngine>
+
 #include <QFont>
 #include <QStringList>
 #include <QFontDatabase>
@@ -12,7 +14,7 @@
 class FontPickerModel : public QObject
 {
     Q_OBJECT
-    
+    QML_ELEMENT
     /**
      * The current picked font for exposing its properties, such as FontPickerModel::styles, FontPickerModel::sizes, etc.
      */

@@ -13,6 +13,9 @@
 class Controls : public QObject
 {
     Q_OBJECT
+     QML_ELEMENT
+    QML_ATTACHED(Controls)
+    QML_UNCREATABLE("Cannot be created Controls")
 
     /**
      * A title text that can be attached to any control.
@@ -44,4 +47,3 @@ private:
     QString m_title;
 };
 
-QML_DECLARE_TYPEINFO(Controls, QML_HAS_ATTACHED_PROPERTIES)

@@ -65,6 +65,7 @@ struct ImageData {
 class ImageColors : public QObject
 {
     Q_OBJECT
+     QML_ELEMENT
     /**
      * The source from which colors should be extracted from.
      *

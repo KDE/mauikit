@@ -11,6 +11,8 @@
 #include <QQuickItem>
 #include <QStyleHints>
 #include <QtQml>
+#include <QQmlParserStatus>
+#include <QPropertyAnimation>
 
 class QWheelEvent;
 class WheelHandler;
@@ -21,7 +23,8 @@ class WheelHandler;
 class KirigamiWheelEvent : public QObject
 {
     Q_OBJECT
-
+ QML_ELEMENT
+    QML_UNCREATABLE("")
     /**
      * x: real
      *
@@ -164,10 +167,12 @@ public:
  * @include wheelhandler/ScrollViewUsage.qml
  *
  */
-class WheelHandler : public QObject
+class WheelHandler : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
-
+Q_INTERFACES(QQmlParserStatus)
+    QML_ELEMENT
+    
     /**
      * @brief This property holds the Qt Quick Flickable that the WheelHandler will control.
      */
@@ -348,8 +353,14 @@ void primaryOrientationChanged();
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override;
+    
+    private Q_SLOTS:
+    void _k_rebindScrollBars();
 
 private:
+    void classBegin() override;
+    void componentComplete() override;
+    
     void setScrolling(bool scrolling);
     bool scrollFlickable(QPointF pixelDelta,
                          QPointF angleDelta = {},
@@ -358,6 +369,8 @@ private:
     QPointer<QQuickItem> m_flickable;
     QPointer<QQuickItem> m_verticalScrollBar;
     QPointer<QQuickItem> m_horizontalScrollBar;
+    QMetaObject::Connection m_verticalChangedConnection;
+    QMetaObject::Connection m_horizontalChangedConnection;
     QPointer<QQuickItem> m_filterItem;
     // Matches QScrollArea and QTextEdit
     qreal m_defaultPixelStepSize = 20 * QGuiApplication::styleHints()->wheelScrollLines();
@@ -369,7 +382,6 @@ private:
     constexpr static qreal m_wheelScrollingDuration = 400;
     bool m_filterMouseEvents = false;
     bool m_keyNavigationEnabled = false;
-    bool m_wasTouched = false;
     bool m_blockTargetWheel = true;
     bool m_scrollFlickableTarget = true;
     Qt::Orientation m_primaryOrientation = Qt::Orientation::Vertical;
@@ -380,4 +392,9 @@ private:
     Qt::KeyboardModifiers m_pageScrollModifiers = m_defaultPageScrollModifiers;
     QTimer m_wheelScrollingTimer;
     KirigamiWheelEvent m_kirigamiWheelEvent;
+    
+     // Smooth scrolling
+    QQmlEngine *m_engine = nullptr;
+    QPropertyAnimation m_yScrollAnimation{nullptr, "contentY"};
+    bool m_wasTouched = false;
 };
