@@ -18,7 +18,9 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
-# add_library(MauiKit${MAUI_MAJOR_VERSION})
+    if (QT_MAJOR_VERSION STREQUAL "6")
+add_library(MauiKit${MAUI_MAJOR_VERSION})
+endif()
 
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     VERSION 1.3

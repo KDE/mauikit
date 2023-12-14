@@ -58,7 +58,7 @@ QColor ColorUtils::alphaBlend(const QColor &foreground, const QColor &background
 
 QColor ColorUtils::linearInterpolation(const QColor &one, const QColor &two, double balance)
 {
-    auto scaleAlpha = [](const QColor &color, double factor) {
+   auto scaleAlpha = [](const QColor &color, double factor) {
         return QColor::fromRgb(color.red(), color.green(), color.blue(), color.alpha() * factor);
     };
     auto linearlyInterpolateDouble = [](double one, double two, double factor) {
@@ -76,6 +76,7 @@ QColor ColorUtils::linearInterpolation(const QColor &one, const QColor &two, dou
                            qBound(0.0, linearlyInterpolateDouble(one.saturation(), two.saturation(), balance), 255.0),
                            qBound(0.0, linearlyInterpolateDouble(one.value(), two.value(), balance), 255.0),
                            qBound(0.0, linearlyInterpolateDouble(one.alpha(), two.alpha(), balance), 255.0));
+
 }
 
 // Some private things for the adjust, change, and scale properties
@@ -124,7 +125,7 @@ ParsedAdjustments parseAdjustments(const QJSValue &value)
     }
 
     if ((parsed.red || parsed.green || parsed.blue) && (parsed.hue || parsed.saturation || parsed.value)) {
-        qWarning() << "It is an error to have both RGB and HSL values in an adjustment.";
+        qCritical()  << "It is an error to have both RGB and HSL values in an adjustment.";
     }
 
     return parsed;
@@ -135,25 +136,25 @@ QColor ColorUtils::adjustColor(const QColor &color, const QJSValue &adjustments)
     auto adjusts = parseAdjustments(adjustments);
 
     if (qBound(-360.0, adjusts.hue, 360.0) != adjusts.hue) {
-        qWarning() << "Hue is out of bounds";
+        qCritical() << "Hue is out of bounds";
     }
     if (qBound(-255.0, adjusts.red, 255.0) != adjusts.red) {
-        qWarning() << "Red is out of bounds";
+        qCritical()  << "Red is out of bounds";
     }
     if (qBound(-255.0, adjusts.green, 255.0) != adjusts.green) {
-        qWarning() << "Green is out of bounds";
+        qCritical()  << "Green is out of bounds";
     }
     if (qBound(-255.0, adjusts.blue, 255.0) != adjusts.blue) {
-        qWarning() << "Green is out of bounds";
+        qCritical()  << "Green is out of bounds";
     }
     if (qBound(-255.0, adjusts.saturation, 255.0) != adjusts.saturation) {
-        qWarning() << "Saturation is out of bounds";
+        qCritical()  << "Saturation is out of bounds";
     }
     if (qBound(-255.0, adjusts.value, 255.0) != adjusts.value) {
-        qWarning() << "Value is out of bounds";
+        qCritical()  << "Value is out of bounds";
     }
     if (qBound(-255.0, adjusts.alpha, 255.0) != adjusts.alpha) {
-        qWarning() << "Alpha is out of bounds";
+        qCritical()  << "Alpha is out of bounds";
     }
 
     auto copy = color;
@@ -182,26 +183,26 @@ QColor ColorUtils::scaleColor(const QColor &color, const QJSValue &adjustments)
     auto copy = color;
 
     if (qBound(-100.0, adjusts.red, 100.00) != adjusts.red) {
-        qWarning() << "Red is out of bounds";
+        qCritical()  << "Red is out of bounds";
     }
     if (qBound(-100.0, adjusts.green, 100.00) != adjusts.green) {
-        qWarning() << "Green is out of bounds";
+        qCritical()  << "Green is out of bounds";
     }
     if (qBound(-100.0, adjusts.blue, 100.00) != adjusts.blue) {
-        qWarning() << "Blue is out of bounds";
+        qCritical()  << "Blue is out of bounds";
     }
     if (qBound(-100.0, adjusts.saturation, 100.00) != adjusts.saturation) {
-        qWarning() << "Saturation is out of bounds";
+        qCritical()  << "Saturation is out of bounds";
     }
     if (qBound(-100.0, adjusts.value, 100.00) != adjusts.value) {
-        qWarning() << "Value is out of bounds";
+        qCritical()  << "Value is out of bounds";
     }
     if (qBound(-100.0, adjusts.alpha, 100.00) != adjusts.alpha) {
-        qWarning() << "Alpha is out of bounds";
+        qCritical()  << "Alpha is out of bounds";
     }
 
     if (adjusts.hue != 0) {
-        qWarning() << "Hue cannot be scaled";
+        qCritical()  << "Hue cannot be scaled";
     }
 
     auto shiftToAverage = [](double current, double factor) {
@@ -240,63 +241,57 @@ QColor ColorUtils::tintWithAlpha(const QColor &targetColor, const QColor &tintCo
                             tintAlpha + inverseAlpha * targetColor.alphaF());
 }
 
-ColorUtils::LabColor ColorUtils::colorToLab(const QColor &color)
+ColorUtils::XYZColor ColorUtils::colorToXYZ(const QColor &color)
 {
-    //  http://wiki.nuaj.net/index.php/Color_Transforms#RGB_.E2.86.92_XYZ
-    // First: convert to XYZ
+    // http://wiki.nuaj.net/index.php/Color_Transforms#RGB_.E2.86.92_XYZ
     qreal r = color.redF();
     qreal g = color.greenF();
     qreal b = color.blueF();
-
     // Apply gamma correction (i.e. conversion to linear-space)
-    if (r > 0.04045) {
-        r = pow((r + 0.055) / 1.055, 2.4);
-    } else {
-        r = r / 12.92;
-    }
+    auto correct = [](qreal &v) {
+        if (v > 0.04045) {
+            v = std::pow((v + 0.055) / 1.055, 2.4);
+        } else {
+            v = v / 12.92;
+        }
+    };
 
-    if (g > 0.04045) {
-        g = pow((g + 0.055) / 1.055, 2.4);
-    } else {
-        g = g / 12.92;
-    }
-
-    if (b > 0.04045) {
-        b = pow((b + 0.055) / 1.055, 2.4);
-    } else {
-        b = b / 12.92;
-    }
+    correct(r);
+    correct(g);
+    correct(b);
 
     // Observer. = 2°, Illuminant = D65
-    qreal x = r * 0.4124 + g * 0.3576 + b * 0.1805;
-    qreal y = r * 0.2126 + g * 0.7152 + b * 0.0722;
-    qreal z = r * 0.0193 + g * 0.1192 + b * 0.9505;
+    const qreal x = r * 0.4124 + g * 0.3576 + b * 0.1805;
+    const qreal y = r * 0.2126 + g * 0.7152 + b * 0.0722;
+    const qreal z = r * 0.0193 + g * 0.1192 + b * 0.9505;
+
+    return XYZColor{x, y, z};
+}
+
+ColorUtils::LabColor ColorUtils::colorToLab(const QColor &color)
+{
+    // First: convert to XYZ
+    const auto xyz = colorToXYZ(color);
 
     // Second: convert from XYZ to L*a*b
-    x = x / 0.95047; // Observer= 2°, Illuminant= D65
-    y = y / 1.0;
-    z = z / 1.08883;
+    qreal x = xyz.x / 0.95047; // Observer= 2°, Illuminant= D65
+    qreal y = xyz.y / 1.0;
+    qreal z = xyz.z / 1.08883;
 
-    if (x > 0.008856) {
-        x = pow(x, 1.0 / 3.0);
-    } else {
-        x = (7.787 * x) + (16.0 / 116.0);
-    }
+    auto pivot = [](qreal &v) {
+        if (v > 0.008856) {
+            v = std::pow(v, 1.0 / 3.0);
+        } else {
+            v = (7.787 * v) + (16.0 / 116.0);
+        }
+    };
 
-    if (y > 0.008856) {
-        y = pow(y, 1.0 / 3.0);
-    } else {
-        y = (7.787 * y) + (16.0 / 116.0);
-    }
-
-    if (z > 0.008856) {
-        z = pow(z, 1.0 / 3.0);
-    } else {
-        z = (7.787 * z) + (16.0 / 116.0);
-    }
+    pivot(x);
+    pivot(y);
+    pivot(z);
 
     LabColor labColor;
-    labColor.l = (116 * y) - 16;
+    labColor.l = std::max(0.0, (116 * y) - 16);
     labColor.a = 500 * (x - y);
     labColor.b = 200 * (y - z);
 
@@ -311,58 +306,11 @@ qreal ColorUtils::chroma(const QColor &color)
     return sqrt(pow(labColor.a, 2) + pow(labColor.b, 2));
 }
 
-/**
- * @brief Computes the contrast ratio between 2 colors.
- * @param c1 Color 1.
- * @param c2 Color 2.
- * @return A value in the range [1, 21]
- */
-qreal ColorUtils::contrastRatio(const QColor & c1, const QColor & c2)
+qreal ColorUtils::luminance(const QColor &color)
 {
-    const qreal l1 = relativeLuminance(c1);
-    const qreal l2 = relativeLuminance(c2);
-    
-    const qreal INC = 0.05;
-    const qreal ratio = (l1 > l2) ? ((l2 + INC) / (l1 + INC)) : ((l1 + INC) / (l2 + INC));
-    
-    return 1.0 / ratio;
+    const auto &xyz = colorToXYZ(color);
+    // Luminance is equal to Y
+    return xyz.y;
 }
 
-/**
- * @brief Computes the relative luminance of a color.
- * @param color Color.
- * @return A value in the range [0, 1]
- */
-qreal ColorUtils::relativeLuminance(const QColor & color)
-{
-    const qreal r = convertChannel(color.redF());
-    const qreal g = convertChannel(color.greenF());
-    const qreal b = convertChannel(color.blueF());
-    
-    // magic numbers from WCAG
-    return r * 0.2126 + g * 0.7152 + b * 0.0722;
-}
-
-/**
- * @brief Utility function that converts a color channel for the relative luminance formula.
- * @param c A color channel in the range [0, 1]
- * @return A converted value to use in the luminance formula.
- */
-qreal ColorUtils::convertChannel(qreal c)
-{
-    // more magic numbers from WCAG
-    if(c <= 0.03928)
-        return c / 12.92;
-    else
-        return qPow((c + 0.055) / 1.055, 2.4);
-}
-
-
-static qreal contrastRatioForLuma(qreal y1, qreal y2)
-{
-    if (y1 > y2)
-        return (y1 + 0.05) / (y2 + 0.05);
-    else
-        return (y2 + 0.05) / (y1 + 0.05);
-}
-
+#include "moc_colorutils.cpp"

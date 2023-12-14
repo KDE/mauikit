@@ -17,10 +17,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef MAUIANDROID_H
-#define MAUIANDROID_H
+#pragma once
 
 #include <QObject>
+#include <QQmlEngine>
 
 #include <QAndroidActivityResultReceiver>
 #include <QAndroidJniEnvironment>
@@ -39,6 +39,8 @@
 class Q_DECL_EXPORT MAUIAndroid : public AbstractPlatform
 {
     Q_OBJECT
+     QML_NAMED_ELEMENT(Android)
+    QML_SINGLETON
 //    Q_DISABLE_COPY(MAUIAndroid)
     Q_DISABLE_MOVE(MAUIAndroid)
 
@@ -151,4 +153,3 @@ public Q_SLOTS:
 //const QString VideosPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MOVIES", "Ljava/lang/String;").toString();
 //}
 
-#endif // ANDROID_H

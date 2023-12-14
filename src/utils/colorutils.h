@@ -18,7 +18,7 @@
 class ColorUtils : public QObject
 {
     Q_OBJECT
-     QML_ELEMENT
+    QML_ELEMENT
     QML_SINGLETON
 public:
     /**
@@ -199,8 +199,12 @@ public:
      * \sa https://en.wikipedia.org/wiki/CIELAB_color_space
      */
     Q_INVOKABLE static qreal chroma(const QColor &color);
-    
-    Q_INVOKABLE static qreal contrastRatio(const QColor & c1, const QColor & c2);
+
+    struct XYZColor {
+        qreal x = 0;
+        qreal y = 0;
+        qreal z = 0;
+    };
 
     struct LabColor {
         qreal l = 0;
@@ -208,21 +212,11 @@ public:
         qreal b = 0;
     };
 
+    // Not for QML, returns the comvertion from srgb of a QColor and XYZ colorspace
+    static ColorUtils::XYZColor colorToXYZ(const QColor &color);
+
     // Not for QML, returns the comvertion from srgb of a QColor and Lab colorspace
     static ColorUtils::LabColor colorToLab(const QColor &color);
-    
-    /**
- * @brief isDark
- * @param color
- * @return
- */
-static inline bool isDark(const QColor &color)
-{
-    const double darkness = 1 - (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255;
-    return (darkness > 0.5);
-}
-    
-private:
-    static qreal relativeLuminance(const QColor & color);
-    static qreal convertChannel(qreal c);
+
+    static qreal luminance(const QColor &color);
 };
