@@ -17,8 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef MAUIKDE_H
-#define MAUIKDE_H
+#pragma once
 
 #include <QObject>
 #include <QQmlEngine>
@@ -34,7 +33,10 @@
 class MAUIKDE : public AbstractPlatform
 {
     Q_OBJECT
-
+QML_NAMED_ELEMENT(KDE)
+    QML_SINGLETON
+    QML_UNCREATABLE("Cannot be created Style")
+    
 public:
     static MAUIKDE *qmlAttachedProperties(QObject *object);
     static MAUIKDE *instance()
@@ -70,5 +72,3 @@ public Q_SLOTS:
     bool darkModeEnabled() override final;
 };
 
-QML_DECLARE_TYPEINFO(MAUIKDE, QML_HAS_ATTACHED_PROPERTIES)
-#endif // MAUIKDE_H
