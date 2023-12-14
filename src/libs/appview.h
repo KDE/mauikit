@@ -41,7 +41,9 @@
 class AppView : public QObject
 {
     Q_OBJECT
-    
+     QML_ELEMENT
+    QML_ATTACHED(AppView)
+    QML_UNCREATABLE("Cannot be created Controls")
     /**
      * The title of the view
      */
@@ -123,4 +125,3 @@ Q_SIGNALS:
     void badgeTextChanged();
 };
 
-QML_DECLARE_TYPEINFO(AppView, QML_HAS_ATTACHED_PROPERTIES)

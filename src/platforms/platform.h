@@ -9,7 +9,12 @@
 class MAUIKIT_EXPORT Platform : public AbstractPlatform
 {
     Q_OBJECT
+     QML_ELEMENT
+    QML_ATTACHED(Platform)
+    QML_UNCREATABLE("Cannot be created Platform")
 public:
+        explicit Platform(QObject *parent = nullptr);
+
     static Platform *qmlAttachedProperties(QObject *object);
     static Platform *instance()
     {
@@ -36,9 +41,6 @@ public Q_SLOTS:
 private:
     static Platform *m_instance;
 
-    explicit Platform(QObject *parent = nullptr);
     AbstractPlatform *m_platform;
 
 };
-
-QML_DECLARE_TYPEINFO(Platform, QML_HAS_ATTACHED_PROPERTIES)

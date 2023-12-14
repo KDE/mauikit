@@ -416,5 +416,5 @@ Q_SIGNALS:
     void translucencyAvailableChanged(bool translucencyAvailable);
 };
 
-QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)
+// QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)
 

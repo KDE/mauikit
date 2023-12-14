@@ -25,6 +25,7 @@ class PlatformTheme;
 class Icon : public QQuickItem
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(PrivateIcon)
 
     /**
      * The source of this icon. An `Icon` can pull from:

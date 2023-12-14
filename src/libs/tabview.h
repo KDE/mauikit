@@ -38,7 +38,9 @@
 class TabViewInfo : public QObject
 {
     Q_OBJECT
-    
+    QML_ELEMENT
+    QML_ATTACHED(AppView)
+    QML_UNCREATABLE("Cannot be created Controls")
     /**
      * The title for the tab view. Used in the tab button.
      */

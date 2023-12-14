@@ -19,6 +19,7 @@
 
 #pragma once
 #include <QObject>
+#include <QQmlEngine>
 
 #include <QVariantMap>
 
@@ -39,6 +40,8 @@ namespace MauiMan
 class Handy : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
     Q_DISABLE_COPY(Handy)
     
     /**
@@ -106,7 +109,8 @@ class Handy : public QObject
     Q_PROPERTY(FFactor formFactor READ formFactor NOTIFY formFactorChanged)
 
 public:
-    
+        Handy(QObject *parent = nullptr);    
+
     /**
      * @brief The different form factor options.
      */
@@ -158,7 +162,6 @@ protected:
 private:
     
     static Handy *m_instance;
-    Handy(QObject *parent = nullptr);    
     
     MauiMan::FormFactorManager *m_formFactor;
     MauiMan::AccessibilityManager *m_accessibility;

@@ -30,7 +30,7 @@
 class WindowBlur : public QObject, public QQmlParserStatus
 {
     Q_OBJECT
-    // QML_ELEMENT
+    QML_ELEMENT
     Q_INTERFACES(QQmlParserStatus)
 
     Q_PROPERTY(QWindow *view READ view WRITE setView NOTIFY viewChanged)

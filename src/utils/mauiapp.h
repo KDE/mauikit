@@ -322,6 +322,9 @@ class KAboutComponent;
 class MAUIKIT_EXPORT MauiApp : public QObject
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(App)
+    QML_ATTACHED(MauiApp)
+    QML_UNCREATABLE("Cannot be created MauiApp")
     Q_DISABLE_COPY(MauiApp)
     
     /**

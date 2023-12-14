@@ -18,53 +18,98 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
-# add_library(MauiKit${MAUI_MAJOR_VERSION} SHARED)
+# add_library(MauiKit${MAUI_MAJOR_VERSION})
+
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     VERSION 1.3
     URI "org.mauikit.controls" 
-    CLASS_NAME MauiKit)
+    CLASS_NAME MauiKit
+     DEPENDENCIES
+    "QtQuick.Controls"
+    "Qt5Compat.GraphicalEffects")
+    
+    set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
+    VERSION     ${PROJECT_VERSION}
+    SOVERSION   ${MAUI_MAJOR_VERSION}
+    EXPORT_NAME "MauiKit${MAUI_MAJOR_VERSION}")
+add_library(MauiKit${MAUI_MAJOR_VERSION}::Controls ALIAS MauiKit${MAUI_MAJOR_VERSION})
 
-set(mauikit_SRCS
-    mauikit.cpp
-    libs/style.cpp
-    libs/controls.cpp
-    utils/fmh.cpp
-    utils/mauiapp.cpp
-    utils/handy.cpp
-    utils/notify.cpp
-    utils/platformtheme.cpp
-    utils/basictheme.cpp
-    utils/imagecolors.cpp
-    utils/colorutils.cpp
-    utils/wheelhandler.cpp
-    utils/model_template/mauilist.cpp
-    utils/model_template/mauimodel.cpp
-    platforms/abstractplatform.cpp
-    platforms/platform.cpp
+target_sources(MauiKit${MAUI_MAJOR_VERSION}
+
+    PRIVATE
+    mauikit.cpp 
+    mauikit.h
+    
+      libs/appview.h
+    libs/tabview.h
+    
+    libs/style.cpp 
+    libs/style.h 
+
+    libs/controls.cpp 
+    libs/controls.h
+    
     utils/icon.cpp
+    utils/icon.h
+    
+    utils/fmh.cpp 
+    utils/fmh.h
+    
+    utils/mauiapp.cpp 
+    utils/mauiapp.h
+    
+    utils/handy.cpp 
+    utils/handy.h
+    
+    utils/notify.cpp
+    utils/notify.h
+    
+    utils/platformtheme.cpp
+    utils/platformtheme.h
+    
+    utils/basictheme.cpp
+
+    utils/imagecolors.cpp
+    utils/imagecolors.h
+    
+    utils/colorutils.cpp
+    utils/colorutils.h
+
+    utils/wheelhandler.cpp
+    utils/wheelhandler.h
+
+    utils/model_template/mauilist.cpp
+    utils/model_template/mauilist.h
+
+    utils/model_template/mauimodel.cpp
+    utils/model_template/mauimodel.h
+
+    platforms/abstractplatform.cpp
+    platforms/abstractplatform.h
+
+    platforms/platform.cpp
+    platforms/platform.h
+
     utils/managedtexturenode.cpp
+    utils/managedtexturenode.h
+
     utils/moduleinfo.cpp
-    utils/fontpickermodel.cpp)
+    utils/moduleinfo.h
+
+    utils/fontpickermodel.cpp
+    utils/fontpickermodel.h
+    
+     assets.qrc)
 
 set(mauikit_HDRS
-    mauikit.h
     utils/fmh.h
     utils/handy.h
     utils/notify.h
     utils/mauiapp.h
-    utils/platformtheme.h
-    utils/basictheme_p.h
     utils/imagecolors.h
     utils/colorutils.h
-    utils/wheelhandler.h
     utils/model_template/mauilist.h
-    utils/model_template/mauimodel.h
-    utils/moduleinfo.h
-    libs/appview.h
-    libs/tabview.h
-    libs/style.h
-    platforms/abstractplatform.h
-    platforms/platform.h)
+    utils/moduleinfo.h)
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     if(QUICK_COMPILER)
@@ -128,23 +173,34 @@ elseif(UNIX AND NOT APPLE)
         XCB::SHAPE
         XCB::XCB)
 
-    set(mauikit_PLATFORM_SRCS
-        platforms/linux/mauilinux.cpp)
+        include_directories(
+         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/blurhelper
+    ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/blurhelper
+    
+    ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/shadowhelper
+    ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/shadowhelper)
+    
+        set(mauikit_PLATFORM_HDRS
+            platforms/linux/mauilinux.h)
+        
+        target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
-    set(mauikit_PLATFORM_HDRS
-        platforms/linux/mauilinux.h)
+    PRIVATE
+    platforms/linux/mauilinux.cpp
+    platforms/linux/mauilinux.h
+    
+platforms/linux/blurhelper/windowblur.cpp
+platforms/linux/blurhelper/windowblur.h
 
-    set(window_PLATFORM_SRCS
-        platforms/linux/blurhelper/windowblur.cpp
-        platforms/linux/shadowhelper/boxshadowrenderer.cpp
-        platforms/linux/shadowhelper/tileset.cpp
-        platforms/linux/shadowhelper/windowshadow.cpp)
+platforms/linux/shadowhelper/boxshadowrenderer.cpp
+platforms/linux/shadowhelper/boxshadowrenderer.h
 
-    set(window_PLATFORM_HDRS
-        platforms/linux/blurhelper/windowblur.h
-        platforms/linux/shadowhelper/boxshadowrenderer.h
-        platforms/linux/shadowhelper/tileset.h
-        platforms/linux/shadowhelper/windowshadow.h)
+platforms/linux/shadowhelper/tileset.cpp
+platforms/linux/shadowhelper/tileset.h
+
+platforms/linux/shadowhelper/windowshadow.cpp
+platforms/linux/shadowhelper/windowshadow.h)
+
 elseif(APPLE)
     #    set(CMAKE_CXX_FLAGS "-x objective-c++")
 
@@ -296,23 +352,6 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/WindowControlsWindows.qml
     controls.${QT_MAJOR_VERSION}/private/WindowControlsLinux.qml)
 
-target_sources(MauiKit${MAUI_MAJOR_VERSION}
-
-    PRIVATE
-
-    ${mauikit_HDRS}
-    ${mauikit_SRCS}
-
-    ${mauikit_PLATFORM_HDRS}
-    ${mauikit_PLATFORM_SRCS}
-
-    ${window_PLATFORM_HDRS}
-    ${window_PLATFORM_SRCS}
-
-    assets.qrc)
-
-add_library(MauiKit${MAUI_MAJOR_VERSION}::Controls ALIAS MauiKit${MAUI_MAJOR_VERSION})
-
 if (QT_MAJOR_VERSION STREQUAL "5")
     if(QUICK_COMPILER)
         target_sources(MauiKit${MAUI_MAJOR_VERSION} PRIVATE ${mauikit_QML_QRC})
@@ -399,6 +438,10 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
     Qt${QT_MAJOR_VERSION}::Widgets
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::QuickControls2)
+    
+    if (HAVE_OpenMP)
+    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE OpenMP::OpenMP_CXX)
+endif()
 
 ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} 
     DESTINATION ${KDE_INSTALL_QMLDIR})
