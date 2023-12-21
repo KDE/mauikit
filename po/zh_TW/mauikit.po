@@ -1,21 +1,21 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 #
-# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-09 00:40+0000\n"
-"PO-Revision-Date: 2023-02-07 23:53+0900\n"
+"PO-Revision-Date: 2023-12-20 17:45+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
-"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 23.03.70\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -54,58 +54,58 @@ msgstr "大小"
 #: src/controls.5/FontPicker.qml:56 src/controls.6/FontPicker.qml:97
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "家族"
 
 #: src/controls.5/FontPicker.qml:57 src/controls.6/FontPicker.qml:98
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "選擇字型家族。"
 
 #: src/controls.5/FontPicker.qml:80 src/controls.6/FontPicker.qml:120
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "風格"
 
 #: src/controls.5/FontPicker.qml:81 src/controls.6/FontPicker.qml:121
 #, kde-format
 msgid "Font style."
-msgstr ""
+msgstr "字型風格。"
 
 #: src/controls.5/FontPicker.qml:100 src/controls.6/FontPicker.qml:141
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "從推薦數值來的字型大小。"
 
 #: src/controls.5/FontPicker.qml:118 src/controls.6/FontPicker.qml:160
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "等寬字型"
 
 #: src/controls.5/FontPicker.qml:119 src/controls.6/FontPicker.qml:161
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "僅顯示等寬字型。"
 
 #: src/controls.5/FontPicker.qml:130 src/controls.6/FontPicker.qml:172
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "預覽"
 
 #: src/controls.5/FontPicker.qml:131 src/controls.6/FontPicker.qml:173
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "測試字型。"
 
 #: src/controls.5/FontPicker.qml:139 src/controls.6/FontPicker.qml:180
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
+msgstr "The Quick Brown Fox Jumps Over The Lazy Dog 廣角空房亮滑沒過麵以化骨"
 
 #: src/controls.5/FontPickerDialog.qml:35
 #: src/controls.6/FontPickerDialog.qml:79
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "字型"
 
 #: src/controls.5/ImageViewer.qml:177 src/controls.6/ImageViewer.qml:204
 #, kde-format
@@ -175,7 +175,7 @@ msgstr "接受"
 #: src/controls.6/private/ToastArea.qml:284
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "忽略全部"
 
 #: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsPage.qml:42
 #, kde-format
