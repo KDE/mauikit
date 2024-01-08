@@ -24,56 +24,54 @@ endif()
 
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     VERSION 1.3
-    URI "org.mauikit.controls" 
+    URI "org.mauikit.controls"
     CLASS_NAME MauiKit
      DEPENDENCIES
     "QtQuick.Controls"
     "Qt5Compat.GraphicalEffects")
-    
+
     set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
     VERSION     ${PROJECT_VERSION}
     SOVERSION   ${MAUI_MAJOR_VERSION}
     EXPORT_NAME "MauiKit${MAUI_MAJOR_VERSION}")
+
 add_library(MauiKit${MAUI_MAJOR_VERSION}::Controls ALIAS MauiKit${MAUI_MAJOR_VERSION})
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     PRIVATE
-    mauikit.cpp 
-    mauikit.h
-    
       libs/appview.h
     libs/tabview.h
-    
-    libs/style.cpp 
-    libs/style.h 
 
-    libs/controls.cpp 
+    libs/style.cpp
+    libs/style.h
+
+    libs/controls.cpp
     libs/controls.h
-    
+
     utils/icon.cpp
     utils/icon.h
-    
-    utils/fmh.cpp 
+
+    utils/fmh.cpp
     utils/fmh.h
-    
-    utils/mauiapp.cpp 
+
+    utils/mauiapp.cpp
     utils/mauiapp.h
-    
-    utils/handy.cpp 
+
+    utils/handy.cpp
     utils/handy.h
-    
+
     utils/notify.cpp
     utils/notify.h
-    
+
     utils/platformtheme.cpp
     utils/platformtheme.h
-    
+
     utils/basictheme.cpp
 
     utils/imagecolors.cpp
     utils/imagecolors.h
-    
+
     utils/colorutils.cpp
     utils/colorutils.h
 
@@ -100,7 +98,7 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     utils/fontpickermodel.cpp
     utils/fontpickermodel.h
-    
+
      assets.qrc)
 
 set(mauikit_HDRS
@@ -112,6 +110,24 @@ set(mauikit_HDRS
     utils/colorutils.h
     utils/model_template/mauilist.h
     utils/moduleinfo.h)
+
+        if (QT_MAJOR_VERSION STREQUAL "6")
+
+    target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
+
+    PRIVATE
+    mauikit.cpp
+    mauikit.h)
+    else()
+
+    target_sources(MauiKit${MAUI_MAJOR_VERSION}
+
+    PRIVATE
+    mauikit.cpp
+    mauikit.h)
+    endif()
+
+
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     if(QUICK_COMPILER)
@@ -178,19 +194,19 @@ elseif(UNIX AND NOT APPLE)
         include_directories(
          ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/blurhelper
     ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/blurhelper
-    
+
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/shadowhelper
     ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/shadowhelper)
-    
+
         set(mauikit_PLATFORM_HDRS
             platforms/linux/mauilinux.h)
-        
+
         target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     PRIVATE
     platforms/linux/mauilinux.cpp
     platforms/linux/mauilinux.h
-    
+
 platforms/linux/blurhelper/windowblur.cpp
 platforms/linux/blurhelper/windowblur.h
 
@@ -338,9 +354,9 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
 
     controls.${QT_MAJOR_VERSION}/private/BaseWindow.qml
 
-    controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml    
+    controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml
     controls.${QT_MAJOR_VERSION}/private/ColorTransition.qml
-    
+
     controls.${QT_MAJOR_VERSION}/private/EdgeShadow.qml
 
     controls.${QT_MAJOR_VERSION}/private/ToastArea.qml
@@ -349,7 +365,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialogLinux.qml
-    controls.${QT_MAJOR_VERSION}/private/SideBar.qml   
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml
 
     controls.${QT_MAJOR_VERSION}/private/WindowControlsWindows.qml
     controls.${QT_MAJOR_VERSION}/private/WindowControlsLinux.qml)
@@ -440,12 +456,12 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
     Qt${QT_MAJOR_VERSION}::Widgets
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::QuickControls2)
-    
+
     if (HAVE_OpenMP)
     target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE OpenMP::OpenMP_CXX)
 endif()
 
-ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} 
+ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     DESTINATION ${KDE_INSTALL_QMLDIR})
 
 ecm_generate_qmltypes(org.mauikit.controls 1.3 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
@@ -455,7 +471,7 @@ install(TARGETS MauiKit${MAUI_MAJOR_VERSION} EXPORT MauiKit${MAUI_MAJOR_VERSION}
 
 target_include_directories(MauiKit${MAUI_MAJOR_VERSION}
     INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION}/Core>")
-    
+
 target_include_directories(MauiKit${MAUI_MAJOR_VERSION} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};>")
 
 install(FILES
