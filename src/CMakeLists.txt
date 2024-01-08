@@ -18,7 +18,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
-    if (QT_MAJOR_VERSION STREQUAL "6")
+if (QT_MAJOR_VERSION STREQUAL "6")
 add_library(MauiKit${MAUI_MAJOR_VERSION})
 endif()
 
@@ -28,7 +28,8 @@ ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     CLASS_NAME MauiKit
      DEPENDENCIES
     "QtQuick.Controls"
-    "Qt5Compat.GraphicalEffects")
+    "Qt5Compat.GraphicalEffects"
+    NO_PLUGIN_OPTIONAL)
 
     set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
     VERSION     ${PROJECT_VERSION}
@@ -40,7 +41,7 @@ add_library(MauiKit${MAUI_MAJOR_VERSION}::Controls ALIAS MauiKit${MAUI_MAJOR_VER
 target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     PRIVATE
-      libs/appview.h
+    libs/appview.h
     libs/tabview.h
 
     libs/style.cpp
@@ -111,23 +112,19 @@ set(mauikit_HDRS
     utils/model_template/mauilist.h
     utils/moduleinfo.h)
 
-        if (QT_MAJOR_VERSION STREQUAL "6")
-
+if (QT_MAJOR_VERSION STREQUAL "6")
     target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
 
     PRIVATE
     mauikit.cpp
     mauikit.h)
-    else()
-
+else()
     target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     PRIVATE
     mauikit.cpp
     mauikit.h)
-    endif()
-
-
+endif()
 
 if (QT_MAJOR_VERSION STREQUAL "5")
     if(QUICK_COMPILER)
