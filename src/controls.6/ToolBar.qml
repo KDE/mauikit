@@ -504,7 +504,7 @@ text: "Hello"
                         
                         asynchronous: true
                         
-                        sourceComponent: Maui.WindowControlsLinux {}
+                        sourceComponent: Maui.WindowControls {}
                     }
                 }
             }
