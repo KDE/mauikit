@@ -170,7 +170,7 @@ Pane
     
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
-    
+    Maui.Controls.showCSD: false
     /**
      * @brief The default content of the page.
      * To position child elements use anchors or do it manually.
@@ -528,7 +528,7 @@ Pane
             visible: count > 0
             width: visible ? _headerContent.width : 0
             position: control.altHeader ? ToolBar.Footer : ToolBar.Header
-            Maui.Controls.showCSD: control.Maui.Controls.showCSD === true && !control.altHeader
+            Maui.Controls.showCSD: control.Maui.Controls.showCSD && control.Maui.Controls.showCSD === true && !control.altHeader
             translucencySource: ShaderEffectSource
             {
                 sourceItem: _content

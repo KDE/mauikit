@@ -170,10 +170,8 @@ T.ComboBox
         Behavior on color
         {
             Maui.ColorTransition{}
-        }
-        
+        }        
     }
-
     
     popup: T.Popup
     {
@@ -184,7 +182,7 @@ T.ComboBox
         
         parent: control.responsive ? control.parent.Window.window.contentItem : control
 
-        readonly property int finalY : control.responsive ? control.parentWindow.height - height : ( control.editable ? control.height - 5 : 0)
+        readonly property int finalY : control.responsive ? control.parentWindow.height - height : ( control.editable ? control.height - 5 : control.height)
         readonly property int preferredWidth: control.responsive ? 600 : 300
         
         y: finalY
