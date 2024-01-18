@@ -19,19 +19,19 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
 if (QT_MAJOR_VERSION STREQUAL "6")
-add_library(MauiKit${MAUI_MAJOR_VERSION})
+    add_library(MauiKit${MAUI_MAJOR_VERSION})
 endif()
 
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     VERSION 1.3
     URI "org.mauikit.controls"
     CLASS_NAME MauiKit
-     DEPENDENCIES
+    DEPENDENCIES
     "QtQuick.Controls"
     "Qt5Compat.GraphicalEffects"
     NO_PLUGIN_OPTIONAL)
 
-    set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
+set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
     VERSION     ${PROJECT_VERSION}
     SOVERSION   ${MAUI_MAJOR_VERSION}
     EXPORT_NAME "MauiKit${MAUI_MAJOR_VERSION}")
@@ -100,7 +100,7 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
     utils/fontpickermodel.cpp
     utils/fontpickermodel.h
 
-     assets.qrc)
+    assets.qrc)
 
 set(mauikit_HDRS
     utils/fmh.h
@@ -114,16 +114,14 @@ set(mauikit_HDRS
 
 if (QT_MAJOR_VERSION STREQUAL "6")
     target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
-
-    PRIVATE
-    mauikit.cpp
-    mauikit.h)
+        PRIVATE
+        mauikit.cpp
+        mauikit.h)
 else()
     target_sources(MauiKit${MAUI_MAJOR_VERSION}
-
-    PRIVATE
-    mauikit.cpp
-    mauikit.h)
+        PRIVATE
+        mauikit.cpp
+        mauikit.h)
 endif()
 
 if (QT_MAJOR_VERSION STREQUAL "5")
@@ -154,31 +152,24 @@ if(BUNDLE_LUV_ICONS)
         execute_process(COMMAND ${GIT_EXECUTABLE} clone --depth 1 https://github.com/Nitrux/luv-icon-theme.git ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme)
     endif()
 
-    list(APPEND mauikit_SRCS icons.qrc)
+    target_sources(MauiKit${MAUI_MAJOR_VERSION} PRIVATE icons.qrc)
 endif()
 
 if (ANDROID)
+
+#    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platforms/android/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
+
     add_subdirectory(platforms/android)
 
-    set(mauikit_PLATFORM_SRCS
+    target_sources(MauiKit${MAUI_MAJOR_VERSION}
+        PRIVATE
         platforms/android/mauiandroid.cpp
-        platforms/android/qtquickcontrols2.conf
-        platforms/android/android.qrc)
+        platforms/android/mauiandroid.h
 
-    set(mauikit_PLATFORM_HDRS
-        platforms/android/mauiandroid.h)
-
-    set(window_PLATFORM_SRCS
         platforms/android/blurhelper/windowblur.cpp
         platforms/android/shadowhelper/boxshadowrenderer.cpp
         platforms/android/shadowhelper/tileset.cpp
         platforms/android/shadowhelper/windowshadow.cpp)
-
-    set(window_PLATFORM_HDRS
-        platforms/android/blurhelper/windowblur.h
-        platforms/android/shadowhelper/boxshadowrenderer.h
-        platforms/android/shadowhelper/tileset.h
-        platforms/android/shadowhelper/windowshadow.h)
 
     #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
@@ -188,33 +179,33 @@ elseif(UNIX AND NOT APPLE)
         XCB::SHAPE
         XCB::XCB)
 
-        include_directories(
-         ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/blurhelper
-    ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/blurhelper
+    include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/blurhelper
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/blurhelper
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/shadowhelper
-    ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/shadowhelper)
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux/shadowhelper
+        ${CMAKE_CURRENT_BINARY_DIR}/platforms/linux/shadowhelper)
 
-        set(mauikit_PLATFORM_HDRS
-            platforms/linux/mauilinux.h)
+    set(mauikit_PLATFORM_HDRS
+        platforms/linux/mauilinux.h)
 
-        target_sources(MauiKit${MAUI_MAJOR_VERSION}
+    target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
-    PRIVATE
-    platforms/linux/mauilinux.cpp
-    platforms/linux/mauilinux.h
+        PRIVATE
+        platforms/linux/mauilinux.cpp
+        platforms/linux/mauilinux.h
 
-platforms/linux/blurhelper/windowblur.cpp
-platforms/linux/blurhelper/windowblur.h
+        platforms/linux/blurhelper/windowblur.cpp
+        platforms/linux/blurhelper/windowblur.h
 
-platforms/linux/shadowhelper/boxshadowrenderer.cpp
-platforms/linux/shadowhelper/boxshadowrenderer.h
+        platforms/linux/shadowhelper/boxshadowrenderer.cpp
+        platforms/linux/shadowhelper/boxshadowrenderer.h
 
-platforms/linux/shadowhelper/tileset.cpp
-platforms/linux/shadowhelper/tileset.h
+        platforms/linux/shadowhelper/tileset.cpp
+        platforms/linux/shadowhelper/tileset.h
 
-platforms/linux/shadowhelper/windowshadow.cpp
-platforms/linux/shadowhelper/windowshadow.h)
+        platforms/linux/shadowhelper/windowshadow.cpp
+        platforms/linux/shadowhelper/windowshadow.h)
 
 elseif(APPLE)
     #    set(CMAKE_CXX_FLAGS "-x objective-c++")
@@ -454,9 +445,9 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::QuickControls2)
 
-    if (HAVE_OpenMP)
-    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE OpenMP::OpenMP_CXX)
-endif()
+#if (HAVE_OpenMP)
+#    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PUBLIC omp PRIVATE OpenMP::OpenMP_CXX)
+#endif()
 
 ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     DESTINATION ${KDE_INSTALL_QMLDIR})

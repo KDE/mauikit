@@ -418,7 +418,7 @@ bool MAUIAndroid::darkModeEnabled()
     jint res = QAndroidJniObject::callStaticMethod<jint>(
         "com/kde/maui/tools/ConfigActivity",
         "systemStyle",
-        "(Landroid/content/Context;)V",
+        "(Landroid/content/Context;)I",
         QtAndroid::androidActivity().object());
 
     return res == 1;

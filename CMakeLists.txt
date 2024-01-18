@@ -30,8 +30,8 @@ else()
     set(MAUIKIT_VERSION 3.1.0)
 endif()
 
-# set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ set(CMAKE_CXX_STANDARD 17)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -109,19 +109,19 @@ set_package_properties(MauiMan${MAUI_MAJOR_VERSION} PROPERTIES
     URL "https://invent.kde.org/maui/mauiman"
     PURPOSE "Sync to system setting preferences.")
     
-    find_package(OpenMP)
-set_package_properties(OpenMP
-    PROPERTIES DESCRIPTION "Multi-platform shared-memory parallel programming in C/C++ and Fortran"
-    TYPE OPTIONAL
-    PURPOSE "Accelerates palette generation in Kirigami.ImageColors"
-)
-if(OpenMP_CXX_FOUND)
-    set(HAVE_OpenMP TRUE)
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-endif()
+#    find_package(OpenMP)
+#set_package_properties(OpenMP
+#    PROPERTIES DESCRIPTION "Multi-platform shared-memory parallel programming in C/C++ and Fortran"
+#    TYPE OPTIONAL
+#    PURPOSE "Accelerates palette generation in Kirigami.ImageColors"
+#)
+#if(OpenMP_CXX_FOUND)
+#    set(HAVE_OpenMP TRUE)
+#    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+#endif()
 
-include_directories("${CMAKE_CURRENT_BINARY_DIR}")
-configure_file(config-OpenMP.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-OpenMP.h)
+#include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+#configure_file(config-OpenMP.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-OpenMP.h)
 
 if (QT_MAJOR_VERSION STREQUAL "5")
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
@@ -130,12 +130,12 @@ ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 ecm_find_qmlmodule(Qt5Compat.GraphicalEffects 6.0)
 endif()
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    # link time optimization has been observed to break colors. Force-disable it.
-    # Before undoing this make double sure the lockscreen
-    # and logout screen are correctly colored in light/dark mode!
-    add_compile_options("-fno-lto")
-endif()
+#if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+#    # link time optimization has been observed to break colors. Force-disable it.
+#    # Before undoing this make double sure the lockscreen
+#    # and logout screen are correctly colored in light/dark mode!
+#    add_compile_options("-fno-lto")
+#endif()
 
 if(ANDROID)
     find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)

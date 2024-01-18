@@ -174,6 +174,7 @@ Style::Style(QObject *parent) : QObject(parent)
 
     m_currentIconTheme = QIcon::themeName();
 
+    //TODO Use new Qt6 StyelHint properties for this
 #ifdef Q_OS_ANDROID
     MAUIAndroid android;
     m_styleType = android.darkModeEnabled() ? StyleType::Dark : StyleType::Light;
