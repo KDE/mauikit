@@ -18,7 +18,7 @@
  */
 
 import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.15 as QQC2
 import QtQuick.Window 2.15
 
 import QtQuick.Layouts 1.3
@@ -54,7 +54,7 @@ import "private" as Private
  }
  \endcode
  */
-Window
+QQC2.ApplicationWindow
 {
     id: root
 
@@ -131,6 +131,8 @@ Window
     readonly property bool isFullScreen: root.visibility === Window.FullScreen
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
     readonly property bool showBorders: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
+
+    background: null
 
     Item
     {
@@ -241,7 +243,6 @@ Window
 
         sourceComponent: MouseArea
         {
-
             cursorShape: Qt.SizeFDiagCursor
             propagateComposedEvents: true
             preventStealing: false
@@ -260,7 +261,7 @@ Window
         }
     }
 
-    Overlay.overlay.modal: Item
+    QQC2.Overlay.overlay.modal: Item
     {
         //       Loader
         //       {
@@ -304,7 +305,7 @@ Window
         }
     }
     
-    Overlay.overlay.modeless: Rectangle
+    QQC2.Overlay.overlay.modeless: Rectangle
     {
         radius:  Maui.Style.radiusV
 
