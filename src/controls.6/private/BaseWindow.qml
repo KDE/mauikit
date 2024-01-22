@@ -32,7 +32,7 @@ import org.mauikit.controls as Maui
  * For using a detached dialog window use the WindowDialog control.
  */
 
-Window
+ApplicationWindow
 {
     id: root
     
@@ -96,6 +96,8 @@ Window
          * @brief Convenient property to check if the application window is in portrait mode, otherwise it means it is in landscape mode.
          **/
         readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
+        
+        background: null
         
         Item
         {
