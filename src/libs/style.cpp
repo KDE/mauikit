@@ -84,8 +84,7 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT styleTypeChanged(m_styleType);
     });
 #else     
-    if(!MauiManUtils::isMauiSession())
-    {
+    
     connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, [this](Qt::ColorScheme type)
     {
         qDebug() << "Color schem style type changed<<"<< type;
@@ -106,9 +105,8 @@ Style::Style(QObject *parent) : QObject(parent)
     }
     
      Q_EMIT styleTypeChanged(m_styleType);
-    });  
-    }else
-    {        
+    });
+    
      connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
     {
         if(m_styleType_blocked)
@@ -117,7 +115,7 @@ Style::Style(QObject *parent) : QObject(parent)
         m_styleType = static_cast<Style::StyleType>(type);
         Q_EMIT styleTypeChanged(m_styleType);
     });  
-    }
+    
 #endif
 
     connect(m_themeSettings, &MauiMan::ThemeManager::accentColorChanged, [this](QString color)

@@ -235,6 +235,8 @@ Pane
 
                 Rectangle
                 {
+                    Maui.Theme.colorSet: Maui.Theme.View
+                    Maui.Theme.inherit: false
                     parent: control.parent
                     id: _resizeTarget2
                     anchors.leftMargin:  _resizeTarget.width
