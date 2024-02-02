@@ -79,6 +79,7 @@ T.ScrollView
                 case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
                 case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
                 case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+                default: return ScrollBar.AsNeeded
                 }
     }
 
