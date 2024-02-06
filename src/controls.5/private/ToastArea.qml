@@ -164,8 +164,8 @@ Control
                     id: _template
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    label1.text: "Title"
-                    label2.text: "Body of the message"
+                    label1.text: Maui.App.about.name
+                    label2.text: ""
                     label2.wrapMode: Text.Wrap
                     iconSource: "dialog-warning"
                     iconSizeHint: Maui.Style.iconSizes.big

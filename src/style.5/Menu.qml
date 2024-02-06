@@ -137,7 +137,6 @@ T.Menu
             
             implicitHeight: _listView.contentHeight + topPadding+bottomPadding
             
-            
             ListView
             {
                 id: _listView
@@ -190,6 +189,8 @@ T.Menu
         color: control.Maui.Theme.backgroundColor
         radius: Maui.Style.radiusV
                 
+        property color borderColor: Maui.Theme.textColor
+        border.color: !Maui.Handy.isMobile ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
         Behavior on color
         {
             Maui.ColorTransition{}

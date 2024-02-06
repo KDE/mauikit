@@ -70,32 +70,76 @@ Maui.PopupPage
             label2.text: Maui.App.about.shortDescription
             label2.font.pointSize: Maui.Style.fontSizes.big
             label2.elide: Text.ElideRight
-            label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            // leftLabels.spacing: Maui.Style.space.medium
-
-            leftLabels.data: [
-
+            label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere            
+        }
+    }    
                 Label
                 {
                     Maui.Theme.inherit: true
-                    Layout.fillWidth: true
+                    Layout.alignment: horizontalAlignment
+                    // Layout.fillWidth: true
+                    horizontalAlignment:Qt.AlignLeft
                     text: Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
                     opacity: 0.6
-                    font.pointSize: Maui.Style.fontSizes.small
+                    font.pointSize: Maui.Style.fontSizes.tiny
                     color: _div1.label1.color
+                    padding: Maui.Style.space.small
+                    background: Rectangle
+                    {
+                        opacity: 0.5
+                        color: "black"
+                        radius: Maui.Style.radiusV                        
+                    }                    
 
                     MouseArea
                     {
                         anchors.fill: parent
+                        hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onDoubleClicked: Maui.Handy.copyTextToClipboard(parent.text)
+                        onClicked: 
+                        {
+                            Maui.Handy.copyTextToClipboard(parent.text)
+                            root.notify("dialog-information", i18n("Version ID copied to clipboard"))
+                                                        control.close()
+
+                        }
+                        
+                        ToolTip.delay: 1000
+    ToolTip.timeout: 5000
+    ToolTip.visible: containsMouse 
+    ToolTip.text: i18n("Copy")
                     }
                 }
-            ]
-        }
-    }
+                
 
+        Column
+        {
+            id: _links
+            spacing: Maui.Style.defaultSpacing
+            Layout.fillWidth: true
+
+            Button
+            {
+                width: parent.width
+                text: i18nd("mauikit", "Reports")
+                onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+            }
+
+            Button
+            {
+                width: parent.width
+                text: i18nd("mauikit", "Home Page")
+                onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
+            }
+        }
+    
+    
+    Maui.Separator 
+    {
+        Layout.fillWidth: true
+    }
+     Item{}
     Maui.SectionItem
     {
         id: _authorsSection
@@ -137,7 +181,8 @@ Maui.PopupPage
                 }
             }
         }
-    }
+    }    
+
 
     Maui.SectionItem
     {
@@ -295,37 +340,6 @@ Maui.PopupPage
                         }
                     }
                 }
-            }
-        }
-
-    }
-
-    Maui.SectionItem
-    {
-        // label1.text: i18nd("mauikit", "Links")
-        // iconSource: "link"
-        template.isMask: true
-        template.iconSizeHint: Maui.Style.iconSize
-        columns: 1
-
-        Column
-        {
-            id: _links
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-
-            Button
-            {
-                width: parent.width
-                text: i18nd("mauikit", "Reports")
-                onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
-            }
-
-            Button
-            {
-                width: parent.width
-                text: i18nd("mauikit", "Home Page")
-                onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
             }
         }
     }

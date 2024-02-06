@@ -363,7 +363,7 @@ QQC2.ApplicationWindow
                 _toastAreaLoader.setSource("qrc:/maui/kit/private/ToastArea.qml")
             }
             
-        _toastAreaLoader.add(icon, title, body, callback, buttonText)
+        _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
     }
     
     /**
