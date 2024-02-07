@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-09 00:40+0000\n"
+"POT-Creation-Date: 2024-02-07 01:34+0000\n"
 "PO-Revision-Date: 2023-10-29 09:27+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -118,46 +118,57 @@ msgstr "Łups!"
 msgid "The image could not be loaded."
 msgstr "Nie można wczytać obrazu."
 
-#: src/controls.5/private/AboutDialog.qml:102
+#: src/controls.5/private/AboutDialog.qml:103
 #, kde-format
-msgid "Authors"
-msgstr "Autorzy"
+msgid "Version ID copied to clipboard"
+msgstr ""
 
-#: src/controls.5/private/AboutDialog.qml:145
-#: src/controls.6/private/AboutDialog.qml:135
+#: src/controls.5/private/AboutDialog.qml:111 src/style.5/TextField.qml:234
+#: src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
-msgid "Translators"
-msgstr "Tłumacze"
+msgid "Copy"
+msgstr "Skopiuj"
 
-#: src/controls.5/private/AboutDialog.qml:188
-#: src/controls.6/private/AboutDialog.qml:177
-#, kde-format
-msgid "Credits"
-msgstr "Zasługi"
-
-#: src/controls.5/private/AboutDialog.qml:236
-#: src/controls.6/private/AboutDialog.qml:224
-#, kde-format
-msgid "Licenses"
-msgstr "Licencje"
-
-#: src/controls.5/private/AboutDialog.qml:268
-#: src/controls.6/private/AboutDialog.qml:254
-#, kde-format
-msgid "Components"
-msgstr "Składniki"
-
-#: src/controls.5/private/AboutDialog.qml:320
+#: src/controls.5/private/AboutDialog.qml:125
 #: src/controls.6/private/AboutDialog.qml:304
 #, kde-format
 msgid "Reports"
 msgstr "Sprawozdania"
 
-#: src/controls.5/private/AboutDialog.qml:327
+#: src/controls.5/private/AboutDialog.qml:132
 #: src/controls.6/private/AboutDialog.qml:311
 #, kde-format
 msgid "Home Page"
 msgstr "Strona domowa"
+
+#: src/controls.5/private/AboutDialog.qml:146
+#, kde-format
+msgid "Authors"
+msgstr "Autorzy"
+
+#: src/controls.5/private/AboutDialog.qml:190
+#: src/controls.6/private/AboutDialog.qml:135
+#, kde-format
+msgid "Translators"
+msgstr "Tłumacze"
+
+#: src/controls.5/private/AboutDialog.qml:233
+#: src/controls.6/private/AboutDialog.qml:177
+#, kde-format
+msgid "Credits"
+msgstr "Zasługi"
+
+#: src/controls.5/private/AboutDialog.qml:281
+#: src/controls.6/private/AboutDialog.qml:224
+#, kde-format
+msgid "Licenses"
+msgstr "Licencje"
+
+#: src/controls.5/private/AboutDialog.qml:313
+#: src/controls.6/private/AboutDialog.qml:254
+#, kde-format
+msgid "Components"
+msgstr "Składniki"
 
 #: src/controls.5/private/ShareDialogLinux.qml:53
 #: src/controls.6/private/ShareDialogLinux.qml:59
@@ -203,11 +214,6 @@ msgstr "Zamknij"
 #, kde-format
 msgid "Cancel"
 msgstr "Anuluj"
-
-#: src/style.5/TextField.qml:234 src/style.6/qtquickcontrols/TextField.qml:233
-#, kde-format
-msgid "Copy"
-msgstr "Skopiuj"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
