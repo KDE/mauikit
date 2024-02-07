@@ -380,7 +380,7 @@ Maui.PopupPage
             spacing: Maui.Style.defaultSpacing
             label1.text: Maui.App.about.copyrightStatement
             label1.horizontalAlignment: Qt.AlignHCenter
-            label1.font.pointSize: Maui.Style.fontSizes.small
+            label1.font.pointSize: Maui.Style.fontSizes.tiny
             label1.font.family: "Monospace"
         }
     }
