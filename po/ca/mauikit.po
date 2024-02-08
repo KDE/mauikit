@@ -1,15 +1,15 @@
 # Translation of mauikit.po to Catalan
-# Copyright (C) 2022-2023 This_file_is_part_of_KDE
+# Copyright (C) 2022-2024 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2022, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-07 01:34+0000\n"
-"PO-Revision-Date: 2023-11-28 13:03+0100\n"
+"PO-Revision-Date: 2024-02-07 12:23+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -122,7 +122,7 @@ msgstr "No s'ha pogut carregar la imatge."
 #: src/controls.5/private/AboutDialog.qml:103
 #, kde-format
 msgid "Version ID copied to clipboard"
-msgstr ""
+msgstr "L'ID de la versió s'ha copiat  al porta-retalls"
 
 #: src/controls.5/private/AboutDialog.qml:111 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
@@ -257,34 +257,3 @@ msgstr "Josep M. Ferrer"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "txemaq@gmail.com"
-
-#~ msgid "Maui convergent controls."
-#~ msgstr "Controls convergents del Maui."
-
-#~ msgid ""
-#~ "Lüv is the spiritual successor to Flattr, a flat but complex icon theme "
-#~ "for freedesktop environments."
-#~ msgstr ""
-#~ "Lüv és el successor espiritual de Flattr, un tema d'icones pla però "
-#~ "complex per als entorns «freedesktop»."
-
-#~ msgid "KDE Frameworks"
-#~ msgstr "Frameworks del KDE"
-
-#~ msgid "MauiKit Frameworks"
-#~ msgstr "Frameworks del MauiKit"
-
-#~ msgid "Luv Icon Theme"
-#~ msgstr "Tema d'icones Luv"
-
-#~ msgid "Duplicate"
-#~ msgstr "Duplica"
-
-#~ msgid "Close Other"
-#~ msgstr "Tanca els altres"
-
-#~ msgid "Close All"
-#~ msgstr "Tanca-ho tot"
-
-#~ msgid "Links"
-#~ msgstr "Enllaços"
