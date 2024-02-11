@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-07 01:34+0000\n"
-"PO-Revision-Date: 2023-12-01 07:10+0100\n"
+"PO-Revision-Date: 2024-02-11 02:27+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -121,7 +121,7 @@ msgstr "გამოსახულების ჩატვირთვა შ�
 #: src/controls.5/private/AboutDialog.qml:103
 #, kde-format
 msgid "Version ID copied to clipboard"
-msgstr ""
+msgstr "ვერსიის ID დაკოპირდა ბუფერში"
 
 #: src/controls.5/private/AboutDialog.qml:111 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
