@@ -167,7 +167,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -211,7 +211,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -253,7 +253,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -326,7 +326,7 @@ Maui.PopupPage
                     width: parent.width
                     label1.textFormat: Text.RichText
                                         
-                    label1.text: modelData.webAddress ? String("<a href='%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.webAddress ? formatLink(modelData.name, modelData.webAddress) : modelData.name
 
                     label2.text: modelData.description
                     label3.text: modelData.version
@@ -399,5 +399,13 @@ Maui.PopupPage
             fillMode: Image.Tile
             opacity: 0.15
         }
+    }
+    
+    /**
+     * @private
+     */
+    function formatLink(text, url)
+    {
+        return String("<a href='%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(url).arg(text)
     }
 }

@@ -64,7 +64,7 @@ import "private" as Private
  * 
  * @note Client-side decorations refers to an application window that takes care of drawing its own window borders, shadows, and the window control buttons - and also provides the resizing and moving/dragging functionality.
  *  
- * The application window can make use of client side decorations (CSD) by setting the attached property `Maui.App.controls.enabledCSD: true` in the root element just once,
+ * The application window can make use of client side decorations (CSD) by setting the attached property `Maui.CSD.enabled: true` in the root element just once,
  * or globally by making use of MauiMan configuration options - that said, even if the system is configured to use CSD globally, you can override this property in your application, to force to use CSD  (or not). 
  * @see MauiMan
  * 
@@ -234,6 +234,7 @@ Private.BaseWindow
     id: root    
    
     isDialog: false     
+        
     Settings
     {
         property alias x: root.x
@@ -267,13 +268,17 @@ Private.BaseWindow
                 dialogLoader.item.urls = urls
                 dialogLoader.item.open()
             }
+        }       
+        
+        Component.onCompleted:
+        {
+            Maui.App.rootComponent = root            
         }
-        
-     
-        
+         
         /**
          * @brief Invokes the about dialog with information of the application.
          * This information is taken from `KAboutData` and `MauiApp` singleton instance.
+         * @note This method can be invoked for the main root ApplicationWindow using the `Maui.App.aboutDialog()` attached property method.
          */
         function about()
         {

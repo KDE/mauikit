@@ -19,7 +19,7 @@ Maui.InfoDialog
     id: control
 
     property bool entryField: true
-    property alias textEntry: _textEntry
+    readonly property alias textEntry: _textEntry
     /**
       * finished :
       */

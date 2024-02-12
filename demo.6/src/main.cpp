@@ -13,6 +13,7 @@
 #include <KAboutData>
 
 #include "utils/mauiapp.h"
+#include "utils/moduleinfo.h"
 
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -25,19 +26,19 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     KLocalizedString::setApplicationDomain("mauidemo");
 
     KAboutData about(QStringLiteral("mauidemo"),
-                     i18n("Maui Demo"),
-                     "3.0.0",
-                     i18n("MauiKit Qt6 Demo."),
+                     QStringLiteral("MauiKit Demo"),
+                     MauiKitCore::versionString(),
+                     i18n("Demo fo MauiKit controls and elements."),
                      KAboutLicense::LGPL_V3,
-                     i18n("© 2023-%1 Maui Development Team", QString::number(QDate::currentDate().year())), "qt6-2");
+                     QStringLiteral(APP_COPYRIGHT_NOTICE),
+                     QStringLiteral(GIT_BRANCH) + "/" + QStringLiteral(GIT_COMMIT_HASH));
 
-    about.addAuthor(i18n("Camilo Higuita"), i18n("Developer"), QStringLiteral("milo.h@aol.com"));
+    about.addAuthor(QStringLiteral("Camilo Higuita"), i18n("Developer"), QStringLiteral("milo.h@aol.com"));
     about.setHomepage("https://mauikit.org");
-    about.setProductName("maui/index");
-    about.setBugAddress("https://invent.kde.org/maui/index-fm/-/issues");
-    about.setOrganizationDomain("org.qt6.tst");
+    about.setProductName("maui/mauidemo");
+    about.setBugAddress("https://invent.kde.org/maui/mauikit/-/issues");
+    about.setOrganizationDomain("org.mauikit.demo");
     about.setProgramLogo(app.windowIcon());
-    about.addComponent("KIO");
 
     KAboutData::setApplicationData(about);
     MauiApp::instance()->setIconName("qrc:/assets/mauidemo.svg");

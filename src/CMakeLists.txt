@@ -58,6 +58,9 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     utils/mauiapp.cpp
     utils/mauiapp.h
+    
+    utils/csdcontrols.cpp
+    utils/csdcontrols.h
 
     utils/handy.cpp
     utils/handy.h

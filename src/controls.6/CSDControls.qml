@@ -154,12 +154,12 @@ Loader
     property bool isActiveWindow : Window.window.active
     readonly property bool canMaximize: !(Window.window.isDialog)
     readonly property bool canMinimize : !(Window.window.isDialog)
-    readonly property var buttonsModel : Maui.App.controls.rightWindowControls
+    readonly property var buttonsModel : Maui.CSD.rightWindowControls
     
     
     /**
      * A window control button has been clicked. This signal is public and can be mapped to any arbitrary value. Be carefull.
      */
     signal buttonClicked(var type)
-    source: Maui.App.controls.source
+    source: Maui.CSD.source
 }

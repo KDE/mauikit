@@ -30,42 +30,42 @@ import org.mauikit.controls 1.3 as Maui
 import "private" as Private
 
 /*!
- \ since or*g.mauikit.controls 1.0
- \inqmlmodule org.mauikit.controls
- \brief A window that provides some basic features needed for all apps
- 
- It's usually used as a root QML component for the application.
- By default it makes usage of the Maui Page control, so it packs a header and footer bar.
- The header can be moved to the bottom for better reachability in hand held devices.
- The Application window has some components already built in like an AboutDialog, a main application menu,
- and an optional property to add a global sidebar.
- 
- The application can have client side decorations CSD by setting the attached property Maui.App.enabledCSD  to true,
- or globally by editing the configuration file located at /.config/Maui/mauiproject.conf.
- 
- For more details you can refer to the Maui Page documentation for fine tweaking the application window main content.
- \code
- ApplicationWindow {
- id: root
- 
- AppViews {
- anchors.fill: parent
- }
- }
- \endcode
+ * \ since or*g.mauikit.controls 1.0
+ * \inqmlmodule org.mauikit.controls
+ * \brief A window that provides some basic features needed for all apps
+ * 
+ * It's usually used as a root QML component for the application.
+ * By default it makes usage of the Maui Page control, so it packs a header and footer bar.
+ * The header can be moved to the bottom for better reachability in hand held devices.
+ * The Application window has some components already built in like an AboutDialog, a main application menu,
+ * and an optional property to add a global sidebar.
+ * 
+ * The application can have client side decorations CSD by setting the attached property Maui.App.enabledCSD  to true,
+ * or globally by editing the configuration file located at /.config/Maui/mauiproject.conf.
+ * 
+ * For more details you can refer to the Maui Page documentation for fine tweaking the application window main content.
+ * \code
+ * ApplicationWindow {
+ * id: root
+ * 
+ * AppViews {
+ * anchors.fill: parent
+ * }
+ * }
+ * \endcode
  */
 QQC2.ApplicationWindow
 {
     id: root
-
+    
     visible: true
     
     minimumHeight: Maui.Handy.isMobile ? 0 : Math.min(300, Screen.desktopAvailableHeight)
     minimumWidth: Maui.Handy.isMobile ? 0 : Math.min(200, Screen.desktopAvailableWidth)
-
+    
     color: "transparent"
-    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
-
+    flags: Maui.CSD.enabled ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
+    
     Settings
     {
         property alias x: root.x
@@ -73,11 +73,11 @@ QQC2.ApplicationWindow
         property alias width: root.width
         property alias height: root.height
     }
-
+    
     // Window shadows for CSD
     Loader
     {
-        active: Maui.App.controls.enableCSD && !Maui.Handy.isMobile && Maui.Handy.isLinux
+        active: Maui.CSD.enabled && !Maui.Handy.isMobile && Maui.Handy.isLinux
         asynchronous: true
         sourceComponent: Maui.WindowShadow
         {
@@ -86,258 +86,259 @@ QQC2.ApplicationWindow
             strength: 7.8
         }
     }
-
+    
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
     Maui.Theme.colorSet: Maui.Theme.View
-
+    
     /*!
-   \ qm*lproperty Item ApplicationWindow::content
-   
-   Items to be placed inside the ApplicationWindow.
-   */
+     *   \ qm*lproperty Item ApplicationWindow::content
+     *   
+     *   Items to be placed inside the ApplicationWindow.
+     */
     default property alias content : _content.data
-    
-    /***************************************************/
-    /******************** ALIASES *********************/
-    /*************************************************/
-    
-    
-    /*!
-     \ qm*lproperty Dialog ApplicationWindow::dialog
-     
-     The internal dialogs used in the ApplicationWindow are loaded dynamically, so the current loaded dialog can be accessed
-     via this property.
-     */
-    property alias dialog: dialogLoader.item
-    
-    
-    /*!
-     I f *the application window size is wide enough.
-     This property can be changed to any random condition.
-     Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
-     */
-    property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
-    
-    /***************************************************/
-    /**************** READONLY PROPS ******************/
-    /*************************************************/
-    /*!
-     I f *the screen where the application is drawn is in portrait mode or not,
-     other wise it is in landscape mode.
-     */
-    readonly property bool isMaximized: root.visibility === Window.Maximized
-    readonly property bool isFullScreen: root.visibility === Window.FullScreen
-    readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
-    readonly property bool showBorders: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
-
-    background: null
-
-    Item
-    {
-        anchors.fill: parent
-
+        
+        /***************************************************/
+        /******************** ALIASES *********************/
+        /*************************************************/
+        
+        
+        /*!
+         *     \ qm*lproperty Dialog ApplicationWindow::dialog
+         *     
+         *     The internal dialogs used in the ApplicationWindow are loaded dynamically, so the current loaded dialog can be accessed
+         *     via this property.
+         */
+        property alias dialog: dialogLoader.item
+        
+        
+        /*!
+         *     I f *the application window size is wide enough.
+         *     This property can be changed to any random condition.
+         *     Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
+         */
+        property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
+        
+        /***************************************************/
+        /**************** READONLY PROPS ******************/
+        /*************************************************/
+        /*!
+         *     I f *the screen where the application is drawn is in portrait mode or not,
+         *     other wise it is in landscape mode.
+         */
+        readonly property bool isMaximized: root.visibility === Window.Maximized
+        readonly property bool isFullScreen: root.visibility === Window.FullScreen
+        readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
+        readonly property bool showBorders: Maui.CSD.enabled && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
+        
+        background: null
+        
         Item
         {
-            id: _content
             anchors.fill: parent
-        }
-
-
-         Loader
+            
+            Item
+            {
+                id: _content
+                anchors.fill: parent
+            }
+            
+            
+            Loader
             {
                 id: _toastAreaLoader
                 anchors.fill: parent
             }
-
-        layer.enabled: root.showBorders
-
-        layer.effect: OpacityMask
-        {
-            maskSource: Rectangle
+            
+            layer.enabled: root.showBorders
+            
+            layer.effect: OpacityMask
             {
-                width: _content.width
-                height: _content.height
-                radius: Maui.Style.radiusV
+                maskSource: Rectangle
+                {
+                    width: _content.width
+                    height: _content.height
+                    radius: Maui.Style.radiusV
+                }
             }
         }
-    }
-    
-    Loader
-    {
-        active: root.showBorders
-        visible: active
-        z: ApplicationWindow.overlay.z + 9999
-        anchors.fill: parent
-        asynchronous: true
-
-        sourceComponent: Rectangle
+        
+        Loader
         {
-            radius: Maui.Style.radiusV - 0.5
-            color: "transparent"
-            border.color: Qt.darker(Maui.Theme.backgroundColor, 2.3)
-            opacity: 0.5
-
-            Behavior on color
+            active: root.showBorders
+            visible: active
+            z: ApplicationWindow.overlay.z + 9999
+            anchors.fill: parent
+            asynchronous: true
+            
+            sourceComponent: Rectangle
             {
-                Maui.ColorTransition{}
-            }
-
-            Rectangle
-            {
-                anchors.fill: parent
-                anchors.margins: 1
+                radius: Maui.Style.radiusV - 0.5
                 color: "transparent"
-                radius: parent.radius - 0.5
-                border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
-                opacity: 0.7
-
+                border.color: Qt.darker(Maui.Theme.backgroundColor, 2.3)
+                opacity: 0.5
+                
                 Behavior on color
                 {
                     Maui.ColorTransition{}
                 }
+                
+                Rectangle
+                {
+                    anchors.fill: parent
+                    anchors.margins: 1
+                    color: "transparent"
+                    radius: parent.radius - 0.5
+                    border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
+                    opacity: 0.7
+                    
+                    Behavior on color
+                    {
+                        Maui.ColorTransition{}
+                    }
+                }
             }
         }
-    }
-    
-    Loader
-    {
-        asynchronous: true
-        active: Maui.App.controls.enableCSD
-        visible: active
-        height: 16
-        width: height
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-
-        sourceComponent: MouseArea
+        
+        Loader
         {
-            cursorShape: Qt.SizeBDiagCursor
-            propagateComposedEvents: true
-            preventStealing: false
-
-            onPressed: mouse.accepted = false
-
-            DragHandler
+            asynchronous: true
+            active: Maui.CSD.enabled
+            visible: active
+            height: 16
+            width: height
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            
+            sourceComponent: MouseArea
             {
-                grabPermissions: TapHandler.TakeOverForbidden
-                target: null
-                onActiveChanged: if (active)
-                                 {
-                                     root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
-                                 }
+                cursorShape: Qt.SizeBDiagCursor
+                propagateComposedEvents: true
+                preventStealing: false
+                
+                onPressed: mouse.accepted = false
+                
+                DragHandler
+                {
+                    grabPermissions: TapHandler.TakeOverForbidden
+                    target: null
+                    onActiveChanged: if (active)
+                    {
+                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
+                    }
+                }
             }
         }
-    }
-    
-    Loader
-    {
-        asynchronous: true
-        active: Maui.App.controls.enableCSD
-        visible: active
-        height: 16
-        width: height
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-
-        sourceComponent: MouseArea
+        
+        Loader
         {
-            cursorShape: Qt.SizeFDiagCursor
-            propagateComposedEvents: true
-            preventStealing: false
-
-            onPressed: mouse.accepted = false
-
-            DragHandler
+            asynchronous: true
+            active: Maui.CSD.enabled
+            visible: active
+            height: 16
+            width: height
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            
+            sourceComponent: MouseArea
             {
-                grabPermissions: TapHandler.TakeOverForbidden
-                target: null
-                onActiveChanged: if (active)
-                                 {
-                                     root.startSystemResize(Qt.RightEdge | Qt.BottomEdge);
-                                 }
+                cursorShape: Qt.SizeFDiagCursor
+                propagateComposedEvents: true
+                preventStealing: false
+                
+                onPressed: mouse.accepted = false
+                
+                DragHandler
+                {
+                    grabPermissions: TapHandler.TakeOverForbidden
+                    target: null
+                    onActiveChanged: if (active)
+                    {
+                        root.startSystemResize(Qt.RightEdge | Qt.BottomEdge);
+                    }
+                }
             }
         }
-    }
-
-    QQC2.Overlay.overlay.modal: Item
-    {
-        //       Loader
-        //       {
-        //         anchors.fill: parent
-        //         active: Maui.Style.enableEffects
-        //       sourceComponent: Item
-        //       {
-        //       ShaderEffectSource
-        //       {
-        //         id:_shaderSource
-        //        anchors.fill: parent
-        //         sourceItem: _content
-        //       }
-        //
-        //       FastBlur
-        //       {
-        //         anchors.fill: parent
-        //         source: _shaderSource
-        //         radius: 64
-        //       }
-        //
-        //       layer.enabled: true
-        //       layer.effect: OpacityMask
-        //       {
-        //         maskSource: Rectangle
-        //         {
-        //           width: _content.width
-        //           height: _content.height
-        //           radius: Maui.Style.radiusV
-        //         }
-        //       }
-        //       }
-        //       }
-        //
-        Rectangle
+        
+        QQC2.Overlay.overlay.modal: Item
         {
-            color: Maui.Theme.backgroundColor
-            anchors.fill: parent
-            opacity : 0.8
+            //       Loader
+            //       {
+            //         anchors.fill: parent
+            //         active: Maui.Style.enableEffects
+            //       sourceComponent: Item
+            //       {
+            //       ShaderEffectSource
+            //       {
+            //         id:_shaderSource
+            //        anchors.fill: parent
+            //         sourceItem: _content
+            //       }
+            //
+            //       FastBlur
+            //       {
+            //         anchors.fill: parent
+            //         source: _shaderSource
+            //         radius: 64
+            //       }
+            //
+            //       layer.enabled: true
+            //       layer.effect: OpacityMask
+            //       {
+            //         maskSource: Rectangle
+            //         {
+            //           width: _content.width
+            //           height: _content.height
+            //           radius: Maui.Style.radiusV
+            //         }
+            //       }
+            //       }
+            //       }
+            //
+            Rectangle
+            {
+                color: Maui.Theme.backgroundColor
+                anchors.fill: parent
+                opacity : 0.8
+                radius:  Maui.Style.radiusV
+            }
+        }
+        
+        QQC2.Overlay.overlay.modeless: Rectangle
+        {
             radius:  Maui.Style.radiusV
+            
+            color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
+            Behavior on opacity { NumberAnimation { duration: 150 } }
+            
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
         }
-    }
-    
-    QQC2.Overlay.overlay.modeless: Rectangle
-    {
-        radius:  Maui.Style.radiusV
-
-        color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
-        Behavior on opacity { NumberAnimation { duration: 150 } }
-
-        Behavior on color
+        
+        Loader
         {
-            Maui.ColorTransition{}
+            id: dialogLoader
         }
-    }
-
-    Loader
-    {
-        id: dialogLoader
-    }
-    
-    Connections
-    {
-        target: Maui.Platform
-        ignoreUnknownSignals: true
-
-        function onShareFilesRequest(urls)
+        
+        Connections
         {
-            dialogLoader.source = "private/ShareDialog.qml"
-            dialog.urls = urls
-            dialog.open()
+            target: Maui.Platform
+            ignoreUnknownSignals: true
+            
+            function onShareFilesRequest(urls)
+            {
+                dialogLoader.source = "private/ShareDialog.qml"
+                dialog.urls = urls
+                dialog.open()
+            }
         }
-    }
-    
-     Component.onCompleted:
+        
+        Component.onCompleted:
         {
+             Maui.App.rootComponent = root
             // Explicitly break the binding as we need this to be set only at startup.
             // if the bindings are active, after this the window is resized by the
             // compositor and then the bindings are reevaluated, then the window
@@ -345,63 +346,80 @@ QQC2.ApplicationWindow
             // see BUG 433849
             root.width = root.width;
             root.height = root.height;
+            
+            if(Maui.Handy.isAndroid)
+            {
+                setAndroidStatusBarColor()
+            }
         }   
-    
-    /**
-     * Send an inline notification.
-     * icon = icon to be used
-     * title = the title
-     * body = message of the notification
-     * callback = function to be triggered if the notification dialog is accepted
-     * timeout = time in milliseconds before the notification dialog is dismissed
-     * buttonText = text in the accepted button
-     */
-    function notify(icon, title, body, callback, buttonText)
-    {
-        if(!_toastAreaLoader.item)
+        
+        /**
+         * Send an inline notification.
+         * icon = icon to be used
+         * title = the title
+         * body = message of the notification
+         * callback = function to be triggered if the notification dialog is accepted
+         * timeout = time in milliseconds before the notification dialog is dismissed
+         * buttonText = text in the accepted button
+         */
+        function notify(icon, title, body, callback, buttonText)
+        {
+            if(!_toastAreaLoader.item)
             {
                 _toastAreaLoader.setSource("qrc:/maui/kit/private/ToastArea.qml")
             }
             
-        _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
-    }
-    
-    /**
-     * Switch from full screen to normal size.
-     */
-    function toggleMaximized()
-    {
-        if (root.isMaximized)
-        {
-            root.showNormal();
-        } else
-        {
-            root.showMaximized();
+            _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
         }
-    }
-    
-    function toggleFullscreen()
-    {
-        if (root.isFullScreen)
+        
+        /**
+         * Switch from full screen to normal size.
+         */
+        function toggleMaximized()
         {
-            root.showNormal();
-        } else
-        {
-            root.showFullScreen()();
+            if (root.isMaximized)
+            {
+                root.showNormal();
+            } else
+            {
+                root.showMaximized();
+            }
         }
-    }
-    
-    /**
-     * Reference to the application main page
-     */
-    function window()
+        
+        function toggleFullscreen()
+        {
+            if (root.isFullScreen)
+            {
+                root.showNormal();
+            } else
+            {
+                root.showFullScreen()();
+            }
+        }
+        
+        /**
+         * Reference to the application main page
+         */
+        function window()
+        {
+            return root.contentItem;
+        }
+        
+        function about()
+        {
+            dialogLoader.source = "qrc:/maui/kit/private/AboutDialog.qml"
+            dialog.open()
+        }
+        
+
+
+    function setAndroidStatusBarColor()
     {
-        return root.contentItem;
-    }
-    
-    function about()
-    {
-        dialogLoader.source = "qrc:/maui/kit/private/AboutDialog.qml"
-        dialog.open()
+        if(Maui.Handy.isAndroid)
+        {
+            const dark = Maui.Style.styleType === Maui.Style.Dark
+            Maui.Android.statusbarColor(Maui.Theme.backgroundColor, !dark)
+            Maui.Android.navBarColor( Maui.Theme.backgroundColor, !dark)
+        }
     }
 }

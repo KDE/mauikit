@@ -43,7 +43,7 @@ Loader
 {
     id: control
     
-    active: Maui.App.controls.enableCSD && Maui.Handy.formFactor === Maui.Handy.Desktop && control.Window.window.visibility !== Window.FullScreen
+    active: Maui.CSD.enabled && Maui.Handy.formFactor === Maui.Handy.Desktop && control.Window.window.visibility !== Window.FullScreen
     
     visible: active
     width: visible ? implicitWidth:  0

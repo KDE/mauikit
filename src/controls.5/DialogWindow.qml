@@ -34,7 +34,7 @@ Private.BaseWindow
 {
     id: control
     
-    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | Qt.Dialog ): (Qt.Dialog & ~Qt.FramelessWindowHint)
+    flags: Maui.CSD.enabled ? (Qt.FramelessWindowHint | Qt.Dialog ): (Qt.Dialog & ~Qt.FramelessWindowHint)
     
     
     /***************************************************/

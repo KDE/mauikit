@@ -42,12 +42,12 @@ ApplicationWindow
     minimumWidth: Maui.Handy.isMobile ? 0 : Math.min(200, Screen.desktopAvailableWidth)
     
     color: "transparent"
-    flags: Maui.App.controls.enableCSD ? (Qt.FramelessWindowHint | (root.isDialog ? Qt.Dialog : Qt.Window) ): ((root.isDialog ? Qt.Dialog : Qt.Window) & ~Qt.FramelessWindowHint)
+    flags: Maui.CSD.enabled? (Qt.FramelessWindowHint | (root.isDialog ? Qt.Dialog : Qt.Window) ): ((root.isDialog ? Qt.Dialog : Qt.Window) & ~Qt.FramelessWindowHint)
     
     // Window shadows for CSD
     Loader
     {
-        active: Maui.App.controls.enableCSD && !Maui.Handy.isMobile && Maui.Handy.isLinux
+        active: Maui.CSD.enabled && !Maui.Handy.isMobile && Maui.Handy.isLinux
         asynchronous: true
         sourceComponent: Maui.WindowShadow
         {
@@ -103,7 +103,7 @@ ApplicationWindow
         {
             id: _container
             anchors.fill: parent
-            readonly property bool showBorders: Maui.App.controls.enableCSD && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
+            readonly property bool showBorders: Maui.CSD.enabled && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
             
             Item
             {
@@ -169,7 +169,7 @@ ApplicationWindow
         Loader
         {
             asynchronous: true
-            active: Maui.App.controls.enableCSD
+            active: Maui.CSD.enabled
             visible: active
             height: 16
             width: height
@@ -203,7 +203,7 @@ ApplicationWindow
         Loader
         {
             asynchronous: true
-            active: Maui.App.controls.enableCSD
+            active: Maui.CSD.enabled
             visible: active
             height: 16
             width: height

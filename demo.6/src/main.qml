@@ -146,9 +146,8 @@ Maui.ApplicationWindow
                 {
                     Layout.fillWidth: true
                     text: i18n("About")
-                    onClicked: root.about()
+                    onClicked: Maui.App.aboutDialog()
                 }
-
              
                     Maui.SectionGroup
                     {

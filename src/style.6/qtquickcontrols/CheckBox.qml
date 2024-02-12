@@ -32,8 +32,8 @@ T.CheckBox
     implicitWidth: Math.max(contentItem.implicitWidth, indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding
     implicitHeight: Math.max(contentItem.implicitHeight, indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
 
-    padding: 0
-    spacing: Maui.Style.space.small  
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.small
     
     hoverEnabled: true
 
@@ -57,5 +57,17 @@ T.CheckBox
         color: Maui.Theme.textColor
     }
     
-    background: null
+     background: Rectangle
+    {
+        visible: !control.flat
+        
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)        
+        
+        radius: Maui.Style.radiusV
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+    }
 }

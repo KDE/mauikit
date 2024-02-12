@@ -25,6 +25,7 @@
     #include "appview.h"
     #include "handy.h"
     #include "mauiapp.h"
+    #include "csdcontrols.h"
     #include "mauilist.h"
     #include "mauimodel.h"
     #include "notify.h"
@@ -227,13 +228,13 @@ void MauiKit::registerTypes(const char *uri)
         
         /** MAUI APPLICATION SPECIFIC PROPS **/
         /** HELPERS **/
-        qmlRegisterAnonymousType<CSDControls>(uri, 1);
         qmlRegisterType<CSDButton>(uri, 1, 3, "CSDButton");
         qmlRegisterType<Notify>(uri, 1, 3, "Notify");
         qmlRegisterType<NotifyAction>(uri, 1, 3, "NotifyAction");
         
         qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
         qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
+        qmlRegisterUncreatableType<CSDControls>(uri, 1, 0, "CSD", "Cannot be created CSDControls");
         qmlRegisterSingletonType<Handy>(uri, 1, 2, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
             Q_UNUSED(scriptEngine)
             auto handy = Handy::instance();

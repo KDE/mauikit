@@ -28,35 +28,49 @@ import "private"
 
 T.CheckBox 
 {
-    id: controlRoot
+    id: control
     opacity: enabled ? 1 : 0.5
     
     implicitWidth: Math.max(contentItem.implicitWidth, indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding
+    
     implicitHeight: Math.max(contentItem.implicitHeight, indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
 
-    padding: 0
-    spacing: Maui.Style.space.small  
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.small
     
-    hoverEnabled: true
+    hoverEnabled: !Maui.Handy.isMobile
 
     indicator: CheckIndicator
     {
-        x: controlRoot.text ? (controlRoot.mirrored ? controlRoot.width - width - controlRoot.rightPadding : controlRoot.leftPadding) : controlRoot.leftPadding + (controlRoot.availableWidth - width) / 2
-        y: controlRoot.topPadding + (controlRoot.availableHeight - height) / 2
-        control: controlRoot
+        x: control.text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
+        y: control.topPadding + (control.availableHeight - height) / 2
+        control: control
     }
 
     contentItem: Label
     {
-        leftPadding: controlRoot.indicator && !controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        rightPadding: controlRoot.indicator && controlRoot.mirrored ? controlRoot.indicator.width + controlRoot.spacing : 0
-        text: controlRoot.text
-        font: controlRoot.font
+        leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
+        rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
+        text: control.text
+        font: control.font
         elide: Text.ElideRight
-        visible: controlRoot.text
+        visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+                color: Maui.Theme.textColor
     }
     
-    background: null
+    background: Rectangle
+    {
+        visible: !control.flat
+        
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)        
+        
+        radius: Maui.Style.radiusV
+        
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
+    }
 }

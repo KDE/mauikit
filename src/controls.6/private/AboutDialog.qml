@@ -60,35 +60,78 @@ Maui.PopupPage
             label2.font.pointSize: Maui.Style.fontSizes.big
             label2.elide: Text.ElideRight
             label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            // leftLabels.spacing: Maui.Style.space.medium
-
-            template.leftLabels.data: [
-            
-                Label
+        }
+        
+         Label
                 {
                     Maui.Theme.inherit: true
-                    Layout.fillWidth: true
+                    Layout.alignment: horizontalAlignment
+                    // Layout.fillWidth: true
+                    horizontalAlignment:Qt.AlignLeft
                     text: Maui.App.about.version + " " + Maui.App.about.otherText
                     font.family: "Monospace"
                     opacity: 0.6
-                    font.pointSize: Maui.Style.fontSizes.small
-                    color: _header.label1.color
-            
+                    font.pointSize: Maui.Style.fontSizes.tiny
+                    padding: Maui.Style.space.small
+                    background: Rectangle
+                    {
+                        opacity: 0.5
+                        color: "black"
+                        radius: Maui.Style.radiusV                        
+                    }                    
+
                     MouseArea
                     {
                         anchors.fill: parent
+                        hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onDoubleClicked: Maui.Handy.copyTextToClipboard(parent.text)
+                        onClicked: 
+                        {
+                            Maui.Handy.copyTextToClipboard(parent.text)
+                            root.notify("dialog-information", i18n("Version ID copied to clipboard"))
+                                                        control.close()
+
+                        }
+                        
+                        ToolTip.delay: 1000
+    ToolTip.timeout: 5000
+    ToolTip.visible: containsMouse 
+    ToolTip.text: i18n("Copy")
                     }
                 }
-            ]
+                
+                Column
+        {
+            id: _links
+            spacing: Maui.Style.defaultSpacing
+            Layout.fillWidth: true
+
+            Button
+            {
+                width: parent.width
+                text: i18nd("mauikit", "Reports")
+                onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+            }
+
+            Button
+            {
+                width: parent.width
+                text: i18nd("mauikit", "Home Page")
+                onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
+            }
         }
     
+     Maui.Separator 
+    {
+        Layout.fillWidth: true
+    }
 
+    Item{}
+    
     Maui.SectionItem
     {
         id: _authorsSection
-        // label1.text: i18nd("mauikit", "Authors")
+        label1.text: i18nd("mauikit", "Authors")
         visible: Maui.App.about.authors.length > 0
 
         // iconSource: "view-media-artist"
@@ -111,7 +154,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
                     label1.textFormat: Text.RichText
                     // label1.linkColor: Maui.Theme.textColor
                     label3.text: modelData.task
@@ -155,7 +198,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -196,7 +239,7 @@ Maui.PopupPage
 
                     width: parent.width
 
-                    label1.text: modelData.emailAddress ? String("<a href='mailto:%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.emailAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
                     label1.textFormat: Text.RichText
                     label3.text: modelData.task
                     Connections
@@ -266,7 +309,7 @@ Maui.PopupPage
                     width: parent.width
                     label1.textFormat: Text.RichText
                     
-                    label1.text: modelData.webAddress ? String("<a href='%1' style=\"text-decoration:none;\">%2</a>").arg(modelData.webAddress).arg(modelData.name) : modelData.name
+                    label1.text: modelData.webAddress ? formatLink(modelData.name, modelData.webAddress) : modelData.name
 
                     label2.text: modelData.description
                     label3.text: modelData.version
@@ -280,36 +323,6 @@ Maui.PopupPage
                         }
                     }
                 }
-            }
-        }
-    }
-
-    Maui.SectionItem
-    {
-        id: _linksssSection
-        // label1.text: i18nd("mauikit", "Links")
-        // iconSource: "link"
-        template.isMask: true
-        template.iconSizeHint: Maui.Style.iconSize
-
-        Column
-        {
-            id: _links
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-
-            Button
-            {
-                width: parent.width
-                text: i18nd("mauikit", "Reports")
-                onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
-            }
-
-            Button
-            {
-                width: parent.width
-                text: i18nd("mauikit", "Home Page")
-                onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
             }
         }
     }
@@ -369,5 +382,13 @@ Maui.PopupPage
             fillMode: Image.Tile
             opacity: 0.15
         }
+    }
+    
+    /**
+     * @private
+     */
+    function formatLink(text, url)
+    {
+        return String("<a href='%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(url).arg(text)
     }
 }
