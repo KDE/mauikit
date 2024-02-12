@@ -272,7 +272,11 @@ Private.BaseWindow
         
         Component.onCompleted:
         {
-            Maui.App.rootComponent = root            
+            Maui.App.rootComponent = root   
+            if(Maui.Handy.isAndroid)
+            {
+                setAndroidStatusBarColor()
+            }
         }
          
         /**
@@ -285,4 +289,14 @@ Private.BaseWindow
             var about = _aboutDialogComponent.createObject(root)
             about.open()
         }
+        
+function setAndroidStatusBarColor()
+    {
+        if(Maui.Handy.isAndroid)
+        {
+            const dark = Maui.Style.styleType === Maui.Style.Dark
+            Maui.Android.statusbarColor(Maui.Theme.backgroundColor, !dark)
+            Maui.Android.navBarColor( Maui.Theme.backgroundColor, !dark)
+        }
+    }
 }

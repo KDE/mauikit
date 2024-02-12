@@ -409,9 +409,7 @@ QQC2.ApplicationWindow
         {
             dialogLoader.source = "qrc:/maui/kit/private/AboutDialog.qml"
             dialog.open()
-        }
-        
-
+        }   
 
     function setAndroidStatusBarColor()
     {
