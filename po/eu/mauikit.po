@@ -1,16 +1,16 @@
 # Translation for mauikit.po to Euskara/Basque (eu).
-# Copyright (C) 2022-2023 This file is copyright:
+# Copyright (C) 2022-2024 This file is copyright:
 # This file is distributed under the same license as the mauikit package.
-# SPDX-FileCopyrightText: 2023 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2023, 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2022, 2023.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-07 01:34+0000\n"
-"PO-Revision-Date: 2023-12-06 11:09+0100\n"
+"POT-Creation-Date: 2024-02-13 01:40+0000\n"
+"PO-Revision-Date: 2024-02-13 00:56+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -123,53 +123,56 @@ msgid "The image could not be loaded."
 msgstr "Irudia ezin izan du zamatu."
 
 #: src/controls.5/private/AboutDialog.qml:103
+#: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
-msgstr ""
+msgstr "Bertsioaren ID arbelera kopiatu da"
 
-#: src/controls.5/private/AboutDialog.qml:111 src/style.5/TextField.qml:234
+#: src/controls.5/private/AboutDialog.qml:111
+#: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
 msgid "Copy"
 msgstr "Kopiatu"
 
 #: src/controls.5/private/AboutDialog.qml:125
-#: src/controls.6/private/AboutDialog.qml:304
+#: src/controls.6/private/AboutDialog.qml:112
 #, kde-format
 msgid "Reports"
 msgstr "Txostenak"
 
 #: src/controls.5/private/AboutDialog.qml:132
-#: src/controls.6/private/AboutDialog.qml:311
+#: src/controls.6/private/AboutDialog.qml:119
 #, kde-format
 msgid "Home Page"
 msgstr "Orri nagusia"
 
 #: src/controls.5/private/AboutDialog.qml:146
+#: src/controls.6/private/AboutDialog.qml:134
 #, kde-format
 msgid "Authors"
 msgstr "Egileak"
 
 #: src/controls.5/private/AboutDialog.qml:190
-#: src/controls.6/private/AboutDialog.qml:135
+#: src/controls.6/private/AboutDialog.qml:178
 #, kde-format
 msgid "Translators"
 msgstr "Itzultzailea"
 
 #: src/controls.5/private/AboutDialog.qml:233
-#: src/controls.6/private/AboutDialog.qml:177
+#: src/controls.6/private/AboutDialog.qml:220
 #, kde-format
 msgid "Credits"
 msgstr "Merituak"
 
 #: src/controls.5/private/AboutDialog.qml:281
-#: src/controls.6/private/AboutDialog.qml:224
+#: src/controls.6/private/AboutDialog.qml:267
 #, kde-format
 msgid "Licenses"
 msgstr "Lizentziak"
 
 #: src/controls.5/private/AboutDialog.qml:313
-#: src/controls.6/private/AboutDialog.qml:254
+#: src/controls.6/private/AboutDialog.qml:297
 #, kde-format
 msgid "Components"
 msgstr "Osagaiak"
@@ -244,18 +247,18 @@ msgstr "Desegin"
 msgid "Redo"
 msgstr "Berregin"
 
-#: src/utils/mauiapp.cpp:51
+#: src/utils/mauiapp.cpp:42
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Erabiltzaile-interfaze multimoldagarriak."
 
-#: src/utils/mauiapp.cpp:70
+#: src/utils/mauiapp.cpp:53
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Iñigo Salvador Azurmendi"
 
-#: src/utils/mauiapp.cpp:71
+#: src/utils/mauiapp.cpp:54
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
