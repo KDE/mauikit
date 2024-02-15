@@ -97,7 +97,7 @@ T.TextField
      */
     signal contentDropped(var drop)
     
-    onPressAndHold: !Maui.Handy.isMobile ? entryMenu.show() : undefined
+    onPressAndHold: entryMenu.show()
     onPressed:
     {
         if(!Maui.Handy.isMobile && event.button === Qt.RightButton)

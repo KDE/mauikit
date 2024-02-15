@@ -240,8 +240,8 @@ void MauiKit::registerTypes(const char *uri)
             auto handy = Handy::instance();
             engine->setObjectOwnership(handy, QQmlEngine::CppOwnership);
             return handy;
-        });    
-        
+        });
+
         #ifdef Q_OS_ANDROID
             qmlRegisterSingletonType<MAUIAndroid>(uri, 1, 0, "Android", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
                 Q_UNUSED(engine)

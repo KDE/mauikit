@@ -22,7 +22,7 @@
 #include "mauiandroid.h"
 #endif
 
-Style *Style::m_instance = nullptr;
+Q_GLOBAL_STATIC(Style, styleInstance)
 
 void Style::styleChanged()
 {
@@ -56,12 +56,6 @@ Style::Style(QObject *parent) : QObject(parent)
   ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
   ,m_accessibilitySettings( new MauiMan::AccessibilityManager(this))
   {
-    connect(qApp, &QCoreApplication::aboutToQuit, []()
-    {
-        delete m_instance;
-        m_instance = nullptr;
-    });
-
     connect(qGuiApp, &QGuiApplication::fontChanged, [this](const QFont &font)
     {
         m_defaultFont = font;
@@ -312,6 +306,11 @@ Style *Style::qmlAttachedProperties(QObject *object)
 {
     Q_UNUSED(object)
     return Style::instance();
+}
+
+Style *Style::instance()
+{
+    return styleInstance();
 }
 
 int getClosest(int, int, int);

@@ -43,6 +43,8 @@ import org.mauikit.controls 1.3 as Maui
  * @image html Misc/pagelayout.png
  * 
  * @warning It is important to not change the `header` to a different control. PageLayout depends on MauiKit ToolBar being used.
+ *
+ * If it is desired to keep any controls from moving out of the main header, use the `farLeftContent` and/or `farRightContent` properties for placing such items, that will insure those items will stay always in place.
  *  
  * @code
  * Maui.PageLayout
@@ -105,7 +107,7 @@ Maui.Page
      * This elements will not be wrapped and will stay in place.
      * @note The contents are placed using a RowLayout, so use the layout attached properties accordingly. 
      */
-    property  list<QtObject> middleContent : control.headBar.middleContent
+    property list<QtObject> middleContent : control.headBar.middleContent
     
     /**
      * @brief Whether the toolbar content should be wrapped - as in split - into a new secondary toolbar.
@@ -114,18 +116,41 @@ Maui.Page
      */
     property bool split : false
     
+    /**
+     * @brief Where the left and right content will be moved, either to the header or the footer. The available options are `ToolBar.Header` or `ToolBar.Footer`
+     * By default it is se to `ToolBar.Header`
+     */
+    property int splitIn : ToolBar.Header
+    
     headBar.forceCenterMiddleContent: !control.split
     headBar.leftContent: !control.split && control.leftContent ? control.leftContent : null
     headBar.rightContent: !control.split && control.rightContent ? control.rightContent : null    
     
     headBar.middleContent: control.middleContent ? control.middleContent : null
     
-    headerColumn: Maui.ToolBar
+    headerColumn: Loader
     {
-        visible: control.split
+        active: control.splitIn === ToolBar.Header 
+        visible: control.split && control.splitIn === ToolBar.Header
         width: parent.width
         
-        leftContent: control.split && control.leftContent ? control.leftContent : null    
-        rightContent: control.split && control.rightContent ? control.rightContent : null        
+        sourceComponent: Maui.ToolBar
+        {        
+            leftContent: control.split && control.leftContent ? control.leftContent : null    
+            rightContent: control.split && control.rightContent ? control.rightContent : null        
+        }
+    }
+    
+    footerColumn: Loader
+    {
+        active: control.splitIn === ToolBar.Footer
+        visible: control.split && control.splitIn === ToolBar.Footer
+        width: parent.width
+        
+        sourceComponent: Maui.ToolBar
+        {            
+            leftContent: control.split && control.leftContent ? control.leftContent : null    
+            rightContent: control.split && control.rightContent ? control.rightContent : null        
+        }
     }
 }

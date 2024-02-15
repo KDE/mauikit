@@ -261,11 +261,7 @@ public:
      /**
      * @brief Retrieves the single instance of MauiApp. 
      */
-    static CSDControls *instance()
-    {              
-        static CSDControls instance;
-        return &instance;
-    }
+    static CSDControls *instance();
     
     QObject * qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine) {
     Q_UNUSED(engine);

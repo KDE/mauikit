@@ -37,13 +37,15 @@
 #include "../mauikit_version.h"
 #include "moduleinfo.h"
 
+Q_GLOBAL_STATIC(MauiApp, appInstance)
+
 KAboutComponent MauiApp::aboutMauiKit()
 {
     return KAboutComponent("MauiKit", i18n("Multi-adaptable user interfaces."), MauiApp::getMauikitVersion(), "https://mauikit.org", KAboutLicense::GPL_V3);
 }
 
-MauiApp::MauiApp()
-    : QObject(nullptr)
+MauiApp::MauiApp(QObject *parent)
+    : QObject(parent)
 {
     qDebug() << "CREATING INSTANCE OF MAUI APP";
   
@@ -137,6 +139,11 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 {
     Q_UNUSED(object)
     return MauiApp::instance();
+}
+
+MauiApp *MauiApp::instance()
+{
+     return appInstance();
 }
 
 void MauiApp::setRootComponent(QObject *item)

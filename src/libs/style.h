@@ -257,6 +257,12 @@ class Style : public QObject
     Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
         
 public:
+
+    /**
+     * @private
+     */
+    explicit Style(QObject *parent = nullptr);
+
     /**
      * @brief The different options for the color scheme style.
      */
@@ -302,13 +308,16 @@ public:
     /**
      * @private
      */
-    static Style *instance()
-    {
-        if (m_instance)
-            return m_instance;
+    static Style *instance();
 
-        m_instance = new Style;
-        return m_instance;
+    /**
+     * @private
+     */
+    static QObject * qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine) {
+        Q_UNUSED(engine);
+        Q_UNUSED(scriptEngine);
+
+        return Style::instance();
     }
 
     QVariant adaptiveColorSchemeSource() const;
@@ -346,8 +355,6 @@ public Q_SLOTS:
     int mapToIconSizes(const int &size);
 
 private:
-    explicit Style(QObject *parent = nullptr);
-    static Style *m_instance;
     
     QFont m_defaultFont;
     QFont m_h1Font = QFont {};

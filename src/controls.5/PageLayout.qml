@@ -28,58 +28,48 @@ import org.mauikit.controls 1.3 as Maui
 
 Maui.Page
 {
-id: control    
-
-property Component leftComponent : null
-property Component rightComponent : null
-property Component middleComponent: null
-
-property bool mobile : false
-
-headBar.leftContent: Loader
-{
-    active: !control.mobile && control.leftComponent
-    asynchronous: true
-    visible: active
-    sourceComponent: control.leftComponent
-}
-
-headBar.rightContent: Loader
-{
-    active: !control.mobile && control.rightComponent
-    asynchronous: true
-    visible: active
-    sourceComponent: control.leftComponent
-}
-
-headBar.middleComponent: Loader
-{
-    asynchronous: true
-    active: control.middleComponent
-    visible: active
-    sourceComponent: control.middleComponent
-}
-
-headerColumn: Maui.ToolBar
-{
-    visible: control.mobile
-    width: parent.width    
+ id: control
     
-    leftContent: Loader
+    property list<QtObject> leftContent
+    
+    property list<QtObject> rightContent 
+    
+    property list<QtObject> middleContent
+    
+    property bool split : false
+    property int splitIn : ToolBar.Header
+    
+    headBar.forceCenterMiddleContent: !control.split
+    headBar.leftContent: !control.split && control.leftContent ? control.leftContent : null
+    headBar.rightContent: !control.split && control.rightContent ? control.rightContent : null    
+    
+    headBar.middleContent: control.middleContent ? control.middleContent : null
+    
+    headerColumn: Loader
     {
-        active: control.mobile && control.leftComponent
+        active: control.splitIn === ToolBar.Header 
+        visible: control.split && control.splitIn === ToolBar.Header
+        width: parent.width
         asynchronous: true
-        visible: active
-        sourceComponent: control.leftComponent
+        
+        sourceComponent: Maui.ToolBar
+    {        
+        leftContent: control.split && control.leftContent ? control.leftContent : null    
+        rightContent: control.split && control.rightContent ? control.rightContent : null        
+    }
     }
     
-    rightContent: Loader
+    footerColumn: Loader
     {
-        active: control.mobile && control.rightComponent
+        active: control.splitIn === ToolBar.Footer
+        visible: control.split && control.splitIn === ToolBar.Footer
+        width: parent.width
         asynchronous: true
-        visible: active
-        sourceComponent: control.leftComponent
-    }    
-}
 
+        sourceComponent: Maui.ToolBar
+        {            
+            leftContent: control.split && control.leftContent ? control.leftContent : null    
+            rightContent: control.split && control.rightContent ? control.rightContent : null        
+        }
+    }
 }

@@ -83,6 +83,10 @@ class MAUIKIT_EXPORT MauiApp : public QObject
     
 public:
     /**
+      * @private
+      */
+     MauiApp(QObject *parent = nullptr);
+    /**
      * @brief Retrieves information of the MauiKit framework wrapped into a KAboutComponent object.
      */
     static KAboutComponent aboutMauiKit();
@@ -95,13 +99,12 @@ public:
     /**
      * @brief Retrieves the single instance of MauiApp. 
      */
-    static MauiApp *instance()
-    {
-       static MauiApp instance;
-        return &instance;
-    }
+    static MauiApp *instance();
     
-    QObject * qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine) {
+    /**
+     * @private
+     */
+    static QObject * qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine) {
     Q_UNUSED(scriptEngine);
     
     auto instance = MauiApp::instance();
@@ -163,7 +166,6 @@ public:
 private:
     QObject *m_rootComponent = nullptr;
     
-    MauiApp();
     QString m_iconName;
     QString m_donationPage;
     

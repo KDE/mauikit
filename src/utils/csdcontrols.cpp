@@ -12,6 +12,8 @@
 #include <MauiMan4/thememanager.h>
 #endif
 
+Q_GLOBAL_STATIC(CSDControls, csdInstance)
+
 CSDControls::CSDControls(QObject *parent) : QObject (parent)
   ,m_themeSettings( new MauiMan::ThemeManager(this))
 {       
@@ -353,4 +355,9 @@ CSDControls *CSDControls::qmlAttachedProperties(QObject *object)
 {
     Q_UNUSED(object)
     return CSDControls::instance();
+}
+
+CSDControls *CSDControls::instance()
+{
+    return csdInstance();
 }

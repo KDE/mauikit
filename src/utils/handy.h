@@ -140,13 +140,16 @@ public:
     /**
      * @private
      */
-    static Handy *instance()
-    {
-        if (m_instance)
-            return m_instance;
-        
-        m_instance = new Handy;
-        return m_instance;
+    static Handy *instance();
+
+    /**
+     * @private
+     */
+    static QObject * qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine) {
+        Q_UNUSED(engine);
+        Q_UNUSED(scriptEngine);
+
+        return Handy::instance();
     }
     
     void setTransientTouchInput(bool touch);
@@ -159,10 +162,8 @@ protected:
      */
     bool eventFilter(QObject *watched, QEvent *event) override;
     
-private:
-    
-    static Handy *m_instance;
-    
+private:    
+
     MauiMan::FormFactorManager *m_formFactor;
     MauiMan::AccessibilityManager *m_accessibility;
     

@@ -57,19 +57,20 @@ T.CheckBox
         visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-                color: Maui.Theme.textColor
+        color: Maui.Theme.textColor
     }
     
     background: Rectangle
     {
         visible: !control.flat
         
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)        
-        
+        color: control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)
+
         radius: Maui.Style.radiusV
         
         Behavior on color
         {
+            enabled: !control.flat
             Maui.ColorTransition{}
         }
     }

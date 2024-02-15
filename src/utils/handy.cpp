@@ -52,13 +52,13 @@
 #include <MauiMan4/accessibilitymanager.h>
 #endif
 
-Handy *Handy::m_instance = nullptr;
+Q_GLOBAL_STATIC(Handy, handyInstance)
 
 Handy::Handy(QObject *parent)
     : QObject(parent)
-    ,m_hasTransientTouchInput(false)
     ,m_formFactor(new MauiMan::FormFactorManager(this))
     ,m_accessibility(new MauiMan::AccessibilityManager(this))
+    ,m_hasTransientTouchInput(false)
 {
     qDebug() << "CREATING INSTANCE OF MAUI HANDY";
 
@@ -97,13 +97,11 @@ m_isTouch = m_formFactor->hasTouchscreen();
             win->installEventFilter(this);
         }
     });
+}
 
-connect(qApp, &QCoreApplication::aboutToQuit, []()
+Handy *Handy::instance()
 {
-    qDebug() << "Lets remove Handy singleton instance";
-    delete m_instance;
-    m_instance = nullptr;
-});
+    return handyInstance();
 }
 
 bool Handy::isTouch()

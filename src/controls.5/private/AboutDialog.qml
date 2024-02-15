@@ -70,76 +70,76 @@ Maui.PopupPage
             label2.text: Maui.App.about.shortDescription
             label2.font.pointSize: Maui.Style.fontSizes.big
             label2.elide: Text.ElideRight
-            label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere            
+            label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
-    }    
-                Label
-                {
-                    Maui.Theme.inherit: true
-                    Layout.alignment: horizontalAlignment
-                    // Layout.fillWidth: true
-                    horizontalAlignment:Qt.AlignLeft
-                    text: Maui.App.about.version + " " + Maui.App.about.otherText
-                    font.family: "Monospace"
-                    opacity: 0.6
-                    font.pointSize: Maui.Style.fontSizes.tiny
-                    color: _div1.label1.color
-                    padding: Maui.Style.space.small
-                    background: Rectangle
-                    {
-                        opacity: 0.5
-                        color: "black"
-                        radius: Maui.Style.radiusV                        
-                    }                    
+    }
 
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: 
-                        {
-                            Maui.Handy.copyTextToClipboard(parent.text)
-                            root.notify("dialog-information", i18n("Version ID copied to clipboard"))
-                                                        control.close()
-
-                        }
-                        
-                        ToolTip.delay: 1000
-    ToolTip.timeout: 5000
-    ToolTip.visible: containsMouse 
-    ToolTip.text: i18n("Copy")
-                    }
-                }
-                
-
-        Column
+    Label
+    {
+        Maui.Theme.inherit: true
+        Layout.alignment: horizontalAlignment
+        // Layout.fillWidth: true
+        horizontalAlignment:Qt.AlignLeft
+        text: Maui.App.about.version + " " + Maui.App.about.otherText
+        font.family: "Monospace"
+        opacity: 0.6
+        font.pointSize: Maui.Style.fontSizes.tiny
+        color: _div1.label1.color
+        padding: Maui.Style.space.small
+        background: Rectangle
         {
-            id: _links
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-
-            Button
-            {
-                width: parent.width
-                text: i18nd("mauikit", "Reports")
-                onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
-            }
-
-            Button
-            {
-                width: parent.width
-                text: i18nd("mauikit", "Home Page")
-                onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
-            }
+            opacity: 0.5
+            color: "black"
+            radius: Maui.Style.radiusV
         }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked:
+            {
+                Maui.Handy.copyTextToClipboard(parent.text)
+                root.notify("dialog-information", i18n("Version ID copied to clipboard"))
+                control.close()
+
+            }
+
+            ToolTip.delay: 1000
+            ToolTip.timeout: 5000
+            ToolTip.visible: containsMouse
+            ToolTip.text: i18n("Copy")
+        }
+    }
+
+    Column
+    {
+        id: _links
+        spacing: Maui.Style.defaultSpacing
+        Layout.fillWidth: true
+
+        Button
+        {
+            width: parent.width
+            text: i18nd("mauikit", "Reports")
+            onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+        }
+
+        Button
+        {
+            width: parent.width
+            text: i18nd("mauikit", "Home Page")
+            onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
+        }
+    }
     
     
-    Maui.Separator 
+    Maui.Separator
     {
         Layout.fillWidth: true
     }
-     Item{}
+    Item{}
     Maui.SectionItem
     {
         id: _authorsSection
@@ -181,7 +181,7 @@ Maui.PopupPage
                 }
             }
         }
-    }    
+    }
 
 
     Maui.SectionItem
@@ -325,7 +325,7 @@ Maui.PopupPage
                 {
                     width: parent.width
                     label1.textFormat: Text.RichText
-                                        
+
                     label1.text: modelData.webAddress ? formatLink(modelData.name, modelData.webAddress) : modelData.name
 
                     label2.text: modelData.description
