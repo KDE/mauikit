@@ -17,7 +17,7 @@ class AccessibilityManager;
 /**
  * @brief The Unit group properties.
  * These properties are standard values meant to be used across the UI elements for a cohesive look and feel.
- * 
+ *
  * @note This object can not be instantiated. It only exists as part of the Style::units implementation, which ca be accessed via the global Style singleton.
  */
 class Units : public QObject
@@ -47,7 +47,7 @@ private:
 
 /**
  * @brief The sizes group for some Style properties, such as Style::iconSize, Style::space, etc.
- * 
+ *
  * @note This object can not be instantiated. It only exists as part of some of the Style property implementations, which ca be accessed via the global Style singleton.
  */
 class GroupSizes : public QObject
@@ -79,7 +79,7 @@ Q_SIGNALS:
 
 /**
  * @brief The MauiKit Style preferences singleton object.
- * 
+ *
  */
 class Style : public QObject
 {
@@ -98,19 +98,19 @@ class Style : public QObject
     /**
      * An alternative size for the tab bars, this is a bit smaller then the `toolBarHeight`.
      * @see toolBarHeight
-     * 
+     *
      */
     Q_PROPERTY(uint toolBarHeightAlt MEMBER m_toolBarHeightAlt CONSTANT FINAL)
     
     /**
      * The preferred radius for the border corners of the UI elements.
-     * @note This property is read only. It can only be modified from the MauiMan global preferences. 
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(uint radiusV MEMBER m_radiusV NOTIFY radiusVChanged FINAL)
     
     /**
      * The preferred size for painting the icons in places, such as menus, buttons and delegates.
-     * @note This property is read only. It can only be modified from the MauiMan global preferences. 
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(uint iconSize READ iconSize NOTIFY iconSizeChanged FINAL)
 
@@ -125,15 +125,15 @@ class Style : public QObject
      */
     Q_PROPERTY(uint rowHeightAlt MEMBER m_rowHeightAlt CONSTANT FINAL)
     
-/**
-     * The preferred size for the margins in the browsing views, such as the ListBrowser and GridBrowser, but also for the margins in menus. 
-     * @note This property is read only. It can only be modified from the MauiMan global preferences. 
+    /**
+     * The preferred size for the margins in the browsing views, such as the ListBrowser and GridBrowser, but also for the margins in menus.
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(uint contentMargins MEMBER m_contentMargins NOTIFY contentMarginsChanged)
     
     /**
      * The preferred font size for the text labels in the UI elements.
-     * @note This property is read only. It can only be modified from the MauiMan global preferences.  
+     * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
     
@@ -199,7 +199,7 @@ class Style : public QObject
     /**
      * Sets the color to be used for highlighted, active, checked and such states of the UI elements.
      * By default this color is set to the global preferences via MauiMan.
-     * This can be overridden by each application to a custom color. To reset it back to the system preference set the property to `undefined`. 
+     * This can be overridden by each application to a custom color. To reset it back to the system preference set the property to `undefined`.
      */
     Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged FINAL RESET unsetAccentColor)
 
@@ -249,13 +249,13 @@ class Style : public QObject
      * @note This property is read-only. It can only be modified from the MauiMan global preferences.
      */
     Q_PROPERTY(bool playSounds READ playSounds NOTIFY playSoundsChanged FINAL)
-        
+
     /**
      * Whether the application window surface should be transparent and request the compositor to blur the background area of the window surface.
      * By default this is set to `false`.
      */
     Q_PROPERTY(bool translucencyAvailable READ translucencyAvailable NOTIFY translucencyAvailableChanged)
-        
+
 public:
 
     /**
@@ -278,27 +278,43 @@ public:
          */
         Dark,
         
-         /**
+        /**
          * Picks the color scheme based on an source input, such as an image. The generated color palette determines if it is a dark or light scheme, and also its accent color.
          */
         Adaptive,
         
-         /**
+        /**
          * Picks the colors from the system palette, usually from Plasma color-scheme files.
          * @note Use this type when mixing MauiKit with Kirigami controls, so both frameworks pick up the color palette from the same source.
          */
         Auto,
         
-         /**
+        /**
          * A fully black color palette with a full white accent color. This is might be useful as a accessibility enhance or for performance on E-Ink and AMOLED displays.
          */
         TrueBlack,
         
-         /**
+        /**
          * A fully white color palette with a true black accent color. This is the inverted version of the TrueBlack type.
          */
         Inverted
     }; Q_ENUM(StyleType)
+
+    /**
+     * @brief The possible scrollbar values
+     * The policy for showing the scroll bars. The possible values are:
+     * - 0 Always visible
+     * - 1 Visible when needed
+     * - 2 Auto Hide
+     * - 3 Always hidden
+     */
+    enum ScrollBarPolicy : uint
+    {
+                               AlwaysOn =0,
+                               AsNeeded,
+                               AutoHide,
+                               AlwaysOff
+}; Q_ENUM(ScrollBarPolicy)
     
     /**
      * @private
@@ -342,7 +358,7 @@ public:
     
     bool menusHaveIcons() const;
     bool playSounds() const;
-    uint scrollBarPolicy() const;    
+    uint scrollBarPolicy() const;
 
     bool translucencyAvailable() const;
     void setTranslucencyAvailable(const bool &value);

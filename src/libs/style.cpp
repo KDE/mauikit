@@ -55,7 +55,7 @@ Style::Style(QObject *parent) : QObject(parent)
   ,m_themeSettings( new MauiMan::ThemeManager(this))
   ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
   ,m_accessibilitySettings( new MauiMan::AccessibilityManager(this))
-  {
+{
     connect(qGuiApp, &QGuiApplication::fontChanged, [this](const QFont &font)
     {
         m_defaultFont = font;
@@ -65,7 +65,7 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT fontSizesChanged();
         Q_EMIT h1FontChanged();
         Q_EMIT h2FontChanged();
-        Q_EMIT 
+        Q_EMIT
     });
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -85,30 +85,30 @@ Style::Style(QObject *parent) : QObject(parent)
         if(m_styleType_blocked)
             return;
         
-         switch(type)
-    {
-        case Qt::ColorScheme::Unknown:  
-            m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType()); 
+        switch(type)
+        {
+        case Qt::ColorScheme::Unknown:
+            m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
             break;
-        case Qt::ColorScheme::Light: 
-             m_styleType = Style::StyleType::Light; 
-        break;
+        case Qt::ColorScheme::Light:
+            m_styleType = Style::StyleType::Light;
+            break;
         case Qt::ColorScheme::Dark:
-             m_styleType = Style::StyleType::Dark;
-             break;
-    }
-    
-     Q_EMIT styleTypeChanged(m_styleType);
+            m_styleType = Style::StyleType::Dark;
+            break;
+        }
+
+        Q_EMIT styleTypeChanged(m_styleType);
     });
     
-     connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
+    connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
     {
         if(m_styleType_blocked)
             return;
 
         m_styleType = static_cast<Style::StyleType>(type);
         Q_EMIT styleTypeChanged(m_styleType);
-    });  
+    });
     
 #endif
 
@@ -169,27 +169,27 @@ Style::Style(QObject *parent) : QObject(parent)
     
     connect(m_accessibilitySettings, &MauiMan::AccessibilityManager::scrollBarPolicyChanged, [this](uint state)
     {
-     qDebug() << "SCROLBAR POLICY CHANGED" << state;
-    Q_EMIT scrollBarPolicyChanged(state);
+        qDebug() << "SCROLBAR POLICY CHANGED" << state;
+        Q_EMIT scrollBarPolicyChanged(state);
     });
 
-   if(MauiManUtils::isMauiSession())
-   {
+    if(MauiManUtils::isMauiSession())
+    {
         connect(m_themeSettings, &MauiMan::ThemeManager::iconThemeChanged, [this](QString name)
         {
             qDebug() << "Ask to change the icon theme";
             m_currentIconTheme = name;
             Q_EMIT currentIconThemeChanged(m_currentIconTheme);
         });
-   }else
-   {
-//        //to be able to check and icon theme change rely on the style being reset, this not even works on Plasma, so do we need it?
-//       QStyle *style = qApp->style();
-//       if (style)
-//       {
-//           connect(style, &QObject::destroyed, this, &Style::styleChanged);
-//       }
-}
+    }else
+    {
+        //        //to be able to check and icon theme change rely on the style being reset, this not even works on Plasma, so do we need it?
+        //       QStyle *style = qApp->style();
+        //       if (style)
+        //       {
+        //           connect(style, &QObject::destroyed, this, &Style::styleChanged);
+        //       }
+    }
 
     m_defaultFont = qGuiApp->font();
     m_monospacedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
@@ -206,10 +206,7 @@ Style::Style(QObject *parent) : QObject(parent)
     m_currentIconTheme = QIcon::themeName();
 
     //TODO Use new Qt6 StyelHint properties for this
-    
-    
-    
- 
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     
 #ifdef Q_OS_ANDROID
@@ -223,23 +220,23 @@ Style::Style(QObject *parent) : QObject(parent)
     //For Maui Session we want to use MauiMan
     if(!MauiManUtils::isMauiSession())
     {
-     switch(QGuiApplication::styleHints()->colorScheme())
-    {
-        case Qt::ColorScheme::Unknown:  
-            m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType()); 
+        switch(QGuiApplication::styleHints()->colorScheme())
+        {
+        case Qt::ColorScheme::Unknown:
+            m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
             break;
-        case Qt::ColorScheme::Light: 
-             m_styleType = Style::StyleType::Light; 
-        break;
+        case Qt::ColorScheme::Light:
+            m_styleType = Style::StyleType::Light;
+            break;
         case Qt::ColorScheme::Dark:
-             m_styleType = Style::StyleType::Dark;
-             break;
+            m_styleType = Style::StyleType::Dark;
+            break;
+        }
     }
-  }
     else
     {
-         m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
-    }   
+        m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
+    }
 #endif
 
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
@@ -502,12 +499,13 @@ bool Style::menusHaveIcons() const
 
 uint Style::scrollBarPolicy() const
 {
-    return m_accessibilitySettings->scrollBarPolicy();
+//    return m_accessibilitySettings->scrollBarPolicy();
+    return 2;
 }
 
 bool Style::playSounds() const
 {
-    return m_accessibilitySettings->playSounds();    
+    return m_accessibilitySettings->playSounds();
 }
 
 
