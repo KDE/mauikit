@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-13 01:40+0000\n"
+"POT-Creation-Date: 2024-02-16 01:39+0000\n"
 "PO-Revision-Date: 2024-02-08 09:12+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -114,13 +114,13 @@ msgstr "Oups !"
 msgid "The image could not be loaded."
 msgstr "Il est impossible de charger l'image."
 
-#: src/controls.5/private/AboutDialog.qml:103
+#: src/controls.5/private/AboutDialog.qml:104
 #: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
 msgstr "Identifiant de version copié dans le presse-papier"
 
-#: src/controls.5/private/AboutDialog.qml:111
+#: src/controls.5/private/AboutDialog.qml:112
 #: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
@@ -239,18 +239,18 @@ msgstr "Annuler"
 msgid "Redo"
 msgstr "Refaire"
 
-#: src/utils/mauiapp.cpp:42
+#: src/utils/mauiapp.cpp:44
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Interfaces utilisateur multi-adaptables"
 
-#: src/utils/mauiapp.cpp:53
+#: src/utils/mauiapp.cpp:55
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Xavier Besnard"
 
-#: src/utils/mauiapp.cpp:54
+#: src/utils/mauiapp.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"

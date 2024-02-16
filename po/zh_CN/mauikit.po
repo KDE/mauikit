@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-13 01:40+0000\n"
+"POT-Creation-Date: 2024-02-16 01:39+0000\n"
 "PO-Revision-Date: 2024-02-05 11:41\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -117,13 +117,13 @@ msgstr "哎呀！"
 msgid "The image could not be loaded."
 msgstr "无法加载图像。"
 
-#: src/controls.5/private/AboutDialog.qml:103
+#: src/controls.5/private/AboutDialog.qml:104
 #: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
 msgstr ""
 
-#: src/controls.5/private/AboutDialog.qml:111
+#: src/controls.5/private/AboutDialog.qml:112
 #: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
@@ -242,18 +242,18 @@ msgstr "撤销"
 msgid "Redo"
 msgstr "恢复"
 
-#: src/utils/mauiapp.cpp:42
+#: src/utils/mauiapp.cpp:44
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "多用途的用户接口。"
 
-#: src/utils/mauiapp.cpp:53
+#: src/utils/mauiapp.cpp:55
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: src/utils/mauiapp.cpp:54
+#: src/utils/mauiapp.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"

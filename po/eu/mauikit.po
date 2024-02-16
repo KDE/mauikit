@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-13 01:40+0000\n"
+"POT-Creation-Date: 2024-02-16 01:39+0000\n"
 "PO-Revision-Date: 2024-02-13 00:56+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -122,13 +122,13 @@ msgstr "Ieepa!"
 msgid "The image could not be loaded."
 msgstr "Irudia ezin izan du zamatu."
 
-#: src/controls.5/private/AboutDialog.qml:103
+#: src/controls.5/private/AboutDialog.qml:104
 #: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
 msgstr "Bertsioaren ID arbelera kopiatu da"
 
-#: src/controls.5/private/AboutDialog.qml:111
+#: src/controls.5/private/AboutDialog.qml:112
 #: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
@@ -247,18 +247,18 @@ msgstr "Desegin"
 msgid "Redo"
 msgstr "Berregin"
 
-#: src/utils/mauiapp.cpp:42
+#: src/utils/mauiapp.cpp:44
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Erabiltzaile-interfaze multimoldagarriak."
 
-#: src/utils/mauiapp.cpp:53
+#: src/utils/mauiapp.cpp:55
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Iñigo Salvador Azurmendi"
 
-#: src/utils/mauiapp.cpp:54
+#: src/utils/mauiapp.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"

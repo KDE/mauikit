@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-13 01:40+0000\n"
+"POT-Creation-Date: 2024-02-16 01:39+0000\n"
 "PO-Revision-Date: 2024-02-07 09:27+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -118,13 +118,13 @@ msgstr "Отакої!"
 msgid "The image could not be loaded."
 msgstr "Не вдається завантажити образ."
 
-#: src/controls.5/private/AboutDialog.qml:103
+#: src/controls.5/private/AboutDialog.qml:104
 #: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
 msgstr "Ідентифікатор версії скопійовано до буфера обміну"
 
-#: src/controls.5/private/AboutDialog.qml:111
+#: src/controls.5/private/AboutDialog.qml:112
 #: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
 #: src/style.6/qtquickcontrols/TextField.qml:233
 #, kde-format
@@ -243,18 +243,18 @@ msgstr "Скасувати"
 msgid "Redo"
 msgstr "Повторити"
 
-#: src/utils/mauiapp.cpp:42
+#: src/utils/mauiapp.cpp:44
 #, kde-format
 msgid "Multi-adaptable user interfaces."
 msgstr "Адаптивні інтерфейси користувача."
 
-#: src/utils/mauiapp.cpp:53
+#: src/utils/mauiapp.cpp:55
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Юрій Чорноіван"
 
-#: src/utils/mauiapp.cpp:54
+#: src/utils/mauiapp.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
