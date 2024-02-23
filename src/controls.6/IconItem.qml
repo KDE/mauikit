@@ -73,7 +73,7 @@ Item
     implicitHeight: visible ? Math.max(iconSizeHint, imageSizeHint) : 0
     implicitWidth: implicitHeight
     
-    smooth: true
+    smooth: !Maui.Handy.isMobile
     
     /**
      * @brief Whether the control should be styled as being highlighted by some external event.
@@ -153,14 +153,14 @@ Item
      * @note Review the control own properties on Qt documentation.
      * @property Image IconItem::image
      */
-    property alias image : img
+    readonly property alias image : img
     
     /**
      * @brief An alias to the MauiKit Icon control for displaying the icon.
      * @see Icon
      * @property Icon IconItem::icon
      */
-    property alias icon: icon
+    readonly property alias icon: icon
     
     /**
      * @brief The desired color for tinting the monochromatic icons. 
@@ -211,7 +211,7 @@ Item
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
                 
-        cache: true
+        cache: !Maui.Handy.isMobile
         asynchronous: true
         smooth: control.smooth
         mipmap: false
