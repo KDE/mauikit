@@ -41,7 +41,7 @@ Maui.ShadowedRectangle
      * @brief Whether the images should be saved in cache memory to save loading time.
      * By default this is set to `true`.
      */
-    property bool cache : true
+    property bool cache : !Maui.Handy.isMobile
     
     /**
      * @brief A callback function to manage what image is positioned. This callback function is called for each image source set in the model `images`, so the final source can be modified. This function should return a - new or modified - image source URL.   
@@ -182,7 +182,7 @@ Maui.ShadowedRectangle
                 sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : control.width) * 1.5
                 sourceSize.height:  (control.imageHeight > -1 ? control.imageHeight : control.height)  * 1.5
                 asynchronous: true
-                smooth: true
+                smooth: !Maui.Handy.isMobile
                 cache: control.cache
                 source: control.cb ? control.cb(modelData) : modelData
                 fillMode: control.fillMode

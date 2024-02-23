@@ -39,7 +39,7 @@ Item
 {
      id: control
      focus: true
-     smooth : true  
+     smooth: !Maui.Handy.isMobile
      
      implicitHeight: _layout.implicitHeight
      

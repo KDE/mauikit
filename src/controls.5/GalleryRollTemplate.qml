@@ -57,7 +57,6 @@ Maui.ShadowedRectangle
         boundsBehavior: Flickable.StopAtBounds
         boundsMovement: Flickable.StopAtBounds
 
-
         model: control.images
 
         Component.onCompleted: _featuredTimer.start()
