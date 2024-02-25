@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the mauikit package.
-# Tommi Nieminen <translator@legisign.org>, 2022, 2023.
+# Tommi Nieminen <translator@legisign.org>, 2022, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-16 01:39+0000\n"
-"PO-Revision-Date: 2023-04-20 12:35+0300\n"
+"PO-Revision-Date: 2024-02-14 19:00+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -121,7 +121,7 @@ msgstr "Kuvaa ei voi ladata."
 #: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
-msgstr ""
+msgstr "Versiotunniste kopioitu leikepöydälle"
 
 #: src/controls.5/private/AboutDialog.qml:112
 #: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
