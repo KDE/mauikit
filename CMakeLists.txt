@@ -27,7 +27,7 @@ else()
     set(REQUIRED_KF_VERSION 5.95.0)
     set(KF_MAJOR_VERSION 5)
     set(MAUI_MAJOR_VERSION 3)
-    set(MAUIKIT_VERSION 3.1.0)
+    set(MAUIKIT_VERSION 3.1.1)
 endif()
 
  set(CMAKE_CXX_STANDARD 17)
