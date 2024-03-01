@@ -17,14 +17,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 
+import QtQuick 2.15
 
-import QtQuick.Window 
-import QtQuick.Controls
+import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 
-import Qt5Compat.GraphicalEffects
+import QtGraphicalEffects 1.0
 
-import org.mauikit.controls as Maui
+import org.mauikit.controls 1.3 as Maui
 
 /**
  * @inherit QtQuick.Window
@@ -32,9 +32,9 @@ import org.mauikit.controls as Maui
  * For using a detached dialog window use the WindowDialog control.
  */
 
-Window
+ApplicationWindow
 {
-    id: root
+   id: root
     
     visible: true
     
@@ -42,7 +42,7 @@ Window
     minimumWidth: Maui.Handy.isMobile ? 0 : Math.min(200, Screen.desktopAvailableWidth)
     
     color: "transparent"
-    flags: Maui.CSD.enabled ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
+    flags: Maui.CSD.enabled? (Qt.FramelessWindowHint | (root.isDialog ? Qt.Dialog : Qt.Window) ): ((root.isDialog ? Qt.Dialog : Qt.Window) & ~Qt.FramelessWindowHint)
     
     // Window shadows for CSD
     Loader
@@ -60,7 +60,7 @@ Window
     /***************************************************/
     /********************* COLORS *********************/
     /*************************************************/
-    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.colorSet: isDialog ? Maui.Theme.Window : Maui.Theme.Window
     
     /**
      * @brief Items to be placed inside the ApplicationWindow.
@@ -68,6 +68,8 @@ Window
      * @property list<QtObject> content
      **/
     default property alias content : _content.data
+        
+        property bool isDialog : false
         
         /***************************************************/
         /**************** READONLY PROPS ******************/
@@ -94,6 +96,8 @@ Window
          * @brief Convenient property to check if the application window is in portrait mode, otherwise it means it is in landscape mode.
          **/
         readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
+        
+        background: null
         
         Item
         {
@@ -305,5 +309,5 @@ Window
                 _toastAreaLoader.setSource("ToastArea.qml")
             }
             _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
-        }        
+        }               
 }

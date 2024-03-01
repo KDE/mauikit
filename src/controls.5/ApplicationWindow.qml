@@ -54,18 +54,12 @@ import "private" as Private
  * }
  * \endcode
  */
-QQC2.ApplicationWindow
+Private.BaseWindow
 {
     id: root
     
-    visible: true
-    
-    minimumHeight: Maui.Handy.isMobile ? 0 : Math.min(300, Screen.desktopAvailableHeight)
-    minimumWidth: Maui.Handy.isMobile ? 0 : Math.min(200, Screen.desktopAvailableWidth)
-    
-    color: "transparent"
-    flags: Maui.CSD.enabled ? (Qt.FramelessWindowHint | Qt.Window ): (Qt.Window & ~Qt.FramelessWindowHint)
-    
+    isDialog: false      
+       
     Settings
     {
         property alias x: root.x
@@ -73,251 +67,7 @@ QQC2.ApplicationWindow
         property alias width: root.width
         property alias height: root.height
     }
-    
-    // Window shadows for CSD
-    Loader
-    {
-        active: Maui.CSD.enabled && !Maui.Handy.isMobile && Maui.Handy.isLinux
-        asynchronous: true
-        sourceComponent: Maui.WindowShadow
-        {
-            view: root
-            radius: Maui.Style.radiusV
-            strength: 7.8
-        }
-    }
-    
-    /***************************************************/
-    /********************* COLORS *********************/
-    /*************************************************/
-    Maui.Theme.colorSet: Maui.Theme.View
-    
-    /*!
-     *   \ qm*lproperty Item ApplicationWindow::content
-     *   
-     *   Items to be placed inside the ApplicationWindow.
-     */
-    default property alias content : _content.data
-        
-        /***************************************************/
-        /******************** ALIASES *********************/
-        /*************************************************/
-        
-        
-        /*!
-         *     \ qm*lproperty Dialog ApplicationWindow::dialog
-         *     
-         *     The internal dialogs used in the ApplicationWindow are loaded dynamically, so the current loaded dialog can be accessed
-         *     via this property.
-         */
-        property alias dialog: dialogLoader.item
-        
-        
-        /*!
-         *     I f *the application window size is wide enough.
-         *     This property can be changed to any random condition.
-         *     Keep in mind this property is widely used in other MauiKit components to determined if items shoudl be hidden or collapsed, etc.
-         */
-        property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
-        
-        /***************************************************/
-        /**************** READONLY PROPS ******************/
-        /*************************************************/
-        /*!
-         *     I f *the screen where the application is drawn is in portrait mode or not,
-         *     other wise it is in landscape mode.
-         */
-        readonly property bool isMaximized: root.visibility === Window.Maximized
-        readonly property bool isFullScreen: root.visibility === Window.FullScreen
-        readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
-        readonly property bool showBorders: Maui.CSD.enabled && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
-        
-        background: null
-        
-        Item
-        {
-            anchors.fill: parent
             
-            Item
-            {
-                id: _content
-                anchors.fill: parent
-            }
-            
-            
-            Loader
-            {
-                id: _toastAreaLoader
-                anchors.fill: parent
-            }
-            
-            layer.enabled: root.showBorders
-            
-            layer.effect: OpacityMask
-            {
-                maskSource: Rectangle
-                {
-                    width: _content.width
-                    height: _content.height
-                    radius: Maui.Style.radiusV
-                }
-            }
-        }
-        
-        Loader
-        {
-            active: root.showBorders
-            visible: active
-            z: ApplicationWindow.overlay.z + 9999
-            anchors.fill: parent
-            asynchronous: true
-            
-            sourceComponent: Rectangle
-            {
-                radius: Maui.Style.radiusV - 0.5
-                color: "transparent"
-                border.color: Qt.darker(Maui.Theme.backgroundColor, 2.3)
-                opacity: 0.5
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
-                
-                Rectangle
-                {
-                    anchors.fill: parent
-                    anchors.margins: 1
-                    color: "transparent"
-                    radius: parent.radius - 0.5
-                    border.color: Qt.lighter(Maui.Theme.backgroundColor, 2)
-                    opacity: 0.7
-                    
-                    Behavior on color
-                    {
-                        Maui.ColorTransition{}
-                    }
-                }
-            }
-        }
-        
-        Loader
-        {
-            asynchronous: true
-            active: Maui.CSD.enabled
-            visible: active
-            height: 16
-            width: height
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            
-            sourceComponent: MouseArea
-            {
-                cursorShape: Qt.SizeBDiagCursor
-                propagateComposedEvents: true
-                preventStealing: false
-                
-                onPressed: mouse.accepted = false
-                
-                DragHandler
-                {
-                    grabPermissions: TapHandler.TakeOverForbidden
-                    target: null
-                    onActiveChanged: if (active)
-                    {
-                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
-                    }
-                }
-            }
-        }
-        
-        Loader
-        {
-            asynchronous: true
-            active: Maui.CSD.enabled
-            visible: active
-            height: 16
-            width: height
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            
-            sourceComponent: MouseArea
-            {
-                cursorShape: Qt.SizeFDiagCursor
-                propagateComposedEvents: true
-                preventStealing: false
-                
-                onPressed: mouse.accepted = false
-                
-                DragHandler
-                {
-                    grabPermissions: TapHandler.TakeOverForbidden
-                    target: null
-                    onActiveChanged: if (active)
-                    {
-                        root.startSystemResize(Qt.RightEdge | Qt.BottomEdge);
-                    }
-                }
-            }
-        }
-        
-        QQC2.Overlay.overlay.modal: Item
-        {
-            //       Loader
-            //       {
-            //         anchors.fill: parent
-            //         active: Maui.Style.enableEffects
-            //       sourceComponent: Item
-            //       {
-            //       ShaderEffectSource
-            //       {
-            //         id:_shaderSource
-            //        anchors.fill: parent
-            //         sourceItem: _content
-            //       }
-            //
-            //       FastBlur
-            //       {
-            //         anchors.fill: parent
-            //         source: _shaderSource
-            //         radius: 64
-            //       }
-            //
-            //       layer.enabled: true
-            //       layer.effect: OpacityMask
-            //       {
-            //         maskSource: Rectangle
-            //         {
-            //           width: _content.width
-            //           height: _content.height
-            //           radius: Maui.Style.radiusV
-            //         }
-            //       }
-            //       }
-            //       }
-            //
-            Rectangle
-            {
-                color: Maui.Theme.backgroundColor
-                anchors.fill: parent
-                opacity : 0.8
-                radius:  Maui.Style.radiusV
-            }
-        }
-        
-        QQC2.Overlay.overlay.modeless: Rectangle
-        {
-            radius:  Maui.Style.radiusV
-            
-            color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
-            Behavior on opacity { NumberAnimation { duration: 150 } }
-            
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-        }
-        
         Loader
         {
             id: dialogLoader
@@ -331,84 +81,35 @@ QQC2.ApplicationWindow
             function onShareFilesRequest(urls)
             {
                 dialogLoader.source = "private/ShareDialog.qml"
-                dialog.urls = urls
-                dialog.open()
+                dialogLoader.item.urls = urls
+                dialogLoader.item.open()
             }
         }
         
         Component.onCompleted:
         {
              Maui.App.rootComponent = root
-            // Explicitly break the binding as we need this to be set only at startup.
-            // if the bindings are active, after this the window is resized by the
-            // compositor and then the bindings are reevaluated, then the window
-            // size would reset ignoring what the compositor asked.
-            // see BUG 433849
-            root.width = root.width;
-            root.height = root.height;
             
             if(Maui.Handy.isAndroid)
             {
                 setAndroidStatusBarColor()
             }
-        }   
+        }          
         
-        /**
-         * Send an inline notification.
-         * icon = icon to be used
-         * title = the title
-         * body = message of the notification
-         * callback = function to be triggered if the notification dialog is accepted
-         * timeout = time in milliseconds before the notification dialog is dismissed
-         * buttonText = text in the accepted button
-         */
-        function notify(icon, title, body, callback, buttonText)
+        Component
         {
-            if(!_toastAreaLoader.item)
-            {
-                _toastAreaLoader.setSource("qrc:/maui/kit/private/ToastArea.qml")
-            }
+            id: _aboutDialogComponent
             
-            _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
-        }
-        
-        /**
-         * Switch from full screen to normal size.
-         */
-        function toggleMaximized()
-        {
-            if (root.isMaximized)
+            Private.AboutDialog
             {
-                root.showNormal();
-            } else
-            {
-                root.showMaximized();
+                onClosed: destroy()
             }
-        }
-        
-        function toggleFullscreen()
-        {
-            if (root.isFullScreen)
-            {
-                root.showNormal();
-            } else
-            {
-                root.showFullScreen()();
-            }
-        }
-        
-        /**
-         * Reference to the application main page
-         */
-        function window()
-        {
-            return root.contentItem;
         }
         
         function about()
         {
-            dialogLoader.source = "qrc:/maui/kit/private/AboutDialog.qml"
-            dialog.open()
+           var about = _aboutDialogComponent.createObject(root)
+            about.open()
         }   
 
     function setAndroidStatusBarColor()

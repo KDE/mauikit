@@ -3,6 +3,7 @@
         <file alias="AltBrowser.qml">controls.5/AltBrowser.qml</file>
         <file alias="AnimatedImageViewer.qml">controls.5/AnimatedImageViewer.qml</file>
         <file alias="ApplicationWindow.qml">controls.5/ApplicationWindow.qml</file>
+        <file alias="DialogWindow.qml">controls.5/DialogWindow.qml</file>
         <file alias="AppViewLoader.qml">controls.5/AppViewLoader.qml</file>
         <file alias="AppViews.qml">controls.5/AppViews.qml</file>
         <file alias="Badge.qml">controls.5/Badge.qml</file>
@@ -76,6 +77,7 @@
         <file alias="PieButton.qml">controls.5/PieButton.qml</file>
         <file alias="PopupPage.qml">controls.5/PopupPage.qml</file>
         <file alias="ProgressIndicator.qml">controls.5/ProgressIndicator.qml</file>
+        <file alias="private/BaseWindow.qml">controls.5/private/BaseWindow.qml</file>
         <file alias="private/AboutDialog.qml">controls.5/private/AboutDialog.qml</file>
         <file alias="private/ActionGroup.qml">controls.5/private/ActionGroup.qml</file>
         <file alias="private/CheckBoxItem.qml">controls.5/private/CheckBoxItem.qml</file>

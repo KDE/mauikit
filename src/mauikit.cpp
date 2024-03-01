@@ -105,6 +105,7 @@ void MauiKit::registerTypes(const char *uri)
     // @uri org.mauikit.controls
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
     qmlRegisterType(componentUrl(QStringLiteral("ApplicationWindow.qml")), uri, 1, 0, "ApplicationWindow");
+    qmlRegisterType(componentUrl(QStringLiteral("DialogWindow.qml")), uri, 1, 0, "DialogWindow");
     qmlRegisterType(componentUrl(QStringLiteral("Page.qml")), uri, 1, 0, "Page");
     qmlRegisterType(componentUrl(QStringLiteral("PageLayout.qml")), uri, 1, 0, "PageLayout");
     //    qmlRegisterType(componentUrl(QStringLiteral("ShareDialog.qml")), uri, 1, 0, "ShareDialog");

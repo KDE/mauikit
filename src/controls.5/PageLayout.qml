@@ -34,7 +34,7 @@ Maui.Page
     
     property list<QtObject> rightContent 
     
-    property list<QtObject> middleContent
+    // property alias middleContent : control.headBar.middleContent
     
     property bool split : false
     property int splitIn : ToolBar.Header
@@ -43,7 +43,7 @@ Maui.Page
     headBar.leftContent: !control.split && control.leftContent ? control.leftContent : null
     headBar.rightContent: !control.split && control.rightContent ? control.rightContent : null    
     
-    headBar.middleContent: control.middleContent ? control.middleContent : null
+    // headBar.middleContent: control.middleContent ? control.middleContent : null
     
     headerColumn: Loader
     {
