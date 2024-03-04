@@ -10,14 +10,14 @@ Control
     
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
- 
- spacing: Maui.Style.space.small   
- padding: Maui.Style.defaultPadding
-         
+
+    spacing: Maui.Style.space.small
+    padding: Maui.Style.defaultPadding
+
     contentItem: Row
     {
         id: _layout
-        spacing: control.spacing  
+        spacing: control.spacing
         
         ToolSeparator
         {
@@ -43,7 +43,7 @@ Control
             
             hoverEnabled: true
             width: 16
-            height: 16 
+            height: 16
             
             Maui.CSDButton
             {
@@ -57,13 +57,13 @@ Control
             }
             
             contentItem: Maui.Icon
-                {
-                    smooth: true
-                    source: button.source
-                    isMask: false
-                }            
+            {
+                smooth: true
+                source: button.source
+                isMask: false
+            }
             
-            onClicked: buttonClicked(button.type)            
+            onClicked: buttonClicked(button.type)
         }
     }
 }
