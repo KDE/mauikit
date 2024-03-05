@@ -82,13 +82,13 @@ connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](
 
 connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
 {
-    m_isTouch = value;
+    m_isTouch = value || m_formFactor->forceTouchScreen();
     Q_EMIT isTouchChanged();
 });
 
 m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
 m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
-m_isTouch = m_formFactor->hasTouchscreen();
+m_isTouch = m_formFactor->hasTouchscreen() || m_formFactor->forceTouchScreen();
 
     connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win)
     {
