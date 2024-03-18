@@ -43,6 +43,8 @@ Control
     
     property bool autoClose :  Window.window.active
     
+    property Item previousItem : null
+    
     SoundEffect 
     {
         id: playSound
@@ -65,7 +67,15 @@ Control
     {
         if(visible)
         {
+            control.previousItem = Window.window.activeFocusItem
             control.forceActiveFocus()
+        }else
+        {
+            if(control.previousItem)
+            {
+                control.previousItem.forceActiveFocus()
+                control.previousItem = null
+            }
         }
     }
     
@@ -266,13 +276,12 @@ Control
             'title': title,
             'body': body,
             'callback': callback,
-            'buttonText': buttonText           
+            'buttonText': buttonText 
         })
         const object = _toastComponent.createObject(_listView.flickable, properties);        
         _container.insertItem(0, object)
         playSound.play() 
-    }
-    
+    }    
     
     function dismiss()
     {        

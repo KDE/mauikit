@@ -42,6 +42,8 @@ Control
     
     property bool autoClose :  Window.window.active
     
+    property Item previousItem : null
+    
     SoundEffect
     {
         id: playSound
@@ -62,9 +64,17 @@ Control
     
     onVisibleChanged:
     {
-        if(visible)
+         if(visible)
         {
+            control.previousItem = Window.window.activeFocusItem
             control.forceActiveFocus()
+        }else
+        {
+            if(control.previousItem)
+            {
+                control.previousItem.forceActiveFocus()
+                control.previousItem = null
+            }
         }
     }
     
@@ -77,6 +87,7 @@ Control
             if(_container.count === 1)
                 control.dismiss()
         }
+        
         LinearGradient
         {
             anchors.fill: parent

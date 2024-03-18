@@ -27,9 +27,9 @@ import org.mauikit.controls 1.3 as Maui
 
 /**
  * @inherit QtQuick.Controls.Pane
- *  @since org.mauikit.controls 1.0
+ * @since org.mauikit.controls 1.0
  * 
- *  @brief A page with a header and footer, that can be flipped among many other features.
+ * @brief A page with a header and footer, that can be flipped among many other features.
  *  
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-pane.html">This control inherits from QQC2 Pane, to checkout its inherited properties refer to the Qt Docs.</a>
  * 
