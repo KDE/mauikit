@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-16 01:39+0000\n"
+"POT-Creation-Date: 2024-03-19 01:41+0000\n"
 "PO-Revision-Date: 2023-02-22 00:57+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -179,15 +179,15 @@ msgstr ""
 msgid "Share with"
 msgstr ""
 
-#: src/controls.5/private/ToastArea.qml:178
+#: src/controls.5/private/ToastArea.qml:188
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:210
+#: src/controls.6/private/ToastArea.qml:221
 #, kde-format
 msgid "Accept"
 msgstr ""
 
-#: src/controls.5/private/ToastArea.qml:254
-#: src/controls.6/private/ToastArea.qml:284
+#: src/controls.5/private/ToastArea.qml:264
+#: src/controls.6/private/ToastArea.qml:295
 #, kde-format
 msgid "Dismiss All"
 msgstr ""
