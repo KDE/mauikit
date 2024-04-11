@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-19 01:41+0000\n"
-"PO-Revision-Date: 2024-03-17 20:46\n"
+"PO-Revision-Date: 2024-04-10 19:57\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -26,12 +26,12 @@ msgstr "高亮笔"
 #: src/controls.5/Doodle.qml:137 src/controls.6/Doodle.qml:178
 #, kde-format
 msgid "Marker"
-msgstr "标记"
+msgstr "马克笔"
 
 #: src/controls.5/Doodle.qml:159 src/controls.6/Doodle.qml:200
 #, kde-format
 msgid "Eraser"
-msgstr "橡皮"
+msgstr "橡皮擦"
 
 #: src/controls.5/Doodle.qml:174 src/controls.6/Doodle.qml:215
 #, kde-format
@@ -49,79 +49,81 @@ msgstr "不透明度"
 #: src/controls.6/Doodle.qml:246 src/controls.6/FontPicker.qml:140
 #, kde-format
 msgid "Size"
-msgstr "体积"
+msgstr "大小"
 
 #: src/controls.5/FontPicker.qml:56 src/controls.6/FontPicker.qml:97
 #, kde-format
 msgid "Family"
-msgstr ""
+msgstr "字体"
 
 #: src/controls.5/FontPicker.qml:57 src/controls.6/FontPicker.qml:98
 #, kde-format
 msgid "Pick the font family."
-msgstr ""
+msgstr "选择字体。"
 
 #: src/controls.5/FontPicker.qml:80 src/controls.6/FontPicker.qml:120
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "风格"
 
 #: src/controls.5/FontPicker.qml:81 src/controls.6/FontPicker.qml:121
 #, kde-format
 msgid "Font style."
-msgstr ""
+msgstr "字体风格。"
 
 #: src/controls.5/FontPicker.qml:100 src/controls.6/FontPicker.qml:141
 #, kde-format
 msgid "Font size from recommended values."
-msgstr ""
+msgstr "推荐的字体大小。"
 
 #: src/controls.5/FontPicker.qml:118 src/controls.6/FontPicker.qml:160
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr ""
+msgstr "等宽字体"
 
 #: src/controls.5/FontPicker.qml:119 src/controls.6/FontPicker.qml:161
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr ""
+msgstr "仅显示等宽字体。"
 
 #: src/controls.5/FontPicker.qml:130 src/controls.6/FontPicker.qml:172
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "预览"
 
 #: src/controls.5/FontPicker.qml:131 src/controls.6/FontPicker.qml:173
 #, kde-format
 msgid "Test the font."
-msgstr ""
+msgstr "测试字体显示效果。"
 
 #: src/controls.5/FontPicker.qml:139 src/controls.6/FontPicker.qml:180
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
 msgstr ""
+"The Quick Brown Fox Jumps Over The Lazy Dog\n"
+"龙跳天门，虎卧凰阁"
 
 #: src/controls.5/FontPickerDialog.qml:35
 #: src/controls.6/FontPickerDialog.qml:79
 #, kde-format
 msgid "Fonts"
-msgstr ""
+msgstr "字体"
 
 #: src/controls.5/ImageViewer.qml:177 src/controls.6/ImageViewer.qml:204
 #, kde-format
 msgid "Oops!"
-msgstr "哎呀！"
+msgstr "发生问题"
 
 #: src/controls.5/ImageViewer.qml:178 src/controls.6/ImageViewer.qml:205
 #, kde-format
 msgid "The image could not be loaded."
-msgstr "无法加载图像。"
+msgstr "无法加载此图像。"
 
 #: src/controls.5/private/AboutDialog.qml:104
 #: src/controls.6/private/AboutDialog.qml:91
 #, kde-format
 msgid "Version ID copied to clipboard"
-msgstr ""
+msgstr "版本 ID 已复制到剪贴板"
 
 #: src/controls.5/private/AboutDialog.qml:112
 #: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
@@ -146,7 +148,7 @@ msgstr "主页"
 #: src/controls.6/private/AboutDialog.qml:134
 #, kde-format
 msgid "Authors"
-msgstr ""
+msgstr "作者"
 
 #: src/controls.5/private/AboutDialog.qml:190
 #: src/controls.6/private/AboutDialog.qml:178
@@ -183,13 +185,13 @@ msgstr "分享到"
 #: src/controls.6/private/ToastArea.qml:221
 #, kde-format
 msgid "Accept"
-msgstr "同意"
+msgstr "接受"
 
 #: src/controls.5/private/ToastArea.qml:264
 #: src/controls.6/private/ToastArea.qml:295
 #, kde-format
 msgid "Dismiss All"
-msgstr ""
+msgstr "忽略全部"
 
 #: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsPage.qml:42
 #, kde-format
@@ -200,7 +202,7 @@ msgstr "设置"
 #: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
 #, kde-format
 msgid "Close Split"
-msgstr "取消分割"
+msgstr "关闭拆分视图"
 
 #: src/controls.5/TabView.qml:104 src/controls.6/TabView.qml:306
 #, kde-format
@@ -215,7 +217,7 @@ msgstr "关闭"
 #: src/controls.6/FontPickerDialog.qml:96
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
@@ -230,7 +232,7 @@ msgstr "粘贴"
 #: src/style.5/TextField.qml:258 src/style.6/qtquickcontrols/TextField.qml:257
 #, kde-format
 msgid "Select All"
-msgstr "全部选择"
+msgstr "选择全部"
 
 #: src/style.5/TextField.qml:265 src/style.6/qtquickcontrols/TextField.qml:264
 #, kde-format
@@ -240,21 +242,21 @@ msgstr "撤销"
 #: src/style.5/TextField.qml:272 src/style.6/qtquickcontrols/TextField.qml:271
 #, kde-format
 msgid "Redo"
-msgstr "恢复"
+msgstr "重做"
 
 #: src/utils/mauiapp.cpp:44
 #, kde-format
 msgid "Multi-adaptable user interfaces."
-msgstr "多用途的用户接口。"
+msgstr "支持适配多种环境的用户界面。"
 
 #: src/utils/mauiapp.cpp:55
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Guo Yunhe, Si Heng Tang, Tyson Tan"
 
 #: src/utils/mauiapp.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "i@guoyunhe.me, tang142857@kde.org, tds00@qq.com"
