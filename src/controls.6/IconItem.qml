@@ -182,6 +182,8 @@ Item
     Maui.Icon
     {
         id: icon
+        visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
+
         smooth: control.smooth
         anchors.centerIn: parent
         height: valid ? Math.floor(Math.min(parent.height, control.iconSizeHint)) : 0

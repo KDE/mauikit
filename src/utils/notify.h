@@ -22,11 +22,13 @@
 #include <QList>
 #include <QQmlListProperty>
 #include <QUrl>
+#include <QQmlEngine>
 
 class Notify;
 class NotifyAction : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_DISABLE_COPY(NotifyAction)
     
     Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
@@ -51,6 +53,7 @@ class KNotification;
 class Notify : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_DISABLE_COPY(Notify)
     
     Q_PROPERTY(QString componentName READ componentName WRITE setComponentName NOTIFY componentNameChanged)
