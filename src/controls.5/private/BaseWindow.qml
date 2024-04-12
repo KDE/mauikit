@@ -189,7 +189,7 @@ ApplicationWindow
                 {
                     grabPermissions: TapHandler.TakeOverForbidden
                     target: null
-                    onActiveChanged: (active) => 
+                    onActiveChanged: 
                     {
                         if (active)
                         {

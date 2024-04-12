@@ -189,7 +189,7 @@ ApplicationWindow
                 {
                     grabPermissions: TapHandler.TakeOverForbidden
                     target: null
-                    onActiveChanged: (active) => 
+                    onActiveChanged: 
                     {
                         if (active)
                         {
@@ -223,9 +223,12 @@ ApplicationWindow
                 {
                     grabPermissions: TapHandler.TakeOverForbidden
                     target: null
-                    onActiveChanged: if (active)
+                    onActiveChanged: 
+                    {
+                     if (active)
                     {
                         root.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
+                    }   
                     }
                 }
             }

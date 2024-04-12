@@ -56,11 +56,12 @@ QQC.TabBar
 {
     id: control
     
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     /**
      * @brief An alias to manually add elements to the container directly. This is the middle section of the control. 
      * @property list<QtObject> TabBar::content
      */    
-    property alias content : _layout.data
+    property alias content : _rightLayout.data
     
     /**
      * @brief An alias to add elements to the left area section.
@@ -72,7 +73,7 @@ QQC.TabBar
      * @brief An alias to add elements to the right area section.
      * @property list<QtObject> TabBar::rightContent
      */   
-    property alias rightContent: _layout.data
+    property alias rightContent: _rightLayout.data
     
     /**
      * @brief Whether the control will react to touch events to flick the tabs.
@@ -259,6 +260,12 @@ QQC.TabBar
                     onClicked: control.newTabClicked()
                     flat: true
                 }
+            }
+            
+              Row
+            {
+                id: _rightLayout
+                spacing: control.spacing
             }
             
             Loader

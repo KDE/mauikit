@@ -185,7 +185,9 @@ T.Menu
     {
         color: control.Maui.Theme.backgroundColor
         radius: Maui.Style.radiusV
-
+        readonly property color borderColor: Maui.Theme.textColor
+        border.color: !Maui.Handy.isMobile ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
+        
         Behavior on color
         {
             Maui.ColorTransition{}

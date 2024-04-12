@@ -133,6 +133,7 @@ Loader
      * @property list<QtObject> SettingsDialog::content
      */
     default property list<QtObject> content
+    Maui.Controls.title: i18n("Settings")
     
     Component
     {
@@ -175,6 +176,7 @@ Loader
                 {
                     id:_content
                     content: control.content
+                    title: control.Maui.Controls.title
                 }
             }
             
@@ -228,6 +230,7 @@ Loader
                 {
                     id: _content
                     content: control.content
+                    title: control.Maui.Controls.title
                 }
             }
             

@@ -19,7 +19,7 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
 if (QT_MAJOR_VERSION STREQUAL "6")
-    add_library(MauiKit${MAUI_MAJOR_VERSION})
+    add_library(MauiKit${MAUI_MAJOR_VERSION} SHARED)
 endif()
 
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
@@ -455,7 +455,7 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
 ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     DESTINATION ${KDE_INSTALL_QMLDIR})
 
-ecm_generate_qmltypes(org.mauikit.controls 1.3 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
+# ecm_generate_qmltypes(org.mauikit.controls 1.3 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 
 generate_export_header(MauiKit${MAUI_MAJOR_VERSION} BASE_NAME MauiKit)
 install(TARGETS MauiKit${MAUI_MAJOR_VERSION} EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

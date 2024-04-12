@@ -13,7 +13,7 @@
 class Controls : public QObject
 {
     Q_OBJECT
-     QML_ELEMENT
+    QML_ELEMENT
     QML_ATTACHED(Controls)
     QML_UNCREATABLE("Cannot be created Controls")
 
