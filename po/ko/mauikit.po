@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-19 01:41+0000\n"
+"POT-Creation-Date: 2024-04-13 01:43+0000\n"
 "PO-Revision-Date: 2024-02-10 23:59+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -191,7 +191,8 @@ msgstr "수락"
 msgid "Dismiss All"
 msgstr "모두 알림 끄기"
 
-#: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsPage.qml:42
+#: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsDialog.qml:136
+#: src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "설정"
