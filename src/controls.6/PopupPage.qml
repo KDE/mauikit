@@ -22,7 +22,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 import Qt5Compat.GraphicalEffects
 
@@ -152,7 +152,7 @@ Popup
     default property alias scrollable : _scrollView.content
         
         /**
-         * @brief To skip the scrollable behavior there is a stacked component to which items can be added, this is also controlled by a ColumnLayout.
+         * @brief To skip the default scrollable-layout behavior, there is a `stack` overlay component to which items can be added, this is also controlled by a ColumnLayout, but it is not scrollable.
          * @code
          * Maui.PopupPage
          * {

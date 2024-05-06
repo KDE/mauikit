@@ -24,21 +24,20 @@ import QtQuick.Layouts 1.3
 import org.mauikit.controls 1.2 as Maui
 import org.kde.purpose 1.0 as Purpose
 
-/*!
- *  \since org.mauikit.controls.labs 1.0
- *  \inqmlmodule org.mauikit.controls.labs
+/**
+ * @brief The Linux implementation for the ShareDialog
  */
-Maui.Dialog
+Maui.PopupPage
 {
     id: control
     
     /**
-     * 
+     * @brief The list of local file URLs to be shared to the selected services
      */
     property var urls : []
     
     /**
-     * 
+     * @brief The mime type of the set of URLs to perform the correct service lookup
      */
     property string mimeType
     
@@ -46,67 +45,65 @@ Maui.Dialog
     
     maxHeight: 400
     maxWidth: 350
-    page.margins: 0
     
-    verticalAlignment: Qt.AlignBottom
+    title: i18n("Share")
     
-    defaultButtons: false
-        persistent: false
-        rejectButton.visible: false
-        //     acceptButton.text: i18nd("mauikit", "Open with")
-        onAccepted:  control.openWith()
-        
-        page.title: i18nd("mauikit", "Share with")
-        headBar.visible: true
-        
-        headBar.leftContent: ToolButton
+    headBar.leftContent: ToolButton
+    {
+        visible: _purpose.depth>1;
+        icon.name: "go-previous"
+        onClicked:
         {
-            visible: _purpose.depth>1;
-            icon.name: "go-previous"
-            onClicked: _purpose.pop()
+             _purpose.reset()
+             _purpose.error = false
+        }
+    }
+    
+    stack: Purpose.AlternativesView
+    {
+        id: _purpose
+        property bool error : false
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.margins: Maui.Style.space.medium
+        pluginType: 'Export'
+        clip: true
+        spacing: Maui.Style.defaultSpacing
+        
+        inputData :
+        {
+            'urls': control.urls,
+            'mimeType':control.mimeType
         }
         
-        //Maui.OpenWithDialog
-        //{
-        //id: _openWithDialog
-        //urls: control.urls
-        //}
-        
-        stack: Purpose.AlternativesView
+        delegate: Maui.ListBrowserDelegate
         {
-            id: _purpose
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.margins: Maui.Style.space.medium
-            pluginType: 'Export'
-            clip: true
-            spacing: Maui.Style.defaultSpacing
+            width: ListView.view.width
             
-            inputData :
+            label1.text: model.display
+            iconSource: model.iconName
+            iconSizeHint: Maui.Style.iconSizes.big
+            onClicked: _purpose.createJob(index)
+        }
+        
+        onFinished: (output, error, message) =>
+        {
+            if(error!=0)
             {
-                'urls': [control.urls[0]],
-                'mimeType':control.mimeType
+                _purpose.error = true
+                _holder.body = message
+                return
             }
             
-            delegate: Maui.ListBrowserDelegate
-            {
-                width: ListView.view.width
-//                height: Maui.Style.rowHeight * 2
-                
-                label1.text: model.display
-                iconSource: model.iconName
-                iconSizeHint: Maui.Style.iconSizes.big
-                onClicked: _purpose.createJob(index)
-            }
+            _purpose.error = false
         }
         
-        /**
-         * 
-         */
-        function openWith()
+        Maui.Holder
         {
-            _openWithDialog.open()
-            control.close()
+            id: _holder
+         anchors.fill: parent
+         visible: _purpose.error
         }
+    }
 }
 

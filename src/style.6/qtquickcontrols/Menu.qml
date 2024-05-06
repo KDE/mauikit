@@ -129,11 +129,12 @@ T.Menu
     
     contentItem: ScrollView
     {
+        id: _scrollView
         focus: true
         contentWidth: availableWidth
         padding: Maui.Style.contentMargins
 
-        implicitHeight: _listView.contentHeight + topPadding+bottomPadding
+        implicitHeight: _listView.contentHeight + topPadding + bottomPadding
 
         ListView
         {
@@ -165,7 +166,7 @@ T.Menu
                 width: parent.width
                 height: visible ? implicitContentHeight + topPadding + bottomPadding : 0
                 padding: control.padding
-                bottomPadding: padding * 2
+                bottomPadding: _scrollView.padding 
                 topPadding: 0
 
                 label1.text: control.title

@@ -84,6 +84,7 @@ SplitView
         
         control.addItem(object)
         control.currentIndex = Math.max(control.count -1, 0)
+        
         object.forceActiveFocus()
         
         return object

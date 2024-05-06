@@ -5,9 +5,9 @@ import org.mauikit.filebrowsing 1.0 as FB
 
 import "."
 
-/*!
-  \since org.mauikit.controls.labs 1.0
-  \inqmlmodule org.mauikit.controls.labs
+/**
+  * @since org.mauikit.controls 1.0
+  * @brief A dialog listing the available services for sharing the given set of local files.
 */
 Item
 {
@@ -26,6 +26,7 @@ Item
     Loader
     {
         id: _shareDialogLoader
+        // asynchronous: true
         active: !Maui.Handy.isAndroid
         source: "ShareDialogLinux.qml"
     }

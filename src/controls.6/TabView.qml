@@ -609,7 +609,7 @@ Pane
                                 {
                                     DragHandler
                                     {
-                                        acceptedDevices: PointerDevice.GenericPointer
+                                        // acceptedDevices: PointerDevice.GenericPointer
                                         grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                                         onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
                                     }
