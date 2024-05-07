@@ -611,7 +611,7 @@ Pane
             {
                 //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
                 sourceItem: _content
-                sourceRect: _footBar.background ? (control.floatingFooter ? Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : Qt.rect()
+                sourceRect: _footBar.background ? (control.floatingFooter ? Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : Qt.rect(0,0,0,0)
             }
             
             Behavior on height
@@ -719,13 +719,13 @@ Pane
                 anchors.rightMargin: control.rightMargin                
             }
             
-                Loader
-                {
-                  active: control.Maui.Controls.showCSD === true && control.altHeader  
-                    asynchronous: true
-                                        width: parent.width
-
-                  sourceComponent: Maui.ToolBar
+            Loader
+            {
+                active: control.Maui.Controls.showCSD === true && control.altHeader  
+                asynchronous: true
+                width: parent.width
+                
+                sourceComponent: Maui.ToolBar
                 {
                     anchors.top: parent.top
                     Maui.Controls.showCSD: true
@@ -737,13 +737,13 @@ Pane
                         scale: -1 //for mirroring
                         gradient: Gradient {
                             orientation: Gradient.Horizontal
-        GradientStop { position: 0.0; color: Maui.Theme.backgroundColor }
-        GradientStop { position: 0.33; color: "transparent" }
-        GradientStop { position: 1.0; color: "transparent" }
-    }
+                            GradientStop { position: 0.0; color: Maui.Theme.backgroundColor }
+                            GradientStop { position: 0.33; color: "transparent" }
+                            GradientStop { position: 1.0; color: "transparent" }
+                        }
                     }
                 }
-                }
+            }
             
             Column
             {

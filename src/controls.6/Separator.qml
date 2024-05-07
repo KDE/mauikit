@@ -6,19 +6,17 @@
  */
 
 import QtQuick
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Rectangle
  * @brief A visual separator.
  *
  * Useful as a visual hint for diciding grouped elements.
- *
- * @inherit QtQuick.Rectangle
  */
 Rectangle
 {
-    id: root
+    id: control
     implicitHeight: 1
     implicitWidth: 1
     Accessible.role: Accessible.Separator

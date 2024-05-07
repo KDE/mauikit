@@ -499,7 +499,7 @@ text: "Hello"
                     
                     Loader
                     {
-                        active: control.Maui.Controls.showCSD === true
+                        active: control.Maui.Controls.showCSD === true && control.position === ToolBar.Header
                         visible: active
                         
                         asynchronous: true

@@ -441,28 +441,113 @@ Item
         contentHeight: controlView.contentHeight
         contentWidth: availableWidth
         
-        // background: Rectangle
-        // {
-        //     color: "magenta"
-        // 
-        //     MouseArea
-        //     {
-        //         anchors.fill: parent
-        //         onClicked: console.log("clickcycky")
-        //     }
-        // }
-        
-        Item
+        GridView
         {
-            // color: "orange"
-            height: controlView.contentHeight
-            width: parent.width
+            id: controlView
+            focus: true
+            
+            /**
+             * itemSize : int
+             */
+            property int itemSize: 0
+            
+            /**
+             * itemWidth : int
+             */
+            property int itemWidth : itemSize
+            
+            /**
+             * itemHeight : int
+             */
+            property int itemHeight : itemSize
+            
+            
+            property bool firstSelectionPress
+            property var selectedIndexes : []
+            
+            //nasty trick
+            property int size_
+            Component.onCompleted:
+            {
+                controlView.size_ = control.itemWidth
+            }
+            
+            flow: GridView.FlowLeftToRight
+            clip: control.clip
+            
+            displayMarginBeginning: Maui.Style.effectsEnabled ? Maui.Style.toolBarHeight * 4 : 0
+            displayMarginEnd: displayMarginBeginning
+            cacheBuffer: control.itemHeight * 4
+            
+            cellWidth: control.itemWidth
+            cellHeight: control.itemHeight
+            
+            boundsBehavior: Flickable.StopAtBounds
+            
+            flickableDirection: Flickable.AutoFlickDirection
+            snapMode: GridView.NoSnap
+            highlightMoveDuration: 0
+            interactive: false
+            onWidthChanged: if(adaptContent) control.adaptGrid()
+            onCountChanged: if(adaptContent) control.adaptGrid()
+            
+            keyNavigationEnabled : true
+            keyNavigationWraps : true
+            Keys.onPressed: (event) =>
+            {
+                control.keyPress(event)
+            }
+            
+            Maui.Holder
+            {
+                id: _holder
+                visible: false
+                anchors.fill : parent
+                anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
+                anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
+            }
+            
+            onContentXChanged:
+            {
+                updateContentDelay.restart()
+            }
+            
+            onContentYChanged:
+            {
+                updateContentDelay.restart()
+            }
+            
+            Timer
+            {
+                id: updateContentDelay
+                interval: 500
+                repeat: false
+            }
+            
+            Loader
+            {
+                asynchronous: true
+                active: control.pinchEnabled
+                
+                anchors.fill: parent
+                z: -1
+                
+                sourceComponent: PinchArea
+                {
+                    onPinchFinished: (pinch) =>
+                    {
+                        resizeContent(pinch.scale)
+                    }
+                }
+            }
             
             Loader
             {
                 asynchronous: true
                 //                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
                 anchors.fill: parent
+                z: parent.z-1
+                clip: false
                 
                 sourceComponent: MouseArea
                 {
@@ -470,7 +555,7 @@ Item
                     
                     propagateComposedEvents: true
                     preventStealing: true
-                    acceptedButtons:  Qt.RightButton | Qt.LeftButton
+                    acceptedButtons: Qt.RightButton | Qt.LeftButton
                     
                     onClicked: (mouse) =>
                     {
@@ -599,137 +684,37 @@ Item
                 }
             }
             
-            GridView
+            Maui.Rectangle
             {
-                id: controlView
-                focus: true
-                anchors.fill: parent
+                id: selectLayer
+                property int newX: 0
+                property int newY: 0
+                height: 0
+                width: 0
+                x: 0
+                y: 0
+                visible: false
+                color: Qt.rgba(control.Maui.Theme.highlightColor.r,control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.2)
+                opacity: 0.7
                 
-                /**
-                 * itemSize : int
-                 */
-                property int itemSize: 0
+                borderColor: control.Maui.Theme.highlightColor
+                borderWidth: 2
+                solidBorder: false
                 
-                /**
-                 * itemWidth : int
-                 */
-                property int itemWidth : itemSize
-                
-                /**
-                 * itemHeight : int
-                 */
-                property int itemHeight : itemSize
-                
-                
-                property bool firstSelectionPress
-                property var selectedIndexes : []
-                
-                //nasty trick
-                property int size_
-                Component.onCompleted:
+                function reset()
                 {
-                    controlView.size_ = control.itemWidth
-                }
-                
-                flow: GridView.FlowLeftToRight
-                clip: control.clip
-                
-                displayMarginBeginning: Maui.Style.effectsEnabled ? Maui.Style.toolBarHeight * 4 : 0
-                displayMarginEnd: displayMarginBeginning
-                cacheBuffer: control.itemHeight * 4
-                
-                cellWidth: control.itemWidth
-                cellHeight: control.itemHeight
-                
-                boundsBehavior: Flickable.StopAtBounds
-                
-                flickableDirection: Flickable.AutoFlickDirection
-                snapMode: GridView.NoSnap
-                highlightMoveDuration: 0
-                interactive: false
-                onWidthChanged: if(adaptContent) control.adaptGrid()
-                onCountChanged: if(adaptContent) control.adaptGrid()
-                
-                keyNavigationEnabled : true
-                keyNavigationWraps : true
-                Keys.onPressed: (event) =>
-                {
-                    control.keyPress(event)
-                }
-                
-                Maui.Holder
-                {
-                    id: _holder
-                    visible: false
-                    anchors.fill : parent
-                    anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
-                    anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
-                }
-                
-                onContentXChanged:
-                {
-                    updateContentDelay.restart()
-                }
-                
-                onContentYChanged:
-                {
-                    updateContentDelay.restart()
-                }
-                
-                Timer
-                {
-                    id: updateContentDelay
-                    interval: 500
-                    repeat: false
-                }
-                
-                Loader
-                {
-                    asynchronous: true
-                    active: control.pinchEnabled
-                    
-                    anchors.fill: parent
-                    z: -1
-                    
-                    sourceComponent: PinchArea
-                    {
-                        onPinchFinished: (pinch) =>
-                        {
-                            resizeContent(pinch.scale)
-                        }
-                    }
-                }
-                
-                Maui.Rectangle
-                {
-                    id: selectLayer
-                    property int newX: 0
-                    property int newY: 0
-                    height: 0
-                    width: 0
-                    x: 0
-                    y: 0
-                    visible: false
-                    color: Qt.rgba(control.Maui.Theme.highlightColor.r,control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.2)
-                    opacity: 0.7
-                    
-                    borderColor: control.Maui.Theme.highlightColor
-                    borderWidth: 2
-                    solidBorder: false
-                    
-                    function reset()
-                    {
-                        selectLayer.x = 0;
-                        selectLayer.y = 0;
-                        selectLayer.newX = 0;
-                        selectLayer.newY = 0;
-                        selectLayer.visible = false;
-                        selectLayer.width = 0;
-                        selectLayer.height = 0;
-                    }
+                    selectLayer.x = 0;
+                    selectLayer.y = 0;
+                    selectLayer.newX = 0;
+                    selectLayer.newY = 0;
+                    selectLayer.visible = false;
+                    selectLayer.width = 0;
+                    selectLayer.height = 0;
                 }
             }
         }
+        
+        
     }
     
     /**

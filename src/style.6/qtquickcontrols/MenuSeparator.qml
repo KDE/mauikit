@@ -34,10 +34,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Templates 2.12 as T
+import QtQuick 
+import QtQuick.Templates as T
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 T.MenuSeparator
 {

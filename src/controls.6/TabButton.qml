@@ -68,7 +68,7 @@ QQC.TabButton
         propagateComposedEvents: true
         preventStealing: false
         
-        onClicked:
+        onClicked: (mouse) =>
         {
             if(mouse.button === Qt.RightButton)
             {
