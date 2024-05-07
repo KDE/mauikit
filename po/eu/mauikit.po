@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-13 01:43+0000\n"
+"POT-Creation-Date: 2024-05-07 01:43+0000\n"
 "PO-Revision-Date: 2024-02-13 00:56+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -178,7 +178,6 @@ msgid "Components"
 msgstr "Osagaiak"
 
 #: src/controls.5/private/ShareDialogLinux.qml:53
-#: src/controls.6/private/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
 msgstr "Partekatu honekin"
@@ -222,6 +221,12 @@ msgstr "Itxi"
 #, kde-format
 msgid "Cancel"
 msgstr "Utzi"
+
+#: src/controls.6/private/ShareDialogLinux.qml:49
+#, fuzzy, kde-format
+#| msgid "Share with"
+msgid "Share"
+msgstr "Partekatu honekin"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format

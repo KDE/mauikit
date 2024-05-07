@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-13 01:43+0000\n"
+"POT-Creation-Date: 2024-05-07 01:43+0000\n"
 "PO-Revision-Date: 2024-02-10 23:59+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -173,7 +173,6 @@ msgid "Components"
 msgstr "구성 요소"
 
 #: src/controls.5/private/ShareDialogLinux.qml:53
-#: src/controls.6/private/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
 msgstr "다음으로 공유"
@@ -217,6 +216,12 @@ msgstr "닫기"
 #, kde-format
 msgid "Cancel"
 msgstr "취소"
+
+#: src/controls.6/private/ShareDialogLinux.qml:49
+#, fuzzy, kde-format
+#| msgid "Share with"
+msgid "Share"
+msgstr "다음으로 공유"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format

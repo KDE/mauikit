@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-13 01:43+0000\n"
+"POT-Creation-Date: 2024-05-07 01:43+0000\n"
 "PO-Revision-Date: 2024-02-07 09:27+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -174,7 +174,6 @@ msgid "Components"
 msgstr "Компоненти"
 
 #: src/controls.5/private/ShareDialogLinux.qml:53
-#: src/controls.6/private/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
 msgstr "Поділитися"
@@ -218,6 +217,12 @@ msgstr "Закрити"
 #, kde-format
 msgid "Cancel"
 msgstr "Скасувати"
+
+#: src/controls.6/private/ShareDialogLinux.qml:49
+#, fuzzy, kde-format
+#| msgid "Share with"
+msgid "Share"
+msgstr "Поділитися"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format

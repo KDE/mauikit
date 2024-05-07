@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-13 01:43+0000\n"
+"POT-Creation-Date: 2024-05-07 01:43+0000\n"
 "PO-Revision-Date: 2022-11-14 22:56-0800\n"
 "Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -170,7 +170,6 @@ msgid "Components"
 msgstr ""
 
 #: src/controls.5/private/ShareDialogLinux.qml:53
-#: src/controls.6/private/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
 msgstr ""
@@ -213,6 +212,11 @@ msgstr ""
 #: src/controls.6/FontPickerDialog.qml:96
 #, kde-format
 msgid "Cancel"
+msgstr ""
+
+#: src/controls.6/private/ShareDialogLinux.qml:49
+#, kde-format
+msgid "Share"
 msgstr ""
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240

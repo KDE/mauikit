@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-13 01:43+0000\n"
+"POT-Creation-Date: 2024-05-07 01:43+0000\n"
 "PO-Revision-Date: 2023-03-12 10:37+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -171,7 +171,6 @@ msgid "Components"
 msgstr "Komponenty"
 
 #: src/controls.5/private/ShareDialogLinux.qml:53
-#: src/controls.6/private/ShareDialogLinux.qml:59
 #, kde-format
 msgid "Share with"
 msgstr "Zdieľať s"
@@ -215,6 +214,12 @@ msgstr "Zavrieť"
 #, kde-format
 msgid "Cancel"
 msgstr "Zrušiť"
+
+#: src/controls.6/private/ShareDialogLinux.qml:49
+#, fuzzy, kde-format
+#| msgid "Share with"
+msgid "Share"
+msgstr "Zdieľať s"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
