@@ -220,10 +220,9 @@ msgid "Cancel"
 msgstr "取消"
 
 #: src/controls.6/private/ShareDialogLinux.qml:49
-#, fuzzy, kde-format
-#| msgid "Share with"
+#, kde-format
 msgid "Share"
-msgstr "分享到"
+msgstr ""
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-07 01:43+0000\n"
-"PO-Revision-Date: 2024-02-09 01:48+0100\n"
+"PO-Revision-Date: 2024-05-07 13:12+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
@@ -218,10 +218,9 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #: src/controls.6/private/ShareDialogLinux.qml:49
-#, fuzzy, kde-format
-#| msgid "Share with"
+#, kde-format
 msgid "Share"
-msgstr "Condividi con"
+msgstr "Condividi"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
