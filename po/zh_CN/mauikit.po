@@ -222,7 +222,7 @@ msgstr "取消"
 #: src/controls.6/private/ShareDialogLinux.qml:49
 #, kde-format
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
