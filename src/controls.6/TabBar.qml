@@ -172,8 +172,6 @@ QQC.TabBar
             anchors.fill: parent
             DragHandler
             {
-                // enabled: !control.interactive
-                //                acceptedDevices: PointerDevice.Mouse
                 grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                 onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
             }
@@ -237,6 +235,11 @@ QQC.TabBar
                         control.newTabFocused(newIndex)
                     }
                     
+                    moveDisplaced: Transition 
+                    {
+                        NumberAnimation { properties: "x"; duration: Maui.Style.shortDuration }
+                    }
+                    
                     Behavior on opacity
                     {
                         NumberAnimation
@@ -262,7 +265,7 @@ QQC.TabBar
                 }
             }
             
-              Row
+            Row
             {
                 id: _rightLayout
                 spacing: control.spacing
@@ -281,10 +284,15 @@ QQC.TabBar
     }
     
     /**
-     * @brief Positions the TabButton at the given index to be centered and visible.
+     * @brief Positions the TabButton at the given index to be centered and visible in the viewport.
      */  
     function positionViewAtIndex(index)
     {
         _content.positionViewAtIndex(index, ListView.SnapPosition)
+    }
+    
+    function itemAt(x, y)
+    {
+        return _content.itemAt(x,y)
     }
 }

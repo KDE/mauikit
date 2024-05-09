@@ -446,7 +446,9 @@ Pane
                         
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        Maui.Controls.showCSD : control.Maui.Controls.showCSD === true
+                        
+                        Maui.Controls.showCSD : control.Maui.Controls.showCSD === true && position === TabBar.Header
+                        
                         visible: _listView.count > 1
                         
                         interactive: control.interactive
@@ -468,24 +470,19 @@ Pane
                             model: control.count
                             delegate: control.tabViewButton
                         }
-                        
-                        // rightContent: Button
-                        // {
-                        //     visible: control.mobile && control.count > 1
-                        //     text: control.count
-                        //     onClicked: openOverview()
-                        // }
-                        
+                                                
                         Keys.onPressed: (event) =>
                         {
                             if(event.key == Qt.Key_Return)
                             {
                                 _listView.setCurrentIndex(currentIndex)
+                                event.accepted = true
                             }
                             
                             if(event.key == Qt.Key_Down)
                             {
                                 _listView.currentItem.forceActiveFocus()
+                                 event.accepted = true
                             }
                         }
                         

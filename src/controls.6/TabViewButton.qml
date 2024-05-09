@@ -27,7 +27,7 @@ Maui.TabButton
     readonly property int mindex : control.TabBar.index
     
     /**
-     * @brief The TabView to which this tab button belongs.
+     * @brief The TabView to which this tab button belongs to.
      * By default this is set to its parent.
      * @warning When creating a custom tab button for the TabView, you might need to bind this to the TabView ID.
      */
@@ -42,7 +42,7 @@ Maui.TabButton
     
     /**
      * @brief The color to be used in a bottom strip.
-     * By default this checks for the TabViewInfo.tabColor attached property, if it has not been set, it fallbacks to being transparent.
+     * By default this checks for the `TabViewInfo.tabColor` attached property, if it has not been set, it fallbacks to being transparent.
      */
     property color color : tabInfo.tabColor ? tabInfo.tabColor : "transparent"
     
@@ -58,7 +58,7 @@ Maui.TabButton
     ToolTip.visible: control.hovered && !Maui.Handy.isMobile && ToolTip.text.length
     ToolTip.text: tabInfo.tabToolTipText
     
-    Drag.active: dragArea.active
+    Drag.active: dragArea.drag.active
     Drag.source: control
     Drag.hotSpot.x: width / 2
     Drag.hotSpot.y: height / 2
@@ -75,25 +75,36 @@ Maui.TabButton
         anchors.horizontalCenter: parent.horizontalCenter
     }
     
-    DragHandler
+    MouseArea
     {
         id: dragArea
+        anchors.fill: parent
         enabled: !control.mobile && control.tabView.count > 1
-        acceptedDevices: PointerDevice.Mouse
-        target: null
-        xAxis.enabled: true
-        yAxis.enabled: false
-        cursorShape: Qt.OpenHandCursor
+        propagateComposedEvents: true
         
-        onActiveChanged:
+        cursorShape: drag.active ? Qt.OpenHandCursor : undefined
+        
+        drag.filterChildren: true
+        drag.target: parent
+        drag.axis: Drag.XAxis
+        
+        onClicked: (mouse) =>
         {
-            if (active)
+            if(mouse.button === Qt.RightButton)
             {
-                control.grabToImage(function(result)
-                {
-                    control.Drag.imageSource = result.url;
-                })
+                control.rightClicked(mouse)
+                return
             }
+            control.clicked()
+            mouse.accepted = false
+        }
+        
+        onPositionChanged:
+        {            
+            control.grabToImage(function(result)
+            {
+                control.Drag.imageSource = result.url;
+            })            
         }
     }
     
@@ -114,21 +125,24 @@ Maui.TabButton
     {
         id: _dropArea
         anchors.fill: parent
-        onDropped:
+        onDropped: (drop) =>
         {
-            const from = drop.source.mindex
-            const to = control.mindex
-            
-            if(to === from)
-            {
+            if(!drop.source)
                 return
-            }
-            
-            console.log("Move ", drop.source.mindex, control.mindex)
-            control.tabView.moveTab(from , to)
+                
+                const from = drop.source.mindex
+                const to = control.mindex
+                
+                if(to === from)
+                {
+                    return
+                }
+                
+                console.log("Move ", drop.source.mindex, control.mindex)
+                control.tabView.moveTab(from , to)
         }
         
-        onEntered:
+        onEntered: (drag) =>
         {
             if(drag.source &&  drag.source.mindex >= 0)
             {

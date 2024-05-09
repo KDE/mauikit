@@ -6,63 +6,69 @@ import QtQuick.Layouts
 import org.mauikit.controls 1.3 as Maui
 
 /**
- * @inherit QtQuick.Controls.TabButton
- * @brief A expanded implementation of the QQC2 TabButton with a predefined horizontal layout.
- * 
- * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-tabbutton.html">This control inherits from QQC2 TabButton, to checkout its inherited properties refer to the Qt Docs.</a> 
- * 
- * By default the layout of this control is divided into three sections.
- * Extra items can be appended to the left and right side areas, while the center area is reserved for the title text.
- * @see leftContent
- * @see rightContent 
- */
+    * @inherit QtQuick.Controls.TabButton
+    * @brief A expanded implementation of the QQC2 TabButton with a predefined horizontal layout.
+    * 
+    * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-tabbutton.html">This control inherits from QQC2 TabButton, to checkout its inherited properties refer to the Qt Docs.</a> 
+    * 
+    * By default the layout of this control is divided into three sections.
+    * Extra items can be appended to the left and right side areas, while the center area is reserved for the title text.
+    * @see leftContent
+    * @see rightContent 
+    */
 QQC.TabButton
 {
     id: control
-
-    /**
-     * @brief An alias exposed to append more elements into the main container of this control. The container is hanlded by a RowLayout, so any children added using this property needs to be postioned using the Layout attached properties.
-     * @property list<QtObject> TabButton::content
-     */
-    property alias content: _content.data
     
     /**
-     * @brief Use this to append items to the left area of this control.
-     * @property list<QtObject> TabButton::leftContent
-     */
+        * @brief An alias exposed to append more elements into the main container of this control. 
+        * @property list<QtObject> TabButton::content
+        */
+    default property alias content: _content.data
+    
+    /**
+        * @brief Use this to append items to the left area of this control.
+        * @property list<QtObject> TabButton::leftContent
+        */
     property alias leftContent: _leftContent.data
     
     /**
-     * @brief Use this to append items to the right area of this control.
-     * @property list<QtObject> TabButton::rightContent
-     */
+        * @brief Use this to append items to the right area of this control.
+        * @property list<QtObject> TabButton::rightContent
+        */
     property alias rightContent: _rightContent.data
     
     /**
-     * @brief Whether a close button should be shown in the far left area.
-     * If it is visible and pressed, a signal is emitted.
-     * @see closeClicked
-     * By default this is set to `true`.
-     */
+        * @brief Use this to add items between the background and the control contents.
+        * @property list<QtObject> TabButton::underlayContent
+        */
+    property alias underlayContent: _underlay.data
+    
+    /**
+        * @brief Whether a close button should be shown in the far left area.
+        * If it is visible and pressed, a signal is emitted.
+        * @see closeClicked
+        * By default this is set to `true`.
+        */
     property bool closeButtonVisible: true
     
     /**
-     * @brief Emitted when the close button is pressed.
-     * @see closeButtonVisible
-     */
+        * @brief Emitted when the close button is pressed.
+        * @see closeButtonVisible
+        */
     signal closeClicked()
     
     /**
-     * @brief Emitted when the area of the control has been right clicked.
-     * This can be consumed in order to open a contextual menu, for example.
-     * @param mouse The object with information of the event.
-     */
+        * @brief Emitted when the area of the control has been right clicked.
+        * This can be consumed in order to open a contextual menu, for example.
+        * @param mouse The object with information of the event.
+        */
     signal rightClicked(var mouse)
     
     contentItem: MouseArea
     {
-        implicitWidth: _content.implicitWidth
-        implicitHeight: _content.implicitHeight
+        implicitWidth: _layout.implicitWidth
+        implicitHeight: _layout.implicitHeight
         
         acceptedButtons: Qt.RightButton
         propagateComposedEvents: true
@@ -78,9 +84,15 @@ QQC.TabButton
             mouse.accepted = false
         }
         
+        Item
+        {
+            id: _underlay
+            anchors.fill: parent
+        }
+        
         RowLayout
         {
-            id: _content
+            id: _layout
             anchors.fill: parent
             spacing: control.spacing
             
@@ -89,10 +101,12 @@ QQC.TabButton
                 id: _leftContent
             }
             
+            
             Maui.IconLabel
             {
+                id: _content
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.fillHeight: true         
                 opacity: control.checked || control.hovered ? 1 : 0.7
                 
                 text: control.text
@@ -101,7 +115,7 @@ QQC.TabButton
                 alignment: Qt.AlignHCenter
                 display: QQC.ToolButton.TextBesideIcon
                 font: control.font
-            }
+            }                    
             
             Row
             {
