@@ -99,8 +99,7 @@ QQC.TabButton
             Row
             {
                 id: _leftContent
-            }
-            
+            }            
             
             Maui.IconLabel
             {

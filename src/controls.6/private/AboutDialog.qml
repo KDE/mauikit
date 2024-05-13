@@ -105,9 +105,12 @@ Maui.PopupPage
             id: _links
             spacing: Maui.Style.defaultSpacing
             Layout.fillWidth: true
-
+    
             Button
             {
+                Maui.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Complementary
+    
                 width: parent.width
                 text: i18nd("mauikit", "Reports")
                 onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
@@ -115,6 +118,9 @@ Maui.PopupPage
 
             Button
             {
+                Maui.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Complementary
+    
                 width: parent.width
                 text: i18nd("mauikit", "Home Page")
                 onClicked: Qt.openUrlExternally(Maui.App.about.homepage)

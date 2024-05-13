@@ -174,6 +174,9 @@ Item
 {
     id: control
     
+    Maui.Theme.inherit: false
+    Maui.Theme.colorSet: Maui.Theme.Complementary
+    
     implicitHeight: _layout.implicitHeight + Maui.Style.space.big
     implicitWidth: _layout.implicitWidth
     
@@ -324,7 +327,7 @@ Item
     signal uriAdded(string uri)
     
     /**
-     *@brief Emitted when an item has been removed from the selection. This signal only sends the URI of the item.
+     * @brief Emitted when an item has been removed from the selection. This signal only sends the URI of the item.
      * @param uri the URI identifier
      */
     signal uriRemoved(string uri)
@@ -335,7 +338,7 @@ Item
      */
     signal clicked(var mouse)
     
-     /**
+    /**
      * @brief Emitted when an empty area of the selection bar has been right clicked.
      * @param mouse the object with information of the event
      */
@@ -346,7 +349,7 @@ Item
      * @param uris the list of urls
      */
     signal urisDropped(var uris)
-  
+    
     QtObject
     {
         id: _private
@@ -399,8 +402,7 @@ Item
             from: _layout.height
             to: Maui.Style.space.big/2
             duration: Maui.Style.units.longDuration*1
-            easing.type: Easing.OutBack
-            
+            easing.type: Easing.OutBack            
         }
         
         NumberAnimation
@@ -447,6 +449,10 @@ Item
         id: _layout
         width: control.width
         padding: Maui.Style.space.medium
+        
+        Maui.Theme.inherit: false
+        Maui.Theme.colorSet: Maui.Theme.Complementary
+        
         forceCenterMiddleContent: false
             position: ToolBar.Footer
             
@@ -459,8 +465,6 @@ Item
                 Maui.Theme.colorSet: control.Maui.Theme.colorSet
                 Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
                 Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                
-                
                 
                 Maui.Rectangle
                 {
@@ -531,6 +535,9 @@ Item
                 
                 ToolButton
                 {
+                    Maui.Theme.inherit: false
+                    Maui.Theme.colorSet: Maui.Theme.Complementary
+                    
                     action: modelData
                     display: control.display
                     ToolTip.delay: 1000
@@ -542,6 +549,9 @@ Item
             
             Maui.ToolButtonMenu
             {
+                Maui.Theme.inherit: false
+                Maui.Theme.colorSet: Maui.Theme.Complementary
+                
                 icon.name: "overflow-menu"
                 visible: control.hiddenActions.length > 0
                 Repeater
@@ -553,6 +563,9 @@ Item
             
             rightContent: Maui.CloseButton
             {
+                Maui.Theme.inherit: false
+                Maui.Theme.colorSet: Maui.Theme.Complementary
+                
                 onClicked:
                 {
                     control.exitClicked()
