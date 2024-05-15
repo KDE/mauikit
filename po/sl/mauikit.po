@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-14 01:45+0000\n"
-"PO-Revision-Date: 2024-02-07 06:56+0100\n"
+"PO-Revision-Date: 2024-05-14 07:10+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -219,10 +219,9 @@ msgid "Cancel"
 msgstr "Prekliči"
 
 #: src/controls.6/private/ShareDialogLinux.qml:49
-#, fuzzy, kde-format
-#| msgid "Share with"
+#, kde-format
 msgid "Share"
-msgstr "Deli z"
+msgstr "Deli"
 
 #: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
