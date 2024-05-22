@@ -49,7 +49,7 @@ T.Menu
     
     property string subtitle
     property string titleImageSource
-    property string titleIconSource: "application-menu"
+    property string titleIconSource: control.icon.name || "application-menu"
     
     readonly property bool responsive: Maui.Handy.isMobile
     

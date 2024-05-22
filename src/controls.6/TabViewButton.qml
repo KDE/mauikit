@@ -80,11 +80,9 @@ Maui.TabButton
         id: dragArea
         anchors.fill: parent
         enabled: !control.mobile && control.tabView.count > 1
-        propagateComposedEvents: true
         
         cursorShape: drag.active ? Qt.OpenHandCursor : undefined
         
-        drag.filterChildren: true
         drag.target: parent
         drag.axis: Drag.XAxis
         
@@ -96,7 +94,6 @@ Maui.TabButton
                 return
             }
             control.clicked()
-            mouse.accepted = false
         }
         
         onPositionChanged:
