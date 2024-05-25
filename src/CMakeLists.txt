@@ -18,9 +18,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/platforms
     ${CMAKE_CURRENT_BINARY_DIR}/platforms)
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    add_library(MauiKit${MAUI_MAJOR_VERSION} SHARED)
-endif()
+add_library(MauiKit${MAUI_MAJOR_VERSION})
 
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     VERSION 1.3
@@ -29,7 +27,8 @@ ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     DEPENDENCIES
     "QtQuick.Controls"
     "Qt5Compat.GraphicalEffects"
-    NO_PLUGIN_OPTIONAL)
+    NO_PLUGIN_OPTIONAL
+    NO_GENERATE_PLUGIN_SOURCE)
 
 set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
     VERSION     ${PROJECT_VERSION}
@@ -58,7 +57,7 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     utils/mauiapp.cpp
     utils/mauiapp.h
-    
+
     utils/csdcontrols.cpp
     utils/csdcontrols.h
 
@@ -115,25 +114,13 @@ set(mauikit_HDRS
     utils/model_template/mauilist.h
     utils/moduleinfo.h)
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
-        PRIVATE
-        mauikit.cpp
-        mauikit.h)
-else()
-    target_sources(MauiKit${MAUI_MAJOR_VERSION}
-        PRIVATE
-        mauikit.cpp
-        mauikit.h)
-endif()
+qt_add_resources(mauikit_QML_QRC mauikit.qrc)
 
-if (QT_MAJOR_VERSION STREQUAL "5")
-    if(QUICK_COMPILER)
-        qtquick_compiler_add_resources(mauikit_QML_QRC mauikit.qrc style.5/style.qrc)
-    else()
-        qt5_add_resources(mauikit_QML_QRC mauikit.qrc style.5/style.qrc)
-    endif()
-endif()
+target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
+        PRIVATE
+        mauikit.cpp
+        mauikit.h
+        ${mauikit_QML_QRC})
 
 if(${SUPPORT_PLUGINS})
     message(STATUS "INCLUDING PLUGINS SUPPORT")
@@ -361,15 +348,6 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/WindowControlsWindows.qml
     controls.${QT_MAJOR_VERSION}/private/WindowControlsLinux.qml)
 
-if (QT_MAJOR_VERSION STREQUAL "5")
-    if(QUICK_COMPILER)
-        target_sources(MauiKit${MAUI_MAJOR_VERSION} PRIVATE ${mauikit_QML_QRC})
-
-        add_definitions(-DQUICK_COMPILER)
-        target_compile_definitions(MauiKit${MAUI_MAJOR_VERSION} PUBLIC QUICK_COMPILER)
-    endif()
-endif()
-
 add_definitions(-DBUNDLE_MAUI_STYLE)
 target_compile_definitions(MauiKit${MAUI_MAJOR_VERSION} PUBLIC BUNDLE_MAUI_STYLE)
 
@@ -426,9 +404,6 @@ elseif(UNIX AND NOT ANDROID)
         target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
             PRIVATE
             KF${KF_MAJOR_VERSION}::WindowSystem)
-        if (QT_MAJOR_VERSION STREQUAL "5")
-            target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE Qt5::X11Extras)
-        endif()
     endif()
 endif()
 
@@ -473,10 +448,7 @@ install(FILES
     COMPONENT Devel)
 
 ##INSTALL MAUI STYLE
-if (QT_MAJOR_VERSION STREQUAL "5")
-    install(DIRECTORY style.5/ DESTINATION ${KDE_INSTALL_QMLDIR}/QtQuick/Controls.2/maui-style)
-else()
+
     add_subdirectory(style.6)
-endif()
 
 install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)

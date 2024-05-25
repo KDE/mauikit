@@ -25,28 +25,24 @@ class MauiKit : public QQmlExtensionPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
-    
+
 public:
     MauiKit(QObject *parent =nullptr);
     void registerTypes(const char *uri) override;
     void initializeEngine(QQmlEngine *engine, const char *uri) override;
-    
+
 private:
     QUrl componentUrl(const QString &fileName) const;
-    
+
     QString resolveFileUrl(const QString &filePath) const
     {
         #if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
         return QStringLiteral("qrc:/android_rcc_bundle/qml/org/mauikit/controls/") + filePath;
         #else
-        #ifdef QUICK_COMPILER
-        return QStringLiteral("qrc:/maui/kit/") + filePath;
-        #else
         return baseUrl().toString() + QLatin1Char('/') + filePath;
         #endif
-        #endif
     }
-    
+
 Q_SIGNALS:
     void languageChangeEvent();
 };

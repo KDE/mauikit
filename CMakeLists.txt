@@ -4,31 +4,14 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-option(BUILD_WITH_QT5 "Use Qt 5" OFF)
-option(BUILD_WITH_QT6 "Use Qt 6" OFF)
+set(QT_MAJOR_VERSION 6)
 
-if(BUILD_WITH_QT5)
-    set(QT_MAJOR_VERSION 5)
-elseif(BUILD_WITH_QT6)
-    set(QT_MAJOR_VERSION 6)
-else()
-    set(QT_MAJOR_VERSION 5)
-endif()
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-option(BUILD_SHARED_LIBS "Build a shared module" ON)
     set(REQUIRED_QT_VERSION 6.4)
     set(REQUIRED_KF_VERSION 5.240.0)
     set(KF_MAJOR_VERSION 6)
     set(MAUI_MAJOR_VERSION 4)
     set(MAUIKIT_VERSION 4.0.0)
-else()
-    set(REQUIRED_QT_VERSION 5.15.2)
-    set(REQUIRED_KF_VERSION 5.95.0)
-    set(KF_MAJOR_VERSION 5)
-    set(MAUI_MAJOR_VERSION 3)
-    set(MAUIKIT_VERSION 3.1.1)
-endif()
 
  set(CMAKE_CXX_STANDARD 17)
  set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -65,28 +48,18 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMFindQmlModule)
 include(ECMQmlModule)
-include(ECMGenerateQmlTypes)
 include(ECMSourceVersionControl)
 
 include(KDEClangFormat)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 
-option(QUICK_COMPILER "Use QtQuick compiler to improve performance. QML sources won't be installed in the file system." ON)
-
-##option to be removed in qt6 migration
-if (QT_MAJOR_VERSION STREQUAL "5")
-    option(QUICK_COMPILER ON)
-    if(ANDROID OR WIN32 OR APPLE)
-        set(QUICK_COMPILER ON)
-        set(BUNDLE_LUV_ICONS ON)
-    endif()
-else()
-    option(QUICK_COMPILER OFF)
-endif()
-
 option(BUILD_DEMO "Build the MauiKit Demo application." OFF)
 option(BUNDLE_LUV_ICONS "Ship Luv icon bundled." OFF)
+
+    if(ANDROID OR WIN32 OR APPLE)
+        set(BUNDLE_LUV_ICONS ON)
+    endif()
 
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
     Core
@@ -107,8 +80,8 @@ set_package_properties(MauiMan${MAUI_MAJOR_VERSION} PROPERTIES
     TYPE REQUIRED
     DESCRIPTION "MauiMan is a server and API for syncing global system setting preferences."
     URL "https://invent.kde.org/maui/mauiman"
-    PURPOSE "Sync to system setting preferences.")
-    
+    PURPOSE "Synced system setting preferences.")
+
 #    find_package(OpenMP)
 #set_package_properties(OpenMP
 #    PROPERTIES DESCRIPTION "Multi-platform shared-memory parallel programming in C/C++ and Fortran"
@@ -123,12 +96,8 @@ set_package_properties(MauiMan${MAUI_MAJOR_VERSION} PROPERTIES
 #include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 #configure_file(config-OpenMP.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-OpenMP.h)
 
-if (QT_MAJOR_VERSION STREQUAL "5")
-ecm_find_qmlmodule(QtQuick.Shapes 1.0)
-else()
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
 ecm_find_qmlmodule(Qt5Compat.GraphicalEffects 6.0)
-endif()
 
 #if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 #    # link time optimization has been observed to break colors. Force-disable it.
@@ -142,26 +111,13 @@ if(ANDROID)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
-        # Do not find X11 on macOS
-        if (QT_MAJOR_VERSION STREQUAL "5")
-            find_package(Qt5 REQUIRED COMPONENTS X11Extras)
-        endif()
-        find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS WindowSystem)
+       find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS WindowSystem)
 
         find_package(XCB 1.10 REQUIRED COMPONENTS
             ICCCM
             SHAPE
             XCB)
         set_package_properties(XCB PROPERTIES TYPE REQUIRED)
-    endif()
-endif()
-
-if (QT_MAJOR_VERSION STREQUAL "5")
-    if(QUICK_COMPILER)
-        find_package(Qt5QuickCompiler)
-        set_package_properties(Qt5QuickCompiler PROPERTIES
-            DESCRIPTION "Compile QML at build time"
-            TYPE OPTIONAL)
     endif()
 endif()
 
@@ -213,19 +169,15 @@ install(EXPORT MauiKit${MAUI_MAJOR_VERSION}Targets
 
 ##Translations stuff with KI18n
 add_definitions(-DTRANSLATION_DOMAIN="mauikit")
-if(${QT_MAJOR_VERSION} STREQUAL 5) ##for now skip installing translations for mauikit4 to avoid packaging conflicts with translation files
 ki18n_install(po)
-endif()
 
 add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
 add_subdirectory(src)
 
-if(${QT_MAJOR_VERSION} STREQUAL 6)
     if(BUILD_DEMO)
         add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
     endif()
-endif()
 
 ##Clang formatting
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
