@@ -21,38 +21,6 @@
 #include <QEvent>
 #include <QCoreApplication>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    #include "appview.h"
-    #include "handy.h"
-    #include "mauiapp.h"
-    #include "csdcontrols.h"
-    #include "mauilist.h"
-    #include "mauimodel.h"
-    #include "notify.h"
-    #include "style.h"
-    #include "tabview.h"
-    #include "controls.h"
-
-    #ifdef Q_OS_ANDROID
-        #include "platforms/android/mauiandroid.h"
-    #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
-        #include "platforms/linux/mauilinux.h"
-    #endif
-
-    #include "shadowhelper/windowshadow.h"
-    #include "blurhelper/windowblur.h"
-
-    #include "platform.h"
-
-    #include "utils/basictheme_p.h"
-    #include "utils/platformtheme.h"
-    #include "utils/colorutils.h"
-    #include "utils/imagecolors.h"
-    #include "utils/wheelhandler.h"
-    #include "utils/icon.h"
-    #include "utils/fontpickermodel.h"
-#endif
-
 #include <QDebug>
 #include <QQmlContext>
 
@@ -194,76 +162,6 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
     qmlRegisterType(componentUrl(QStringLiteral("private/ColorTransition.qml")), uri, 1, 0, "ColorTransition");
     qmlRegisterType(componentUrl(QStringLiteral("private/EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
-
-    #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0) //For MauiKit4 these types are registered inline using macros
-    /// NON UI CONTROLS
-        qmlRegisterUncreatableType<AppView>(uri, 1, 1, "AppView", "Cannot be created AppView");
-        qmlRegisterUncreatableType<TabViewInfo>(uri, 1, 3, "TabViewInfo", "Cannot be created TabView");
-        qmlRegisterUncreatableType<Controls>(uri, 1, 3, "Controls", "Attached properties for different purposes.");
-
-        qmlRegisterSingletonType<Platform>(uri, 1, 2, "Platform", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-            Q_UNUSED(scriptEngine)
-            auto platform = Platform::instance();
-            engine->setObjectOwnership(platform, QQmlEngine::CppOwnership);
-            return platform;
-        });
-
-        qmlRegisterUncreatableType<Maui::PlatformTheme>(uri, 1, 0, "Theme", QStringLiteral("Cannot create objects of type Theme, use it as an attached property"));
-        qmlRegisterSingletonType<ColorUtils>(uri, 1, 3, "ColorUtils", [](QQmlEngine *, QJSEngine *) -> QObject*
-        {
-            return new ColorUtils;
-        });
-
-        qmlRegisterType<ImageColors>(uri, 1, 3, "ImageColors");
-        qmlRegisterType<WheelHandler>(uri, 1, 3, "WheelHandler");
-        qmlRegisterType<Icon>(uri, 1, 0, "PrivateIcon");
-
-        qmlRegisterType<FontPickerModel>(uri, 1, 3, "FontPickerModel");
-
-        qmlRegisterType<WindowShadow>(uri, 1, 0, "WindowShadow");
-        qmlRegisterType<WindowBlur>(uri, 1, 0, "WindowBlur");
-
-        /** DATA MODELING TEMPLATED INTERFACES **/
-        qmlRegisterAnonymousType<MauiList>(uri, 1);
-        qmlRegisterType<MauiModel>(uri, 1, 0, "BaseModel");
-
-        /** MAUI APPLICATION SPECIFIC PROPS **/
-        /** HELPERS **/
-        qmlRegisterType<CSDButton>(uri, 1, 3, "CSDButton");
-        qmlRegisterType<Notify>(uri, 1, 3, "Notify");
-        qmlRegisterType<NotifyAction>(uri, 1, 3, "NotifyAction");
-
-        qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Cannot be created Style");
-        qmlRegisterUncreatableType<MauiApp>(uri, 1, 0, "App", "Cannot be created App");
-        qmlRegisterUncreatableType<CSDControls>(uri, 1, 0, "CSD", "Cannot be created CSDControls");
-        qmlRegisterSingletonType<Handy>(uri, 1, 2, "Handy", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-            Q_UNUSED(scriptEngine)
-            auto handy = Handy::instance();
-            engine->setObjectOwnership(handy, QQmlEngine::CppOwnership);
-            return handy;
-        });
-
-        #ifdef Q_OS_ANDROID
-            qmlRegisterSingletonType<MAUIAndroid>(uri, 1, 0, "Android", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
-                Q_UNUSED(engine)
-                Q_UNUSED(scriptEngine)
-                return new MAUIAndroid;
-            });
-        #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
-            qmlRegisterUncreatableType<MAUIKDE>(uri, 1, 0, "KDE", "Cannot be created KDE");
-        #elif defined Q_OS_WIN32
-            // here window platform integration interfaces
-        #elif defined Q_OS_MACOS
-        #endif
-
-    //    /** MAUI PLUGIN SUPPORT **/
-    //#ifdef SUPPORT_PLUGINS
-    //    qmlRegisterType(componentUrl(QStringLiteral("AppViewsPlugin.qml")), uri, 1, 2, "AppViewsPlugin");
-    //    qmlRegisterType(componentUrl(QStringLiteral("PagePlugin.qml")), uri, 1, 2, "PagePlugin");
-    //    qmlRegisterType(componentUrl(QStringLiteral("PluginManager.qml")), uri, 1, 2, "PluginManager");
-    //    qmlRegisterType(componentUrl(QStringLiteral("PluginsInfo.qml")), uri, 1, 2, "PluginsInfo");
-    //#endif
-    #endif
 
     //    /** Experimental **/
     #ifdef Q_OS_WIN32

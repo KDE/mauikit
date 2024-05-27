@@ -7,14 +7,14 @@ cmake_minimum_required(VERSION 3.16)
 set(QT_MAJOR_VERSION 6)
 
 
-    set(REQUIRED_QT_VERSION 6.4)
-    set(REQUIRED_KF_VERSION 5.240.0)
-    set(KF_MAJOR_VERSION 6)
-    set(MAUI_MAJOR_VERSION 4)
-    set(MAUIKIT_VERSION 4.0.0)
+set(REQUIRED_QT_VERSION 6.4)
+set(REQUIRED_KF_VERSION 5.240.0)
+set(KF_MAJOR_VERSION 6)
+set(MAUI_MAJOR_VERSION 4)
+set(MAUIKIT_VERSION 4.0.0)
 
- set(CMAKE_CXX_STANDARD 17)
- set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -57,9 +57,9 @@ include(KDECMakeSettings)
 option(BUILD_DEMO "Build the MauiKit Demo application." OFF)
 option(BUNDLE_LUV_ICONS "Ship Luv icon bundled." OFF)
 
-    if(ANDROID OR WIN32 OR APPLE)
-        set(BUNDLE_LUV_ICONS ON)
-    endif()
+if(ANDROID OR WIN32 OR APPLE)
+    set(BUNDLE_LUV_ICONS ON)
+endif()
 
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS
     Core
@@ -111,7 +111,7 @@ if(ANDROID)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
-       find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS WindowSystem)
+        find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS WindowSystem)
 
         find_package(XCB 1.10 REQUIRED COMPONENTS
             ICCCM
@@ -175,9 +175,9 @@ add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
 add_subdirectory(src)
 
-    if(BUILD_DEMO)
-        add_subdirectory(demo.6) ##Fails to build while trying to link to MauiKit4 - maybe is it better to move it out to its own project?
-    endif()
+if(BUILD_DEMO)
+    add_subdirectory(demo.6)
+endif()
 
 ##Clang formatting
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)

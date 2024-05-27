@@ -5,18 +5,11 @@
 #include <QStyle>
 #include <QApplication>
 #include <QFontDatabase>
+#include <QStyleHints>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <MauiMan3/thememanager.h>
-#include <MauiMan3/backgroundmanager.h>
-#include <MauiMan3/accessibilitymanager.h>
-#else
 #include <MauiMan4/thememanager.h>
 #include <MauiMan4/backgroundmanager.h>
 #include <MauiMan4/accessibilitymanager.h>
-
-#include <QStyleHints>
-#endif
 
 #ifdef Q_OS_ANDROID
 #include "mauiandroid.h"
@@ -68,17 +61,6 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT
     });
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    connect(m_themeSettings, &MauiMan::ThemeManager::styleTypeChanged, [this](int type)
-    {
-        if(m_styleType_blocked)
-            return;
-
-        m_styleType = static_cast<Style::StyleType>(type);
-        Q_EMIT styleTypeChanged(m_styleType);
-    });
-#else     
-    
     connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, [this](Qt::ColorScheme type)
     {
         qDebug() << "Color schem style type changed<<"<< type;
@@ -110,8 +92,6 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT styleTypeChanged(m_styleType);
     });
     
-#endif
-
     connect(m_themeSettings, &MauiMan::ThemeManager::accentColorChanged, [this](QString color)
     {
         m_accentColor = color;
@@ -207,16 +187,6 @@ Style::Style(QObject *parent) : QObject(parent)
 
     //TODO Use new Qt6 StyelHint properties for this
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    
-#ifdef Q_OS_ANDROID
-    MAUIAndroid android;
-    m_styleType = android.darkModeEnabled() ? StyleType::Dark : StyleType::Light;
-#else   
-    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
-#endif
-    
-#else    
     //For Maui Session we want to use MauiMan
     if(!MauiManUtils::isMauiSession())
     {
@@ -237,7 +207,6 @@ Style::Style(QObject *parent) : QObject(parent)
     {
         m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
     }
-#endif
 
     m_adaptiveColorSchemeSource = QUrl::fromUserInput(m_backgroundSettings->wallpaperSource()).toLocalFile();
     m_enableEffects = m_themeSettings->enableEffects();

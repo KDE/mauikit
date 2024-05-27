@@ -32,11 +32,7 @@
 
 #include "platforms/platform.h"
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <QTouchDevice>
-#else
 #include <QInputDevice>
-#endif
 
 #ifdef Q_OS_ANDROID
 #include <QGuiApplication>
@@ -44,13 +40,8 @@
 #include <QApplication>
 #endif
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <MauiMan3/formfactormanager.h>
-#include <MauiMan3/accessibilitymanager.h>
-#else
 #include <MauiMan4/formfactormanager.h>
 #include <MauiMan4/accessibilitymanager.h>
-#endif
 
 Q_GLOBAL_STATIC(Handy, handyInstance)
 

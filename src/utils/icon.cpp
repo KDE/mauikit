@@ -200,15 +200,9 @@ void Icon::refresh()
     this->polish();
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-void Icon::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
-{
-    QQuickItem::geometryChanged(newGeometry, oldGeometry);
-#else
 void Icon::geometryChange(const QRectF &newGeometry, const QRectF &oldGeometry)
 {
     QQuickItem::geometryChange(newGeometry, oldGeometry);
-#endif
     if (newGeometry.size() != oldGeometry.size()) {
         polish();
     }

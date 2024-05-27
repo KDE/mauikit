@@ -23,10 +23,6 @@
 #include <QPainterPath>
 #include <QScreen>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <QX11Info>
-#endif
-
 #include <xcb/xcb.h>
 #include <xcb/shape.h>
 #include <xcb/xcb_icccm.h>
@@ -135,39 +131,5 @@ void WindowBlur::updateBlur()
         qDebug() << "SETTING BLURRED WINDOW BG WAYLAND KDE;" << m_enabled << m_view;
         KWindowEffects::enableBlurBehind(m_view, m_enabled, m_rect);
         KWindowEffects::enableBackgroundContrast(m_view, m_enabled);
-        return;
     }
-
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)    
-    xcb_connection_t *c = QX11Info::connection();
-    if (!c)
-        return;
-    
-    const QByteArray effectName = QByteArrayLiteral("_KDE_NET_WM_BLUR_BEHIND_REGION");
-    xcb_intern_atom_cookie_t atomCookie = xcb_intern_atom_unchecked(c, false, effectName.length(), effectName.constData());
-    QScopedPointer<xcb_intern_atom_reply_t, QScopedPointerPodDeleter> atom(xcb_intern_atom_reply(c, atomCookie, nullptr));
-    if (!atom)
-        return;
-    
-    if (m_enabled) {
-        qreal devicePixelRatio = m_view->screen()->devicePixelRatio();
-        QPainterPath path;
-        path.addRoundedRect(QRect(QPoint(0, 0), m_view->size() * devicePixelRatio),
-                            m_windowRadius * devicePixelRatio,
-                            m_windowRadius * devicePixelRatio);
-        QVector<uint32_t> data;
-        foreach (const QPolygonF &polygon, path.toFillPolygons()) {
-            QRegion region = polygon.toPolygon();
-            for (auto i = region.begin(); i != region.end(); ++i) {
-                data << i->x() << i->y() << i->width() << i->height();
-            }
-        }
-        
-        xcb_change_property(c, XCB_PROP_MODE_REPLACE, m_view->winId(), atom->atom, XCB_ATOM_CARDINAL,
-                            32, data.size(), data.constData());
-        
-    } else {
-        xcb_delete_property(c, m_view->winId(), atom->atom);
-    }
-#endif
 }

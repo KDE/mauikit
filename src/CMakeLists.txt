@@ -114,13 +114,13 @@ set(mauikit_HDRS
     utils/model_template/mauilist.h
     utils/moduleinfo.h)
 
-qt_add_resources(mauikit_QML_QRC mauikit.qrc)
+#qt_add_resources(mauikit_QML_QRC mauikit.qrc)
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
-        PRIVATE
-        mauikit.cpp
-        mauikit.h
-        ${mauikit_QML_QRC})
+    PRIVATE
+    mauikit.cpp
+    mauikit.h
+    ${mauikit_QML_QRC})
 
 if(${SUPPORT_PLUGINS})
     message(STATUS "INCLUDING PLUGINS SUPPORT")
@@ -147,7 +147,7 @@ endif()
 
 if (ANDROID)
 
-#    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platforms/android/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
+    #    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platforms/android/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
 
     add_subdirectory(platforms/android)
 
@@ -448,7 +448,6 @@ install(FILES
     COMPONENT Devel)
 
 ##INSTALL MAUI STYLE
-
-    add_subdirectory(style.6)
+add_subdirectory(style.6)
 
 install(DIRECTORY csd.${QT_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_DATADIR}/org.mauikit.controls)

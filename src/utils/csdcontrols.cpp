@@ -6,11 +6,7 @@
 #include <QDir>
 #include <QStandardPaths>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <MauiMan3/thememanager.h>
-#else
 #include <MauiMan4/thememanager.h>
-#endif
 
 Q_GLOBAL_STATIC(CSDControls, csdInstance)
 
@@ -36,12 +32,7 @@ CSDControls::CSDControls(QObject *parent) : QObject (parent)
     getWindowControlsSettings();
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-
-static QString CSDLookupPath = "org.mauikit.controls/csd.5/%1/config.conf";
-#else
-static QString CSDLookupPath = "org.mauikit.controls/csd.6/%1/config.conf";
-#endif
+static const QString CSDLookupPath = "org.mauikit.controls/csd.6/%1/config.conf";
 
 void CSDControls::setStyle()
 {
