@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-14 01:45+0000\n"
+"POT-Creation-Date: 2024-05-28 01:43+0000\n"
 "PO-Revision-Date: 2024-05-07 13:04+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -17,232 +17,210 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 24.02.2\n"
 
-#: src/controls.5/Doodle.qml:126 src/controls.5/Doodle.qml:148
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
 msgid "Highlighter"
 msgstr "Accentuering"
 
-#: src/controls.5/Doodle.qml:137 src/controls.6/Doodle.qml:178
+#: src/controls.6/Doodle.qml:178
 #, kde-format
 msgid "Marker"
 msgstr "Markering"
 
-#: src/controls.5/Doodle.qml:159 src/controls.6/Doodle.qml:200
+#: src/controls.6/Doodle.qml:200
 #, kde-format
 msgid "Eraser"
 msgstr "Gum"
 
-#: src/controls.5/Doodle.qml:174 src/controls.6/Doodle.qml:215
+#: src/controls.6/Doodle.qml:215
 #, kde-format
 msgid "Color"
 msgstr "Kleur"
 
-#: src/controls.5/Doodle.qml:181 src/controls.5/Doodle.qml:235
 #: src/controls.6/Doodle.qml:222 src/controls.6/Doodle.qml:276
 #, kde-format
 msgid "Opacity"
 msgstr "Dekking"
 
-#: src/controls.5/Doodle.qml:189 src/controls.5/Doodle.qml:205
-#: src/controls.5/FontPicker.qml:99 src/controls.6/Doodle.qml:230
-#: src/controls.6/Doodle.qml:246 src/controls.6/FontPicker.qml:140
+#: src/controls.6/Doodle.qml:230 src/controls.6/Doodle.qml:246
+#: src/controls.6/FontPicker.qml:140
 #, kde-format
 msgid "Size"
 msgstr "Grootte"
 
-#: src/controls.5/FontPicker.qml:56 src/controls.6/FontPicker.qml:97
+#: src/controls.6/FontPicker.qml:97
 #, kde-format
 msgid "Family"
 msgstr "Familie"
 
-#: src/controls.5/FontPicker.qml:57 src/controls.6/FontPicker.qml:98
+#: src/controls.6/FontPicker.qml:98
 #, kde-format
 msgid "Pick the font family."
 msgstr "Kies de familie van het lettertype."
 
-#: src/controls.5/FontPicker.qml:80 src/controls.6/FontPicker.qml:120
+#: src/controls.6/FontPicker.qml:120
 #, kde-format
 msgid "Style"
 msgstr "Stijl"
 
-#: src/controls.5/FontPicker.qml:81 src/controls.6/FontPicker.qml:121
+#: src/controls.6/FontPicker.qml:121
 #, kde-format
 msgid "Font style."
 msgstr "Lettertypestijl."
 
-#: src/controls.5/FontPicker.qml:100 src/controls.6/FontPicker.qml:141
+#: src/controls.6/FontPicker.qml:141
 #, kde-format
 msgid "Font size from recommended values."
 msgstr "Lettertypegrootte uit aanbevolen waarden."
 
-#: src/controls.5/FontPicker.qml:118 src/controls.6/FontPicker.qml:160
+#: src/controls.6/FontPicker.qml:160
 #, kde-format
 msgid "Monospaced Fonts"
 msgstr "Lettertypen met gelijke afstanden"
 
-#: src/controls.5/FontPicker.qml:119 src/controls.6/FontPicker.qml:161
+#: src/controls.6/FontPicker.qml:161
 #, kde-format
 msgid "Display only monospaced fonts."
 msgstr "Alleen lettertypen met gelijke afstanden tonen."
 
-#: src/controls.5/FontPicker.qml:130 src/controls.6/FontPicker.qml:172
+#: src/controls.6/FontPicker.qml:172
 #, kde-format
 msgid "Preview"
 msgstr "Voorbeeld"
 
-#: src/controls.5/FontPicker.qml:131 src/controls.6/FontPicker.qml:173
+#: src/controls.6/FontPicker.qml:173
 #, kde-format
 msgid "Test the font."
 msgstr "Het lettertype testen."
 
-#: src/controls.5/FontPicker.qml:139 src/controls.6/FontPicker.qml:180
+#: src/controls.6/FontPicker.qml:180
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
 msgstr "Filmquiz bracht knappe ex-yogi van de wijs"
 
-#: src/controls.5/FontPickerDialog.qml:35
 #: src/controls.6/FontPickerDialog.qml:79
 #, kde-format
 msgid "Fonts"
 msgstr "Lettertypen"
-
-#: src/controls.5/ImageViewer.qml:177 src/controls.6/ImageViewer.qml:204
-#, kde-format
-msgid "Oops!"
-msgstr "Oops!"
-
-#: src/controls.5/ImageViewer.qml:178 src/controls.6/ImageViewer.qml:205
-#, kde-format
-msgid "The image could not be loaded."
-msgstr "De afbeelding kon niet worden geladen."
-
-#: src/controls.5/private/AboutDialog.qml:104
-#: src/controls.6/private/AboutDialog.qml:91
-#, kde-format
-msgid "Version ID copied to clipboard"
-msgstr "Versie-ID gekopieerd naar klembord"
-
-#: src/controls.5/private/AboutDialog.qml:112
-#: src/controls.6/private/AboutDialog.qml:99 src/style.5/TextField.qml:234
-#: src/style.6/qtquickcontrols/TextField.qml:233
-#, kde-format
-msgid "Copy"
-msgstr "Kopiëren"
-
-#: src/controls.5/private/AboutDialog.qml:125
-#: src/controls.6/private/AboutDialog.qml:115
-#, kde-format
-msgid "Reports"
-msgstr "Rapporten"
-
-#: src/controls.5/private/AboutDialog.qml:132
-#: src/controls.6/private/AboutDialog.qml:125
-#, kde-format
-msgid "Home Page"
-msgstr "Thuispagina"
-
-#: src/controls.5/private/AboutDialog.qml:146
-#: src/controls.6/private/AboutDialog.qml:140
-#, kde-format
-msgid "Authors"
-msgstr "Auteurs"
-
-#: src/controls.5/private/AboutDialog.qml:190
-#: src/controls.6/private/AboutDialog.qml:184
-#, kde-format
-msgid "Translators"
-msgstr "Vertalers"
-
-#: src/controls.5/private/AboutDialog.qml:233
-#: src/controls.6/private/AboutDialog.qml:226
-#, kde-format
-msgid "Credits"
-msgstr "Dankbetuigingen"
-
-#: src/controls.5/private/AboutDialog.qml:281
-#: src/controls.6/private/AboutDialog.qml:273
-#, kde-format
-msgid "Licenses"
-msgstr "Licenties"
-
-#: src/controls.5/private/AboutDialog.qml:313
-#: src/controls.6/private/AboutDialog.qml:303
-#, kde-format
-msgid "Components"
-msgstr "Componenten"
-
-#: src/controls.5/private/ShareDialogLinux.qml:53
-#, kde-format
-msgid "Share with"
-msgstr "Delen met"
-
-#: src/controls.5/private/ToastArea.qml:188
-#: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:221
-#, kde-format
-msgid "Accept"
-msgstr "Accepteren"
-
-#: src/controls.5/private/ToastArea.qml:264
-#: src/controls.6/private/ToastArea.qml:295
-#, kde-format
-msgid "Dismiss All"
-msgstr "Alles wegdoen"
-
-#: src/controls.5/SettingsPage.qml:10 src/controls.6/SettingsDialog.qml:136
-#: src/controls.6/SettingsPage.qml:42
-#, kde-format
-msgid "Settings"
-msgstr "Instellingen"
-
-#: src/controls.5/SplitViewItem.qml:101 src/controls.5/SplitViewItem.qml:116
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
-#, kde-format
-msgid "Close Split"
-msgstr "Splitsing sluiten"
-
-#: src/controls.5/TabView.qml:104 src/controls.6/TabView.qml:306
-#, kde-format
-msgid "Open"
-msgstr "Openen"
-
-#: src/controls.5/TabView.qml:115 src/controls.6/TabView.qml:317
-#, kde-format
-msgid "Close"
-msgstr "Sluiten"
 
 #: src/controls.6/FontPickerDialog.qml:96
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
 
+#: src/controls.6/FontPickerDialog.qml:106
+#: src/controls.6/private/ToastArea.qml:221
+#, kde-format
+msgid "Accept"
+msgstr "Accepteren"
+
+#: src/controls.6/ImageViewer.qml:204
+#, kde-format
+msgid "Oops!"
+msgstr "Oops!"
+
+#: src/controls.6/ImageViewer.qml:205
+#, kde-format
+msgid "The image could not be loaded."
+msgstr "De afbeelding kon niet worden geladen."
+
+#: src/controls.6/private/AboutDialog.qml:91
+#, kde-format
+msgid "Version ID copied to clipboard"
+msgstr "Versie-ID gekopieerd naar klembord"
+
+#: src/controls.6/private/AboutDialog.qml:99
+#: src/style.6/qtquickcontrols/TextField.qml:233
+#, kde-format
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: src/controls.6/private/AboutDialog.qml:115
+#, kde-format
+msgid "Reports"
+msgstr "Rapporten"
+
+#: src/controls.6/private/AboutDialog.qml:125
+#, kde-format
+msgid "Home Page"
+msgstr "Thuispagina"
+
+#: src/controls.6/private/AboutDialog.qml:140
+#, kde-format
+msgid "Authors"
+msgstr "Auteurs"
+
+#: src/controls.6/private/AboutDialog.qml:184
+#, kde-format
+msgid "Translators"
+msgstr "Vertalers"
+
+#: src/controls.6/private/AboutDialog.qml:226
+#, kde-format
+msgid "Credits"
+msgstr "Dankbetuigingen"
+
+#: src/controls.6/private/AboutDialog.qml:273
+#, kde-format
+msgid "Licenses"
+msgstr "Licenties"
+
+#: src/controls.6/private/AboutDialog.qml:303
+#, kde-format
+msgid "Components"
+msgstr "Componenten"
+
 #: src/controls.6/private/ShareDialogLinux.qml:49
 #, kde-format
 msgid "Share"
 msgstr "Delen"
 
-#: src/style.5/TextField.qml:241 src/style.6/qtquickcontrols/TextField.qml:240
+#: src/controls.6/private/ToastArea.qml:295
+#, kde-format
+msgid "Dismiss All"
+msgstr "Alles wegdoen"
+
+#: src/controls.6/SettingsDialog.qml:136 src/controls.6/SettingsPage.qml:42
+#, kde-format
+msgid "Settings"
+msgstr "Instellingen"
+
+#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
+#, kde-format
+msgid "Close Split"
+msgstr "Splitsing sluiten"
+
+#: src/controls.6/TabView.qml:306
+#, kde-format
+msgid "Open"
+msgstr "Openen"
+
+#: src/controls.6/TabView.qml:317
+#, kde-format
+msgid "Close"
+msgstr "Sluiten"
+
+#: src/style.6/qtquickcontrols/TextField.qml:240
 #, kde-format
 msgid "Cut"
 msgstr "Knippen"
 
-#: src/style.5/TextField.qml:248 src/style.6/qtquickcontrols/TextField.qml:247
+#: src/style.6/qtquickcontrols/TextField.qml:247
 #, kde-format
 msgid "Paste"
 msgstr "Plakken"
 
-#: src/style.5/TextField.qml:258 src/style.6/qtquickcontrols/TextField.qml:257
+#: src/style.6/qtquickcontrols/TextField.qml:257
 #, kde-format
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: src/style.5/TextField.qml:265 src/style.6/qtquickcontrols/TextField.qml:264
+#: src/style.6/qtquickcontrols/TextField.qml:264
 #, kde-format
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: src/style.5/TextField.qml:272 src/style.6/qtquickcontrols/TextField.qml:271
+#: src/style.6/qtquickcontrols/TextField.qml:271
 #, kde-format
 msgid "Redo"
 msgstr "Opnieuw"
@@ -263,6 +241,9 @@ msgstr "Freek de Kruijf - 2022"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "freekdekruijf@kde.nl"
+
+#~ msgid "Share with"
+#~ msgstr "Delen met"
 
 #~ msgid "Maui convergent controls."
 #~ msgstr "Maui besturingen van convergentie."
