@@ -34,7 +34,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 
+import QtQuick
 import QtQuick.Templates as T
 
 import org.mauikit.controls as Maui
@@ -51,10 +51,10 @@ T.MenuSeparator
     verticalPadding: Maui.Style.space.small
     hoverEnabled: false
     focusPolicy: Qt.NoFocus
-    
+
     contentItem: Maui.Separator
     {
         implicitWidth: Maui.Style.units.gridUnit * 8
-        weight: Maui.Separator.Weight.Light  
+        weight: Maui.Separator.Weight.Light
     }
 }

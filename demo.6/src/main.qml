@@ -148,161 +148,161 @@ Maui.ApplicationWindow
                     text: i18n("About")
                     onClicked: Maui.App.aboutDialog()
                 }
-             
-                    Maui.SectionGroup
+
+                Maui.SectionGroup
+                {
+                    title: i18n("Views")
+
+                    Maui.ListDelegate
                     {
-                        title: i18n("Views")
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Page")
-                            onClicked: root.pushPage(_pagePage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("SplitView")
-                            onClicked: root.pushPage(_splitPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("SidebarView")
-                            onClicked: root.pushPage(_sideBarPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("AppViews")
-                            onClicked: root.pushPage(_appViewsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("TabView")
-                            onClicked: root.pushPage(_tabViewPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("ImageViewer")
-                            onClicked: root.pushPage(_imageViewerPage)
-                        }
+                        Layout.fillWidth: true
+                        label: i18n("Page")
+                        onClicked: root.pushPage(_pagePage)
                     }
 
-                    Maui.SectionGroup
+                    Maui.ListDelegate
                     {
-                       title: i18n("Browsers")
-                       
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("ListBrowser")
-                            onClicked: root.pushPage(_listBrowserPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("GridBrowser")
-                            onClicked: root.pushPage(_gridBrowserPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("AltBrowser")
-                            onClicked: root.pushPage(_altBrowserPage)
-                        }
+                        Layout.fillWidth: true
+                        label: i18n("SplitView")
+                        onClicked: root.pushPage(_splitPage)
                     }
 
-                    Maui.SectionGroup
+                    Maui.ListDelegate
                     {
-                        title: i18n ("Common")
-                        description: i18n("Baseline controls")
-                      
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Buttons")
-                            onClicked: root.pushPage(_buttonsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Delegates")
-                            onClicked: root.pushPage(_delegatesPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Containers")
-                            onClicked: root.pushPage(_buttonsPage)
-                        }
-
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Labels")
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Layouts")
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Input")
-                            onClicked: root.pushPage(_inputsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Indicators")
-                            onClicked: root.pushPage(_indicatorsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Bars")
-                            onClicked: root.pushPage(_barsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Templates")
-                            onClicked: root.pushPage(_templatesPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Popups")
-                            onClicked: root.pushPage(_popupsPage)
-                        }
-
-                        Maui.ListDelegate
-                        {
-                            Layout.fillWidth: true
-                            label: i18n("Other")
-                            onClicked: root.pushPage(_othersPage)
-                        }
+                        Layout.fillWidth: true
+                        label: i18n("SidebarView")
+                        onClicked: root.pushPage(_sideBarPage)
                     }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("AppViews")
+                        onClicked: root.pushPage(_appViewsPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("TabView")
+                        onClicked: root.pushPage(_tabViewPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("ImageViewer")
+                        onClicked: root.pushPage(_imageViewerPage)
+                    }
+                }
+
+                Maui.SectionGroup
+                {
+                    title: i18n("Browsers")
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("ListBrowser")
+                        onClicked: root.pushPage(_listBrowserPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("GridBrowser")
+                        onClicked: root.pushPage(_gridBrowserPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("AltBrowser")
+                        onClicked: root.pushPage(_altBrowserPage)
+                    }
+                }
+
+                Maui.SectionGroup
+                {
+                    title: i18n ("Common")
+                    description: i18n("Baseline controls")
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Buttons")
+                        onClicked: root.pushPage(_buttonsPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Delegates")
+                        onClicked: root.pushPage(_delegatesPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Containers")
+                        onClicked: root.pushPage(_buttonsPage)
+                    }
+
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Labels")
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Layouts")
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Input")
+                        onClicked: root.pushPage(_inputsPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Indicators")
+                        onClicked: root.pushPage(_indicatorsPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Bars")
+                        onClicked: root.pushPage(_barsPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Templates")
+                        onClicked: root.pushPage(_templatesPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Popups")
+                        onClicked: root.pushPage(_popupsPage)
+                    }
+
+                    Maui.ListDelegate
+                    {
+                        Layout.fillWidth: true
+                        label: i18n("Other")
+                        onClicked: root.pushPage(_othersPage)
+                    }
+                }
                 
             }
         }
@@ -314,7 +314,7 @@ Maui.ApplicationWindow
             Maui.Controls.showCSD: true
             title: _stackView.currentItem.title
 
-        
+
             headBar.leftContent: [
                 ToolButton
                 {
@@ -333,10 +333,10 @@ Maui.ApplicationWindow
 
             headBar.rightContent:[
                 Switch
-        {
-            checked: _page.altHeader
-            onToggled: _page.altHeader = !_page.altHeader
-        },
+                {
+                    checked: _page.altHeader
+                    onToggled: _page.altHeader = !_page.altHeader
+                },
                 
                 ToolButton
                 {
@@ -406,6 +406,8 @@ Maui.ApplicationWindow
                         checked:  Maui.Style.styleType === Maui.Style.Inverted
 
                     }
+
+                    MenuSeparator {}
 
                     MenuItem
                     {
