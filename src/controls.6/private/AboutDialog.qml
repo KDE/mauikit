@@ -21,7 +21,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
+import QtQuick.Window
 
 import org.mauikit.controls as Maui
 
@@ -41,93 +41,87 @@ Maui.PopupPage
     Maui.SectionItem
     {
         id: _header
-            imageSource: Maui.App.iconName
+        imageSource: Maui.App.iconName
 
-            template.fillMode: Image.PreserveAspectFit
+        template.fillMode: Image.PreserveAspectFit
 
-            template.iconSizeHint: Maui.Style.iconSizes.huge
-            template.imageSizeHint: template.iconSizeHint
-            template.isMask: false
-            template.headerSizeHint: template.iconSizeHint
+        template.iconSizeHint: Maui.Style.iconSizes.huge
+        template.imageSizeHint: template.iconSizeHint
+        template.isMask: false
+        template.headerSizeHint: template.iconSizeHint
 
-            // spacing: Maui.Style.space.big
-            label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            label1.text: Maui.App.about.displayName
-            label1.font.weight: Font.Black
-            label1.font.pointSize: Maui.Style.fontSizes.enormous
+        // spacing: Maui.Style.space.big
+        label1.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+        label1.text: Maui.App.about.displayName
+        label1.font.weight: Font.Black
+        label1.font.pointSize: Maui.Style.fontSizes.enormous
 
-            label2.text: Maui.App.about.shortDescription
-            label2.font.pointSize: Maui.Style.fontSizes.big
-            label2.elide: Text.ElideRight
-            label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        }
-        
-         Label
-                {
-                    Maui.Theme.inherit: true
-                    Layout.alignment: horizontalAlignment
-                    // Layout.fillWidth: true
-                    horizontalAlignment:Qt.AlignLeft
-                    text: Maui.App.about.version + " " + Maui.App.about.otherText
-                    font.family: "Monospace"
-                    opacity: 0.6
-                    font.pointSize: Maui.Style.fontSizes.tiny
-                    padding: Maui.Style.space.small
-                    background: Rectangle
-                    {
-                        opacity: 0.5
-                        color: "black"
-                        radius: Maui.Style.radiusV                        
-                    }                    
+        label2.text: Maui.App.about.shortDescription
+        label2.font.pointSize: Maui.Style.fontSizes.big
+        label2.elide: Text.ElideRight
+        label2.wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+    }
 
-                    MouseArea
-                    {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: 
-                        {
-                            Maui.Handy.copyTextToClipboard(parent.text)
-                            root.notify("dialog-information", i18n("Version ID copied to clipboard"))
-                                                        control.close()
-
-                        }
-                        
-                        ToolTip.delay: 1000
-    ToolTip.timeout: 5000
-    ToolTip.visible: containsMouse 
-    ToolTip.text: i18n("Copy")
-                    }
-                }
-                
-                Column
+    Label
+    {
+        Maui.Theme.inherit: true
+        Layout.alignment: horizontalAlignment
+        // Layout.fillWidth: true
+        horizontalAlignment:Qt.AlignLeft
+        text: Maui.App.about.version + " " + Maui.App.about.otherText
+        font.family: "Monospace"
+        opacity: 0.6
+        font.pointSize: Maui.Style.fontSizes.tiny
+        padding: Maui.Style.space.small
+        background: Rectangle
         {
-            id: _links
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-    
-            Button
+            opacity: 0.5
+            color: "black"
+            radius: Maui.Style.radiusV
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked:
             {
-                Maui.Theme.inherit: false
-    Maui.Theme.colorSet: Maui.Theme.Complementary
-    
-                width: parent.width
-                text: i18nd("mauikit", "Reports")
-                onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+                Maui.Handy.copyTextToClipboard(parent.text)
+                root.notify("dialog-information", i18n("Version ID copied to clipboard"))
+                control.close()
+
             }
 
-            Button
-            {
-                Maui.Theme.inherit: false
-    Maui.Theme.colorSet: Maui.Theme.Complementary
-    
-                width: parent.width
-                text: i18nd("mauikit", "Home Page")
-                onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
-            }
+            ToolTip.delay: 1000
+            ToolTip.timeout: 5000
+            ToolTip.visible: containsMouse
+            ToolTip.text: i18n("Copy")
         }
+    }
+
+    Column
+    {
+        id: _links
+        spacing: Maui.Style.defaultSpacing
+        Layout.fillWidth: true
+
+        Button
+        {
+            width: parent.width
+            text: i18nd("mauikit", "Reports")
+            onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+        }
+
+        Button
+        {
+            width: parent.width
+            text: i18nd("mauikit", "Home Page")
+            onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
+        }
+    }
     
-     Maui.Separator 
+    Maui.Separator
     {
         Layout.fillWidth: true
     }
@@ -388,6 +382,13 @@ Maui.PopupPage
             fillMode: Image.Tile
             opacity: 0.15
         }
+
+        DragHandler
+        {
+            target: null
+            grabPermissions: TapHandler.CanTakeOverFromAnything
+            onActiveChanged: if (active) {  Maui.App.rootComponent.startSystemMove(); }
+        }
     }
     
     /**
@@ -395,6 +396,6 @@ Maui.PopupPage
      */
     function formatLink(text, url)
     {
-        return String("<a href='%1' style=\"text-decoration:none;color:#fafafa\">%2</a>").arg(url).arg(text)
+        return String("<a href='%1' style=\"text-decoration:none;color:%2\">%3</a>").arg(url).arg(control.Maui.Theme.textColor).arg(text)
     }
 }
