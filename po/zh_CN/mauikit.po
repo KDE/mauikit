@@ -61,12 +61,12 @@ msgstr "选择字体。"
 #: src/controls.6/FontPicker.qml:120
 #, kde-format
 msgid "Style"
-msgstr "风格"
+msgstr "样式"
 
 #: src/controls.6/FontPicker.qml:121
 #, kde-format
 msgid "Font style."
-msgstr "字体风格。"
+msgstr "字体样式。"
 
 #: src/controls.6/FontPicker.qml:141
 #, kde-format
