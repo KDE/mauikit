@@ -6,7 +6,6 @@ cmake_minimum_required(VERSION 3.16)
 
 set(QT_MAJOR_VERSION 6)
 
-
 set(REQUIRED_QT_VERSION 6.4)
 set(REQUIRED_KF_VERSION 5.240.0)
 set(KF_MAJOR_VERSION 6)

@@ -2,9 +2,10 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Window
 
-import QtQuick.Controls 2.15 as QQC
+import QtQuick.Controls as QQC
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
+import "private" as Private
 
 /**
  * @inherit QtQuick.Controls.TabBar
@@ -61,19 +62,19 @@ QQC.TabBar
      * @brief An alias to manually add elements to the container directly. This is the middle section of the control.
      * @property list<QtObject> TabBar::content
      */
-    property alias content : _rightLayout.data
+    property alias content : _rightLayout.content
     
     /**
      * @brief An alias to add elements to the left area section.
      * @property list<QtObject> TabBar::leftContent
      */
-    property alias leftContent: _leftLayout.data
+    property alias leftContent: _leftLayout.content
     
     /**
      * @brief An alias to add elements to the right area section.
      * @property list<QtObject> TabBar::rightContent
      */
-    property alias rightContent: _rightLayout.data
+    property alias rightContent: _rightLayout.content
     
     /**
      * @brief Whether the control will react to touch events to flick the tabs.
@@ -186,12 +187,16 @@ QQC.TabBar
         {
             id: _layout
             width: parent.width
+            height: parent.height
             spacing: control.spacing
             
-            Row
+            Private.ToolBarSection
             {
                 id: _leftLayout
                 spacing: control.spacing
+                Layout.fillHeight: true
+                Layout.maximumWidth: implicitWidth
+                Layout.minimumWidth: implicitWidth
             }
             
             QQC.ScrollView
@@ -270,10 +275,13 @@ QQC.TabBar
                 }
             }
             
-            Row
+            Private.ToolBarSection
             {
                 id: _rightLayout
                 spacing: control.spacing
+                Layout.fillHeight: true
+                Layout.maximumWidth: implicitWidth
+                Layout.minimumWidth: implicitWidth
             }
             
             Loader

@@ -151,10 +151,10 @@ Pane
         readonly property alias currentItem: _listView.currentItem
         
         /**
-         * @brief The total amount of tab views in this container.
+         * @brief The total amount of views in this container.
          * @property int TabView::count
          */
-        property alias count: _listView.count
+        readonly property alias count: _listView.count
         
         /**
          * @brief An alias to a place holder text handled by a MauiKit Holder control. This is useful to display messages when there is not tab views in this container. To see how to set the message, icon and actions to it checkout the Holder documentation.
