@@ -38,20 +38,8 @@ T.DialogButtonBox
 
     delegate: Button
     {
-        id: _actionButton
         focus: true
         Layout.fillWidth: true
-
-        background: Rectangle
-        {
-            radius: Maui.Style.radiusV
-            color: _actionButton.visualFocus || _actionButton.highlighted || _actionButton.hovered || _actionButton.down || _actionButton.pressed ? Maui.Theme.highlightColor : Maui.Theme.backgroundColor
-
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-        }
     }
 
     contentItem: GridLayout
