@@ -23,7 +23,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Controls.Pane
@@ -532,7 +532,11 @@ Pane
             translucencySource: ShaderEffectSource
             {
                 sourceItem: _content
-                sourceRect:  _headBar.background ? (control.floatingHeader ? Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height) : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headBar.background.height) :  _content.height), _headBar.background.width, _headBar.background.height)) : null
+                sourceRect:  _headBar.background ?
+                                 (control.floatingHeader ?
+                                      Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height)
+                                    : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headerContent.implicitHeight) :  _content.height), _headBar.background.width, _headBar.background.height))
+                               : null
             }
             
             Binding on height
