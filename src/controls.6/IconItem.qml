@@ -21,7 +21,7 @@ import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Item
@@ -101,9 +101,9 @@ Item
      * @note If the container size is 200x200, and the image size hint has been set to 140, then the image will be aligned following the `alignment` property. If the image size hint is larger, then the maximum value will be the container size.
      * @see alignment
      * 
-     * By default this is set to `-1`, which means the image will fill the container size..
+     * By default this is set to `Maui.Style.iconSizes.big`.
      */
-    property int imageSizeHint : -1    
+    property int imageSizeHint : Maui.Style.iconSizes.big   
     
     /**
      * @brief The local or remote file URL of the image to be used.
@@ -135,13 +135,13 @@ Item
      * @brief The painted width size of the image. This will make the image resolution fit this size.
      * By default this is set to `-1`, which means that the image will be loaded with its original resolution size.
      */
-    property int imageWidth : -1
+    property int imageWidth : imageSizeHint
     
     /**
      * @brief The painted height size of the image. This will make the image resolution fit this size.
      * By default this is set to `-1`, which means that the image will be loaded with its original resolution size.
      */
-    property int imageHeight : -1    
+    property int imageHeight : imageSizeHint   
     
     /**
      * @brief Whether the icon should be masked and tinted with the text color, this is used for monochromatic icons. If you plan to use a colorful icon, consider setting this property to `false`.
@@ -186,7 +186,7 @@ Item
 
         smooth: control.smooth
         anchors.centerIn: parent
-        height: valid ? Math.floor(Math.min(parent.height, control.iconSizeHint)) : 0
+        height: valid ? control.iconSizeHint : 0
         width: height
         color: control.color
         isMask: (height <= Maui.Style.iconSizes.medium)
@@ -196,8 +196,11 @@ Item
     {
         id: img        
         
-        width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
-        height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height) 
+//         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
+//         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height) 
+//         
+        height: control.imageSizeHint
+        width: height
         
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
@@ -207,8 +210,8 @@ Item
             case Qt.AlignRight: return control.width - width
         }
         
-        sourceSize.width: (control.imageWidth > -1 ? control.imageWidth : width)
-        sourceSize.height: (control.imageHeight > -1 ? control.imageHeight : height)
+        sourceSize.width: control.imageWidth
+        sourceSize.height: control.imageHeight
         
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter

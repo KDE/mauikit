@@ -161,9 +161,9 @@ Item
           
           /**
            * @brief A size hint for the image to be used in the header. The final size will depend on the available space.
-           * By default this is set to `-1` which means that the image header will take the rest of the available space.
+           * By default this is set to `Maui.Style.iconSizes.big`.
            */
-          property int imageSizeHint : -1
+          property int imageSizeHint : Maui.Style.iconSizes.big
           
           /**
            * @brief The size of the header section. This is the size the header container will take.
