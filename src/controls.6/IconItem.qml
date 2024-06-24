@@ -101,9 +101,9 @@ Item
      * @note If the container size is 200x200, and the image size hint has been set to 140, then the image will be aligned following the `alignment` property. If the image size hint is larger, then the maximum value will be the container size.
      * @see alignment
      * 
-     * By default this is set to `Maui.Style.iconSizes.big`.
+     * By default this is set to `-1`.
      */
-    property int imageSizeHint : Maui.Style.iconSizes.big   
+    property int imageSizeHint : -1 
     
     /**
      * @brief The local or remote file URL of the image to be used.
@@ -199,7 +199,7 @@ Item
 //         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
 //         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height) 
 //         
-        height: control.imageSizeHint
+        height: imageSizeHint >=0  ? imageSizeHint : parent.height
         width: height
         
         anchors.verticalCenter: parent.verticalCenter
