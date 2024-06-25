@@ -40,9 +40,6 @@ add_library(MauiKit${MAUI_MAJOR_VERSION}::Controls ALIAS MauiKit${MAUI_MAJOR_VER
 target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
     PRIVATE
-    libs/appview.h
-    libs/tabview.h
-
     libs/style.cpp
     libs/style.h
 

@@ -35,7 +35,7 @@ import org.mauikit.controls 1.3 as Maui
  * This control will also display a progress bar element at the bottom of the view - indicating the progress of loading the hosted component.
  * @see ProgressIndicator
  * 
- * @note Remeber to set the AppView information, such as title and icon, using the attached properties.
+ * @note Remember to set the Controls metadata information, such as title and icon, using the attached properties.
  * @see AppView
  * 
  * @code
@@ -43,8 +43,8 @@ import org.mauikit.controls 1.3 as Maui
  * {
  *    AppViewLoader
  *    {
- *        AppView.title: i18n("Songs")
- *        AppView.iconName: "view-media-track"
+ *        Controls.title: i18n("Songs")
+ *        Controls.iconName: "view-media-track"
  *        
  *        Item { } ///The child element to be used as the Component to be loaded.
  *    }

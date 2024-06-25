@@ -3,68 +3,67 @@ import QtQml
 
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit TabButton
  * @brief A TabButton crafted to be use along with the MauiKit TabView.
- * 
+ *
  * This control only adds some extra functionality to integrate well with MauiKit TabView. If you consider changing the tab button of the TabView for a custom one, use this as the base.
- * 
- * This control adds the DnD features, and integrates wiht the TabViewInfo data.
+ *
+ * This control adds the DnD features, and integrates with the attached Controls metadata properties.
  */
 Maui.TabButton
 {
     id: control
-    
+
     autoExclusive: true
-    
+
     /**
      * @brief The index of this tab button in the TabBar
      */
     readonly property int mindex : control.TabBar.index
-    
+
     /**
      * @brief The TabView to which this tab button belongs to.
      * By default this is set to its parent.
      * @warning When creating a custom tab button for the TabView, you might need to bind this to the TabView ID.
      */
     property Item tabView : control.parent
-    
+
     /**
      * @brief The object map containing information about this tab.
-     * The information was provided using the TabViewInfo attached properties.
-     * @see TabViewInfo
+     * The information was provided using the Controls metadata attached properties.
+     * @see Controls
      */
-    readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.TabViewInfo
-    
+    readonly property var tabInfo: control.tabView.contentModel.get(mindex).Maui.Controls
+
     /**
      * @brief The color to be used in a bottom strip.
-     * By default this checks for the `TabViewInfo.tabColor` attached property, if it has not been set, it fallbacks to being transparent.
+     * By default this checks for the `Controls.color` attached property, if it has not been set, it fallbacks to being transparent.
      */
-    property color color : tabInfo.tabColor ? tabInfo.tabColor : "transparent"
-    
+    property color color : tabInfo.color ? tabInfo.color : "transparent"
+
     width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
-    
+
     checked: control.mindex === control.tabView.currentIndex
-    text: tabInfo.tabTitle
-    
-    icon.name: tabInfo.tabIcon    
-    
+    text: tabInfo.title
+
+    icon.name: tabInfo.iconName
+
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && !Maui.Handy.isMobile && ToolTip.text.length
-    ToolTip.text: tabInfo.tabToolTipText
-    
+    ToolTip.text: tabInfo.toolTipText
+
     Drag.active: dragArea.drag.active
     Drag.source: control
     Drag.hotSpot.x: width / 2
     Drag.hotSpot.y: height / 2
     Drag.dragType: Drag.Automatic
     Drag.proposedAction: Qt.IgnoreAction
-    
+
     Rectangle
     {
         parent: control.background
@@ -74,18 +73,42 @@ Maui.TabButton
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
     }
-    
+
+
+    Loader
+    {
+        asynchronous: true
+        active: tabInfo.badgeText && tabInfo.badgeText.length > 0
+
+        anchors.horizontalCenter: parent.right
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: 10
+        anchors.horizontalCenterOffset: -5
+
+        sourceComponent: Maui.Badge
+        {
+            text: tabInfo.badgeText
+
+            padding: 2
+            font.pointSize: Maui.Style.fontSizes.tiny
+
+            Maui.Theme.colorSet: Maui.Theme.View
+            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+        }
+    }
+
     MouseArea
     {
         id: dragArea
         anchors.fill: parent
         enabled: !control.mobile && control.tabView.count > 1
-        
+
         cursorShape: drag.active ? Qt.OpenHandCursor : undefined
-        
+
         drag.target: parent
         drag.axis: Drag.XAxis
-        
+
         onClicked: (mouse) =>
         {
             if(mouse.button === Qt.RightButton)
@@ -95,16 +118,16 @@ Maui.TabButton
             }
             control.clicked()
         }
-        
+
         onPositionChanged:
-        {            
+        {
             control.grabToImage(function(result)
             {
                 control.Drag.imageSource = result.url;
-            })            
+            })
         }
     }
-    
+
     Timer
     {
         id: _dropAreaTimer
@@ -117,7 +140,7 @@ Maui.TabButton
             }
         }
     }
-    
+
     DropArea
     {
         id: _dropArea
@@ -126,19 +149,19 @@ Maui.TabButton
         {
             if(!drop.source)
                 return
-                
+
                 const from = drop.source.mindex
                 const to = control.mindex
-                
+
                 if(to === from)
                 {
                     return
                 }
-                
+
                 console.log("Move ", drop.source.mindex, control.mindex)
                 control.tabView.moveTab(from , to)
         }
-        
+
         onEntered: (drag) =>
         {
             if(drag.source &&  drag.source.mindex >= 0)
@@ -147,7 +170,7 @@ Maui.TabButton
             }
             _dropAreaTimer.restart()
         }
-        
+
         onExited:
         {
             _dropAreaTimer.stop()

@@ -24,6 +24,7 @@ DemoPage
                 icon.name: "folder"
                 text: "Button 1"
                 onClicked: {}
+                Maui.Controls.badgeText: "@"
             }
 
             Button
@@ -66,6 +67,7 @@ DemoPage
             ToolButton
             {
                 icon.name: "love"
+                Maui.Controls.badgeText: "@"
             }
 
             ToolButton

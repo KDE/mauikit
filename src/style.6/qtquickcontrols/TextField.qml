@@ -38,55 +38,55 @@ import QtQuick.Templates as T
 T.TextField
 {
     id: control
-    
+
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
-    
+
     clip: true
-    
+
     hoverEnabled: !Maui.Handy.isMobile
-    
+
     opacity: control.enabled ? 1 : 0.5
-    
+
     color: Maui.Theme.textColor
     selectionColor: Maui.Theme.highlightColor
     selectedTextColor: Maui.Theme.highlightedTextColor
     focus: true
-    
+
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: 200
-    
+
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignLeft
-    
+
     padding: 0
     property int spacing: Maui.Style.space.small
 
     leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
     rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
-    
+
     selectByMouse: !Maui.Handy.isMobile
     renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
-    
+
     persistentSelection: true
     font: Maui.Style.defaultFont
-    
+
     wrapMode: TextInput.NoWrap
 
     /**
      * menu : Menu
      */
     readonly property alias menu : entryMenu
-    
+
     /**
      * actions : RowLayout
      */
     property list<Action> actions
-    
+
     property alias icon : _icon
 
     property alias rightContent : _rightLayout.data
-    
+
     /**
      * cleared
      */
@@ -96,16 +96,16 @@ T.TextField
      * contentDropped :
      */
     signal contentDropped(var drop)
-    
+
     onPressAndHold: !Maui.Handy.isMobile ? entryMenu.show() : undefined
     onPressed: (event) =>
     {
         if(!Maui.Handy.isMobile && event.button === Qt.RightButton)
             entryMenu.show()
     }
-    
+
     Keys.enabled: true
-    
+
     Shortcut
     {
         sequence: StandardKey.Escape
@@ -124,7 +124,7 @@ T.TextField
             easing.type: Easing.InOutQuad
         }
     }
-    
+
     Behavior on rightPadding
     {
         NumberAnimation
@@ -133,8 +133,8 @@ T.TextField
             easing.type: Easing.InOutQuad
         }
     }
-    
-    RowLayout
+
+   RowLayout
     {
         id: _layout
         anchors.fill: parent
@@ -149,11 +149,11 @@ T.TextField
             implicitWidth: height
             color: control.color
         }
-        
+
         Item
         {
             Layout.preferredHeight: Maui.Style.iconSize + (Maui.Style.defaultPadding * 2) //simulate the implicitHeight of common button controls
-            
+
         }
 
         Item
@@ -172,11 +172,11 @@ T.TextField
             verticalAlignment: control.verticalAlignment
             elide: Text.ElideRight
             wrapMode: Text.NoWrap
-            
+
             visible: opacity > 0
             opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0
 
-            
+
             Behavior on opacity
             {
                 NumberAnimation
@@ -186,34 +186,34 @@ T.TextField
                 }
             }
         }
-        
+
         Row
         {
             id: _rightLayout
-            
+
             z: parent.z + 1
             spacing: control.spacing
-            
+
             ToolButton
             {
                 id: clearButton
                 flat: true
                 focusPolicy: Qt.NoFocus
-                
+
                 visible: control.text.length || control.activeFocus
                 icon.name: "edit-clear"
-                
+
                 onClicked:
                 {
                     control.clear()
                     cleared()
                 }
             }
-            
+
             Repeater
             {
                 model: control.actions
-                
+
                 ToolButton
                 {
                     flat: !checkable
@@ -222,26 +222,49 @@ T.TextField
                 }
             }
         }
-    }    
-    
+    }
+
+    Loader
+    {
+        asynchronous: true
+        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0
+
+        anchors.horizontalCenter: parent.right
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: 10
+        anchors.horizontalCenterOffset: -5
+
+        sourceComponent: Maui.Badge
+        {
+            text: control.Maui.Controls.badgeText
+
+            padding: 2
+            font.pointSize: Maui.Style.fontSizes.tiny
+
+            Maui.Theme.colorSet: Maui.Theme.View
+            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+        }
+    }
+
     Maui.ContextualMenu
     {
         id: entryMenu
-        
+
         MenuItem
         {
             text: i18nd("mauikit", "Copy")
             onTriggered: control.copy()
             enabled: control.selectedText.length
         }
-        
+
         MenuItem
         {
             text: i18nd("mauikit", "Cut")
             onTriggered: control.cut()
             enabled: control.selectedText.length
         }
-        
+
         MenuItem
         {
             text: i18nd("mauikit", "Paste")
@@ -251,21 +274,21 @@ T.TextField
                 control.insert(control.cursorPosition, text)
             }
         }
-        
+
         MenuItem
         {
             text: i18nd("mauikit", "Select All")
             onTriggered: control.selectAll()
             enabled: control.text.length
         }
-        
+
         MenuItem
         {
             text: i18nd("mauikit", "Undo")
             onTriggered: control.undo()
             enabled: control.canUndo
         }
-        
+
         MenuItem
         {
             text: i18nd("mauikit", "Redo")
@@ -273,7 +296,7 @@ T.TextField
             enabled: control.canRedo
         }
     }
-    
+
     Loader
     {
         asynchronous: true
@@ -286,23 +309,23 @@ T.TextField
                 if (drop.hasText)
                 {
                     control.text += drop.text
-                    
+
                 }else if(drop.hasUrls)
                 {
                     control.text = drop.urls
                 }
-                
+
                 control.contentDropped(drop)
             }
         }
     }
-    
+
     background: Rectangle
     {
         color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
-        
+
         radius: Maui.Style.radiusV
-        
+
         Behavior on color
         {
             Maui.ColorTransition{}

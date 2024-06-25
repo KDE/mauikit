@@ -39,15 +39,15 @@ import "private" as Private
  * 
  * This component takes care of creating the button view-ports in its page header.
  * 
- * Each child element represents a view - and each one should have the AppView attached properties to give a title and icon to the view - so that it can be used as the text and icon  for the view-port buttons. Some of the supported attached properties to be used are:
- * - AppView.title
- * - AppView.iconName
- * - AppView.badgeText
+ * Each child element represents a view - and each one should have the Controls metadata attached properties to give a title and icon to the view - so that it can be used as the text and icon  for the view-port buttons. Some of the supported attached properties to be used are:
+ * - Controls.title
+ * - Controls.iconName
+ * - Controls.badgeText
  * 
  * The badge item is handled by a MauiKit Badge control.
  * @see Badge
  * 
- * @see AppView
+ * @see Controls
  * 
  * @image html AppViews/viewports.png "The view ports as buttons in the header - the title is expanded for the current view on a wide mode, but compacted in a narrow space"
  * 
@@ -61,24 +61,24 @@ import "private" as Private
  * 
  *    Rectangle
  *    {
- *        AppView.title: "View1"
- *        AppView.iconName: "love"
+ *        Controls.title: "View1"
+ *        Controls.iconName: "love"
  * 
  *        color: "blue"
  *    }
  * 
  *    Rectangle
  *    {
- *        AppView.title: "View2"
- *        AppView.iconName: "folder"
- *        AppView.badgeText: "30"
+ *        Controls.title: "View2"
+ *        Controls.iconName: "folder"
+ *        Controls.badgeText: "30"
  *        color: "pink"
  *    }
  * 
  *    Rectangle
  *    {
- *        AppView.title: "View3"
- *        AppView.iconName: "tag"
+ *        Controls.title: "View3"
+ *        Controls.iconName: "tag"
  * 
  *        color: "blue"
  *    }
@@ -116,8 +116,8 @@ Maui.Page
     id: control
     
     /**
-     * @brief All the child items declared will become part of the views. For each child element to be visible in the view port buttons, you need to use the AppView attached properties.
-     * @see AppView
+     * @brief All the child items declared will become part of the views. For each child element to be visible in the view port buttons, you need to use the Controls metadata attached properties.
+     * @see Controls
      * The content layout is handled by a swipe view.
      */
     default property alias content: _swipeView.contentData
@@ -184,7 +184,7 @@ Maui.Page
                     {
                         const obj = _swipeView.contentChildren[i]
                         
-                        if(obj.Maui.AppView.title || obj.Maui.AppView.iconName)
+                        if(obj.Maui.Controls.title || obj.Maui.Controls.iconName)
                         {
                             if(_actionGroup.items.length < control.maxViews)
                             {

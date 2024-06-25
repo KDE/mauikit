@@ -29,14 +29,14 @@ Maui.TabView
 
     Rectangle
     {
-        Maui.TabViewInfo.tabTitle: "Tab 1"
+        Maui.Controls.title: "Tab 1"
         color: "pink"
     }
 
     Rectangle
     {
-        Maui.TabViewInfo.tabTitle: "Tab 2"
-        Maui.TabViewInfo.tabIcon:  "love"
+        Maui.Controls.title: "Tab 2"
+        Maui.Controls.iconName  "love"
         color: "blue"
     }
 }'
@@ -55,20 +55,22 @@ Maui.TabView
 
                 Rectangle
                 {
-                    Maui.TabViewInfo.tabTitle: "Tab 1"
+                    Maui.Controls.title: "Tab 1"
+                    Maui.Controls.badgeText: "@"
+
                     color: "pink"
                 }
 
                 Rectangle
                 {
-                    Maui.TabViewInfo.tabTitle: "Tab 2"
-                    Maui.TabViewInfo.tabIcon:  "love"
+                    Maui.Controls.title: "Tab 2"
+                    Maui.Controls.iconName:  "love"
                     color: "blue"
                 }
 
                 Rectangle
                 {
-                    Maui.TabViewInfo.tabTitle: "Tab 3"
+                    Maui.Controls.title: "Tab 3"
                     color: "yellow"
                 }
             }

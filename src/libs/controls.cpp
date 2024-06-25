@@ -38,3 +38,55 @@ void Controls::setTitle(const QString &title)
     m_title = title;
     Q_EMIT titleChanged();
 }
+
+QString Controls::iconName() const
+{
+    return m_iconName;
+}
+
+void Controls::setIconName(const QString &newIconName)
+{
+    if (m_iconName == newIconName)
+        return;
+    m_iconName = newIconName;
+    Q_EMIT iconNameChanged();
+}
+
+QString Controls::badgeText() const
+{
+    return m_badgeText;
+}
+
+void Controls::setBadgeText(const QString &newBadgeText)
+{
+    if (m_badgeText == newBadgeText)
+        return;
+    m_badgeText = newBadgeText;
+    Q_EMIT badgeTextChanged();
+}
+
+QString Controls::toolTipText() const
+{
+    return m_toolTipText;
+}
+
+void Controls::setToolTipText(const QString &newToolTipText)
+{
+    if (m_toolTipText == newToolTipText)
+        return;
+    m_toolTipText = newToolTipText;
+    Q_EMIT toolTipTextChanged();
+}
+
+QString Controls::color() const
+{
+    return m_color;
+}
+
+void Controls::setColor(const QString &newColor)
+{
+    if (m_color == newColor)
+        return;
+    m_color = newColor;
+    Q_EMIT colorChanged();
+}

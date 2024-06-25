@@ -41,61 +41,62 @@ import org.mauikit.controls as Maui
 T.ToolButton
 {
     id: control
-    
+
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
-    
+
     property bool subMenu : false
-    
+
     opacity: enabled ? 1 : 0.5
 
     implicitWidth: Math.max(implicitContentWidth + leftPadding + rightPadding, implicitHeight)
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
-    
+
     hoverEnabled: !Maui.Handy.isMobile
-    
+
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
-    
+
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
-    
+
     icon.color: control.color
-    
+
     readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
-    
+
     flat: control.parent === T.ToolBar
     font: Maui.Style.defaultFont
-    
+
     indicator: Maui.Icon
     {
         x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
-        
+
         visible: control.subMenu
         color: control.color
         height: 8
         width: 8
         source: "qrc:/assets/arrow-down.svg"
     }
-    
+
     contentItem: Maui.IconLabel
     {
         readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
-        
+
         rightPadding: arrowPadding
 
         spacing: control.spacing
         // mirrored: control.mirrored
         display: control.display
-        
+
         icon: control.icon
         text: control.text
         font: control.font
         alignment: Qt.AlignHCenter
         color: control.color
+
     }
-    
+
 //     Behavior on implicitHeight
 //     {
 //         NumberAnimation
@@ -104,7 +105,7 @@ T.ToolButton
 //             easing.type: Easing.InQuad
 //         }
 //     }
-//     
+//
 //     Behavior on implicitWidth
 //     {
 //         NumberAnimation
@@ -113,17 +114,42 @@ T.ToolButton
 //             easing.type: Easing.InQuad
 //         }
 //     }
-    
+
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
     ToolTip.visible: control.hovered && control.text.length && (control.display === ToolButton.IconOnly ? true : !checked)
     ToolTip.text: control.text
-    
+
     background: Rectangle
     {
         visible: !control.flat
         radius: Maui.Style.radiusV
-        
+
         color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
+
+
+        Loader
+        {
+             z: control.contentItem.z + 99999
+            asynchronous: true
+            active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0
+
+            anchors.horizontalCenter: parent.right
+            anchors.verticalCenter: parent.top
+            anchors.verticalCenterOffset: 10
+            anchors.horizontalCenterOffset: -5
+
+            sourceComponent: Maui.Badge
+            {
+                text: control.Maui.Controls.badgeText
+
+                padding: 2
+                font.pointSize: Maui.Style.fontSizes.tiny
+
+                Maui.Theme.colorSet: Maui.Theme.View
+                Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+                Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            }
+        }
     }
 }

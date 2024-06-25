@@ -57,6 +57,7 @@ DemoPage
                     label3.text: "+300"
                     label4.text: "Info"
                     imageSource: "qrc:/assets/6588168.jpg"
+                    Maui.Controls.badgeText: "&"
                 }
 
                 gridDelegate: Item
@@ -70,6 +71,8 @@ DemoPage
                         label1.text: i18n("Title %1", modelData)
                         label2.text: "Subtitle"
                         imageSource: "qrc:/assets/6588168.jpg"
+                        Maui.Controls.badgeText: "&"
+
                     }
                 }
             }

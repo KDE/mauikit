@@ -26,17 +26,17 @@ DemoPage
 
                 Rectangle
                 {
-                    Maui.AppView.title: i18n("Music")
-                    Maui.AppView.iconName: "folder-music"
-                    Maui.AppView.badgeText: "1+"
+                    Maui.Controls.title: i18n("Music")
+                    Maui.Controls.iconName: "folder-music"
+                    Maui.Controls.badgeText: "1+"
 
                     color: "blue"
                 }
 
                 Rectangle
                 {
-                    Maui.AppView.title: i18n("Downloads")
-                    Maui.AppView.iconName: "folder-downloads"
+                    Maui.Controls.title: i18n("Downloads")
+                    Maui.Controls.iconName: "folder-downloads"
 
                     color: "pink"
                 }
@@ -44,8 +44,8 @@ DemoPage
 
                 Rectangle
                 {
-                    Maui.AppView.title: i18n("Videos")
-                    Maui.AppView.iconName: "folder-video"
+                    Maui.Controls.title: i18n("Videos")
+                    Maui.Controls.iconName: "folder-video"
 
                     color: "violet"
                 }

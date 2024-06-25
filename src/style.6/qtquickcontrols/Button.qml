@@ -29,34 +29,34 @@ T.Button
     opacity: control.enabled ? 1 : 0.5
 
     highlighted: activeFocus
-   
+
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
-    
+
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
-        
+
     hoverEnabled: !Maui.Handy.isMobile
 
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
-    
+
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
 
     icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
-    
+
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
-    
+
     font: Maui.Style.defaultFont
-    
+
     focusPolicy: Qt.StrongFocus
     focus: true
-    
+
     Keys.enabled: true
 
     Keys.onReturnPressed: { control.clicked() }
     Keys.onEnterPressed: { control.clicked() }
-    
+
     contentItem: Maui.IconLabel
     {
         text: control.text
@@ -65,20 +65,44 @@ T.Button
         color: control.icon.color
         spacing: control.spacing
         display: control.display
-        alignment: Qt.AlignHCenter        
+        alignment: Qt.AlignHCenter
     }
-    
+
     background: Rectangle
     {
         visible: !control.flat
-        
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)        
-        
+
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
+
         radius: Maui.Style.radiusV
-        
+
         Behavior on color
         {
             Maui.ColorTransition{}
+        }
+
+        Loader
+        {
+            z: control.contentItem.z +1
+            asynchronous: true
+            active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0
+
+            anchors.horizontalCenter: parent.right
+            anchors.verticalCenter: parent.top
+            anchors.verticalCenterOffset: 10
+            anchors.horizontalCenterOffset: -5
+
+            sourceComponent: Maui.Badge
+            {
+                text: control.Maui.Controls.badgeText
+
+                padding: 2
+                font.pointSize: Maui.Style.fontSizes.tiny
+
+                Maui.Theme.colorSet: Maui.Theme.View
+                Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+                Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            }
         }
     }
 }

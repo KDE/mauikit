@@ -7,7 +7,7 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Controls.SplitView
@@ -16,14 +16,14 @@ import org.mauikit.controls 1.3 as Maui
  * This control add a quick way to add split views and remove them.
  * @see addSplit
  * @see closeSplit
- * 
+ *
  * @image html Misc/splitview.png
- * 
+ *
  * @code
  * Maui.SplitView
  * {
  *    anchors.fill: parent
- * 
+ *
  *    Maui.SplitViewItem
  *    {
  *        Rectangle
@@ -32,7 +32,7 @@ import org.mauikit.controls 1.3 as Maui
  *            anchors.fill: parent
  *        }
  *    }
- * 
+ *
  *    Maui.SplitViewItem
  *    {
  *        Rectangle
@@ -48,17 +48,17 @@ import org.mauikit.controls 1.3 as Maui
 SplitView
 {
     id: control
-    
+
     clip: false
-    
+
     onCurrentItemChanged:
     {
         currentItem.forceActiveFocus()
     }
-    
+
     /**
      * @brief Forces to close the split view at a given index.
-     * If there is onyl one view at the time, then this method does nothing, in order to keep the control with at least one view.
+     * If there is only one view at the time, then this method does nothing, in order to keep the control with at least one view.
      * @note This function calls to the SplitView `removeItem` function.
      * @param index the index of view to be closed
      */
@@ -66,12 +66,12 @@ SplitView
     {
         if(control.count === 1)
         {
-            return // do not close aall
+            return // do not close all
         }
-        
+
         control.removeItem(control.takeItem(index))
     }
-    
+
     /**
      * @brief Adds a QQC2 Component as a view to the control.
      * @param component The QQC2 Component wrapping the view to be added. Consider using a MauiKit SplitViewItem control as the view root element.
@@ -81,12 +81,12 @@ SplitView
     function addSplit(component, properties)
     {
         const object = component.createObject(control.contentModel, properties);
-        
+
         control.addItem(object)
         control.currentIndex = Math.max(control.count -1, 0)
-        
+
         object.forceActiveFocus()
-        
+
         return object
     }
 }

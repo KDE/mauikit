@@ -26,7 +26,7 @@ import org.mauikit.controls as Maui
 Pane
 {
     id: control
-    
+
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
@@ -38,33 +38,33 @@ Pane
      *
      */
     default property list<QtObject> items
-    
+
     /**
      *
      */
     property list<QtObject> hiddenItems
-    
+
     /**
      *
      */
     property int currentIndex : 0
-    
+
     /**
      *
      */
     readonly property int count : control.items.length + control.hiddenItems.length
-    
+
     property int display: ToolButton.TextBesideIcon
     /**
      *
      */
     signal clicked(int index)
-    
+
     /**
      *
      */
     signal pressAndHold(int index)
-    
+
     /**
      *
      */
@@ -78,7 +78,7 @@ Pane
             easing.type: Easing.InOutQuad
         }
     }
-    
+
     property Component delegate : ToolButton
     {
         id: _buttonDelegate
@@ -89,31 +89,14 @@ Pane
 
         leftPadding: Maui.Style.space.big
         rightPadding: Maui.Style.space.big
-        
-        icon.name: modelData.Maui.AppView.iconName
-        text: modelData.Maui.AppView.title
+
+        icon.name: modelData.Maui.Controls.iconName
+        text: modelData.Maui.Controls.title
 
         display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
-        
-        Maui.Badge
-        {
-            visible: modelData.Maui.AppView.badgeText
-            text: modelData.Maui.AppView.badgeText
-            
-            anchors.horizontalCenter: parent.right
-            anchors.verticalCenter: parent.top
-            anchors.verticalCenterOffset: 10
-            anchors.horizontalCenterOffset: -5
-            
-            padding: 2
-            font.pointSize: Maui.Style.fontSizes.tiny
 
-            
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor            
-        }
-        
+        Maui.Controls.badgeText: modelData.Maui.Controls.badgeText
+
         onClicked:
         {
             if(index === control.currentIndex )
@@ -124,7 +107,7 @@ Pane
             control.currentIndex = index
             control.clicked(index)
         }
-        
+
         DropArea
         {
             anchors.fill: parent
@@ -154,19 +137,19 @@ Pane
             visible: obj && obj.visible
             checked: visible
             autoExclusive: true
-            icon.name: obj ? obj.Maui.AppView.iconName : ""
-        
+            icon.name: obj ? obj.Maui.Controls.iconName : ""
+
             //                flat: display === ToolButton.IconOnly
 
             display: checked ? (!isWide ? ToolButton.IconOnly : ToolButton.TextBesideIcon) : ToolButton.IconOnly
 
-            text: obj ? obj.Maui.AppView.title : ""
+            text: obj ? obj.Maui.Controls.title : ""
         }
 
         Maui.ToolButtonMenu
         {
             id: _menuButton
-            icon.name: "overflow-menu"           
+            icon.name: "overflow-menu"
             visible: control.hiddenItems.length > 0
 
             Layout.alignment: Qt.AlignCenter
@@ -187,13 +170,13 @@ Pane
 
                 MenuItem
                 {
-                    text: modelData.Maui.AppView.title
-                    icon.name: modelData.Maui.AppView.iconName
+                    text: modelData.Maui.Controls.title
+                    icon.name: modelData.Maui.Controls.iconName
                     autoExclusive: true
                     checkable: true
                     checked: control.currentIndex === control.items.length + index
                     showIcon: true
-                    
+
                     onTriggered:
                     {
                         if(control.items.length + index === control.currentIndex)

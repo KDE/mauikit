@@ -22,6 +22,7 @@ DemoPage
             TextField
             {
                 placeholderText: "TextField"
+                Maui.Controls.badgeText: "@"
             }
         }
 
@@ -33,6 +34,8 @@ DemoPage
             Maui.SearchField
             {
                 placeholderText: "SearchField"
+                Maui.Controls.badgeText: "@"
+
             }
 
         }
