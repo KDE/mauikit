@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 01:47+0000\n"
+"POT-Creation-Date: 2024-06-26 01:46+0000\n"
 "PO-Revision-Date: 2024-05-09 06:34+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -130,7 +130,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Versionsidentifikation kopierad till klippbordet"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:233
+#: src/style.6/qtquickcontrols/TextField.qml:256
 #, kde-format
 msgid "Copy"
 msgstr "Kopiera"
@@ -185,42 +185,42 @@ msgstr "Stäng alla"
 msgid "Settings"
 msgstr "Inställningar"
 
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
-#, kde-format
-msgid "Close Split"
-msgstr "Stäng delade"
-
-#: src/controls.6/TabView.qml:306
-#, kde-format
-msgid "Open"
-msgstr "Öppna"
-
-#: src/controls.6/TabView.qml:317
+#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "Stäng"
 
-#: src/style.6/qtquickcontrols/TextField.qml:240
+#: src/controls.6/SplitViewItem.qml:188
+#, kde-format
+msgid "Are you sure you want to close the split view: '%1'?"
+msgstr ""
+
+#: src/controls.6/TabView.qml:307
+#, kde-format
+msgid "Open"
+msgstr "Öppna"
+
+#: src/style.6/qtquickcontrols/TextField.qml:263
 #, kde-format
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: src/style.6/qtquickcontrols/TextField.qml:247
+#: src/style.6/qtquickcontrols/TextField.qml:270
 #, kde-format
 msgid "Paste"
 msgstr "Klistra in"
 
-#: src/style.6/qtquickcontrols/TextField.qml:257
+#: src/style.6/qtquickcontrols/TextField.qml:280
 #, kde-format
 msgid "Select All"
 msgstr "Markera alla"
 
-#: src/style.6/qtquickcontrols/TextField.qml:264
+#: src/style.6/qtquickcontrols/TextField.qml:287
 #, kde-format
 msgid "Undo"
 msgstr "Ångra"
 
-#: src/style.6/qtquickcontrols/TextField.qml:271
+#: src/style.6/qtquickcontrols/TextField.qml:294
 #, kde-format
 msgid "Redo"
 msgstr "Gör om"
@@ -241,6 +241,9 @@ msgstr "Stefan Asserhäll"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "stefan.asserhall@gmail.com"
+
+#~ msgid "Close Split"
+#~ msgstr "Stäng delade"
 
 #~ msgid "Share with"
 #~ msgstr "Dela med"

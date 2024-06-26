@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 01:47+0000\n"
+"POT-Creation-Date: 2024-06-26 01:46+0000\n"
 "PO-Revision-Date: 2024-05-07 13:12+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -130,7 +130,7 @@ msgid "Version ID copied to clipboard"
 msgstr "ID di versione copiato negli appunti"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:233
+#: src/style.6/qtquickcontrols/TextField.qml:256
 #, kde-format
 msgid "Copy"
 msgstr "Copia"
@@ -185,42 +185,42 @@ msgstr "Ignora tutto"
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
-#, kde-format
-msgid "Close Split"
-msgstr "Chiudi la divisione"
-
-#: src/controls.6/TabView.qml:306
-#, kde-format
-msgid "Open"
-msgstr "Apri"
-
-#: src/controls.6/TabView.qml:317
+#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "Chiudi"
 
-#: src/style.6/qtquickcontrols/TextField.qml:240
+#: src/controls.6/SplitViewItem.qml:188
+#, kde-format
+msgid "Are you sure you want to close the split view: '%1'?"
+msgstr ""
+
+#: src/controls.6/TabView.qml:307
+#, kde-format
+msgid "Open"
+msgstr "Apri"
+
+#: src/style.6/qtquickcontrols/TextField.qml:263
 #, kde-format
 msgid "Cut"
 msgstr "Taglia"
 
-#: src/style.6/qtquickcontrols/TextField.qml:247
+#: src/style.6/qtquickcontrols/TextField.qml:270
 #, kde-format
 msgid "Paste"
 msgstr "Incolla"
 
-#: src/style.6/qtquickcontrols/TextField.qml:257
+#: src/style.6/qtquickcontrols/TextField.qml:280
 #, kde-format
 msgid "Select All"
 msgstr "Seleziona tutto"
 
-#: src/style.6/qtquickcontrols/TextField.qml:264
+#: src/style.6/qtquickcontrols/TextField.qml:287
 #, kde-format
 msgid "Undo"
 msgstr "Annulla"
 
-#: src/style.6/qtquickcontrols/TextField.qml:271
+#: src/style.6/qtquickcontrols/TextField.qml:294
 #, kde-format
 msgid "Redo"
 msgstr "Rifai"
@@ -241,6 +241,9 @@ msgstr "Vincenzo Reale"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "smart2128vr@gmail.com"
+
+#~ msgid "Close Split"
+#~ msgstr "Chiudi la divisione"
 
 #~ msgid "Share with"
 #~ msgstr "Condividi con"

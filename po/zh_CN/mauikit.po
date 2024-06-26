@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-30 01:47+0000\n"
+"POT-Creation-Date: 2024-06-26 01:46+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -132,7 +132,7 @@ msgid "Version ID copied to clipboard"
 msgstr "版本 ID 已复制到剪贴板"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:233
+#: src/style.6/qtquickcontrols/TextField.qml:256
 #, kde-format
 msgid "Copy"
 msgstr "复制"
@@ -187,42 +187,42 @@ msgstr "忽略全部"
 msgid "Settings"
 msgstr "设置"
 
-#: src/controls.6/SplitViewItem.qml:129 src/controls.6/SplitViewItem.qml:144
-#, kde-format
-msgid "Close Split"
-msgstr "关闭拆分视图"
-
-#: src/controls.6/TabView.qml:306
-#, kde-format
-msgid "Open"
-msgstr "打开"
-
-#: src/controls.6/TabView.qml:317
+#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "关闭"
 
-#: src/style.6/qtquickcontrols/TextField.qml:240
+#: src/controls.6/SplitViewItem.qml:188
+#, kde-format
+msgid "Are you sure you want to close the split view: '%1'?"
+msgstr ""
+
+#: src/controls.6/TabView.qml:307
+#, kde-format
+msgid "Open"
+msgstr "打开"
+
+#: src/style.6/qtquickcontrols/TextField.qml:263
 #, kde-format
 msgid "Cut"
 msgstr "剪切"
 
-#: src/style.6/qtquickcontrols/TextField.qml:247
+#: src/style.6/qtquickcontrols/TextField.qml:270
 #, kde-format
 msgid "Paste"
 msgstr "粘贴"
 
-#: src/style.6/qtquickcontrols/TextField.qml:257
+#: src/style.6/qtquickcontrols/TextField.qml:280
 #, kde-format
 msgid "Select All"
 msgstr "选择全部"
 
-#: src/style.6/qtquickcontrols/TextField.qml:264
+#: src/style.6/qtquickcontrols/TextField.qml:287
 #, kde-format
 msgid "Undo"
 msgstr "撤销"
 
-#: src/style.6/qtquickcontrols/TextField.qml:271
+#: src/style.6/qtquickcontrols/TextField.qml:294
 #, kde-format
 msgid "Redo"
 msgstr "重做"
@@ -243,3 +243,6 @@ msgstr "Guo Yunhe, Si Heng Tang, Tyson Tan"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "i@guoyunhe.me, tang142857@kde.org, tds00@qq.com"
+
+#~ msgid "Close Split"
+#~ msgstr "关闭拆分视图"
