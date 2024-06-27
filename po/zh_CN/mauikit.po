@@ -243,6 +243,3 @@ msgstr "Guo Yunhe, Si Heng Tang, Tyson Tan"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "i@guoyunhe.me, tang142857@kde.org, tds00@qq.com"
-
-#~ msgid "Close Split"
-#~ msgstr "关闭拆分视图"
