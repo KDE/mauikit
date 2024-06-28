@@ -73,7 +73,7 @@ Pane
         SplitView.preferredWidth: SplitView.view.orientation === Qt.Horizontal ? SplitView.view.width / (SplitView.view.count) : SplitView.view.width
         SplitView.minimumWidth: SplitView.view.orientation === Qt.Horizontal ? minimumWidth :  0
 
-        clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0
+        // clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0
 
         padding: compact ? 0 : Maui.Style.contentMargins
         Behavior on padding
@@ -87,28 +87,18 @@ Pane
 
         contentItem: Item
         {
+            state:control.compact ? "compactBadge" : "uncompactBadge"
+
+            id: _parent
+            Item
+        {
+            id: _content
+            anchors.fill: parent
+
             Item
             {
                 id:  _container
                 anchors.fill: parent
-            }
-
-            Maui.Badge
-            {
-                visible: control.Maui.Controls.badgeText
-                text: control.Maui.Controls.badgeText
-
-                anchors.horizontalCenter: parent.right
-                anchors.verticalCenter: parent.top
-                anchors.verticalCenterOffset: 10
-                anchors.horizontalCenterOffset: -5
-
-                padding: 2
-                font.pointSize: Maui.Style.fontSizes.tiny
-
-                Maui.Theme.colorSet: Maui.Theme.View
-                Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-                Maui.Theme.textColor: Maui.Theme.negativeTextColor
             }
 
             Loader
@@ -196,6 +186,94 @@ opacity: control.SplitView.view.orientation === Qt.Vertical ? (control.minimumHe
 
                 standardButtons: Dialog.Ok | Dialog.Cancel
             }
+        }
+
+        Loader
+        {
+            id: _badgeLoader
+            asynchronous: true
+
+            active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
+            visible: active
+
+            sourceComponent: Maui.Badge
+            {
+                text: control.Maui.Controls.badgeText
+
+                padding: 2
+                font.pointSize: Maui.Style.fontSizes.tiny
+
+                Maui.Theme.colorSet: Maui.Theme.View
+                Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+                Maui.Theme.textColor: Maui.Theme.negativeTextColor
+
+                OpacityAnimator on opacity
+                {
+                    from: 0
+                    to: 1
+                    duration: Maui.Style.units.longDuration
+                    running: parent.visible
+                }
+
+                ScaleAnimator on scale
+                {
+                    from: 0.5
+                    to: 1
+                    duration: Maui.Style.units.longDuration
+                    running: parent.visible
+                    easing.type: Easing.OutInQuad
+                }
+            }
+
+
+            transitions: Transition {
+                // smoothly reanchor myRect and move into new position
+                AnchorAnimation { duration:  Maui.Style.units.longDuration }
+            }
+        }
+
+
+        states:[
+
+            State {
+                name: "compactBadge"
+
+                AnchorChanges {
+                    target: _badgeLoader
+                    anchors.right: _parent.right
+                    anchors.top: _parent.top
+
+                    anchors.horizontalCenter: undefined
+                    anchors.verticalCenter: undefined
+                }
+                PropertyChanges {
+                    target: _badgeLoader
+                    anchors.margins: 10
+                    anchors.verticalCenterOffset: 0
+                    anchors.horizontalCenterOffset: 0
+                }
+            },
+
+            State {
+                name: "uncompactBadge"
+
+                AnchorChanges {
+                    target: _badgeLoader
+                    anchors.horizontalCenter: _parent.right
+                    anchors.verticalCenter: _parent.top
+
+                    anchors.right: undefined
+                    anchors.top: undefined
+                }
+                PropertyChanges {
+                    target: _badgeLoader
+                    anchors.verticalCenterOffset: 10
+                    anchors.horizontalCenterOffset: -5
+                    anchors.margins: 0
+                }
+            }
+        ]
+
         }
 
         Connections

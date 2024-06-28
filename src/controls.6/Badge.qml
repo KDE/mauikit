@@ -19,8 +19,9 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Controls.Control
@@ -80,9 +81,9 @@ Control
      */
     property color color:  Maui.Theme.backgroundColor
 
-    font.weight: Font.Bold
+    font.weight: Font.Black
     font.bold: true
-    font.pointSize: Maui.Style.fontSizes.small
+    font.pointSize: Maui.Style.fontSizes.tiny
 
     implicitWidth: Math.max(implicitHeight, implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
@@ -100,6 +101,7 @@ Control
 
     background: Rectangle
     {
+        id: _bg
         radius: Math.min(width, height)
         color: control.color
         border.color: Qt.lighter(control.color)
@@ -108,7 +110,21 @@ Control
         {
             Maui.ColorTransition{}
         }
+
+
     }
+
+     MultiEffect
+        {
+            source: _bg
+            anchors.fill: _bg
+           shadowColor: "#80000000"
+           shadowEnabled: true
+           autoPaddingEnabled: true
+           shadowVerticalOffset: 3
+           shadowHorizontalOffset: 1
+           shadowBlur: 0.5
+        }
 
     contentItem: Maui.IconLabel
     {

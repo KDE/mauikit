@@ -45,12 +45,14 @@ Maui.TabButton
      */
     property color color : tabInfo.color ? tabInfo.color : "transparent"
 
-    width: control.tabView.mobile ? ListView.view.width : Math.max(160, implicitWidth)
+    width: control.tabView.mobile ? ListView.view.width : Math.max(160, Math.min(260, implicitWidth))
 
     checked: control.mindex === control.tabView.currentIndex
     text: tabInfo.title
 
     icon.name: tabInfo.iconName
+
+    Maui.Controls.badgeText: tabInfo.badgeText
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
@@ -72,30 +74,6 @@ Maui.TabButton
         width: parent.width*0.9
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-
-    Loader
-    {
-        asynchronous: true
-        active: tabInfo.badgeText && tabInfo.badgeText.length > 0
-
-        anchors.horizontalCenter: parent.right
-        anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: 10
-        anchors.horizontalCenterOffset: -5
-
-        sourceComponent: Maui.Badge
-        {
-            text: tabInfo.badgeText
-
-            padding: 2
-            font.pointSize: Maui.Style.fontSizes.tiny
-
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
-        }
     }
 
     MouseArea

@@ -270,13 +270,31 @@ Maui.ItemDelegate
 
     Loader
     {
+        id: _badgeLoader
         asynchronous: true
-        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0
+        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
 
         anchors.horizontalCenter: parent.right
         anchors.verticalCenter: parent.top
         anchors.verticalCenterOffset: 10
         anchors.horizontalCenterOffset: -5
+
+        OpacityAnimator on opacity
+        {
+            from: 0
+            to: 1
+            duration: Maui.Style.units.longDuration
+            running: _badgeLoader.status === Loader.Ready
+        }
+
+        ScaleAnimator on scale
+        {
+            from: 0.5
+            to: 1
+            duration: Maui.Style.units.longDuration
+            running: _badgeLoader.status === Loader.Ready
+            easing.type: Easing.OutInQuad
+        }
 
         sourceComponent: Maui.Badge
         {

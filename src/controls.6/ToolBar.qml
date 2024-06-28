@@ -121,9 +121,9 @@ import "private" as Private
 QQC.ToolBar
 {
     id: control
-    
+
     implicitHeight: preferredHeight + topPadding + bottomPadding
-    
+
     /**
      * @brief By default any child item of the ToolBar will be positioned at the left section in a row. So using the leftContent property or just declaring the child items without it will have the same effect.
      * @see leftContent
@@ -337,7 +337,7 @@ QQC.ToolBar
             states: [State
                 {
                     name: "headerState"
-                    
+
                     AnchorChanges
                     {
                         target: _container
@@ -345,11 +345,11 @@ QQC.ToolBar
                         anchors.bottom: parent.bottom
                     }
                 },
-                
+
                 State
                 {
                     name: "footerState"
-                    
+
                     AnchorChanges
                     {
                         target: _container
@@ -500,8 +500,17 @@ QQC.ToolBar
 
                 Loader
                 {
+                    id: _csdLoader
                     active: control.Maui.Controls.showCSD === true && control.position === ToolBar.Header
                     visible: active
+
+                    OpacityAnimator on opacity
+                    {
+                        from: 0
+                        to: 1
+                        duration: Maui.Style.units.longDuration * 2
+                        running: _csdLoader.status === Loader.Ready
+                    }
 
                     asynchronous: true
 

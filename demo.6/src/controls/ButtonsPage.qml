@@ -76,7 +76,7 @@ DemoPage
                 checkable: true
                 checked: true
                 text: "Checkable"
-
+                Maui.Controls.badgeText: checked ? "+1" : ""
             }
 
             ToolButton

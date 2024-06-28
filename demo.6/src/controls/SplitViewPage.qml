@@ -19,13 +19,15 @@ DemoPage
             title: "Horizontal"
             body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
 
-            column:  Maui.SplitView
+            column: Maui.SplitView
             {
                 Layout.fillWidth: true
                 implicitHeight: 500
 
                 Maui.SplitViewItem
                 {
+                    Maui.Controls.title: "Blue split view"
+                    Maui.Controls.badgeText: "VI"
                     Rectangle
                     {
                         anchors.fill: parent
@@ -35,6 +37,8 @@ DemoPage
 
                 Maui.SplitViewItem
                 {
+                    Maui.Controls.title: "Blue split view"
+                    Maui.Controls.badgeText: "VII"
                     Rectangle
                     {
                         anchors.fill: parent

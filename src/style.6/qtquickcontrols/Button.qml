@@ -80,28 +80,47 @@ T.Button
         {
             Maui.ColorTransition{}
         }
+    }
 
-        Loader
+    Loader
+    {
+        z: control.contentItem.z + 9999
+        asynchronous: true
+
+        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
+        visible: active
+
+        anchors.horizontalCenter: parent.right
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: 10
+        anchors.horizontalCenterOffset: -5
+
+        sourceComponent: Maui.Badge
         {
-            z: control.contentItem.z +1
-            asynchronous: true
-            active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0
+            text: control.Maui.Controls.badgeText
 
-            anchors.horizontalCenter: parent.right
-            anchors.verticalCenter: parent.top
-            anchors.verticalCenterOffset: 10
-            anchors.horizontalCenterOffset: -5
+            padding: 2
+            font.pointSize: Maui.Style.fontSizes.tiny
 
-            sourceComponent: Maui.Badge
+            Maui.Theme.colorSet: Maui.Theme.View
+            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+
+            OpacityAnimator on opacity
             {
-                text: control.Maui.Controls.badgeText
+                from: 0
+                to: 1
+                duration: Maui.Style.units.longDuration
+                running: parent.visible
+            }
 
-                padding: 2
-                font.pointSize: Maui.Style.fontSizes.tiny
-
-                Maui.Theme.colorSet: Maui.Theme.View
-                Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-                Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            ScaleAnimator on scale
+            {
+                from: 0.5
+                to: 1
+                duration: Maui.Style.units.longDuration
+                running: parent.visible
+                easing.type: Easing.OutInQuad
             }
         }
     }

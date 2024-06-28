@@ -34,7 +34,7 @@ DemoPage
             Maui.SearchField
             {
                 placeholderText: "SearchField"
-                Maui.Controls.badgeText: "@"
+                Maui.Controls.badgeText: text.length > 3 ? "!!" : ""
 
             }
 

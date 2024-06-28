@@ -42,8 +42,6 @@ T.TextField
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
 
-    clip: true
-
     hoverEnabled: !Maui.Handy.isMobile
 
     opacity: control.enabled ? 1 : 0.5
@@ -137,6 +135,8 @@ T.TextField
    RowLayout
     {
         id: _layout
+        clip: true
+
         anchors.fill: parent
         anchors.leftMargin: Maui.Style.space.medium
         spacing: control.spacing
@@ -227,12 +227,15 @@ T.TextField
     Loader
     {
         asynchronous: true
-        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0
+
+        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
+        visible: active
 
         anchors.horizontalCenter: parent.right
         anchors.verticalCenter: parent.top
         anchors.verticalCenterOffset: 10
         anchors.horizontalCenterOffset: -5
+
 
         sourceComponent: Maui.Badge
         {
@@ -244,6 +247,23 @@ T.TextField
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
             Maui.Theme.textColor: Maui.Theme.negativeTextColor
+
+            OpacityAnimator on opacity
+            {
+                from: 0
+                to: 1
+                duration: Maui.Style.units.longDuration
+                running: parent.visible
+            }
+
+            ScaleAnimator on scale
+            {
+                from: 0.5
+                to: 1
+                duration: Maui.Style.units.longDuration
+                running: parent.visible
+                easing.type: Easing.OutInQuad
+            }
         }
     }
 
