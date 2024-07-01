@@ -158,7 +158,7 @@ T.ToolButton
             {
                 from: 0
                 to: 1
-                duration: Maui.Style.units.longDuration
+                duration: Maui.Style.units.shortDuration
                 running: parent.visible
             }
 
@@ -166,7 +166,7 @@ T.ToolButton
             {
                 from: 0.5
                 to: 1
-                duration: Maui.Style.units.longDuration
+                duration: Maui.Style.units.shortDuration
                 running: parent.visible
                 easing.type: Easing.OutInQuad
             }

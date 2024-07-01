@@ -339,7 +339,7 @@ Maui.ItemDelegate
       {
         from: 0
         to: 1
-        duration: Maui.Style.units.longDuration * 2
+        duration: Maui.Style.units.longDuration
         running: _loader.status === Loader.Ready
       }
 
@@ -347,7 +347,7 @@ Maui.ItemDelegate
       {
         from: 0.5
         to: 1
-        duration: Maui.Style.units.longDuration * 2
+        duration: Maui.Style.units.longDuration
         running: _loader.status === Loader.Ready
         easing.type: Easing.OutInQuad
       }

@@ -122,7 +122,7 @@ Control
            shadowEnabled: true
            autoPaddingEnabled: true
            shadowVerticalOffset: 3
-           shadowHorizontalOffset: 1
+           shadowHorizontalOffset: -2
            shadowBlur: 0.5
         }
 

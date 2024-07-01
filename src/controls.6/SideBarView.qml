@@ -179,7 +179,7 @@ Item
                     {
                         from: 0
                         to: 0.5
-                        duration: Maui.Style.units.longDuration*2
+                        duration: Maui.Style.units.longDuration
                         running: parent.visible
                     }
                 }
