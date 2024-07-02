@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 01:46+0000\n"
-"PO-Revision-Date: 2024-05-07 11:39+0200\n"
+"POT-Creation-Date: 2024-07-02 01:44+0000\n"
+"PO-Revision-Date: 2024-06-26 10:47+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -132,7 +132,7 @@ msgid "Version ID copied to clipboard"
 msgstr "L'ID de la versió s'ha copiat a dins del porta-retalls"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:256
+#: src/style.6/qtquickcontrols/TextField.qml:276
 #, kde-format
 msgid "Copy"
 msgstr "Copia"
@@ -187,42 +187,42 @@ msgstr "Descarta-ho tot"
 msgid "Settings"
 msgstr "Configuració"
 
-#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:123 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "Tanca"
 
-#: src/controls.6/SplitViewItem.qml:188
+#: src/controls.6/SplitViewItem.qml:178
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
-msgstr ""
+msgstr "Segur que voleu tancar la vista dividida: «%1»?"
 
 #: src/controls.6/TabView.qml:307
 #, kde-format
 msgid "Open"
 msgstr "Obri"
 
-#: src/style.6/qtquickcontrols/TextField.qml:263
+#: src/style.6/qtquickcontrols/TextField.qml:283
 #, kde-format
 msgid "Cut"
 msgstr "Retalla"
 
-#: src/style.6/qtquickcontrols/TextField.qml:270
+#: src/style.6/qtquickcontrols/TextField.qml:290
 #, kde-format
 msgid "Paste"
 msgstr "Apega"
 
-#: src/style.6/qtquickcontrols/TextField.qml:280
+#: src/style.6/qtquickcontrols/TextField.qml:300
 #, kde-format
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
-#: src/style.6/qtquickcontrols/TextField.qml:287
+#: src/style.6/qtquickcontrols/TextField.qml:307
 #, kde-format
 msgid "Undo"
 msgstr "Desfés"
 
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/style.6/qtquickcontrols/TextField.qml:314
 #, kde-format
 msgid "Redo"
 msgstr "Refés"
@@ -243,9 +243,3 @@ msgstr "Josep M. Ferrer"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "txemaq@gmail.com"
-
-#~ msgid "Close Split"
-#~ msgstr "Tanca la divisió"
-
-#~ msgid "Share with"
-#~ msgstr "Compartix amb"

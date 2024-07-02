@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 01:46+0000\n"
+"POT-Creation-Date: 2024-07-02 01:44+0000\n"
 "PO-Revision-Date: 2024-02-13 00:56+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -135,7 +135,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Bertsioaren ID arbelera kopiatu da"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:256
+#: src/style.6/qtquickcontrols/TextField.qml:276
 #, kde-format
 msgid "Copy"
 msgstr "Kopiatu"
@@ -191,12 +191,12 @@ msgstr "Baztertu guztia"
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:123 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "Itxi"
 
-#: src/controls.6/SplitViewItem.qml:188
+#: src/controls.6/SplitViewItem.qml:178
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr ""
@@ -206,27 +206,27 @@ msgstr ""
 msgid "Open"
 msgstr "Ireki"
 
-#: src/style.6/qtquickcontrols/TextField.qml:263
+#: src/style.6/qtquickcontrols/TextField.qml:283
 #, kde-format
 msgid "Cut"
 msgstr "Ebaki"
 
-#: src/style.6/qtquickcontrols/TextField.qml:270
+#: src/style.6/qtquickcontrols/TextField.qml:290
 #, kde-format
 msgid "Paste"
 msgstr "Itsatsi"
 
-#: src/style.6/qtquickcontrols/TextField.qml:280
+#: src/style.6/qtquickcontrols/TextField.qml:300
 #, kde-format
 msgid "Select All"
 msgstr "Hautatu denak"
 
-#: src/style.6/qtquickcontrols/TextField.qml:287
+#: src/style.6/qtquickcontrols/TextField.qml:307
 #, kde-format
 msgid "Undo"
 msgstr "Desegin"
 
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/style.6/qtquickcontrols/TextField.qml:314
 #, kde-format
 msgid "Redo"
 msgstr "Berregin"

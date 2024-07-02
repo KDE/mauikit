@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 01:46+0000\n"
+"POT-Creation-Date: 2024-07-02 01:44+0000\n"
 "PO-Revision-Date: 2024-02-11 02:27+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -131,7 +131,7 @@ msgid "Version ID copied to clipboard"
 msgstr "ვერსიის ID დაკოპირდა ბუფერში"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:256
+#: src/style.6/qtquickcontrols/TextField.qml:276
 #, kde-format
 msgid "Copy"
 msgstr "კოპირება"
@@ -187,12 +187,12 @@ msgstr "ყველაფრის გაუქმება"
 msgid "Settings"
 msgstr "მორგება"
 
-#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:123 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "დახურვა"
 
-#: src/controls.6/SplitViewItem.qml:188
+#: src/controls.6/SplitViewItem.qml:178
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr ""
@@ -202,27 +202,27 @@ msgstr ""
 msgid "Open"
 msgstr "გახსნა"
 
-#: src/style.6/qtquickcontrols/TextField.qml:263
+#: src/style.6/qtquickcontrols/TextField.qml:283
 #, kde-format
 msgid "Cut"
 msgstr "ამოჭრა"
 
-#: src/style.6/qtquickcontrols/TextField.qml:270
+#: src/style.6/qtquickcontrols/TextField.qml:290
 #, kde-format
 msgid "Paste"
 msgstr "ჩასმა"
 
-#: src/style.6/qtquickcontrols/TextField.qml:280
+#: src/style.6/qtquickcontrols/TextField.qml:300
 #, kde-format
 msgid "Select All"
 msgstr "ყველას მონიშვნა"
 
-#: src/style.6/qtquickcontrols/TextField.qml:287
+#: src/style.6/qtquickcontrols/TextField.qml:307
 #, kde-format
 msgid "Undo"
 msgstr "ბრძანების გაუქმება"
 
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/style.6/qtquickcontrols/TextField.qml:314
 #, kde-format
 msgid "Redo"
 msgstr "თავიდან"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-26 01:46+0000\n"
+"POT-Creation-Date: 2024-07-02 01:44+0000\n"
 "PO-Revision-Date: 2023-04-06 10:44+0100\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -127,7 +127,7 @@ msgid "Version ID copied to clipboard"
 msgstr ""
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:256
+#: src/style.6/qtquickcontrols/TextField.qml:276
 #, kde-format
 msgid "Copy"
 msgstr "Copiar"
@@ -183,12 +183,12 @@ msgstr "Esquecer Tudo"
 msgid "Settings"
 msgstr "Configuração"
 
-#: src/controls.6/SplitViewItem.qml:133 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:123 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "Fechar"
 
-#: src/controls.6/SplitViewItem.qml:188
+#: src/controls.6/SplitViewItem.qml:178
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr ""
@@ -198,27 +198,27 @@ msgstr ""
 msgid "Open"
 msgstr "Abrir"
 
-#: src/style.6/qtquickcontrols/TextField.qml:263
+#: src/style.6/qtquickcontrols/TextField.qml:283
 #, kde-format
 msgid "Cut"
 msgstr "Cortar"
 
-#: src/style.6/qtquickcontrols/TextField.qml:270
+#: src/style.6/qtquickcontrols/TextField.qml:290
 #, kde-format
 msgid "Paste"
 msgstr "Colar"
 
-#: src/style.6/qtquickcontrols/TextField.qml:280
+#: src/style.6/qtquickcontrols/TextField.qml:300
 #, kde-format
 msgid "Select All"
 msgstr "Seleccionar Tudo"
 
-#: src/style.6/qtquickcontrols/TextField.qml:287
+#: src/style.6/qtquickcontrols/TextField.qml:307
 #, kde-format
 msgid "Undo"
 msgstr "Desfazer"
 
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/style.6/qtquickcontrols/TextField.qml:314
 #, kde-format
 msgid "Redo"
 msgstr "Refazer"
