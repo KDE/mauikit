@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-02 01:44+0000\n"
-"PO-Revision-Date: 2024-02-13 00:56+0100\n"
+"PO-Revision-Date: 2024-07-05 23:21+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
@@ -176,10 +176,9 @@ msgid "Components"
 msgstr "Osagaiak"
 
 #: src/controls.6/private/ShareDialogLinux.qml:49
-#, fuzzy, kde-format
-#| msgid "Share with"
+#, kde-format
 msgid "Share"
-msgstr "Partekatu honekin"
+msgstr "Partekatu"
 
 #: src/controls.6/private/ToastArea.qml:295
 #, kde-format
@@ -199,7 +198,7 @@ msgstr "Itxi"
 #: src/controls.6/SplitViewItem.qml:178
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
-msgstr ""
+msgstr "Ziur zaude ikuspegi zatitua itxi nahi duzula: '%1'?"
 
 #: src/controls.6/TabView.qml:307
 #, kde-format
