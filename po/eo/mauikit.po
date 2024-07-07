@@ -1,15 +1,15 @@
 # translation of mauikit.pot to esperanto
 # Copyright (C) 2023 Free Software Foundation, Inc.
 # This file is distributed under the same license as the mauikit package.
-# Oliver Kellogg <okellogg@users.sourceforge.net, 2023.
+# Oliver Kellogg <olivermkellogg@gmail.com, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-02 01:44+0000\n"
-"PO-Revision-Date: 2024-05-12 23:22+0100\n"
-"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
+"PO-Revision-Date: 2024-07-06 16:50+0200\n"
+"Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "Fermi"
 #: src/controls.6/SplitViewItem.qml:178
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
-msgstr ""
+msgstr "Ĉu vi certas, ke vi volas fermi la dividantan vidon: '%1'?"
 
 #: src/controls.6/TabView.qml:307
 #, kde-format
@@ -241,10 +241,4 @@ msgstr "Oliver Kellogg"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "okellogg@users.sourceforge.net"
-
-#~ msgid "Close Split"
-#~ msgstr "Fermi Split"
-
-#~ msgid "Share with"
-#~ msgstr "Kunhavigi kun"
+msgstr "olivermkellogg@gmail.com"
