@@ -110,7 +110,7 @@ QQC.TabBar
 
     background: Rectangle
     {
-        color: control.Maui.Controls.level ? Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
+        color: control.Maui.Controls.level ? control.Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
 
         Behavior on color
         {
