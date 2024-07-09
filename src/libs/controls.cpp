@@ -90,3 +90,18 @@ void Controls::setColor(const QString &newColor)
     m_color = newColor;
     Q_EMIT colorChanged();
 }
+
+
+Controls::Level Controls::level() const
+{
+    return m_level;
+}
+
+void Controls::setLevel(Controls::Level level)
+{
+    if(m_level == level)
+        return;
+
+    m_level = level;
+    Q_EMIT levelChanged();
+}

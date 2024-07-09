@@ -25,43 +25,43 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Templates as T
 import org.mauikit.controls as Maui
 
-T.ToolBar 
+T.ToolBar
 {
     id: control
-    
+
     default property alias content : _layout.data
-        
+
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
-    
+
     property Item translucencySource : null
-        
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding    
+
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
 
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
-    
+
     font: Maui.Style.defaultFont
-    
+
     property alias borderVisible: _border.visible
-    
+
     contentItem: Row
     {
         id: _layout
         spacing: control.spacing
     }
-    
+
     background: Rectangle
     {
         id: _headBarBG
-        color: Maui.Theme.backgroundColor
-       
+        color: control.Maui.Controls.level ? Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
+
        Behavior on color
         {
             Maui.ColorTransition{}
         }
-        
+
         Loader
         {
             asynchronous: true
@@ -70,36 +70,37 @@ T.ToolBar
             sourceComponent: Item
             {
                 FastBlur
-                {    
+                {
                     anchors.fill: parent
-                    
+
                     layer.enabled: true
                     layer.effect: Desaturate
                     {
                         desaturation: -1.2
                     }
-                    
+
                     source: control.translucencySource
                     radius: 64
-                }  
-                
+                }
+
                 Rectangle
                 {
                     color: _headBarBG.color
                     anchors.fill: parent
-                    opacity: 0.9                    
-                }   
+                    opacity: 0.9
+                }
             }
-        }  
-        
+        }
+
          Maui.Separator
          {
              id: _border
+             visible: false
              anchors.left: parent.left
              anchors.right: parent.right
              weight: Maui.Separator.Weight.Light
              opacity: 0.4
-             
+
              Behavior on color
              {
                  Maui.ColorTransition{}

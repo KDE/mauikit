@@ -27,7 +27,7 @@ import org.mauikit.controls 1.3 as Maui
  This is the container for the sidebar section in the SideBarView.
  @warning This control is private and can not be used independently. It exists only as part of the SideBarView implementation and can only be accessed via the exposed alias property `sideBar` in said control.
  @see SideBarView
- 
+
  */
 Pane
 {
@@ -35,24 +35,24 @@ Pane
 
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
-    
+
     /**
      * @brief The SideBarView item to which this sidebar section belongs.
      */
     property Item sideBarView : null
 
     /**
-     * @brief The position of the sidebar. 1 means it is full opened, while 0 means it has been hidden. 
+     * @brief The position of the sidebar. 1 means it is full opened, while 0 means it has been hidden.
      * Values in-between can be used to determined the actual position between the open and hidden states.
      * @property double SideBar::position
      */
     readonly property alias position : _private.position
-    
+
     /**
      * @brief True when the sidebar is collapse but it is still visible.
      */
     readonly property bool peeking : control.collapsed && control.position > 0
-    
+
     /**
      * @brief True when the resizing the sidebar by the user action.
      */
@@ -62,69 +62,69 @@ Pane
      * @brief Where all the sidebar section contents go.
      * @property list<QtObject> AbstractSideBar::content
      */
-    default property alias content : _content.data    
-    
+    default property alias content : _content.data
+
     /**
      * @brief If the sidebar should be collapsed or not, this property can be used to dynamically collapse the sidebar on constrained spaces.
      * For example, using unit metrics to determine an appropriate size-width restriction: if the application window width is less than 400 pixels then collapse the sidebar, or if the SideBarView main content area width is less than an ideal width size, then collapse the sidebar.
      */
     property bool collapsed: false
-    
+
     /**
      * @brief Wether the sidebar area can be resized manually by using a cursor or touch gesture. The resizing will be stopped at reaching the minimum and/or maximum values.
      */
     property bool resizeable : !Maui.Handy.isMobile
-    
+
     /**
      * @brief If when collapsed the sidebar should automatically be hidden or stay in place.
      * By default the sidebar will stay in place, and the SideBarView main area content will be displaced.
      */
     property bool autoHide: false
-    
+
      /**
      * @brief If when opened/un-collapsed - after have been hidden - the sidebar should automatically be shown or remain hidden.
      * By default the sidebar will be shown as soon as it is un-collapsed.
      */
     property bool autoShow: true
-    
+
     /**
      * @brief The actual size of the width that the sidebar will have in order to reserve a right margin to never exceed the SideBarView full width.
      * Most of the time this value will be the same as the sidebar preferred width
      */
     readonly property int constrainedWidth : Math.min(control.preferredWidth, control.sideBarView.width*0.9)
-    
+
      /**
      * @brief The preferred width of the sidebar in the expanded state.
      * This value can be changed by the user action of manually resizing the sidebar.
      */
     property int preferredWidth : Maui.Style.units.gridUnit * 12
-    
+
     /**
      * @brief The maximum width the sidebar can have when being resized.
      */
     property int maximumWidth:  Maui.Style.units.gridUnit * 20
-    
+
      /**
      * @brief The minimum width the sidebar can have when being resized.
      */
     property int minimumWidth:  Maui.Style.units.gridUnit * 4
-    
-    
+
+
     visible: position > 0
 
     width: position * constrainedWidth
-    
+
     clip: true
-    
+
     padding: 0
     topPadding: 0
     bottomPadding: 0
     leftPadding: 0
     rightPadding: 0
-    
+
     signal opened()
     signal closed()
-    
+
     background: Rectangle
     {
         opacity: Maui.Style.translucencyAvailable && Maui.Style.enableEffects ? 0.8 :  1
@@ -134,7 +134,7 @@ Pane
             Maui.ColorTransition{}
         }
     }
-    
+
     QtObject
     {
         id: _private
@@ -169,7 +169,7 @@ Pane
             }
         }
     }
-    
+
     onCollapsedChanged:
     {
         if(control.collapsed || !control.enabled)
@@ -188,7 +188,7 @@ Pane
             }
         }
     }
-    
+
     contentItem: Item
     {
         Item
@@ -293,20 +293,20 @@ Pane
             }
         }
 
-        Maui.Separator
-        {
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            weight: Maui.Separator.Weight.Light
-
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-        }
+        // Maui.Separator
+        // {
+        //     anchors.top: parent.top
+        //     anchors.bottom: parent.bottom
+        //     anchors.right: parent.right
+        //     weight: Maui.Separator.Weight.Light
+        //
+        //     Behavior on color
+        //     {
+        //         Maui.ColorTransition{}
+        //     }
+        // }
     }
-    
+
     /**
      * @brief Force to open the sidebar and expand it.
      */
@@ -314,7 +314,7 @@ Pane
     {
         _private.position = 1
     }
-    
+
     /**
      * @brief Force to close the sidebar. This will make the position of the sidebar equal to 0.
      */
@@ -322,7 +322,7 @@ Pane
     {
         _private.position = 0
     }
-    
+
     /**
      * @brief Switch between the open and closed states.
      */

@@ -529,6 +529,7 @@ Pane
             width: visible ? _headerContent.width : 0
             position: control.altHeader ? ToolBar.Footer : ToolBar.Header
             Maui.Controls.showCSD: control.Maui.Controls.showCSD && control.Maui.Controls.showCSD === true && !control.altHeader
+            Maui.Controls.level: control.Maui.Controls.level
             translucencySource: ShaderEffectSource
             {
                 sourceItem: _content

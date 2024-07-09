@@ -49,7 +49,27 @@ class Controls : public QObject
      */
     Q_PROPERTY(bool showCSD READ showCSD WRITE setShowCSD NOTIFY showCSDChanged)
 
+    /**
+     * Set a UI element hierarchy level. For example, in a page with two toolbars one could be Level::Primary, and the other one Level::Secunday, this will allow to better style the toolbars for differentiation.
+     * By default `Level::Primary` is set.
+     */
+    Q_PROPERTY(Level level READ level WRITE setLevel NOTIFY levelChanged)
+
+    /**
+     * A property hint for UI elements to be styled as a flat surface, for example, without a background.
+     * By default this is set to false.
+     */
+    // Q_PROPERTY(bool flat READ flat WRITE setFlat NOTIFY flatChanged)
+
 public:
+
+    enum Level
+    {
+        Undefined,
+        Primary,
+        Secondary
+    }; Q_ENUM(Level)
+
     explicit Controls(QObject *parent = nullptr);
 
     static Controls *qmlAttachedProperties(QObject *object);
@@ -68,18 +88,22 @@ public:
 
     QString toolTipText() const;
     void setToolTipText(const QString &newToolTipText);
-    
+
     QString color() const;
     void setColor(const QString &newColor);
-    
+
+    Controls::Level level() const;
+    void setLevel(Level level);
+
 Q_SIGNALS:
     void titleChanged();
     void showCSDChanged();
     void iconNameChanged();
     void badgeTextChanged();
-    void toolTipTextChanged();    
+    void toolTipTextChanged();
     void colorChanged();
-    
+    void levelChanged();
+
 private:
     bool m_showCSD;
     QString m_title;
@@ -87,6 +111,7 @@ private:
     QString m_badgeText;
     QString m_toolTipText;
     QString m_color;
+    Controls::Level m_level = Controls::Level::Undefined;
 };
 
 QML_DECLARE_TYPEINFO(Controls, QML_HAS_ATTACHED_PROPERTIES)

@@ -56,93 +56,94 @@ import "private" as Private
 QQC.TabBar
 {
     id: control
-    
+    Maui.Controls.level: Maui.Controls.showCSD ? Maui.Controls.Primary : Maui.Controls.Secondary
+
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     /**
      * @brief An alias to manually add elements to the container directly. This is the middle section of the control.
      * @property list<QtObject> TabBar::content
      */
     property alias content : _rightLayout.content
-    
+
     /**
      * @brief An alias to add elements to the left area section.
      * @property list<QtObject> TabBar::leftContent
      */
     property alias leftContent: _leftLayout.content
-    
+
     /**
      * @brief An alias to add elements to the right area section.
      * @property list<QtObject> TabBar::rightContent
      */
     property alias rightContent: _rightLayout.content
-    
+
     /**
      * @brief Whether the control will react to touch events to flick the tabs.
      * @property bool TabBar::interactive
      */
     property alias interactive: _content.interactive
-    
+
     /**
      * @brief Whether to display a button which represents the "add new tab" action.
      * If this button is clicked a signal is triggered.
      * @see newTabClicked
      */
     property bool showNewTabButton : true
-    
+
     /**
      * @brief Whether the tab buttons will be visible or not.
      */
     property bool showTabs : true
-    
+
     /**
      * @brief This signal is emitted when the "add new tab" button has been clicked.
      * @see showNewTabButton
      */
     signal newTabClicked()
-    
+
     /**
      * @brief This signal is emitted when a new tab button is focused after a swipe/flick action has been performed.
      * To set the new focused tab as the current one, use the index value passed as the argument to the currentIndex property. To make sure the tab is fully visible in the view port you can use the positioning function.
      * @see positionViewAtIndex
      */
     signal newTabFocused(int index)
-    
+
     background: Rectangle
     {
-        color: Maui.Theme.backgroundColor
-        
+        color: control.Maui.Controls.level ? Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
+
         Behavior on color
         {
             Maui.ColorTransition{}
         }
-        
+
         Loader
         {
             z: 999
-            
+
             asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
             active: !_content.atXEnd && !parent.fits
             visible: active
-            
+
             anchors
             {
                 right: parent.right
                 top: parent.top
                 bottom: parent.bottom
             }
-            
+
             sourceComponent: Maui.EdgeShadow
             {
                 edge: Qt.RightEdge
             }
         }
-        
+
         Loader
         {
             z: 999
-            
+
             asynchronous: true
             width: Maui.Style.iconSizes.medium
             height: parent.height
@@ -154,19 +155,19 @@ QQC.TabBar
                 top: parent.top
                 bottom: parent.bottom
             }
-            
+
             sourceComponent: Maui.EdgeShadow
             {
                 edge: Qt.LeftEdge
             }
         }
     }
-    
+
     contentItem: Item
     {
         implicitHeight: _layout.implicitHeight
         readonly property bool fits : _content.contentWidth <= width
-        
+
         Loader
         {
             // active: control.draggable
@@ -182,14 +183,14 @@ QQC.TabBar
                 }
             }
         }
-        
+
         RowLayout
         {
             id: _layout
             width: parent.width
             height: parent.height
             spacing: control.spacing
-            
+
             Private.ToolBarSection
             {
                 id: _leftLayout
@@ -198,58 +199,58 @@ QQC.TabBar
                 Layout.maximumWidth: implicitWidth
                 Layout.minimumWidth: implicitWidth
             }
-            
+
             QQC.ScrollView
             {
                 Layout.fillWidth: true
-                
+
                 orientation : Qt.Horizontal
-                
+
                 QQC.ScrollBar.horizontal.policy: QQC.ScrollBar.AlwaysOff
                 QQC.ScrollBar.vertical.policy: QQC.ScrollBar.AlwaysOff
-                
+
                 contentHeight: availableHeight
                 implicitHeight: _content.currentItem ? _content.currentItem.height : 0
-                
+
                 ListView
                 {
                     id: _content
                     opacity: control.showTabs ? 1 : 0
                     visible: opacity > 0
-                    
+
                     clip: true
-                    
+
                     orientation: ListView.Horizontal
-                    
+
                     spacing: control.spacing
-                    
+
                     model: control.contentModel
                     currentIndex: control.currentIndex
-                    
+
                     interactive: Maui.Handy.isMobile
                     snapMode: ListView.SnapOneItem
-                    
+
                     highlightFollowsCurrentItem: true
                     highlightMoveDuration: 0
                     highlightResizeDuration : 0
-                    
+
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
-                    
+
                     keyNavigationEnabled : true
                     keyNavigationWraps : true
-                    
+
                     onMovementEnded:
                     {
                         const newIndex = indexAt(contentX, contentY)
                         control.newTabFocused(newIndex)
                     }
-                    
+
                     moveDisplaced: Transition
                     {
                         NumberAnimation { properties: "x"; duration: Maui.Style.shortDuration }
                     }
-                    
+
                     Behavior on opacity
                     {
                         NumberAnimation
@@ -260,13 +261,13 @@ QQC.TabBar
                     }
                 }
             }
-            
+
             Loader
             {
                 active: control.showNewTabButton
                 visible: active
                 asynchronous: true
-                
+
                 sourceComponent: QQC.ToolButton
                 {
                     icon.name: "list-add"
@@ -274,7 +275,7 @@ QQC.TabBar
                     flat: true
                 }
             }
-            
+
             Private.ToolBarSection
             {
                 id: _rightLayout
@@ -283,19 +284,19 @@ QQC.TabBar
                 Layout.maximumWidth: implicitWidth
                 Layout.minimumWidth: implicitWidth
             }
-            
+
             Loader
             {
                 active: control.Maui.Controls.showCSD === true
                 visible: active
-                
+
                 asynchronous: true
-                
+
                 sourceComponent: Maui.WindowControls {}
             }
         }
     }
-    
+
     /**
      * @brief Positions the TabButton at the given index to be centered and visible in the viewport.
      */
@@ -303,7 +304,7 @@ QQC.TabBar
     {
         _content.positionViewAtIndex(index, ListView.SnapPosition)
     }
-    
+
     function itemAt(x, y)
     {
         return _content.itemAt(x,y)

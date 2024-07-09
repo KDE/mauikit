@@ -398,6 +398,7 @@ namespace Maui
         backgroundColor = cu.tintWithAlpha(LightColor::backgroundColor, highlightColor, 0.02);
         activeBackgroundColor = highlightColor;
         alternateBackgroundColor = cu.tintWithAlpha(LightColor::alternateBackgroundColor, highlightColor, 0.02);
+
         hoverColor = LightColor::hoverColor;
         focusColor = highlightColor;
 
@@ -469,7 +470,8 @@ namespace Maui
 //         backgroundColor = cu.tintWithAlpha(m_imgColors->background(), bgColor, 0.8);
         backgroundColor =  cu.tintWithAlpha(bgColor, highlightColor, 0.03);
         activeBackgroundColor = highlightColor;
-        alternateBackgroundColor = cu.tintWithAlpha(isDark ? DarkColor::alternateBackgroundColor : LightColor::alternateBackgroundColor, highlightColor, 0.03);
+        alternateBackgroundColor = cu.tintWithAlpha(backgroundColor, highlightColor, 0.02);
+
         hoverColor =  cu.tintWithAlpha(isDark ? DarkColor::hoverColor : LightColor::hoverColor, highlightColor, 0.02);
 
         focusColor = highlightColor;
@@ -503,6 +505,8 @@ namespace Maui
         headerTextColor = textColor;
         headerBackgroundColor = cu.tintWithAlpha(bgColor, highlightColor, 0.05);
         headerAlternateBackgroundColor = headerBackgroundColor.darker();
+        headerAlternateBackgroundColor = cu.tintWithAlpha(bgColor, highlightColor, 0.02);
+
         headerHoverColor = headerBackgroundColor.lighter();
         headerFocusColor = highlightColor;
 

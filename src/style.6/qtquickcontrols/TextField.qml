@@ -197,7 +197,7 @@ T.TextField
             ToolButton
             {
                 id: clearButton
-                flat: true
+                flat: !checkable
                 focusPolicy: Qt.NoFocus
 
                 visible: control.text.length || control.activeFocus
@@ -219,6 +219,7 @@ T.TextField
                     flat: !checkable
                     focusPolicy: Qt.NoFocus
                     action: modelData
+                    checkable: action.checkable
                 }
             }
         }
