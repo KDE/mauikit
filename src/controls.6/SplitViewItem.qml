@@ -76,6 +76,13 @@ Pane
         // clip: SplitView.view.orientation === Qt.Vertical && SplitView.view.count === 2 && splitIndex > 0
 
         padding: compact ? 0 : Maui.Style.contentMargins
+        leftPadding: SplitView.view.orientation === Qt.Horizontal && splitIndex === 1 && SplitView.view.count > 1 ? padding/2 : padding
+        rightPadding: SplitView.view.orientation === Qt.Horizontal && splitIndex === 0 && SplitView.view.count > 1 ? padding/2 : padding
+
+        bottomPadding: SplitView.view.orientation === Qt.Vertical && splitIndex === 0 && SplitView.view.count > 1 ? padding/2 : padding
+
+         topPadding: SplitView.view.orientation === Qt.Vertical && splitIndex === 1 && SplitView.view.count > 1 ? padding/2 : padding
+
         Behavior on padding
         {
             NumberAnimation
