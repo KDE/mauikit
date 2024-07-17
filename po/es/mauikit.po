@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-09 01:41+0000\n"
+"POT-Creation-Date: 2024-07-17 01:42+0000\n"
 "PO-Revision-Date: 2024-06-27 01:30+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -188,12 +188,12 @@ msgstr "Descartar todo"
 msgid "Settings"
 msgstr "Preferencias"
 
-#: src/controls.6/SplitViewItem.qml:123 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:318
 #, kde-format
 msgid "Close"
 msgstr "Cerrar"
 
-#: src/controls.6/SplitViewItem.qml:178
+#: src/controls.6/SplitViewItem.qml:185
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "¿Seguro que quiere cerrar la vista dividida «%1»?"
