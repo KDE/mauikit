@@ -43,47 +43,47 @@ import Qt5Compat.GraphicalEffects
 T.Menu
 {
     id: control
-    
+
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
-    
+
     property string subtitle
     property string titleImageSource
     property string titleIconSource: control.icon.name || "application-menu"
-    
+
     readonly property bool responsive: Maui.Handy.isMobile
-    
+
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
-    
+
     transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
-    
+
     readonly property int finalY : control.responsive ? parentWindow.height - height : 0
     readonly property int preferredWidth: control.responsive ? 600 : 300
 
     y: finalY
     x: control.responsive ? Math.round(parentWindow.width/2 - control.width/2) : 0
-    
+
     implicitWidth: Math.min(parentWindow.width, preferredWidth)
-    
+
     implicitHeight: Math.min(contentHeight + topPadding + bottomPadding, (control.responsive ? parentWindow.height *0.7 : parentWindow.height))
-    
+
     focus: true
-    
+
     modal: control.responsive
     cascade: !control.responsive
     overlap: cascade ? 0-Maui.Style.space.medium : 0
-    
+
     padding: 0
     spacing: Maui.Style.defaultSpacing
-    
+
     margins: Maui.Style.space.medium
-    
+
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     delegate: MenuItem { }
-    
+
     enter:  Maui.Style.enableEffects ? (control.responsive ? _responsiveEnterTransition : _enterTransition) : null
     exit: Maui.Style.enableEffects ? (control.responsive ? _responsiveExitTransition : _exitTransition) : null
-    
+
     Transition
     {
         id: _enterTransition
@@ -92,41 +92,41 @@ T.Menu
         NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
         NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
     }
-    
+
     Transition
     {
         id: _exitTransition
         enabled: Maui.Style.enableEffects
-        
+
         // shrink_fade_out
         NumberAnimation { property: "scale"; from: 1.0; to: 0.9; easing.type: Easing.OutQuint; duration: 220 }
         NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
     }
-    
+
     Transition
     {
         id: _responsiveEnterTransition
         enabled: Maui.Style.enableEffects
-        
+
         ParallelAnimation
         {
             //NumberAnimation { property: "y"; from: control.parentWindow.height; to: control.finalY; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
         }
     }
-    
+
     Transition
     {
         id: _responsiveExitTransition
         enabled: Maui.Style.enableEffects
-        
+
         ParallelAnimation
         {
             //NumberAnimation { property: "y"; from: control.finalY; to: control.parentWindow.height; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; easing.type: Easing.OutCubic; duration: 150 }
         }
     }
-    
+
     contentItem: ScrollView
     {
         id: _scrollView
@@ -166,7 +166,7 @@ T.Menu
                 width: parent.width
                 height: visible ? implicitContentHeight + topPadding + bottomPadding : 0
                 padding: control.padding
-                bottomPadding: _scrollView.padding 
+                bottomPadding: _scrollView.padding
                 topPadding: 0
 
                 label1.text: control.title
@@ -180,25 +180,25 @@ T.Menu
             }
         }
     }
-    
-    
+
+
     background: Rectangle
     {
         color: control.Maui.Theme.backgroundColor
         radius: Maui.Style.radiusV
-        readonly property color borderColor: Maui.Theme.textColor
-        border.color: !Maui.Handy.isMobile ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
-        
+        // readonly property color borderColor: Maui.Theme.textColor
+        // border.color: !Maui.Handy.isMobile ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
+
         Behavior on color
         {
             Maui.ColorTransition{}
         }
-        
+
         Behavior on border.color
         {
             Maui.ColorTransition{}
         }
-        
+
         layer.enabled: true
         layer.effect: DropShadow
         {
@@ -210,20 +210,20 @@ T.Menu
             transparentBorder: true
         }
     }
-    
+
     T.Overlay.modal: Rectangle
     {
         color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.4)
-        
+
         Behavior on opacity { NumberAnimation { duration: 150 } }
     }
-    
+
     T.Overlay.modeless: Rectangle
     {
         color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.4)
         Behavior on opacity { NumberAnimation { duration: 150 } }
     }
-    
+
     onOpened: _listView.forceActiveFocus()
-    
+
 }

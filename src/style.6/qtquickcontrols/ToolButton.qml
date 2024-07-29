@@ -64,7 +64,7 @@ T.ToolButton
 
     readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
 
-    flat: control.parent === T.ToolBar
+    flat: control.parent instanceof T.ToolBar
     font: Maui.Style.defaultFont
 
     indicator: Maui.Icon
@@ -98,23 +98,23 @@ T.ToolButton
 
     }
 
-//     Behavior on implicitHeight
-//     {
-//         NumberAnimation
-//         {
-//             duration: Maui.Style.units.shortDuration
-//             easing.type: Easing.InQuad
-//         }
-//     }
-//
-//     Behavior on implicitWidth
-//     {
-//         NumberAnimation
-//         {
-//             duration: Maui.Style.units.shortDuration
-//             easing.type: Easing.InQuad
-//         }
-//     }
+    //     Behavior on implicitHeight
+    //     {
+    //         NumberAnimation
+    //         {
+    //             duration: Maui.Style.units.shortDuration
+    //             easing.type: Easing.InQuad
+    //         }
+    //     }
+    //
+    //     Behavior on implicitWidth
+    //     {
+    //         NumberAnimation
+    //         {
+    //             duration: Maui.Style.units.shortDuration
+    //             easing.type: Easing.InQuad
+    //         }
+    //     }
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
@@ -142,7 +142,6 @@ T.ToolButton
         anchors.verticalCenterOffset: 10
         anchors.horizontalCenterOffset: -5
 
-
         sourceComponent: Maui.Badge
         {
             text: control.Maui.Controls.badgeText
@@ -150,9 +149,7 @@ T.ToolButton
             padding: 2
             font.pointSize: Maui.Style.fontSizes.tiny
 
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            Maui.Controls.status: Maui.Controls.Negative
 
             OpacityAnimator on opacity
             {

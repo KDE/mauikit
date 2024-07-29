@@ -267,7 +267,8 @@ Popup
                 clip: true
                 
                 Maui.Theme.colorSet: control.Maui.Theme.colorSet
-                
+                Maui.Controls.flat: true
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 
@@ -278,8 +279,7 @@ Popup
                 padding: 0
                 margins: 0
                 
-                headBar.visible: control.persistent
-                headBar.borderVisible: false
+                headBar.visible: control.persistent                
                 
                 background: null
                 

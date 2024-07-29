@@ -22,6 +22,7 @@ void Controls::setShowCSD(bool newShowCSD)
 {
     if (m_showCSD == newShowCSD)
         return;
+
     m_showCSD = newShowCSD;
     Q_EMIT showCSDChanged();
 }
@@ -35,6 +36,7 @@ void Controls::setTitle(const QString &title)
 {
     if (m_title == title)
         return;
+
     m_title = title;
     Q_EMIT titleChanged();
 }
@@ -48,6 +50,7 @@ void Controls::setIconName(const QString &newIconName)
 {
     if (m_iconName == newIconName)
         return;
+
     m_iconName = newIconName;
     Q_EMIT iconNameChanged();
 }
@@ -61,6 +64,7 @@ void Controls::setBadgeText(const QString &newBadgeText)
 {
     if (m_badgeText == newBadgeText)
         return;
+
     m_badgeText = newBadgeText;
     Q_EMIT badgeTextChanged();
 }
@@ -74,6 +78,7 @@ void Controls::setToolTipText(const QString &newToolTipText)
 {
     if (m_toolTipText == newToolTipText)
         return;
+
     m_toolTipText = newToolTipText;
     Q_EMIT toolTipTextChanged();
 }
@@ -87,6 +92,7 @@ void Controls::setColor(const QString &newColor)
 {
     if (m_color == newColor)
         return;
+
     m_color = newColor;
     Q_EMIT colorChanged();
 }
@@ -104,4 +110,32 @@ void Controls::setLevel(Controls::Level level)
 
     m_level = level;
     Q_EMIT levelChanged();
+}
+
+bool Controls::flat() const
+{
+    return m_flat;
+}
+
+void Controls::setFlat(bool value)
+{
+    if(m_flat == value)
+        return;
+
+    m_flat = value;
+    Q_EMIT flatChanged();
+}
+
+Controls::Status Controls::status() const
+{
+    return m_status;
+}
+
+void Controls::setStatus(Status status)
+{
+    if(m_status == status)
+        return;
+
+     m_status = status;
+    Q_EMIT statusChanged();
 }

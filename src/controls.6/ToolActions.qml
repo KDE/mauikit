@@ -93,8 +93,8 @@ Control
 {
     id: control
     
-    implicitWidth: implicitContentWidth + leftPadding + rightPadding
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    implicitWidth: _loader.implicitWidth + leftPadding + rightPadding
+    implicitHeight: _loader.implicitHeight + topPadding + bottomPadding
     
     opacity: enabled ? 1 : 0.5
     

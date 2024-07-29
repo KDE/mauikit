@@ -21,7 +21,6 @@ import QtQuick
 import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 import org.mauikit.controls as Maui
 
@@ -170,7 +169,10 @@ Pane
 
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
+
     Maui.Controls.showCSD: false
+    Maui.Controls.level: control.Maui.Controls.showCSD === true ? Maui.Controls.Primary : Maui.Controls.Secondary
+
     /**
      * @brief The default content of the page.
      * To position child elements use anchors or do it manually.
@@ -390,15 +392,6 @@ Pane
             property int bottomMargin: ((control.floatingFooter && control.footerPositioning === ListView.InlineFooter ? 0 : _footerContent.implicitHeight)  + (control.altHeader ? _headerContent.implicitHeight : 0))
         }
 
-        background: Rectangle
-        {
-            color: Maui.Theme.backgroundColor
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
-        }
-
         onFlickableChanged:
         {
             returnToBounds()
@@ -530,6 +523,7 @@ Pane
             position: control.altHeader ? ToolBar.Footer : ToolBar.Header
             Maui.Controls.showCSD: control.Maui.Controls.showCSD && control.Maui.Controls.showCSD === true && !control.altHeader
             Maui.Controls.level: control.Maui.Controls.level
+            Maui.Controls.flat: control.Maui.Controls.flat
             translucencySource: ShaderEffectSource
             {
                 sourceItem: _content

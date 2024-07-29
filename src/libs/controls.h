@@ -51,7 +51,8 @@ class Controls : public QObject
 
     /**
      * Set a UI element hierarchy level. For example, in a page with two toolbars one could be Level::Primary, and the other one Level::Secunday, this will allow to better style the toolbars for differentiation.
-     * By default `Level::Primary` is set.
+     * By default `Level::Primary` is assumed.
+     * @see Level
      */
     Q_PROPERTY(Level level READ level WRITE setLevel NOTIFY levelChanged)
 
@@ -59,7 +60,13 @@ class Controls : public QObject
      * A property hint for UI elements to be styled as a flat surface, for example, without a background.
      * By default this is set to false.
      */
-    // Q_PROPERTY(bool flat READ flat WRITE setFlat NOTIFY flatChanged)
+     Q_PROPERTY(bool flat READ flat WRITE setFlat NOTIFY flatChanged)
+
+     /**
+      * Mark the supported widgets in one of the given status, which will alterate its look.
+      * @see Status
+      **/
+     Q_PROPERTY(Status status READ status WRITE setStatus NOTIFY statusChanged)
 
 public:
 
@@ -69,6 +76,14 @@ public:
         Primary,
         Secondary
     }; Q_ENUM(Level)
+
+    enum Status
+    {
+        Normal,
+        Positive,
+        Negative,
+        Neutral
+    }; Q_ENUM(Status)
 
     explicit Controls(QObject *parent = nullptr);
 
@@ -95,6 +110,12 @@ public:
     Controls::Level level() const;
     void setLevel(Level level);
 
+    bool flat() const;
+    void setFlat(bool value);
+
+    Controls::Status status() const;
+    void setStatus(Controls::Status status);
+
 Q_SIGNALS:
     void titleChanged();
     void showCSDChanged();
@@ -103,6 +124,8 @@ Q_SIGNALS:
     void toolTipTextChanged();
     void colorChanged();
     void levelChanged();
+    void flatChanged();
+    void statusChanged();
 
 private:
     bool m_showCSD;
@@ -112,6 +135,8 @@ private:
     QString m_toolTipText;
     QString m_color;
     Controls::Level m_level = Controls::Level::Undefined;
+    bool m_flat;
+    Controls::Status m_status = Controls::Status::Normal;
 };
 
 QML_DECLARE_TYPEINFO(Controls, QML_HAS_ATTACHED_PROPERTIES)

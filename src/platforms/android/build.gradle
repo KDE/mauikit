@@ -5,45 +5,47 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.4'
+        classpath 'com.android.tools.build:gradle:7.4.1'
     }
 }
 
 repositories {
     google()
-            jcenter()
+    jcenter()
 }
 
 apply plugin: 'com.android.library'
 
-    android {
-        compileSdkVersion androidCompileSdkVersion.toInteger()
+android {
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+    ndkVersion androidNdkVersion
+    packagingOptions.jniLibs.useLegacyPackaging true
 
-        buildToolsVersion androidBuildToolsVersion
-
-
-        sourceSets {
+    sourceSets {
         main {
-        manifest.srcFile '@CMAKE_CURRENT_SOURCE_DIR@/AndroidManifest.xml'
-        java.srcDirs = ['@CMAKE_CURRENT_SOURCE_DIR@/src']
-        aidl.srcDirs = ['src', 'aidl']
-
+            manifest.srcFile '@CMAKE_CURRENT_SOURCE_DIR@/AndroidManifest.xml'
+            java.srcDirs = ['@CMAKE_CURRENT_SOURCE_DIR@/src']
+            aidl.srcDirs = ['src', 'aidl']
         }
-        }
+    }
 
-        lintOptions {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
         abortOnError false
-        }
+    }
 
-        dependencies {
+    dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-  implementation "androidx.appcompat:appcompat:1.2.0"
+        implementation "androidx.appcompat:appcompat:1.2.0"
+    }
 
-
-  }
-
-  defaultConfig {
-    minSdkVersion qtMinSdkVersion
-            targetSdkVersion qtTargetSdkVersion
-}
+    defaultConfig {
+        minSdkVersion qtMinSdkVersion
+        targetSdkVersion qtTargetSdkVersion
+    }
 }

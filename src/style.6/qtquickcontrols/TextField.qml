@@ -19,6 +19,7 @@
 
 import QtQuick
 import QtQuick.Window
+import QtQuick.Controls
 
 import org.mauikit.controls as Maui
 import QtQuick.Layouts

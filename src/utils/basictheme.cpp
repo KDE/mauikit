@@ -234,9 +234,9 @@ namespace Maui
 
         negativeTextColor = QColor{"#dac7cb"};
         negativeBackgroundColor = QColor{"#DA4453"};
-        neutralTextColor = QColor{"#333"};
+        neutralTextColor = QColor{"#fafafa"};
         neutralBackgroundColor = QColor{"#F67400"};
-        positiveTextColor = QColor{"#333"};
+        positiveTextColor = QColor{"#fafafa"};
         positiveBackgroundColor = QColor{"#27AE60"};
 
         tooltipTextColor = QColor{"#fafafa"};
@@ -371,9 +371,9 @@ namespace Maui
 
         negativeTextColor = QColor{"#dac7cb"};
         negativeBackgroundColor = QColor{"#DA4453"};
-        neutralTextColor = QColor{"#333"};
+        neutralTextColor = QColor{"#fafafa"};
         neutralBackgroundColor = QColor{"#F67400"};
-        positiveTextColor = QColor{"#333"};
+        positiveTextColor = QColor{"#fafafa"};
         positiveBackgroundColor = QColor{"#27AE60"};
 
         tooltipTextColor = QColor{"#fafafa"};
@@ -441,9 +441,9 @@ namespace Maui
 
         negativeTextColor = QColor{"#dac7cb"};
         negativeBackgroundColor = QColor{"#DA4453"};
-        neutralTextColor = QColor{"#333"};
+        neutralTextColor = QColor{"#fafafa"};
         neutralBackgroundColor = QColor{"#F67400"};
-        positiveTextColor = QColor{"#333"};
+        positiveTextColor = QColor{"#fafafa"};
         positiveBackgroundColor = QColor{"#27AE60"};
 
         tooltipTextColor = QColor{"#fafafa"};
@@ -517,9 +517,9 @@ namespace Maui
 
         negativeTextColor = QColor{"#dac7cb"};
         negativeBackgroundColor = QColor{"#DA4453"};
-        neutralTextColor = QColor{"#333"};
+        neutralTextColor = QColor{"#fafafa"};
         neutralBackgroundColor = QColor{"#F67400"};
-        positiveTextColor = QColor{"#333"};
+        positiveTextColor = QColor{"#fafafa"};
         positiveBackgroundColor = QColor{"#27AE60"};
 
         tooltipTextColor = QColor{"#fafafa"};

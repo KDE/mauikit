@@ -156,7 +156,8 @@ if (ANDROID)
         platforms/android/blurhelper/windowblur.cpp
         platforms/android/shadowhelper/boxshadowrenderer.cpp
         platforms/android/shadowhelper/tileset.cpp
-        platforms/android/shadowhelper/windowshadow.cpp)
+        # platforms/android/shadowhelper/windowshadow.cpp
+    )
 
     #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)
@@ -385,7 +386,7 @@ endif()
 
 if(ANDROID)
     #   add_subdirectory(platforms/android)
-    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
+    # target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION} COMPONENT Devel)
 
@@ -424,8 +425,7 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
 #    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PUBLIC omp PRIVATE OpenMP::OpenMP_CXX)
 #endif()
 
-ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION}
-    DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(MauiKit${MAUI_MAJOR_VERSION} DESTINATION ${KDE_INSTALL_QMLDIR})
 
 # ecm_generate_qmltypes(org.mauikit.controls 1.3 DESTINATION ${KDE_INSTALL_QMLDIR}/org/mauikit/controls)
 

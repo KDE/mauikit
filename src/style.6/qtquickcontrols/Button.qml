@@ -42,7 +42,7 @@ T.Button
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
 
-    icon.color: control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
+    icon.color: setTextColor(control)
 
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
@@ -72,7 +72,7 @@ T.Button
     {
         visible: !control.flat
 
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : Maui.Theme.backgroundColor)
+        color: setBackgroundColor(control)
 
         radius: Maui.Style.radiusV
 
@@ -102,9 +102,7 @@ T.Button
             padding: 2
             font.pointSize: Maui.Style.fontSizes.tiny
 
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            Maui.Controls.status: Maui.Controls.Negative
 
             OpacityAnimator on opacity
             {
@@ -123,5 +121,57 @@ T.Button
                 easing.type: Easing.OutInQuad
             }
         }
+    }
+
+    function setTextColor(control)
+    {
+        let defaultColor = (color) =>
+        {
+            return control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : color
+        }
+
+        if(control.Maui.Controls.status)
+        {
+            switch(control.Maui.Controls.status)
+            {
+            case Maui.Controls.Normal: return defaultColor(control.Maui.Theme.textColor)
+            case Maui.Controls.Positive: return control.Maui.Theme.positiveTextColor
+            case Maui.Controls.Negative: return control.Maui.Theme.negativeTextColor
+            case Maui.Controls.Neutral: return control.Maui.Theme.neutralTextColor
+            }
+        }
+
+        return defaultColor(control.Maui.Theme.textColor)
+    }
+
+    function setBackgroundColor(control)
+    {
+        let defaultColor = (bg) =>
+        {
+            return control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : bg)
+        }
+
+        if(control.Maui.Controls.status)
+        {
+            switch(control.Maui.Controls.status)
+            {
+            case Maui.Controls.Normal: return defaultColor(control.Maui.Theme.backgroundColor)
+            case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+            case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+            case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+            }
+        }
+
+        if(control.Maui.Controls.level)
+        {
+            switch(control.Maui.Controls.level)
+            {
+            case Maui.Controls.Undefined: return defaultColor(control.Maui.Theme.backgroundColor)
+            case Maui.Controls.Primary: return defaultColor(control.Maui.Theme.backgroundColor)
+            case Maui.Controls.Secondary: return defaultColor(control.Maui.Theme.alternateBackgroundColor)
+            }
+        }
+
+        return defaultColor(control.Maui.Theme.backgroundColor)
     }
 }

@@ -22,14 +22,14 @@
 #include <QObject>
 #include <QQmlEngine>
 
-#include <QAndroidActivityResultReceiver>
-#include <QAndroidJniEnvironment>
-#include <QAndroidJniObject>
+// #include <QAndroidActivityResultReceiver>
+#include <QJniEnvironment>
+#include <QJniObject>
 #include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QVariantList>
-#include <QtAndroid>
+#include <QPermission>
 
 #include "abstractplatform.h"
 
@@ -39,10 +39,10 @@
 class Q_DECL_EXPORT MAUIAndroid : public AbstractPlatform
 {
     Q_OBJECT
-     QML_NAMED_ELEMENT(Android)
+    QML_NAMED_ELEMENT(Android)
     QML_SINGLETON
 //    Q_DISABLE_COPY(MAUIAndroid)
-    Q_DISABLE_MOVE(MAUIAndroid)
+    // Q_DISABLE_MOVE(MAUIAndroid)
 
 public:
     explicit MAUIAndroid(QObject *parent = nullptr);
@@ -61,12 +61,12 @@ public:
      */
     static void fileChooser();
 
-    static QVariantList transform(const QAndroidJniObject &obj);
+    static QVariantList transform(const QJniObject &obj);
     static QVariantMap createVariantMap(jobject data);
 
 private:
 //    static MAUIAndroid *m_instance;
-    void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject &data);
+    void handleActivityResult(int receiverRequestCode, int resultCode, const QJniObject &data);
 
 
 public Q_SLOTS:
@@ -121,13 +121,6 @@ public Q_SLOTS:
      */
     static QStringList sdDirs();
 
-    /**
-     * @brief checkRunTimePermissions
-     * @param permissions
-     * @return
-     */
-    static bool checkRunTimePermissions(const QStringList &permissions);
-
     bool hasKeyboard() override final;
     bool hasMouse() override final;
 
@@ -146,10 +139,10 @@ public Q_SLOTS:
 //namespace PATHS
 //{
 //const QString HomePath = MAUIAndroid::homePath();
-//const QString PicturesPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_PICTURES", "Ljava/lang/String;").toString();
-//const QString DownloadsPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOWNLOADS", "Ljava/lang/String;").toString();
-//const QString DocumentsPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOCUMENTS", "Ljava/lang/String;").toString();
-//const QString MusicPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MUSIC", "Ljava/lang/String;").toString();
-//const QString VideosPath = HomePath + "/" + QAndroidJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MOVIES", "Ljava/lang/String;").toString();
+//const QString PicturesPath = HomePath + "/" + QJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_PICTURES", "Ljava/lang/String;").toString();
+//const QString DownloadsPath = HomePath + "/" + QJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOWNLOADS", "Ljava/lang/String;").toString();
+//const QString DocumentsPath = HomePath + "/" + QJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_DOCUMENTS", "Ljava/lang/String;").toString();
+//const QString MusicPath = HomePath + "/" + QJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MUSIC", "Ljava/lang/String;").toString();
+//const QString VideosPath = HomePath + "/" + QJniObject::getStaticObjectField("android/os/Environment", "DIRECTORY_MOVIES", "Ljava/lang/String;").toString();
 //}
 

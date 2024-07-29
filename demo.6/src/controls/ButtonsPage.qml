@@ -56,6 +56,41 @@ DemoPage
                 text: "Hello"
             }
 
+            Button
+            {
+                Maui.Controls.level: Maui.Controls.Secondary
+                icon.name: "folder-downloads"
+                text: "Secondary Level"
+            }
+
+            Button
+            {
+                Maui.Controls.status: Maui.Controls.Positive
+                icon.name: "folder-downloads"
+                text: "Positive"
+            }
+
+            Button
+            {
+                Maui.Controls.status: Maui.Controls.Negative
+                icon.name: "folder-downloads"
+                text: "Negative"
+            }
+
+            Button
+            {
+                Maui.Controls.status: Maui.Controls.Neutral
+                icon.name: "folder-downloads"
+                text: "Neutral"
+            }
+
+            Button
+            {
+                Maui.Controls.status: Maui.Controls.Normal
+                icon.name: "folder-downloads"
+                text: "Normal"
+            }
+
         }
 
         DemoSection

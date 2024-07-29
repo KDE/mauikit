@@ -147,6 +147,7 @@ Maui.ApplicationWindow
                     Layout.fillWidth: true
                     text: i18n("About")
                     onClicked: Maui.App.aboutDialog()
+                    Maui.Controls.status: Maui.Controls.Positive
                 }
 
                 Maui.SectionGroup

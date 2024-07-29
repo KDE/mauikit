@@ -29,7 +29,7 @@ T.ToolBar
 {
     id: control
 
-    default property alias content : _layout.data
+    // default property alias content : _layout.data
 
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
@@ -44,7 +44,6 @@ T.ToolBar
 
     font: Maui.Style.defaultFont
 
-    property alias borderVisible: _border.visible
 
     contentItem: Row
     {
@@ -55,7 +54,7 @@ T.ToolBar
     background: Rectangle
     {
         id: _headBarBG
-        color: control.Maui.Controls.level ? Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
+        color: control.Maui.Controls.level ? control.Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
 
        Behavior on color
         {
@@ -95,7 +94,7 @@ T.ToolBar
          Maui.Separator
          {
              id: _border
-             visible: false
+             visible: !control.Maui.Controls.flat
              anchors.left: parent.left
              anchors.right: parent.right
              weight: Maui.Separator.Weight.Light

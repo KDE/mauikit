@@ -50,7 +50,7 @@ import org.mauikit.controls as Maui
  *    <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/Badge.qml">You can find a more complete example at this link.</a>
  *
  */
-Control
+AbstractButton
 {
     id: control
 
@@ -65,43 +65,25 @@ Control
     property int size: Maui.Style.iconSizes.small
 
     /**
-     * @brief The icon group property. Exposed to define the icon name, color, and width and height.
-     * To know more about it you can check the QQC2 icon property.
-     */
-    property alias icon : _dummyButton.icon
-
-    /**
-     * @brief The text to be used in the label.
-     * Consider using short text, as this is meant to work as a notification hint.
-     */
-    property alias text : _dummyButton.text
-
-    /**
      * @brief The color for the background of the badge
      */
-    property color color:  Maui.Theme.backgroundColor
+    property color color: setBackgroundColor(control)
 
-    font.weight: Font.Black
+    icon.color: setTextColor(control)
+
+    font.weight: Font.Bold
     font.bold: true
     font.pointSize: Maui.Style.fontSizes.tiny
 
-    implicitWidth: Math.max(implicitHeight, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    implicitWidth: Math.max(implicitHeight, _layout.implicitWidth + leftPadding + rightPadding)
+    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
 
-    padding: Maui.Style.space.tiny
-
-    AbstractButton
-    {
-        id: _dummyButton
-        visible: false
-        icon.color: Maui.Theme.textColor
-        icon.width: size
-        icon.height: size
-    }
+    padding: Maui.Style.space.small
 
     background: Rectangle
     {
         id: _bg
+        visible: false
         radius: Math.min(width, height)
         color: control.color
         border.color: Qt.lighter(control.color)
@@ -110,29 +92,61 @@ Control
         {
             Maui.ColorTransition{}
         }
-
-
     }
 
-     MultiEffect
-        {
-            source: _bg
-            anchors.fill: _bg
-           shadowColor: "#80000000"
-           shadowEnabled: true
-           autoPaddingEnabled: true
-           shadowVerticalOffset: 3
-           shadowHorizontalOffset: -2
-           shadowBlur: 0.5
-        }
+    MultiEffect
+    {
+        source: _bg
+        anchors.fill: _bg
+        shadowColor: "#80000000"
+        shadowEnabled: true
+        autoPaddingEnabled: true
+        shadowVerticalOffset: 3
+        shadowHorizontalOffset: -2
+        shadowBlur: 0.5
+    }
 
     contentItem: Maui.IconLabel
     {
+        id: _layout
+        z: 2
         text: control.text
         font: control.font
         icon: control.icon
         color: control.icon.color
         spacing: control.spacing
         alignment: Qt.AlignHCenter
+    }
+
+    function setTextColor(control)
+    {
+        if(control.Maui.Controls.status)
+        {
+            switch(control.Maui.Controls.status)
+            {
+            case Maui.Controls.Normal: return control.Maui.Theme.textColor
+            case Maui.Controls.Positive: return control.Maui.Theme.positiveTextColor
+            case Maui.Controls.Negative: return control.Maui.Theme.negativeTextColor
+            case Maui.Controls.Neutral: return control.Maui.Theme.neutralTextColor
+            }
+        }
+
+        return control.Maui.Theme.textColor
+    }
+
+    function setBackgroundColor(control)
+    {
+        if(control.Maui.Controls.status)
+        {
+            switch(control.Maui.Controls.status)
+            {
+            case Maui.Controls.Normal: return control.Maui.Theme.backgroundColor
+            case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+            case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+            case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+            }
+        }
+
+        return control.Maui.Theme.backgroundColor
     }
 }

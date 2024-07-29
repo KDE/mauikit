@@ -20,7 +20,9 @@
 #include "mauikit.h"
 #include <QEvent>
 #include <QCoreApplication>
-
+#if defined(Q_OS_ANDROID)
+#include <QResource>
+#endif
 #include <QDebug>
 #include <QQmlContext>
 

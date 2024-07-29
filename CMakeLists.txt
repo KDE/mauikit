@@ -106,7 +106,7 @@ ecm_find_qmlmodule(Qt5Compat.GraphicalEffects 6.0)
 #endif()
 
 if(ANDROID)
-    find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)
+    # find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)

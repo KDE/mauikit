@@ -7,7 +7,8 @@ import org.mauikit.controls as Maui
 DemoPage
 {
     id: control
-    
+    Maui.Controls.status: Maui.Control.Negative
+
     Maui.SectionGroup
     {
         title: i18n("Page")
@@ -38,6 +39,7 @@ DemoPage
                 Layout.fillWidth: true
                 implicitHeight: 500
                 
+                Maui.Controls.status: Maui.Control.Negative
                 title: i18n("Title")
                 
                 headBar.leftContent : Switch
