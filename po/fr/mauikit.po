@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-17 01:42+0000\n"
+"POT-Creation-Date: 2024-07-30 01:52+0000\n"
 "PO-Revision-Date: 2024-06-27 11:20+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -127,7 +127,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Identifiant de version copié dans le presse-papier"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:277
+#: src/style.6/qtquickcontrols/TextField.qml:278
 #, kde-format
 msgid "Copy"
 msgstr "Copier"
@@ -177,7 +177,7 @@ msgstr "Partager"
 msgid "Dismiss All"
 msgstr "Tout rejeter"
 
-#: src/controls.6/SettingsDialog.qml:136 src/controls.6/SettingsPage.qml:42
+#: src/controls.6/SettingsDialog.qml:137 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "Configuration"
@@ -197,27 +197,27 @@ msgstr "Voulez-vous vraiment fermer la vue fractionnée : « %1 » ?"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/style.6/qtquickcontrols/TextField.qml:284
+#: src/style.6/qtquickcontrols/TextField.qml:285
 #, kde-format
 msgid "Cut"
 msgstr "Couper"
 
-#: src/style.6/qtquickcontrols/TextField.qml:291
+#: src/style.6/qtquickcontrols/TextField.qml:292
 #, kde-format
 msgid "Paste"
 msgstr "Coller"
 
-#: src/style.6/qtquickcontrols/TextField.qml:301
+#: src/style.6/qtquickcontrols/TextField.qml:302
 #, kde-format
 msgid "Select All"
 msgstr "Tout sélectionner"
 
-#: src/style.6/qtquickcontrols/TextField.qml:308
+#: src/style.6/qtquickcontrols/TextField.qml:309
 #, kde-format
 msgid "Undo"
 msgstr "Annuler"
 
-#: src/style.6/qtquickcontrols/TextField.qml:315
+#: src/style.6/qtquickcontrols/TextField.qml:316
 #, kde-format
 msgid "Redo"
 msgstr "Refaire"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-17 01:42+0000\n"
+"POT-Creation-Date: 2024-07-30 01:52+0000\n"
 "PO-Revision-Date: 2023-07-29 22:20-0300\n"
 "Last-Translator: Geraldo Simiao <geraldosimiao@fedoraproject.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -130,7 +130,7 @@ msgid "Version ID copied to clipboard"
 msgstr ""
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:277
+#: src/style.6/qtquickcontrols/TextField.qml:278
 #, kde-format
 msgid "Copy"
 msgstr ""
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Dismiss All"
 msgstr ""
 
-#: src/controls.6/SettingsDialog.qml:136 src/controls.6/SettingsPage.qml:42
+#: src/controls.6/SettingsDialog.qml:137 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr ""
@@ -200,27 +200,27 @@ msgstr ""
 msgid "Open"
 msgstr "Abrir"
 
-#: src/style.6/qtquickcontrols/TextField.qml:284
+#: src/style.6/qtquickcontrols/TextField.qml:285
 #, kde-format
 msgid "Cut"
 msgstr "Recortar"
 
-#: src/style.6/qtquickcontrols/TextField.qml:291
+#: src/style.6/qtquickcontrols/TextField.qml:292
 #, kde-format
 msgid "Paste"
 msgstr ""
 
-#: src/style.6/qtquickcontrols/TextField.qml:301
+#: src/style.6/qtquickcontrols/TextField.qml:302
 #, kde-format
 msgid "Select All"
 msgstr ""
 
-#: src/style.6/qtquickcontrols/TextField.qml:308
+#: src/style.6/qtquickcontrols/TextField.qml:309
 #, kde-format
 msgid "Undo"
 msgstr ""
 
-#: src/style.6/qtquickcontrols/TextField.qml:315
+#: src/style.6/qtquickcontrols/TextField.qml:316
 #, kde-format
 msgid "Redo"
 msgstr ""
