@@ -23,7 +23,7 @@
 import QtQuick
 import QtQml.Models
 import QtQuick.Templates as T
-import org.mauikit.controls  as Maui
+import org.mauikit.controls as Maui
 
 T.TabButton
 {

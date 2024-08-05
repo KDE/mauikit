@@ -66,6 +66,7 @@ T.Button
         spacing: control.spacing
         display: control.display
         alignment: Qt.AlignHCenter
+        rightPadding: _badgeLoader.visible ? 8 : 0
     }
 
     background: Rectangle
@@ -84,6 +85,8 @@ T.Button
 
     Loader
     {
+        id: _badgeLoader
+
         z: control.contentItem.z + 9999
         asynchronous: true
 

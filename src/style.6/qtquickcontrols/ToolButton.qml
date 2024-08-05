@@ -84,7 +84,7 @@ T.ToolButton
         id: _content
         readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
 
-        rightPadding: arrowPadding
+        rightPadding: arrowPadding + (_badgeLoader.visible ? 8 : 0)
 
         spacing: control.spacing
         // mirrored: control.mirrored
@@ -95,7 +95,6 @@ T.ToolButton
         font: control.font
         alignment: Qt.AlignHCenter
         color: control.color
-
     }
 
     //     Behavior on implicitHeight
@@ -131,6 +130,8 @@ T.ToolButton
 
     Loader
     {
+        id: _badgeLoader
+
         z: _content.z + 9999999999
         asynchronous: true
 

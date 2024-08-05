@@ -186,7 +186,7 @@ Item
      * @property Label IconLabel::label
      */
     property alias label : _label
-    
+
     GridLayout
     {
         id: _layoutButton
@@ -231,7 +231,7 @@ Item
 
             Layout.fillWidth: true
             
-            color:  Maui.Style.defaultFont
+            color: control.Maui.Theme.textColor
             font:  Maui.Style.defaultFont
             
             elide: Text.ElideRight

@@ -94,6 +94,8 @@ QQC.TabButton
         {
             id: _layout
             anchors.fill: parent
+            anchors.rightMargin: _badgeLoader.visible ? 8 : 0
+
             spacing: control.spacing
 
             Row
@@ -110,7 +112,7 @@ QQC.TabButton
 
                 text: control.text
                 icon: control.icon
-                color: Maui.Theme.textColor
+                color: control.Maui.Theme.textColor
                 alignment: Qt.AlignHCenter
                 display: QQC.ToolButton.TextBesideIcon
                 font: control.font
@@ -156,6 +158,8 @@ QQC.TabButton
 
     Loader
     {
+        id: _badgeLoader
+
         asynchronous: true
 
         active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible

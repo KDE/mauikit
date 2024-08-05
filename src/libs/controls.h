@@ -35,7 +35,12 @@ class Controls : public QObject
     Q_PROPERTY(QString badgeText READ badgeText WRITE setBadgeText NOTIFY badgeTextChanged)
 
     /**
-     * The color to be used as an indicator in the tab button representing the view.
+     * The color to be used as an indicator in the supported widgets.
+     * Supported widgets include:
+     * TabButton
+     * Button
+     * Page
+     * Badge
      */
     Q_PROPERTY(QString color READ color WRITE setColor NOTIFY colorChanged)
 
