@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 01:52+0000\n"
+"POT-Creation-Date: 2024-08-09 01:46+0000\n"
 "PO-Revision-Date: 2024-06-29 11:43+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -109,7 +109,7 @@ msgid "Cancel"
 msgstr "Cancel"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:221
+#: src/controls.6/private/ToastArea.qml:216
 #, kde-format
 msgid "Accept"
 msgstr "Accept"
@@ -130,7 +130,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Version ID copied to clipboard"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:278
+#: src/style.6/qtquickcontrols/TextField.qml:295
 #, kde-format
 msgid "Copy"
 msgstr "Copy"
@@ -175,7 +175,7 @@ msgstr "Components"
 msgid "Share"
 msgstr "Share"
 
-#: src/controls.6/private/ToastArea.qml:295
+#: src/controls.6/private/ToastArea.qml:289
 #, kde-format
 msgid "Dismiss All"
 msgstr "Dismiss All"
@@ -190,7 +190,7 @@ msgstr "Settings"
 msgid "Close"
 msgstr "Close"
 
-#: src/controls.6/SplitViewItem.qml:185
+#: src/controls.6/SplitViewItem.qml:193
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Are you sure you want to close the split view: '%1'?"
@@ -200,27 +200,27 @@ msgstr "Are you sure you want to close the split view: '%1'?"
 msgid "Open"
 msgstr "Open"
 
-#: src/style.6/qtquickcontrols/TextField.qml:285
+#: src/style.6/qtquickcontrols/TextField.qml:302
 #, kde-format
 msgid "Cut"
 msgstr "Cut"
 
-#: src/style.6/qtquickcontrols/TextField.qml:292
+#: src/style.6/qtquickcontrols/TextField.qml:309
 #, kde-format
 msgid "Paste"
 msgstr "Paste"
 
-#: src/style.6/qtquickcontrols/TextField.qml:302
+#: src/style.6/qtquickcontrols/TextField.qml:319
 #, kde-format
 msgid "Select All"
 msgstr "Select All"
 
-#: src/style.6/qtquickcontrols/TextField.qml:309
+#: src/style.6/qtquickcontrols/TextField.qml:326
 #, kde-format
 msgid "Undo"
 msgstr "Undo"
 
-#: src/style.6/qtquickcontrols/TextField.qml:316
+#: src/style.6/qtquickcontrols/TextField.qml:333
 #, kde-format
 msgid "Redo"
 msgstr "Redo"

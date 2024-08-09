@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-30 01:52+0000\n"
+"POT-Creation-Date: 2024-08-09 01:46+0000\n"
 "PO-Revision-Date: 2024-02-14 19:00+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -109,7 +109,7 @@ msgid "Cancel"
 msgstr "Peru"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:221
+#: src/controls.6/private/ToastArea.qml:216
 #, kde-format
 msgid "Accept"
 msgstr "Hyväksy"
@@ -130,7 +130,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Versiotunniste kopioitu leikepöydälle"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:278
+#: src/style.6/qtquickcontrols/TextField.qml:295
 #, kde-format
 msgid "Copy"
 msgstr "Kopioi"
@@ -176,7 +176,7 @@ msgstr "Osat"
 msgid "Share"
 msgstr "Jaa"
 
-#: src/controls.6/private/ToastArea.qml:295
+#: src/controls.6/private/ToastArea.qml:289
 #, kde-format
 msgid "Dismiss All"
 msgstr "Merkitse kaikki nähdyiksi"
@@ -191,7 +191,7 @@ msgstr "Asetukset"
 msgid "Close"
 msgstr "Sulje"
 
-#: src/controls.6/SplitViewItem.qml:185
+#: src/controls.6/SplitViewItem.qml:193
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr ""
@@ -201,27 +201,27 @@ msgstr ""
 msgid "Open"
 msgstr "Avaa"
 
-#: src/style.6/qtquickcontrols/TextField.qml:285
+#: src/style.6/qtquickcontrols/TextField.qml:302
 #, kde-format
 msgid "Cut"
 msgstr "Leikkaa"
 
-#: src/style.6/qtquickcontrols/TextField.qml:292
+#: src/style.6/qtquickcontrols/TextField.qml:309
 #, kde-format
 msgid "Paste"
 msgstr "Liitä"
 
-#: src/style.6/qtquickcontrols/TextField.qml:302
+#: src/style.6/qtquickcontrols/TextField.qml:319
 #, kde-format
 msgid "Select All"
 msgstr "Valitse kaikki"
 
-#: src/style.6/qtquickcontrols/TextField.qml:309
+#: src/style.6/qtquickcontrols/TextField.qml:326
 #, kde-format
 msgid "Undo"
 msgstr "Kumoa"
 
-#: src/style.6/qtquickcontrols/TextField.qml:316
+#: src/style.6/qtquickcontrols/TextField.qml:333
 #, kde-format
 msgid "Redo"
 msgstr "Tee uudelleen"
