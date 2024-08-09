@@ -20,10 +20,10 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 /**
  * @inherit QtQuick.Controls.Control
@@ -112,18 +112,11 @@ Control
     color: Maui.Theme.backgroundColor
     radius: Maui.Style.radiusV
     layer.enabled: true
-    
-    layer.effect: DropShadow
+    layer.effect: MultiEffect
     {
-      cached: true
-      horizontalOffset: 0
-      verticalOffset: 0
-      radius: 8.0
-      samples: 16
-      color: "#333"
-      opacity: 0.5
-      smooth: true
-      source: _background
+        autoPaddingEnabled: true
+        shadowEnabled: true
+        shadowColor: "#80000000"
     }
   }
   

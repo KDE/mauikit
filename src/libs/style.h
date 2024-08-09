@@ -135,7 +135,7 @@ class Style : public QObject
      * The preferred font size for the text labels in the UI elements.
      * @note This property is read only. It can only be modified from the MauiMan global preferences.
      */
-    Q_PROPERTY(uint defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
+    Q_PROPERTY(int defaultFontSize MEMBER m_defaultFontSize CONSTANT FINAL)
     
     /**
      * The preferred padding size for the UI elements, such a menu entries, buttons, bars, etc.
@@ -382,7 +382,7 @@ private:
     GroupSizes *m_fontSizes;
     Units *m_units;
 
-    uint m_defaultFontSize;
+    int m_defaultFontSize;
 
     uint m_toolBarHeight = 42;
     uint m_toolBarHeightAlt = 38;

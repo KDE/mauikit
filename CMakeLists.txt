@@ -5,10 +5,11 @@
 cmake_minimum_required(VERSION 3.16)
 
 set(QT_MAJOR_VERSION 6)
-
 set(REQUIRED_QT_VERSION 6.4)
-set(REQUIRED_KF_VERSION 5.240.0)
+
 set(KF_MAJOR_VERSION 6)
+set(REQUIRED_KF_VERSION 5.240.0)
+
 set(MAUI_MAJOR_VERSION 4)
 set(MAUIKIT_VERSION 4.0.0)
 
@@ -96,7 +97,6 @@ set_package_properties(MauiMan${MAUI_MAJOR_VERSION} PROPERTIES
 #configure_file(config-OpenMP.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-OpenMP.h)
 
 ecm_find_qmlmodule(QtQuick.Shapes 1.0)
-ecm_find_qmlmodule(Qt5Compat.GraphicalEffects 6.0)
 
 #if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 #    # link time optimization has been observed to break colors. Force-disable it.
@@ -106,7 +106,6 @@ ecm_find_qmlmodule(Qt5Compat.GraphicalEffects 6.0)
 #endif()
 
 if(ANDROID)
-    # find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS AndroidExtras)
     find_package(Gradle REQUIRED)
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
@@ -174,7 +173,7 @@ add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
 add_subdirectory(src)
 
-if(BUILD_DEMO)
+if(BUILD_DEMO AND NOT ANDROID)
     add_subdirectory(demo.6)
 endif()
 

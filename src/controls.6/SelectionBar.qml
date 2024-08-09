@@ -22,83 +22,83 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 /**
  * @inherit QtQuick.Item
  * @brief A bar to group selected items and a list of actions to perform to such selection.
- * 
+ *
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a>
- * 
+ *
  * The list of actions is represented by a set of buttons in a horizontal row layout.
  * @see actions
- * 
+ *
  * This control provides methods to append and query elements added to it. To add elements, it is necesary to map them,
  * so each item has an unique ID referred here as an URI.
  * @see append
- *  
- * 
+ *
+ *
  * @image html Misc/selectionbar.png
- * 
- * @section notes Notes 
- * 
+ *
+ * @section notes Notes
+ *
  * By default it is hidden when the selection is empty.
- * @see count 
- * 
+ * @see count
+ *
  * The SelectionBar is usually placed as the `footer` element of a Page.
  * This control is styled as a floating bar, so it can be placed on top of its parent contents; due to this behavior it is a good idea to pair it with a MauiKit Page as its footer, and set the Page property `floatingFooter: true`.
- * 
+ *
  * Most of the times this will be uses along with a browsing view, such as a ListBrowser or GridBrowser, which will list the items to be added or removed from the selection.
  *
  * Here we have three components that can be intertwined: Page, ListBrowser and the SelectionBar.
  * For the floating selection bar to not get on the way of the contents, the Page property `flickable` needs to be set to the flickable element of the browsing view, such as the ListBrowser::flickable.
  * @see ListBrowser::flickable
  * @see Page::flickable
- * 
+ *
  * Below you will find a more complete example of the functionality of these three controls out together.
- * 
+ *
  * @code
  * Maui.Page
  * {
  *    anchors.fill: parent
- * 
+ *
  *    Maui.Controls.showCSD: true
- * 
+ *
  *    floatingFooter: true
  *    flickable: _listBrowser.flickable //helps to keep the content from under the selection bar at the end.
- * 
+ *
  *    headBar.leftContent: Switch
  *    {
  *        text: "Single selection"
  *        checked: _selectionBar.singleSelection
  *        onToggled: _selectionBar.singleSelection = !_selectionBar.singleSelection
  *    }
- * 
+ *
  *    Maui.ListBrowser
  *    {
  *        id: _listBrowser
- * 
+ *
  *        anchors.fill: parent
- * 
+ *
  *        model: 60
- * 
+ *
  *        delegate: Maui.ListBrowserDelegate
  *        {
  *            id: _delegate
- * 
+ *
  *            property string id : index // we need an unique ID for the selectio nbar
- * 
+ *
  *            width: ListView.view.width
- * 
+ *
  *            label1.text: "An example delegate."
  *            label2.text: "The ID of this element is " + id
- * 
+ *
  *            iconSource: "folder"
- * 
+ *
  *            checkable: true
- * 
+ *
  *            Connections
  *            {
  *                target: _selectionBar
@@ -109,7 +109,7 @@ import Qt5Compat.GraphicalEffects
  *                        _delegate.checked = false
  *                    }
  *                }
- * 
+ *
  *                function onUriAdded(uri) //watch when an uri is successfully added and mark the delegate as checked
  *                {
  *                    if(uri == _delegate.id)
@@ -117,13 +117,13 @@ import Qt5Compat.GraphicalEffects
  *                        _delegate.checked = true
  *                    }
  *                }
- * 
+ *
  *                function onCleared() //watch when the selection has been cleared and uncheck all the delegates
  *                {
  *                    _delegate.checked = false
  *                }
  *            }
- * 
+ *
  *            onToggled: (state) =>
  *                        {
  *                            if(state)
@@ -136,39 +136,39 @@ import Qt5Compat.GraphicalEffects
  *                        } // when the item is toggled, we mark it as checked and add it to the selection bar, otherwise we unchecked it and remove it from selection.
  *        }
  *    }
- * 
+ *
  *    footer: Maui.SelectionBar
  *    {
  *        id: _selectionBar
- * 
+ *
  *        anchors.horizontalCenter: parent.horizontalCenter
  *        width: Math.min(parent.width-(Maui.Style.space.medium*2), implicitWidth)
  *        maxListHeight: root.height - (Maui.Style.contentMargins*2)
- * 
+ *
  *        Action
  *        {
  *            icon.name: "love"
  *            onTriggered: console.log(_selectionBar.getSelectedUrisString())
  *        }
- * 
+ *
  *        Action
  *        {
  *            icon.name: "folder"
  *            onTriggered: console.log(_selectionBar.contains("0"))
  *        }
- * 
+ *
  *        Action
  *        {
  *            icon.name: "list-add"
  *        }
- * 
+ *
  *        onExitClicked: clear()
  *    }
  * }
  *    @endcode
- * 
+ *
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/SelectionBar.qml">You can find a more complete example at this link.</a>
- * 
+ *
  */
 Item
 {
@@ -214,7 +214,7 @@ Item
     property list<Action> hiddenActions
     
     /**
-     * @brief The preferred display mode for the visible action buttons. 
+     * @brief The preferred display mode for the visible action buttons.
      * By default this is set to `ToolButton.TextBesideIcon`.
      */
     property int display : ToolButton.TextBesideIcon
@@ -402,7 +402,7 @@ Item
             from: _layout.height
             to: Maui.Style.space.big/2
             duration: Maui.Style.units.longDuration*1
-            easing.type: Easing.OutBack            
+            easing.type: Easing.OutBack
         }
         
         NumberAnimation
@@ -454,190 +454,189 @@ Item
         Maui.Theme.colorSet: Maui.Theme.Complementary
         
         forceCenterMiddleContent: false
-            position: ToolBar.Footer
-            
-            leftContent: Maui.Chip
+        position: ToolBar.Footer
+
+        leftContent: Maui.Chip
+        {
+            id: _counter
+            visible: !control.singleSelection
+            text: control.count
+            font.pointSize: Maui.Style.fontSizes.big
+            font.bold: true
+            font.weight: Font.Black
+            Maui.Theme.colorSet: control.Maui.Theme.colorSet
+            Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
+                                            Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+
+            Maui.Rectangle
             {
-                id: _counter
-                visible: !control.singleSelection
-                text: control.count
-                font.pointSize: Maui.Style.fontSizes.big
-                Maui.Theme.colorSet: control.Maui.Theme.colorSet
-                Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
-                Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-                
-                Maui.Rectangle
-                {
-                    opacity: 0.3
-                    anchors.fill: parent
-                    anchors.margins: 4
-                    visible: _counter.hovered
-                    color: "transparent"
-                    borderColor: "white"
-                    solidBorder: false
-                }
-                
-                MouseArea
-                {
-                    id: _mouseArea
-                    anchors.fill: parent
-                    propagateComposedEvents: true
-                    property int startX
-                    property int startY
-                    Drag.active: drag.active
-                    Drag.hotSpot.x: 0
-                    Drag.hotSpot.y: 0
-                    Drag.dragType: Drag.Automatic
-                    Drag.supportedActions: Qt.CopyAction
-                    Drag.keys: ["text/plain","text/uri-list"]
-                    
-                    onPressed: (mouse) =>
-                    {
-                        if( mouse.source !== Qt.MouseEventSynthesizedByQt)
-                        {
-                            drag.target = _counter
-                            _counter.grabToImage(function(result)
-                            {
-                                _mouseArea.Drag.imageSource = result.url
-                            })
-                            
-                            _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
-                            
-                            startX = _counter.x
-                            startY = _counter.y
-                            
-                        }else mouse.accepted = false
-                    }
-                    
-                    onReleased :
-                    {
-                        _counter.x = startX
-                        _counter.y = startY
-                    }
-                    
-                    
-                    onClicked:
-                    {
-                        if(!_loader.item)
-                        {
-                            _loader.sourceComponent = _listContainerComponent
-                        }
-                        _loader.item.open()
-                        console.log("Opening list")
-                    }
-                    
-                }
+                opacity: 0.3
+                anchors.fill: parent
+                anchors.margins: 4
+                visible: _counter.hovered
+                color: "transparent"
+                borderColor: "white"
+                solidBorder: false
             }
-            
-            Repeater
+
+            MouseArea
             {
-                model: control.actions
-                
-                ToolButton
+                id: _mouseArea
+                anchors.fill: parent
+                propagateComposedEvents: true
+                property int startX
+                property int startY
+                Drag.active: drag.active
+                Drag.hotSpot.x: 0
+                Drag.hotSpot.y: 0
+                Drag.dragType: Drag.Automatic
+                Drag.supportedActions: Qt.CopyAction
+                Drag.keys: ["text/plain","text/uri-list"]
+
+                onPressed: (mouse) =>
+                           {
+                               if( mouse.source !== Qt.MouseEventSynthesizedByQt)
+                               {
+                                   drag.target = _counter
+                                   _counter.grabToImage(function(result)
+                                   {
+                                       _mouseArea.Drag.imageSource = result.url
+                                   })
+
+                                   _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
+
+                                   startX = _counter.x
+                                   startY = _counter.y
+
+                               }else
+                               {
+                                   mouse.accepted = false
+                               }
+                           }
+
+                onReleased :
                 {
-                    Maui.Theme.inherit: false
-                    Maui.Theme.colorSet: Maui.Theme.Complementary
-                    
-                    action: modelData
-                    display: control.display
-                    ToolTip.delay: 1000
-                    ToolTip.timeout: 5000
-                    ToolTip.visible: hovered || pressed && action.text
-                    ToolTip.text: action.text
+                    _counter.x = startX
+                    _counter.y = startY
                 }
-            }
-            
-            Maui.ToolButtonMenu
-            {
-                Maui.Theme.inherit: false
-                Maui.Theme.colorSet: Maui.Theme.Complementary
-                
-                icon.name: "overflow-menu"
-                visible: control.hiddenActions.length > 0
-                Repeater
-                {
-                    model:  control.hiddenActions
-                    delegate: MenuItem{ action: modelData}
-                }
-            }
-            
-            rightContent: Maui.CloseButton
-            {
-                Maui.Theme.inherit: false
-                Maui.Theme.colorSet: Maui.Theme.Complementary
-                
+
                 onClicked:
                 {
-                    control.exitClicked()
+                    if(!_loader.item)
+                    {
+                        _loader.sourceComponent = _listContainerComponent
+                    }
+                    _loader.item.open()
+                    console.log("Opening list")
                 }
             }
-            
-            background: Rectangle
+        }
+
+        Repeater
+        {
+            model: control.actions
+
+            ToolButton
             {
-                id: bg
-                color: Maui.Theme.backgroundColor
-                radius: control.radius
-                
-                Behavior on color
+                Maui.Theme.inherit: false
+                Maui.Theme.colorSet: Maui.Theme.Complementary
+
+                action: modelData
+                display: control.display
+                ToolTip.delay: 1000
+                ToolTip.timeout: 5000
+                ToolTip.visible: hovered || pressed && action.text
+                ToolTip.text: action.text
+            }
+        }
+
+        Maui.ToolButtonMenu
+        {
+            Maui.Theme.inherit: false
+            Maui.Theme.colorSet: Maui.Theme.Complementary
+
+            icon.name: "overflow-menu"
+            visible: control.hiddenActions.length > 0
+            Repeater
+            {
+                model:  control.hiddenActions
+                delegate: MenuItem{ action: modelData}
+            }
+        }
+
+        rightContent: Maui.CloseButton
+        {
+            Maui.Theme.inherit: false
+            Maui.Theme.colorSet: Maui.Theme.Complementary
+
+            onClicked:
+            {
+                control.exitClicked()
+            }
+        }
+
+        background: Rectangle
+        {
+            id: bg
+            color: Maui.Theme.backgroundColor
+            radius: control.radius
+
+            Behavior on color
+            {
+                Maui.ColorTransition {}
+            }
+
+            MouseArea
+            {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                propagateComposedEvents: false
+                preventStealing: true
+
+                onClicked: (mouse) =>
+                           {
+                               if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
+                               control.rightClicked(mouse)
+                               else
+                               control.clicked(mouse)
+                           }
+
+                onPressAndHold : (mouse) =>
+                                 {
+                                     if(Maui.Handy.isMobile)
+                                     control.rightClicked(mouse)
+                                 }
+            }
+
+            Maui.Rectangle
+            {
+                opacity: 0.2
+                anchors.fill: parent
+                anchors.margins: 4
+                visible: _dropArea.containsDrag
+                color: "transparent"
+                borderColor: Maui.Theme.textColor
+                solidBorder: false
+            }
+
+            DropArea
+            {
+                id: _dropArea
+                anchors.fill: parent
+                onDropped:
                 {
-                    Maui.ColorTransition {}
-                }
-                
-                MouseArea
-                {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton | Qt.LeftButton
-                    propagateComposedEvents: false
-                    preventStealing: true
-                    
-                    onClicked: (mouse) =>
-                    {
-                        if(!Maui.Handy.isMobile && mouse.button === Qt.RightButton)
-                            control.rightClicked(mouse)
-                            else
-                                control.clicked(mouse)
-                    }
-                    
-                    onPressAndHold : (mouse) =>
-                    {
-                        if(Maui.Handy.isMobile)
-                            control.rightClicked(mouse)
-                    }
-                }
-                
-                Maui.Rectangle
-                {
-                    opacity: 0.2
-                    anchors.fill: parent
-                    anchors.margins: 4
-                    visible: _dropArea.containsDrag
-                    color: "transparent"
-                    borderColor: Maui.Theme.textColor
-                    solidBorder: false
-                }
-                
-                DropArea
-                {
-                    id: _dropArea
-                    anchors.fill: parent
-                    onDropped:
-                    {
-                        control.urisDropped(drop.urls)
-                    }
-                }
-                
-                layer.enabled: true
-                layer.effect: DropShadow
-                {
-                    cached: true
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 8.0
-                    samples: 16
-                    color:  "#80000000"
-                    smooth: true
+                    control.urisDropped(drop.urls)
                 }
             }
+
+            layer.enabled: true
+            layer.effect: MultiEffect
+            {
+                autoPaddingEnabled: true
+                shadowEnabled: true
+                shadowColor: "#80000000"
+            }
+        }
     }
     
     Keys.onEscapePressed:
@@ -645,7 +644,7 @@ Item
         control.exitClicked();
     }
     
-    Keys.onBackPressed:
+    Keys.onBackPressed: (event) =>
     {
         control.exitClicked();
         event.accepted = true
@@ -666,7 +665,7 @@ Item
     
     /**
      * @brief Returns an item at the given index
-     * @param index the index number of the item. 
+     * @param index the index number of the item.
      * @note Note that this is the index of the internal list on how items were added, and not the original index of the source list used to make the selection.
      * @return the requested item/map if it is found, otherwise null.
      */
@@ -716,7 +715,7 @@ Item
      * @brief Returns the index of an item in the selection given its URI
      * @param uri the URI used to append the item
      * @return the index number of the found item, otherwise `-1`
-     * 
+     *
      */
     function indexOf(uri)
     {

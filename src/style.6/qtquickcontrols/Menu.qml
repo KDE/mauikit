@@ -38,7 +38,7 @@ import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Window
 import org.mauikit.controls as Maui
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 T.Menu
 {
@@ -200,14 +200,11 @@ T.Menu
         }
 
         layer.enabled: true
-        layer.effect: DropShadow
+        layer.effect: MultiEffect
         {
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8
-            samples: 16
-            color: "#80000000"
-            transparentBorder: true
+            autoPaddingEnabled: true
+            shadowEnabled: true
+            shadowColor: "#80000000"
         }
     }
 

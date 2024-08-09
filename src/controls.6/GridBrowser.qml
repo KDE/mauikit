@@ -487,12 +487,15 @@ Item
             flickableDirection: Flickable.AutoFlickDirection
             snapMode: GridView.NoSnap
             highlightMoveDuration: 0
-            interactive: false
+
+            interactive: Maui.Handy.isTouch
+
             onWidthChanged: if(adaptContent) control.adaptGrid()
             onCountChanged: if(adaptContent) control.adaptGrid()
             
             keyNavigationEnabled : true
             keyNavigationWraps : true
+
             Keys.onPressed: (event) =>
             {
                 control.keyPress(event)

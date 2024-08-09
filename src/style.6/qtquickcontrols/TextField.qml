@@ -19,7 +19,6 @@
 
 import QtQuick
 import QtQuick.Window
-import QtQuick.Controls
 
 import org.mauikit.controls as Maui
 import QtQuick.Layouts
@@ -80,7 +79,7 @@ T.TextField
     /**
      * actions : RowLayout
      */
-    property list<Action> actions
+    property list<QtObject> actions
 
     property alias icon : _icon
 
@@ -96,12 +95,31 @@ T.TextField
      */
     signal contentDropped(var drop)
 
-    onPressAndHold: !Maui.Handy.isMobile ? entryMenu.show() : undefined
+    onPressAndHold: (event) =>
+                    {
+                        if(Maui.Handy.isMobile)
+                        {
+                            entryMenu.show()
+                            event.accepted = true
+                            return
+                        }
+
+                        event.accepted = false
+                        return
+                    }
+
     onPressed: (event) =>
-    {
-        if(!Maui.Handy.isMobile && event.button === Qt.RightButton)
-            entryMenu.show()
-    }
+               {
+                   if(!Maui.Handy.isMobile && event.button === Qt.RightButton)
+                   {
+                       entryMenu.show()
+                       event.accepted = true
+                       return
+                   }
+
+                   event.accepted = false
+                   return
+               }
 
     Keys.enabled: true
 
@@ -133,7 +151,7 @@ T.TextField
         }
     }
 
-   RowLayout
+    RowLayout
     {
         id: _layout
         clip: true
@@ -238,7 +256,6 @@ T.TextField
         anchors.verticalCenterOffset: 10
         anchors.horizontalCenterOffset: -5
 
-
         sourceComponent: Maui.Badge
         {
             text: control.Maui.Controls.badgeText
@@ -326,19 +343,19 @@ T.TextField
         sourceComponent: DropArea
         {
             onDropped: (drop) =>
-            {
-                console.log(drop.text, drop.html)
-                if (drop.hasText)
-                {
-                    control.text += drop.text
+                       {
+                           console.log(drop.text, drop.html)
+                           if (drop.hasText)
+                           {
+                               control.text += drop.text
 
-                }else if(drop.hasUrls)
-                {
-                    control.text = drop.urls
-                }
+                           }else if(drop.hasUrls)
+                           {
+                               control.text = drop.urls
+                           }
 
-                control.contentDropped(drop)
-            }
+                           control.contentDropped(drop)
+                       }
         }
     }
 

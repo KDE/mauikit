@@ -159,7 +159,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("TextFieldPopup.qml")), uri, 1, 3, "TextFieldPopup");
     qmlRegisterType(componentUrl(QStringLiteral("DialogWindow.qml")), uri, 1, 3, "DialogWindow");
 
-    //    //backwars compatible
+    //    //backwards compatible
     qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
     qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
     qmlRegisterType(componentUrl(QStringLiteral("private/ColorTransition.qml")), uri, 1, 0, "ColorTransition");

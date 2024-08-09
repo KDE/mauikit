@@ -24,8 +24,6 @@ import QtQuick.Layouts
 
 import org.mauikit.controls as Maui
 
-import Qt5Compat.GraphicalEffects
-
 /**
  * @inherit QtQuick.Controls.Popup
  * @since org.mauikit.controls 1.0

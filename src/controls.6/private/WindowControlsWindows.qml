@@ -1,4 +1,4 @@
-import QtQuick 2.12
+import QtQuick
 
 /*!
   \since org.mauikit.controls.labs 1.0

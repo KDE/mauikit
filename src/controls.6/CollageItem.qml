@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit GridBrowserDelegate
@@ -120,15 +120,25 @@ Maui.GridBrowserDelegate
                     }
                 }
                 
-                layer.enabled: control.maskRadius
-                layer.effect: OpacityMask
+                layer.enabled: control.maskRadius > 0
+                layer.effect: MultiEffect
                 {
-                    maskSource: Rectangle
+                    maskEnabled: true
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
+                    maskSpreadAtMax: 0.0
+                    maskThresholdMax: 1.0
+                    maskSource: ShaderEffectSource
                     {
-                        width: _collageLayout.width
-                        height: _collageLayout.height
-                        radius: control.maskRadius
-                    }                    
+                        sourceItem: Rectangle
+                        {
+                            x: _collageLayout.x
+                            y: _collageLayout.y
+                            width: _collageLayout.width
+                            height: _collageLayout.height
+                            radius: control.maskRadius
+                        }
+                    }
                 }
             }
         }  

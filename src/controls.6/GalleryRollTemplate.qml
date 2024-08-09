@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-import Qt5Compat.GraphicalEffects
+import org.mauikit.controls as Maui
+import QtQuick.Effects
 
 /**
  * @inherit ShadowedRectangle
@@ -198,20 +198,28 @@ Maui.ShadowedRectangle
             }
         }
         
-        layer.enabled: control.radius
-        layer.effect: OpacityMask
+        layer.enabled: control.radius > 0
+        layer.effect: MultiEffect
         {
-            maskSource: Maui.ShadowedRectangle
+            maskEnabled: true
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskThresholdMax: 1.0
+            maskSource: ShaderEffectSource
             {
-                width: control.width
-                height: control.height
-                
-                corners
+                sourceItem: Maui.ShadowedRectangle
                 {
-                    topLeftRadius: control.corners.topLeftRadius
-                    topRightRadius: control.corners.topRightRadius
-                    bottomLeftRadius: control.corners.bottomLeftRadius
-                    bottomRightRadius: control.corners.bottomRightRadius
+                    width: control.width
+                    height: control.height
+
+                    corners
+                    {
+                        topLeftRadius: control.corners.topLeftRadius
+                        topRightRadius: control.corners.topRightRadius
+                        bottomLeftRadius: control.corners.bottomLeftRadius
+                        bottomRightRadius: control.corners.bottomRightRadius
+                    }
                 }
             }
         }

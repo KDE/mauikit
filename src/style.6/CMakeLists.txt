@@ -76,4 +76,5 @@ target_link_libraries(MauiStyle
 # add_subdirectory(impl)
 # add_subdirectory(qtquickcontrols)
 
-ecm_finalize_qml_module(MauiStyle DESTINATION ${KDE_INSTALL_QMLDIR})
+ecm_finalize_qml_module(MauiStyle)
+# ecm_finalize_qml_module(MauiStyle DESTINATION ${KDE_INSTALL_QMLDIR})

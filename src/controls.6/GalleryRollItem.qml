@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
-import Qt5Compat.GraphicalEffects
+import org.mauikit.controls  as Maui
 
 /**
  * @inherit GridBrowserDelegate

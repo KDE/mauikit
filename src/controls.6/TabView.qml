@@ -3,7 +3,7 @@ import QtQml
 
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import org.mauikit.controls as Maui
 
@@ -739,13 +739,21 @@ Pane
                                             sourceItem: _listView.contentModel.get(index)
                                             layer.enabled: Maui.Style.enableEffects
                                             layer.smooth: true
-                                            layer.effect: OpacityMask
+                                            layer.effect: MultiEffect
                                             {
-                                                maskSource: Rectangle
+                                                maskEnabled: true
+                                                maskThresholdMin: 0.5
+                                                maskSpreadAtMin: 1.0
+                                                maskSpreadAtMax: 0.0
+                                                maskThresholdMax: 1.0
+                                                maskSource: ShaderEffectSource
                                                 {
-                                                    width: _effect.width
-                                                    height: _effect.height
-                                                    radius: Maui.Style.radiusV
+                                                    sourceItem: Rectangle
+                                                    {
+                                                        width: _effect.width
+                                                        height: _effect.height
+                                                        radius: Maui.Style.radiusV
+                                                    }
                                                 }
                                             }
                                         }

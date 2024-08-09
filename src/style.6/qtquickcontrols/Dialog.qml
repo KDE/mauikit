@@ -22,7 +22,7 @@
 
 import QtQuick
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 import QtQuick.Templates as T
 import org.mauikit.controls as Maui
 
@@ -73,14 +73,11 @@ T.Dialog
         color: Maui.Theme.backgroundColor
 
         layer.enabled: true
-        layer.effect: DropShadow
+        layer.effect: MultiEffect
         {
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8
-            samples: 16
-            color: "#80000000"
-            transparentBorder: true
+            autoPaddingEnabled: true
+            shadowEnabled: true
+            shadowColor: "#80000000"
         }
 
         Behavior on color

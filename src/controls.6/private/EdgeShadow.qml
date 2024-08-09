@@ -18,10 +18,10 @@
  */
 
 import QtQuick
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 import org.mauikit.controls as Maui
 
-LinearGradient
+Rectangle
 {
     id: control
     /**
@@ -39,19 +39,16 @@ LinearGradient
     /**
       *
       */
-    property color color: Maui.ColorUtils.linearInterpolation(Maui.Theme.alternateBackgroundColor, Maui.Theme.textColor, 0.2)
+    color: Maui.ColorUtils.linearInterpolation(Maui.Theme.alternateBackgroundColor, Maui.Theme.textColor, 0.2)
 
     implicitWidth: Maui.Style.units.gridUnit*3
     
-    opacity: 0.4
-    start: Qt.point(0, height/2)
-    end: Qt.point( width, height/2)
-    
+    // opacity: 0.4
     
     transform: [
         Scale{ xScale: control.edge === Qt.RightEdge ? -1 : 1 },
         Translate {x: control.edge === Qt.RightEdge ? control.width : 0}
-        ]
+    ]
     
     gradient: Gradient
     {

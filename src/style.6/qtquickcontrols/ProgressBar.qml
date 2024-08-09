@@ -24,7 +24,7 @@ import QtQuick
 import QtQuick.Templates as T
 
 import org.mauikit.controls as Maui
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 T.ProgressBar
 {
@@ -95,13 +95,21 @@ T.ProgressBar
         }
         
         layer.enabled: control.background && control.background.radius > 0
-        layer.effect: OpacityMask
+        layer.effect: MultiEffect
         {
-            maskSource: Rectangle
+            maskEnabled: true
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskThresholdMax: 1.0
+            maskSource: ShaderEffectSource
             {
-                width: control.width
-                height: control.height
-                radius: control.background.radius
+                sourceItem: Rectangle
+                {
+                    width: control.width
+                    height: control.height
+                    radius: control.background.radius
+                }
             }
         }
     }

@@ -22,7 +22,7 @@ import QtQuick
 import QtQuick.Window 
 import QtQuick.Controls
 
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import org.mauikit.controls as Maui
 
@@ -118,13 +118,23 @@ ApplicationWindow
         }
 
         layer.enabled: _container.showBorders
-        layer.effect: OpacityMask
+        layer.effect: MultiEffect
         {
-            maskSource: Rectangle
+            maskEnabled: true
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskThresholdMax: 1.0
+            maskSource: ShaderEffectSource
             {
-                width: _content.width
-                height: _content.height
-                radius: Maui.Style.radiusV
+                sourceItem: Rectangle
+                {
+                    x: _container.x
+                    y: _container.y
+                    width: _container.width
+                    height: _container.height
+                    radius: Maui.Style.radiusV
+                }
             }
         }
     }

@@ -36,11 +36,11 @@ private:
 
     QString resolveFileUrl(const QString &filePath) const
     {
-        #if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        return QStringLiteral("qrc:/android_rcc_bundle/qml/org/mauikit/controls/") + filePath;
-        #else
+#if defined(Q_OS_ANDROID)
+        return QStringLiteral(":/qt/qml/org/mauikit/controls/") + filePath;
+#else
         return baseUrl().toString() + QLatin1Char('/') + filePath;
-        #endif
+#endif
     }
 
 Q_SIGNALS:

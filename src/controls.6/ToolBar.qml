@@ -514,7 +514,7 @@ QQC.ToolBar
 
                     asynchronous: true
 
-                    sourceComponent: Maui.WindowControls {}
+                    // sourceComponent: Maui.WindowControls {}
                 }
             }
         }

@@ -20,15 +20,19 @@ include_directories(
 
 add_library(MauiKit${MAUI_MAJOR_VERSION})
 
+if (ANDROID)
+    set(_extra_options ${_extra_options} OPTIONAL_IMPORTS org.mauikit.style)
+endif()
+
 ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     VERSION 1.3
     URI "org.mauikit.controls"
     CLASS_NAME MauiKit
     DEPENDENCIES
     "QtQuick.Controls"
-    "Qt5Compat.GraphicalEffects"
     NO_PLUGIN_OPTIONAL
-    NO_GENERATE_PLUGIN_SOURCE)
+    NO_GENERATE_PLUGIN_SOURCE
+    ${_extra_options})
 
 set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
     VERSION     ${PROJECT_VERSION}
@@ -102,6 +106,8 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
     assets.qrc)
 
 set(mauikit_HDRS
+    platforms/abstractplatform.h
+
     utils/fmh.h
     utils/handy.h
     utils/notify.h
@@ -110,8 +116,6 @@ set(mauikit_HDRS
     utils/colorutils.h
     utils/model_template/mauilist.h
     utils/moduleinfo.h)
-
-#qt_add_resources(mauikit_QML_QRC mauikit.qrc)
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}plugin
     PRIVATE
@@ -138,15 +142,20 @@ if(BUNDLE_LUV_ICONS)
         find_package(Git REQUIRED)
         execute_process(COMMAND ${GIT_EXECUTABLE} clone --depth 1 https://github.com/Nitrux/luv-icon-theme.git ${CMAKE_CURRENT_SOURCE_DIR}/icons/luv-icon-theme)
     endif()
-
-    target_sources(MauiKit${MAUI_MAJOR_VERSION} PRIVATE icons.qrc)
+    qt_add_resources(icons_QML_QRC icons.qrc)
+    target_sources(MauiKit${MAUI_MAJOR_VERSION} PRIVATE ${icons_QML_QRC})
 endif()
 
 if (ANDROID)
 
     #    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platforms/android/version.gradle.in ${CMAKE_BINARY_DIR}/version.gradle)
+    include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/platforms/android/shadowhelper)
 
     add_subdirectory(platforms/android)
+
+    set(mauikit_HDRS ${mauikit_HDRS}
+        platforms/android/mauiandroid.h)
 
     target_sources(MauiKit${MAUI_MAJOR_VERSION}
         PRIVATE
@@ -156,8 +165,8 @@ if (ANDROID)
         platforms/android/blurhelper/windowblur.cpp
         platforms/android/shadowhelper/boxshadowrenderer.cpp
         platforms/android/shadowhelper/tileset.cpp
-        # platforms/android/shadowhelper/windowshadow.cpp
-    )
+        platforms/android/shadowhelper/windowshadow.cpp
+        platforms/android/shadowhelper/windowshadow.h)
 
     #    kde_enable_exceptions(MauiKit PRIVATE)
 elseif(UNIX AND NOT APPLE)

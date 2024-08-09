@@ -23,11 +23,10 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 
-import Qt5Compat.GraphicalEffects
-
+import QtQuick.Effects
 import QtQml.Models
 
-import QtMultimedia
+// import QtMultimedia
 
 import org.mauikit.controls as Maui
 
@@ -44,17 +43,17 @@ Control
     
     property Item previousItem : null
     
-    SoundEffect
-    {
-        id: playSound
-        source: "qrc:/assets/notification_simple-01.wav"
-    }
+    // SoundEffect
+    // {
+    //     id: playSound
+    //     source: "qrc:/assets/notification_simple-01.wav"
+    // }
     
-    SoundEffect
-    {
-        id: _dismissSound
-        source: "qrc:/assets/notification_simple-02.wav"
-    }
+    // SoundEffect
+    // {
+    //     id: _dismissSound
+    //     source: "qrc:/assets/notification_simple-02.wav"
+    // }
     
     Keys.enabled: true
     Keys.onEscapePressed:
@@ -64,7 +63,7 @@ Control
     
     onVisibleChanged:
     {
-         if(visible)
+        if(visible)
         {
             control.previousItem = Window.window.activeFocusItem
             control.forceActiveFocus()
@@ -88,12 +87,11 @@ Control
                 control.dismiss()
         }
         
-        LinearGradient
+        Rectangle
         {
             anchors.fill: parent
-            start: Qt.point(control.width/2, 0)
-            end: Qt.point(control.width/2, control.height - _container.height)
-            gradient: Gradient {
+            gradient: Gradient
+            {
                 GradientStop { position: 0.0; color: "transparent" }
                 GradientStop { position: 1.0; color: Maui.Theme.backgroundColor }
             }
@@ -162,21 +160,18 @@ Control
                 }
                 
                 layer.enabled: true
-                layer.effect: DropShadow
+                layer.effect: MultiEffect
                 {
-                    horizontalOffset: 0
-                    verticalOffset: 0
-                    radius: 8
-                    samples: 16
-                    color: "#80000000"
-                    transparentBorder: true
+                    autoPaddingEnabled: true
+                    shadowEnabled: true
+                    shadowColor: "#80000000"
                 }
             }
             
-            Component.onCompleted: 
+            Component.onCompleted:
             {
                 _progressTimer.start()
-                _toastTimer.start()    
+                _toastTimer.start()
             }
             
             Timer
@@ -192,7 +187,7 @@ Control
                         _progressBar.restart()
                         return;
                     }
-                                            _progressTimer.stop()
+                    _progressTimer.stop()
                     control.remove(_toast.mindex)
                 }
             }
@@ -255,7 +250,6 @@ Control
     
     contentItem: Item
     {
-        
         Container
         {
             id: _container
@@ -299,7 +293,7 @@ Control
             }
         }
     }
-    
+
     function add(icon, title, body, callback = ({}), buttonText = "")
     {
         const properties = ({
@@ -307,33 +301,32 @@ Control
             'title': title,
             'body': body,
             'callback': callback,
-            'buttonText': buttonText
-        })
+            'buttonText': buttonText })
+
             const object = _toastComponent.createObject(_listView.flickable, properties);
             _container.insertItem(0, object)
             playSound.play()
         }
 
+    function dismiss()
+    {
+        let count = _container.count
+        let items = []
+        for(var i = 0; i< count; i++)
+        {
+            items.push(_container.itemAt(i))
+        }
 
-            function dismiss()
-            {
-                let count = _container.count
-                let items = []
-                for(var i = 0; i< count; i++)
-                {
-                    items.push(_container.itemAt(i))
-                }
+        for(var j of items)
+        {
+            _container.removeItem(j)
+        }
 
-                    for(var j of items)
-                    {
-                        _container.removeItem(j)
-                    }
+        _dismissSound.play()
+    }
 
-                        _dismissSound.play()
-                    }
-
-                        function remove(index)
-                        {
-                            _container.removeItem(_container.itemAt(index))
-                        }
-                        }
+    function remove(index)
+    {
+        _container.removeItem(_container.itemAt(index))
+    }
+}

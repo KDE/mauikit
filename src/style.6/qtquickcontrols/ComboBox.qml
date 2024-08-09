@@ -39,7 +39,7 @@ import QtQuick.Window
 import QtQuick.Templates as T
 
 import org.mauikit.controls as Maui
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 T.ComboBox
 {
@@ -170,7 +170,7 @@ T.ComboBox
         Behavior on color
         {
             Maui.ColorTransition{}
-        }        
+        }
     }
     
     popup: T.Popup
@@ -212,7 +212,6 @@ T.ComboBox
             NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
             NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; easing.type: Easing.OutCubic; duration: 150 }
         }
-        
         
         Transition
         {
@@ -307,14 +306,11 @@ T.ComboBox
             }
             
             layer.enabled: true
-            layer.effect: DropShadow
+            layer.effect: MultiEffect
             {
-                horizontalOffset: 0
-                verticalOffset: 0
-                radius: 8
-                samples: 16
-                color: "#80000000"
-                transparentBorder: true
+                autoPaddingEnabled: true
+                shadowEnabled: true
+                shadowColor: "#80000000"
             }
         }
     }

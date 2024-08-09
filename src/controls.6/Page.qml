@@ -172,6 +172,7 @@ Pane
 
     Maui.Controls.showCSD: false
     Maui.Controls.level: control.Maui.Controls.showCSD === true ? Maui.Controls.Primary : Maui.Controls.Secondary
+    Maui.Controls.flat: true
 
     /**
      * @brief The default content of the page.
@@ -526,6 +527,8 @@ Pane
             Maui.Controls.flat: control.Maui.Controls.flat
             translucencySource: ShaderEffectSource
             {
+                layer.enabled: true
+                // textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
                 sourceItem: _content
                 sourceRect:  _headBar.background ?
                                  (control.floatingHeader ?
@@ -608,6 +611,7 @@ Pane
 
             translucencySource: ShaderEffectSource
             {
+                layer.enabled: true
                 //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
                 sourceItem: _content
                 sourceRect: _footBar.background ? (control.floatingFooter ? Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : Qt.rect(0,0,0,0)

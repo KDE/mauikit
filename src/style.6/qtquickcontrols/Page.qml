@@ -40,8 +40,6 @@ import org.mauikit.controls as Maui
 
 T.Page
 {
-    id: control
-    
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
     

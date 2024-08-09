@@ -334,9 +334,8 @@ QImage Icon::findIcon(const QSize &size)
     QString iconSource = m_source.toString();
 
     if (iconSource.startsWith(QLatin1String("image://"))) {
-        const auto multiplier = QCoreApplication::instance()->testAttribute(Qt::AA_UseHighDpiPixmaps)
-            ? (window() ? window()->effectiveDevicePixelRatio() : qGuiApp->devicePixelRatio())
-            : 1;
+        const auto multiplier = (window() ? window()->effectiveDevicePixelRatio() : qGuiApp->devicePixelRatio());
+
         QUrl iconUrl(iconSource);
         QString iconProviderId = iconUrl.host();
         // QUrl path has the  "/" prefix while iconId does not

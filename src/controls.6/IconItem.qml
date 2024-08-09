@@ -19,7 +19,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import org.mauikit.controls as Maui
 
@@ -222,19 +222,27 @@ Item
         mipmap: false
 
         layer.enabled: control.maskRadius
-        layer.effect: OpacityMask
+        layer.effect: MultiEffect
         {
-            maskSource: Item
+            maskEnabled: true
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskThresholdMax: 1.0
+            maskSource: ShaderEffectSource
             {
-                width: img.width
-                height: img.height
-
-                Rectangle
+                sourceItem:  Item
                 {
-                    anchors.centerIn: parent
-                    width: Math.min(parent.width, img.paintedWidth)
-                    height: Math.min(parent.height, img.paintedHeight)
-                    radius: control.maskRadius
+                    width: img.width
+                    height: img.height
+
+                    Rectangle
+                    {
+                        anchors.centerIn: parent
+                        width: Math.min(parent.width, img.paintedWidth)
+                        height: Math.min(parent.height, img.paintedHeight)
+                        radius: control.maskRadius
+                    }
                 }
             }
         }

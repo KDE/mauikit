@@ -36,14 +36,13 @@
 
 import QtQuick
 import QtQuick.Templates as T
+import org.mauikit.controls as Maui
 
 T.ApplicationWindow
 {
-    id: window
+    Maui.Theme.colorSet: Maui.Theme.Window
+
     background: Rectangle {
-           gradient: Gradient {
-               GradientStop { position: 0; color: "#ffffff" }
-               GradientStop { position: 1; color: "#c1bbf9" }
-           }
+           color: Maui.theme.backgroundColor
        }
 }

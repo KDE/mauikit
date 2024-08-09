@@ -23,7 +23,7 @@ import org.mauikit.controls as Maui
 
 import QtQuick.Templates as T
 
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 /**
  * Popup
@@ -115,14 +115,21 @@ T.Popup
     {
         id: _content
         layer.enabled: true
-        layer.effect: OpacityMask
+        layer.effect: MultiEffect
         {
-            cached: true
-            maskSource:  Rectangle
+            maskEnabled: true
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskThresholdMax: 1.0
+            maskSource: ShaderEffectSource
             {
-                width: _content.width
-                height: _content.height
-                radius:  control.filling ? 0 : Maui.Style.radiusV
+                sourceItem: Rectangle
+                {
+                    width: _content.width
+                    height: _content.height
+                    radius:  control.filling ? 0 : Maui.Style.radiusV
+                }
             }
         }
     }
@@ -135,14 +142,11 @@ T.Popup
         // property color borderColor: Maui.Theme.textColor
         // border.color: Maui.Style.trueBlack ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
         layer.enabled: !control.filling
-        layer.effect: DropShadow
+        layer.effect: MultiEffect
         {
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8
-            samples: 16
-            color: "#80000000"
-            transparentBorder: true
+            autoPaddingEnabled: true
+            shadowEnabled: true
+            shadowColor: "#80000000"
         }
 
         Behavior on color

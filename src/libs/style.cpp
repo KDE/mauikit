@@ -11,10 +11,6 @@
 #include <MauiMan4/backgroundmanager.h>
 #include <MauiMan4/accessibilitymanager.h>
 
-#ifdef Q_OS_ANDROID
-#include "mauiandroid.h"
-#endif
-
 Q_GLOBAL_STATIC(Style, styleInstance)
 
 void Style::styleChanged()
@@ -58,7 +54,7 @@ Style::Style(QObject *parent) : QObject(parent)
         Q_EMIT fontSizesChanged();
         Q_EMIT h1FontChanged();
         Q_EMIT h2FontChanged();
-        Q_EMIT
+        Q_EMIT monospacedFontChanged();
     });
 
     connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, [this](Qt::ColorScheme type)
@@ -216,15 +212,15 @@ void Style::setFontSizes()
 {
     qDebug() << m_defaultFont << m_defaultFont.pointSize();
 
-    m_defaultFontSize = m_defaultFont.pointSize ();
+    m_defaultFontSize = m_defaultFont.pointSize () > 0 ? m_defaultFont.pointSize () : m_defaultFont.pixelSize();
 
-    m_fontSizes->m_tiny = m_defaultFont.pointSize ()-2;
-    m_fontSizes->m_small = m_defaultFont.pointSize ()-1;
-    m_fontSizes->m_medium = m_defaultFont.pointSize ();
-    m_fontSizes->m_big = m_defaultFont.pointSize ()+1;
-    m_fontSizes->m_large = m_defaultFont.pointSize ()+2;
-    m_fontSizes->m_huge = m_defaultFont.pointSize ()+3;
-    m_fontSizes->m_enormous = m_defaultFont.pointSize ()+4;
+    m_fontSizes->m_tiny = m_defaultFontSize-2;
+    m_fontSizes->m_small = m_defaultFontSize-1;
+    m_fontSizes->m_medium = m_defaultFontSize;
+    m_fontSizes->m_big = m_defaultFontSize+1;
+    m_fontSizes->m_large = m_defaultFontSize+2;
+    m_fontSizes->m_huge = m_defaultFontSize+3;
+    m_fontSizes->m_enormous = m_defaultFontSize+4;
 
     m_h1Font.setPointSize(m_fontSizes->m_enormous);
     m_h1Font.setWeight(QFont::Black);

@@ -26,42 +26,42 @@ import org.mauikit.controls 1.3 as Maui
  * @inherit QtQuick.Item
  *  @brief A browser view with a list layout.
  *  <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a>
- *    
- * This component might seem similar to QQC2 ListView - and it does uses it underneath - but this one includes a few more predefined elements, such as a placeholder element, pinch to zoom gestures, lasso selection support, and some predefined behaviour. 
- *    
+ *
+ * This component might seem similar to QQC2 ListView - and it does uses it underneath - but this one includes a few more predefined elements, such as a placeholder element, pinch to zoom gestures, lasso selection support, and some predefined behaviour.
+ *
  * @section structure Structure
  * The browser has a dedicated placeholder element handled by MauiKit Holder, where a message can be set when the view is on a determined state the user should be warned about, such as if the view is empty, or not search results were found.
  * @see Holder
- * 
+ *
  * The lasso selection feature works with a mouse or a track-pad, and allows to select multiple items in the browser-view that are under the lasso rectangle area. A signal is emitted when the selection has been triggered - this is when the lasso rectangle is released - sending as an argument an array of numbers representing the indexes of the selected items.
- * @see itemsSelected 
- * 
+ * @see itemsSelected
+ *
  * @note Consider using as the delegate elements the MauiKit ListBrowserDelegate.
- * 
+ *
  * To position the delegates you can use the ListView attached properties, such as `ListView.view.width` to set the width of the delegate correctly.
- * 
+ *
  * @image html Browsers/listbrowser.png
- * 
+ *
  * @code
  * Maui.ListBrowser
  * {
  *    anchors.fill: parent
  *    model: 60
- * 
+ *
  *    enableLassoSelection: true
  *    onItemsSelected: (indexes) => console.log(indexes)
- * 
+ *
  *    delegate: Maui.ListBrowserDelegate
  *    {
  *        width: ListView.view.width
  *        label1.text: "An example delegate."
  *        label2.text: "Using the MauiKit ListBrowser."
- * 
+ *
  *        iconSource: "folder"
  *    }
  * }
  * @endcode
- * 
+ *
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ListBrowser.qml">You can find a more complete example at this link.</a>
  */
 Item
@@ -104,7 +104,7 @@ Item
      * @property double ListBrowser::contentY
      */
     property alias contentX: _listView.contentX
-        
+
     /**
      * @brief The index number of the current element selected.
      * @note To no break any binding, use the `setCurrentIndex` function.
@@ -125,7 +125,7 @@ Item
     property alias count : _listView.count
     
     /**
-     * @brief The cache buffer. 
+     * @brief The cache buffer.
      * Refer to the QQC2 ListView for proper documentation.
      * @property int ListBrowser::cacheBuffer
      */
@@ -172,12 +172,12 @@ Item
     
     /**
      * @brief The total width of all the elements.
-     * @property int ListBrowser::contentWidth 
+     * @property int ListBrowser::contentWidth
      */
     property alias contentWidth : _listView.contentWidth
     
     /**
-     * @brief Whether the view is positioned at the end on the Y axis. 
+     * @brief Whether the view is positioned at the end on the Y axis.
      * Meant to be used if the view `orientation` has been set to vertical.
      * @property bool ListBrowser::atYEnd
      */
@@ -197,7 +197,7 @@ Item
      */
     property alias topPadding: _scrollView.topPadding
     
-   /**
+    /**
      * @brief The bottom padding.
      * @see padding
      * @property int ListBrowser::bottomPadding
@@ -238,14 +238,14 @@ Item
     {
         if(control.orientation === ListView.Horizontal)
             return ScrollBar.AlwaysOff
-            
-            switch(Maui.Style.scrollBarPolicy)
-            {
-                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
-                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
-                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
-                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
-            }
+
+        switch(Maui.Style.scrollBarPolicy)
+        {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+        }
     }
     
     /**
@@ -261,21 +261,21 @@ Item
     {
         if(control.orientation === ListView.Vertical)
             return ScrollBar.AlwaysOff
-            
-            switch(Maui.Style.scrollBarPolicy)
-            {
-                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
-                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
-                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
-                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
-            }
+
+        switch(Maui.Style.scrollBarPolicy)
+        {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+        }
     }
     
     /**
      * @brief An alias to access the placeholder properties. This is handled by a MauiKit Holder.
      * @see Holder::title
      * @see Holder::body
-     * 
+     *
      * @property Holder ListBrowser::holder
      */
     property alias holder : _holder
@@ -291,7 +291,7 @@ Item
      * @brief
      */
     property bool selectionMode: false
-       
+
     /**
      * @brief An alias to the lasso rectangle.
      * @property Rectangle ListBrowser::lassoRec
@@ -330,7 +330,7 @@ Item
      */
     signal itemsSelected(var indexes)
     
-     /**
+    /**
      * @brief Emitted when an empty space of the background area has been clicked.
      * @param mouse Object with information about the click event.
      */
@@ -372,8 +372,7 @@ Item
             clip: control.clip
             
             property var selectedIndexes : []
-            
-            
+
             spacing: Maui.Style.defaultSpacing
             
             snapMode: ListView.NoSnap
@@ -384,14 +383,14 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
             
-            //                interactive: Maui.Handy.isTouch
-            interactive: false
+            interactive: Maui.Handy.isTouch
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
             
             keyNavigationEnabled : true
             keyNavigationWraps : true
+
             Keys.onPressed: (event) => control.keyPress(event)
             
             Maui.Holder
@@ -425,104 +424,104 @@ Item
                         acceptedButtons: Qt.RightButton | Qt.LeftButton
                         
                         onClicked: (mouse) =>
-                        {
-                            console.log("Area clicked")
-                            
-                            control.areaClicked(mouse)
-                            control.forceActiveFocus()
-                            
-                            if(mouse.button === Qt.RightButton)
-                            {
-                                control.areaRightClicked()
-                                return
-                            }
-                        }
+                                   {
+                                       console.log("Area clicked")
+
+                                       control.areaClicked(mouse)
+                                       control.forceActiveFocus()
+
+                                       if(mouse.button === Qt.RightButton)
+                                       {
+                                           control.areaRightClicked()
+                                           return
+                                       }
+                                   }
                         
                         onPositionChanged: (mouse) =>
-                        {
-                            if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
-                            {
-                                if(mouseX >= selectLayer.newX)
-                                {
-                                    selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
-                                } else {
-                                    selectLayer.x = mouseX < control.x ? control.x : mouseX;
-                                    selectLayer.width = selectLayer.newX - selectLayer.x;
-                                }
-                                
-                                if(mouseY >= selectLayer.newY) {
-                                    selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
-                                    if(!_listView.atYEnd &&  mouseY > (control.y + control.height))
-                                        _listView.contentY += 10
-                                } else {
-                                    selectLayer.y = mouseY < control.y ? control.y : mouseY;
-                                    selectLayer.height = selectLayer.newY - selectLayer.y;
-                                    
-                                    if(!_listView.atYBeginning && selectLayer.y === 0)
-                                        _listView.contentY -= 10
-                                }
-                            }
-                        }
+                                           {
+                                               if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
+                                               {
+                                                   if(mouseX >= selectLayer.newX)
+                                                   {
+                                                       selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
+                                                   } else {
+                                                       selectLayer.x = mouseX < control.x ? control.x : mouseX;
+                                                       selectLayer.width = selectLayer.newX - selectLayer.x;
+                                                   }
+
+                                                   if(mouseY >= selectLayer.newY) {
+                                                       selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
+                                                       if(!_listView.atYEnd &&  mouseY > (control.y + control.height))
+                                                       _listView.contentY += 10
+                                                   } else {
+                                                       selectLayer.y = mouseY < control.y ? control.y : mouseY;
+                                                       selectLayer.height = selectLayer.newY - selectLayer.y;
+
+                                                       if(!_listView.atYBeginning && selectLayer.y === 0)
+                                                       _listView.contentY -= 10
+                                                   }
+                                               }
+                                           }
                         
                         onPressed: (mouse) =>
-                        {
-                            if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
-                            {
-                                selectLayer.visible = true;
-                                selectLayer.x = mouseX;
-                                selectLayer.y = mouseY;
-                                selectLayer.newX = mouseX;
-                                selectLayer.newY = mouseY;
-                                selectLayer.width = 0
-                                selectLayer.height = 0;
-                            }
-                        }
+                                   {
+                                       if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
+                                       {
+                                           selectLayer.visible = true;
+                                           selectLayer.x = mouseX;
+                                           selectLayer.y = mouseY;
+                                           selectLayer.newX = mouseX;
+                                           selectLayer.newY = mouseY;
+                                           selectLayer.width = 0
+                                           selectLayer.height = 0;
+                                       }
+                                   }
                         
                         onPressAndHold: (mouse) =>
-                        {
-                            if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isAndroid)
-                            {
-                                selectLayer.visible = true;
-                                selectLayer.x = mouseX;
-                                selectLayer.y = mouseY;
-                                selectLayer.newX = mouseX;
-                                selectLayer.newY = mouseY;
-                                selectLayer.width = 0
-                                selectLayer.height = 0;
-                                mouse.accepted = true
-                            }else
-                            {
-                                mouse.accepted = false
-                            }
-                        }
+                                        {
+                                            if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isAndroid)
+                                            {
+                                                selectLayer.visible = true;
+                                                selectLayer.x = mouseX;
+                                                selectLayer.y = mouseY;
+                                                selectLayer.newX = mouseX;
+                                                selectLayer.newY = mouseY;
+                                                selectLayer.width = 0
+                                                selectLayer.height = 0;
+                                                mouse.accepted = true
+                                            }else
+                                            {
+                                                mouse.accepted = false
+                                            }
+                                        }
                         
                         onReleased: (mouse) =>
-                        {
-                            if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
-                            {
-                                mouse.accepted = false
-                                return;
-                            }
-                            
-                            if(selectLayer.y > _listView.contentHeight)
-                            {
-                                return selectLayer.reset();
-                            }
-                            
-                            var lassoIndexes = []
-                            var limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
-                            var y = lassoRec.y
-                            for(y; y < limitY; y+=10)
-                            {
-                                const index = _listView.indexAt(_listView.width/2,y+_listView.contentY)
-                                if(!lassoIndexes.includes(index) && index>-1 && index< _listView.count)
-                                    lassoIndexes.push(index)
-                            }
-                            
-                            control.itemsSelected(lassoIndexes)
-                            console.log("INDEXES << " , lassoIndexes, lassoRec.y, limitY)
-                            selectLayer.reset()
-                        }
+                                    {
+                                        if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
+                                        {
+                                            mouse.accepted = false
+                                            return;
+                                        }
+
+                                        if(selectLayer.y > _listView.contentHeight)
+                                        {
+                                            return selectLayer.reset();
+                                        }
+
+                                        var lassoIndexes = []
+                                        var limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
+                                        var y = lassoRec.y
+                                        for(y; y < limitY; y+=10)
+                                        {
+                                            const index = _listView.indexAt(_listView.width/2,y+_listView.contentY)
+                                            if(!lassoIndexes.includes(index) && index>-1 && index< _listView.count)
+                                            lassoIndexes.push(index)
+                                        }
+
+                                        control.itemsSelected(lassoIndexes)
+                                        console.log("INDEXES << " , lassoIndexes, lassoRec.y, limitY)
+                                        selectLayer.reset()
+                                    }
                     }
                 }
             }
@@ -555,8 +554,8 @@ Item
                     selectLayer.height = 0;
                 }
             }
-        }        
-    }    
+        }
+    }
 }
 
 

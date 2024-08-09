@@ -23,7 +23,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import org.mauikit.controls as Maui
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 T.Slider
 {
@@ -97,13 +97,21 @@ T.Slider
         }
 
         layer.enabled: control.background
-        layer.effect: OpacityMask
+        layer.effect: MultiEffect
         {
-            maskSource: Rectangle
+            maskEnabled: true
+            maskThresholdMin: 0.5
+            maskSpreadAtMin: 1.0
+            maskSpreadAtMax: 0.0
+            maskThresholdMax: 1.0
+            maskSource: ShaderEffectSource
             {
-                width: control.background.width
-                height: control.background.height
-                radius:  Maui.Style.radiusV
+                sourceItem: Rectangle
+                {
+                    width: control.background.width
+                    height: control.background.height
+                    radius:  Maui.Style.radiusV
+                }
             }
         }
         

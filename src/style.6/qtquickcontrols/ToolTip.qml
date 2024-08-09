@@ -23,7 +23,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import org.mauikit.controls as Maui
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 T.ToolTip
 {
@@ -57,14 +57,11 @@ T.ToolTip
         color: Maui.Theme.backgroundColor
         Maui.Theme.colorSet: Maui.Theme.Tooltip
         layer.enabled: true
-        layer.effect: DropShadow
+        layer.effect: MultiEffect
         {
-            transparentBorder: true
-            radius: 4
-            samples: 8
-            horizontalOffset: 0
-            verticalOffset: 2
-            color: Qt.rgba(0, 0, 0, 0.3)
+            autoPaddingEnabled: true
+            shadowEnabled: true
+            shadowColor:  Qt.rgba(0, 0, 0, 0.3)
         }
     }
 }

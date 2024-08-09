@@ -20,7 +20,7 @@
  */
 
 import QtQuick
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import QtQuick.Templates as T
 import org.mauikit.controls as Maui
@@ -33,6 +33,7 @@ T.ToolBar
 
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
+    Maui.Controls.flat: true
 
     property Item translucencySource : null
 
@@ -43,7 +44,6 @@ T.ToolBar
     spacing: Maui.Style.space.small
 
     font: Maui.Style.defaultFont
-
 
     contentItem: Row
     {
@@ -56,31 +56,35 @@ T.ToolBar
         id: _headBarBG
         color: control.Maui.Controls.level ? control.Maui.Controls.level === Maui.Controls.Primary ? Maui.Theme.backgroundColor : Maui.Theme.alternateBackgroundColor : Maui.Theme.backgroundColor
 
-       Behavior on color
+        Behavior on color
         {
             Maui.ColorTransition{}
         }
 
+        clip: true
         Loader
         {
             asynchronous: true
             active: control.translucencySource !== null && Maui.Style.enableEffects
             anchors.fill: parent
-            sourceComponent: Item
+            sourceComponent: MultiEffect
             {
-                FastBlur
-                {
-                    anchors.fill: parent
+                opacity: 0.2
+                blurEnabled: true
+                blurMax: 64
+                saturation: -0.5
+                // blurMax: 32
+                blur: 1.0
+                autoPaddingEnabled: true
+                // layer.enabled: true
+                // layer.effect: Desaturate
+                // {
+                //     desaturation: -1.2
+                // }
 
-                    layer.enabled: true
-                    layer.effect: Desaturate
-                    {
-                        desaturation: -1.2
-                    }
+                source: control.translucencySource
+                // radius: 64
 
-                    source: control.translucencySource
-                    radius: 64
-                }
 
                 Rectangle
                 {
@@ -89,46 +93,47 @@ T.ToolBar
                     opacity: 0.9
                 }
             }
+
         }
 
-         Maui.Separator
-         {
-             id: _border
-             visible: !control.Maui.Controls.flat
-             anchors.left: parent.left
-             anchors.right: parent.right
-             weight: Maui.Separator.Weight.Light
-             opacity: 0.4
+        Maui.Separator
+        {
+            id: _border
+            visible: !control.Maui.Controls.flat
+            anchors.left: parent.left
+            anchors.right: parent.right
+            weight: Maui.Separator.Weight.Light
+            opacity: 0.4
 
-             Behavior on color
-             {
-                 Maui.ColorTransition{}
-             }
-         }
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
+        }
 
-         states: [  State
-         {
-             when: control.position === ToolBar.Header
+        states: [  State
+            {
+                when: control.position === ToolBar.Header
 
-             AnchorChanges
-             {
-                 target: _border
-                 anchors.top: undefined
-                 anchors.bottom: parent.bottom
-             }
-         },
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                }
+            },
 
-         State
-         {
-             when: control.position === ToolBar.Footer
+            State
+            {
+                when: control.position === ToolBar.Footer
 
-             AnchorChanges
-             {
-                 target: _border
-                 anchors.top: parent.top
-                 anchors.bottom: undefined
-             }
-         }
-         ]
+                AnchorChanges
+                {
+                    target: _border
+                    anchors.top: parent.top
+                    anchors.bottom: undefined
+                }
+            }
+        ]
     }
 }

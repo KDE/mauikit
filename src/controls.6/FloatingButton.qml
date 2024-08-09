@@ -20,9 +20,9 @@
 import QtQuick
 import QtQuick.Controls
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 /**
  * @inherit QtQuick.Controls.ToolButton
@@ -95,15 +95,10 @@ ToolButton
     }
     
     layer.enabled: true
-    layer.effect: DropShadow
+    layer.effect: MultiEffect
     {
-        id: rectShadow
-        cached: true
-        horizontalOffset: 0
-        verticalOffset: 0
-        radius: 8.0
-        samples: 16
-        color:  "#80000000"
-        smooth: true
+        autoPaddingEnabled: true
+        shadowEnabled: true
+        shadowColor: "#80000000"
     }
 }
