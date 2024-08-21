@@ -54,7 +54,7 @@ T.CheckBox
 //        visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        color: Maui.Theme.textColor
+        color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
     }
     
      background: Rectangle

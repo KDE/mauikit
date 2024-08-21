@@ -65,14 +65,14 @@ void MauiKit::initializeEngine(QQmlEngine* engine, const char* uri)
 
 void MauiKit::registerTypes(const char *uri)
 {
-    qDebug() << "REGISTER MAUIKIT TYPES <<<<<<<<<<<<<<<<<<<<<<" << resolveFileUrl("Testing.qml");
-    #if defined(Q_OS_ANDROID)
+    qDebug() << "REGISTER MAUIKIT TYPES <<<<<<<<<<<<<<<<<<<<<<";
+#if defined(Q_OS_ANDROID)
     QResource::registerResource(QStringLiteral("assets:/android_rcc_bundle.rcc"));
-    #endif
+#endif
 
     Q_ASSERT(QLatin1String(uri) == QLatin1String("org.mauikit.controls"));
 
-    // @uri org.mauikit.controls
+           // @uri org.mauikit.controls
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
     qmlRegisterType(componentUrl(QStringLiteral("ApplicationWindow.qml")), uri, 1, 0, "ApplicationWindow");
     qmlRegisterType(componentUrl(QStringLiteral("DialogWindow.qml")), uri, 1, 0, "DialogWindow");
@@ -105,15 +105,15 @@ void MauiKit::registerTypes(const char *uri)
 
     qmlRegisterType(componentUrl(QStringLiteral("FloatingButton.qml")), uri, 1, 0, "FloatingButton");
 
-    //    //Kirigami aliases to be replaced later on
+           //    //Kirigami aliases to be replaced later on
     qmlRegisterType(componentUrl(QStringLiteral("Icon.qml")), uri, 1, 0, "Icon");
     qmlRegisterType(componentUrl(QStringLiteral("ShadowedRectangle.qml")), uri, 1, 0, "ShadowedRectangle"); //to be removed later
 
-    //    /** Shapes **/
+           //    /** Shapes **/
     qmlRegisterType(componentUrl(QStringLiteral("private/Rectangle.qml")), uri, 1, 0, "Rectangle");
     qmlRegisterType(componentUrl(QStringLiteral("private/CheckBoxItem.qml")), uri, 1, 0, "CheckBoxItem");
 
-    //    /** 1.1 **/
+           //    /** 1.1 **/
     qmlRegisterType(componentUrl(QStringLiteral("AppViews.qml")), uri, 1, 1, "AppViews");
     qmlRegisterType(componentUrl(QStringLiteral("AppViewLoader.qml")), uri, 1, 1, "AppViewLoader");
     qmlRegisterType(componentUrl(QStringLiteral("AltBrowser.qml")), uri, 1, 1, "AltBrowser");
@@ -122,12 +122,12 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("ImageViewer.qml")), uri, 1, 1, "ImageViewer");
     qmlRegisterType(componentUrl(QStringLiteral("AnimatedImageViewer.qml")), uri, 1, 1, "AnimatedImageViewer");
 
-    //    /** 1.2 **/
+           //    /** 1.2 **/
     qmlRegisterType(componentUrl(QStringLiteral("SectionItem.qml")), uri, 1, 2, "SectionItem");
     qmlRegisterType(componentUrl(QStringLiteral("FlexSectionItem.qml")), uri, 1, 2, "FlexSectionItem");
     qmlRegisterType(componentUrl(QStringLiteral("Separator.qml")), uri, 1, 2, "Separator");
 
-    //    /** 1.3 **/
+           //    /** 1.3 **/
     qmlRegisterType(componentUrl(QStringLiteral("GalleryRollItem.qml")), uri, 1, 3, "GalleryRollItem");
     qmlRegisterType(componentUrl(QStringLiteral("CollageItem.qml")), uri, 1, 3, "CollageItem");
     qmlRegisterType(componentUrl(QStringLiteral("FileListingDialog.qml")), uri, 1, 3, "FileListingDialog");
@@ -159,25 +159,25 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("TextFieldPopup.qml")), uri, 1, 3, "TextFieldPopup");
     qmlRegisterType(componentUrl(QStringLiteral("DialogWindow.qml")), uri, 1, 3, "DialogWindow");
 
-    //    //backwards compatible
+           //    //backwards compatible
     qmlRegisterType(componentUrl(QStringLiteral("SearchField.qml")), uri, 1, 0, "SearchField");
     qmlRegisterType(componentUrl(QStringLiteral("PasswordField.qml")), uri, 1, 0, "PasswordField");
     qmlRegisterType(componentUrl(QStringLiteral("private/ColorTransition.qml")), uri, 1, 0, "ColorTransition");
     qmlRegisterType(componentUrl(QStringLiteral("private/EdgeShadow.qml")), uri, 1, 0, "EdgeShadow");
 
-    //    /** Experimental **/
-    #ifdef Q_OS_WIN32
-        qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
-    #elif defined Q_OS_MAC
-        qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
-    #elif defined Q_OS_ANDROID
-        qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
-    #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD) && !defined Q_OS_ANDROID
-        qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
-        qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
-    #endif
+           //    /** Experimental **/
+#ifdef Q_OS_WIN32
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+#elif defined Q_OS_MAC
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
+#elif defined Q_OS_ANDROID
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+#elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
+    qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+#endif
 
-    // qmlProtectModule(uri, 3);
+           // qmlProtectModule(uri, 3);
 }
 
 #include "mauikit.moc"

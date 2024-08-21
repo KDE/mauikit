@@ -41,20 +41,20 @@ class Q_DECL_EXPORT MAUIAndroid : public AbstractPlatform
     Q_OBJECT
     QML_NAMED_ELEMENT(Android)
     QML_SINGLETON
-//    Q_DISABLE_COPY(MAUIAndroid)
+    //    Q_DISABLE_COPY(MAUIAndroid)
     // Q_DISABLE_MOVE(MAUIAndroid)
 
 public:
     explicit MAUIAndroid(QObject *parent = nullptr);
 
-//    static MAUIAndroid *instance()
-//    {
-//      if (m_instance)
-//        return m_instance;
+    //    static MAUIAndroid *instance()
+    //    {
+    //      if (m_instance)
+    //        return m_instance;
 
-//      m_instance = new MAUIAndroid;
-//      return m_instance;
-//    }
+    //      m_instance = new MAUIAndroid;
+    //      return m_instance;
+    //    }
 
     /**
      * @brief fileChooser
@@ -65,7 +65,7 @@ public:
     static QVariantMap createVariantMap(jobject data);
 
 private:
-//    static MAUIAndroid *m_instance;
+    //    static MAUIAndroid *m_instance;
     void handleActivityResult(int receiverRequestCode, int resultCode, const QJniObject &data);
 
 
@@ -124,6 +124,8 @@ public Q_SLOTS:
     bool hasKeyboard() override final;
     bool hasMouse() override final;
 
+    static bool checkRunTimePermissions(const QStringList &permissions);
+
 Q_SIGNALS:
     /**
      * @brief folderPicked
@@ -131,7 +133,7 @@ Q_SIGNALS:
      */
     void folderPicked(QString path);
 
-    // AbstractPlatform interface
+           // AbstractPlatform interface
 public Q_SLOTS:
     bool darkModeEnabled() override final;
 };

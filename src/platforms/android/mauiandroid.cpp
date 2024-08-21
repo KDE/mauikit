@@ -31,6 +31,8 @@
 #include <QUrl>
 
 #include <android/bitmap.h>
+
+#include <QtCore/private/qandroidextras_p.h>
 // WindowManager.LayoutParams
 #define FLAG_TRANSLUCENT_STATUS 0x04000000
 #define FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS 0x80000000
@@ -57,18 +59,18 @@ MAUIAndroid::MAUIAndroid(QObject *parent)
     : AbstractPlatform(parent)
 {
     m_instance = this;
-//    connect(qApp, &QCoreApplication::aboutToQuit, []()
-//    {
-//        qDebug() << "Lets remove MauiApp singleton instance";
-//        delete m_instance;
-//        m_instance = nullptr;
-//    });
+    //    connect(qApp, &QCoreApplication::aboutToQuit, []()
+    //    {
+    //        qDebug() << "Lets remove MauiApp singleton instance";
+    //        delete m_instance;
+    //        m_instance = nullptr;
+    //    });
 
 }
 
 static QJniObject getAndroidWindow()
 {
-     QJniObject activity = QNativeInterface::QAndroidApplication::context();
+    QJniObject activity = QNativeInterface::QAndroidApplication::context();
     auto window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
     window.callMethod<void>("addFlags", "(I)V", FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
     window.callMethod<void>("clearFlags", "(I)V", FLAG_TRANSLUCENT_STATUS);
@@ -135,16 +137,16 @@ void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
         int index = -1;
         for(auto url : urls)
         {
-               _env->SetObjectArrayElement(stringArray, ++index, QJniObject::fromString(url.toLocalFile()).object<jstring>());
-           }
+            _env->SetObjectArrayElement(stringArray, ++index, QJniObject::fromString(url.toLocalFile()).object<jstring>());
+        }
 
         QJniObject::callStaticMethod<void>("com/kde/maui/tools/SendIntent",
-                                                  "share",
-                                                  "(Landroid/app/Activity;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
-                                                  activity.object<jobject>(),
-                                                   QJniObject::fromLocalRef(stringArray).object<jobjectArray>(),
-                                                  QJniObject::fromString(mimeType).object<jstring>(),
-                                                  QJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
+                                           "share",
+                                           "(Landroid/app/Activity;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+                                           activity.object<jobject>(),
+                                           QJniObject::fromLocalRef(stringArray).object<jobjectArray>(),
+                                           QJniObject::fromString(mimeType).object<jstring>(),
+                                           QJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
 
         if (_env->ExceptionCheck())
         {
@@ -209,11 +211,11 @@ void MAUIAndroid::openUrl(const QUrl &url)
     }
     if (activity.isValid()) {
         QJniObject::callStaticMethod<void>("com/kde/maui/tools/SendIntent",
-                                                  "openUrl",
-                                                  "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V",
-                                                  activity.object<jobject>(),
-                                                  QJniObject::fromString(url.toLocalFile()).object<jstring>(),
-                                                  QJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
+                                           "openUrl",
+                                           "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V",
+                                           activity.object<jobject>(),
+                                           QJniObject::fromString(url.toLocalFile()).object<jstring>(),
+                                           QJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
 
         if (_env->ExceptionCheck()) {
             _env->ExceptionClear();
@@ -235,15 +237,15 @@ QStringList MAUIAndroid::sdDirs()
 {
     QStringList res;
 
-//    QJniObject mediaDir = QJniObject::callStaticObjectMethod("com/kde/maui/tools/SDCard", "findSdCardPath", "(Landroid/content/Context;)Ljava/io/File;", QtAndroid::androidActivity().object<jobject>());
+    //    QJniObject mediaDir = QJniObject::callStaticObjectMethod("com/kde/maui/tools/SDCard", "findSdCardPath", "(Landroid/content/Context;)Ljava/io/File;", QtAndroid::androidActivity().object<jobject>());
 
-//    if (mediaDir == NULL)
-//        return res;
+    //    if (mediaDir == NULL)
+    //        return res;
 
-//    QJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
-//    QString dataAbsPath = mediaPath.toString();
+    //    QJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
+    //    QString dataAbsPath = mediaPath.toString();
 
-//    res << QUrl::fromLocalFile(dataAbsPath).toString();
+    //    res << QUrl::fromLocalFile(dataAbsPath).toString();
     return res;
 }
 
@@ -296,16 +298,16 @@ QVariantMap MAUIAndroid::createVariantMap(jobject data)
     QJniEnvironment env;
     /* Reference : https://community.oracle.com/thread/1549999 */
 
-    // Get the HashMap Class
+           // Get the HashMap Class
     jclass jclass_of_hashmap = (env)->GetObjectClass(data);
 
-    // Get link to Method "entrySet"
+           // Get link to Method "entrySet"
     jmethodID entrySetMethod = (env)->GetMethodID(jclass_of_hashmap, "entrySet", "()Ljava/util/Set;");
 
-    // Invoke the "entrySet" method on the HashMap object
+           // Invoke the "entrySet" method on the HashMap object
     jobject jobject_of_entryset = env->CallObjectMethod(data, entrySetMethod);
 
-    // Get the Set Class
+           // Get the Set Class
     jclass jclass_of_set = (env)->FindClass("java/util/Set"); // Problem during compilation !!!!!
 
     if (jclass_of_set == 0) {
@@ -313,16 +315,16 @@ QVariantMap MAUIAndroid::createVariantMap(jobject data)
         return res;
     }
 
-    // Get link to Method "iterator"
+           // Get link to Method "iterator"
     jmethodID iteratorMethod = env->GetMethodID(jclass_of_set, "iterator", "()Ljava/util/Iterator;");
 
-    // Invoke the "iterator" method on the jobject_of_entryset variable of type Set
+           // Invoke the "iterator" method on the jobject_of_entryset variable of type Set
     jobject jobject_of_iterator = env->CallObjectMethod(jobject_of_entryset, iteratorMethod);
 
-    // Get the "Iterator" class
+           // Get the "Iterator" class
     jclass jclass_of_iterator = (env)->FindClass("java/util/Iterator");
 
-    // Get link to Method "hasNext"
+           // Get link to Method "hasNext"
     jmethodID hasNextMethod = env->GetMethodID(jclass_of_iterator, "hasNext", "()Z");
 
     jmethodID nextMethod = env->GetMethodID(jclass_of_iterator, "next", "()Ljava/lang/Object;");
@@ -379,6 +381,20 @@ bool MAUIAndroid::hasKeyboard()
 bool MAUIAndroid::hasMouse()
 {
     return false;
+}
+
+bool MAUIAndroid::checkRunTimePermissions(const QStringList &permissions)
+{
+    for (const auto &permission : permissions) {
+        auto r = QtAndroidPrivate::checkPermission(permission).result();
+        if (r == QtAndroidPrivate::Denied)
+        {
+            r = QtAndroidPrivate::requestPermission(permission).result();
+            if (r == QtAndroidPrivate::Denied)
+                return false;
+        }
+    }
+    return true;
 }
 
 void MAUIAndroid::handleActivityResult(int receiverRequestCode, int resultCode, const QJniObject &data)

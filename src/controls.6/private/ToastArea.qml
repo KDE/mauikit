@@ -26,7 +26,7 @@ import QtQuick.Window
 import QtQuick.Effects
 import QtQml.Models
 
-// import QtMultimedia
+import QtMultimedia
 
 import org.mauikit.controls as Maui
 
@@ -43,17 +43,17 @@ Control
     
     property Item previousItem : null
     
-    // SoundEffect
-    // {
-    //     id: playSound
-    //     source: "qrc:/assets/notification_simple-01.wav"
-    // }
+    SoundEffect
+    {
+        id: playSound
+        source: "qrc:/assets/notification_simple-01.wav"
+    }
     
-    // SoundEffect
-    // {
-    //     id: _dismissSound
-    //     source: "qrc:/assets/notification_simple-02.wav"
-    // }
+    SoundEffect
+    {
+        id: _dismissSound
+        source: "qrc:/assets/notification_simple-02.wav"
+    }
     
     Keys.enabled: true
     Keys.onEscapePressed:
@@ -111,6 +111,7 @@ Control
             Maui.Theme.inherit: false
 
             readonly property int mindex : ObjectModel.index
+
             width: ListView.view.width
             height: _layout.implicitHeight + topPadding +bottomPadding
             
@@ -308,25 +309,25 @@ Control
             playSound.play()
         }
 
-    function dismiss()
-    {
-        let count = _container.count
-        let items = []
-        for(var i = 0; i< count; i++)
-        {
-            items.push(_container.itemAt(i))
-        }
+            function dismiss()
+            {
+                let count = _container.count
+                let items = []
+                for(var i = 0; i< count; i++)
+                {
+                    items.push(_container.itemAt(i))
+                }
 
-        for(var j of items)
-        {
-            _container.removeItem(j)
-        }
+                    for(var j of items)
+                    {
+                        _container.removeItem(j)
+                    }
 
-        _dismissSound.play()
-    }
+                        _dismissSound.play()
+                    }
 
-    function remove(index)
-    {
-        _container.removeItem(_container.itemAt(index))
-    }
-}
+                        function remove(index)
+                        {
+                            _container.removeItem(_container.itemAt(index))
+                        }
+                        }

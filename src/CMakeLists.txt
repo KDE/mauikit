@@ -42,7 +42,6 @@ set_target_properties(MauiKit${MAUI_MAJOR_VERSION} PROPERTIES
 add_library(MauiKit${MAUI_MAJOR_VERSION}::Controls ALIAS MauiKit${MAUI_MAJOR_VERSION})
 
 target_sources(MauiKit${MAUI_MAJOR_VERSION}
-
     PRIVATE
     libs/style.cpp
     libs/style.h
@@ -107,7 +106,6 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
 
 set(mauikit_HDRS
     platforms/abstractplatform.h
-
     utils/fmh.h
     utils/handy.h
     utils/notify.h
@@ -401,11 +399,12 @@ if(ANDROID)
 
     install(DIRECTORY platforms/android/ DESTINATION ${KDE_INSTALL_DATAROOTDIR}/MauiKit${MAUI_MAJOR_VERSION}Android COMPONENT Devel)
 
-    if (Qt5Core_VERSION VERSION_LESS 5.14.0)
-        install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR})
-    else()
-        install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit${MAUI_MAJOR_VERSION}_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
-    endif()
+    install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit${MAUI_MAJOR_VERSION}_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
+
+    target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
+        PRIVATE
+        Qt${QT_MAJOR_VERSION}::CorePrivate)
+
 elseif(UNIX AND NOT ANDROID)
     if(NOT APPLE)
         target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
@@ -424,6 +423,7 @@ target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
     MauiMan${MAUI_MAJOR_VERSION}::MauiMan${MAUI_MAJOR_VERSION}
     KF${KF_MAJOR_VERSION}::Notifications
     KF${KF_MAJOR_VERSION}::I18n
+    Qt${QT_MAJOR_VERSION}::Multimedia
     Qt${QT_MAJOR_VERSION}::Qml
     Qt${QT_MAJOR_VERSION}::Svg
     Qt${QT_MAJOR_VERSION}::Widgets

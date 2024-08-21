@@ -45,15 +45,15 @@ T.MenuItem
     id: control
 
     opacity: control.enabled ? 1 : 0.5
-        
+
     hoverEnabled: !Maui.Handy.isMobile
-           
+
     implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     
     width: implicitWidth
     
     implicitHeight: Math.floor(Math.max(implicitContentHeight + topPadding + bottomPadding,
-                                       implicitIndicatorHeight + topPadding + bottomPadding) )
+                                        implicitIndicatorHeight + topPadding + bottomPadding) )
 
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
@@ -69,7 +69,7 @@ T.MenuItem
     
     indicator: CheckIndicator
     {
-        x: control.width - width - control.rightPadding 
+        x: control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
         visible: control.checkable
         control: control
@@ -77,7 +77,7 @@ T.MenuItem
 
     arrow: Maui.Icon
     {
-        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding 
+        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
 
         visible: control.subMenu
@@ -85,7 +85,7 @@ T.MenuItem
         color: control.icon.color
         height: 10
         width: 10
-        source: "qrc:/assets/arrow-right.svg"        
+        source: "qrc:/assets/arrow-right.svg"
     }
     
     contentItem: Maui.IconLabel
@@ -93,7 +93,7 @@ T.MenuItem
         readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
         readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
         
-        rightPadding: indicatorPadding + arrowPadding 
+        rightPadding: indicatorPadding + arrowPadding
         
         spacing: control.spacing
         
@@ -104,11 +104,11 @@ T.MenuItem
         icon: control.showIcon ? control.icon : null
         text: control.text
         font: control.font
-        color: control.icon.color        
+        color: control.icon.color
     }
 
     background: Rectangle
-    {               
+    {
         radius: Maui.Style.radiusV
         
         color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)) : "transparent"

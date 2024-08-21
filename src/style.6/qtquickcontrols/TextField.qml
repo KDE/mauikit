@@ -117,7 +117,7 @@ T.TextField
                        return
                    }
 
-                   event.accepted = false
+                   event.accepted = true
                    return
                }
 
@@ -215,7 +215,6 @@ T.TextField
 
             ToolButton
             {
-                id: clearButton
                 flat: !checkable
                 focusPolicy: Qt.NoFocus
 
