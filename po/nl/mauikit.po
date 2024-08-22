@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-09 01:46+0000\n"
+"POT-Creation-Date: 2024-08-22 01:54+0000\n"
 "PO-Revision-Date: 2024-06-26 11:47+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -109,7 +109,7 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:216
+#: src/controls.6/private/ToastArea.qml:217
 #, kde-format
 msgid "Accept"
 msgstr "Accepteren"
@@ -130,7 +130,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Versie-ID gekopieerd naar klembord"
 
 #: src/controls.6/private/AboutDialog.qml:99
-#: src/style.6/qtquickcontrols/TextField.qml:295
+#: src/style.6/qtquickcontrols/TextField.qml:294
 #, kde-format
 msgid "Copy"
 msgstr "Kopiëren"
@@ -175,7 +175,7 @@ msgstr "Componenten"
 msgid "Share"
 msgstr "Delen"
 
-#: src/controls.6/private/ToastArea.qml:289
+#: src/controls.6/private/ToastArea.qml:290
 #, kde-format
 msgid "Dismiss All"
 msgstr "Alles wegdoen"
@@ -200,27 +200,27 @@ msgstr "Wilt u de gesplitste sessie sluiten: '%1'?"
 msgid "Open"
 msgstr "Openen"
 
-#: src/style.6/qtquickcontrols/TextField.qml:302
+#: src/style.6/qtquickcontrols/TextField.qml:301
 #, kde-format
 msgid "Cut"
 msgstr "Knippen"
 
-#: src/style.6/qtquickcontrols/TextField.qml:309
+#: src/style.6/qtquickcontrols/TextField.qml:308
 #, kde-format
 msgid "Paste"
 msgstr "Plakken"
 
-#: src/style.6/qtquickcontrols/TextField.qml:319
+#: src/style.6/qtquickcontrols/TextField.qml:318
 #, kde-format
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: src/style.6/qtquickcontrols/TextField.qml:326
+#: src/style.6/qtquickcontrols/TextField.qml:325
 #, kde-format
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: src/style.6/qtquickcontrols/TextField.qml:333
+#: src/style.6/qtquickcontrols/TextField.qml:332
 #, kde-format
 msgid "Redo"
 msgstr "Opnieuw"
