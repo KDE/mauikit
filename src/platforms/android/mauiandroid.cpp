@@ -116,7 +116,7 @@ void MAUIAndroid::navBarColor(const QString &bg, const bool &light)
 void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
 {
     QJniEnvironment _env;
-    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
+    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
     if (_env->ExceptionCheck()) {
         _env->ExceptionClear();
         throw InterfaceConnFailedException();
@@ -164,7 +164,7 @@ void MAUIAndroid::shareText(const QString &text)
 {
     qDebug() << "trying to share text";
     QJniEnvironment _env;
-    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
+    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
     if (_env->ExceptionCheck()) {
         _env->ExceptionClear();
         throw InterfaceConnFailedException();
@@ -184,7 +184,7 @@ void MAUIAndroid::shareLink(const QString &link)
 {
     qDebug() << "trying to share link";
     QJniEnvironment _env;
-    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
+    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
     if (_env->ExceptionCheck()) {
         _env->ExceptionClear();
         throw InterfaceConnFailedException();
@@ -204,7 +204,7 @@ void MAUIAndroid::openUrl(const QUrl &url)
 {
     qDebug() << "trying to open file with";
     QJniEnvironment _env;
-    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
+    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
     if (_env->ExceptionCheck()) {
         _env->ExceptionClear();
         throw InterfaceConnFailedException();
@@ -263,7 +263,7 @@ QStringList MAUIAndroid::sdDirs()
 void MAUIAndroid::fileChooser()
 {
     QJniEnvironment _env;
-    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt5/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
+    QJniObject activity = QJniObject::callStaticObjectMethod("org/qtproject/qt/android/QtNative", "activity", "()Landroid/app/Activity;"); // activity is valid
     if (_env->ExceptionCheck()) {
         _env->ExceptionClear();
         throw InterfaceConnFailedException();

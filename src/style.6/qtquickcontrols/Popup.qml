@@ -114,6 +114,7 @@ T.Popup
     contentItem: Item
     {
         id: _content
+
         layer.enabled: true
         layer.effect: MultiEffect
         {

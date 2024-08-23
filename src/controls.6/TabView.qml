@@ -578,7 +578,7 @@ Pane
 
                     Loader
                     {
-                        active: control.Maui.Controls.showCSD === true && control.altTabBar
+                        active: control.Maui.Controls.showCSD === true && control.altTabBar && !Maui.Handy.isMobile
                         asynchronous: true
                         width: parent.width
 

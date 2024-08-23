@@ -292,7 +292,7 @@ QQC.TabBar
 
                 asynchronous: true
 
-                sourceComponent: Maui.WindowControlsWindows {}
+                sourceComponent: Maui.WindowControls {}
             }
         }
     }

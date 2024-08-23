@@ -6,30 +6,30 @@ import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Loader
- *  
+ *
  * @brief A popup page with a scrollable vertical layout, and support for a stack of multiple pages.
  * The default container fo this control is a MauiKit SettingsPage, and the popup will snap to the window full size on constrained spaces.
  * @see SettingsPage
- *  
- * You can add multiple sub pages to this control by making use of the SettingsPage control and the `addPage` function. 
+ *
+ * You can add multiple sub pages to this control by making use of the SettingsPage control and the `addPage` function.
  * By using the SettingsPage you can expect to have a way to navigate between the control sub pages.
  * The code snippet below shows a quick demo on how to do it.
  * @see addPage
- *  
+ *
  * @image html Misc/settingsdialog.png
- *  
+ *
  * @note This control is mostly use for presenting a group of configuration settings to the user. Usually it is populated with sections SectionGroup containing FlexSectionItem.
- *  
+ *
  * @code
  * Maui.SettingsDialog
  * {
  *    id: _settingsDialog
- * 
+ *
  *    Maui.FlexSectionItem
  *    {
  *        label1.text: "SSetting Subpage"
  *        label2.text: "Click me to add a new page"
- * 
+ *
  *        ToolButton
  *        {
  *            icon.name: "go-next"
@@ -37,51 +37,51 @@ import org.mauikit.controls as Maui
  *            onToggled: _settingsDialog.addPage(_settingsPage2)
  *        }
  *    }
- * 
+ *
  *    Maui.SectionGroup
  *    {
  *        title: "First Section"
- * 
+ *
  *        Maui.FlexSectionItem
  *        {
  *            label1.text: "Configuration title"
  *            label2.text: "Description text"
- * 
+ *
  *            Button
  *            {
  *                text: "Test"
  *            }
  *        }
- * 
+ *
  *        Maui.FlexSectionItem
  *        {
  *            label1.text: "Configuration title"
  *            label2.text: "Description text"
- * 
+ *
  *            Switch {}
  *        }
- * 
+ *
  *        Maui.FlexSectionItem
  *        {
  *            label1.text: "Configuration title"
  *            label2.text: "Description text"
- * 
+ *
  *            Switch {}
  *        }
  *    }
- * 
+ *
  *    Maui.SectionGroup
  *    {
  *        title: "A Second Section"
- * 
+ *
  *        Maui.FlexSectionItem
  *        {
  *            label1.text: "Configuration title"
  *            label2.text: "Description text"
- * 
+ *
  *            Switch {}
  *        }
- * 
+ *
  *        Maui.FlexSectionItem
  *        {
  *            label1.text: "Configuration title"
@@ -92,37 +92,37 @@ import org.mauikit.controls as Maui
  *                Layout.fillWidth: true
  *            }
  *        }
- * 
+ *
  *        Maui.FlexSectionItem
  *        {
  *            label1.text: "Configuration title"
  *            label2.text: "Description text"
- * 
+ *
  *            Switch {}
  *        }
  *    }
- * 
+ *
  *    Component
  *    {
  *        id: _settingsPage2
- * 
+ *
  *        Maui.SettingsPage
  *        {
  *            title: "Page2"
- * 
+ *
  *            Maui.FlexSectionItem
  *            {
  *                label1.text: "Configuration title"
  *                label2.text: "Description text"
- * 
+ *
  *                Switch {}
  *            }
  *        }
  *    }
  * }
  * @endcode
- *  
- * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/SettingsDialog.qml">You can find a more complete example at this link.</a>  
+ *
+ * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/SettingsDialog.qml">You can find a more complete example at this link.</a>
  */
 
 Loader
@@ -152,10 +152,10 @@ Loader
             
             title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
             onClosing: (close) =>
-            {
-                _window.hide()
-                close.accepted = true
-            }
+                       {
+                           _window.hide()
+                           close.accepted = true
+                       }
             
             readonly property alias stackView: _stackView
             
@@ -188,7 +188,7 @@ Loader
             
             function open()
             {
-                _window.show() 
+                _window.show()
             }
         }
     }
@@ -199,10 +199,8 @@ Loader
         
         Maui.PopupPage
         {
-            id: control
-            
             readonly property alias stackView: _stackView
-            
+
             maxHeight: implicitHeight
             maxWidth: 500
             
@@ -216,7 +214,7 @@ Loader
             {
                 icon.name: "go-previous"
                 visible: _stackView.depth > 1
-                
+
                 onClicked: _stackView.pop()
             }
             
@@ -226,7 +224,7 @@ Loader
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 implicitHeight: Math.max(_content.implicitHeight, currentItem.implicitHeight)+topPadding +bottomPadding
-                
+
                 initialItem: Maui.SettingsPage
                 {
                     id: _content
@@ -250,14 +248,15 @@ Loader
             control.item.open()
             return
         }
-        
+
         if(Maui.Handy.isMobile)
         {
             control.sourceComponent = _dialogComponent
         }else
         {
             control.sourceComponent = _appComponent
-        }        
+        }
+
         control.item.open()
         
     }

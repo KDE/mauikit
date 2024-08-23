@@ -40,7 +40,6 @@ Maui.PopupPage
 
     Maui.SectionItem
     {
-        id: _header
         imageSource: Maui.App.iconName
 
         template.fillMode: Image.PreserveAspectFit
@@ -102,7 +101,6 @@ Maui.PopupPage
 
     Column
     {
-        id: _links
         spacing: Maui.Style.defaultSpacing
         Layout.fillWidth: true
 
@@ -130,7 +128,6 @@ Maui.PopupPage
     
     Maui.SectionItem
     {
-        id: _authorsSection
         label1.text: i18nd("mauikit", "Authors")
         visible: Maui.App.about.authors.length > 0
 
@@ -174,7 +171,6 @@ Maui.PopupPage
 
     Maui.SectionItem
     {
-        id: _translatorsSection
         label1.text: i18nd("mauikit", "Translators")
         visible: Maui.App.about.translators.length > 0
         // iconSource: "folder-language"
@@ -216,7 +212,6 @@ Maui.PopupPage
 
     Maui.SectionItem
     {
-        id: _creditsSection
         label1.text: i18nd("mauikit", "Credits")
         visible: Maui.App.about.credits.length > 0
         // iconSource: "love"
@@ -257,7 +252,6 @@ Maui.PopupPage
 
     Maui.SectionItem
     {
-        id: _licensesSection
         visible: Maui.App.about.licenses.length > 0
         // iconSource: "license"
 
@@ -268,7 +262,6 @@ Maui.PopupPage
 
         Column
         {
-            id: _licenses
             spacing: Maui.Style.defaultSpacing
             Layout.fillWidth: true
             opacity: 0.8
@@ -288,7 +281,6 @@ Maui.PopupPage
 
     Maui.SectionItem
     {
-        id: _componentsSection
         // iconSource: "code-context"
         visible: Maui.App.about.components.length > 0
         template.isMask: true
@@ -335,7 +327,6 @@ Maui.PopupPage
 
     ColumnLayout
     {
-        id: _footerColumn
         Layout.fillWidth: true
         opacity: 0.7
         spacing: Maui.Style.space.small
@@ -353,7 +344,6 @@ Maui.PopupPage
 
         Maui.ListItemTemplate
         {
-            id: _copyRight
             Layout.fillWidth: true
             isMask: true
 
@@ -370,7 +360,6 @@ Maui.PopupPage
 
     Item
     {
-        id: _iconItem
         parent: control.background
         clip: true
         anchors.fill: parent
@@ -385,6 +374,7 @@ Maui.PopupPage
 
         DragHandler
         {
+            enabled: !Maui.Handy.isMobile
             target: null
             grabPermissions: TapHandler.CanTakeOverFromAnything
             onActiveChanged: if (active) {  Maui.App.rootComponent.startSystemMove(); }

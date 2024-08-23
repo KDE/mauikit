@@ -80,11 +80,11 @@ Maui.TabButton
     {
         id: dragArea
         anchors.fill: parent
-        enabled: !control.mobile && control.tabView.count > 1
+        enabled: !Maui.Handy.isMobile && control.tabView.count > 1
 
         cursorShape: drag.active ? Qt.OpenHandCursor : undefined
 
-        drag.target: parent
+        drag.target: this
         drag.axis: Drag.XAxis
 
         onClicked: (mouse) =>

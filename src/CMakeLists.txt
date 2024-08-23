@@ -30,6 +30,7 @@ ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     CLASS_NAME MauiKit
     DEPENDENCIES
     "QtQuick.Controls"
+    "QtMultimedia"
     NO_PLUGIN_OPTIONAL
     NO_GENERATE_PLUGIN_SOURCE
     ${_extra_options})
@@ -348,10 +349,15 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialogLinux.qml
-    controls.${QT_MAJOR_VERSION}/private/SideBar.qml
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml)
 
-    controls.${QT_MAJOR_VERSION}/private/WindowControlsWindows.qml
-    controls.${QT_MAJOR_VERSION}/private/WindowControlsLinux.qml)
+if(ANDROID)
+    ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private/android SOURCES
+        controls.${QT_MAJOR_VERSION}/private/android/WindowControls.qml)
+elseif(LINUX)
+    ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private/linux SOURCES
+        controls.${QT_MAJOR_VERSION}/private/linux/WindowControls.qml)
+endif()
 
 add_definitions(-DBUNDLE_MAUI_STYLE)
 target_compile_definitions(MauiKit${MAUI_MAJOR_VERSION} PUBLIC BUNDLE_MAUI_STYLE)
@@ -392,14 +398,14 @@ elseif(APPLE)
 endif()
 
 if(ANDROID)
-    #   add_subdirectory(platforms/android)
     # target_link_libraries(MauiKit${MAUI_MAJOR_VERSION} PRIVATE Qt${QT_VERSION_MAJOR}::AndroidExtras jnigraphics)
 
     install(FILES platforms/android/mauiandroid.h DESTINATION ${KDE_INSTALL_INCLUDEDIR}/MauiKit${MAUI_MAJOR_VERSION} COMPONENT Devel)
 
-    install(DIRECTORY platforms/android/ DESTINATION ${KDE_INSTALL_DATAROOTDIR}/MauiKit${MAUI_MAJOR_VERSION}Android COMPONENT Devel)
+    # install(DIRECTORY platforms/android/ DESTINATION ${KDE_INSTALL_DATAROOTDIR}/MauiKit${MAUI_MAJOR_VERSION}Android COMPONENT Devel)
 
-    install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit${MAUI_MAJOR_VERSION}_${CMAKE_ANDROID_ARCH_ABI}-android-dependencies.xml)
+    install(FILES MauiKit-android-dependencies.xml DESTINATION ${KDE_INSTALL_LIBDIR} RENAME MauiKit${MAUI_MAJOR_VERSION}-android-dependencies.xml)
+
 
     target_link_libraries(MauiKit${MAUI_MAJOR_VERSION}
         PRIVATE

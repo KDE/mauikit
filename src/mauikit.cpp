@@ -167,14 +167,14 @@ void MauiKit::registerTypes(const char *uri)
 
            //    /** Experimental **/
 #ifdef Q_OS_WIN32
-    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/windows/WindowControls.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_MAC
-    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsMac.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/macos/WindowControls.qml")), uri, 1, 1, "WindowControls");
 #elif defined Q_OS_ANDROID
-    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsWindows.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/android/WindowControls.qml")), uri, 1, 1, "WindowControls");
 #elif (defined Q_OS_LINUX || defined Q_OS_FREEBSD)
     qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
-    qmlRegisterType(componentUrl(QStringLiteral("private/WindowControlsLinux.qml")), uri, 1, 1, "WindowControls");
+    qmlRegisterType(componentUrl(QStringLiteral("private/linux/WindowControls.qml")), uri, 1, 1, "WindowControls");
 #endif
 
            // qmlProtectModule(uri, 3);

@@ -1,6 +1,6 @@
 <rules>
     <dependencies>
-        <lib name="MauiKit">
+        <lib name="MauiKit4">
             <depends>
                 <jar bundling="1" file="jar/MauiKit.aar"/>
             </depends>

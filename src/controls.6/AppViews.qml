@@ -260,7 +260,7 @@ Maui.Page
             
             Keys.enabled: true
             //     Keys.forwardTo:_listView
-            Keys.onPressed:
+            Keys.onPressed: (event) =>
             {
                 if((event.key == Qt.Key_1) && (event.modifiers & Qt.ControlModifier))
                 {

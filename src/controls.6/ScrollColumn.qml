@@ -22,7 +22,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Controls.ScrollView
@@ -94,10 +94,12 @@ ScrollView
         implicitHeight: contentHeight + topPadding + bottomPadding
         
         spacing: Maui.Style.defaultSpacing
-        
+
         Flickable
         {
             id: _flickable
+
+            interactive: Maui.Handy.isMobile
             
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
