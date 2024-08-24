@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-22 01:54+0000\n"
+"POT-Creation-Date: 2024-08-24 01:47+0000\n"
 "PO-Revision-Date: 2024-06-26 08:00+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -110,7 +110,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:217
+#: src/controls.6/private/ToastArea.qml:214
 #, kde-format
 msgid "Accept"
 msgstr "Прийняти"
@@ -125,48 +125,48 @@ msgstr "Отакої!"
 msgid "The image could not be loaded."
 msgstr "Не вдається завантажити образ."
 
-#: src/controls.6/private/AboutDialog.qml:91
+#: src/controls.6/private/AboutDialog.qml:90
 #, kde-format
 msgid "Version ID copied to clipboard"
 msgstr "Ідентифікатор версії скопійовано до буфера обміну"
 
-#: src/controls.6/private/AboutDialog.qml:99
+#: src/controls.6/private/AboutDialog.qml:98
 #: src/style.6/qtquickcontrols/TextField.qml:294
 #, kde-format
 msgid "Copy"
 msgstr "Копіювати"
 
-#: src/controls.6/private/AboutDialog.qml:112
+#: src/controls.6/private/AboutDialog.qml:110
 #, kde-format
 msgid "Reports"
 msgstr "Звіти"
 
-#: src/controls.6/private/AboutDialog.qml:119
+#: src/controls.6/private/AboutDialog.qml:117
 #, kde-format
 msgid "Home Page"
 msgstr "Домашня сторінка"
 
-#: src/controls.6/private/AboutDialog.qml:134
+#: src/controls.6/private/AboutDialog.qml:131
 #, kde-format
 msgid "Authors"
 msgstr "Автори"
 
-#: src/controls.6/private/AboutDialog.qml:178
+#: src/controls.6/private/AboutDialog.qml:174
 #, kde-format
 msgid "Translators"
 msgstr "Перекладачі"
 
-#: src/controls.6/private/AboutDialog.qml:220
+#: src/controls.6/private/AboutDialog.qml:215
 #, kde-format
 msgid "Credits"
 msgstr "Подяки"
 
-#: src/controls.6/private/AboutDialog.qml:267
+#: src/controls.6/private/AboutDialog.qml:261
 #, kde-format
 msgid "Licenses"
 msgstr "Ліцензування"
 
-#: src/controls.6/private/AboutDialog.qml:297
+#: src/controls.6/private/AboutDialog.qml:289
 #, kde-format
 msgid "Components"
 msgstr "Компоненти"
@@ -176,7 +176,7 @@ msgstr "Компоненти"
 msgid "Share"
 msgstr "Оприлюднити"
 
-#: src/controls.6/private/ToastArea.qml:290
+#: src/controls.6/private/ToastArea.qml:287
 #, kde-format
 msgid "Dismiss All"
 msgstr "Припинити всі"

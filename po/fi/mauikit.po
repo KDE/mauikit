@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-22 01:54+0000\n"
+"POT-Creation-Date: 2024-08-24 01:47+0000\n"
 "PO-Revision-Date: 2024-02-14 19:00+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -109,7 +109,7 @@ msgid "Cancel"
 msgstr "Peru"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:217
+#: src/controls.6/private/ToastArea.qml:214
 #, kde-format
 msgid "Accept"
 msgstr "Hyväksy"
@@ -124,48 +124,48 @@ msgstr "Hups!"
 msgid "The image could not be loaded."
 msgstr "Kuvaa ei voi ladata."
 
-#: src/controls.6/private/AboutDialog.qml:91
+#: src/controls.6/private/AboutDialog.qml:90
 #, kde-format
 msgid "Version ID copied to clipboard"
 msgstr "Versiotunniste kopioitu leikepöydälle"
 
-#: src/controls.6/private/AboutDialog.qml:99
+#: src/controls.6/private/AboutDialog.qml:98
 #: src/style.6/qtquickcontrols/TextField.qml:294
 #, kde-format
 msgid "Copy"
 msgstr "Kopioi"
 
-#: src/controls.6/private/AboutDialog.qml:112
+#: src/controls.6/private/AboutDialog.qml:110
 #, kde-format
 msgid "Reports"
 msgstr "Raportit"
 
-#: src/controls.6/private/AboutDialog.qml:119
+#: src/controls.6/private/AboutDialog.qml:117
 #, kde-format
 msgid "Home Page"
 msgstr "Kotisivu"
 
-#: src/controls.6/private/AboutDialog.qml:134
+#: src/controls.6/private/AboutDialog.qml:131
 #, kde-format
 msgid "Authors"
 msgstr "Tekijät"
 
-#: src/controls.6/private/AboutDialog.qml:178
+#: src/controls.6/private/AboutDialog.qml:174
 #, kde-format
 msgid "Translators"
 msgstr "Kääntäjät"
 
-#: src/controls.6/private/AboutDialog.qml:220
+#: src/controls.6/private/AboutDialog.qml:215
 #, kde-format
 msgid "Credits"
 msgstr "Kiitokset"
 
-#: src/controls.6/private/AboutDialog.qml:267
+#: src/controls.6/private/AboutDialog.qml:261
 #, kde-format
 msgid "Licenses"
 msgstr "Lisenssit"
 
-#: src/controls.6/private/AboutDialog.qml:297
+#: src/controls.6/private/AboutDialog.qml:289
 #, kde-format
 msgid "Components"
 msgstr "Osat"
@@ -176,7 +176,7 @@ msgstr "Osat"
 msgid "Share"
 msgstr "Jaa"
 
-#: src/controls.6/private/ToastArea.qml:290
+#: src/controls.6/private/ToastArea.qml:287
 #, kde-format
 msgid "Dismiss All"
 msgstr "Merkitse kaikki nähdyiksi"
