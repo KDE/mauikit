@@ -127,7 +127,7 @@ void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
 
     if (activity.isValid())
     {
-        qDebug() << "trying to share dialog << valid";
+        qDebug() << "trying to share dialog << valid" << QString("%1.provider").arg(qApp->organizationDomain()) ;
 
         QMimeDatabase mimedb;
         QString mimeType = mimedb.mimeTypeForFile(urls.first().toLocalFile()).name();
@@ -146,7 +146,7 @@ void MAUIAndroid::shareFiles(const QList<QUrl> &urls)
                                            activity.object<jobject>(),
                                            QJniObject::fromLocalRef(stringArray).object<jobjectArray>(),
                                            QJniObject::fromString(mimeType).object<jstring>(),
-                                           QJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
+                                           QJniObject::fromString(QString("%1.provider").arg(qApp->organizationDomain())).object<jstring>());
 
         if (_env->ExceptionCheck())
         {

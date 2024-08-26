@@ -8,7 +8,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Flickable
@@ -118,7 +118,7 @@ Flickable
             initialHeight = flick.contentHeight
         }
         
-        onPinchUpdated: {
+        onPinchUpdated: (pinch) => {
             // adjust content pos due to drag
             flick.contentX += pinch.previousCenter.x - pinch.center.x
             flick.contentY += pinch.previousCenter.y - pinch.center.y

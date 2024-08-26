@@ -90,8 +90,9 @@ public class SendIntent
         sendIntent.setType(mime);
 
         Intent intent=sendIntent.getIntent();
+
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            sendIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 //            intent.setAction(Intent.ACTION_SEND_MULTIPLE);
 
         if (intent.resolveActivity(context.getPackageManager()) != null)
