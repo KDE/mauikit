@@ -103,6 +103,9 @@ target_sources(MauiKit${MAUI_MAJOR_VERSION}
     utils/fontpickermodel.cpp
     utils/fontpickermodel.h
 
+    utils/appsettings.cpp
+    utils/appsettings.h
+
     assets.qrc)
 
 set(mauikit_HDRS
@@ -113,6 +116,7 @@ set(mauikit_HDRS
     utils/mauiapp.h
     utils/imagecolors.h
     utils/colorutils.h
+    utils/appsettings.h
     utils/model_template/mauilist.h
     utils/moduleinfo.h)
 
