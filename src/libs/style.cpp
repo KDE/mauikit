@@ -214,8 +214,8 @@ void Style::setFontSizes()
 
     m_defaultFontSize = m_defaultFont.pointSize () > 0 ? m_defaultFont.pointSize () : m_defaultFont.pixelSize();
 
-    m_fontSizes->m_tiny = m_defaultFontSize-4;
-    m_fontSizes->m_small = m_defaultFontSize-2;
+    m_fontSizes->m_tiny = m_defaultFontSize-2;
+    m_fontSizes->m_small = m_defaultFontSize-1;
     m_fontSizes->m_medium = m_defaultFontSize;
     m_fontSizes->m_big = m_defaultFontSize+1;
     m_fontSizes->m_large = m_defaultFontSize+2;
