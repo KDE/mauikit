@@ -8,8 +8,8 @@ Control
 {
     id: control
 
-    implicitHeight: implicitContentHeight + topPadding + bottomPadding
-    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: _row.implicitHeight + topPadding + bottomPadding
+    implicitWidth: _row.implicitWidth + leftPadding + rightPadding
 
     spacing: Maui.Style.space.small
     padding: Maui.Style.defaultPadding
@@ -18,6 +18,7 @@ Control
 
     contentItem: Row
     {
+        id: _row
         spacing: control.spacing
         
         Repeater

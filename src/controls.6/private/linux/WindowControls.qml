@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Window
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
   @since org.mauikit.controls.labs 1.0
@@ -42,7 +42,7 @@ QQC2.Pane
 Loader
 {
     id: control
-    
+    asynchronous: true
     active: Maui.CSD.enabled && Maui.Handy.formFactor === Maui.Handy.Desktop && control.Window.window.visibility !== Window.FullScreen
     
     visible: active
@@ -56,7 +56,7 @@ Loader
         {
             switch(type)
             {
-            case Maui.CSDButton.Close :  Window.window.close(); break;
+            case Maui.CSDButton.Close:  Window.window.close(); break;
             case Maui.CSDButton.Maximize :
             case Maui.CSDButton.Restore : Window.window.toggleMaximized(); break;
             case Maui.CSDButton.Minimize: Window.window.showMinimized(); break;
