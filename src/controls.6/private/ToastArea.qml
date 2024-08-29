@@ -119,7 +119,7 @@ Control
             
             padding: Maui.Style.contentMargins
             
-            property alias title : _template.label1.text
+            property string title : ""
             property alias iconSource: _template.iconSource
             property alias imageSource: _template.imageSource
             property alias body: _template.label2.text
@@ -203,6 +203,7 @@ Control
                     id: _template
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    label1.text: _toast.title
                     label2.wrapMode: Text.Wrap
                     iconSizeHint: Maui.Style.iconSizes.big
                 }

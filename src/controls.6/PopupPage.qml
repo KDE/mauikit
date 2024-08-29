@@ -325,6 +325,42 @@ Popup
                     ScrollBar.vertical.policy: control.verticalScrollBarPolicy
                 }
             }
+
+            Maui.Chip
+            {
+                id: _alertMessage
+
+                visible: text.length > 0
+
+                property int level : 0
+
+                Layout.fillWidth: true
+                Layout.margins: Maui.Style.contentMargins
+
+                color: switch(level)
+                {
+                    case 0: return Maui.Theme.positiveBackgroundColor
+                    case 1: return Maui.Theme.neutralBackgroundColor
+                    case 2: return Maui.Theme.negativeBackgroundColor
+                }
+
+                SequentialAnimation on x
+                {
+                    id: _alertAnim
+                    // Animations on properties start running by default
+                    running: false
+                    loops: 3
+                    NumberAnimation { from: 0; to: -10; duration: 100; easing.type: Easing.InOutQuad }
+                    NumberAnimation { from: -10; to: 0; duration: 100; easing.type: Easing.InOutQuad }
+                    PauseAnimation { duration: 50 } // This puts a bit of time between the loop
+                }
+
+                function reset()
+                {
+                    _alertMessage.text = ""
+                    _alertMessage.level = 0
+                }
+            }
             
             GridLayout
             {
@@ -357,5 +393,21 @@ Popup
                     }
                 }
             }
+        }
+
+        onClosed: _alertMessage.reset()
+
+        /**
+         * @brief Sends an inline alert notification that is displayed in the dialog.
+         * @param message The text for the message. Keep it short if possible.
+         * @param level Depending on the level the color may differ. The levels are:
+         * - 0 positive
+         * - 1 neutral
+         * - 2 negative
+         */
+        function alert(message, level)
+        {
+            _alertMessage.text = message
+            _alertMessage.level = level
         }
 }
