@@ -11,4 +11,5 @@ namespace MauiKitCore
    MAUIKIT_EXPORT KAboutComponent aboutData();
 
    MAUIKIT_EXPORT KAboutComponent aboutLuv();
+   MAUIKIT_EXPORT KAboutComponent aboutMauiMan();
 };

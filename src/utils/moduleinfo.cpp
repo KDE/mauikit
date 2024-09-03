@@ -28,3 +28,12 @@ KAboutComponent MauiKitCore::aboutLuv()
                          QStringLiteral("https://github.com/Nitrux/luv-icon-theme"),
                          KAboutLicense::LicenseKey::Artistic);
 }
+
+KAboutComponent MauiKitCore::aboutMauiMan()
+{
+    return KAboutComponent(QStringLiteral("MauiMan"),
+                           QStringLiteral("Configuration and preferences manager."),
+                           QStringLiteral(MAUIKIT_VERSION_STRING),
+                           QStringLiteral("http://mauikit.org"),
+                           KAboutLicense::LicenseKey::LGPL_V3);
+}
