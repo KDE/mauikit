@@ -20,7 +20,7 @@ Item
     /**
       *
       */
-    required property string mimeType
+    property string mimeType
 
     Loader
     {
@@ -39,7 +39,7 @@ Item
         {
             console.log(control.urls)
             _shareDialogLoader.item.urls = control.urls
-            _shareDialogLoader.item.mimeType = control.mimeType
+            // _shareDialogLoader.item.mimeType = control.mimeType
             _shareDialogLoader.item.open()
             return;
         }
