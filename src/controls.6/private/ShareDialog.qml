@@ -1,7 +1,6 @@
 import QtQuick 2.14
 
 import org.mauikit.controls 1.2 as Maui
-import org.mauikit.filebrowsing 1.0 as FB
 
 import "."
 
@@ -40,7 +39,7 @@ Item
         {
             console.log(control.urls)
             _shareDialogLoader.item.urls = control.urls
-            _shareDialogLoader.item.mimeType = control.mimeType ? control.mimeType : FB.FM.getFileInfo(control.urls[0]).mime
+            // _shareDialogLoader.item.mimeType = control.mimeType
             _shareDialogLoader.item.open()
             return;
         }

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-24 01:47+0000\n"
+"POT-Creation-Date: 2024-08-30 01:54+0000\n"
 "PO-Revision-Date: 2024-06-26 08:00+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -110,7 +110,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:214
+#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "Прийняти"
@@ -176,7 +176,7 @@ msgstr "Компоненти"
 msgid "Share"
 msgstr "Оприлюднити"
 
-#: src/controls.6/private/ToastArea.qml:287
+#: src/controls.6/private/ToastArea.qml:288
 #, kde-format
 msgid "Dismiss All"
 msgstr "Припинити всі"

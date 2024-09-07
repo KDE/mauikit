@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-24 01:47+0000\n"
+"POT-Creation-Date: 2024-08-30 01:54+0000\n"
 "PO-Revision-Date: 2023-03-12 10:37+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -107,7 +107,7 @@ msgid "Cancel"
 msgstr "Zrušiť"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:214
+#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "Prijať"
@@ -174,7 +174,7 @@ msgstr "Komponenty"
 msgid "Share"
 msgstr "Zdieľať s"
 
-#: src/controls.6/private/ToastArea.qml:287
+#: src/controls.6/private/ToastArea.qml:288
 #, kde-format
 msgid "Dismiss All"
 msgstr ""
