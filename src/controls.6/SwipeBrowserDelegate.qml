@@ -17,7 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import org.mauikit.controls 1.3 as Maui
+import org.mauikit.controls as Maui
 
 /**
  * @inherit SwipeItemDelegate

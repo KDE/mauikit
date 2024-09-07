@@ -22,7 +22,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import org.mauikit.controls as Maui
-import org.mauikit.filebrowsing as FB
 
 /**
  * @inherit PopupPage
