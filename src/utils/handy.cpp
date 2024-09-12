@@ -30,8 +30,6 @@
 #include <QWindow>
 #include <QMouseEvent>
 
-#include "platforms/platform.h"
-
 #include <QInputDevice>
 
 #ifdef Q_OS_ANDROID
@@ -54,40 +52,45 @@ Handy::Handy(QObject *parent)
     qDebug() << "CREATING INSTANCE OF MAUI HANDY";
 
     connect(m_accessibility, &MauiMan::AccessibilityManager::singleClickChanged, [&](bool value)
-    {
-        m_singleClick = value;
-        Q_EMIT singleClickChanged();
-    });
+            {
+                m_singleClick = value;
+                Q_EMIT singleClickChanged();
+            });
 
     m_singleClick = m_accessibility->singleClick();
 
-// #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
+    // #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
 
-connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
-{
-   m_ffactor = static_cast<FFactor>(value);
-   m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
-   Q_EMIT formFactorChanged();
-   Q_EMIT isMobileChanged();
-});
+    connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
+            {
+                m_ffactor = static_cast<FFactor>(value);
+                m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+                Q_EMIT formFactorChanged();
+                Q_EMIT isMobileChanged();
+            });
 
-connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
-{
-    m_isTouch = value || m_formFactor->forceTouchScreen();
-    Q_EMIT isTouchChanged();
-});
+    connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
+            {
+                m_isTouch = value || m_formFactor->forceTouchScreen();
+                Q_EMIT isTouchChanged();
+            });
 
-m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
-m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
-m_isTouch = m_formFactor->hasTouchscreen() || m_formFactor->forceTouchScreen();
+    m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
+    m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+
+#ifdef Q_OS_ANDROID
+    m_isTouch = true;
+#else
+    m_isTouch = m_formFactor->hasTouchscreen() || m_formFactor->forceTouchScreen();
+#endif
 
     connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win)
-    {
-        if (win)
-        {
-            win->installEventFilter(this);
-        }
-    });
+            {
+                if (win)
+                {
+                    win->installEventFilter(this);
+                }
+            });
 }
 
 Handy *Handy::instance()
@@ -117,7 +120,7 @@ void Handy::setTransientTouchInput(bool touch)
     }
 
     m_hasTransientTouchInput = touch;
-     Q_EMIT hasTransientTouchInputChanged();
+    Q_EMIT hasTransientTouchInputChanged();
 }
 
 bool Handy::eventFilter(QObject *watched, QEvent *event)
@@ -125,22 +128,22 @@ bool Handy::eventFilter(QObject *watched, QEvent *event)
     Q_UNUSED(watched)
     switch (event->type())
     {
-        case QEvent::TouchBegin:
-            setTransientTouchInput(true);
-            break;
-        case QEvent::MouseButtonPress:
-        case QEvent::MouseMove: {
-            QMouseEvent *me = static_cast<QMouseEvent *>(event);
-            if (me->source() == Qt::MouseEventNotSynthesized)
-            {
-                setTransientTouchInput(false);
-            }
-            break;
-        }
-        case QEvent::Wheel:
+    case QEvent::TouchBegin:
+        setTransientTouchInput(true);
+        break;
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseMove: {
+        QMouseEvent *me = static_cast<QMouseEvent *>(event);
+        if (me->source() == Qt::MouseEventNotSynthesized)
+        {
             setTransientTouchInput(false);
-        default:
-            break;
+        }
+        break;
+    }
+    case QEvent::Wheel:
+        setTransientTouchInput(false);
+    default:
+        break;
     }
 
     return false;

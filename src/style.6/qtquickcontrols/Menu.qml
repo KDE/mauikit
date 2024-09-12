@@ -60,10 +60,11 @@ T.Menu
     readonly property int finalY : control.responsive ? parentWindow.height - height : 0
     readonly property int preferredWidth: control.responsive ? 600 : 300
 
+    // anchors.centerIn: responsive ? T.Overlay.overlay : undefined
     y: finalY
-    x: control.responsive ? Math.round(parentWindow.width/2 - control.width/2) : 0
+    x: control.responsive ? Math.round(T.Overlay.overlay.width/2 - control.width/2) : 0
 
-    implicitWidth: Math.min(parentWindow.width, preferredWidth)
+    implicitWidth: Math.min(T.Overlay.overlay.width, preferredWidth)
 
     implicitHeight: Math.min(contentHeight + topPadding + bottomPadding, (control.responsive ? parentWindow.height *0.7 : parentWindow.height))
 

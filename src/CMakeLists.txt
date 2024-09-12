@@ -268,7 +268,6 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/Doodle.qml
     controls.${QT_MAJOR_VERSION}/DoodleCanvas.qml
 
-    controls.${QT_MAJOR_VERSION}/FileListingDialog.qml
     controls.${QT_MAJOR_VERSION}/FlexListItem.qml
     controls.${QT_MAJOR_VERSION}/FlexSectionItem.qml
     controls.${QT_MAJOR_VERSION}/FloatingButton.qml

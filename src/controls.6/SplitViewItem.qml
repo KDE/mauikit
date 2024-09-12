@@ -62,7 +62,7 @@ Pane
          * @note A popup dialog will be display to confirm the action
          * By default this is set to `!Maui.Handy.isMobile`
          */
-    property bool autoClose : !Maui.Handy.isMobile
+    property bool autoClose : true
 
     SplitView.fillHeight: true
     SplitView.fillWidth: true

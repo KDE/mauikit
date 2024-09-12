@@ -59,7 +59,6 @@ Style::Style(QObject *parent) : QObject(parent)
 
     connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, [this](Qt::ColorScheme type)
     {
-        qDebug() << "Color schem style type changed<<"<< type;
         if(m_styleType_blocked)
             return;
         
@@ -75,6 +74,7 @@ Style::Style(QObject *parent) : QObject(parent)
             m_styleType = Style::StyleType::Dark;
             break;
         }
+        qDebug() << "Color schem style type changed<<"<< type << m_styleType;
 
         Q_EMIT styleTypeChanged(m_styleType);
     });
