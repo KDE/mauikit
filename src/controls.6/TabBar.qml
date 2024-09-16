@@ -170,7 +170,7 @@ QQC.TabBar
 
         Loader
         {
-            // active: control.draggable
+            active: !Maui.Handy.isMobile
             asynchronous: true
             anchors.fill: parent
             sourceComponent: Item
