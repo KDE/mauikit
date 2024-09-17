@@ -270,6 +270,20 @@ Private.BaseWindow
         }
     }
 
+    Connections
+    {
+        target: Maui.Style
+        ignoreUnknownSignals: true
+        function onStyleTypeChanged()
+        {
+            console.log("THE COLOR STYLE CHANGED FROM ANDROID")
+            if(Maui.Handy.isAndroid)
+            {
+                setAndroidStatusBarColor()
+            }
+        }
+    }
+
     Component.onCompleted:
     {
         Maui.App.rootComponent = root
@@ -295,6 +309,8 @@ Private.BaseWindow
         if(Maui.Handy.isAndroid)
         {
             const dark = Maui.Style.styleType === Maui.Style.Dark
+            console.log("SET THE ANDROID STSTUS BAR COLOR", dark)
+
             Maui.Android.statusbarColor(Maui.Theme.backgroundColor, !dark)
             Maui.Android.navBarColor( Maui.Theme.backgroundColor, !dark)
         }

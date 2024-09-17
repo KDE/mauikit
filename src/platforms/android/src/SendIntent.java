@@ -89,10 +89,10 @@ public class SendIntent
         System.out.println(mime);
         sendIntent.setType(mime);
 
-        Intent intent=sendIntent.getIntent();
+        Intent intent = sendIntent.getIntent();
 
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 //            intent.setAction(Intent.ACTION_SEND_MULTIPLE);
 
         if (intent.resolveActivity(context.getPackageManager()) != null)
@@ -103,25 +103,31 @@ public class SendIntent
         }
     }
 
-    public static void openUrl(Activity context, String url, String authority)
+    public static void openUrl(Activity context, String url, String mime, String authority)
     {
+        ShareCompat.IntentBuilder sendIntent = ShareCompat.IntentBuilder.from(context);
+
         File file = new File(url);
         Uri uri;
+
         try
         {
             uri = FileProvider.getUriForFile(context, authority, file);
-        } catch (IllegalArgumentException e) {
+            sendIntent.addStream(uri);
+
+        } catch (IllegalArgumentException e)
+        {
             System.out.println("cannot be open: "+ url+ " " +e);
             return;
         }
-    String mime = context.getContentResolver().getType(uri);
 
-    Intent viewIntent = ShareCompat.IntentBuilder.from(context).getIntent();
-    viewIntent.setAction(Intent.ACTION_VIEW);
-    viewIntent.setDataAndType(uri, mime);
-    viewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            viewIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-    context.startActivity(viewIntent);
+        sendIntent.setType(mime);
+        Intent viewIntent = sendIntent.getIntent();
+        viewIntent.setAction(Intent.ACTION_VIEW);
+        viewIntent.setDataAndType(uri, mime);
+        viewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        viewIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        context.startActivity(viewIntent);
     }
 
     public static void fileChooser(Activity context)

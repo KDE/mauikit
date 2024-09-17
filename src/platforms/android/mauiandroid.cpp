@@ -29,6 +29,7 @@
 #include <QMimeDatabase>
 #include <QProcess>
 #include <QUrl>
+#include <QOperatingSystemVersion>
 
 #include <android/bitmap.h>
 
@@ -81,7 +82,7 @@ void MAUIAndroid::statusbarColor(const QString &bg, const bool &light)
 {
     if (QNativeInterface::QAndroidApplication::sdkVersion() <= 23)
         return;
-
+    qDebug() << "Set the status bar color" << light;
     QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
         QJniObject window = getAndroidWindow();
         QJniObject view = window.callObjectMethod("getDecorView", "()Landroid/view/View;");
@@ -99,6 +100,7 @@ void MAUIAndroid::navBarColor(const QString &bg, const bool &light)
 {
     if (QNativeInterface::QAndroidApplication::sdkVersion() <= 23)
         return;
+    qDebug() << "Set the nav bar color" << light;
 
     QNativeInterface::QAndroidApplication::runOnAndroidMainThread([=]() {
         QJniObject window = getAndroidWindow();
@@ -209,13 +211,18 @@ void MAUIAndroid::openUrl(const QUrl &url)
         _env->ExceptionClear();
         throw InterfaceConnFailedException();
     }
-    if (activity.isValid()) {
+    if (activity.isValid())
+    {
+        QMimeDatabase mimedb;
+        QString mimeType = mimedb.mimeTypeForFile(url.toLocalFile()).name();
+
         QJniObject::callStaticMethod<void>("com/kde/maui/tools/SendIntent",
                                            "openUrl",
-                                           "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V",
+                                           "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",
                                            activity.object<jobject>(),
                                            QJniObject::fromString(url.toLocalFile()).object<jstring>(),
-                                           QJniObject::fromString(QString("%1.fileprovider").arg(qApp->organizationDomain())).object<jstring>());
+                                           QJniObject::fromString(mimeType).object<jstring>(),
+                                           QJniObject::fromString(QString("%1.provider").arg(qApp->organizationDomain())).object<jstring>());
 
         if (_env->ExceptionCheck()) {
             _env->ExceptionClear();
@@ -228,6 +235,31 @@ void MAUIAndroid::openUrl(const QUrl &url)
 QString MAUIAndroid::homePath()
 {
     QJniObject mediaDir = QJniObject::callStaticObjectMethod("android/os/Environment", "getExternalStorageDirectory", "()Ljava/io/File;");
+    QJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
+
+    return mediaPath.toString();
+}
+
+QString MAUIAndroid::getStandardPath(QStandardPaths::StandardLocation path)
+{
+    QString type;
+    switch(path)
+    {
+    case QStandardPaths::PicturesLocation: type = "Pictures"; break;
+    case QStandardPaths::MusicLocation: type = "Music"; break;
+    case QStandardPaths::DocumentsLocation: type = "Documents"; break;
+    case QStandardPaths::DownloadLocation: type = "Download"; break;
+    case QStandardPaths::MoviesLocation: type = "Movies"; break;
+    default: type = "";
+    }
+
+    if(type.isEmpty())
+        return "";
+
+    QJniObject mediaDir = QJniObject::callStaticObjectMethod("android/os/Environment",
+                                                             "getExternalStoragePublicDirectory",
+                                                             "(Ljava/lang/String;)Ljava/io/File;",
+                                                             QJniObject::fromString(type).object<jstring>());
     QJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
 
     return mediaPath.toString();
@@ -383,9 +415,39 @@ bool MAUIAndroid::hasMouse()
     return false;
 }
 
+static void accessAllFiles()
+{
+    if(QOperatingSystemVersion::current() < QOperatingSystemVersion(QOperatingSystemVersion::Android, 11)) {
+        qDebug() << "it is less then Android 11 - ALL FILES permission isn't possible!";
+        return;
+    }
+    qDebug() << "requesting ACCESS TO ALL FILES" << qApp->organizationDomain();
+
+    jboolean value = QJniObject::callStaticMethod<jboolean>("android/os/Environment", "isExternalStorageManager");
+    if(value == false)
+    {
+        qDebug() << "requesting ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION";
+        QJniObject ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION = QJniObject::getStaticObjectField( "android/provider/Settings", "ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION","Ljava/lang/String;" );
+        QJniObject intent("android/content/Intent", "(Ljava/lang/String;)V", ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION.object());
+        QJniObject jniPath = QJniObject::fromString("package:"+qApp->organizationDomain());
+        QJniObject jniUri = QJniObject::callStaticObjectMethod("android/net/Uri", "parse", "(Ljava/lang/String;)Landroid/net/Uri;", jniPath.object<jstring>());
+        QJniObject jniResult = intent.callObjectMethod("setData", "(Landroid/net/Uri;)Landroid/content/Intent;", jniUri.object<jobject>() );
+        QtAndroidPrivate::startActivity(intent, 0);
+    } else {
+        qDebug() << "SUCCESS ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION";
+    }
+}
+
 bool MAUIAndroid::checkRunTimePermissions(const QStringList &permissions)
 {
-    for (const auto &permission : permissions) {
+    for (const auto &permission : permissions)
+    {
+        if(permission == "android.permission.MANAGE_EXTERNAL_STORAGE")
+        {
+            accessAllFiles();
+            continue;
+        }
+
         auto r = QtAndroidPrivate::checkPermission(permission).result();
         if (r == QtAndroidPrivate::Denied)
         {

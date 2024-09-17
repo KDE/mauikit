@@ -49,9 +49,10 @@ Rectangle
         Scale{ xScale: control.edge === Qt.RightEdge ? -1 : 1 },
         Translate {x: control.edge === Qt.RightEdge ? control.width : 0}
     ]
-    
+
     gradient: Gradient
     {
+        orientation: Qt.Horizontal
         GradientStop
         {
             position: 0

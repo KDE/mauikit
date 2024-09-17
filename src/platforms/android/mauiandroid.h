@@ -30,6 +30,7 @@
 #include <QStringList>
 #include <QVariantList>
 #include <QPermission>
+#include <QStandardPaths>
 
 #include "abstractplatform.h"
 
@@ -114,6 +115,7 @@ public Q_SLOTS:
      * @return
      */
     static QString homePath();
+    static QString getStandardPath(QStandardPaths::StandardLocation path);
 
     /**
      * @brief sdDirs
