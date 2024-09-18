@@ -124,143 +124,42 @@ import org.mauikit.controls as Maui
  *
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/SettingsDialog.qml">You can find a more complete example at this link.</a>
  */
-
-Loader
+Maui.PopupPage
 {
     id: control
-    
-    /**
-     * @brief By default all the children content will be placed into a MauiKit SettingsPage, which has a scrollable column layout.
-     * @property list<QtObject> SettingsDialog::content
-     */
-    default property list<QtObject> content
     Maui.Controls.title: i18n("Settings")
-    
-    Component
+    default property alias content: _content.content
+    maxHeight: implicitHeight
+    maxWidth: 500
+
+    hint: 1
+
+    page.title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
+
+    headBar.visible: true
+
+    headBar.leftContent: ToolButton
     {
-        id: _appComponent
-        
-        Maui.DialogWindow
+        icon.name: "go-previous"
+        visible: _stackView.depth > 1
+
+        onClicked: _stackView.pop()
+    }
+
+    stack: StackView
+    {
+        id: _stackView
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        implicitHeight: Math.max(_content.implicitHeight, currentItem.implicitHeight)+topPadding +bottomPadding
+
+        initialItem: Maui.SettingsPage
         {
-            id: _window
-            width: 400
-            maximumWidth: 800
-            height: Math.max(500, Math.min(900, implicitHeight))
-            modality: Qt.ApplicationModal
-            
-            readonly property int implicitHeight: Math.max(_content.implicitHeight, _stackView.currentItem.implicitHeight)+_stackView.topPadding + _stackView.bottomPadding
-            
-            title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
-            onClosing: (close) =>
-                       {
-                           _window.hide()
-                           close.accepted = true
-                       }
-            
-            readonly property alias stackView: _stackView
-            
-            page.headBar.forceCenterMiddleContent: true
-            page.headBar.leftContent: ToolButton
-            {
-                icon.name: "go-previous"
-                visible: _stackView.depth > 1
-                
-                onClicked: _stackView.pop()
-            }
-            
-            StackView
-            {
-                id: _stackView
-                anchors.fill: parent
-                
-                initialItem: Maui.SettingsPage
-                {
-                    id:_content
-                    content: control.content
-                    title: control.Maui.Controls.title
-                }
-            }
-            
-            function addPage(component, properties)
-            {
-                _stackView.push(component, properties)
-            }
-            
-            function open()
-            {
-                _window.show()
-            }
+            id: _content
+            title: control.Maui.Controls.title
         }
     }
-    
-    Component
-    {
-        id: _dialogComponent
-        
-        Maui.PopupPage
-        {
-            readonly property alias stackView: _stackView
 
-            maxHeight: implicitHeight
-            maxWidth: 500
-            
-            hint: 1
-            
-            page.title: _stackView.currentItem.title ?  _stackView.currentItem.title  : ""
-            
-            headBar.visible: true
-            
-            headBar.leftContent: ToolButton
-            {
-                icon.name: "go-previous"
-                visible: _stackView.depth > 1
-
-                onClicked: _stackView.pop()
-            }
-            
-            stack: StackView
-            {
-                id: _stackView
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                implicitHeight: Math.max(_content.implicitHeight, currentItem.implicitHeight)+topPadding +bottomPadding
-
-                initialItem: Maui.SettingsPage
-                {
-                    id: _content
-                    content: control.content
-                    title: control.Maui.Controls.title
-                }
-            }
-            
-            function addPage(component, properties)
-            {
-                _stackView.push(component, properties)
-            }
-        }
-        
-    }
-    
-    function open()
-    {
-        if(control.item)
-        {
-            control.item.open()
-            return
-        }
-
-        if(Maui.Handy.isMobile)
-        {
-            control.sourceComponent = _dialogComponent
-        }else
-        {
-            control.sourceComponent = _appComponent
-        }
-
-        control.item.open()
-        
-    }
-    
     /**
      * @brief Adds a new sub page to the control. Use a MauiKit SettingsPage for the component.
      * @param component the QQC2 Component wrapping a MauiKit SettingsPage
@@ -271,7 +170,7 @@ Loader
      */
     function addPage(component, properties)
     {
-        control.item.addPage(component, properties)
+        _stackView.push(component, properties)
     }
 }
 
