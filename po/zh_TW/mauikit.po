@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-30 01:54+0000\n"
+"POT-Creation-Date: 2024-09-19 01:48+0000\n"
 "PO-Revision-Date: 2024-07-08 17:54+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -180,7 +180,7 @@ msgstr "分享"
 msgid "Dismiss All"
 msgstr "忽略全部"
 
-#: src/controls.6/SettingsDialog.qml:137 src/controls.6/SettingsPage.qml:42
+#: src/controls.6/SettingsDialog.qml:130 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "設定"

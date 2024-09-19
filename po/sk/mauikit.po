@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-30 01:54+0000\n"
+"POT-Creation-Date: 2024-09-19 01:48+0000\n"
 "PO-Revision-Date: 2023-03-12 10:37+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -179,7 +179,7 @@ msgstr "Zdieľať s"
 msgid "Dismiss All"
 msgstr ""
 
-#: src/controls.6/SettingsDialog.qml:137 src/controls.6/SettingsPage.qml:42
+#: src/controls.6/SettingsDialog.qml:130 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "Nastavenia"
