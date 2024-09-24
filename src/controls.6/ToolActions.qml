@@ -7,27 +7,27 @@ import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Controls.Control
- * @brief A set of grouped action visually joined together. 
- * 
- * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This control inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a> 
- * 
+ * @brief A set of grouped action visually joined together.
+ *
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This control inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a>
+ *
  * The set actions can be checkable and auto-exclusive or not.
- * 
+ *
  * @image html Misc/toolactions.png "[1] Non-checkable. [2] Checkable non-auto-exclusive. [3] Checkable and autoexclusive"
- * 
+ *
  * @section features Features
  * This control supports checkable and non-checkable actions. Also auto-exclusive and non-auto-exclusive actions.
- * 
+ *
  * When enabling the `autoExclusive` property, then only one action in the group can be marked as checked at the time.
- * 
+ *
  * There is also the option to collapse the actions into a single button with a popup menu where the actions are listed, this is useful when the available space changes and the control needs to be made more compact to save space.
- * 
+ *
  * @image html Misc/toolactions2.png "The collapsed actions into a menu"
- * 
+ *
  * If only two actions are added and marked as auto-exclusive, then this control has the option to enable a `cyclic` behavior, which means that toggling one button will activate the next action in line and cyclic around.
  * @see canCyclic
  * @see cyclic
- * 
+ *
  * Heres a example of how to achieve such behavior:
  * @code
  * Maui.ToolActions
@@ -37,9 +37,9 @@ import org.mauikit.controls as Maui
  *    autoExclusive: true
  *    cyclic: true //enable the cyclic behavior
  *    expanded: false //the cyclic behavior needs to be in the collapsed mode
- * 
+ *
  *    property int currentAction: 0 //here we keep the state for the current action checked
- * 
+ *
  *    Action
  *    {
  *        id: _action1
@@ -50,7 +50,7 @@ import org.mauikit.controls as Maui
  *            _actions.currentAction = 0
  *        }
  *    }
- * 
+ *
  *    Action
  *    {
  *        id: _action2
@@ -63,30 +63,30 @@ import org.mauikit.controls as Maui
  *    }
  * }
  * @endcode
- * 
+ *
  * @code
  * Maui.ToolActions
  * {
  *    checkable: true
  *    autoExclusive: true
- *    
+ *
  *    Action
  *    {
  *        text: "Pick"
  *    }
- *    
+ *
  *    Action
  *    {
  *        text: "Only"
  *    }
- *    
+ *
  *    Action
  *    {
  *        text: "One"
  *    }
  * }
  * @endcode
- * 
+ *
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ToolActions.qml">You can find a more complete example at this link.</a>
  */
 Control
@@ -284,9 +284,7 @@ Control
             id: _defaultButtonIcon
             
             property Action m_action
-            
-            Component.onCompleted: _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
-            
+                       
             function buttonAction()
             {
                 if(control.autoExclusive)
@@ -385,8 +383,14 @@ Control
             text: m_action ? m_action.text: ""
             
             enabled: m_action ? m_action.enabled : true
-            
-            subMenu: !control.canCyclic
+
+            Component.onCompleted:
+            {
+                _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
+
+                if(_defaultButtonIcon.indicator)
+                    _defaultButtonIcon.indicator.visible = Qt.binding(()=> {return !control.canCyclic})
+            }
             
             display: control.display
             
@@ -402,6 +406,6 @@ Control
                     Maui.ColorTransition{}
                 }
             }
-        }        
+        }
     }
 }

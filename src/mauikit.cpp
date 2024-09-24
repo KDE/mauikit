@@ -71,6 +71,7 @@ void MauiKit::registerTypes(const char *uri)
 #endif
 
     Q_ASSERT(QLatin1String(uri) == QLatin1String("org.mauikit.controls"));
+    qDebug() << "REGISTER MAUIKIT TYPES 2<<<<<<<<<<<<<<<<<<<<<<";
 
            // @uri org.mauikit.controls
     qmlRegisterType(componentUrl(QStringLiteral("ToolBar.qml")), uri, 1, 0, "ToolBar");
@@ -92,6 +93,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("SelectionBar.qml")), uri, 1, 0, "SelectionBar");
     qmlRegisterType(componentUrl(QStringLiteral("LabelDelegate.qml")), uri, 1, 0, "LabelDelegate");
     qmlRegisterType(componentUrl(QStringLiteral("InputDialog.qml")), uri, 1, 0, "InputDialog");
+    qmlRegisterType(componentUrl(QStringLiteral("Popup.qml")), uri, 1, 0, "Popup");
     qmlRegisterType(componentUrl(QStringLiteral("PopupPage.qml")), uri, 1, 0, "PopupPage");
     qmlRegisterType(componentUrl(QStringLiteral("Badge.qml")), uri, 1, 0, "Badge");
     qmlRegisterType(componentUrl(QStringLiteral("ListBrowser.qml")), uri, 1, 0, "ListBrowser");
@@ -175,6 +177,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("CSDControls.qml")), uri, 1, 1, "CSDControls");
     qmlRegisterType(componentUrl(QStringLiteral("private/linux/WindowControls.qml")), uri, 1, 1, "WindowControls");
 #endif
+    qDebug() << "REGISTER MAUIKIT TYPES 3<<<<<<<<<<<<<<<<<<<<<<";
 
            // qmlProtectModule(uri, 3);
 }

@@ -41,8 +41,23 @@ DemoPage
 
                     root.notify("dialog-info", i18n("Notification #1"), i18n("This is a body message regarding some inportant information about the application state"))
 
-                    root.notify("dialog-info", i18n("Notification #2"), i18n("This is a body message with a custom action"), ()=> { console.log("Notication action") }, i18n("Action"))
+                    root.notify("dialog-info", i18n("Notification #2"), i18n("This is a body message with a custom action"), [_action1, _action2])
 
+                }
+
+                Action
+                {
+                    id: _action1
+                    text: "Action1"
+                    onTriggered:  console.log("Notication action1")
+                    Maui.Controls.status: Maui.Controls.Neutral
+                }
+
+                Action
+                {
+                    id: _action2
+                    text: "Action2"
+                    onTriggered:  console.log("Notication action1")
                 }
             }
 

@@ -109,7 +109,7 @@ Maui.ApplicationWindow
         Maui.Page
         {
             anchors.fill: parent
-            showCSDControls: true
+            Maui.Controls.showCSD: true
         }
     }
 }

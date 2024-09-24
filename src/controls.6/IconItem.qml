@@ -196,11 +196,12 @@ Item
     {
         id: img
 
+
 //         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
 //         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
 //
-        height: imageSizeHint >=0  ? imageSizeHint : parent.height
-        width: height
+        height: imageSizeHint >=0 ? imageSizeHint : parent.height
+        width: imageSizeHint >=0 ?  imageSizeHint : parent.width
 
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)

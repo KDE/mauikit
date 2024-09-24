@@ -525,7 +525,7 @@ Pane
             Maui.Controls.showCSD: control.Maui.Controls.showCSD && control.Maui.Controls.showCSD === true && !control.altHeader
             Maui.Controls.level: control.Maui.Controls.level
             Maui.Controls.flat: control.Maui.Controls.flat
-            translucencySource: ShaderEffectSource
+            Maui.Controls.item: ShaderEffectSource
             {
                 layer.enabled: true
                 // textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
@@ -609,7 +609,7 @@ Pane
 
             position: ToolBar.Footer
 
-            translucencySource: ShaderEffectSource
+            Maui.Controls.item: ShaderEffectSource
             {
                 layer.enabled: true
                 //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)

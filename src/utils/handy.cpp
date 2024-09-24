@@ -91,6 +91,8 @@ Handy::Handy(QObject *parent)
                     win->installEventFilter(this);
                 }
             });
+    qDebug() << "DONE CREATING INSTANCE OF MAUI HANDY";
+
 }
 
 Handy *Handy::instance()

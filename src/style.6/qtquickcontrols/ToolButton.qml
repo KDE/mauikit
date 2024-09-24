@@ -45,8 +45,6 @@ T.ToolButton
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
 
-    property bool subMenu : false
-
     opacity: enabled ? 1 : 0.5
 
     implicitWidth: Math.max(implicitContentWidth + leftPadding + rightPadding, implicitHeight)
@@ -71,8 +69,7 @@ T.ToolButton
     {
         x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
-
-        visible: control.subMenu
+        visible: false
         color: control.color
         height: 8
         width: 8
@@ -82,7 +79,7 @@ T.ToolButton
     contentItem: Maui.IconLabel
     {
         id: _content
-        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
+        readonly property real arrowPadding: control.indicator && control.indicator.visible ? control.indicator.width + Maui.Style.space.tiny : 0
 
         rightPadding: arrowPadding + (_badgeLoader.visible ? 8 : 0)
 

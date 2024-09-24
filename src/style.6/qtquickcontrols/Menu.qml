@@ -47,10 +47,6 @@ T.Menu
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
 
-    property string subtitle
-    property string titleImageSource
-    property string titleIconSource: control.icon.name || "application-menu"
-
     readonly property bool responsive: Maui.Handy.isMobile
 
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
@@ -80,10 +76,33 @@ T.Menu
     margins: Maui.Style.space.medium
 
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-    delegate: MenuItem { }
+    delegate: MenuItem
+    {
+        Maui.Controls.status: action.Maui.Controls.status
+    }
 
-    enter:  Maui.Style.enableEffects ? (control.responsive ? _responsiveEnterTransition : _enterTransition) : null
+    enter: Maui.Style.enableEffects ? (control.responsive ? _responsiveEnterTransition : _enterTransition) : null
     exit: Maui.Style.enableEffects ? (control.responsive ? _responsiveExitTransition : _exitTransition) : null
+
+    readonly property Component headerItem : Maui.SectionHeader
+    {
+        visible: control.title && control.title.length
+
+        label1.text: control.title
+        label2.text: control.Maui.Controls.subtitle
+        label1.elide:Text.ElideMiddle
+        template.imageSource: control.icon.source
+        template.iconSource: control.icon.name
+        template.maskRadius: 0
+        template.imageSizeHint: Maui.Style.iconSizes.big
+        template.iconSizeHint: Maui.Style.iconSizes.big
+
+        background: Rectangle
+        {
+            color: Maui.Theme.alternateBackgroundColor
+            radius: Maui.Style.radiusV
+        }
+    }
 
     Transition
     {
@@ -128,6 +147,10 @@ T.Menu
         }
     }
 
+    // topMargin: _headerLoader.implicitHeight + 100
+
+
+
     contentItem: ScrollView
     {
         id: _scrollView
@@ -160,28 +183,8 @@ T.Menu
 
             keyNavigationEnabled : true
             keyNavigationWraps : true
-
-            header: Maui.SectionHeader
-            {
-                visible: control.title && control.title.length
-                width: parent.width
-                height: visible ? implicitContentHeight + topPadding + bottomPadding : 0
-                padding: control.padding
-                bottomPadding: _scrollView.padding
-                topPadding: 0
-
-                label1.text: control.title
-                label2.text: control.subtitle
-                label1.elide:Text.ElideMiddle
-                template.imageSource: control.titleImageSource
-                template.iconSource: control.titleIconSource
-                template.maskRadius: 0
-                template.imageSizeHint: Maui.Style.iconSizes.big
-                template.iconSizeHint: Maui.Style.iconSize
-            }
         }
     }
-
 
     background: Rectangle
     {
@@ -209,6 +212,16 @@ T.Menu
         }
     }
 
+    Loader
+    {
+        id: _headerLoader
+        width: ListView.view.width
+        asynchronous: true
+        active: control.Maui.Controls.component || (control.title.length > 0)
+        sourceComponent: control.Maui.Controls.component || headerItem
+        height: active ? implicitHeight : -control.spacing
+    }
+
     T.Overlay.modal: Rectangle
     {
         color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.4)
@@ -223,5 +236,4 @@ T.Menu
     }
 
     onOpened: _listView.forceActiveFocus()
-
 }

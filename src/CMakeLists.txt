@@ -29,6 +29,7 @@ ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     URI "org.mauikit.controls"
     CLASS_NAME MauiKit
     DEPENDENCIES
+    "QtQuick"
     "QtQuick.Controls"
     "QtMultimedia"
     NO_PLUGIN_OPTIONAL
@@ -303,6 +304,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/PageLayout.qml
     controls.${QT_MAJOR_VERSION}/PasswordField.qml
     controls.${QT_MAJOR_VERSION}/PieButton.qml
+    controls.${QT_MAJOR_VERSION}/Popup.qml
     controls.${QT_MAJOR_VERSION}/PopupPage.qml
     controls.${QT_MAJOR_VERSION}/ProgressIndicator.qml
 

@@ -312,15 +312,14 @@ ApplicationWindow
          * @param icon icon name to be used
          * @param title the notification title
          * @param body the message body of the notification
-         * @param callback a callback function to be triggered when the action button is pressed, this is represented as a button
-         * @param buttonText the text associated to the previous callback function, to be used in the button
+         * @param actions a list of possible callback actions, this is represented as a button
          **/
-    function notify(icon, title, body, callback, buttonText)
+    function notify(icon, title, body, actions)
     {
         if(!_toastAreaLoader.item)
         {
             _toastAreaLoader.setSource("ToastArea.qml")
         }
-        _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
+        _toastAreaLoader.item.add(icon, title, body, actions)
     }
 }

@@ -107,7 +107,8 @@ MenuItem
             {
                 id: _delegate
                 Maui.Theme.inherit: true
-                
+                Maui.Controls.status: modelData.Maui.Controls.status
+
                 action: modelData
                 display: control.display
                 

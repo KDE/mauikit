@@ -60,7 +60,7 @@ T.MenuItem
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
-    icon.color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+    icon.color: setTextColor(control)
     
     property bool flat: !Maui.Handy.isMobile
     property bool showIcon: Maui.Style.menusHaveIcons
@@ -111,12 +111,65 @@ T.MenuItem
     {
         radius: Maui.Style.radiusV
         
-        color: control.enabled ? (control.checked || control.pressed || control.down ? Maui.Theme.highlightColor : control.highlighted || control.hovered ? Maui.Theme.hoverColor : (control.flat ?   "transparent" : Maui.Theme.alternateBackgroundColor)) : "transparent"
+        color: setBackgroundColor(control)
 
         Behavior on color
         {
             enabled: !control.flat
             Maui.ColorTransition{}
         }
+    }
+
+    function setTextColor(control)
+    {
+        let defaultColor = (color) =>
+        {
+            return control.down || control.checked ? (Maui.Theme.highlightedTextColor) : color
+        }
+
+        if(control.Maui.Controls.status)
+        {
+            switch(control.Maui.Controls.status)
+            {
+            case Maui.Controls.Normal: return defaultColor(control.Maui.Theme.textColor)
+            case Maui.Controls.Positive: return control.Maui.Theme.positiveTextColor
+            case Maui.Controls.Negative: return control.Maui.Theme.negativeTextColor
+            case Maui.Controls.Neutral: return control.Maui.Theme.neutralTextColor
+            }
+        }
+
+        return defaultColor(control.Maui.Theme.textColor)
+    }
+
+    function setBackgroundColor(control)
+    {
+        let defaultColor = (bg) =>
+        {
+            return control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : (control.flat
+                                                                                                                                                                                       ?   "transparent" : bg))
+        }
+
+        if(control.Maui.Controls.status)
+        {
+            switch(control.Maui.Controls.status)
+            {
+            case Maui.Controls.Normal: return defaultColor(control.Maui.Theme.backgroundColor)
+            case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+            case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+            case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+            }
+        }
+
+        if(control.Maui.Controls.level)
+        {
+            switch(control.Maui.Controls.level)
+            {
+            case Maui.Controls.Undefined: return defaultColor(control.Maui.Theme.backgroundColor)
+            case Maui.Controls.Primary: return defaultColor(control.Maui.Theme.backgroundColor)
+            case Maui.Controls.Secondary: return defaultColor(control.Maui.Theme.alternateBackgroundColor)
+            }
+        }
+
+        return defaultColor(control.Maui.Theme.alternateBackgroundColor)
     }
 }

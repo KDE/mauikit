@@ -35,7 +35,7 @@ T.ToolBar
     Maui.Theme.inherit: false
     Maui.Controls.flat: true
 
-    property Item translucencySource : null
+    readonly property Item translucencySource : Maui.Controls.item
 
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
@@ -83,8 +83,6 @@ T.ToolBar
                 // }
 
                 source: control.translucencySource
-                // radius: 64
-
 
                 Rectangle
                 {
@@ -93,7 +91,6 @@ T.ToolBar
                     opacity: 0.9
                 }
             }
-
         }
 
         Maui.Separator

@@ -141,7 +141,7 @@ Maui.Page
             leftContent: control.split && control.leftContent ? control.leftContent : null
             rightContent: control.split && control.rightContent ? control.rightContent : null
 
-            translucencySource: ShaderEffectSource
+            Maui.Controls.item: ShaderEffectSource
             {
                 sourceItem: control.pageContent
                 sourceRect:  _headBar.background ?

@@ -119,7 +119,7 @@ import org.mauikit.controls as Maui
  * 
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/PopupPage.qml">You can find a more complete example at this link.</a>
  */
-Popup
+Maui.Popup
 {
     id: control
     
@@ -390,6 +390,7 @@ Popup
                         Layout.fillWidth: true
                         
                         action: modelData
+                        Maui.Controls.status: modelData.Maui.Controls.status
                     }
                 }
             }
