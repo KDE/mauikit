@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-19 01:48+0000\n"
+"POT-Creation-Date: 2024-09-25 01:49+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -111,7 +111,6 @@ msgid "Cancel"
 msgstr "取消"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "接受"
@@ -177,7 +176,7 @@ msgstr "组件"
 msgid "Share"
 msgstr "分享"
 
-#: src/controls.6/private/ToastArea.qml:288
+#: src/controls.6/private/ToastArea.qml:296
 #, kde-format
 msgid "Dismiss All"
 msgstr "忽略全部"

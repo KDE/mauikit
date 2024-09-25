@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-19 01:48+0000\n"
+"POT-Creation-Date: 2024-09-25 01:49+0000\n"
 "PO-Revision-Date: 2024-07-05 23:21+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -114,7 +114,6 @@ msgid "Cancel"
 msgstr "Utzi"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "Onartu"
@@ -180,7 +179,7 @@ msgstr "Osagaiak"
 msgid "Share"
 msgstr "Partekatu"
 
-#: src/controls.6/private/ToastArea.qml:288
+#: src/controls.6/private/ToastArea.qml:296
 #, kde-format
 msgid "Dismiss All"
 msgstr "Baztertu guztia"

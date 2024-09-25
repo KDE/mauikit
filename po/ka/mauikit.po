@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-19 01:48+0000\n"
+"POT-Creation-Date: 2024-09-25 01:49+0000\n"
 "PO-Revision-Date: 2024-02-11 02:27+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -110,7 +110,6 @@ msgid "Cancel"
 msgstr "გაუქმება"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "დასტური"
@@ -177,7 +176,7 @@ msgstr "კომპონენტები"
 msgid "Share"
 msgstr "გაზიარება"
 
-#: src/controls.6/private/ToastArea.qml:288
+#: src/controls.6/private/ToastArea.qml:296
 #, kde-format
 msgid "Dismiss All"
 msgstr "ყველაფრის გაუქმება"
