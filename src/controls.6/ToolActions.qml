@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import QtQml
 
 import org.mauikit.controls as Maui
+import "private" as Private
 
 /**
  * @inherit QtQuick.Controls.Control
@@ -334,6 +335,12 @@ Control
                     }
                 }
             }
+
+            indicator: Private.DropDownIndicator
+            {
+                item: _defaultButtonIcon
+                visible: !control.canCyclic
+            }
             
             data: Maui.ContextualMenu
             {
@@ -387,9 +394,6 @@ Control
             Component.onCompleted:
             {
                 _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
-
-                if(_defaultButtonIcon.indicator)
-                    _defaultButtonIcon.indicator.visible = Qt.binding(()=> {return !control.canCyclic})
             }
             
             display: control.display

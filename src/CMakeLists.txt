@@ -346,6 +346,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml
     controls.${QT_MAJOR_VERSION}/private/ColorTransition.qml
 
+    controls.${QT_MAJOR_VERSION}/private/DropDownIndicator.qml
     controls.${QT_MAJOR_VERSION}/private/EdgeShadow.qml
 
     controls.${QT_MAJOR_VERSION}/private/ToastArea.qml

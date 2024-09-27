@@ -3,6 +3,8 @@ import QtQuick.Controls
 
 import org.mauikit.controls as Maui
 
+import "private" as Private
+
 /**
  * @inherit QtQuick.Controls.ToolButton
  * @since org.mauikit.controls 1.0
@@ -55,13 +57,10 @@ ToolButton
          */
     readonly property alias menu : _menu
 
-    // subMenu: _menu.count > 0
-    // indicator.visible: _menu.count > 0
-
-    Component.onCompleted:
+    indicator: Private.DropDownIndicator
     {
-        if(control.indicator)
-            control.indicator.visible = Qt.binding(()=> {return _menu.count > 0})
+        visible: _menu.count > 0
+        item: control
     }
 
     focusPolicy: Qt.NoFocus

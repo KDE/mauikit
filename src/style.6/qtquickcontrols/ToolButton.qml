@@ -65,16 +65,7 @@ T.ToolButton
     flat: control.parent instanceof T.ToolBar
     font: Maui.Style.defaultFont
 
-    indicator: Maui.Icon
-    {
-        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
-        y: control.topPadding + (control.availableHeight - height) / 2
-        visible: false
-        color: control.color
-        height: 8
-        width: 8
-        source: "qrc:/assets/arrow-down.svg"
-    }
+    indicator: null //Control should implement the indicator, for example via DropDownIndicator
 
     contentItem: Maui.IconLabel
     {

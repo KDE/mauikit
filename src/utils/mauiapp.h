@@ -48,7 +48,9 @@ class KAboutComponent;
  * }
  * @endcode
  *
+ * @section style Style
  * By default MauiApp will set the style to "org.mauikit.style" after it has been instanciated, which is the most optimal and feature-rich style to be used with Maui applications. However this can be overriden by a custom one, by either setting the env variable `QT_QUICK_CONTROLS_STYLE` or by code:
+ * 
  * @code
  *  qputenv("QML_DISABLE_DISK_CACHE", "1"); // This is to workaround a bug causing the new style to not be picked up due to the cache of the default or previous one
     QQuickStyle::setStyle("Imagine");

@@ -95,7 +95,7 @@ T.Menu
         template.iconSource: control.icon.name
         template.maskRadius: 0
         template.imageSizeHint: Maui.Style.iconSizes.big
-        template.iconSizeHint: Maui.Style.iconSizes.big
+        template.iconSizeHint: Maui.Style.iconSizes.small
 
         background: Rectangle
         {

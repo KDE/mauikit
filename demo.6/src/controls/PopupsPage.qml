@@ -23,7 +23,7 @@ DemoPage
                 id: _popup1
             }
 
-            Popup
+            Maui.Popup
             {
                 id: _popup2
                 filling: true
