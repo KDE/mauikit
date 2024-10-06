@@ -372,7 +372,7 @@ Item
     {
         id: _listContainerComponent
         
-        Popup
+        Maui.Popup
         {
             parent: control
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
@@ -456,28 +456,18 @@ Item
         forceCenterMiddleContent: false
         position: ToolBar.Footer
 
-        leftContent: Maui.Chip
+        leftContent: ToolButton
         {
             id: _counter
             visible: !control.singleSelection
             text: control.count
-            font.pointSize: Maui.Style.fontSizes.big
             font.bold: true
             font.weight: Font.Black
             Maui.Theme.colorSet: control.Maui.Theme.colorSet
             Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
                                             Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
 
-            Maui.Rectangle
-            {
-                opacity: 0.3
-                anchors.fill: parent
-                anchors.margins: 4
-                visible: _counter.hovered
-                color: "transparent"
-                borderColor: "white"
-                solidBorder: false
-            }
+           flat: false
 
             MouseArea
             {
@@ -560,7 +550,11 @@ Item
             Repeater
             {
                 model:  control.hiddenActions
-                delegate: MenuItem{ action: modelData}
+                delegate: MenuItem
+                {
+                    action: modelData
+                    Maui.Controls.status: modelData.Maui.Controls.status
+                }
             }
         }
 
