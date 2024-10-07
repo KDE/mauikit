@@ -49,7 +49,7 @@ QQC.Popup
         Q.NumberAnimation
         {
             duration: Maui.Style.units.shortDuration
-            easing.type: Easing.InOutQuad
+            easing.type: Q.Easing.InOutQuad
         }
     }
     
@@ -60,7 +60,7 @@ QQC.Popup
         Q.NumberAnimation
         {
             duration: Maui.Style.units.shortDuration
-            easing.type: Easing.InOutQuad
+            easing.type: Q.Easing.InOutQuad
         }
     }
     

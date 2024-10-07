@@ -372,23 +372,22 @@ Item
     {
         id: _listContainerComponent
         
-        Maui.Popup
+        Maui.PopupPage
         {
-            parent: control
-            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-            modal: true
-            height: Math.min(Math.min(400, control.maxListHeight), selectionList.contentHeight) + Maui.Style.space.big
-            width: Math.min(600, control.Window.window.width*widthHint)
+            persistent: false
             
-            Maui.ListBrowser
+           stack: Maui.ListBrowser
             {
                 id: selectionList
                 
-                anchors.fill: parent
+                Layout.fillHeight: true
+                Layout.fillWidth: true
                 model: _urisModel
                 
                 delegate: control.listDelegate
             }
+            
+            actions: control.actions
         }
     }
     
@@ -456,10 +455,16 @@ Item
         forceCenterMiddleContent: false
         position: ToolBar.Footer
 
-        leftContent: ToolButton
+        leftContent: Loader
+        {
+            asynchronous: true
+             active: !control.singleSelection && control.count > 1
+             visible: active
+             
+            sourceComponent: ToolButton
         {
             id: _counter
-            visible: !control.singleSelection
+           
             text: control.count
             font.bold: true
             font.weight: Font.Black
@@ -520,6 +525,7 @@ Item
                     console.log("Opening list")
                 }
             }
+        }
         }
 
         Repeater

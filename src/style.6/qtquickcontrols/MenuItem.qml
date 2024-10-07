@@ -77,7 +77,7 @@ T.MenuItem
 
     arrow: Maui.Icon
     {
-        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
+        x: control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
 
         visible: control.subMenu
@@ -88,13 +88,16 @@ T.MenuItem
         source: "qrc:/assets/arrow-right.svg"
     }
     
-    contentItem: Maui.IconLabel
+    contentItem: RowLayout
     {
-        readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
-        readonly property real indicatorPadding: control.checkable && control.indicator ? control.indicator.width + control.spacing : 0
+      
         
-        rightPadding: indicatorPadding + arrowPadding
-        
+        spacing: control.spacing
+        Maui.IconLabel
+    {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+       
         spacing: control.spacing
         
         display: control.display
@@ -105,6 +108,36 @@ T.MenuItem
         text: control.text
         font: control.font
         color: control.icon.color
+    }
+    
+    Loader
+    {
+        active: control.action && control.action.shortcut && Maui.Handy.hasKeyboard
+        asynchronous: true
+        visible: active
+        
+    sourceComponent: Label
+    {        
+        text: control.action.shortcut
+        // opacity: 0.5
+        font.pointSize: Maui.Style.fontSizes.small
+        // font.family: Maui.Style.monospacedFont.family
+        // color: Maui.Theme.backgroundColor
+        // padding: 2
+        // background: Rectangle
+        // {
+        //     color: Maui.Theme.textColor
+        //     radius: 2
+        // }
+    }
+    }
+    
+    Item
+    {
+        readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
+        readonly property real indicatorPadding: control.checkable && control.indicator && control.indicator.visible ? control.indicator.width + control.spacing : 0
+        Layout.preferredWidth: indicatorPadding + arrowPadding      
+    }
     }
 
     background: Rectangle

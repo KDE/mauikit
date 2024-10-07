@@ -26,7 +26,7 @@ MauiModel::MauiModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_model(new PrivateAbstractListModel(this))
 {
-   
+
 }
 
 QVariantMap MauiModel::get(const int &index) const

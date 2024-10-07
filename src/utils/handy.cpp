@@ -75,6 +75,12 @@ Handy::Handy(QObject *parent)
                 Q_EMIT isTouchChanged();
             });
 
+    connect(m_formFactor, &MauiMan::FormFactorManager::hasKeyboardChanged, [this](bool value)
+    {
+        Q_EMIT hasKeyboardChanged();
+    });
+    
+    
     m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
     m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
 
