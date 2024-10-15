@@ -57,7 +57,7 @@ DemoPage
                 {
                     id: _action2
                     text: "Action2"
-                    onTriggered:  console.log("Notication action1")
+                    onTriggered:  console.log("Notication action2")
                 }
             }
 

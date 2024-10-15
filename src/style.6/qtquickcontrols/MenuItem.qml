@@ -119,8 +119,9 @@ T.MenuItem
     sourceComponent: Label
     {        
         text: control.action.shortcut
-        // opacity: 0.5
+        opacity: 0.5
         font.pointSize: Maui.Style.fontSizes.small
+        color: control.icon.color
         // font.family: Maui.Style.monospacedFont.family
         // color: Maui.Theme.backgroundColor
         // padding: 2

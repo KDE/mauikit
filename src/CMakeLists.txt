@@ -355,7 +355,8 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialogLinux.qml
-    controls.${QT_MAJOR_VERSION}/private/SideBar.qml)
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml
+    controls.${QT_MAJOR_VERSION}/private/WindowResizeHandlers.qml)
 
 if(ANDROID)
     ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private/android SOURCES

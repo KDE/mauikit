@@ -127,12 +127,18 @@ Control
 
             property int timeout : 3500
             
-            onClicked: control.remove(mindex)
+            onClicked: 
+            {
+                if( _toast.actions.length > 0)
+                    return
+                    
+                control.remove(mindex)
+            }
             
             background: Rectangle
             {
                 radius: Maui.Style.radiusV
-                color: _toast.hovered? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
+                color: _toast.hovered && _toast.actions.length === 0? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
                 
                 ProgressBar
                 {
@@ -225,7 +231,7 @@ Control
                             Layout.fillWidth: true
                             onClicked:
                             {
-                                if(_toast.actions.length === 1)
+                                // if(_toast.actions.length === 1)
                                     control.remove(_toast.mindex)
                             }
                         }

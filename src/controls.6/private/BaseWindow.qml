@@ -181,69 +181,15 @@ ApplicationWindow
         asynchronous: true
         active: Maui.CSD.enabled
         visible: active
-        height: 16
-        width: height
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-
-        sourceComponent: Item
+        anchors.fill: parent
+        
+        sourceComponent: WindowResizeHandlers
         {
-            MouseArea
-            {
-                anchors.fill: parent
-                cursorShape: Qt.SizeBDiagCursor
-                acceptedButtons: Qt.NoButton // don't handle actual events
-            }
-
-            DragHandler
-            {
-                grabPermissions: TapHandler.TakeOverForbidden
-                target: null
-                onActiveChanged:
-                {
-                    if (active)
-                    {
-                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
-                    }
-                }
-            }
+            
         }
     }
-
-    Loader
-    {
-        asynchronous: true
-        active: Maui.CSD.enabled
-        visible: active
-        height: 16
-        width: height
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-
-        sourceComponent: Item
-        {
-            MouseArea
-            {
-                anchors.fill: parent
-                cursorShape: Qt.SizeFDiagCursor
-                acceptedButtons: Qt.NoButton // don't handle actual events
-            }
-
-            DragHandler
-            {
-                grabPermissions: TapHandler.TakeOverForbidden
-                target: null
-                onActiveChanged:
-                {
-                    if (active)
-                    {
-                        root.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
-                    }
-                }
-            }
-        }
-    }
-
+    
+    
     Overlay.overlay.modal: Item
     {
         Rectangle

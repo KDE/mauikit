@@ -98,7 +98,6 @@ Handy::Handy(QObject *parent)
                 }
             });
     qDebug() << "DONE CREATING INSTANCE OF MAUI HANDY";
-
 }
 
 Handy *Handy::instance()
