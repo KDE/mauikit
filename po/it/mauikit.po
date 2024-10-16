@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-25 01:49+0000\n"
+"POT-Creation-Date: 2024-10-16 01:50+0000\n"
 "PO-Revision-Date: 2024-06-28 03:35+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -174,7 +174,7 @@ msgstr "Componenti"
 msgid "Share"
 msgstr "Condividi"
 
-#: src/controls.6/private/ToastArea.qml:296
+#: src/controls.6/private/ToastArea.qml:302
 #, kde-format
 msgid "Dismiss All"
 msgstr "Ignora tutto"

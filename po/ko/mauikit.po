@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-25 01:49+0000\n"
+"POT-Creation-Date: 2024-10-16 01:50+0000\n"
 "PO-Revision-Date: 2024-08-20 00:33+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -174,7 +174,7 @@ msgstr "구성 요소"
 msgid "Share"
 msgstr "공유"
 
-#: src/controls.6/private/ToastArea.qml:296
+#: src/controls.6/private/ToastArea.qml:302
 #, kde-format
 msgid "Dismiss All"
 msgstr "모두 알림 끄기"
