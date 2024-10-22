@@ -285,6 +285,13 @@ Pane
                         {
                             control.findTab()
                         }
+                        
+                        if(event.key == Qt.Key_Return)
+                        {
+                            control.closeOverview()
+                            _listView.setCurrentIndex(currentIndex)
+                            event.accepted = true
+                        }
                     }
 
     Maui.ContextualMenu
@@ -486,6 +493,8 @@ Pane
                                             event.accepted = true
                                         }
                                     }
+                                    
+                                    Keys.forwardTo: control
 
                     states: [  State
                         {
@@ -649,7 +658,9 @@ Pane
                         currentIndex: control.currentIndex
 
                         itemSize: Math.min(200, availableWidth /2)
-
+                        Keys.forwardTo: control
+                        Keys.enabled: true
+                        
                         Loader
                         {
                             asynchronous: true

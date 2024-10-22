@@ -25,7 +25,7 @@ import org.mauikit.controls as Maui
  * @inherit QtQuick.Loader
  * @since org.mauikit.controls 1.0
  *
- * @brief A companion for the AppViews control, for lazy-loading the views to not drain too much resources.
+ * @brief A companion for the MauiKit SwipeView control, for lazy-loading the views to not drain too much resources.
  *
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-loader.html">This controls inherits from QQC2 Loader, to checkout its inherited properties refer to the Qt Docs.</a>
  *

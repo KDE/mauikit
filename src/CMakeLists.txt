@@ -252,8 +252,6 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/AltBrowser.qml
     controls.${QT_MAJOR_VERSION}/AnimatedImageViewer.qml
     controls.${QT_MAJOR_VERSION}/ApplicationWindow.qml
-    controls.${QT_MAJOR_VERSION}/AppViews.qml
-    controls.${QT_MAJOR_VERSION}/AppViewLoader.qml
 
     controls.${QT_MAJOR_VERSION}/Badge.qml
 
@@ -324,7 +322,9 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/SplitView.qml
     controls.${QT_MAJOR_VERSION}/SplitViewItem.qml
     controls.${QT_MAJOR_VERSION}/SwipeBrowserDelegate.qml
-    controls.${QT_MAJOR_VERSION}/SwipeItemDelegate.qml
+    controls.${QT_MAJOR_VERSION}/SwipeItemDelegate.qml    
+    controls.${QT_MAJOR_VERSION}/SwipeView.qml
+    controls.${QT_MAJOR_VERSION}/SwipeViewLoader.qml
 
     controls.${QT_MAJOR_VERSION}/TabBar.qml
     controls.${QT_MAJOR_VERSION}/TabButton.qml

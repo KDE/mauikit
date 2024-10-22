@@ -55,7 +55,7 @@ Pane
          * While a non-compact mode means there is more than on view in the parent SplitView and the views will have rounded corners.
          * This is `true` for mobile devices and one there is a single item in the SplitView.
          */
-    readonly property bool compact : Maui.Handy.isMobile || SplitView.view.count === 1
+    readonly property bool compact : Maui.Handy.isMobile || (SplitView.view.count === 1 || SplitView.view.visibleChildren.length <= 1)
 
     /**
          * @brief Allow to close the split view item by resizing to the minimum size.
@@ -94,7 +94,7 @@ Pane
 
     contentItem: Item
     {
-        state:control.compact ? "compactBadge" : "uncompactBadge"
+        state: control.compact ? "compactBadge" : "uncompactBadge"
 
         id: _parent
         Item
@@ -187,9 +187,13 @@ Pane
                 }
             }
 
-            Maui.InfoDialog
+            Loader
             {
-                id: _dialog
+                id: _dialogLoader
+                active: control.autoClose
+                
+            sourceComponent: Maui.InfoDialog
+            {
                 message: i18n("Are you sure you want to close the split view: '%1'?", control.Maui.Controls.title)
                 template.iconSource: "dialog-warning"
                 onAccepted: control.SplitView.view.closeSplit(control.splitIndex)
@@ -200,6 +204,7 @@ Pane
                 }
 
                 standardButtons: Dialog.Ok | Dialog.Cancel
+            }
             }
         }
 
@@ -298,13 +303,13 @@ Pane
 
             if(control.SplitView.view.orientation === Qt.Horizontal && control.width === control.minimumWidth)
             {
-                _dialog.open()
+                _dialogLoader.item.open()
                 return
             }
 
             if(control.SplitView.view.orientation === Qt.Vertical && control.height === control.minimumHeight)
             {
-                _dialog.open()
+                _dialogLoader.item.open()
                 return
             }
         }
