@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-16 01:50+0000\n"
+"POT-Creation-Date: 2024-10-22 01:48+0000\n"
 "PO-Revision-Date: 2024-06-26 13:06+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -184,17 +184,17 @@ msgstr "Tümünü At"
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:325
 #, kde-format
 msgid "Close"
 msgstr "Kapat"
 
-#: src/controls.6/SplitViewItem.qml:193
+#: src/controls.6/SplitViewItem.qml:197
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Bölünmüş görünümü kapatmak istediğinizden emin misiniz: “%1”?"
 
-#: src/controls.6/TabView.qml:307
+#: src/controls.6/TabView.qml:314
 #, kde-format
 msgid "Open"
 msgstr "Aç"
