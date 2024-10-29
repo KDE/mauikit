@@ -488,8 +488,8 @@ Item
             snapMode: GridView.NoSnap
             highlightMoveDuration: 0
 
-            interactive: Maui.Handy.isTouch
-
+            interactive: Maui.Handy.hasTransientTouchInput
+            
             onWidthChanged: if(adaptContent) control.adaptGrid()
             onCountChanged: if(adaptContent) control.adaptGrid()
             
@@ -559,7 +559,8 @@ Item
                     propagateComposedEvents: true
                     preventStealing: true
                     acceptedButtons: Qt.RightButton | Qt.LeftButton
-                    
+                                            scrollGestureEnabled: false
+
                     onClicked: (mouse) =>
                     {
                         console.log("Area clicked")
