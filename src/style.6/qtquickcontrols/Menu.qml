@@ -90,6 +90,8 @@ T.Menu
 
         label1.text: control.title
         label2.text: control.Maui.Controls.subtitle
+        label1.font: Maui.Style.defaultFont
+        label2.font.pointSize: Maui.Style.fontSizes.small
         label1.elide:Text.ElideMiddle
         template.imageSource: control.icon.source
         template.iconSource: control.icon.name

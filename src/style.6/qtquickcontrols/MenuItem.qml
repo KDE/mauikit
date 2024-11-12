@@ -71,7 +71,7 @@ T.MenuItem
     {
         id: dummyShortcut
         enabled: false
-        sequence: control.action.shortcut
+        sequence: control.action ? control.action.shortcut : ""
     }
     
     indicator: CheckIndicator
