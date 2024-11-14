@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-22 01:48+0000\n"
+"POT-Creation-Date: 2024-11-14 01:51+0000\n"
 "PO-Revision-Date: 2024-06-30 19:49+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -129,7 +129,7 @@ msgid "Version ID copied to clipboard"
 msgstr "Versionsidentifikation kopierad till klippbordet"
 
 #: src/controls.6/private/AboutDialog.qml:98
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/style.6/qtquickcontrols/TextField.qml:300
 #, kde-format
 msgid "Copy"
 msgstr "Kopiera"
@@ -199,27 +199,27 @@ msgstr "Är du säker på att du vill stänga den delade vyn: \"%1\"?"
 msgid "Open"
 msgstr "Öppna"
 
-#: src/style.6/qtquickcontrols/TextField.qml:301
+#: src/style.6/qtquickcontrols/TextField.qml:307
 #, kde-format
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: src/style.6/qtquickcontrols/TextField.qml:308
+#: src/style.6/qtquickcontrols/TextField.qml:314
 #, kde-format
 msgid "Paste"
 msgstr "Klistra in"
 
-#: src/style.6/qtquickcontrols/TextField.qml:318
+#: src/style.6/qtquickcontrols/TextField.qml:324
 #, kde-format
 msgid "Select All"
 msgstr "Markera alla"
 
-#: src/style.6/qtquickcontrols/TextField.qml:325
+#: src/style.6/qtquickcontrols/TextField.qml:331
 #, kde-format
 msgid "Undo"
 msgstr "Ångra"
 
-#: src/style.6/qtquickcontrols/TextField.qml:332
+#: src/style.6/qtquickcontrols/TextField.qml:338
 #, kde-format
 msgid "Redo"
 msgstr "Gör om"
