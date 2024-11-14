@@ -289,11 +289,10 @@ AbstractButton
                         }
                     }
                 }
-            }
-            
+            }            
         }
         
-        data: Popup
+        data: Maui.Popup
         {
             id: _popup
             
