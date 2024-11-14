@@ -24,6 +24,40 @@ DemoPage
                 placeholderText: "TextField"
                 Maui.Controls.badgeText: "@"
             }
+
+            TextField
+            {
+                placeholderText: "TextField"
+                actions: [
+                Action
+                    {
+                        icon.name: "love"
+                        checkable: true
+                    },
+                    Action
+                        {
+                            icon.name: "folder"
+                            checkable: true
+                        }
+                ]
+            }
+
+            TextField
+            {
+                placeholderText: "TextField"
+                Maui.Controls.badgeText: "@"
+
+                actions: [
+                Action
+                    {
+                        icon.name: "love"
+                    },
+                    Action
+                        {
+                            icon.name: "folder"
+                        }
+                ]
+            }
         }
 
         DemoSection

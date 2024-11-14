@@ -60,7 +60,7 @@ T.TextField
     padding: 0
     property int spacing: Maui.Style.space.small
 
-    leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
+    leftPadding: Maui.Style.space.medium
     rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
 
     selectByMouse: !Maui.Handy.isMobile
@@ -158,6 +158,8 @@ T.TextField
 
         anchors.fill: parent
         anchors.leftMargin: Maui.Style.space.medium
+        anchors.rightMargin: _badgeLoader.visible ? 8 : 0
+
         spacing: control.spacing
 
         Maui.Icon
@@ -167,6 +169,7 @@ T.TextField
             implicitHeight: visible ? 16 : 0
             implicitWidth: height
             color: control.color
+            opacity: placeholder.opacity
         }
 
         Item
@@ -194,7 +197,6 @@ T.TextField
 
             visible: opacity > 0
             opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0
-
 
             Behavior on opacity
             {
@@ -238,6 +240,9 @@ T.TextField
                     focusPolicy: Qt.NoFocus
                     action: modelData
                     checkable: action.checkable
+                    topInset: 2
+                    rightInset: 2
+                    bottomInset: 2
                 }
             }
         }
@@ -245,6 +250,7 @@ T.TextField
 
     Loader
     {
+        id: _badgeLoader
         asynchronous: true
 
         active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
