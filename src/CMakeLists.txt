@@ -331,6 +331,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/TabView.qml
     controls.${QT_MAJOR_VERSION}/TabViewItem.qml
     controls.${QT_MAJOR_VERSION}/TabViewButton.qml
+    controls.${QT_MAJOR_VERSION}/TextField.qml
     controls.${QT_MAJOR_VERSION}/TextFieldPopup.qml
     controls.${QT_MAJOR_VERSION}/ToolActions.qml
     controls.${QT_MAJOR_VERSION}/ToolBar.qml

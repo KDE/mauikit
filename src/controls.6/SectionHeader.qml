@@ -56,7 +56,7 @@ Pane
     
     label1.font: Maui.Style.h2Font
     label2.wrapMode: Text.WordWrap
-    label1.color: Maui.Theme.textColor
+    label2.font.pointSize: Maui.Style.fontSizes.small
     isMask: iconSizeHint <= 22
     spacing: control.spacing
   }
