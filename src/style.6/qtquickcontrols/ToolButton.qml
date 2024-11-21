@@ -60,9 +60,9 @@ T.ToolButton
 
     icon.color: control.color
 
-    readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
+    readonly property color color : control.down || control.checked ? ( Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
 
-    flat: control.parent instanceof T.ToolBar
+    flat: true
     font: Maui.Style.defaultFont
 
     indicator: null //Control should implement the indicator, for example via DropDownIndicator
@@ -110,10 +110,10 @@ T.ToolButton
 
     background: Rectangle
     {
-        visible: !control.flat
+        // visible: !control.flat
         radius: Maui.Style.radiusV
 
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ?  control.Maui.Theme.hoverColor : (control.flat ? "transparent" : control.Maui.Theme.backgroundColor))
     }
 
     Loader

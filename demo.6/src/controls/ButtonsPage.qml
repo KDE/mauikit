@@ -170,16 +170,20 @@ Maui.ToolActions
                 Action
                 {
                     icon.name: "love"
+                    onTriggered: console.log("Action1")
                 }
 
                 Action
                 {
                     icon.name: "love"
+                    onTriggered: console.log("Action2")
+                    
                 }
 
                 Action
                 {
                     icon.name: "love"
+                    onTriggered: console.log("Action3")                    
                 }
             }
 
@@ -189,17 +193,78 @@ Maui.ToolActions
                 Action
                 {
                     icon.name: "love"
+                    text: i18n("Hidden1")                    
                 }
 
                 Action
                 {
-                    icon.name: "love"
+                    icon.name: "appointment"
+                    text: i18n("Hidden2")
                 }
 
                 Action
                 {
+                    icon.name: "folder"
+                    text: i18n("Hidden3")
+                }
+            }
+            
+            Maui.ToolActions
+            {
+                expanded: false
+                Action
+                {
+                    icon.name: "anchor"
+                    text: i18n("Hidden1")                    
+                }
+                
+                Action
+                {
+                    checked: true
+                    icon.name: "folder"
+                    text: i18n("Hidden2")
+                }
+                
+                Action
+                {
+                    icon.name: "answer"
+                    text: i18n("Hidden3")
+                }
+            }
+                                    
+            Maui.ToolActions
+            {
+                id: _toolActions
+                expanded: false
+                cyclic: true
+                autoExclusive: true
+                
+                property string currentAction : "ciclyc1"
+                Action
+                {
+                    checkable: true
+                    icon.name: "folder"
+                    text: "ciclyc1"
+                    checked: _toolActions.currentAction === text
+                    onTriggered: 
+                    {
+                        console.log("ciclyc1")
+                        _toolActions.currentAction = text
+                    }
+                }
+                
+                Action
+                {
+                    checkable: true
+                    text: "ciclyc2"
                     icon.name: "love"
-                    text: i18n("Hidden")
+                    checked: _toolActions.currentAction === text
+                    
+                    onTriggered: 
+                    {
+                        console.log("ciclyc2")
+                        _toolActions.currentAction = text
+                    }                    
                 }
             }
         }

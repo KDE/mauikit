@@ -134,7 +134,8 @@ Control
     property int display: ToolButton.TextBesideIcon
     
     /**
-     * @brief Whether two action can be triggered in a cyclic manner. So one press will activate the next action and then cycle around again.
+     * @brief Whether two actions can be triggered in a cyclic manner. So one press will activate the next action and then cycle around to the first one again.
+     * @note For this to work only two actions can be added
      * @see canCyclic
      * By default this is set to `false`
      */
@@ -194,7 +195,7 @@ Control
     {
         id: _loader
         asynchronous: true
-        sourceComponent: control.expanded ? _rowComponent : _buttonComponent
+        sourceComponent: control.expanded ? _rowComponent : (control.canCyclic ? _buttonComponent : _toolButtonMenuComponent)
     }
     
     background: null
@@ -278,9 +279,78 @@ Control
     
     Component
     {
+        id: _toolButtonMenuComponent
+        
+        Maui.ToolButtonMenu
+        {
+            flat: false
+        property Action m_action
+                hoverEnabled: true
+                display: control.display
+        icon.name: m_action ? m_action.icon.name : control.defaultIconName
+        text: m_action ? m_action.text: ""
+        
+        Component.onCompleted:
+        {
+            m_action = buttonAction()
+        }
+        
+        Repeater
+        {
+            model: control.autoExclusive && control.canCyclic ? undefined : control.actions
+            
+            delegate: MenuItem
+            {
+                action: modelData
+                enabled: modelData.enabled
+                autoExclusive: control.autoExclusive
+                checkable: control.checkable || action.checkable
+            }
+        }
+        
+        Row
+        {
+            visible: false
+            Repeater
+            {
+                model: control.actions
+                delegate: Item
+                {
+                    property bool checked : modelData.checked
+                    onCheckedChanged: m_action = buttonAction()
+                }
+            }
+        }
+        
+        function buttonAction()
+        {
+            if(control.autoExclusive)
+            {
+                var currentAction
+                var actionIndex = -1
+                for(var i in control.actions)
+                {
+                    console.log("Checking current action", i)
+                    if(control.actions[i].checked)
+                    {
+                        actionIndex = i
+                        currentAction = control.actions[actionIndex]
+                        console.log("Found current action", i, actionIndex)
+                        return currentAction
+                    }
+                }
+            }
+            
+            return null
+        }
+        }
+    }
+    
+    Component
+    {
         id: _buttonComponent
         
-        ToolButton
+        Button
         {
             id: _defaultButtonIcon
             
@@ -335,56 +405,19 @@ Control
                     }
                 }
             }
-
-            indicator: Private.DropDownIndicator
-            {
-                item: _defaultButtonIcon
-                visible: !control.canCyclic
-            }
-            
-            data: Maui.ContextualMenu
-            {
-                id: _menu
-                
-                Repeater
-                {
-                    model: control.autoExclusive && control.canCyclic ? undefined : control.actions
-                    
-                    delegate: MenuItem
-                    {
-                        action: modelData
-                        enabled: modelData.enabled
-                        autoExclusive: control.autoExclusive
-                        checkable: control.checkable || action.checkable
-                    }
-                }
-            }
             
             onClicked:
             {
-                if(_defaultButtonIcon.m_action && control.canCyclic && control.autoExclusive)
+                if(_defaultButtonIcon.m_action && control.canCyclic)
                 {
                     console.log("Trigger next cyclic action", _defaultButtonIcon.m_action.icon.name)
                     // var previousAction = _defaultButtonIcon.action
                     _defaultButtonIcon.m_action.triggered()
-                    _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
-                    
-                }else
-                {
-                    if(!_menu.visible)
-                    {
-                        _menu.show(0, control.height, control)
-                        
-                    }else
-                    {
-                        _menu.close()
-                    }
+                    _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()                    
                 }
             }
             
-            icon.width:  Maui.Style.iconSize
-            icon.height: Maui.Style.iconSize
-            icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : (pressed ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
+            icon.color:  m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : (pressed || checked ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
             
             icon.name: m_action ? m_action.icon.name : control.defaultIconName
             text: m_action ? m_action.text: ""
@@ -399,17 +432,6 @@ Control
             display: control.display
             
             checkable: control.checkable && (action ? action.checkable : false)
-            
-            background: Rectangle
-            {
-                color: Maui.Theme.backgroundColor
-                radius: Maui.Style.radiusV
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
-            }
         }
     }
 }

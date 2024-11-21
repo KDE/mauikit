@@ -157,11 +157,13 @@ T.Button
         if(control.Maui.Controls.status)
         {
             switch(control.Maui.Controls.status)
-            {
-            case Maui.Controls.Normal: return defaultColor(control.Maui.Theme.backgroundColor)
+            {                
             case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
             case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
             case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+            case Maui.Controls.Normal: 
+            default:
+            return defaultColor(control.Maui.Theme.backgroundColor)
             }
         }
 

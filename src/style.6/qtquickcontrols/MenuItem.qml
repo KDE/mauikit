@@ -117,7 +117,7 @@ T.MenuItem
         
         Loader
         {
-            active: control.action && control.action.shortcut && Maui.Handy.hasKeyboard
+            active: control.action ? (control.action.shortcut !== undefined && Maui.Handy.hasKeyboard) : false
             asynchronous: true
             visible: active
             
