@@ -99,8 +99,8 @@ ScrollView
         {
             id: _flickable
 
-            interactive: Maui.Handy.isMobile
-            
+            interactive: Maui.Handy.hasTransientTouchInput
+
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
             

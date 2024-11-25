@@ -65,7 +65,6 @@ QC.TextField
              */
     signal cleared()
 
-
     /**
              * contentDropped :
              */

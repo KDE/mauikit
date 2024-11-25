@@ -65,8 +65,6 @@ T.TextField
 
     wrapMode: TextInput.NoWrap
 
-
-
     background: Rectangle
     {
         implicitHeight: Maui.Style.iconSize

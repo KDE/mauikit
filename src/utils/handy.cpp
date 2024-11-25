@@ -45,41 +45,41 @@
 Q_GLOBAL_STATIC(Handy, handyInstance)
 
 Handy::Handy(QObject *parent)
-: QObject(parent)
-,m_formFactor(new MauiMan::FormFactorManager(this))
-,m_accessibility(new MauiMan::AccessibilityManager(this))
-,m_hasTransientTouchInput(false)
+    : QObject(parent)
+    ,m_formFactor(new MauiMan::FormFactorManager(this))
+    ,m_accessibility(new MauiMan::AccessibilityManager(this))
+    ,m_hasTransientTouchInput(false)
 {
     qDebug() << "CREATING INSTANCE OF MAUI HANDY";
     
     connect(m_accessibility, &MauiMan::AccessibilityManager::singleClickChanged, [&](bool value)
-    {
-        m_singleClick = value;
-        Q_EMIT singleClickChanged();
-    });
+            {
+                m_singleClick = value;
+                Q_EMIT singleClickChanged();
+            });
     
     m_singleClick = m_accessibility->singleClick();
     
     // #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
     
     connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
-    {
-        m_ffactor = static_cast<FFactor>(value);
-        m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
-        Q_EMIT formFactorChanged();
-        Q_EMIT isMobileChanged();
-    });
+            {
+                m_ffactor = static_cast<FFactor>(value);
+                m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+                Q_EMIT formFactorChanged();
+                Q_EMIT isMobileChanged();
+            });
     
     connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
-    {
-        m_isTouch = value || m_formFactor->forceTouchScreen();
-        Q_EMIT isTouchChanged();
-    });
+            {
+                m_isTouch = value || m_formFactor->forceTouchScreen();
+                Q_EMIT isTouchChanged();
+            });
     
     connect(m_formFactor, &MauiMan::FormFactorManager::hasKeyboardChanged, [this](bool value)
-    {
-        Q_EMIT hasKeyboardChanged();
-    });
+            {
+                Q_EMIT hasKeyboardChanged();
+            });
     
     
     m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
@@ -90,34 +90,34 @@ Handy::Handy(QObject *parent)
     }
     else
     {
-        #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
         m_mobile = true;
-        #else
-        // Mostly for debug purposes and for platforms which are always mobile,
+#else
+      // Mostly for debug purposes and for platforms which are always mobile,
         // such as Plasma Mobile
         if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
             m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
         } else {
             m_mobile = false;
         }    
-        #endif
+#endif
     }
-    
-    #ifdef Q_OS_ANDROID
+
+#ifdef Q_OS_ANDROID
     m_isTouch = true;
-    #else
+#else
     m_isTouch = m_formFactor->hasTouchscreen() || m_formFactor->forceTouchScreen();
-    #endif
+#endif
     
     if (m_isTouch)
     {
         connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win)
-        {
-            if (win)
-            {
-                win->installEventFilter(this);
-            }
-        });
+                {
+                    if (win)
+                    {
+                        win->installEventFilter(this);
+                    }
+                });
     }
     qDebug() << "DONE CREATING INSTANCE OF MAUI HANDY";
 }
@@ -157,22 +157,22 @@ bool Handy::eventFilter(QObject *watched, QEvent *event)
     Q_UNUSED(watched)
     switch (event->type())
     {
-        case QEvent::TouchBegin:
-            setTransientTouchInput(true);
-            break;
-        case QEvent::MouseButtonPress:
-        case QEvent::MouseMove: {
-            QMouseEvent *me = static_cast<QMouseEvent *>(event);
-            if (me->source() == Qt::MouseEventNotSynthesized)
-            {
-                setTransientTouchInput(false);
-            }
-            break;
-        }
-        case QEvent::Wheel:
+    case QEvent::TouchBegin:
+        setTransientTouchInput(true);
+        break;
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseMove: {
+        QMouseEvent *me = static_cast<QMouseEvent *>(event);
+        if (me->source() == Qt::MouseEventNotSynthesized)
+        {
             setTransientTouchInput(false);
-        default:
-            break;
+        }
+        break;
+    }
+    case QEvent::Wheel:
+        setTransientTouchInput(false);
+    default:
+        break;
     }
     
     return false;
@@ -207,11 +207,11 @@ QVariantMap Handy::userInfo()
 
 QString Handy::getClipboardText()
 {
-    #ifdef Q_OS_ANDROID
+#ifdef Q_OS_ANDROID
     auto clipboard = QGuiApplication::clipboard();
-    #else
+#else
     auto clipboard = QApplication::clipboard();
-    #endif
+#endif
     
     auto mime = clipboard->mimeData();
     if (mime->hasText())
@@ -223,7 +223,7 @@ QString Handy::getClipboardText()
 QVariantMap Handy::getClipboard()
 {
     QVariantMap res;
-    #ifdef Q_OS_ANDROID
+#ifdef Q_OS_ANDROID
     if (_clipboard.hasUrls())
         res.insert("urls", QUrl::toStringList(_clipboard.urls));
     
@@ -231,7 +231,7 @@ QVariantMap Handy::getClipboard()
         res.insert("text", _clipboard.text);
     
     res.insert("cut", _clipboard.cut);
-    #else
+#else
     auto clipboard = QApplication::clipboard();
     
     auto mime = clipboard->mimeData();
@@ -251,13 +251,13 @@ QVariantMap Handy::getClipboard()
     const QByteArray a = mime->data(QStringLiteral("application/x-kde-cutselection"));
     
     res.insert("cut", !a.isEmpty() && a.at(0) == '1');
-    #endif
+#endif
     return res;
 }
 
 bool Handy::copyToClipboard(const QVariantMap &value, const bool &cut)
 {
-    #ifdef Q_OS_ANDROID
+#ifdef Q_OS_ANDROID
     if (value.contains("urls"))
         _clipboard.urls = QUrl::fromStringList(value["urls"].toStringList());
     
@@ -267,7 +267,7 @@ bool Handy::copyToClipboard(const QVariantMap &value, const bool &cut)
     _clipboard.cut = cut;
     
     return true;
-    #else
+#else
     auto clipboard = QApplication::clipboard();
     QMimeData *mimeData = new QMimeData();
     
@@ -281,18 +281,18 @@ bool Handy::copyToClipboard(const QVariantMap &value, const bool &cut)
     clipboard->setMimeData(mimeData);
     
     return true;
-    #endif
+#endif
     
     return false;
 }
 
 bool Handy::copyTextToClipboard(const QString &text)
 {
-    #ifdef Q_OS_ANDROID
+#ifdef Q_OS_ANDROID
     Handy::copyToClipboard({{"text", text}});
-    #else
+#else
     QApplication::clipboard()->setText(text);
-    #endif
+#endif
     return true;
 }
 
