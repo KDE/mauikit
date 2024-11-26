@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-18 01:56+0000\n"
+"POT-Creation-Date: 2024-11-26 01:50+0000\n"
 "PO-Revision-Date: 2024-02-11 02:27+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -129,7 +129,7 @@ msgstr "გამოსახულების ჩატვირთვა შ�
 msgid "Version ID copied to clipboard"
 msgstr "ვერსიის ID დაკოპირდა ბუფერში"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:379
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:378
 #, kde-format
 msgid "Copy"
 msgstr "კოპირება"
@@ -200,27 +200,27 @@ msgstr ""
 msgid "Open"
 msgstr "გახსნა"
 
-#: src/controls.6/TextField.qml:386
+#: src/controls.6/TextField.qml:385
 #, kde-format
 msgid "Cut"
 msgstr "ამოჭრა"
 
-#: src/controls.6/TextField.qml:393
+#: src/controls.6/TextField.qml:392
 #, kde-format
 msgid "Paste"
 msgstr "ჩასმა"
 
-#: src/controls.6/TextField.qml:403
+#: src/controls.6/TextField.qml:402
 #, kde-format
 msgid "Select All"
 msgstr "ყველას მონიშვნა"
 
-#: src/controls.6/TextField.qml:410
+#: src/controls.6/TextField.qml:409
 #, kde-format
 msgid "Undo"
 msgstr "ბრძანების გაუქმება"
 
-#: src/controls.6/TextField.qml:417
+#: src/controls.6/TextField.qml:416
 #, kde-format
 msgid "Redo"
 msgstr "თავიდან"
