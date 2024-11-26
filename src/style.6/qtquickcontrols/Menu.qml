@@ -49,7 +49,7 @@ T.Menu
 
     readonly property bool responsive: Maui.Handy.isMobile
 
-    readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
+    readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.width, parent.Window.height) : Qt.size(0,0)
 
     transformOrigin: !cascade ? Item.Top : (mirrored ? Item.TopRight : Item.TopLeft)
 
@@ -58,9 +58,9 @@ T.Menu
 
     // anchors.centerIn: responsive ? T.Overlay.overlay : undefined
     y: finalY
-    x: control.responsive ? Math.round(T.Overlay.overlay.width/2 - control.width/2) : 0
+    x: control.responsive ? Math.round(parent.Window.width/2 - control.width/2) : 0
 
-    implicitWidth: Math.min(T.Overlay.overlay.width, preferredWidth)
+    implicitWidth: Math.min(parent.Window.width, preferredWidth)
 
     implicitHeight: Math.min(contentHeight + topPadding + bottomPadding, (control.responsive ? parentWindow.height *0.7 : parentWindow.height))
 
@@ -216,7 +216,7 @@ T.Menu
     Loader
     {
         id: _headerLoader
-        width: ListView.view.width
+        width: ListView.view ? ListView.view.width : 0
         asynchronous: true
         active: control.Maui.Controls.component || (control.title.length > 0)
         sourceComponent: control.Maui.Controls.component || headerItem

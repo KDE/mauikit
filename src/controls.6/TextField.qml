@@ -116,8 +116,6 @@ QC.TextField
 
     wrapMode: TextInput.NoWrap
 
-    onAccepted: control.accepted()
-
     onPressAndHold: (event) =>
                     {
                         if(Maui.Handy.isMobile)
