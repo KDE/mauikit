@@ -114,6 +114,11 @@ T.ToolButton
         radius: Maui.Style.radiusV
 
         color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ?  control.Maui.Theme.hoverColor : (control.flat ? "transparent" : control.Maui.Theme.backgroundColor))
+
+        Behavior on color
+        {
+            Maui.ColorTransition{}
+        }
     }
 
     Loader
