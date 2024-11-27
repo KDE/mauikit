@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-26 01:50+0000\n"
+"POT-Creation-Date: 2024-11-27 01:51+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -130,7 +130,7 @@ msgstr "无法加载此图像。"
 msgid "Version ID copied to clipboard"
 msgstr "版本 ID 已复制到剪贴板"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:378
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
 #, kde-format
 msgid "Copy"
 msgstr "复制"
@@ -200,27 +200,27 @@ msgstr ""
 msgid "Open"
 msgstr "打开"
 
-#: src/controls.6/TextField.qml:385
+#: src/controls.6/TextField.qml:383
 #, kde-format
 msgid "Cut"
 msgstr "剪切"
 
-#: src/controls.6/TextField.qml:392
+#: src/controls.6/TextField.qml:390
 #, kde-format
 msgid "Paste"
 msgstr "粘贴"
 
-#: src/controls.6/TextField.qml:402
+#: src/controls.6/TextField.qml:400
 #, kde-format
 msgid "Select All"
 msgstr "选择全部"
 
-#: src/controls.6/TextField.qml:409
+#: src/controls.6/TextField.qml:407
 #, kde-format
 msgid "Undo"
 msgstr "撤销"
 
-#: src/controls.6/TextField.qml:416
+#: src/controls.6/TextField.qml:414
 #, kde-format
 msgid "Redo"
 msgstr "重做"

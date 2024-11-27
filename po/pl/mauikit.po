@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-26 01:50+0000\n"
+"POT-Creation-Date: 2024-11-27 01:51+0000\n"
 "PO-Revision-Date: 2024-07-21 13:19+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -129,7 +129,7 @@ msgstr "Nie można wczytać obrazu."
 msgid "Version ID copied to clipboard"
 msgstr "Skopiowano ID wersji do schowka"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:378
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
 #, kde-format
 msgid "Copy"
 msgstr "Skopiuj"
@@ -199,27 +199,27 @@ msgstr "Czy na pewno zamknąć podzielony widok: '%1'?"
 msgid "Open"
 msgstr "Otwórz"
 
-#: src/controls.6/TextField.qml:385
+#: src/controls.6/TextField.qml:383
 #, kde-format
 msgid "Cut"
 msgstr "Wytnij"
 
-#: src/controls.6/TextField.qml:392
+#: src/controls.6/TextField.qml:390
 #, kde-format
 msgid "Paste"
 msgstr "Wklej"
 
-#: src/controls.6/TextField.qml:402
+#: src/controls.6/TextField.qml:400
 #, kde-format
 msgid "Select All"
 msgstr "Zaznacz wszystko"
 
-#: src/controls.6/TextField.qml:409
+#: src/controls.6/TextField.qml:407
 #, kde-format
 msgid "Undo"
 msgstr "Cofnij"
 
-#: src/controls.6/TextField.qml:416
+#: src/controls.6/TextField.qml:414
 #, kde-format
 msgid "Redo"
 msgstr "Przywróć"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-26 01:50+0000\n"
+"POT-Creation-Date: 2024-11-27 01:51+0000\n"
 "PO-Revision-Date: 2024-08-20 00:33+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -128,7 +128,7 @@ msgstr "그림을 불러올 수 없습니다."
 msgid "Version ID copied to clipboard"
 msgstr "클립보드에 버전 ID 복사됨"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:378
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
 #, kde-format
 msgid "Copy"
 msgstr "복사"
@@ -198,27 +198,27 @@ msgstr "분할 보기를 닫으시겠습니까: '%1'?"
 msgid "Open"
 msgstr "열기"
 
-#: src/controls.6/TextField.qml:385
+#: src/controls.6/TextField.qml:383
 #, kde-format
 msgid "Cut"
 msgstr "잘라내기"
 
-#: src/controls.6/TextField.qml:392
+#: src/controls.6/TextField.qml:390
 #, kde-format
 msgid "Paste"
 msgstr "붙여넣기"
 
-#: src/controls.6/TextField.qml:402
+#: src/controls.6/TextField.qml:400
 #, kde-format
 msgid "Select All"
 msgstr "모두 선택"
 
-#: src/controls.6/TextField.qml:409
+#: src/controls.6/TextField.qml:407
 #, kde-format
 msgid "Undo"
 msgstr "실행 취소"
 
-#: src/controls.6/TextField.qml:416
+#: src/controls.6/TextField.qml:414
 #, kde-format
 msgid "Redo"
 msgstr "다시 실행"
