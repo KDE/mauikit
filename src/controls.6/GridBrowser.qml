@@ -268,19 +268,13 @@ Item
      * - ScrollBar.AlwaysOn
      * - ScrollBar.AsNeeded
      */
-    property int verticalScrollBarPolicy:
-    {
-        if(control.orientation === GridView.Horizontal)
-            return ScrollBar.AlwaysOff
-            
-            switch(Maui.Style.scrollBarPolicy)
-            {
-                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
-                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
-                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
-                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
-            }
-    }
+    property int verticalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
+                {
+                    case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+                    case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+                    case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+                    case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+                }    
     
     /**
      * @brief The policy of the horizontal scroll bar from the scroll view.

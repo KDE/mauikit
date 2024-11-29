@@ -381,7 +381,7 @@ Pane
                 }
             }
 
-            headBar.middleContent: TextField
+            headBar.middleContent: Maui.TextField
             {
                 id: _quickSearchField
                 Layout.fillWidth: true
@@ -816,7 +816,7 @@ Pane
          * @brief Adds a new tab view element, the passed element must be a component which will be created by the function and then added to the container
          * @param component a Component element hosting the actual element to be created.
          * @param properties set of values that can be passed as a map of properties to be assigned to the component when created
-         * @param quiet optionally you can choose to create the tab quietly or not: by quietly it means that the tab-component will be instantiated and created but will not be focused right away. If quiet is set to `false` - to which it defaults - then after the creation of the component the new tab will get focused.
+         * @param quiet optionally you can choose to create the tab quietly or not: by quietly it means that the tab-component will be instantiated and created but will not be focused right away. If quiet is set to `false` - to which it defaults to - then after the creation of the component the new tab will get focused.
          */
     function addTab(component, properties, quiet = false) : Item
     {
