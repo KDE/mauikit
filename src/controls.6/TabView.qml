@@ -240,7 +240,6 @@ Pane
             id: _tabButton
             tabView: control
             closeButtonVisible: !control.mobile
-
             onClicked:
             {
                 if(_tabButton.mindex === control.currentIndex && control.count > 1)

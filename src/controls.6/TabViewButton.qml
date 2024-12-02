@@ -53,6 +53,7 @@ Maui.TabButton
     icon.name: tabInfo.iconName
 
     Maui.Controls.badgeText: tabInfo.badgeText
+    Maui.Controls.status: tabInfo.status    
 
     ToolTip.delay: 1000
     ToolTip.timeout: 5000
