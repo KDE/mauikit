@@ -140,6 +140,30 @@ DemoPage
                 text: "Mini"
             }
 
+            ToolButton
+            {
+                icon.name: "love"
+                display: ToolButton.TextUnderIcon
+                text: "Mini"
+                Maui.Controls.status: Maui.Controls.Negative
+            }
+            
+            ToolButton
+            {
+                icon.name: "love"
+                display: ToolButton.TextUnderIcon
+                text: "Mini"
+                Maui.Controls.status: Maui.Controls.Positive
+            }
+            
+            ToolButton
+            {
+                icon.name: "love"
+                display: ToolButton.TextUnderIcon
+                text: "Mini"
+                Maui.Controls.status: Maui.Controls.Neutral
+            }
+            
         }
 
 
@@ -231,6 +255,82 @@ Maui.ToolActions
                     text: i18n("Hidden3")
                 }
             }
+            
+            Maui.ToolActions
+            {
+                expanded: false
+                Maui.Controls.status: Maui.Controls.Positive
+                Action
+                {
+                    icon.name: "anchor"
+                    text: i18n("Hidden1")                    
+                }
+                
+                Action
+                {
+                    checked: true
+                    icon.name: "folder"
+                    text: i18n("Hidden2")
+                }
+                
+                Action
+                {
+                    icon.name: "answer"
+                    text: i18n("Hidden3")
+                }
+            }
+            
+            Maui.ToolActions
+            {
+                expanded: false
+                Maui.Controls.status: Maui.Controls.Neutral
+                Action
+                {
+                    icon.name: "anchor"
+                    text: i18n("Hidden1")                    
+                }
+                
+                Action
+                {
+                    checked: true
+                    icon.name: "folder"
+                    text: i18n("Hidden2")
+                }
+                
+                Action
+                {
+                    icon.name: "answer"
+                    text: i18n("Hidden3")
+                }
+            }
+            
+            Maui.ToolActions
+            {
+                id: _toolActions2
+                
+                expanded: true
+                Maui.Controls.status: Maui.Controls.Negative
+                Action
+                {
+                    icon.name: "anchor"
+                    text: i18n("Hidden1")                    
+                }
+                
+                Action
+                {
+                    checked: true
+                    icon.name: "folder"
+                    text: i18n("Hidden2")
+                }
+                
+                Action
+                {
+                    icon.name: "answer"
+                    text: i18n("Hidden3")
+                    onTriggered: _toolActions2.expanded = !_toolActions2.expanded
+                }
+            }
+            
                                     
             Maui.ToolActions
             {
@@ -307,6 +407,30 @@ Maui.ToolButtonMenu
                     text: "test"
                 }
             }
+            
+            Maui.ToolButtonMenu
+            {
+                icon.name: "overflow-menu"
+                Maui.Controls.status: Maui.Controls.Negative
+                
+                MenuItem
+                {
+                    icon.name: "love"
+                    text: "Menu 1"
+                }
+                
+                MenuItem
+                {
+                    icon.name: "love"
+                    text: "Menu 2"
+                }
+                
+                MenuItem
+                {
+                    icon.name: "love"
+                    text: "Menu 3"
+                }
+            }
         }
 
         DemoSection
@@ -317,6 +441,30 @@ Maui.ToolButtonMenu
             {
                 from: 0
                 to: 10
+            }
+            
+            SpinBox
+            {
+                from: 0
+                to: 10
+                
+                Maui.Controls.status: Maui.Controls.Negative
+            }
+            
+            SpinBox
+            {
+                from: 0
+                to: 10
+                
+                Maui.Controls.status: Maui.Controls.Positive
+            }
+            
+            SpinBox
+            {
+                from: 0
+                to: 10
+                
+                Maui.Controls.status: Maui.Controls.Neutral
             }
         }
 
@@ -403,6 +551,19 @@ Maui.Chip
             Switch
             {
                 checked: true
+                Maui.Controls.status: Maui.Controls.Negative
+            }
+            
+            Switch
+            {
+                checked: true
+                Maui.Controls.status: Maui.Controls.Positive
+            }
+            
+            Switch
+            {
+                checked: true
+                Maui.Controls.status: Maui.Controls.Neutral
             }
         }
 
@@ -413,6 +574,7 @@ Maui.Chip
 
             CheckBox
             {
+                 icon.name: "love"
                 text: "CheckBox"
             }
 
@@ -427,6 +589,39 @@ Maui.Chip
                 icon.name: "anchor"
                 text: "CheckBox"
             }
+            
+            CheckBox
+            {
+                autoExclusive: false
+                text: "CheckBox"
+            }
+            
+            
+            CheckBox
+            {
+                autoExclusive: false
+            }
+            
+            CheckBox
+            {
+                icon.name: "anchor"
+                text: "CheckBox"
+                 Maui.Controls.status: Maui.Controls.Negative
+            }
+            
+            CheckBox
+            {
+                icon.name: "anchor"
+                text: "CheckBox"
+                Maui.Controls.status: Maui.Controls.Positive
+            }
+            
+            CheckBox
+            {
+                icon.name: "anchor"
+                text: "CheckBox"
+                Maui.Controls.status: Maui.Controls.Neutral
+            }
         }
 
 
@@ -438,6 +633,31 @@ Maui.Chip
             RadioButton
             {
                 text: "RadioButton"
+            }
+            
+            RadioButton
+            {
+                text: "RadioButton"
+                checked: true
+                icon.name: "love"
+            }
+            
+            RadioButton
+            {
+                text: "RadioButton"
+                 Maui.Controls.status: Maui.Controls.Positive
+            }
+            
+            RadioButton
+            {
+                text: "RadioButton"
+                Maui.Controls.status: Maui.Controls.Negative
+            }
+            
+            RadioButton
+            {
+                text: "RadioButton"
+                Maui.Controls.status: Maui.Controls.Neutral
             }
         }
 

@@ -338,6 +338,7 @@ Maui.ItemDelegate
             {
                 value: control.checked
                 restoreMode: Binding.RestoreBinding
+                delayed: true
             }
 
              onToggled:

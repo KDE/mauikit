@@ -372,7 +372,7 @@ Maui.Popup
                 Layout.fillWidth: true
                 Layout.margins: Maui.Style.contentMargins
                 
-                property bool isWide : control.width > Maui.Style.units.gridUnit*10
+                property bool isWide : control.width > 150 * 3
                 
                 visible: control.actions.length
                 

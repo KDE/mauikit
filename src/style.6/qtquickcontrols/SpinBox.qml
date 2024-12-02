@@ -105,21 +105,21 @@ T.SpinBox
             onPressed: (mouse) => mouse.accepted = false;
             onExited: wheelDelta = 0
             onWheel: (wheel) =>
-            {
-                wheelDelta += wheel.angleDelta.y;
-                // magic number 120 for common "one click"
-                // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
-                while (wheelDelta >= 120) {
-                    wheelDelta -= 120;
-                    control.increase();
-                    control.valueModified();
-                }
-                while (wheelDelta <= -120) {
-                    wheelDelta += 120;
-                    control.decrease();
-                    control.valueModified();
-                }
-            }
+                     {
+                         wheelDelta += wheel.angleDelta.y;
+                         // magic number 120 for common "one click"
+                         // See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
+                         while (wheelDelta >= 120) {
+                             wheelDelta -= 120;
+                             control.increase();
+                             control.valueModified();
+                         }
+                         while (wheelDelta <= -120) {
+                             wheelDelta += 120;
+                             control.decrease();
+                             control.valueModified();
+                         }
+                     }
             cursorShape: Qt.IBeamCursor
         }
     }
@@ -132,7 +132,7 @@ T.SpinBox
         
         Maui.Icon
         {
-            source: "list-add"
+            source: "value-increase-symbolic"
             anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
@@ -148,7 +148,7 @@ T.SpinBox
         
         Maui.Icon
         {
-            source: "list-remove"
+            source: "value-decrease-symbolic"
             anchors.centerIn: parent
             width: Maui.Style.iconSizes.small
             height: width
@@ -166,10 +166,35 @@ T.SpinBox
         radius: Maui.Style.radiusV
         
         color: control.hovered ? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
-        
+
         Behavior on color
         {
             Maui.ColorTransition{}
+        }
+
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+
+        border.color: statusColor(control)
+
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                case Maui.Controls.Normal:
+                default:
+                    return "transparent"
+                }
+            }
+
+            return "transparent"
         }
     }
 }

@@ -89,6 +89,75 @@ DemoPage
                     color: "magenta"
                 }
             }
+            
+            Maui.PopupPage
+            {
+                id: _popupPagActions
+                hint: 1
+                
+                title: i18n("Title")
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                actions: [
+                    
+                    Action
+                    {
+                        icon.name: "anchor"
+                        text: i18n("Expand")      
+                        onTriggered: _popupPagActions.maxWidth = 700
+                    },
+                    
+                    Action
+                    {
+                        icon.name: "folder"
+                        text: i18n("Shrink")
+                        onTriggered: _popupPagActions.maxWidth = 300
+                        
+                    },
+                    
+                    Action
+                    {
+                        icon.name: "answer"
+                        text: i18n("Action3")
+                    },                    
+                    
+                    Action
+                    {
+                        Maui.Controls.status: Maui.Controls.Negative
+                        icon.name: "answer"
+                        text: i18n("Action4")
+                    }
+                    
+                    
+                ]
+            }
 
             Button
             {
@@ -96,6 +165,12 @@ DemoPage
                 onClicked: _popupPage.open()
             }
 
+            
+            Button
+            {
+                text: i18n("Popup Actions")
+                onClicked: _popupPagActions.open()
+            }
         }
 
         DemoSection

@@ -191,11 +191,20 @@ Control
         }
     }
     
+    Behavior on implicitWidth
+    {
+        NumberAnimation
+        {
+            duration: Maui.Style.units.shortDuration
+            easing.type: Easing.InQuad
+        }
+    }   
+    
     contentItem: Loader
     {
         id: _loader
         asynchronous: true
-        sourceComponent: control.expanded ? _rowComponent : (control.canCyclic ? _buttonComponent : _toolButtonMenuComponent)
+        sourceComponent: control.expanded ? _rowComponent : (control.canCyclic ? _buttonComponent : _toolButtonMenuComponent)        
     }
     
     background: null
@@ -245,6 +254,8 @@ Control
                 {
                     id: _actionButton
                     action : modelData
+                    Maui.Controls.status: control.Maui.Controls.status
+                    
                     checkable: control.checkable || action.checkable
                     
                     height: Math.max(implicitHeight, _row.biggerHeight)
@@ -271,6 +282,31 @@ Control
                         {
                             Maui.ColorTransition{}
                         }
+                        
+                        Behavior on border.color
+                        {
+                            Maui.ColorTransition{}
+                        }
+                        
+                        border.color: statusColor(_actionButton)
+                        
+                        function statusColor(control)
+                        {
+                            if(control.Maui.Controls.status)
+                            {
+                                switch(control.Maui.Controls.status)
+                                {
+                                    case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                                    case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                                    case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                                    case Maui.Controls.Normal:
+                                    default:
+                                        return "red"
+                                }
+                            }
+                            
+                            return "red"
+                        }
                     }
                 }
             }
@@ -283,66 +319,67 @@ Control
         
         Maui.ToolButtonMenu
         {
+            Maui.Controls.status: control.Maui.Controls.status
             flat: false
-        property Action m_action
-                hoverEnabled: true
-                display: control.display
-        icon.name: m_action ? m_action.icon.name : control.defaultIconName
-        text: m_action ? m_action.text: ""
-        
-        Component.onCompleted:
-        {
-            m_action = buttonAction()
-        }
-        
-        Repeater
-        {
-            model: control.autoExclusive && control.canCyclic ? undefined : control.actions
+            property Action m_action
+            hoverEnabled: true
+            display: control.display
+            icon.name: m_action ? m_action.icon.name : control.defaultIconName
+            text: m_action ? m_action.text: ""
             
-            delegate: MenuItem
+            Component.onCompleted:
             {
-                action: modelData
-                enabled: modelData.enabled
-                autoExclusive: control.autoExclusive
-                checkable: control.checkable || action.checkable
+                m_action = buttonAction()
             }
-        }
-        
-        Row
-        {
-            visible: false
+            
             Repeater
             {
-                model: control.actions
-                delegate: Item
+                model: control.autoExclusive && control.canCyclic ? undefined : control.actions
+                
+                delegate: MenuItem
                 {
-                    property bool checked : modelData.checked
-                    onCheckedChanged: m_action = buttonAction()
+                    action: modelData
+                    enabled: modelData.enabled
+                    autoExclusive: control.autoExclusive
+                    checkable: control.checkable || action.checkable
                 }
             }
-        }
-        
-        function buttonAction()
-        {
-            if(control.autoExclusive)
+            
+            Row
             {
-                var currentAction
-                var actionIndex = -1
-                for(var i in control.actions)
+                visible: false
+                Repeater
                 {
-                    console.log("Checking current action", i)
-                    if(control.actions[i].checked)
+                    model: control.actions
+                    delegate: Item
                     {
-                        actionIndex = i
-                        currentAction = control.actions[actionIndex]
-                        console.log("Found current action", i, actionIndex)
-                        return currentAction
+                        property bool checked : modelData.checked
+                        onCheckedChanged: m_action = buttonAction()
                     }
                 }
             }
             
-            return null
-        }
+            function buttonAction()
+            {
+                if(control.autoExclusive)
+                {
+                    var currentAction
+                    var actionIndex = -1
+                    for(var i in control.actions)
+                    {
+                        console.log("Checking current action", i)
+                        if(control.actions[i].checked)
+                        {
+                            actionIndex = i
+                            currentAction = control.actions[actionIndex]
+                            console.log("Found current action", i, actionIndex)
+                            return currentAction
+                        }
+                    }
+                }
+                
+                return null
+            }
         }
     }
     
@@ -353,9 +390,10 @@ Control
         Button
         {
             id: _defaultButtonIcon
+            Maui.Controls.status: control.Maui.Controls.status
             
             property Action m_action
-                       
+            
             function buttonAction()
             {
                 if(control.autoExclusive)
@@ -423,7 +461,7 @@ Control
             text: m_action ? m_action.text: ""
             
             enabled: m_action ? m_action.enabled : true
-
+            
             Component.onCompleted:
             {
                 _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()

@@ -55,6 +55,12 @@ T.Pane
     background: Rectangle
     {
         color: control.Maui.Controls.level && control.Maui.Controls.level === Maui.Controls.Secondary ? control.Maui.Theme.alternateBackgroundColor: control.Maui.Theme.backgroundColor
+        
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+        
         border.color: switch(control.Maui.Controls.status)
         {
                                   case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
@@ -62,7 +68,6 @@ T.Pane
                                   case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
                                   default: return "transparent"
                               }
-        border.width: control.Maui.Controls.status ? 2 : 0
         Behavior on color
         {
             Maui.ColorTransition{}

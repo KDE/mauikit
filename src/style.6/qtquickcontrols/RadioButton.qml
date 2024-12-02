@@ -37,33 +37,64 @@ T.RadioButton
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: 0
+    padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
     
     hoverEnabled: true
-
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
+    
+    icon.color: Maui.Theme.textColor
     indicator: RadioIndicator
     {
-        LayoutMirroring.enabled: control.mirrored
-        LayoutMirroring.childrenInherit: true
-        anchors {
-            left: parent.left
-            verticalCenter: parent.verticalCenter
-        }
+        x: control.text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
+        y: control.topPadding + (control.availableHeight - height) / 2
         control: m_control
     }
 
-    contentItem: Label
+    contentItem: Maui.IconLabel
     {
         leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
         rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
         opacity: control.enabled ? 1 : 0.6
         text: control.text
         font: control.font
-        color: Maui.Theme.textColor
-        elide: Text.ElideRight
+        icon: control.icon
+      
+        color: control.icon.color
+        // elide: Text.ElideRight
         visible: control.text
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
+        // horizontalAlignment: Text.AlignLeft
+        // verticalAlignment: Text.AlignVCenter
+    }
+    
+    background: Rectangle
+    {
+        radius: Maui.Style.radiusV
+        
+        color: "transparent"
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+        border.color: statusColor(control)
+        
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                    case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                    case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                    case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                    case Maui.Controls.Normal:
+                    default:
+                        return "transparent"
+                }
+            }
+            
+            return "transparent"
+        }
     }
 }

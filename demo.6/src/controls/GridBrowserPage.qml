@@ -51,6 +51,8 @@ DemoPage
                             label1.text: modelData
                             iconSource: "folder"
                             imageSource: "qrc:/assets/6588168.jpg"
+                            checkable: true
+                            onToggled: (state)=> checked = sate
                         }
                     }
                 }

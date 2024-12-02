@@ -115,9 +115,29 @@ T.ToolButton
 
         color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ?  control.Maui.Theme.hoverColor : (control.flat ? "transparent" : control.Maui.Theme.backgroundColor))
 
-        Behavior on color
+        Behavior on border.color
         {
             Maui.ColorTransition{}
+        }
+
+        border.color: statusColor(control)
+
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                case Maui.Controls.Normal:
+                default:
+                    return "transparent"
+                }
+            }
+
+            return "transparent"
         }
     }
 
