@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 01:51+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-08-20 00:33+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -128,7 +128,7 @@ msgstr "그림을 불러올 수 없습니다."
 msgid "Version ID copied to clipboard"
 msgstr "클립보드에 버전 ID 복사됨"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "복사"
@@ -183,7 +183,7 @@ msgstr "모두 알림 끄기"
 msgid "Settings"
 msgstr "설정"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:325
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
 #, kde-format
 msgid "Close"
 msgstr "닫기"
@@ -193,32 +193,32 @@ msgstr "닫기"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "분할 보기를 닫으시겠습니까: '%1'?"
 
-#: src/controls.6/TabView.qml:314
+#: src/controls.6/TabView.qml:313
 #, kde-format
 msgid "Open"
 msgstr "열기"
 
-#: src/controls.6/TextField.qml:383
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "잘라내기"
 
-#: src/controls.6/TextField.qml:390
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "붙여넣기"
 
-#: src/controls.6/TextField.qml:400
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "모두 선택"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "실행 취소"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "다시 실행"

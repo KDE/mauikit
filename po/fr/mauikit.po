@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 01:51+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-06-27 11:20+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -125,7 +125,7 @@ msgstr "Il est impossible de charger l'image."
 msgid "Version ID copied to clipboard"
 msgstr "Identifiant de version copié dans le presse-papier"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Copier"
@@ -180,7 +180,7 @@ msgstr "Tout rejeter"
 msgid "Settings"
 msgstr "Configuration"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:325
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
 #, kde-format
 msgid "Close"
 msgstr "Fermer"
@@ -190,32 +190,32 @@ msgstr "Fermer"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Voulez-vous vraiment fermer la vue fractionnée : « %1 » ?"
 
-#: src/controls.6/TabView.qml:314
+#: src/controls.6/TabView.qml:313
 #, kde-format
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/controls.6/TextField.qml:383
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Couper"
 
-#: src/controls.6/TextField.qml:390
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Coller"
 
-#: src/controls.6/TextField.qml:400
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Tout sélectionner"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Annuler"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Refaire"

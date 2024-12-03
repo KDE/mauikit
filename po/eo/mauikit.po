@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 01:51+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-07-06 16:50+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -129,7 +129,7 @@ msgstr "La bildo ne povis esti ŝargita."
 msgid "Version ID copied to clipboard"
 msgstr "Versio-ID kopiita al tondujo"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Kopii"
@@ -184,7 +184,7 @@ msgstr "Forĵeti Ĉion"
 msgid "Settings"
 msgstr "Agordoj"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:325
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
 #, kde-format
 msgid "Close"
 msgstr "Fermi"
@@ -194,32 +194,32 @@ msgstr "Fermi"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Ĉu vi certas, ke vi volas fermi la dividantan vidon: '%1'?"
 
-#: src/controls.6/TabView.qml:314
+#: src/controls.6/TabView.qml:313
 #, kde-format
 msgid "Open"
 msgstr "Malfermi"
 
-#: src/controls.6/TextField.qml:383
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Tranĉi"
 
-#: src/controls.6/TextField.qml:390
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Alglui"
 
-#: src/controls.6/TextField.qml:400
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Elekti ĉiujn"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Malfari"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Refari"

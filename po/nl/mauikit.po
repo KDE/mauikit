@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 01:51+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-06-26 11:47+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -128,7 +128,7 @@ msgstr "De afbeelding kon niet worden geladen."
 msgid "Version ID copied to clipboard"
 msgstr "Versie-ID gekopieerd naar klembord"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:376
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Kopiëren"
@@ -183,7 +183,7 @@ msgstr "Alles wegdoen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:325
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
 #, kde-format
 msgid "Close"
 msgstr "Sluiten"
@@ -193,32 +193,32 @@ msgstr "Sluiten"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Wilt u de gesplitste sessie sluiten: '%1'?"
 
-#: src/controls.6/TabView.qml:314
+#: src/controls.6/TabView.qml:313
 #, kde-format
 msgid "Open"
 msgstr "Openen"
 
-#: src/controls.6/TextField.qml:383
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Knippen"
 
-#: src/controls.6/TextField.qml:390
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Plakken"
 
-#: src/controls.6/TextField.qml:400
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Opnieuw"
