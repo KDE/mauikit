@@ -16,9 +16,9 @@ DemoPage
 
         DemoSection
         {
-            title: i18n("Popup")
+            title: i18n("MauiKit Popup")
 
-            Popup
+            Maui.Popup
             {
                 id: _popup1
             }
@@ -186,11 +186,26 @@ DemoPage
                 standardButtons: Dialog.Ok | Dialog.Close
             }
 
+            Dialog
+            {
+                id: _dialog2
+                width: 300
+                height: 300
+
+                standardButtons: Dialog.Ok | Dialog.Close | Dialog.Help
+            }
+
 
             Button
             {
-                text: i18n("Open")
+                text: i18n("Open 1")
                 onClicked: _dialog.open()
+            }
+
+            Button
+            {
+                text: i18n("Open 2")
+                onClicked: _dialog2.open()
             }
         }
 
