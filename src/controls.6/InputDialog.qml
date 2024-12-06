@@ -53,7 +53,7 @@ Maui.InfoDialog
     
     standardButtons: Dialog.Ok | Dialog.Cancel
     
-    TextField
+    Maui.TextField
     {
         id: _textEntry
         Layout.fillWidth: true

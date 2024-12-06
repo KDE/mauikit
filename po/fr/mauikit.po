@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-30 01:54+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-06-27 11:20+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -106,7 +106,6 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "Accepter"
@@ -126,8 +125,7 @@ msgstr "Il est impossible de charger l'image."
 msgid "Version ID copied to clipboard"
 msgstr "Identifiant de version copié dans le presse-papier"
 
-#: src/controls.6/private/AboutDialog.qml:98
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Copier"
@@ -172,52 +170,52 @@ msgstr "Composants "
 msgid "Share"
 msgstr "Partager"
 
-#: src/controls.6/private/ToastArea.qml:288
+#: src/controls.6/private/ToastArea.qml:302
 #, kde-format
 msgid "Dismiss All"
 msgstr "Tout rejeter"
 
-#: src/controls.6/SettingsDialog.qml:137 src/controls.6/SettingsPage.qml:42
+#: src/controls.6/SettingsDialog.qml:130 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "Configuration"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
 #, kde-format
 msgid "Close"
 msgstr "Fermer"
 
-#: src/controls.6/SplitViewItem.qml:193
+#: src/controls.6/SplitViewItem.qml:197
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Voulez-vous vraiment fermer la vue fractionnée : « %1 » ?"
 
-#: src/controls.6/TabView.qml:307
+#: src/controls.6/TabView.qml:313
 #, kde-format
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/style.6/qtquickcontrols/TextField.qml:301
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Couper"
 
-#: src/style.6/qtquickcontrols/TextField.qml:308
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Coller"
 
-#: src/style.6/qtquickcontrols/TextField.qml:318
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Tout sélectionner"
 
-#: src/style.6/qtquickcontrols/TextField.qml:325
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Annuler"
 
-#: src/style.6/qtquickcontrols/TextField.qml:332
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Refaire"

@@ -181,69 +181,15 @@ ApplicationWindow
         asynchronous: true
         active: Maui.CSD.enabled
         visible: active
-        height: 16
-        width: height
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-
-        sourceComponent: Item
+        anchors.fill: parent
+        
+        sourceComponent: WindowResizeHandlers
         {
-            MouseArea
-            {
-                anchors.fill: parent
-                cursorShape: Qt.SizeBDiagCursor
-                acceptedButtons: Qt.NoButton // don't handle actual events
-            }
-
-            DragHandler
-            {
-                grabPermissions: TapHandler.TakeOverForbidden
-                target: null
-                onActiveChanged:
-                {
-                    if (active)
-                    {
-                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
-                    }
-                }
-            }
+            
         }
     }
-
-    Loader
-    {
-        asynchronous: true
-        active: Maui.CSD.enabled
-        visible: active
-        height: 16
-        width: height
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-
-        sourceComponent: Item
-        {
-            MouseArea
-            {
-                anchors.fill: parent
-                cursorShape: Qt.SizeFDiagCursor
-                acceptedButtons: Qt.NoButton // don't handle actual events
-            }
-
-            DragHandler
-            {
-                grabPermissions: TapHandler.TakeOverForbidden
-                target: null
-                onActiveChanged:
-                {
-                    if (active)
-                    {
-                        root.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
-                    }
-                }
-            }
-        }
-    }
-
+    
+    
     Overlay.overlay.modal: Item
     {
         Rectangle
@@ -312,15 +258,14 @@ ApplicationWindow
          * @param icon icon name to be used
          * @param title the notification title
          * @param body the message body of the notification
-         * @param callback a callback function to be triggered when the action button is pressed, this is represented as a button
-         * @param buttonText the text associated to the previous callback function, to be used in the button
+         * @param actions a list of possible callback actions, this is represented as a button
          **/
-    function notify(icon, title, body, callback, buttonText)
+    function notify(icon, title, body, actions)
     {
         if(!_toastAreaLoader.item)
         {
             _toastAreaLoader.setSource("ToastArea.qml")
         }
-        _toastAreaLoader.item.add(icon, title, body, callback, buttonText)
+        _toastAreaLoader.item.add(icon, title, body, actions)
     }
 }

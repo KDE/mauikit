@@ -6,7 +6,10 @@
 #include <QApplication>
 #include <QFontDatabase>
 #include <QStyleHints>
-
+#include <QWindow>
+#include <QWidget>
+#include <QMainWindow>
+#include <QToolBar>
 #include <MauiMan4/thememanager.h>
 #include <MauiMan4/backgroundmanager.h>
 #include <MauiMan4/accessibilitymanager.h>
@@ -17,7 +20,10 @@ void Style::styleChanged()
 {
     // It should be safe to use qApp->style() unguarded here, because the signal
     // will only have been connected if qApp is a QApplication.
+    qDebug() << "STYLE HAS CHANGED EMITTED";
+    
     Q_ASSERT(qobject_cast<QApplication *>(QCoreApplication::instance()));
+    
     auto *style = qApp->style();
     if (!style || QCoreApplication::closingDown()) {
         return;
@@ -34,7 +40,6 @@ void Style::styleChanged()
     Q_EMIT monospacedFontChanged();
 }
 
-
 Style::Style(QObject *parent) : QObject(parent)
   ,m_iconSizes (new GroupSizes(8,16, 22, 32, 48, 64, 128, this))
   ,m_space( new GroupSizes(4, 6, 8, 16, 24, 32, 40, this))
@@ -45,6 +50,7 @@ Style::Style(QObject *parent) : QObject(parent)
   ,m_backgroundSettings( new MauiMan::BackgroundManager(this))
   ,m_accessibilitySettings( new MauiMan::AccessibilityManager(this))
 {
+    qGuiApp->installEventFilter(this);
     connect(qGuiApp, &QGuiApplication::fontChanged, [this](const QFont &font)
     {
         m_defaultFont = font;
@@ -473,6 +479,23 @@ bool Style::playSounds() const
     return m_accessibilitySettings->playSounds();
 }
 
-
+bool Style::eventFilter(QObject *watched, QEvent *event)
+{
+    // qDebug() << "EVENT HAPPENED" << event->type();
+    
+    if (event->type() == QEvent::StyleChange || event->type() == QEvent::WindowActivate) {
+        
+        if(m_currentIconTheme != QIcon::themeName())
+        {
+            
+            m_currentIconTheme = QIcon::themeName();
+            Q_EMIT currentIconThemeChanged( m_currentIconTheme);
+            qDebug() << "ICON THEME CHANGED" << m_currentIconTheme;
+        }
+        return QObject::eventFilter(watched, event);
+    }
+    
+    return QObject::eventFilter(watched, event);
+}
 
 

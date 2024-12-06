@@ -16,14 +16,14 @@ DemoPage
 
         DemoSection
         {
-            title: i18n("Popup")
+            title: i18n("MauiKit Popup")
 
-            Popup
+            Maui.Popup
             {
                 id: _popup1
             }
 
-            Popup
+            Maui.Popup
             {
                 id: _popup2
                 filling: true
@@ -89,6 +89,75 @@ DemoPage
                     color: "magenta"
                 }
             }
+            
+            Maui.PopupPage
+            {
+                id: _popupPagActions
+                hint: 1
+                
+                title: i18n("Title")
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                Rectangle
+                {
+                    Layout.fillWidth: true
+                    implicitHeight: 40
+                    color: "magenta"
+                }
+                
+                actions: [
+                    
+                    Action
+                    {
+                        icon.name: "anchor"
+                        text: i18n("Expand")      
+                        onTriggered: _popupPagActions.maxWidth = 700
+                    },
+                    
+                    Action
+                    {
+                        icon.name: "folder"
+                        text: i18n("Shrink")
+                        onTriggered: _popupPagActions.maxWidth = 300
+                        
+                    },
+                    
+                    Action
+                    {
+                        icon.name: "answer"
+                        text: i18n("Action3")
+                    },                    
+                    
+                    Action
+                    {
+                        Maui.Controls.status: Maui.Controls.Negative
+                        icon.name: "answer"
+                        text: i18n("Action4")
+                    }
+                    
+                    
+                ]
+            }
 
             Button
             {
@@ -96,6 +165,12 @@ DemoPage
                 onClicked: _popupPage.open()
             }
 
+            
+            Button
+            {
+                text: i18n("Popup Actions")
+                onClicked: _popupPagActions.open()
+            }
         }
 
         DemoSection
@@ -111,11 +186,26 @@ DemoPage
                 standardButtons: Dialog.Ok | Dialog.Close
             }
 
+            Dialog
+            {
+                id: _dialog2
+                width: 300
+                height: 300
+
+                standardButtons: Dialog.Ok | Dialog.Close | Dialog.Help
+            }
+
 
             Button
             {
-                text: i18n("Open")
+                text: i18n("Open 1")
                 onClicked: _dialog.open()
+            }
+
+            Button
+            {
+                text: i18n("Open 2")
+                onClicked: _dialog2.open()
             }
         }
 

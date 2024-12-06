@@ -289,11 +289,10 @@ AbstractButton
                         }
                     }
                 }
-            }
-            
+            }            
         }
         
-        data: Popup
+        data: Maui.Popup
         {
             id: _popup
             
@@ -333,7 +332,7 @@ AbstractButton
                 altHeader: control.position === ToolBar.Footer
                 
                 headBar.visible: false
-                headerColumn: TextField
+                headerColumn: Maui.TextField
                 {
                     implicitHeight: control.height
                     width: parent.width

@@ -65,6 +65,7 @@ Pane
      */
     signal pressAndHold(int index)
 
+    signal itemVisibilityChanged(int index,bool visible)
     /**
      *
      */
@@ -85,6 +86,7 @@ Pane
         // Layout.alignment: Qt.AlignCenter
         autoExclusive: true
         visible: modelData.visible
+        onVisibleChanged: control.itemVisibilityChanged(index, visible)
         checked:  index === control.currentIndex
 
         leftPadding: Maui.Style.space.big

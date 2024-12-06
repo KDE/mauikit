@@ -29,6 +29,7 @@ ecm_add_qml_module(MauiKit${MAUI_MAJOR_VERSION}
     URI "org.mauikit.controls"
     CLASS_NAME MauiKit
     DEPENDENCIES
+    "QtQuick"
     "QtQuick.Controls"
     "QtMultimedia"
     NO_PLUGIN_OPTIONAL
@@ -251,8 +252,6 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/AltBrowser.qml
     controls.${QT_MAJOR_VERSION}/AnimatedImageViewer.qml
     controls.${QT_MAJOR_VERSION}/ApplicationWindow.qml
-    controls.${QT_MAJOR_VERSION}/AppViews.qml
-    controls.${QT_MAJOR_VERSION}/AppViewLoader.qml
 
     controls.${QT_MAJOR_VERSION}/Badge.qml
 
@@ -303,6 +302,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/PageLayout.qml
     controls.${QT_MAJOR_VERSION}/PasswordField.qml
     controls.${QT_MAJOR_VERSION}/PieButton.qml
+    controls.${QT_MAJOR_VERSION}/Popup.qml
     controls.${QT_MAJOR_VERSION}/PopupPage.qml
     controls.${QT_MAJOR_VERSION}/ProgressIndicator.qml
 
@@ -322,13 +322,16 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/SplitView.qml
     controls.${QT_MAJOR_VERSION}/SplitViewItem.qml
     controls.${QT_MAJOR_VERSION}/SwipeBrowserDelegate.qml
-    controls.${QT_MAJOR_VERSION}/SwipeItemDelegate.qml
+    controls.${QT_MAJOR_VERSION}/SwipeItemDelegate.qml    
+    controls.${QT_MAJOR_VERSION}/SwipeView.qml
+    controls.${QT_MAJOR_VERSION}/SwipeViewLoader.qml
 
     controls.${QT_MAJOR_VERSION}/TabBar.qml
     controls.${QT_MAJOR_VERSION}/TabButton.qml
     controls.${QT_MAJOR_VERSION}/TabView.qml
     controls.${QT_MAJOR_VERSION}/TabViewItem.qml
     controls.${QT_MAJOR_VERSION}/TabViewButton.qml
+    controls.${QT_MAJOR_VERSION}/TextField.qml
     controls.${QT_MAJOR_VERSION}/TextFieldPopup.qml
     controls.${QT_MAJOR_VERSION}/ToolActions.qml
     controls.${QT_MAJOR_VERSION}/ToolBar.qml
@@ -344,6 +347,7 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/CheckBoxItem.qml
     controls.${QT_MAJOR_VERSION}/private/ColorTransition.qml
 
+    controls.${QT_MAJOR_VERSION}/private/DropDownIndicator.qml
     controls.${QT_MAJOR_VERSION}/private/EdgeShadow.qml
 
     controls.${QT_MAJOR_VERSION}/private/ToastArea.qml
@@ -352,7 +356,8 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private SOURCES
     controls.${QT_MAJOR_VERSION}/private/Rectangle.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialog.qml
     controls.${QT_MAJOR_VERSION}/private/ShareDialogLinux.qml
-    controls.${QT_MAJOR_VERSION}/private/SideBar.qml)
+    controls.${QT_MAJOR_VERSION}/private/SideBar.qml
+    controls.${QT_MAJOR_VERSION}/private/WindowResizeHandlers.qml)
 
 if(ANDROID)
     ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} PATH private/android SOURCES

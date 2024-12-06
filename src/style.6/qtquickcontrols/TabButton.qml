@@ -62,5 +62,25 @@ T.TabButton
     {
         color: control.checked ? Maui.Theme.backgroundColor : (control.hovered || control.pressed ? Maui.Theme.hoverColor : "transparent")
         radius: Maui.Style.radiusV
+        
+        border.color: statusColor(control)
+        
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                    case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                    case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                    case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                    case Maui.Controls.Normal:
+                    default:
+                        return "transparent"
+                }
+            }
+            
+            return "transparent"
+        }
     }
 }

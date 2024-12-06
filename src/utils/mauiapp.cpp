@@ -48,7 +48,7 @@ MauiApp::MauiApp(QObject *parent)
     : QObject(parent)
 {
     qDebug() << "CREATING INSTANCE OF MAUI APP";
-  
+
     KAboutData aboutData(KAboutData::applicationData());
     if (aboutData.translators().isEmpty())
     {
@@ -128,7 +128,10 @@ void MauiApp::setDefaultMauiStyle()
     QIcon::setThemeName("Luv");
 #endif
     
-    QQuickStyle::setStyle(QStringLiteral("org.mauikit.style"));
+    if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE"))
+    {
+        QQuickStyle::setStyle(QStringLiteral("org.mauikit.style"));
+    }
 }
 
 MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
@@ -139,7 +142,7 @@ MauiApp *MauiApp::qmlAttachedProperties(QObject *object)
 
 MauiApp *MauiApp::instance()
 {
-     return appInstance();
+    return appInstance();
 }
 
 void MauiApp::setRootComponent(QObject *item)
@@ -154,7 +157,7 @@ void MauiApp::setRootComponent(QObject *item)
 
 QObject * MauiApp::rootComponent()
 {
-   return m_rootComponent; 
+    return m_rootComponent;
 }
 
 void MauiApp::aboutDialog()
@@ -162,5 +165,5 @@ void MauiApp::aboutDialog()
     if(!m_rootComponent)
         return;
     
-     QMetaObject::invokeMethod(m_rootComponent, "about");        
+    QMetaObject::invokeMethod(m_rootComponent, "about");
 }

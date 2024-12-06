@@ -109,13 +109,26 @@ Maui.ApplicationWindow
         Maui.Page
         {
             anchors.fill: parent
-            showCSDControls: true
+            Maui.Controls.showCSD: true
         }
     }
 }
 @endcode
 
 @image html ApplicationWindow/minimal_dark.png "Minimal application setup"
+
+@section demo Maui Demo App
+When building MauiKit source code, the building of the demo application can be enabled by setting the BUILD_DEMO flag `-DBUILD_DEMO=ON`.
+
+The Maui Demo application contains most of the MauiKit controls under different use cases and also demos its features, and it is a great tool to discover MauiKit controls.
+
+@note The Maui Demo application executable is named MauiDemo4
+
+@image html mauidemoapp.png "MauiKit Demo App"
+
+@section style MauiKit Style
+MauiKit comes with a default style named `org.mauikit.style`. This style is the most -well fitted to be used with the Maui Applications, since it supports all of the MauiKit features and it is constantly tested, however, other styles can be used while they are not supported.
+@see MauiApp::style
 
 @section deployment Deployment
 

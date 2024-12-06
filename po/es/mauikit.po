@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-30 01:54+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-06-27 01:30+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -112,7 +112,6 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: src/controls.6/FontPickerDialog.qml:106
-#: src/controls.6/private/ToastArea.qml:215
 #, kde-format
 msgid "Accept"
 msgstr "Aceptar"
@@ -132,8 +131,7 @@ msgstr "No se puede cargar la imagen."
 msgid "Version ID copied to clipboard"
 msgstr "ID de la versión copiado al portapapeles"
 
-#: src/controls.6/private/AboutDialog.qml:98
-#: src/style.6/qtquickcontrols/TextField.qml:294
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Copiar"
@@ -178,52 +176,52 @@ msgstr "Componentes"
 msgid "Share"
 msgstr "Compartir"
 
-#: src/controls.6/private/ToastArea.qml:288
+#: src/controls.6/private/ToastArea.qml:302
 #, kde-format
 msgid "Dismiss All"
 msgstr "Descartar todo"
 
-#: src/controls.6/SettingsDialog.qml:137 src/controls.6/SettingsPage.qml:42
+#: src/controls.6/SettingsDialog.qml:130 src/controls.6/SettingsPage.qml:42
 #, kde-format
 msgid "Settings"
 msgstr "Preferencias"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:318
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
 #, kde-format
 msgid "Close"
 msgstr "Cerrar"
 
-#: src/controls.6/SplitViewItem.qml:193
+#: src/controls.6/SplitViewItem.qml:197
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "¿Seguro que quiere cerrar la vista dividida «%1»?"
 
-#: src/controls.6/TabView.qml:307
+#: src/controls.6/TabView.qml:313
 #, kde-format
 msgid "Open"
 msgstr "Abrir"
 
-#: src/style.6/qtquickcontrols/TextField.qml:301
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Cortar"
 
-#: src/style.6/qtquickcontrols/TextField.qml:308
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Pegar"
 
-#: src/style.6/qtquickcontrols/TextField.qml:318
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: src/style.6/qtquickcontrols/TextField.qml:325
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Deshacer"
 
-#: src/style.6/qtquickcontrols/TextField.qml:332
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Rehacer"

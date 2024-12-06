@@ -31,33 +31,37 @@ T.CheckBox
     
     implicitWidth: Math.max(contentItem.implicitWidth, indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding
     implicitHeight: Math.max(contentItem.implicitHeight, indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
-
+    
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.small
     
     hoverEnabled: true
-
+    icon.color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+    icon.width: Maui.Style.iconSize
+    icon.height: Maui.Style.iconSize
+    
     indicator: CheckIndicator
     {
         x: control.text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
         control: control
     }
-
-    contentItem: Text
+    
+    contentItem: Maui.IconLabel
     {
         leftPadding: control.indicator && !control.mirrored ? control.indicator.width + control.spacing : 0
         rightPadding: control.indicator && control.mirrored ? control.indicator.width + control.spacing : 0
         text: control.text
         font: control.font
-        elide: Text.ElideRight
-//        visible: control.text
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-        color: control.down || control.pressed || control.checked ? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
+        // elide: Text.ElideRight
+        //        visible: control.text
+        // horizontalAlignment: Text.AlignLeft
+        // verticalAlignment: Text.AlignVCenter
+        color: control.icon.color
+        icon: control.icon
     }
     
-     background: Rectangle
+    background: Rectangle
     {
         visible: !control.flat
         
@@ -68,6 +72,30 @@ T.CheckBox
         Behavior on color
         {
             Maui.ColorTransition{}
+        }
+        
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+        border.color: statusColor(control)
+        
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                    case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                    case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                    case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                    case Maui.Controls.Normal:
+                    default:
+                        return "transparent"
+                }
+            }
+            
+            return "transparent"
         }
     }
 }

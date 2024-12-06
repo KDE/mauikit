@@ -18,15 +18,14 @@
  */
 
 import QtQuick
-import QtQuick.Controls
+import org.mauikit.controls as Maui
 
 /**
  * @inherit QtQuick.Controls.TextField
- * @brief This is just a QQC2 TextField with a icon to more clearly indicate its intended use case for entering search queries
- * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-textfield.html">This control inherits from QQC2 TextField, to checkout its inherited properties refer to the Qt Docs.</a>
+ * @brief This is just a MauiKit TextField with a icon to more clearly indicate its intended use case for entering search queries
  *  
  *  @section notes Notes
- *  Some TextField properties have been added to the Maui Style, so they have been obscured, those properties are:
+ *  Chceck MauiKit TextField properties, some of those properties are:
  *  
  *  - `spacing : int` The spacing between the action buttons, added via the `actions` property.
  *  - `menu : Menu` An alias to access the contextual menu, containing entries, such as Copy, Cut, Paste, etc. More entries could be dynamically added using the Menu methods.
@@ -37,7 +36,7 @@ import QtQuick.Controls
  *  - `cleared()` Emitted when the text field has been cleared using the clear action button.
  *  - `contentDropped(drop)` Emitted when some content has been drag and dropped on the text field area. The `drop` parameter has the information on the event.
  */
-TextField
+Maui.TextField
 {
     id: control    
     icon.source: "edit-find"

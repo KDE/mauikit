@@ -41,6 +41,20 @@ void Controls::setTitle(const QString &title)
     Q_EMIT titleChanged();
 }
 
+QString Controls::subtitle() const
+{
+    return m_subtitle;
+}
+
+void Controls::setSubtitle(const QString &subtitle)
+{
+    if (m_subtitle == subtitle)
+        return;
+
+    m_subtitle = subtitle;
+    Q_EMIT subtitleChanged();
+}
+
 QString Controls::iconName() const
 {
     return m_iconName;
@@ -136,6 +150,34 @@ void Controls::setStatus(Status status)
     if(m_status == status)
         return;
 
-     m_status = status;
+    m_status = status;
     Q_EMIT statusChanged();
+}
+
+QQmlComponent *Controls::component() const
+{
+    return m_component;
+}
+
+void Controls::setComponent(QQmlComponent *component)
+{
+    if(m_component == component)
+        return;
+
+    m_component = component;
+    Q_EMIT componentChanged();
+}
+
+QQuickItem *Controls::item() const
+{
+    return m_item;
+}
+
+void Controls::setItem(QQuickItem *item)
+{
+    if(m_item == item)
+        return;
+
+    m_item = item;
+    Q_EMIT itemChanged();
 }

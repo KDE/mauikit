@@ -18,10 +18,8 @@
  */
 
 import QtQuick
-import QtQuick.Window
 
 import org.mauikit.controls as Maui
-import QtQuick.Layouts
 
 import QtQuick.Templates as T
 
@@ -51,17 +49,13 @@ T.TextField
     selectedTextColor: Maui.Theme.highlightedTextColor
     focus: true
 
-    implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+    implicitHeight: implicitBackgroundHeight + topPadding + bottomPadding
     implicitWidth: 200
 
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignLeft
 
-    padding: 0
-    property int spacing: Maui.Style.space.small
-
-    leftPadding: icon.visible ? icon.implicitWidth + Maui.Style.space.medium + Maui.Style.space.small : Maui.Style.space.medium
-    rightPadding: _rightLayout.implicitWidth + Maui.Style.space.medium
+    padding: Maui.Style.defaultPadding
 
     selectByMouse: !Maui.Handy.isMobile
     renderType: Screen.devicePixelRatio % 1 !== 0 ? Text.QtRendering : Text.NativeRendering
@@ -71,120 +65,18 @@ T.TextField
 
     wrapMode: TextInput.NoWrap
 
-    /**
-     * menu : Menu
-     */
-    readonly property alias menu : entryMenu
-
-    /**
-     * actions : RowLayout
-     */
-    property list<QtObject> actions
-
-    property alias icon : _icon
-
-    property alias rightContent : _rightLayout.data
-
-    /**
-     * cleared
-     */
-    signal cleared()
-
-    /**
-     * contentDropped :
-     */
-    signal contentDropped(var drop)
-
-    onPressAndHold: (event) =>
-                    {
-                        if(Maui.Handy.isMobile)
-                        {
-                            entryMenu.show()
-                            event.accepted = true
-                            return
-                        }
-
-                        event.accepted = false
-                        return
-                    }
-
-    onPressed: (event) =>
-               {
-                   if(!Maui.Handy.isMobile && event.button === Qt.RightButton)
-                   {
-                       entryMenu.show()
-                       event.accepted = true
-                       return
-                   }
-
-                   event.accepted = true
-                   return
-               }
-
-    Keys.enabled: true
-
-    Shortcut
+    background: Rectangle
     {
-        sequence: StandardKey.Escape
-        onActivated:
-        {
-            control.clear()
-            control.cleared()
-        }
-    }
+        implicitHeight: Maui.Style.iconSize
+        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
 
-    Behavior on leftPadding
-    {
-        NumberAnimation
-        {
-            duration: Maui.Style.units.longDuration
-            easing.type: Easing.InOutQuad
-        }
-    }
-
-    Behavior on rightPadding
-    {
-        NumberAnimation
-        {
-            duration: Maui.Style.units.longDuration
-            easing.type: Easing.InOutQuad
-        }
-    }
-
-    RowLayout
-    {
-        id: _layout
-        clip: true
-
-        anchors.fill: parent
-        anchors.leftMargin: Maui.Style.space.medium
-        spacing: control.spacing
-
-        Maui.Icon
-        {
-            id: _icon
-            visible: source ? true : false
-            implicitHeight: visible ? 16 : 0
-            implicitWidth: height
-            color: control.color
-        }
-
-        Item
-        {
-            Layout.preferredHeight: Maui.Style.iconSize + (Maui.Style.defaultPadding * 2) //simulate the implicitHeight of common button controls
-
-        }
-
-        Item
-        {
-            Layout.fillWidth: true
-            visible: !placeholder.visible
-        }
+        radius: Maui.Style.radiusV
 
         Label
         {
             id: placeholder
-            Layout.fillWidth: true
+            anchors.fill: parent
+            anchors.leftMargin: control.leftPadding
             text: control.placeholderText
             font: control.font
             color: control.color
@@ -194,7 +86,6 @@ T.TextField
 
             visible: opacity > 0
             opacity: !control.length && !control.preeditText && !control.activeFocus ? 0.5 : 0
-
 
             Behavior on opacity
             {
@@ -206,167 +97,34 @@ T.TextField
             }
         }
 
-        Row
-        {
-            id: _rightLayout
-
-            z: parent.z + 1
-            spacing: control.spacing
-
-            ToolButton
-            {
-                flat: !checkable
-                focusPolicy: Qt.NoFocus
-
-                visible: control.text.length || control.activeFocus
-                icon.name: "edit-clear"
-
-                onClicked:
-                {
-                    control.clear()
-                    cleared()
-                }
-            }
-
-            Repeater
-            {
-                model: control.actions
-
-                ToolButton
-                {
-                    flat: !checkable
-                    focusPolicy: Qt.NoFocus
-                    action: modelData
-                    checkable: action.checkable
-                }
-            }
-        }
-    }
-
-    Loader
-    {
-        asynchronous: true
-
-        active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
-        visible: active
-
-        anchors.horizontalCenter: parent.right
-        anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: 10
-        anchors.horizontalCenterOffset: -5
-
-        sourceComponent: Maui.Badge
-        {
-            text: control.Maui.Controls.badgeText
-
-            padding: 2
-            font.pointSize: Maui.Style.fontSizes.tiny
-
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
-
-            OpacityAnimator on opacity
-            {
-                from: 0
-                to: 1
-                duration: Maui.Style.units.longDuration
-                running: parent.visible
-            }
-
-            ScaleAnimator on scale
-            {
-                from: 0.5
-                to: 1
-                duration: Maui.Style.units.longDuration
-                running: parent.visible
-                easing.type: Easing.OutInQuad
-            }
-        }
-    }
-
-    Maui.ContextualMenu
-    {
-        id: entryMenu
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Copy")
-            onTriggered: control.copy()
-            enabled: control.selectedText.length
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Cut")
-            onTriggered: control.cut()
-            enabled: control.selectedText.length
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Paste")
-            onTriggered:
-            {
-                var text = control.paste()
-                control.insert(control.cursorPosition, text)
-            }
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Select All")
-            onTriggered: control.selectAll()
-            enabled: control.text.length
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Undo")
-            onTriggered: control.undo()
-            enabled: control.canUndo
-        }
-
-        MenuItem
-        {
-            text: i18nd("mauikit", "Redo")
-            onTriggered: control.redo()
-            enabled: control.canRedo
-        }
-    }
-
-    Loader
-    {
-        asynchronous: true
-        anchors.fill: parent
-        sourceComponent: DropArea
-        {
-            onDropped: (drop) =>
-                       {
-                           console.log(drop.text, drop.html)
-                           if (drop.hasText)
-                           {
-                               control.text += drop.text
-
-                           }else if(drop.hasUrls)
-                           {
-                               control.text = drop.urls
-                           }
-
-                           control.contentDropped(drop)
-                       }
-        }
-    }
-
-    background: Rectangle
-    {
-        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
-
-        radius: Maui.Style.radiusV
-
         Behavior on color
         {
             Maui.ColorTransition{}
+        }
+
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+
+        border.color: statusColor(control)
+
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                case Maui.Controls.Normal:
+                default:
+                    return "transparent"
+                }
+            }
+
+            return "transparent"
         }
     }
 }

@@ -47,7 +47,7 @@ T.DialogButtonBox
         rowSpacing: control.spacing
         columnSpacing: control.spacing
 
-        property bool isWide : control.width > Maui.Style.units.gridUnit*10
+        property bool isWide : control.width > (100 * _repeater.count)
 
         //        visible: control.defaultButtons || control.actions.length
 
@@ -56,6 +56,7 @@ T.DialogButtonBox
 
         Repeater
         {
+         id: _repeater
             model: control.contentModel
         }
     }

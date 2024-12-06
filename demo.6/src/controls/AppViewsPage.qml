@@ -7,7 +7,7 @@ import org.mauikit.controls as Maui
 DemoPage
 {
     id: control
-    title: i18n("AppViews")
+    title: i18n("SwipeView")
 
     Maui.SectionGroup
     {
@@ -17,7 +17,7 @@ DemoPage
         DemoSection
         {
             title: i18n("Static")
-            column: Maui.AppViews
+            column: Maui.SwipeView
             {
                 id: _sideBar
 

@@ -7,7 +7,7 @@ import org.mauikit.controls as Maui
 DemoPage
 {
     id: control
-    Maui.Controls.status: Maui.Control.Negative
+    Maui.Controls.status: Maui.Controls.Negative
 
     Maui.SectionGroup
     {
@@ -38,8 +38,8 @@ DemoPage
                 id: _page
                 Layout.fillWidth: true
                 implicitHeight: 500
-                
-                Maui.Controls.status: Maui.Control.Negative
+                Maui.Controls.level: Maui.Controls.Primary
+                Maui.Controls.status: Maui.Controls.Negative
                 title: i18n("Title")
                 
                 headBar.leftContent : Switch
@@ -57,10 +57,10 @@ DemoPage
                     emoji: "dialog-info"
                     isMask: false
                     title:  i18n("Maui Page")
-                    body: i18n("Somethign to say here!")
+                    body: i18n("Something to say here!")
                 }
             }
-        }        
+        }
         
         DemoSection
         {
@@ -88,8 +88,8 @@ DemoPage
                 {
                     anchors.fill: parent
                     title:  i18n("QQC Page")
-                    body: i18n("Somethign to say here!")
-                }                
+                    body: i18n("Something to say here!")
+                }
             }
         }
         
@@ -141,7 +141,7 @@ DemoPage
                 
                 middleContent: Maui.SearchField
                 {
-                    Layout.maximumWidth: 500
+                    Layout.maximumWidth: _pageLayout.split ? -1 : 500
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -156,5 +156,76 @@ DemoPage
                 }
             }
         }
-    }    
+
+        DemoSection
+        {
+            title: "Maui Page"
+            body: i18n("Floating & auto-hide bars demo")
+
+            sampleText: 'import org.mauikit.controls as Maui
+            Maui.Page
+            {
+                title: i18n("Title")
+
+                headBar.leftContent : Switch
+                {}
+
+                headBar.rightContent: Button
+                {
+                    text: "Hello!"
+                }
+            }'
+
+            column: Maui.Page
+            {
+                id: _page2
+                Layout.fillWidth: true
+                implicitHeight: 500
+                Maui.Controls.level: Maui.Controls.Primary
+                title: i18n("Title")
+
+                floatingHeader: _floatSwitch.checked
+                autoHideHeader:_hideSwitch.checked
+
+                floatingFooter: _floatSwitch2.checked
+                autoHideFooter:_hideSwitch2.checked
+
+                headBar.leftContent : Switch
+                {
+                    id: _floatSwitch
+                    text: i18n("Float")
+                    checked: _page2.floatingHeader
+                }
+
+                headBar.rightContent : Switch
+                {
+                    id: _hideSwitch
+                    text: i18n("Auto hide")
+                    checked: _page2.autoHideHeader
+                }
+
+
+                footBar.leftContent : Switch
+                {
+                    id: _floatSwitch2
+                    text: i18n("Float")
+                    checked: _page2.floatingFooter
+                }
+
+                footBar.rightContent : Switch
+                {
+                    id: _hideSwitch2
+                    text: i18n("Auto hide")
+                    checked: _page2.autoHideFooter
+                }
+
+                Image
+                {
+                    anchors.fill: parent
+                    source: "qrc:/assets/6588168.jpg"
+                    fillMode: Image.PreserveAspectCrop
+                }
+            }
+        }
+    }
 }

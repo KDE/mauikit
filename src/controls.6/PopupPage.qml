@@ -119,7 +119,7 @@ import org.mauikit.controls as Maui
  * 
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/PopupPage.qml">You can find a more complete example at this link.</a>
  */
-Popup
+Maui.Popup
 {
     id: control
     
@@ -372,7 +372,7 @@ Popup
                 Layout.fillWidth: true
                 Layout.margins: Maui.Style.contentMargins
                 
-                property bool isWide : control.width > Maui.Style.units.gridUnit*10
+                property bool isWide : control.width > (100 * control.actions.length)
                 
                 visible: control.actions.length
                 
@@ -390,6 +390,7 @@ Popup
                         Layout.fillWidth: true
                         
                         action: modelData
+                        Maui.Controls.status: modelData.Maui.Controls.status
                     }
                 }
             }

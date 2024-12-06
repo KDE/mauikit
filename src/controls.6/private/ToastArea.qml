@@ -123,16 +123,22 @@ Control
             property alias iconSource: _template.iconSource
             property alias imageSource: _template.imageSource
             property alias body: _template.label2.text
-            property var callback : ({})
-            property alias buttonText: _button.text
+            property list<Action> actions
+
             property int timeout : 3500
             
-            onClicked: control.remove(mindex)
+            onClicked: 
+            {
+                if( _toast.actions.length > 0)
+                    return
+                    
+                control.remove(mindex)
+            }
             
             background: Rectangle
             {
                 radius: Maui.Style.radiusV
-                color: _toast.hovered? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
+                color: _toast.hovered && _toast.actions.length === 0? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
                 
                 ProgressBar
                 {
@@ -208,19 +214,27 @@ Control
                     iconSizeHint: Maui.Style.iconSizes.big
                 }
                 
-                Button
+                RowLayout
                 {
-                    id: _button
-                    visible: _toast.callback instanceof Function
-                    text: i18n("Accept")
+                    Layout.preferredHeight: visible ? implicitHeight : -_layout.spacing
+                    visible: _toast.actions.length > 0
                     Layout.fillWidth: true
-                    onClicked:
+                    spacing: Maui.Style.defaultSpacing
+
+                    Repeater
                     {
-                        if(_toast.callback instanceof Function)
+                        model: _toast.actions
+                        delegate: Button
                         {
-                            _toast.callback(_toast.mindex)
+                            action: modelData
+                            Maui.Controls.status: modelData.Maui.Controls.status
+                            Layout.fillWidth: true
+                            onClicked:
+                            {
+                                // if(_toast.actions.length === 1)
+                                    control.remove(_toast.mindex)
+                            }
                         }
-                        control.remove(_toast.mindex)
                     }
                 }
             }
@@ -293,39 +307,38 @@ Control
         }
     }
 
-    function add(icon, title, body, callback = ({}), buttonText = "")
+    function add(icon, title, body, actions = [])
     {
         const properties = ({
-            'iconSource': icon,
-            'title': title,
-            'body': body,
-            'callback': callback,
-            'buttonText': buttonText })
+                                'iconSource': icon,
+                                'title': title,
+                                'body': body,
+                                'actions': actions })
 
-            const object = _toastComponent.createObject(_listView.flickable, properties);
-            _container.insertItem(0, object)
-            playSound.play()
+        const object = _toastComponent.createObject(_listView.flickable, properties);
+        _container.insertItem(0, object)
+        playSound.play()
+    }
+
+    function dismiss()
+    {
+        let count = _container.count
+        let items = []
+        for(var i = 0; i< count; i++)
+        {
+            items.push(_container.itemAt(i))
         }
 
-            function dismiss()
-            {
-                let count = _container.count
-                let items = []
-                for(var i = 0; i< count; i++)
-                {
-                    items.push(_container.itemAt(i))
-                }
+        for(var j of items)
+        {
+            _container.removeItem(j)
+        }
 
-                    for(var j of items)
-                    {
-                        _container.removeItem(j)
-                    }
+        _dismissSound.play()
+    }
 
-                        _dismissSound.play()
-                    }
-
-                        function remove(index)
-                        {
-                            _container.removeItem(_container.itemAt(index))
-                        }
-                        }
+    function remove(index)
+    {
+        _container.removeItem(_container.itemAt(index))
+    }
+}

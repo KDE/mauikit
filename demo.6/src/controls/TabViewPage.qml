@@ -65,12 +65,21 @@ Maui.TabView
                 {
                     Maui.Controls.title: "Tab 2"
                     Maui.Controls.iconName:  "love"
+                    Maui.Controls.status: Maui.Controls.Negative
+                    color: "blue"
+                }
+                
+                Rectangle
+                {
+                    Maui.Controls.title: "Tab 3"
+                    Maui.Controls.iconName:  "love"
+                    Maui.Controls.status: Maui.Controls.Positive
                     color: "blue"
                 }
 
                 Rectangle
                 {
-                    Maui.Controls.title: "Tab 3"
+                    Maui.Controls.title: "Tab 4"
                     color: "yellow"
                 }
             }

@@ -40,6 +40,7 @@
 
 #include <MauiMan4/formfactormanager.h>
 #include <MauiMan4/accessibilitymanager.h>
+#include <MauiMan4/mauimanutils.h>
 
 Q_GLOBAL_STATIC(Handy, handyInstance)
 
@@ -50,17 +51,17 @@ Handy::Handy(QObject *parent)
     ,m_hasTransientTouchInput(false)
 {
     qDebug() << "CREATING INSTANCE OF MAUI HANDY";
-
+    
     connect(m_accessibility, &MauiMan::AccessibilityManager::singleClickChanged, [&](bool value)
             {
                 m_singleClick = value;
                 Q_EMIT singleClickChanged();
             });
-
+    
     m_singleClick = m_accessibility->singleClick();
-
+    
     // #ifdef FORMFACTOR_FOUND //TODO check here for Cask desktop enviroment
-
+    
     connect(m_formFactor, &MauiMan::FormFactorManager::preferredModeChanged, [this](uint value)
             {
                 m_ffactor = static_cast<FFactor>(value);
@@ -68,29 +69,57 @@ Handy::Handy(QObject *parent)
                 Q_EMIT formFactorChanged();
                 Q_EMIT isMobileChanged();
             });
-
+    
     connect(m_formFactor, &MauiMan::FormFactorManager::hasTouchscreenChanged, [this](bool value)
             {
                 m_isTouch = value || m_formFactor->forceTouchScreen();
                 Q_EMIT isTouchChanged();
             });
-
+    
+    connect(m_formFactor, &MauiMan::FormFactorManager::hasKeyboardChanged, [this](bool value)
+            {
+                Q_EMIT hasKeyboardChanged();
+            });
+    
+    
     m_ffactor = static_cast<FFactor>(m_formFactor->preferredMode());
-    m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+    
+    if(MauiManUtils::isMauiSession())
+    {
+        m_mobile = m_ffactor == FFactor::Phone || m_ffactor == FFactor::Tablet;
+    }
+    else
+    {
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(UBUNTU_TOUCH)
+        m_mobile = true;
+#else
+      // Mostly for debug purposes and for platforms which are always mobile,
+        // such as Plasma Mobile
+        if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
+            m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
+        } else {
+            m_mobile = false;
+        }    
+#endif
+    }
 
 #ifdef Q_OS_ANDROID
     m_isTouch = true;
 #else
     m_isTouch = m_formFactor->hasTouchscreen() || m_formFactor->forceTouchScreen();
 #endif
-
-    connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win)
-            {
-                if (win)
+    
+    if (m_isTouch)
+    {
+        connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](QWindow *win)
                 {
-                    win->installEventFilter(this);
-                }
-            });
+                    if (win)
+                    {
+                        win->installEventFilter(this);
+                    }
+                });
+    }
+    qDebug() << "DONE CREATING INSTANCE OF MAUI HANDY";
 }
 
 Handy *Handy::instance()
@@ -118,7 +147,7 @@ void Handy::setTransientTouchInput(bool touch)
     if (touch == m_hasTransientTouchInput) {
         return;
     }
-
+    
     m_hasTransientTouchInput = touch;
     Q_EMIT hasTransientTouchInputChanged();
 }
@@ -145,7 +174,7 @@ bool Handy::eventFilter(QObject *watched, QEvent *event)
     default:
         break;
     }
-
+    
     return false;
 }
 
@@ -154,7 +183,7 @@ static inline struct {
     QList<QUrl> urls;
     QString text;
     bool cut = false;
-
+    
     bool hasUrls()
     {
         return !urls.isEmpty();
@@ -163,7 +192,7 @@ static inline struct {
     {
         return !text.isEmpty();
     }
-
+    
 } _clipboard;
 #endif
 
@@ -172,7 +201,7 @@ QVariantMap Handy::userInfo()
     QString name = qgetenv("USER");
     if (name.isEmpty())
         name = qgetenv("USERNAME");
-
+    
     return QVariantMap({{FMH::MODEL_NAME[FMH::MODEL_KEY::NAME], name}});
 }
 
@@ -183,11 +212,11 @@ QString Handy::getClipboardText()
 #else
     auto clipboard = QApplication::clipboard();
 #endif
-
+    
     auto mime = clipboard->mimeData();
     if (mime->hasText())
         return clipboard->text();
-
+    
     return QString();
 }
 
@@ -197,30 +226,30 @@ QVariantMap Handy::getClipboard()
 #ifdef Q_OS_ANDROID
     if (_clipboard.hasUrls())
         res.insert("urls", QUrl::toStringList(_clipboard.urls));
-
+    
     if (_clipboard.hasText())
         res.insert("text", _clipboard.text);
-
+    
     res.insert("cut", _clipboard.cut);
 #else
     auto clipboard = QApplication::clipboard();
-
+    
     auto mime = clipboard->mimeData();
-
+    
     if(!mime)
         return res;
-
+    
     if (mime->hasUrls())
         res.insert("urls", QUrl::toStringList(mime->urls()));
-
+    
     if (mime->hasText())
         res.insert("text", mime->text());
-
+    
     if(mime->hasImage())
         res.insert("image", mime->imageData());
-
+    
     const QByteArray a = mime->data(QStringLiteral("application/x-kde-cutselection"));
-
+    
     res.insert("cut", !a.isEmpty() && a.at(0) == '1');
 #endif
     return res;
@@ -231,29 +260,29 @@ bool Handy::copyToClipboard(const QVariantMap &value, const bool &cut)
 #ifdef Q_OS_ANDROID
     if (value.contains("urls"))
         _clipboard.urls = QUrl::fromStringList(value["urls"].toStringList());
-
+    
     if (value.contains("text"))
         _clipboard.text = value["text"].toString();
-
+    
     _clipboard.cut = cut;
-
+    
     return true;
 #else
     auto clipboard = QApplication::clipboard();
     QMimeData *mimeData = new QMimeData();
-
+    
     if (value.contains("urls"))
         mimeData->setUrls(QUrl::fromStringList(value["urls"].toStringList()));
-
+    
     if (value.contains("text"))
         mimeData->setText(value["text"].toString());
-
+    
     mimeData->setData(QStringLiteral("application/x-kde-cutselection"), cut ? "1" : "0");
     clipboard->setMimeData(mimeData);
-
+    
     return true;
 #endif
-
+    
     return false;
 }
 
@@ -334,7 +363,7 @@ QString Handy::formatTime(const qint64 &value)
         }
         tStr = time.toString(format);
     }
-
+    
     return tStr.isEmpty() ? "00:00" : tStr;
 }
 

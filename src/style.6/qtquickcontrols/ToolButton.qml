@@ -45,8 +45,6 @@ T.ToolButton
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
 
-    property bool subMenu : false
-
     opacity: enabled ? 1 : 0.5
 
     implicitWidth: Math.max(implicitContentWidth + leftPadding + rightPadding, implicitHeight)
@@ -62,27 +60,17 @@ T.ToolButton
 
     icon.color: control.color
 
-    readonly property color color : control.down || control.checked ? (control.flat ? Maui.Theme.highlightColor : Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
+    readonly property color color : control.down || control.checked ? ( Maui.Theme.highlightedTextColor) : Maui.Theme.textColor
 
-    flat: control.parent instanceof T.ToolBar
+    flat: true
     font: Maui.Style.defaultFont
 
-    indicator: Maui.Icon
-    {
-        x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
-        y: control.topPadding + (control.availableHeight - height) / 2
-
-        visible: control.subMenu
-        color: control.color
-        height: 8
-        width: 8
-        source: "qrc:/assets/arrow-down.svg"
-    }
+    indicator: null //Control should implement the indicator, for example via DropDownIndicator
 
     contentItem: Maui.IconLabel
     {
         id: _content
-        readonly property real arrowPadding: control.subMenu && control.indicator ? control.indicator.width + Maui.Style.space.tiny : 0
+        readonly property real arrowPadding: control.indicator && control.indicator.visible ? control.indicator.width + Maui.Style.space.tiny : 0
 
         rightPadding: arrowPadding + (_badgeLoader.visible ? 8 : 0)
 
@@ -122,10 +110,35 @@ T.ToolButton
 
     background: Rectangle
     {
-        visible: !control.flat
+        // visible: !control.flat
         radius: Maui.Style.radiusV
 
-        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ? control.Maui.Theme.hoverColor : "transparent")
+        color: control.pressed || control.down || control.checked ? control.Maui.Theme.highlightColor : (control.highlighted || control.hovered ?  control.Maui.Theme.hoverColor : (control.flat ? "transparent" : control.Maui.Theme.backgroundColor))
+
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+
+        border.color: statusColor(control)
+
+        function statusColor(control)
+        {
+            if(control.Maui.Controls.status)
+            {
+                switch(control.Maui.Controls.status)
+                {
+                case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                case Maui.Controls.Normal:
+                default:
+                    return "transparent"
+                }
+            }
+
+            return "transparent"
+        }
     }
 
     Loader

@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QFont>
 #include <QColor>
+#include <QEvent>
 #include <QVariant>
 #include <QQmlEngine>
 #include <QFontMetrics>
@@ -415,6 +416,9 @@ private:
     
     void setFontSizes();
     void styleChanged();
+    
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
     
 Q_SIGNALS:
     void defaultFontChanged();

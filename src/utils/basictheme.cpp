@@ -369,7 +369,7 @@ namespace Maui
         visitedLinkColor = QColor{"#ff17d4"};
         visitedLinkBackgroundColor = QColor{"#ff17d4"};
 
-        negativeTextColor = QColor{"#dac7cb"};
+        negativeTextColor = QColor{"#fafafa"};
         negativeBackgroundColor = QColor{"#DA4453"};
         neutralTextColor = QColor{"#fafafa"};
         neutralBackgroundColor = QColor{"#F67400"};
@@ -439,7 +439,7 @@ namespace Maui
         visitedLinkColor = QColor{"#ff17d4"};
         visitedLinkBackgroundColor = QColor{"#ff17d4"};
 
-        negativeTextColor = QColor{"#dac7cb"};
+        negativeTextColor = QColor{"#fafafa"};
         negativeBackgroundColor = QColor{"#DA4453"};
         neutralTextColor = QColor{"#fafafa"};
         neutralBackgroundColor = QColor{"#F67400"};

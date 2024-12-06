@@ -55,26 +55,22 @@ T.Pane
     background: Rectangle
     {
         color: control.Maui.Controls.level && control.Maui.Controls.level === Maui.Controls.Secondary ? control.Maui.Theme.alternateBackgroundColor: control.Maui.Theme.backgroundColor
-
+        
+        Behavior on border.color
+        {
+            Maui.ColorTransition{}
+        }
+        
+        border.color: switch(control.Maui.Controls.status)
+        {
+                                  case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                                  case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                                  case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                                  default: return "transparent"
+                              }
         Behavior on color
         {
             Maui.ColorTransition{}
         }
-    }
-
-    Rectangle
-    {
-        z: control.contentItem.z+ 99
-        visible: control.Maui.Controls.status
-        height: 6
-        width: parent.width
-        anchors.bottom: parent.bottom
-        color: switch(control.Maui.Controls.status)
-               {
-               case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
-               case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
-               case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
-               default: return control.Maui.Theme.backgroundColor
-               }
     }
 }

@@ -196,6 +196,18 @@ Maui.Page
                         }
                     }
                 }
+                
+                onItemVisibilityChanged: (index, visible) =>
+                {
+                    console.log("VISIBLE CHILDREN CHANGED", index, visible)
+                    if(index === control.currentIndex && !visible && control.visible)
+                    {
+                        const nextIndex = control.currentIndex+1 === control.count ? 0 : control.currentIndex+1
+                        const item = _swipeView.contentChildren[nextIndex] 
+                        if(item && item.visible)
+                            control.goNext()
+                    }
+                }
             }
         }
         
@@ -203,7 +215,7 @@ Maui.Page
         {
             id:_swipeView   
             anchors.fill: parent
-            interactive: false
+            interactive: false     
             
             onCurrentItemChanged:
             {
@@ -255,7 +267,7 @@ Maui.Page
                 onCurrentIndexChanged:
                 {
                     _listView.lastPos = _listView.contentX
-                }            
+                }  
             }
             
             Keys.enabled: true
@@ -296,6 +308,8 @@ Maui.Page
             }        
         }
         
+        
+        
         /**
          * @brief The private object that handles the history workflow
          * @warning This is a private property and can not be accesed
@@ -330,4 +344,22 @@ Maui.Page
             _swipeView.setCurrentIndex(history.pop())
         }
         
+        /**
+         * @brief Jumps to the next view. If it reaches the last one, then it wraps to the first view.
+         */
+        function goNext()
+        {
+            if(control.currentIndex+1 < control.count)
+            _listView.incrementCurrentIndex()
+            else
+                 _listView.decrementCurrentIndex()
+        }
+        
+        /**
+         * @brief Jumps to the previous view
+         */
+        function goPrevious()
+        {
+            _listView.decrementCurrentIndex()
+        }
 }

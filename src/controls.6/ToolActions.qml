@@ -4,30 +4,31 @@ import QtQuick.Layouts
 import QtQml
 
 import org.mauikit.controls as Maui
+import "private" as Private
 
 /**
  * @inherit QtQuick.Controls.Control
- * @brief A set of grouped action visually joined together. 
- * 
- * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This control inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a> 
- * 
+ * @brief A set of grouped action visually joined together.
+ *
+ * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-control.html">This control inherits from QQC2 Control, to checkout its inherited properties refer to the Qt Docs.</a>
+ *
  * The set actions can be checkable and auto-exclusive or not.
- * 
+ *
  * @image html Misc/toolactions.png "[1] Non-checkable. [2] Checkable non-auto-exclusive. [3] Checkable and autoexclusive"
- * 
+ *
  * @section features Features
  * This control supports checkable and non-checkable actions. Also auto-exclusive and non-auto-exclusive actions.
- * 
+ *
  * When enabling the `autoExclusive` property, then only one action in the group can be marked as checked at the time.
- * 
+ *
  * There is also the option to collapse the actions into a single button with a popup menu where the actions are listed, this is useful when the available space changes and the control needs to be made more compact to save space.
- * 
+ *
  * @image html Misc/toolactions2.png "The collapsed actions into a menu"
- * 
+ *
  * If only two actions are added and marked as auto-exclusive, then this control has the option to enable a `cyclic` behavior, which means that toggling one button will activate the next action in line and cyclic around.
  * @see canCyclic
  * @see cyclic
- * 
+ *
  * Heres a example of how to achieve such behavior:
  * @code
  * Maui.ToolActions
@@ -37,9 +38,9 @@ import org.mauikit.controls as Maui
  *    autoExclusive: true
  *    cyclic: true //enable the cyclic behavior
  *    expanded: false //the cyclic behavior needs to be in the collapsed mode
- * 
+ *
  *    property int currentAction: 0 //here we keep the state for the current action checked
- * 
+ *
  *    Action
  *    {
  *        id: _action1
@@ -50,7 +51,7 @@ import org.mauikit.controls as Maui
  *            _actions.currentAction = 0
  *        }
  *    }
- * 
+ *
  *    Action
  *    {
  *        id: _action2
@@ -63,30 +64,30 @@ import org.mauikit.controls as Maui
  *    }
  * }
  * @endcode
- * 
+ *
  * @code
  * Maui.ToolActions
  * {
  *    checkable: true
  *    autoExclusive: true
- *    
+ *
  *    Action
  *    {
  *        text: "Pick"
  *    }
- *    
+ *
  *    Action
  *    {
  *        text: "Only"
  *    }
- *    
+ *
  *    Action
  *    {
  *        text: "One"
  *    }
  * }
  * @endcode
- * 
+ *
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/ToolActions.qml">You can find a more complete example at this link.</a>
  */
 Control
@@ -133,7 +134,8 @@ Control
     property int display: ToolButton.TextBesideIcon
     
     /**
-     * @brief Whether two action can be triggered in a cyclic manner. So one press will activate the next action and then cycle around again.
+     * @brief Whether two actions can be triggered in a cyclic manner. So one press will activate the next action and then cycle around to the first one again.
+     * @note For this to work only two actions can be added
      * @see canCyclic
      * By default this is set to `false`
      */
@@ -189,11 +191,20 @@ Control
         }
     }
     
+    Behavior on implicitWidth
+    {
+        NumberAnimation
+        {
+            duration: Maui.Style.units.shortDuration
+            easing.type: Easing.InQuad
+        }
+    }   
+    
     contentItem: Loader
     {
         id: _loader
         asynchronous: true
-        sourceComponent: control.expanded ? _rowComponent : _buttonComponent
+        sourceComponent: control.expanded ? _rowComponent : (control.canCyclic ? _buttonComponent : _toolButtonMenuComponent)        
     }
     
     background: null
@@ -243,6 +254,8 @@ Control
                 {
                     id: _actionButton
                     action : modelData
+                    Maui.Controls.status: control.Maui.Controls.status
+                    
                     checkable: control.checkable || action.checkable
                     
                     height: Math.max(implicitHeight, _row.biggerHeight)
@@ -269,6 +282,31 @@ Control
                         {
                             Maui.ColorTransition{}
                         }
+                        
+                        Behavior on border.color
+                        {
+                            Maui.ColorTransition{}
+                        }
+                        
+                        border.color: statusColor(_actionButton)
+                        
+                        function statusColor(control)
+                        {
+                            if(control.Maui.Controls.status)
+                            {
+                                switch(control.Maui.Controls.status)
+                                {
+                                    case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
+                                    case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
+                                    case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
+                                    case Maui.Controls.Normal:
+                                    default:
+                                        return "red"
+                                }
+                            }
+                            
+                            return "red"
+                        }
                     }
                 }
             }
@@ -277,15 +315,84 @@ Control
     
     Component
     {
+        id: _toolButtonMenuComponent
+        
+        Maui.ToolButtonMenu
+        {
+            Maui.Controls.status: control.Maui.Controls.status
+            flat: false
+            property Action m_action
+            hoverEnabled: true
+            display: control.display
+            icon.name: m_action ? m_action.icon.name : control.defaultIconName
+            text: m_action ? m_action.text: ""
+            
+            Component.onCompleted:
+            {
+                m_action = buttonAction()
+            }
+            
+            Repeater
+            {
+                model: control.autoExclusive && control.canCyclic ? undefined : control.actions
+                
+                delegate: MenuItem
+                {
+                    action: modelData
+                    enabled: modelData.enabled
+                    autoExclusive: control.autoExclusive
+                    checkable: control.checkable || action.checkable
+                }
+            }
+            
+            Row
+            {
+                visible: false
+                Repeater
+                {
+                    model: control.actions
+                    delegate: Item
+                    {
+                        property bool checked : modelData.checked
+                        onCheckedChanged: m_action = buttonAction()
+                    }
+                }
+            }
+            
+            function buttonAction()
+            {
+                if(control.autoExclusive)
+                {
+                    var currentAction
+                    var actionIndex = -1
+                    for(var i in control.actions)
+                    {
+                        console.log("Checking current action", i)
+                        if(control.actions[i].checked)
+                        {
+                            actionIndex = i
+                            currentAction = control.actions[actionIndex]
+                            console.log("Found current action", i, actionIndex)
+                            return currentAction
+                        }
+                    }
+                }
+                
+                return null
+            }
+        }
+    }
+    
+    Component
+    {
         id: _buttonComponent
         
-        ToolButton
+        Button
         {
             id: _defaultButtonIcon
+            Maui.Controls.status: control.Maui.Controls.status
             
             property Action m_action
-            
-            Component.onCompleted: _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
             
             function buttonAction()
             {
@@ -337,71 +444,32 @@ Control
                 }
             }
             
-            data: Maui.ContextualMenu
-            {
-                id: _menu
-                
-                Repeater
-                {
-                    model: control.autoExclusive && control.canCyclic ? undefined : control.actions
-                    
-                    delegate: MenuItem
-                    {
-                        action: modelData
-                        enabled: modelData.enabled
-                        autoExclusive: control.autoExclusive
-                        checkable: control.checkable || action.checkable
-                    }
-                }
-            }
-            
             onClicked:
             {
-                if(_defaultButtonIcon.m_action && control.canCyclic && control.autoExclusive)
+                if(_defaultButtonIcon.m_action && control.canCyclic)
                 {
                     console.log("Trigger next cyclic action", _defaultButtonIcon.m_action.icon.name)
                     // var previousAction = _defaultButtonIcon.action
                     _defaultButtonIcon.m_action.triggered()
-                    _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
-                    
-                }else
-                {
-                    if(!_menu.visible)
-                    {
-                        _menu.show(0, control.height, control)
-                        
-                    }else
-                    {
-                        _menu.close()
-                    }
+                    _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()                    
                 }
             }
             
-            icon.width:  Maui.Style.iconSize
-            icon.height: Maui.Style.iconSize
-            icon.color: m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : (pressed ? control.Maui.Theme.highlightColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
+            icon.color:  m_action ? (m_action.icon.color && m_action.icon.color.length ? m_action.icon.color : (pressed || checked ? control.Maui.Theme.highlightedTextColor : control.Maui.Theme.textColor)) :  control.Maui.Theme.textColor
             
             icon.name: m_action ? m_action.icon.name : control.defaultIconName
             text: m_action ? m_action.text: ""
             
             enabled: m_action ? m_action.enabled : true
             
-            subMenu: !control.canCyclic
+            Component.onCompleted:
+            {
+                _defaultButtonIcon.m_action = _defaultButtonIcon.buttonAction()
+            }
             
             display: control.display
             
             checkable: control.checkable && (action ? action.checkable : false)
-            
-            background: Rectangle
-            {
-                color: Maui.Theme.backgroundColor
-                radius: Maui.Style.radiusV
-                
-                Behavior on color
-                {
-                    Maui.ColorTransition{}
-                }
-            }
-        }        
+        }
     }
 }

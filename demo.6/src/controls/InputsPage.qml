@@ -16,13 +16,88 @@ DemoPage
 
         DemoSection
         {
-            title: "TextField"
-            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+            title: "MauiKit TextField"
+            body: i18n("Alternative attached properties that can be used within a text field, such as actions, title, subtitle and/or badge indicators.")
 
-            TextField
+            Maui.TextField
             {
                 placeholderText: "TextField"
                 Maui.Controls.badgeText: "@"
+            }
+
+            Maui.TextField
+            {
+                placeholderText: "TextField"
+                actions: [
+                Action
+                    {
+                        icon.name: "love"
+                        checkable: true
+                    },
+                    Action
+                        {
+                            icon.name: "folder"
+                            checkable: true
+                        }
+                ]
+            }
+
+            Maui.TextField
+            {
+                placeholderText: "TextField"
+                Maui.Controls.badgeText: "@"
+
+                actions: [
+                Action
+                    {
+                        icon.name: "love"
+                    },
+                    Action
+                        {
+                            icon.name: "folder"
+                        }
+                ]
+            }
+
+            Maui.TextField
+            {
+                Maui.Controls.title: "Title"
+                Maui.Controls.subtitle: "Subtitle information needed"
+                placeholderText: "TextField"
+            }
+
+            Maui.TextField
+            {
+                Maui.Controls.title: "Title"
+                placeholderText: "TextField"
+            }
+
+
+            Maui.TextField
+            {
+                Maui.Controls.subtitle: "Subtitle information needed"
+                placeholderText: "TextField"
+            }
+
+            Maui.TextField
+            {
+                Maui.Controls.title: "Title"
+                Maui.Controls.subtitle: "Subtitle information needed"
+                Maui.Controls.status: Maui.Controls.Negative
+            }
+
+            Maui.TextField
+            {
+                Maui.Controls.title: "Title"
+                Maui.Controls.subtitle: "Subtitle information needed"
+                Maui.Controls.status: Maui.Controls.Positive
+            }
+
+            Maui.TextField
+            {
+                Maui.Controls.title: "Title"
+                Maui.Controls.subtitle: "Subtitle information needed"
+                Maui.Controls.status: Maui.Controls.Neutral
             }
         }
 
@@ -38,6 +113,17 @@ DemoPage
 
             }
 
+        }
+
+        DemoSection
+        {
+            title: "QQC2 TextField"
+            body: i18n("Different button states: Regular, Checkable and flat. Can also have different layouts")
+
+            TextField
+            {
+                placeholderText: "QQC2 TextField"
+            }
         }
 
         DemoSection

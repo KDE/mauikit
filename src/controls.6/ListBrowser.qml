@@ -383,7 +383,7 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
             
-            interactive: Maui.Handy.isTouch
+            interactive: Maui.Handy.hasTransientTouchInput
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
@@ -408,7 +408,7 @@ Item
                 anchors.fill: parent
                 z: parent.z-1
                 clip: false
-                
+
                 Loader
                 {
                     asynchronous: true
@@ -421,6 +421,7 @@ Item
                         
                         propagateComposedEvents: true
                         preventStealing: true
+                        scrollGestureEnabled: false
                         acceptedButtons: Qt.RightButton | Qt.LeftButton
                         
                         onClicked: (mouse) =>
@@ -433,6 +434,7 @@ Item
                                        if(mouse.button === Qt.RightButton)
                                        {
                                            control.areaRightClicked()
+                                           mouse.accepted = true
                                            return
                                        }
                                    }
@@ -465,6 +467,7 @@ Item
                         
                         onPressed: (mouse) =>
                                    {
+                                       console.log("MOUSE EVENT SOURCE", mouse.source)
                                        if (mouse.source === Qt.MouseEventNotSynthesized && control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
                                        {
                                            selectLayer.visible = true;
