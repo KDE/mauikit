@@ -111,7 +111,7 @@ Maui.GridBrowserDelegate
                             anchors.fill: parent
                             sourceSize.width: control.imageWidth >= 0 ? control.imageWidth : width  
                             sourceSize.height: control.imageHeight >= 0 ? control.imageHeight : height
-                            cache: !Maui.Handy.isMobile
+                            cache: true
                             smooth: !Maui.Handy.isMobile
                             asynchronous: true
                             source: control.cb ? control.cb(modelData) : modelData
