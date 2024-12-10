@@ -135,13 +135,13 @@ Item
      * @brief The painted width size of the image. This will make the image resolution fit this size.
      * By default this is set to `-1`, which means that the image will be loaded with its original resolution size.
      */
-    property int imageWidth : imageSizeHint
+    property int imageWidth : -1
 
     /**
      * @brief The painted height size of the image. This will make the image resolution fit this size.
      * By default this is set to `-1`, which means that the image will be loaded with its original resolution size.
      */
-    property int imageHeight : imageSizeHint
+    property int imageHeight : -1
 
     /**
      * @brief Whether the icon should be masked and tinted with the text color, this is used for monochromatic icons. If you plan to use a colorful icon, consider setting this property to `false`.
@@ -211,8 +211,8 @@ Item
             case Qt.AlignRight: return control.width - width
         }
 
-        sourceSize.width: control.imageWidth
-        sourceSize.height: control.imageHeight
+        sourceSize.width: control.imageWidth > 0 ? control.imageWidth : width
+        sourceSize.height: control.imageHeight > 0 ? control.imageHeight : height
 
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
