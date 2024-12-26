@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 01:49+0000\n"
-"PO-Revision-Date: 2024-02-11 02:27+0100\n"
+"PO-Revision-Date: 2024-12-25 22:38+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
@@ -170,8 +170,7 @@ msgid "Components"
 msgstr "კომპონენტები"
 
 #: src/controls.6/private/ShareDialogLinux.qml:49
-#, fuzzy, kde-format
-#| msgid "Share with"
+#, kde-format
 msgid "Share"
 msgstr "გაზიარება"
 
@@ -193,7 +192,7 @@ msgstr "დახურვა"
 #: src/controls.6/SplitViewItem.qml:197
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
-msgstr ""
+msgstr "მართლა გნებავთ, დახუროთ გაყოფილი ხედი: '%1'?"
 
 #: src/controls.6/TabView.qml:313
 #, kde-format

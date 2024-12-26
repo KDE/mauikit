@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/mauikit/mauikit.pot\n"
-"X-Crowdin-File-ID: 41195\n"
+"X-Crowdin-File: /kf6-trunk/messages/mauikit/mauikit.pot\n"
+"X-Crowdin-File-ID: 56876\n"
 
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
