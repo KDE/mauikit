@@ -56,7 +56,7 @@ ComboBox
     
     font.family: control.displayText
     model: Qt.fontFamilies()
-    icon.source: "font"
+    Maui.Controls.iconName: "font"
     
     delegate: MenuItem
     {

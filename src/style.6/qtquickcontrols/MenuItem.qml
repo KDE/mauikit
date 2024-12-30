@@ -63,7 +63,7 @@ T.MenuItem
     icon.color: setTextColor(control)
     
     property bool flat: !Maui.Handy.isMobile
-    property bool showIcon: Maui.Style.menusHaveIcons
+    readonly property bool showIcon: Maui.Style.menusHaveIcons
     
     font: Maui.Style.defaultFont
     

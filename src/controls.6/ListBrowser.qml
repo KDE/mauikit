@@ -357,7 +357,7 @@ Item
         clip: control.clip
         focus: true
         padding: Maui.Style.contentMargins
-        orientation: _listView.orientation
+        Maui.Controls.orientation: _listView.orientation
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy

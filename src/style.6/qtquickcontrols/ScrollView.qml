@@ -57,12 +57,11 @@ T.ScrollView
     topPadding: padding
     bottomPadding: padding + (Maui.Style.scrollBarPolicy === Maui.Style.AutoHide ? 0 :ScrollBar.horizontal.height)
     
-    property alias orientation : _wheelHandler.primaryOrientation
-
     data: Maui.WheelHandler
     {
         id: _wheelHandler
         target: control.contentItem
+        primaryOrientation: control.Maui.Controls.orientation ? control.Maui.Controls.orientation : Qt.Vertical
     }
     
     ScrollBar.vertical: ScrollBar

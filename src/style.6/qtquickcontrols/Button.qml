@@ -57,6 +57,8 @@ T.Button
     Keys.onReturnPressed: { control.clicked() }
     Keys.onEnterPressed: { control.clicked() }
 
+    enabled: action ? action.enabled :  true
+
     contentItem: Maui.IconLabel
     {
         text: control.text

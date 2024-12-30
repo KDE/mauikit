@@ -296,6 +296,8 @@ ecm_target_qml_sources(MauiKit${MAUI_MAJOR_VERSION} SOURCES
     controls.${QT_MAJOR_VERSION}/ListDelegate.qml
     controls.${QT_MAJOR_VERSION}/ListItemTemplate.qml
 
+    controls.${QT_MAJOR_VERSION}/Notification.qml
+
     controls.${QT_MAJOR_VERSION}/MenuItemActionRow.qml
 
     controls.${QT_MAJOR_VERSION}/Page.qml

@@ -204,7 +204,7 @@ QQC.TabBar
             {
                 Layout.fillWidth: true
 
-                orientation : Qt.Horizontal
+                Maui.Controls.orientation : Qt.Horizontal
 
                 QQC.ScrollBar.horizontal.policy: QQC.ScrollBar.AlwaysOff
                 QQC.ScrollBar.vertical.policy: QQC.ScrollBar.AlwaysOff

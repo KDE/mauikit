@@ -200,6 +200,8 @@ class Controls : public QObject
      */
     Q_PROPERTY(QQmlComponent *component READ component WRITE setComponent NOTIFY componentChanged)
     Q_PROPERTY(QQuickItem *item READ item WRITE setItem NOTIFY itemChanged)
+    
+    Q_PROPERTY(Qt::Orientation orientation READ orientation WRITE setOrientation NOTIFY orientationChanged)
 
 public:
 
@@ -257,6 +259,9 @@ public:
 
     QQuickItem *item() const;
     void setItem(QQuickItem *item);
+    
+    void setOrientation(Qt::Orientation orientation);
+    Qt::Orientation orientation() const;
 
 Q_SIGNALS:
     void titleChanged();
@@ -271,6 +276,7 @@ Q_SIGNALS:
     void statusChanged();
     void itemChanged();
     void componentChanged();
+    void orientationChanged();
 
 private:
     bool m_showCSD;
@@ -285,6 +291,7 @@ private:
     Controls::Status m_status = Controls::Status::Normal;
     QQuickItem *m_item = nullptr;
     QQmlComponent *m_component = nullptr;
+    Qt::Orientation m_orientation = Qt::Orientation::Vertical;
 };
 
 QML_DECLARE_TYPEINFO(Controls, QML_HAS_ATTACHED_PROPERTIES)

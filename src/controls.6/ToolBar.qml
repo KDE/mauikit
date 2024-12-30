@@ -303,17 +303,6 @@ QQC.ToolBar
 
             Loader
             {
-                asynchronous: true
-                active: !Maui.Handy.isMobile
-                sourceComponent: Maui.WheelHandler
-                {
-                    target: mainFlickable
-                    primaryOrientation : Qt.Horizontal
-                }
-            }
-
-            Loader
-            {
                 active: control.draggable
                 asynchronous: true
                 anchors.fill: parent
@@ -388,6 +377,8 @@ QQC.ToolBar
                     contentWidth: layout.implicitWidth
                     contentHeight: availableHeight
 
+                    Maui.Controls.orientation : Qt.Horizontal
+                    
                     QQC.ScrollBar.horizontal.policy: QQC.ScrollBar.AlwaysOff
                     QQC.ScrollBar.vertical.policy: QQC.ScrollBar.AlwaysOff
 

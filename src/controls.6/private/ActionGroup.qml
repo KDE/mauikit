@@ -177,7 +177,7 @@ Pane
                     autoExclusive: true
                     checkable: true
                     checked: control.currentIndex === control.items.length + index
-                    showIcon: true
+                    // showIcon: true
 
                     onTriggered:
                     {

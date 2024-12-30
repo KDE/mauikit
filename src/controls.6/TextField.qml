@@ -228,7 +228,6 @@ QC.TextField
         }
     }
 
-
     Loader
     {
         id: _subtitleLoader
