@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 01:49+0000\n"
+"POT-Creation-Date: 2024-12-31 00:40+0000\n"
 "PO-Revision-Date: 2024-06-30 19:49+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -128,7 +128,7 @@ msgstr "Bilden kunde inte läsas in."
 msgid "Version ID copied to clipboard"
 msgstr "Versionsidentifikation kopierad till klippbordet"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:400
 #, kde-format
 msgid "Copy"
 msgstr "Kopiera"
@@ -198,27 +198,27 @@ msgstr "Är du säker på att du vill stänga den delade vyn: \"%1\"?"
 msgid "Open"
 msgstr "Öppna"
 
-#: src/controls.6/TextField.qml:408
+#: src/controls.6/TextField.qml:407
 #, kde-format
 msgid "Cut"
 msgstr "Klipp ut"
 
-#: src/controls.6/TextField.qml:415
+#: src/controls.6/TextField.qml:414
 #, kde-format
 msgid "Paste"
 msgstr "Klistra in"
 
-#: src/controls.6/TextField.qml:425
+#: src/controls.6/TextField.qml:424
 #, kde-format
 msgid "Select All"
 msgstr "Markera alla"
 
-#: src/controls.6/TextField.qml:432
+#: src/controls.6/TextField.qml:431
 #, kde-format
 msgid "Undo"
 msgstr "Ångra"
 
-#: src/controls.6/TextField.qml:439
+#: src/controls.6/TextField.qml:438
 #, kde-format
 msgid "Redo"
 msgstr "Gör om"
