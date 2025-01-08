@@ -435,6 +435,8 @@ Item
         contentHeight: controlView.contentHeight
         contentWidth: availableWidth
         
+        Maui.Controls.orientation: control.Maui.Controls.orientation
+        
         GridView
         {
             id: controlView

@@ -267,17 +267,16 @@ Item
                     
                     visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
                     
-                    active: visible
+                    active: visible || item
                     
                     Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: !control.labelsVisible
                     Layout.fillHeight: true
-                    Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint)
-                    Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint)
+                    Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint, 0)
+                    Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint, 0)
                     
                     sourceComponent: control.iconComponent
-               }
-               
+               }               
                
                ColumnLayout
                {

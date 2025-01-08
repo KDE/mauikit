@@ -70,8 +70,8 @@ Item
 
     visible: icon.valid || img.status === Image.Ready
 
-    implicitHeight: visible ? Math.max(iconSizeHint, imageSizeHint) : 0
-    implicitWidth: implicitHeight
+    implicitHeight: visible ? Math.max(img.height, icon.height, 0) : 0
+    implicitWidth: visible ? Math.max(img.width, icon.width, 0) : 0
 
     smooth: !Maui.Handy.isMobile
 
@@ -200,8 +200,8 @@ Item
 //         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
 //         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
 //
-        height: imageSizeHint >=0 ? imageSizeHint : parent.height
-        width: imageSizeHint >=0 ?  imageSizeHint : parent.width
+        height: control.imageSizeHint >=0 ? control.imageSizeHint : parent.height
+        width: control.imageSizeHint >=0 ? control.imageSizeHint : parent.width
 
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
