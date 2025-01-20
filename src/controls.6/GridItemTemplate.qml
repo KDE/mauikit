@@ -250,14 +250,13 @@ Item
             asynchronous: true
             active: visible
             sourceComponent: control.iconComponent
-
-            Behavior on scale
+            
+            OpacityAnimator on opacity
             {
-                NumberAnimation
-                {
-                    duration: Maui.Style.units.longDuration
-                    easing.type: Easing.OutBack
-                }
+                from: 0
+                to: 1
+                duration: Maui.Style.units.longDuration
+                running: _iconLoader.status === Loader.Ready
             }
         }
 

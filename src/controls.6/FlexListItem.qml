@@ -186,7 +186,10 @@ ItemDelegate
         Layout.fillWidth: true
         iconSizeHint: Maui.Style.iconSizes.medium
         label2.wrapMode: Text.WordWrap
-        label1.font.weight: Font.Medium
+        label2.font.pointSize: Maui.Style.fontSizes.small    
+        iconSource: control.icon.name
+        label1.text: control.text
+        
       }
       
       RowLayout

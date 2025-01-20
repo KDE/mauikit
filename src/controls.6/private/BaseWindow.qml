@@ -31,7 +31,6 @@ import org.mauikit.controls as Maui
  * @brief A base window implementation for window dialogs and the main application window.
  * For using a detached dialog window use the WindowDialog control.
  */
-
 ApplicationWindow
 {
     id: root

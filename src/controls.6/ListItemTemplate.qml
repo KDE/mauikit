@@ -276,6 +276,14 @@ Item
                     Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint, 0)
                     
                     sourceComponent: control.iconComponent
+                    
+                    OpacityAnimator on opacity
+                    {
+                         from: 0
+                         to: 1
+                         duration: Maui.Style.units.longDuration
+                         running: _iconLoader.status === Loader.Ready
+                    }
                }               
                
                ColumnLayout

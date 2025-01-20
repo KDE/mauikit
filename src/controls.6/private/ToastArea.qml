@@ -140,21 +140,34 @@ Control
                 radius: Maui.Style.radiusV
                 color: _toast.hovered && _toast.actions.length === 0? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
                 
+                // Text
+                // {
+                //     text: _progressTimer.progress + " / " + _toastTimer.interval
+                //     color: "yellow"
+                //     z: _toast.z+9999
+                // }
+                Item
+                {
+                    id: _bglay
+                    anchors.fill: parent
                 ProgressBar
                 {
                     id: _progressBar
+                    visible: (!_toast.hovered && !_container.hovered ) && control.autoClose
                     anchors.bottom: parent.bottom
                     height: 2
                     width: parent.width
                     from: 0
                     to : _toastTimer.interval
                     value: _progressTimer.progress
+                    opacity: value/to
                     
                     Timer
                     {
                         id: _progressTimer
-                        property int progress : 0
-                        interval: 5
+                        running: _toastTimer.running
+                        property int progress : 0                        
+                        interval: 50
                         repeat: _toastTimer.running
                         onTriggered: progress += _progressTimer.interval
                     }
@@ -163,7 +176,28 @@ Control
                     {
                         _progressTimer.progress = 0
                         _progressTimer.restart()
+                    }    
+                }                
+                layer.enabled: true
+                layer.effect: MultiEffect
+                {
+                    maskEnabled: true
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
+                    maskSpreadAtMax: 0.0
+                    maskThresholdMax: 1.0
+                    maskSource: ShaderEffectSource
+                    {
+                        sourceItem: Rectangle
+                        {
+                            x: _bglay.x
+                            y: _bglay.y
+                            width: _bglay.width
+                            height: _bglay.height
+                            radius: Maui.Style.radiusV
+                        }
                     }
+                }
                 }
                 
                 layer.enabled: true
@@ -177,26 +211,27 @@ Control
             
             Component.onCompleted:
             {
-                _progressTimer.start()
+                // _progressTimer.start()
+                _toastTimer.interval = _toast.timeout + (_listView.count * 1500)
+                
                 _toastTimer.start()
             }
             
             Timer
             {
                 id: _toastTimer
-                interval: _toast.timeout + (_toast.mindex * 500)
-                
+                // running: !_toast.hovered && !_container.hovered && control.autoClose
                 onTriggered:
                 {
                     if(_toast.hovered || _container.hovered || !control.autoClose)
                     {
                         _toastTimer.restart()
                         _progressBar.restart()
-                        return;
+                        return
                     }
                     _progressTimer.stop()
                     control.remove(_toast.mindex)
-                }
+                }                
             }
             
             contentItem: ColumnLayout

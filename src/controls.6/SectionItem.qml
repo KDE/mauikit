@@ -175,8 +175,8 @@ ItemDelegate
         Layout.fillWidth: true
         iconSizeHint: Maui.Style.iconSizes.medium
         label2.wrapMode: Text.WordWrap
-        label1.font.weight: Font.Medium
         label1.text: control.text
+        label2.font.pointSize: Maui.Style.fontSizes.small
         iconSource: control.icon.name
       }
     }
