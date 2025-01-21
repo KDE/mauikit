@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-31 00:40+0000\n"
+"POT-Creation-Date: 2025-01-21 00:40+0000\n"
 "PO-Revision-Date: 2024-06-27 11:20+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -170,7 +170,7 @@ msgstr "Composants "
 msgid "Share"
 msgstr "Partager"
 
-#: src/controls.6/private/ToastArea.qml:302
+#: src/controls.6/private/ToastArea.qml:337
 #, kde-format
 msgid "Dismiss All"
 msgstr "Tout rejeter"
