@@ -21,6 +21,7 @@ import QtQuick
 
 import QtQuick.Window 
 import QtQuick.Controls
+import QtQuick.Layouts
 
 import QtQuick.Effects
 
@@ -33,7 +34,7 @@ import org.mauikit.controls as Maui
  */
 ApplicationWindow
 {
-    id: root
+    id: control
     
     visible: true
     
@@ -41,7 +42,7 @@ ApplicationWindow
     minimumWidth: Maui.Handy.isMobile ? 0 : Math.min(200, Screen.desktopAvailableWidth)
     
     color: "transparent"
-    flags: Maui.CSD.enabled? (Qt.FramelessWindowHint | (root.isDialog ? Qt.Dialog : Qt.Window) ): ((root.isDialog ? Qt.Dialog : Qt.Window) & ~Qt.FramelessWindowHint)
+    flags: Maui.CSD.enabled? (Qt.FramelessWindowHint | (control.isDialog ? Qt.Dialog : Qt.Window) ): ((control.isDialog ? Qt.Dialog : Qt.Window) & ~Qt.FramelessWindowHint)
     
     // Window shadows for CSD
     Loader
@@ -50,7 +51,7 @@ ApplicationWindow
         asynchronous: true
         sourceComponent: Maui.WindowShadow
         {
-            view: root
+            view: control
             radius: Maui.Style.radiusV
             strength: 7.8
         }
@@ -79,30 +80,33 @@ ApplicationWindow
          * This property can be changed to any arbitrary condition. This will affect how some controls are positioned and displayed - as for a true wide value, it will assume there is more space to place contents, or for a `false` value it will work in the opposite way.
          * Keep in mind this property is widely used in other MauiKit components to determined if items should be hidden,  collapsed, or expanded, etc.
          **/
-    property bool isWide : root.width >= Maui.Style.units.gridUnit * 30
+    property bool isWide : control.width >= Maui.Style.units.gridUnit * 30
 
     /**
          * @brief Convenient property to check if the application window surface is maximized.
          **/
-    readonly property bool isMaximized: root.visibility === Window.Maximized
+    readonly property bool isMaximized: control.visibility === Window.Maximized
 
     /**
          * @brief Convenient property to check if the application window is in a full screen mode.
          **/
-    readonly property bool isFullScreen: root.visibility === Window.FullScreen
+    readonly property bool isFullScreen: control.visibility === Window.FullScreen
 
     /**
          * @brief Convenient property to check if the application window is in portrait mode, otherwise it means it is in landscape mode.
          **/
     readonly property bool isPortrait: Screen.primaryOrientation === Qt.PortraitOrientation || Screen.primaryOrientation === Qt.InvertedPortraitOrientation
-
+    
+    readonly property bool canResizeH: control.width !== control.maximumWidth || control.width !== control.minimumWidth
+    readonly property bool canResizeV: control.height !== control.maximumHeight || control.height !== control.maximumHeight
+    
     background: null
 
     Item
     {
         id: _container
         anchors.fill: parent
-        readonly property bool showBorders: Maui.CSD.enabled && root.visibility !== Window.FullScreen && !Maui.Handy.isMobile && root.visibility !== Window.Maximized
+        readonly property bool showBorders: Maui.CSD.enabled && control.visibility !== Window.FullScreen && !Maui.Handy.isMobile && control.visibility !== Window.Maximized
 
         Item
         {
@@ -204,7 +208,7 @@ ApplicationWindow
     {
         radius:  Maui.Style.radiusV
 
-        color: Qt.rgba( root.Maui.Theme.backgroundColor.r,  root.Maui.Theme.backgroundColor.g,  root.Maui.Theme.backgroundColor.b, 0.7)
+        color: Qt.rgba( control.Maui.Theme.backgroundColor.r,  control.Maui.Theme.backgroundColor.g,  control.Maui.Theme.backgroundColor.b, 0.7)
         Behavior on opacity { NumberAnimation { duration: 150 } }
 
         Behavior on color
@@ -220,8 +224,8 @@ ApplicationWindow
         // compositor and then the bindings are reevaluated, then the window
         // size would reset ignoring what the compositor asked.
         // see BUG 433849
-        root.width = root.width;
-        root.height = root.height;
+        control.width = control.width;
+        control.height = control.height;
     }
 
     /**
@@ -229,12 +233,12 @@ ApplicationWindow
          **/
     function toggleMaximized()
     {
-        if (root.isMaximized)
+        if (control.isMaximized)
         {
-            root.showNormal();
+            control.showNormal();
         } else
         {
-            root.showMaximized();
+            control.showMaximized();
         }
     }
 
@@ -243,12 +247,12 @@ ApplicationWindow
          **/
     function toggleFullscreen()
     {
-        if (root.isFullScreen)
+        if (control.isFullScreen)
         {
-            root.showNormal();
+            control.showNormal();
         } else
         {
-            root.showFullScreen()();
+            control.showFullScreen()();
         }
     }
 

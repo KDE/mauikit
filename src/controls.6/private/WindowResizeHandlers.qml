@@ -26,6 +26,7 @@ Item
 {
     Loader
     {
+        active: canResizeH
         asynchronous: true
         visible: active
         height: parent.height
@@ -58,6 +59,8 @@ Item
     
     Loader
     {
+        active: canResizeH
+        
         asynchronous: true
         visible: active
         height: parent.height
@@ -90,6 +93,8 @@ Item
     
     Loader
     {
+        active: canResizeV
+        
         asynchronous: true
         visible: active
         height: 6
@@ -123,6 +128,8 @@ Item
     
     Loader
     {
+        active: canResizeV || canResizeH        
+        
         asynchronous: true
         visible: active
         height: 16
