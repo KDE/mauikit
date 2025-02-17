@@ -40,13 +40,16 @@ Flickable
         visible: false
     }
 
+    readonly property bool zooming: contentHeight != height || contentWidth != width
+    
+    // readonly property int zoomFactor: 
     /**
      * @brief This an alias to the actual control painting the image. 
      * This control is handled by a QQC2 Image.
      * @note See Qt documentation for more information about the Image control.
      * @property Image ImageViewer::image
      */
-    property alias image: image
+    readonly property alias image: image
     
     /**
      * @brief The painted size of the image.
