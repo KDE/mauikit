@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-21 00:40+0000\n"
+"POT-Creation-Date: 2025-02-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-27 11:20+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -110,12 +110,12 @@ msgstr "Annuler"
 msgid "Accept"
 msgstr "Accepter"
 
-#: src/controls.6/ImageViewer.qml:204
+#: src/controls.6/ImageViewer.qml:207
 #, kde-format
 msgid "Oops!"
 msgstr "Oups !"
 
-#: src/controls.6/ImageViewer.qml:205
+#: src/controls.6/ImageViewer.qml:208
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "Il est impossible de charger l'image."

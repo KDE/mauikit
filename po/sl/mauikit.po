@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-21 00:40+0000\n"
+"POT-Creation-Date: 2025-02-18 00:40+0000\n"
 "PO-Revision-Date: 2024-06-26 10:20+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -114,12 +114,12 @@ msgstr "Prekliči"
 msgid "Accept"
 msgstr "Sprejmi"
 
-#: src/controls.6/ImageViewer.qml:204
+#: src/controls.6/ImageViewer.qml:207
 #, kde-format
 msgid "Oops!"
 msgstr "Opsa!"
 
-#: src/controls.6/ImageViewer.qml:205
+#: src/controls.6/ImageViewer.qml:208
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "Slike ni bilo mogoče naložiti."
