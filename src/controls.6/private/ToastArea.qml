@@ -178,7 +178,7 @@ Control
                         _progressTimer.restart()
                     }    
                 }                
-                layer.enabled: true
+                layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
                 layer.effect: MultiEffect
                 {
                     maskEnabled: true
@@ -200,7 +200,7 @@ Control
                 }
                 }
                 
-                layer.enabled: true
+                layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
                 layer.effect: MultiEffect
                 {
                     autoPaddingEnabled: true

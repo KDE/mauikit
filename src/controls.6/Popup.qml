@@ -104,7 +104,7 @@ QQC.Popup
     {
         id: _content
 
-        layer.enabled: true
+        layer.enabled: Q.GraphicsInfo.api !== Q.GraphicsInfo.Software
         layer.effect: MultiEffect
         {
             maskEnabled: true

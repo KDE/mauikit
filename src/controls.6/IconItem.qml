@@ -222,7 +222,7 @@ Item
         smooth: control.smooth
         mipmap: false
 
-        layer.enabled: control.maskRadius
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.maskRadius
         layer.effect: MultiEffect
         {
             maskEnabled: true

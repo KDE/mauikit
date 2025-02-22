@@ -76,7 +76,7 @@ T.ToolBar
                 // blurMax: 32
                 blur: 1.0
                 autoPaddingEnabled: true
-                // layer.enabled: true
+                // layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
                 // layer.effect: Desaturate
                 // {
                 //     desaturation: -1.2

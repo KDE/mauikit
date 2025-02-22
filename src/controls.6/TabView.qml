@@ -747,7 +747,7 @@ Pane
 
                                         textureSize: Qt.size(width,height)
                                         sourceItem: _listView.contentModel.get(index)
-                                        layer.enabled: Maui.Style.enableEffects
+                                        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && Maui.Style.enableEffects
                                         layer.smooth: true
                                         layer.effect: MultiEffect
                                         {

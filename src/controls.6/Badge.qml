@@ -83,7 +83,7 @@ AbstractButton
     background: Rectangle
     {
         id: _bg
-        visible: false
+        visible: GraphicsInfo.api === GraphicsInfo.Software
         radius: Math.min(width, height)
         color: control.color
         border.color: Qt.lighter(control.color)
@@ -96,6 +96,7 @@ AbstractButton
 
     MultiEffect
     {
+        visible: GraphicsInfo.api !== GraphicsInfo.Software
         source: _bg
         anchors.fill: _bg
         shadowColor: "#80000000"

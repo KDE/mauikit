@@ -72,7 +72,7 @@ T.Dialog
         radius: Maui.Style.radiusV
         color: Maui.Theme.backgroundColor
 
-        layer.enabled: true
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
         layer.effect: MultiEffect
         {
             autoPaddingEnabled: true

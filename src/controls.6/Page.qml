@@ -529,7 +529,7 @@ Pane
         Maui.Controls.flat: control.Maui.Controls.flat
         Maui.Controls.item: ShaderEffectSource
         {
-            layer.enabled: true
+            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
             // textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
             sourceItem: _content
             sourceRect:  _headBar.background ?
@@ -613,7 +613,7 @@ Pane
 
         Maui.Controls.item: ShaderEffectSource
         {
-            layer.enabled: true
+            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
             //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
             sourceItem: _content
             sourceRect: _footBar.background ? (control.floatingFooter ? Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : Qt.rect(0,0,0,0)

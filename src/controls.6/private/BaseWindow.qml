@@ -120,7 +120,7 @@ ApplicationWindow
             anchors.fill: parent
         }
 
-        layer.enabled: _container.showBorders
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && _container.showBorders
         layer.effect: MultiEffect
         {
             maskEnabled: true

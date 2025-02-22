@@ -120,7 +120,7 @@ Maui.GridBrowserDelegate
                     }
                 }
                 
-                layer.enabled: control.maskRadius > 0
+                layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.maskRadius > 0
                 layer.effect: MultiEffect
                 {
                     maskEnabled: true

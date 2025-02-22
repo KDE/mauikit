@@ -96,7 +96,7 @@ T.Slider
             }
         }
 
-        layer.enabled: control.background
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.background
         layer.effect: MultiEffect
         {
             maskEnabled: true

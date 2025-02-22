@@ -198,7 +198,7 @@ Maui.ShadowedRectangle
             }
         }
         
-        layer.enabled: control.radius > 0
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.radius > 0
         layer.effect: MultiEffect
         {
             maskEnabled: true

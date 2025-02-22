@@ -111,7 +111,7 @@ Control
     
     color: Maui.Theme.backgroundColor
     radius: Maui.Style.radiusV
-    layer.enabled: true
+    layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
     layer.effect: MultiEffect
     {
         autoPaddingEnabled: true

@@ -629,7 +629,7 @@ Item
                 }
             }
 
-            layer.enabled: true
+            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
             layer.effect: MultiEffect
             {
                 autoPaddingEnabled: true

@@ -167,7 +167,7 @@ Pane
                            }
             }
 
-            layer.enabled: !control.compact
+            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && !control.compact
             layer.smooth: true
             layer.effect: MultiEffect
             {
