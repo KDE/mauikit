@@ -436,7 +436,7 @@ QQC.ToolBar
                             {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                Layout.minimumWidth:implicitWidth
+                                Layout.minimumWidth: implicitWidth
                                 implicitWidth:  middleRowContent.implicitWidth
                                 implicitHeight:  middleRowContent.implicitHeight
                                 //                                color: "yellow"

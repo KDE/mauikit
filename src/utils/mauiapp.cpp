@@ -128,7 +128,7 @@ void MauiApp::setDefaultMauiStyle()
     QIcon::setThemeName("Luv");
 #endif
     
-    if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE"))
+    // if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE"))
     {
         QQuickStyle::setStyle(QStringLiteral("org.mauikit.style"));
     }

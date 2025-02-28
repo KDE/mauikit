@@ -26,7 +26,7 @@ import QtQuick.Layouts
 
 /**
  * TextField
- * A global sidebar for the application window that can be collapsed.
+ * A customizable text field for MauiKit applications.
  *
  *
  *
@@ -34,8 +34,6 @@ import QtQuick.Layouts
  *
  *
  */
-
-
 QC.TextField
 {
     id: control

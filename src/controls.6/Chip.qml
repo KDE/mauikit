@@ -159,6 +159,7 @@ ItemDelegate
         Label
         {
             id: _label1
+            visible: text.length>0
             text: control.text
             Layout.fillHeight: true
             Layout.fillWidth: true
