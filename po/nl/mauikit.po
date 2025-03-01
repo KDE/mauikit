@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-18 00:40+0000\n"
+"POT-Creation-Date: 2025-03-01 00:44+0000\n"
 "PO-Revision-Date: 2024-06-26 11:47+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -128,7 +128,7 @@ msgstr "De afbeelding kon niet worden geladen."
 msgid "Version ID copied to clipboard"
 msgstr "Versie-ID gekopieerd naar klembord"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:400
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:398
 #, kde-format
 msgid "Copy"
 msgstr "Kopiëren"
@@ -198,27 +198,27 @@ msgstr "Wilt u de gesplitste sessie sluiten: '%1'?"
 msgid "Open"
 msgstr "Openen"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:405
 #, kde-format
 msgid "Cut"
 msgstr "Knippen"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:412
 #, kde-format
 msgid "Paste"
 msgstr "Plakken"
 
-#: src/controls.6/TextField.qml:424
+#: src/controls.6/TextField.qml:422
 #, kde-format
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: src/controls.6/TextField.qml:431
+#: src/controls.6/TextField.qml:429
 #, kde-format
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: src/controls.6/TextField.qml:438
+#: src/controls.6/TextField.qml:436
 #, kde-format
 msgid "Redo"
 msgstr "Opnieuw"
