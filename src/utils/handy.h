@@ -275,6 +275,11 @@ public Q_SLOTS:
      */
     static QString formatDate(const QString &dateStr, const QString &format = QString("dd/MM/yyyy"), const QString &initFormat = QString());   
     
+    static bool isEmail(const QString &text);
+    static bool isPhoneNumber(const QString &text);
+    static bool isWebLink(const QString &text);
+    static bool isFileLink(const QString &text);
+    
 Q_SIGNALS:
     
     void singleClickChanged();
