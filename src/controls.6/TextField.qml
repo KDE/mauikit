@@ -318,7 +318,9 @@ QC.TextField
             {
                 flat: !checkable
                 focusPolicy: Qt.NoFocus
-
+                topInset: 2
+                rightInset: 2
+                bottomInset: 2
                 visible: control.text.length || control.activeFocus
                 icon.name: "edit-clear"
 

@@ -224,7 +224,9 @@ public Q_SLOTS:
      * - text
      * - urls
      * - image
-     * 
+     * @code
+     * Maui.Handy.copyToClipboard({"urls": urls}, false)
+     * @endcode
      * There can be more than one.
      * @param value the data
      * @param cut whether to add the metadata information necessary for it to be read as a cut operation by third party.
@@ -279,6 +281,7 @@ public Q_SLOTS:
     static bool isPhoneNumber(const QString &text);
     static bool isWebLink(const QString &text);
     static bool isFileLink(const QString &text);
+    static bool isTimeDate(const QString &text);
     
 Q_SIGNALS:
     

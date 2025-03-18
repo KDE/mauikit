@@ -31,6 +31,7 @@
 #include <QMouseEvent>
 #include <QRegularExpression>
 #include <QInputDevice>
+#include <QFileInfo>
 
 #ifdef Q_OS_ANDROID
 #include <QGuiApplication>
@@ -94,7 +95,7 @@ Handy::Handy(QObject *parent)
         m_mobile = true;
 #else
       // Mostly for debug purposes and for platforms which are always mobile,
-        // such as Plasma Mobile
+      // such as Plasma Mobile
         if (qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE")) {
             m_mobile = QByteArrayList{"1", "true"}.contains(qgetenv("QT_QUICK_CONTROLS_MOBILE"));
         } else {
@@ -374,32 +375,46 @@ bool Handy::isMobile() const
 
 bool Handy::isEmail(const QString &text)
 {
- QRegularExpression reg(R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)", QRegularExpression::CaseInsensitiveOption);
- 
- auto res = reg.match(text);
- 
- return res.hasMatch();
+    QRegularExpression reg(R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)", QRegularExpression::CaseInsensitiveOption);
+
+    auto res = reg.match(text);
+
+    return res.hasMatch();
 }
 
 bool Handy::isPhoneNumber(const QString &text)
 {
-QRegularExpression reg(R"(^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$)", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpression reg(R"(^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$)", QRegularExpression::CaseInsensitiveOption);
 
-auto res = reg.match(text);
+    auto res = reg.match(text);
 
-return res.hasMatch();    
+    return res.hasMatch();
 }
 
 bool Handy::isWebLink(const QString &text)
 {
-QRegularExpression reg(R"(^(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})$)", QRegularExpression::CaseInsensitiveOption);
+    QRegularExpression reg(R"(^(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})$)", QRegularExpression::CaseInsensitiveOption);
 
-auto res = reg.match(text);
+    auto res = reg.match(text);
 
-return res.hasMatch(); 
+    return res.hasMatch();
 }
 
 bool Handy::isFileLink(const QString &text)
 {
-return false;    
+    QUrl url = QUrl::fromUserInput(text);
+
+    if(url.isValid())
+    {
+        QFileInfo file(url.toLocalFile());
+        return file.exists();
+    }
+
+    return false;
+}
+
+bool Handy::isTimeDate(const QString &text)
+{
+    QDateTime dat = QDateTime::fromString(text);
+    return dat.isValid();
 }
