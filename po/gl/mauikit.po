@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-01 00:44+0000\n"
+"POT-Creation-Date: 2025-03-19 00:40+0000\n"
 "PO-Revision-Date: 2024-06-27 20:58+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -128,7 +128,7 @@ msgstr "Non foi posíbel cargar a imaxe."
 msgid "Version ID copied to clipboard"
 msgstr "O identificador da versión copiouse no portapapeis"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:398
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:400
 #, kde-format
 msgid "Copy"
 msgstr "Copiar"
@@ -198,27 +198,27 @@ msgstr "Seguro que quere pechar a vista dividida: «%1»?"
 msgid "Open"
 msgstr "Abrir"
 
-#: src/controls.6/TextField.qml:405
+#: src/controls.6/TextField.qml:407
 #, kde-format
 msgid "Cut"
 msgstr "Cortar"
 
-#: src/controls.6/TextField.qml:412
+#: src/controls.6/TextField.qml:414
 #, kde-format
 msgid "Paste"
 msgstr "Pegar"
 
-#: src/controls.6/TextField.qml:422
+#: src/controls.6/TextField.qml:424
 #, kde-format
 msgid "Select All"
 msgstr "Seleccionalo todo"
 
-#: src/controls.6/TextField.qml:429
+#: src/controls.6/TextField.qml:431
 #, kde-format
 msgid "Undo"
 msgstr "Desfacer"
 
-#: src/controls.6/TextField.qml:436
+#: src/controls.6/TextField.qml:438
 #, kde-format
 msgid "Redo"
 msgstr "Refacer"
