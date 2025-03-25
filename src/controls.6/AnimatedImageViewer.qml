@@ -36,6 +36,8 @@ Flickable
         visible: false
     }
     
+    readonly property bool zooming: contentHeight != height || contentWidth != width
+
     /**
      * @brief This an alias to the actual control painting the image. 
      * This control is handled by a QQC2 AnimatedImage.

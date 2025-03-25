@@ -266,6 +266,7 @@ Control
                     enabled: action.enabled
                     
                     display: control.display
+                    font: control.font
                     
                     background: Maui.ShadowedRectangle
                     {
