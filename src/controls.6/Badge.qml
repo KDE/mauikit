@@ -68,7 +68,11 @@ AbstractButton
      * @brief The color for the background of the badge
      */
     property color color: setBackgroundColor(control)
-
+    
+    /**
+     * Display or not a drop shadow.
+     */
+property bool flat : false
     icon.color: setTextColor(control)
 
     font.weight: Font.Bold
@@ -83,7 +87,7 @@ AbstractButton
     background: Rectangle
     {
         id: _bg
-        visible: GraphicsInfo.api === GraphicsInfo.Software
+        visible: !_bgEffect.visible 
         radius: Math.min(width, height)
         color: control.color
         border.color: Qt.lighter(control.color)
@@ -96,7 +100,8 @@ AbstractButton
 
     MultiEffect
     {
-        visible: GraphicsInfo.api !== GraphicsInfo.Software
+        id: _bgEffect
+        visible: GraphicsInfo.api !== GraphicsInfo.Software && !control.flat
         source: _bg
         anchors.fill: _bg
         shadowColor: "#80000000"

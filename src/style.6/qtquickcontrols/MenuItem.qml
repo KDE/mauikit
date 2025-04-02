@@ -140,9 +140,31 @@ T.MenuItem
         
         Item
         {
+            visible: indicatorPadding + arrowPadding > 0
             readonly property real arrowPadding: control.subMenu && control.arrow ? control.arrow.width + control.spacing : 0
             readonly property real indicatorPadding: control.checkable && control.indicator && control.indicator.visible ? control.indicator.width + control.spacing : 0
-            Layout.preferredWidth: indicatorPadding + arrowPadding      
+            Layout.preferredWidth: visible? indicatorPadding + arrowPadding : -control.spacing     
+        }        
+        
+        Loader
+        {
+            id: _badgeLoader
+            
+            asynchronous: true
+            
+            active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
+            visible: active
+            Layout.preferredWidth: visible? implicitWidth : -control.spacing
+            
+            sourceComponent: Maui.Badge
+            {
+                text: control.Maui.Controls.badgeText
+                flat: true
+                padding: 2
+                font.pointSize: Maui.Style.fontSizes.tiny
+                
+                Maui.Controls.status: Maui.Controls.Negative
+            }
         }
     }
     

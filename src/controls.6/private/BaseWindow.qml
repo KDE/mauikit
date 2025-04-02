@@ -201,6 +201,10 @@ ApplicationWindow
             anchors.fill: parent
             opacity : 0.8
             radius:  Maui.Style.radiusV
+            Behavior on color
+            {
+                Maui.ColorTransition{}
+            }
         }
     }
 
