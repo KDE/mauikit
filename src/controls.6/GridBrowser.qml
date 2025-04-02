@@ -501,6 +501,7 @@ Item
             {
                 id: _holder
                 visible: false
+                Keys.forwardTo: controlView
                 anchors.fill : parent
                 anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
                 anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
