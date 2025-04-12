@@ -315,52 +315,13 @@ Maui.ItemDelegate
         id: _template
         Layout.fillHeight: true
         Layout.fillWidth: true
+        Maui.Controls.badgeText: control.Maui.Controls.badgeText
 
         spacing: control.spacing
 
         hovered: control.hovered
         isCurrentItem : control.isCurrentItem
         highlighted: control.containsPress
-      }
-    }
-
-    Loader
-    {
-      id: _loader
-      asynchronous: true
-      active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
-
-      anchors.horizontalCenter: parent.right
-      anchors.verticalCenter: parent.top
-      anchors.verticalCenterOffset: 10
-      anchors.horizontalCenterOffset: -5
-
-      OpacityAnimator on opacity
-      {
-        from: 0
-        to: 1
-        duration: Maui.Style.units.longDuration
-        running: _loader.status === Loader.Ready
-      }
-
-      ScaleAnimator on scale
-      {
-        from: 0.5
-        to: 1
-        duration: Maui.Style.units.longDuration
-        running: _loader.status === Loader.Ready
-        easing.type: Easing.OutInQuad
-      }
-      sourceComponent: Maui.Badge
-      {
-        text: control.Maui.Controls.badgeText
-
-        padding: 2
-        font.pointSize: Maui.Style.fontSizes.tiny
-
-        Maui.Theme.colorSet: Maui.Theme.View
-        Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-        Maui.Theme.textColor: Maui.Theme.negativeTextColor
       }
     }
 }

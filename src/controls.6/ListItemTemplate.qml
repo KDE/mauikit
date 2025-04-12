@@ -388,5 +388,40 @@ Item
                          opacity: control.isCurrentItem ? 0.8 : 0.6
                     }
                }
+
+               Loader
+               {
+                 id: _loader
+                 asynchronous: true
+                 active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
+
+                 OpacityAnimator on opacity
+                 {
+                   from: 0
+                   to: 1
+                   duration: Maui.Style.units.longDuration
+                   running: _loader.status === Loader.Ready
+                 }
+
+                 ScaleAnimator on scale
+                 {
+                   from: 0.5
+                   to: 1
+                   duration: Maui.Style.units.longDuration
+                   running: _loader.status === Loader.Ready
+                   easing.type: Easing.OutInQuad
+                 }
+                 sourceComponent: Maui.Badge
+                 {
+                   text: control.Maui.Controls.badgeText
+
+                   padding: 2
+                   font.pointSize: Maui.Style.fontSizes.tiny
+
+                   Maui.Theme.colorSet: Maui.Theme.View
+                   Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
+                   Maui.Theme.textColor: Maui.Theme.negativeTextColor
+                 }
+               }
           }
 }

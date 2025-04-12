@@ -72,10 +72,10 @@ AbstractButton
     /**
      * Display or not a drop shadow.
      */
-property bool flat : false
+    property bool flat : false
     icon.color: setTextColor(control)
 
-    font.weight: Font.Bold
+    font.weight: Font.Light
     font.bold: true
     font.pointSize: Maui.Style.fontSizes.tiny
 
@@ -87,7 +87,7 @@ property bool flat : false
     background: Rectangle
     {
         id: _bg
-        visible: !_bgEffect.visible 
+        visible: !_bgEffect.visible
         radius: Math.min(width, height)
         color: control.color
         border.color: Qt.lighter(control.color)
@@ -107,8 +107,8 @@ property bool flat : false
         shadowColor: "#80000000"
         shadowEnabled: true
         autoPaddingEnabled: true
-        shadowVerticalOffset: 3
-        shadowHorizontalOffset: -2
+        // shadowVerticalOffset: 3
+        // shadowHorizontalOffset: -2
         shadowBlur: 0.5
     }
 

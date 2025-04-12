@@ -59,6 +59,7 @@ Pane
     label2.font.pointSize: Maui.Style.fontSizes.small
     isMask: iconSizeHint <= 22
     spacing: control.spacing
+    Maui.Controls.badgeText: control.Maui.Controls.badgeText
   }
   
   background: null

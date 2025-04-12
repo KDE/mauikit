@@ -97,6 +97,7 @@ T.Menu
         template.maskRadius: 0
         template.imageSizeHint: Maui.Style.iconSizes.big
         template.iconSizeHint: Maui.Style.iconSizes.small
+        Maui.Controls.badgeText: control.Maui.Controls.badgeText
 
         background: Rectangle
         {
