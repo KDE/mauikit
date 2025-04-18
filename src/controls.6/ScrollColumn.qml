@@ -87,6 +87,7 @@ ScrollView
         readonly property alias flickable: _flickable
         
         padding: Maui.Style.contentMargins
+        // bottomPadding: 0 //is this a bug? why does the padding seems to be doubled on the bottom?
         
         contentWidth: availableWidth
         contentHeight: _pageContent.implicitHeight
@@ -94,6 +95,9 @@ ScrollView
         implicitHeight: contentHeight + topPadding + bottomPadding
         
         spacing: Maui.Style.defaultSpacing
+        
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded        
 
         Flickable
         {
@@ -107,7 +111,7 @@ ScrollView
             ColumnLayout
             {
                 id: _pageContent
-                width: parent.width
+                width: control.availableWidth
                 spacing: control.spacing
             }
         }

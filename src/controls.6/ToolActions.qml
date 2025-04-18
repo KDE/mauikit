@@ -102,6 +102,8 @@ Control
     spacing: 2
     padding: 0
     
+    font.pointSize: Maui.Style.fontSizes.small
+    
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
     

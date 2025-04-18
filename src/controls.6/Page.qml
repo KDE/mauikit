@@ -570,7 +570,7 @@ Pane
                     anchors.fill: parent
                     text: control.title
                     elide : Text.ElideRight
-                    font: Maui.Style.h2Font
+                    // font: Maui.Style.h2Font
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
                 }

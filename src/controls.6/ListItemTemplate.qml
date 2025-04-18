@@ -235,6 +235,7 @@ Item
                
                Maui.IconItem
                {
+                 width: visible ? implicitWidth : -control.spacing
                     iconSource: control.iconSource
                     imageSource: control.imageSource
                     
@@ -258,23 +259,20 @@ Item
                spacing: Maui.Style.space.small
                
                readonly property color labelColor: control.isCurrentItem || control.highlighted? Maui.Theme.highlightedTextColor : Maui.Theme.textColor
-               
+            
                Loader
                {
                     id: _iconLoader
+                    visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)                 
                     
-                    asynchronous: true
-                    
-                    visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
-                    
-                    active: visible || item
-                    
-                    Layout.alignment: Qt.AlignCenter
                     Layout.fillWidth: !control.labelsVisible
                     Layout.fillHeight: true
-                    Layout.preferredWidth: Math.max(implicitWidth, control.headerSizeHint, 0)
-                    Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint, 0)
-                    
+                    Layout.preferredWidth: visible ? Math.max(implicitWidth, control.headerSizeHint, 0) :-_layout.spacing
+                    Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint, 0) 
+                   
+                    asynchronous: true  
+                    active: visible || item
+                   
                     sourceComponent: control.iconComponent
                     
                     OpacityAnimator on opacity
@@ -284,7 +282,8 @@ Item
                          duration: Maui.Style.units.longDuration
                          running: _iconLoader.status === Loader.Ready
                     }
-               }               
+               } 
+               
                
                ColumnLayout
                {
@@ -305,7 +304,7 @@ Item
                          Layout.fillWidth: true
                          Layout.fillHeight: true
                          
-                         verticalAlignment: _label2.visible ? Qt.AlignBottom :  Qt.AlignVCenter
+                         verticalAlignment: _label2.visible ? Qt.AlignBottom : Qt.AlignVCenter
                          
                          elide: Text.ElideRight
                          //                wrapMode: _label2.visible ? Text.NoWrap : Text.Wrap
@@ -337,13 +336,13 @@ Item
                     id: _rightLabels
                     clip: true
                     // visible: (control.width >  Maui.Style.units.gridUnit * 15) && control.labelsVisible
-                    
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     Layout.maximumWidth: control.width/2
-                    Layout.preferredWidth: implicitWidth
+                    Layout.preferredWidth: visible ? implicitWidth : -_layout.spacing
                     Layout.minimumWidth: 0
                     spacing: _leftLabels.spacing
+                    visible: _label3.visible || _label4.visible
                     
                     Label
                     {
@@ -394,6 +393,8 @@ Item
                  id: _loader
                  asynchronous: true
                  active: control.Maui.Controls.badgeText && control.Maui.Controls.badgeText.length > 0 && control.visible
+                 visible: active
+                 width: visible ? implicitWidth : -_layout.spacing
 
                  OpacityAnimator on opacity
                  {
@@ -411,6 +412,7 @@ Item
                    running: _loader.status === Loader.Ready
                    easing.type: Easing.OutInQuad
                  }
+                 
                  sourceComponent: Maui.Badge
                  {
                    text: control.Maui.Controls.badgeText

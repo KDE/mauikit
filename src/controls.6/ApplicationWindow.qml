@@ -32,7 +32,7 @@ import "private" as Private
  *
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-window.html">This controls inherits from QQC2 Window, to checkout its inherited properties refer to the Qt Docs.</a>
  *
- * The ApplicationWindow is the best component to start creating a new MauiKit application. It's usually used as the root QML component for the application.
+ * The ApplicationWindow is the best component to start creating a new MauiKit application. It's usually used as the control QML component for the application.
  * It is different from the QQC2 alternative, as this one does not include a header or footer section, and does not have either a menu-bar.
  * For a header and footer section use a MauiKit Page, and for the menu-bar alternative, use a MauiKit ToolButtonMenu.
  *
@@ -48,7 +48,7 @@ import "private" as Private
  * @code
  * ApplicationWindow
  * {
- *    id: root
+ *    id: control
  *
  *    Page
  *    {
@@ -64,7 +64,7 @@ import "private" as Private
  *
  * @note Client-side decorations refers to an application window that takes care of drawing its own window borders, shadows, and the window control buttons - and also provides the resizing and moving/dragging functionality.
  *
- * The application window can make use of client side decorations (CSD) by setting the attached property `Maui.CSD.enabled: true` in the root element just once,
+ * The application window can make use of client side decorations (CSD) by setting the attached property `Maui.CSD.enabled: true` in the control element just once,
  * or globally by making use of MauiMan configuration options - that said, even if the system is configured to use CSD globally, you can override this property in your application, to force to use CSD  (or not).
  * @see MauiMan
  *
@@ -83,7 +83,7 @@ import "private" as Private
  * @code
  * ApplicationWindow
  * {
- *    id: root
+ *    id: control
  *
  *    QQC2.Page
  *    {
@@ -192,7 +192,7 @@ import "private" as Private
  * @code
  * ApplicationWindow
  * {
- *    id: root
+ *    id: control
  *    Maui.Style.styleType: 1 // 0-light, 1-dark, 2-adaptive, 3-auto etc
  *    Maui.Style.accentColor: "pink"
  *
@@ -216,7 +216,7 @@ import "private" as Private
  * @code
  * ApplicationWindow
  * {
- *    id: root
+ *    id: control
  *
  *    Page
  *    {
@@ -231,16 +231,16 @@ import "private" as Private
 
 Private.BaseWindow
 {
-    id: root
+    id: control
 
     isDialog: false
 
     Settings
     {
-        property alias x: root.x
-        property alias y: root.y
-        property alias width: root.width
-        property alias height: root.height
+        property alias x: control.x
+        property alias y: control.y
+        property alias width: control.width
+        property alias height: control.height
     }
 
     Loader
@@ -286,7 +286,9 @@ Private.BaseWindow
 
     Component.onCompleted:
     {
-        Maui.App.rootComponent = root
+        if(!Maui.App.rootComponent)
+            Maui.App.rootComponent = control
+
         if(Maui.Handy.isAndroid)
         {
             setAndroidStatusBarColor()
@@ -296,11 +298,11 @@ Private.BaseWindow
     /**
          * @brief Invokes the about dialog with information of the application.
          * This information is taken from `KAboutData` and `MauiApp` singleton instance.
-         * @note This method can be invoked for the main root ApplicationWindow using the `Maui.App.aboutDialog()` attached property method.
+         * @note This method can be invoked for the main control ApplicationWindow using the `Maui.App.aboutDialog()` attached property method.
          */
     function about()
     {
-        var about = _aboutDialogComponent.createObject(root)
+        var about = _aboutDialogComponent.createObject(control)
         about.open()
     }
 

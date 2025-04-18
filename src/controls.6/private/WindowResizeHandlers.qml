@@ -24,6 +24,7 @@ import QtQuick.Controls
 
 Item
 {
+    id: control
     Loader
     {
         active: canResizeH
@@ -50,7 +51,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.RightEdge)
+                        control.Window.window.startSystemResize(Qt.RightEdge)
                     }
                 }
             }
@@ -84,7 +85,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.LeftEdge)
+                        control.Window.window.startSystemResize(Qt.LeftEdge)
                     }
                 }
             }
@@ -118,7 +119,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.BottomEdge)
+                        control.Window.window.startSystemResize(Qt.BottomEdge)
                     }
                 }
             }
@@ -154,7 +155,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
+                        control.Window.window.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
                     }
                 }
             }
@@ -187,7 +188,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
+                        control.Window.window.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
                     }
                 }
             }

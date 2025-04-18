@@ -42,11 +42,12 @@ T.Dialog
 
     spacing: Maui.Style.defaultSpacing
     padding: Maui.Style.contentMargins
+    bottomPadding: 0
     margins: Maui.Style.space.medium
     modal: true
 
     closePolicy: control.modal ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
+    
     //    enter: Transition {
     //        NumberAnimation {
     //            property: "opacity"
@@ -86,9 +87,14 @@ T.Dialog
         }
     }
 
-    header: Maui.ToolBar
+    header: Loader
     {
         visible: control.title.length >0
+        active: visible
+        asynchronous: true
+        
+        sourceComponent: Maui.ToolBar
+    {
         background: null
 
         middleContent: Label
@@ -97,8 +103,9 @@ T.Dialog
             horizontalAlignment: Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
-            font: Maui.Style.h2Font
+            // font: Maui.Style.h2Font
         }
+    }
     }
 
     footer: DialogButtonBox

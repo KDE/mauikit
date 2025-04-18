@@ -205,7 +205,7 @@ Item
            * @note When using a custom component for the header section, pay attention that it has an `implicitHeight` and `implicitWidth` set.
            */
     property Component iconComponent : _iconComponent
-
+        
     Component
     {
         id: _iconComponent
@@ -266,11 +266,11 @@ Item
             property int labelSizeHint: Math.min(64, _labels.implicitHeight)
             visible: control.labelsVisible && ( _label1.text || _label2.text)
 
-            Layout.preferredHeight: labelSizeHint
+            Layout.preferredHeight: visible ? labelSizeHint : -_layout.spacing
             Layout.fillWidth: true
             Layout.maximumHeight: control.height* 0.9
             Layout.minimumHeight: labelSizeHint
-
+            
             ColumnLayout
             {
                 id: _labels

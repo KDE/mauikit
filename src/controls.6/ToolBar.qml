@@ -361,6 +361,7 @@ QQC.ToolBar
                     Layout.maximumWidth: implicitWidth
                     Layout.minimumWidth: implicitWidth
                     spacing: control.spacing
+                    Layout.preferredWidth: visible ? implicitWidth: -control.spacing
                 }
 
                 QQC.ScrollView
@@ -411,34 +412,34 @@ QQC.ToolBar
 
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
-                                Layout.preferredWidth: implicitWidth
+                                Layout.preferredWidth: visible ? implicitWidth: -control.spacing
                                 //
                                 spacing: control.spacing
                             }
 
-                            Item //helper to force center middle content
-                            {
-                                id: _h1
-                                visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
-
-                                readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) - (leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
-
-                                Layout.minimumWidth: 0
-
-                                Layout.preferredWidth: mwidth
-                                Layout.maximumWidth: mwidth
-
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                            }
+                            // Item //helper to force center middle content
+                            // {
+                            //     id: _h1
+                            //     visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
+                            // 
+                            //     readonly property int mwidth : visible ? Math.max((rightRowContent.implicitWidth + farRightRowContent.implicitWidth) - (leftRowContent.implicitWidth + farLeftRowContent.implicitWidth), 0) : 0
+                            // 
+                            //     Layout.minimumWidth: 0
+                            // 
+                            //     Layout.preferredWidth: mwidth
+                            //     Layout.maximumWidth: mwidth
+                            // 
+                            //     Layout.fillHeight: true
+                            //     Layout.fillWidth: true
+                            // }
 
                             Item
                             {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 Layout.minimumWidth: implicitWidth
-                                implicitWidth:  middleRowContent.implicitWidth
-                                implicitHeight:  middleRowContent.implicitHeight
+                                implicitWidth: middleRowContent.implicitWidth
+                                implicitHeight: middleRowContent.implicitHeight
                                 //                                color: "yellow"
                                 RowLayout
                                 {
@@ -448,21 +449,21 @@ QQC.ToolBar
                                 }
                             }
 
-                            Item //helper to force center middle content
-                            {
-                                id: _h2
-                                visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
-
-                                readonly property int mwidth : visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
-
-                                Layout.minimumWidth: 0
-
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-
-                                Layout.preferredWidth: mwidth
-                                Layout.maximumWidth: mwidth
-                            }
+                            // Item //helper to force center middle content
+                            // {
+                            //     id: _h2
+                            //     visible: middleRowContent.visibleChildren.length && control.forceCenterMiddleContent
+                            // 
+                            //     readonly property int mwidth : visible ? Math.max(( leftRowContent.implicitWidth + farLeftRowContent.implicitWidth) - (rightRowContent.implicitWidth + farRightRowContent.implicitWidth), 0) : 0
+                            // 
+                            //     Layout.minimumWidth: 0
+                            // 
+                            //     Layout.fillHeight: true
+                            //     Layout.fillWidth: true
+                            // 
+                            //     Layout.preferredWidth: mwidth
+                            //     Layout.maximumWidth: mwidth
+                            // }
 
                             Private.ToolBarSection
                             {
@@ -472,8 +473,8 @@ QQC.ToolBar
 
                                 Layout.maximumWidth: implicitWidth
                                 Layout.minimumWidth: implicitWidth
-                                Layout.preferredWidth: implicitWidth
-
+                                Layout.preferredWidth: visible ? implicitWidth: -control.spacing
+                                
                                 spacing: control.spacing
                             }
                         }
@@ -487,6 +488,7 @@ QQC.ToolBar
                     Layout.maximumWidth: implicitWidth
                     Layout.minimumWidth: implicitWidth
                     spacing: control.spacing
+                    Layout.preferredWidth: visible ? implicitWidth: -control.spacing                    
                 }
 
                 Loader

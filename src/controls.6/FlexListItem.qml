@@ -189,6 +189,7 @@ ItemDelegate
         label2.font.pointSize: Maui.Style.fontSizes.small    
         iconSource: control.icon.name
         label1.text: control.text
+        Maui.Controls.badgeText: control.Maui.Controls.badgeText
         
       }
       
