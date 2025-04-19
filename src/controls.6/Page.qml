@@ -559,22 +559,16 @@ Pane
         Component
         {
             id: _titleComponent
-
-            Item
-            {
-                implicitHeight:_titleLabel.implicitHeight
-
+            
                 Label
                 {
                     id: _titleLabel
-                    anchors.fill: parent
                     text: control.title
                     elide : Text.ElideRight
                     // font: Maui.Style.h2Font
                     horizontalAlignment : Text.AlignHCenter
                     verticalAlignment :  Text.AlignVCenter
-                }
-            }
+                }            
         }
 
         middleContent: Loader
@@ -587,6 +581,8 @@ Pane
 
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.maximumWidth: 200
+            Layout.alignment: Qt.AlignCenter
         }
     }
 
