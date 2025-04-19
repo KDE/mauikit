@@ -342,7 +342,7 @@ Item
                     Layout.preferredWidth: visible ? implicitWidth : -_layout.spacing
                     Layout.minimumWidth: 0
                     spacing: _leftLabels.spacing
-                    visible: _label3.visible || _label4.visible
+                    visible: _label3.text.length > 0 || _label4.text.length > 0
                     
                     Label
                     {
