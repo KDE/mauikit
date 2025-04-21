@@ -68,10 +68,10 @@ Item
 {
     id: control
 
-    visible: icon.valid || img.status === Image.Ready
+    // visible: icon.valid || img.status === Image.Ready
 
-    implicitHeight: visible ? Math.max(img.height, icon.height, 0) : 0
-    implicitWidth: visible ? Math.max(img.width, icon.width, 0) : 0
+    implicitHeight:  Math.max(img.height, icon.height, 0)
+    implicitWidth:  Math.max(img.width, icon.width, 0)
 
     smooth: !Maui.Handy.isMobile
 
@@ -182,11 +182,11 @@ Item
     Maui.Icon
     {
         id: icon
-        visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
+        visible: (img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error) && valid
 
         smooth: control.smooth
         anchors.centerIn: parent
-        height: valid ? Math.min(parent.height, control.iconSizeHint) : 0
+        height: visible ? Math.min(parent.height, control.iconSizeHint) : 0
         width: height
         color: control.color
         isMask: (height <= Maui.Style.iconSizes.medium)
@@ -200,8 +200,9 @@ Item
 //         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
 //         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
 //
-        height: control.imageSizeHint >=0 ? control.imageSizeHint : parent.height
-        width: control.imageSizeHint >=0 ? control.imageSizeHint : parent.width
+        visible: status == Image.Ready
+        height: visible ? (control.imageSizeHint >=0 ? control.imageSizeHint : Math.max(parent.height,0)) : 0
+        width: visible ? (control.imageSizeHint >=0 ? control.imageSizeHint : Math.max(parent.width, 0)) : 0
 
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
