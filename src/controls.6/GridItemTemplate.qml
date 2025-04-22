@@ -42,6 +42,7 @@ Item
     smooth: !Maui.Handy.isMobile
 
     implicitHeight: _layout.implicitHeight
+    implicitWidth: _layout.implicitWidth
 
     /**
       * @brief The spacing size between the image/icon header and the label title and message.
@@ -205,7 +206,7 @@ Item
            * @note When using a custom component for the header section, pay attention that it has an `implicitHeight` and `implicitWidth` set.
            */
     property Component iconComponent : _iconComponent
-        
+
     Component
     {
         id: _iconComponent
@@ -250,7 +251,7 @@ Item
             asynchronous: true
             active: visible
             sourceComponent: control.iconComponent
-            
+
             OpacityAnimator on opacity
             {
                 from: 0
@@ -270,7 +271,7 @@ Item
             Layout.fillWidth: true
             Layout.maximumHeight: control.height* 0.9
             Layout.minimumHeight: labelSizeHint
-            
+
             ColumnLayout
             {
                 id: _labels
