@@ -70,8 +70,8 @@ Item
 
     // visible: icon.valid || img.status === Image.Ready
 
-    implicitHeight:  Math.max(img.height, icon.height, 0)
-    implicitWidth:  Math.max(img.width, icon.width, 0)
+    implicitHeight: img.visible ? Math.max(imageSizeHint, iconSizeHint) : iconSizeHint
+    implicitWidth: img.visible ? Math.max(imageSizeHint, iconSizeHint) : iconSizeHint
 
     smooth: !Maui.Handy.isMobile
 
@@ -103,7 +103,7 @@ Item
      *
      * By default this is set to `-1`.
      */
-    property int imageSizeHint : -1
+    property int imageSizeHint :  -1
 
     /**
      * @brief The local or remote file URL of the image to be used.
@@ -196,13 +196,12 @@ Item
     {
         id: img
 
-
-//         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
-//         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
+        width: imageSizeHint >=0 ? Math.min(parent.width, imageSizeHint) : Math.max(parent.width, iconSizeHint)
+        height: imageSizeHint >= 0 ? Math.min(parent.height, imageSizeHint) :  Math.max(parent.height,iconSizeHint)
 //
         visible: status == Image.Ready
-        height: visible ? (control.imageSizeHint >=0 ? control.imageSizeHint : Math.max(parent.height,0)) : 0
-        width: visible ? (control.imageSizeHint >=0 ? control.imageSizeHint : Math.max(parent.width, 0)) : 0
+        // height: visible ? (control.imageSizeHint > parent.height ? parent.height : control.imageSizeHint) : 0
+        // width: visible ? (control.imageSizeHint > parent.width ? parent.width : control.imageSizeHint) : 0
 
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
