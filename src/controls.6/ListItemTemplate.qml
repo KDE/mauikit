@@ -266,10 +266,10 @@ Item
                     id: _iconLoader
                     visible: (control.width > Maui.Style.units.gridUnit * 10) && (control.iconSource.length > 0 || control.imageSource.length > 0)
 
-                    Layout.fillWidth: !control.labelsVisible
-                    Layout.fillHeight: true
+                    // Layout.fillWidth: !control.labelsVisible
+                    // Layout.fillHeight: true
                     Layout.preferredWidth: visible ? Math.max(implicitWidth, control.headerSizeHint, 0) :-_layout.spacing
-                    Layout.preferredHeight: Math.max(implicitHeight, control.headerSizeHint, 0)
+                    Layout.preferredHeight: visible ? Math.max(implicitHeight, control.headerSizeHint, 0) : 0
 
                     asynchronous: true
                     active: visible || item

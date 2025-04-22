@@ -196,8 +196,8 @@ Item
     {
         id: img
 
-        width: imageSizeHint >=0 ? Math.min(parent.width, imageSizeHint) : Math.max(parent.width, iconSizeHint)
-        height: imageSizeHint >= 0 ? Math.min(parent.height, imageSizeHint) :  Math.max(parent.height,iconSizeHint)
+        width: imageSizeHint >=0 ? Math.min(parent.width, imageSizeHint) : parent.width
+        height: imageSizeHint >= 0 ? Math.min(parent.height, imageSizeHint) : parent.height
 //
         visible: status == Image.Ready
         // height: visible ? (control.imageSizeHint > parent.height ? parent.height : control.imageSizeHint) : 0
