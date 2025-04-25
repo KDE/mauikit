@@ -8,7 +8,8 @@ T.StackView
     id: control
     focus: true
     clip: false
-    
+    Maui.Theme.colorSet: Maui.Theme.Window
+
     pushEnter: Transition
     {
         PropertyAnimation
@@ -19,7 +20,7 @@ T.StackView
             duration: 200
         }
     }
-    
+
     pushExit: Transition
     {
         PropertyAnimation
@@ -30,7 +31,7 @@ T.StackView
             duration: 200
         }
     }
-    
+
     popEnter: Transition
     {
         PropertyAnimation
@@ -41,7 +42,7 @@ T.StackView
             duration: 200
         }
     }
-    
+
     popExit: Transition
     {
         PropertyAnimation
@@ -51,5 +52,10 @@ T.StackView
             to:0
             duration: 200
         }
+    }
+
+    background:Rectangle
+    {
+        color: Maui.Theme.backgroundColor
     }
 }
