@@ -252,13 +252,13 @@ Item
             active: visible
             sourceComponent: control.iconComponent
 
-            OpacityAnimator on opacity
-            {
-                from: 0
-                to: 1
-                duration: Maui.Style.units.longDuration
-                running: _iconLoader.status === Loader.Ready
-            }
+            // OpacityAnimator on opacity
+            // {
+            //     from: 0
+            //     to: 1
+            //     duration: Maui.Style.units.longDuration
+            //     running: _iconLoader.status === Loader.Ready
+            // }
         }
 
         Item
