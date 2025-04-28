@@ -19,6 +19,7 @@
 
 import QtQuick
 import QtQuick.Controls as QC
+import QtQuick.Templates as T
 
 import org.mauikit.controls as Maui
 import QtQuick.Layouts
@@ -34,7 +35,7 @@ import QtQuick.Layouts
  *
  *
  */
-QC.TextField
+T.TextField
 {
     id: control
     Maui.Theme.colorSet: Maui.Theme.Button
