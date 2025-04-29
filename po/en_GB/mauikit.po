@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-19 00:40+0000\n"
+"POT-Creation-Date: 2025-04-29 00:40+0000\n"
 "PO-Revision-Date: 2024-06-29 11:43+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -128,7 +128,7 @@ msgstr "The image could not be loaded."
 msgid "Version ID copied to clipboard"
 msgstr "Version ID copied to clipboard"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:400
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Copy"
@@ -198,27 +198,27 @@ msgstr "Are you sure you want to close the split view: '%1'?"
 msgid "Open"
 msgstr "Open"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Cut"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Paste"
 
-#: src/controls.6/TextField.qml:424
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Select All"
 
-#: src/controls.6/TextField.qml:431
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Undo"
 
-#: src/controls.6/TextField.qml:438
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Redo"

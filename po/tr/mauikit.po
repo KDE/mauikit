@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-19 00:40+0000\n"
+"POT-Creation-Date: 2025-04-29 00:40+0000\n"
 "PO-Revision-Date: 2024-06-26 13:06+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -128,7 +128,7 @@ msgstr "Görsel yüklenemedi."
 msgid "Version ID copied to clipboard"
 msgstr "Sürüm kimliği panoya kopyalandı"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:400
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
 #, kde-format
 msgid "Copy"
 msgstr "Kopyala"
@@ -198,27 +198,27 @@ msgstr "Bölünmüş görünümü kapatmak istediğinizden emin misiniz: “%1�
 msgid "Open"
 msgstr "Aç"
 
-#: src/controls.6/TextField.qml:407
+#: src/controls.6/TextField.qml:408
 #, kde-format
 msgid "Cut"
 msgstr "Kes"
 
-#: src/controls.6/TextField.qml:414
+#: src/controls.6/TextField.qml:415
 #, kde-format
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: src/controls.6/TextField.qml:424
+#: src/controls.6/TextField.qml:425
 #, kde-format
 msgid "Select All"
 msgstr "Tümünü Seç"
 
-#: src/controls.6/TextField.qml:431
+#: src/controls.6/TextField.qml:432
 #, kde-format
 msgid "Undo"
 msgstr "Geri Al"
 
-#: src/controls.6/TextField.qml:438
+#: src/controls.6/TextField.qml:439
 #, kde-format
 msgid "Redo"
 msgstr "Yinele"
