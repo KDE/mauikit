@@ -243,11 +243,6 @@ Private.BaseWindow
         property alias height: control.height
     }
 
-    Loader
-    {
-        id: dialogLoader
-    }
-
     Component
     {
         id: _aboutDialogComponent
@@ -264,9 +259,15 @@ Private.BaseWindow
         ignoreUnknownSignals: true
         function onShareFilesRequest(urls)
         {
-            dialogLoader.source = "private/ShareDialog.qml"
-            dialogLoader.item.urls = urls
-            dialogLoader.item.open()
+            var component =  Qt.createComponent("private/ShareDialog.qml", control)
+            if (component.status == Component.Ready)
+            {
+                var dialog = component.createObject(control, {'urls': urls})
+                dialog.open()
+            }else if (component.status == Component.Error) {
+                // Error Handling
+                console.log("Error loading component:", component.errorString());
+            }
         }
     }
 
