@@ -109,10 +109,9 @@ Pane
      */
     property int minimumWidth:  Maui.Style.units.gridUnit * 4
 
-
     visible: position > 0
 
-    width: position * constrainedWidth
+    width: (position * constrainedWidth)
 
     clip: true
 

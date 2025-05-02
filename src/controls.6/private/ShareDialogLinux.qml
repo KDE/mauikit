@@ -70,6 +70,30 @@ Maui.PopupPage
         clip: true
         spacing: Maui.Style.defaultSpacing
         
+        header: Pane
+        {
+            width: parent.width
+            background: null
+
+            contentItem: Item
+            {
+                implicitHeight: 150
+
+                Maui.GridItemTemplate
+                {
+                    readonly property var itemInfo : FB.FM.getFileInfo( control.urls[0])
+
+                    anchors.fill: parent
+                    anchors.margins: Maui.Style.space.tiny
+                    iconSizeHint: Maui.Style.iconSizes.huge
+                    fillMode: Image.PreserveAspectFit
+                    iconSource: itemInfo.icon
+                    imageSource:  itemInfo.thumbnail
+                    text1: i18np("1 item", "%1 items", control.urls.length)
+                }
+            }
+        }
+
         inputData :
         {
             'urls': control.urls,
