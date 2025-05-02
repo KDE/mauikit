@@ -21,6 +21,7 @@ import QtQuick
 import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 
 import org.mauikit.controls as Maui
 
@@ -141,14 +142,59 @@ Maui.Page
             leftContent: control.split && control.leftContent ? control.leftContent : null
             rightContent: control.split && control.rightContent ? control.rightContent : null
 
-            Maui.Controls.item: ShaderEffectSource
+            background: Rectangle
             {
-                sourceItem: control.pageContent
-                sourceRect:  _headBar.background ?
-                                 (control.floatingHeader ?
-                                      Qt.rect(0, (_headBar.position === ToolBar.Header ? control.headBar.background.height :  control.pageContent.height - _headBar.background.height), _headBar.background.width, _headBar.background.height)
-                                    : Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 - (_headBar.background.height) :  control.pageContent.height), _headBar.background.width, _headBar.background.height))
-                               : null
+                id:_headerBg
+                color: Maui.Theme.backgroundColor
+                radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
+
+                ShaderEffectSource
+                {
+                    id: _effect
+                    anchors.fill: parent
+                    visible: false
+                    textureSize: Qt.size(_headBar.width, _headBar.height)
+                    sourceItem:  control.pageContent
+                    sourceRect: Qt.rect(headerContainer.x, headerContainer.y, _headBar.width, _headBar.height)
+                }
+
+                Loader
+                {
+                    asynchronous: true
+                    active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                    anchors.fill: parent
+                    sourceComponent: MultiEffect
+                    {
+                        opacity: 0.2
+                        saturation: -0.5
+                        blurEnabled: true
+                        blurMax: 32
+                        blur: 1.0
+
+                        autoPaddingEnabled: false
+                        source: _effect
+                    }
+                }
+
+                layer.enabled: _headerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+
+                layer.effect: MultiEffect
+                {
+                    maskEnabled: true
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
+                    maskSpreadAtMax: 0.0
+                    maskThresholdMax: 1.0
+                    maskSource: ShaderEffectSource
+                    {
+                        sourceItem: Rectangle
+                        {
+                            width: _headerBg.width
+                            height: _headerBg.height
+                            radius: _headerBg.radius
+                        }
+                    }
+                }
             }
         }
     }

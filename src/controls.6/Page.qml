@@ -192,7 +192,7 @@ Pane
          * @brief An alias to the actual page container.
          * @property Item Page::pageContent
          */
-    readonly property alias pageContent : _content
+    readonly property alias pageContent : _parentContainer
 
     /**
          *
