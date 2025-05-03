@@ -562,7 +562,7 @@ Pane
                 visible: false
                 textureSize: Qt.size(_headBar.width, _headBar.height)
                 sourceItem: _parentContainer
-                sourceRect: Qt.rect(_headerContent.x, _headerContent.y, _headBar.width, _headBar.height)
+                sourceRect: _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height))
             }
 
             Loader
@@ -584,7 +584,6 @@ Pane
             }
 
             layer.enabled: _headerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
-
             layer.effect: MultiEffect
             {
                 maskEnabled: true
@@ -651,13 +650,6 @@ Pane
         }
     }
 
-    //Label
-    //{
-    //z: 999999999999
-    //color: "yellow"
-    //text: _footBar.visibleCount + " / " + _footBar.count + " - " + _footBar.height + " / " + footer.height + " - " + _footBar.visible + " / " + footer.visible + " / " + footer.height + " / " + _footerContent.implicitHeight  + " / " + _footerContent.implicitHeight
-    //}
-
     /**
          * @brief The main single footer bar.
          * By default this footer is set to a MauiKit ToolBar, but it can be changed to any other item.
@@ -685,7 +677,8 @@ Pane
                 visible: false
                 textureSize: Qt.size(_footBar.width, _footBar.height)
                 sourceItem: _parentContainer
-                sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
+                // sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
+                sourceRect: _footBar.mapToItem(_parentContainer, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
             }
 
             Loader

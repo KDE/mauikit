@@ -155,7 +155,7 @@ Maui.Page
                     visible: false
                     textureSize: Qt.size(_headBar.width, _headBar.height)
                     sourceItem:  control.pageContent
-                    sourceRect: Qt.rect(headerContainer.x, headerContainer.y, _headBar.width, _headBar.height)
+                    sourceRect: _headBar.mapToItem(control.pageContent, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height))
                 }
 
                 Loader
@@ -207,8 +207,64 @@ Maui.Page
 
         sourceComponent: Maui.ToolBar
         {
+            id: _footBar
             leftContent: control.split && control.leftContent ? control.leftContent : null
             rightContent: control.split && control.rightContent ? control.rightContent : null
+
+            background: Rectangle
+            {
+                id:_footerBg
+                color: Maui.Theme.backgroundColor
+                radius: control.footerMargins > 0 ? Maui.Style.radiusV : 0
+
+                ShaderEffectSource
+                {
+                    id: _footerEffect
+                    anchors.fill: parent
+                    visible: false
+                    textureSize: Qt.size(_footBar.width, _footBar.height)
+                    sourceItem: _parentContainer
+                    // sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
+                    sourceRect: _footBar.mapToItem(control.pageContent, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
+                }
+
+                Loader
+                {
+                    asynchronous: true
+                    active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                    anchors.fill: parent
+                    sourceComponent: MultiEffect
+                    {
+                        opacity: 0.2
+                        saturation: -0.5
+                        blurEnabled: true
+                        blurMax: 32
+                        blur: 1.0
+
+                        autoPaddingEnabled: true
+                        source: _footerEffect
+                    }
+                }
+
+                layer.enabled: _footerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+                layer.effect: MultiEffect
+                {
+                    maskEnabled: true
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
+                    maskSpreadAtMax: 0.0
+                    maskThresholdMax: 1.0
+                    maskSource: ShaderEffectSource
+                    {
+                        sourceItem: Rectangle
+                        {
+                            width: _footerBg.width
+                            height: _footerBg.height
+                            radius: _footerBg.radius
+                        }
+                    }
+                }
+            }
         }
     }
 }
