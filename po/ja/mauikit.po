@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-04-29 00:40+0000\n"
+"POT-Creation-Date: 2025-05-03 00:41+0000\n"
 "PO-Revision-Date: 2022-11-14 22:56-0800\n"
 "Last-Translator: Japanese KDE translation team <kde-jp@kde.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -169,6 +169,12 @@ msgstr ""
 #, kde-format
 msgid "Share"
 msgstr ""
+
+#: src/controls.6/private/ShareDialogLinux.qml:92
+#, kde-format
+msgid "1 item"
+msgid_plural "%1 items"
+msgstr[0] ""
 
 #: src/controls.6/private/ToastArea.qml:337
 #, kde-format

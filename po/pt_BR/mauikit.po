@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-04-29 00:40+0000\n"
+"POT-Creation-Date: 2025-05-03 00:41+0000\n"
 "PO-Revision-Date: 2023-07-29 22:20-0300\n"
 "Last-Translator: Geraldo Simiao <geraldosimiao@fedoraproject.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -172,6 +172,13 @@ msgstr ""
 #, kde-format
 msgid "Share"
 msgstr ""
+
+#: src/controls.6/private/ShareDialogLinux.qml:92
+#, kde-format
+msgid "1 item"
+msgid_plural "%1 items"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/controls.6/private/ToastArea.qml:337
 #, kde-format
