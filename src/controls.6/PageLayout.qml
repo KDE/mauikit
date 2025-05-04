@@ -108,7 +108,7 @@ Maui.Page
      * This elements will not be wrapped and will stay in place.
      * @note The contents are placed using a RowLayout, so use the layout attached properties accordingly.
      */
-    property list<QtObject> middleContent : control.headBar.middleContent
+    property list<QtObject> middleContent
 
     /**
      * @brief Whether the toolbar content should be wrapped - as in split - into a new secondary toolbar.
@@ -123,11 +123,62 @@ Maui.Page
      */
     property int splitIn : ToolBar.Header
 
-    headBar.forceCenterMiddleContent: !control.split
-    headBar.leftContent: !control.split && control.leftContent ? control.leftContent : null
-    headBar.rightContent: !control.split && control.rightContent ? control.rightContent : null
+    enum Section
+    {
+        Left, Right, Middle, Sides
+    }
 
-    headBar.middleContent: control.middleContent ? control.middleContent : null
+    property int splitSection : PageLayout.Section.Sides
+
+    headBar.forceCenterMiddleContent: !control.split
+
+    headBar.leftContent:
+    {
+        if(!control.leftContent)
+            return null
+
+        if(control.split)
+        {
+            if(control.splitSection === PageLayout.Section.Middle
+                    || control.splitSection === PageLayout.Section.Right)
+            {
+                return control.leftContent
+            }else return null
+        }
+        return control.leftContent
+    }
+
+    headBar.rightContent:
+    {
+        if(!control.rightContent)
+            return null
+
+        if(control.split)
+        {
+            if(control.splitSection === PageLayout.Section.Middle
+                    || control.splitSection === PageLayout.Section.Left)
+            {
+                return control.rightContent
+            }else return null
+        }
+        return control.rightContent
+    }
+
+
+    headBar.middleContent:
+    {
+        if(!control.middleContent)
+            return null
+
+        if(control.split)
+        {
+            if(control.splitSection !== PageLayout.Section.Middle)
+            {
+                return control.middleContent
+            }else return null
+        }
+        return control.middleContent
+    }
 
     headerColumn: Loader
     {
@@ -138,9 +189,10 @@ Maui.Page
         sourceComponent: Maui.ToolBar
         {
             id: _headBar
-            Maui.Controls.level: control.Maui.Controls.level ?  control.Maui.Controls.level : Maui.Controls.Secondary
-            leftContent: control.split && control.leftContent ? control.leftContent : null
-            rightContent: control.split && control.rightContent ? control.rightContent : null
+            Maui.Controls.level: control.Maui.Controls.level ? control.Maui.Controls.level : Maui.Controls.Secondary
+            leftContent: control.split && control.leftContent && (control.splitSection === PageLayout.Section.Left || control.splitSection === PageLayout.Section.Sides) ? control.leftContent : null
+            rightContent: control.split && control.rightContent && (control.splitSection === PageLayout.Section.Right || control.splitSection === PageLayout.Section.Sides) ? control.rightContent : null
+            middleContent: control.split && control.middleContent && (control.splitSection === PageLayout.Section.Middle) ? control.middleContent : null
 
             background: Rectangle
             {
@@ -208,8 +260,9 @@ Maui.Page
         sourceComponent: Maui.ToolBar
         {
             id: _footBar
-            leftContent: control.split && control.leftContent ? control.leftContent : null
-            rightContent: control.split && control.rightContent ? control.rightContent : null
+            leftContent: control.split && control.leftContent && (control.splitSection === PageLayout.Section.Left || control.splitSection === PageLayout.Section.Sides) ? control.leftContent : null
+            rightContent: control.split && control.rightContent && (control.splitSection === PageLayout.Section.Right || control.splitSection === PageLayout.Section.Sides) ? control.rightContent : null
+            middleContent: control.split && control.middleContent && (control.splitSection === PageLayout.Section.Middle) ? control.middleContent : null
 
             background: Rectangle
             {
@@ -223,7 +276,7 @@ Maui.Page
                     anchors.fill: parent
                     visible: false
                     textureSize: Qt.size(_footBar.width, _footBar.height)
-                    sourceItem: _parentContainer
+                    sourceItem: control.pageContent
                     // sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
                     sourceRect: _footBar.mapToItem(control.pageContent, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
                 }

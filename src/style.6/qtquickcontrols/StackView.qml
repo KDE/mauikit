@@ -8,7 +8,8 @@ T.StackView
     id: control
     focus: true
     clip: false
-    Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.colorSet: Maui.Theme.View
+    Maui.Theme.inherit: false
 
     pushEnter: Transition
     {

@@ -1107,7 +1107,13 @@ Pane
     {
         if(footer)
         {
-            _footerContent.data.push(footer)
+            let fdata = [footer] //ordering the headers for the main headBar to always be the first/top in the column
+
+            for(var i in _footerContent.data)
+            {
+                fdata.push(_footerContent.data[i])
+            }
+            _footerContent.data = fdata
         }
 
         if(header)
@@ -1118,6 +1124,9 @@ Pane
             {
                 data.push(_headerContent.data[i])
             }
+
+            if(control.altHeader)
+                data.reverse()
             _headerContent.data = data
         }
     }

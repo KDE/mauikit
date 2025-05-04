@@ -54,7 +54,7 @@ T.Pane
     // bottomInset: 10
     background: Rectangle
     {
-        color: control.Maui.Controls.level && control.Maui.Controls.level === Maui.Controls.Secondary ? control.Maui.Theme.alternateBackgroundColor: control.Maui.Theme.backgroundColor
+        color: control.Maui.Controls.level && control.Maui.Controls.level === Maui.Controls.Secondary ? Maui.Theme.backgroundColor: Maui.Theme.backgroundColor
         
         Behavior on border.color
         {

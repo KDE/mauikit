@@ -279,7 +279,7 @@ Maui.Popup
 
                 padding: 0
                 margins: 0
-
+                flickable: _scrollView.flickable
                 headBar.visible: control.persistent
 
                 background: null
