@@ -114,6 +114,9 @@ Maui.ItemDelegate
 
     radius: Maui.Style.radiusV
 
+    focus: true
+    focusPolicy: Qt.TabFocus
+
     /**
      * @brief An alias to access the GridItemTemplate control properties. This is the template element that layouts all the information: labels and icon/image.
      * @see GridItemTemplate

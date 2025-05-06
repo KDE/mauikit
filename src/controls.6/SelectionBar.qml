@@ -173,22 +173,22 @@ import QtQuick.Effects
 Item
 {
     id: control
-    
+
     Maui.Theme.inherit: false
     Maui.Theme.colorSet: Maui.Theme.Complementary
-    
+
     implicitHeight: _layout.implicitHeight + Maui.Style.space.big
     implicitWidth: _layout.implicitWidth
-    
+
     /**
      * @brief Whether the bar is currently hidden. This is not the same as `visible`.
      * It is hidden when there is not items in the selection.
      */
     readonly property bool hidden : count === 0
-    
+
     onHiddenChanged:
     {
-        if(hidden && !singleSelection)
+        if(hidden)
         {
             control.close()
         }else
@@ -196,68 +196,68 @@ Item
             control.open()
         }
     }
-    
+
     visible: false
     focus: true
     Keys.enabled: true
-    
+
     /**
      * @brief Default list of QQC2 Action; the actions are represented as buttons.
      * All of the actions listed in here will be visible, to hide some use the `hiddenActions` property.
      * @see hiddenActions
      */
     default property list<Action> actions
-    
+
     /**
      * @brief List of action that won't be shown inside of the bar, but instead will always be hidden and listed in a dedicated overflow menu button.
      */
     property list<Action> hiddenActions
-    
+
     /**
      * @brief The preferred display mode for the visible action buttons.
      * By default this is set to `ToolButton.TextBesideIcon`.
      */
     property int display : ToolButton.TextBesideIcon
-    
+
     /**
      * @brief The list of items can be displayed in a popup. This property defines the maximum height the popup list.
      * By default this is set to `400`.
      */
     property int maxListHeight : 400
-    
+
     /**
      * @brief By default the selection bar was designed to be floating and thus has rounded border corners.
      * This property allows to change the border radius.
      * By default this is set to `Style.radiusV`.
      */
     property int radius: Maui.Style.radiusV
-    
+
     /**
      * @brief Whether the control only accepts a single item.
      * If single selection is set to true then only a single item can be appended, if another item is added then it replaces the previous one.
      * By default this is set to `false`.
      **/
     property bool singleSelection: false
-    
+
     /**
      * @brief The array list of the URIs associated to the selected items.
      * @see items
      * @property var SelectionBar::uris
      */
     readonly property alias uris: _private._uris
-    
+
     /**
      * @brief The array list of the items selected.
      * @property var SelectionBar::items
      */
     readonly property alias items: _private._items
-    
+
     /**
      * @brief Total amount of items selected.
      * @property int SelectionBar::count
      */
     readonly property alias count : _urisModel.count
-    
+
     /**
      * @brief Delegate to be used in popup list.
      * By default this is set to use a MauiKit ListBrowserDelegate.
@@ -267,130 +267,130 @@ Item
     property Component listDelegate: Maui.ListBrowserDelegate
     {
         id: delegate
-        
+
         width: ListView.view.width
-        
+
         Maui.Theme.backgroundColor: "transparent"
         Maui.Theme.textColor: control.Maui.Theme.textColor
-        
+
         iconVisible: false
         label1.text: model.uri
-        
+
         checkable: true
         checked: true
         onToggled: control.removeAtIndex(index)
-        
+
         onClicked: control.itemClicked(index)
         onPressAndHold: control.itemPressAndHold(index)
     }
-    
+
     /**
      * @brief Emitted when the selection is cleared either by the constrain of the single selection or by manually calling the clear method.
      */
     signal cleared()
-    
+
     /**
      * @brief Emitted when close button is pressed or the Escape keyboard shortcut invoked.
      */
     signal exitClicked()
-    
+
     /**
      * @brief Emitted when an item in the popup list view is clicked.
      * @paran index the index number of the item clicked.  Use the `itemAt` function to get to the item.
      * @see itemAt
      */
     signal itemClicked(int index)
-    
+
     /**
      * @brief Emitted when an item in the popup list view is pressed for a long time.
      * @paran index the index number of the item clicked.  Use the `itemAt` function to get to the item.
      * @see itemAt
      */
     signal itemPressAndHold(int index)
-    
+
     /**
      * @brief Emitted when an item is newly added to the selection.
      * @param item the item map passed to the `append` function.
      */
     signal itemAdded(var item)
-    
+
     /**
      * @brief Emitted when an item has been removed from the selection.
      * @param item the item map passed to the `append` function.
      */
     signal itemRemoved(var item)
-    
+
     /**
      * @brief Emitted when an item is newly added to the selection. This signal only sends the URI of the item.
      * @param uri the URI identifier
      */
     signal uriAdded(string uri)
-    
+
     /**
      * @brief Emitted when an item has been removed from the selection. This signal only sends the URI of the item.
      * @param uri the URI identifier
      */
     signal uriRemoved(string uri)
-    
+
     /**
      * @brief Emitted when an empty area of the selection bar has been clicked.
      * @param mouse the object with information of the event
      */
     signal clicked(var mouse)
-    
+
     /**
      * @brief Emitted when an empty area of the selection bar has been right clicked.
      * @param mouse the object with information of the event
      */
     signal rightClicked(var mouse)
-    
+
     /**
      * @brief Emitted when a group of URLs has been dropped onto the selection bar area.
      * @param uris the list of urls
      */
     signal urisDropped(var uris)
-    
+
     QtObject
     {
         id: _private
         property var _uris : []
         property var _items : []
     }
-    
+
     ListModel
     {
         id: _urisModel
     }
-    
+
     Loader
     {
         id: _loader
         active: control.visible
     }
-    
+
     Component
     {
         id: _listContainerComponent
-        
+
         Maui.PopupPage
         {
             persistent: false
-            
+
            stack: Maui.ListBrowser
             {
                 id: selectionList
-                
+
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 model: _urisModel
-                
+
                 delegate: control.listDelegate
             }
-            
+
             actions: control.actions
         }
     }
-    
+
     ParallelAnimation
     {
         id: _openAnimation
@@ -403,7 +403,7 @@ Item
             duration: Maui.Style.units.longDuration*1
             easing.type: Easing.OutBack
         }
-        
+
         NumberAnimation
         {
             target: _layout
@@ -414,7 +414,7 @@ Item
             easing.type: Easing.OutQuad
         }
     }
-    
+
     ParallelAnimation
     {
         id: _closeAnimation
@@ -426,9 +426,9 @@ Item
             to: _layout.height
             duration: Maui.Style.units.longDuration*1
             easing.type: Easing.InBack
-            
+
         }
-        
+
         NumberAnimation
         {
             target: _layout
@@ -437,21 +437,21 @@ Item
             to: 0.5
             duration: Maui.Style.units.longDuration*1
             easing.type: Easing.InQuad
-            
+
         }
-        
+
         onFinished: control.visible = false
     }
-    
+
     Maui.ToolBar
     {
         id: _layout
         width: control.width
         padding: Maui.Style.space.medium
-        
+
         Maui.Theme.inherit: false
         Maui.Theme.colorSet: Maui.Theme.Complementary
-        
+
         forceCenterMiddleContent: false
         position: ToolBar.Footer
 
@@ -460,11 +460,11 @@ Item
             asynchronous: true
              active: !control.singleSelection && control.count > 1
              visible: active
-             
+
             sourceComponent: ToolButton
         {
             id: _counter
-           
+
             text: control.count
             font.bold: true
             font.weight: Font.Black
@@ -638,18 +638,18 @@ Item
             }
         }
     }
-    
+
     Keys.onEscapePressed:
     {
         control.exitClicked();
     }
-    
+
     Keys.onBackPressed: (event) =>
     {
         control.exitClicked();
         event.accepted = true
     }
-    
+
     /**
      * @brief Removes all the items from the selection.
      * Triggers the `cleared` signal.
@@ -662,7 +662,7 @@ Item
         _urisModel.clear()
         control.cleared()
     }
-    
+
     /**
      * @brief Returns an item at the given index
      * @param index the index number of the item.
@@ -677,7 +677,7 @@ Item
         }
         return _urisModel.get(index)
     }
-    
+
     /**
      * @brief Remove a single item at the given index
      * @param index index of the item in the selection list
@@ -688,10 +688,10 @@ Item
         {
             return
         }
-        
+
         const item = _urisModel.get(index)
         const uri = item.uri
-        
+
         if(contains(uri))
         {
             _private._uris.splice(index, 1)
@@ -701,7 +701,7 @@ Item
             control.uriRemoved(uri)
         }
     }
-    
+
     /**
      * @brief Removes an item from the selection at the given URI
      * @param uri the URI used to append the item
@@ -710,7 +710,7 @@ Item
     {
         removeAtIndex(indexOf(uri))
     }
-    
+
     /**
      * @brief Returns the index of an item in the selection given its URI
      * @param uri the URI used to append the item
@@ -721,7 +721,7 @@ Item
     {
         return _private._uris.indexOf(uri)
     }
-    
+
     /**
      * @brief Appends a new item to the selection associated to the given URI
      * @param uri the URI to be associated with the item
@@ -733,19 +733,19 @@ Item
         {
             clear()
         }
-        
+
         if(!contains(uri) || control.singleSelection)
         {
             _private._items.push(item)
             _private._uris.push(uri)
-            
+
             item.uri = uri
             _urisModel.append(item)
             control.itemAdded(item)
             control.uriAdded(uri)
         }
     }
-    
+
     /**
      * @brief Returns a single string with all the URIs separated by a comma.
      */
@@ -753,7 +753,7 @@ Item
     {
         return String(""+_private._uris.join(","))
     }
-    
+
     /**
      * @brief Returns whether the selection contains an item associated to the given URI.
      * @param uri the URI used to append the item
@@ -762,7 +762,7 @@ Item
     {
         return _private._uris.includes(uri)
     }
-    
+
     /**
      * @brief Forces to open the selection bar, if hidden.
      */
@@ -772,11 +772,11 @@ Item
         {
             return;
         }
-        
+
         control.visible = true
         _openAnimation.start()
     }
-    
+
     /**
      * @brief Forces to close the selection bar, if visible.
      */

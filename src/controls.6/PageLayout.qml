@@ -130,20 +130,18 @@ Maui.Page
 
     property int splitSection : PageLayout.Section.Sides
 
-    headBar.forceCenterMiddleContent: !control.split
-
     headBar.leftContent:
     {
         if(!control.leftContent)
-            return null
+            return []
 
         if(control.split)
         {
-            if(control.splitSection === PageLayout.Section.Middle
+            if(control.splitSection === PageLayout.Section.Sides
                     || control.splitSection === PageLayout.Section.Right)
             {
-                return control.leftContent
-            }else return null
+                return []
+            }
         }
         return control.leftContent
     }
@@ -151,31 +149,38 @@ Maui.Page
     headBar.rightContent:
     {
         if(!control.rightContent)
-            return null
+            return []
 
         if(control.split)
         {
-            if(control.splitSection === PageLayout.Section.Middle
+            if(control.splitSection === PageLayout.Section.Sides
                     || control.splitSection === PageLayout.Section.Left)
             {
-                return control.rightContent
-            }else return null
+                return []
+            }
         }
         return control.rightContent
     }
 
+    Rectangle
+    {
+        id: _rec
+        Layout.fillHeight: true
+        Layout.preferredWidth: 1
+        color: "yellow"
+    }
 
     headBar.middleContent:
     {
         if(!control.middleContent)
-            return null
+            return []
 
         if(control.split)
         {
-            if(control.splitSection !== PageLayout.Section.Middle)
+            if(control.splitSection === PageLayout.Section.Middle)
             {
-                return control.middleContent
-            }else return null
+                return _rec
+            }
         }
         return control.middleContent
     }
@@ -189,6 +194,7 @@ Maui.Page
         sourceComponent: Maui.ToolBar
         {
             id: _headBar
+            Maui.Controls.showCSD: false
             Maui.Controls.level: control.Maui.Controls.level ? control.Maui.Controls.level : Maui.Controls.Secondary
             leftContent: control.split && control.leftContent && (control.splitSection === PageLayout.Section.Left || control.splitSection === PageLayout.Section.Sides) ? control.leftContent : null
             rightContent: control.split && control.rightContent && (control.splitSection === PageLayout.Section.Right || control.splitSection === PageLayout.Section.Sides) ? control.rightContent : null

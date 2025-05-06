@@ -748,6 +748,14 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
+
+            // PropertyChanges
+            // {
+            //     target: _headerContent
+            //     data: {
+            //         _headerContent.data = data.reverse()
+            //     }
+            // }
         },
 
         State
@@ -767,6 +775,16 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: _headerContent.top
             }
+
+            // PropertyChanges
+            // {
+            //     target: _headerContent
+            //     data: {
+            //         var data = []
+            //         data = _headerContent.data
+            //         _headerContent.data = data.reverse()
+            //     }
+            // }
         } ]
 
     onAutoHideHeaderChanged:
@@ -790,7 +808,11 @@ Pane
             pullDownFooter()
         }
     }
-    onAltHeaderChanged: pullDownHeader()
+
+    onAltHeaderChanged:
+    {
+        pullDownHeader()
+    }
 
 
     //                 Label
@@ -820,6 +842,9 @@ Pane
             Item
             {
                 id: _content
+                focus: true
+                objectName: "Page Content Item"
+
                 anchors.fill: parent
 
                 anchors.topMargin: _private.topMargin
@@ -1079,30 +1104,6 @@ Pane
         }
     }
 
-    //Keys.onBackPressed:
-    //{
-    //control.goBackTriggered();
-    //}
-
-    //Shortcut
-    //{
-    //sequence: "Forward"
-    //onActivated: control.goForwardTriggered();
-    //}
-
-    //Shortcut
-    //{
-    //sequence: StandardKey.Forward
-    //onActivated: control.goForwardTriggered();
-    //}
-
-    //Shortcut
-    //{
-    //sequence: StandardKey.Back
-    //onActivated: control.goBackTriggered();
-    //}
-
-
     Component.onCompleted :
     {
         if(footer)
@@ -1125,8 +1126,8 @@ Pane
                 data.push(_headerContent.data[i])
             }
 
-            if(control.altHeader)
-                data.reverse()
+            // if(control.altHeader)
+            //     data.reverse()
             _headerContent.data = data
         }
     }

@@ -38,7 +38,8 @@ import org.mauikit.controls as Maui
 Item
 {
     id: control
-    focus: true
+    focus: false
+    focusPolicy: Qt.NoFocus
     smooth: !Maui.Handy.isMobile
 
     implicitHeight: _layout.implicitHeight

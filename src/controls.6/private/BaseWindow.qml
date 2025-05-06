@@ -256,7 +256,7 @@ ApplicationWindow
             control.showNormal();
         } else
         {
-            control.showFullScreen()();
+            control.showFullScreen();
         }
     }
 

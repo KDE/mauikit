@@ -49,8 +49,8 @@ T.Button
 
     font: Maui.Style.defaultFont
 
-    focusPolicy: Qt.StrongFocus
     focus: true
+    focusPolicy: Qt.TabFocus
 
     Keys.enabled: true
 
@@ -82,6 +82,13 @@ T.Button
         Behavior on color
         {
             Maui.ColorTransition{}
+        }
+
+        Rectangle
+        {
+            anchors.fill: parent
+            visible: control.activeFocus
+            color: "green"
         }
     }
 

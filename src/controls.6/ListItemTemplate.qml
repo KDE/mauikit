@@ -39,7 +39,8 @@ import org.mauikit.controls as Maui
 Item
 {
      id: control
-
+     focus: false
+     focusPolicy: Qt.NoFocus
      implicitHeight: _layout.implicitHeight
      implicitWidth: _layout.implicitWidth
 

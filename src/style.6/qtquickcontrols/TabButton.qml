@@ -32,6 +32,9 @@ T.TabButton
     Maui.Theme.colorSet: Maui.Theme.Button
     Maui.Theme.inherit: false
 
+    focus: true
+    focusPolicy: Qt.TabFocus
+
     opacity: enabled ? 1 : 0.5
 
     implicitWidth: implicitContentWidth + leftPadding + rightPadding

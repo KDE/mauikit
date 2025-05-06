@@ -29,6 +29,8 @@ T.ToolBar
     id: control
 
     // default property alias content : _layout.data
+    focus: true
+    focusPolicy: Qt.NoFocus
 
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false

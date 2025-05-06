@@ -340,13 +340,7 @@ Item
      * @brief Emitted when an empty space of the area area background has been right clicked.
      */
     signal areaRightClicked()
-    
-    /**
-     * @brief Emitted when a physical key from the device has been pressed.
-     * @param event The object with information about the event.
-     */
-    signal keyPress(var event)
-    
+
     Keys.enabled : true
     Keys.forwardTo : _listView
     
@@ -387,11 +381,13 @@ Item
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
-            
-            keyNavigationEnabled : true
+
+            keyNavigationEnabled : false // Causes many issues with the keyboard navigation
             keyNavigationWraps : true
 
-            Keys.onPressed: (event) => control.keyPress(event)
+            Keys.enabled: true
+            Keys.onUpPressed: _listView.decrementCurrentIndex()
+            Keys.onDownPressed: _listView.incrementCurrentIndex()
             
             Maui.Holder
             {

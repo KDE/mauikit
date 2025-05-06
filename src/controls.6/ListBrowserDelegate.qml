@@ -80,6 +80,7 @@ Maui.ItemDelegate
   id: control
 
   focus: true
+  focusPolicy: Qt.TabFocus
 
   radius: Maui.Style.radiusV
 

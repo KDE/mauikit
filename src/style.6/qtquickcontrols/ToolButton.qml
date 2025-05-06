@@ -42,6 +42,9 @@ T.ToolButton
 {
     id: control
 
+    focus: false
+    focusPolicy: Qt.TabFocus
+
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
 
@@ -138,6 +141,13 @@ T.ToolButton
             }
 
             return "transparent"
+        }
+
+        Rectangle
+        {
+            anchors.fill: parent
+            visible: control.activeFocus
+            color: "green"
         }
     }
 
