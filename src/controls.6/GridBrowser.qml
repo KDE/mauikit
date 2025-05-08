@@ -492,7 +492,12 @@ Item
             Keys.enabled: true
             Keys.onLeftPressed: controlView.moveCurrentIndexLeft()
             Keys.onRightPressed: controlView.moveCurrentIndexRight()
-            Keys.onUpPressed: controlView.moveCurrentIndexUp()
+            Keys.onUpPressed:
+            {
+                console.log("GO UP gridBrowser")
+                controlView.moveCurrentIndexUp()
+            }
+
             Keys.onDownPressed: controlView.moveCurrentIndexDown()
 
             Maui.Holder

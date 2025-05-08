@@ -19,6 +19,8 @@ import org.mauikit.controls as Maui
 QQC.TabButton
 {
     id: control
+    focus: false
+    focusPolicy: Qt.NoFocus
 
     /**
         * @brief An alias exposed to append more elements into the main container of this control.

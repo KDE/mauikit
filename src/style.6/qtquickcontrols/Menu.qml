@@ -45,7 +45,7 @@ T.Menu
     id: control
 
     Maui.Theme.colorSet: Maui.Theme.View
-    Maui.Theme.inherit: false
+    // Maui.Theme.inherit: false
 
     readonly property bool responsive: Maui.Handy.isMobile
 
@@ -151,8 +151,6 @@ T.Menu
 
     // topMargin: _headerLoader.implicitHeight + 100
 
-
-
     contentItem: ScrollView
     {
         id: _scrollView
@@ -161,11 +159,12 @@ T.Menu
         padding: Maui.Style.contentMargins
 
         implicitHeight: _listView.contentHeight + topPadding + bottomPadding
-
+        Maui.Theme.colorSet: control.Maui.Theme.colorSet
+        Maui.Theme.styleType: control.Maui.Theme.styleType
+        Maui.Theme.inherit: control.Maui.Theme.inherit
         ListView
         {
             id: _listView
-
             clip: true
             focus: true
 

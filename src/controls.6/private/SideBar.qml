@@ -32,6 +32,8 @@ import org.mauikit.controls as Maui
 Pane
 {
     id: control
+    focus: false
+    focusPolicy: Qt.NoFocus
 
     Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false

@@ -349,7 +349,10 @@ Item
         id: _scrollView
         anchors.fill: parent
         clip: control.clip
-        focus: true
+        focus: false
+        focusPolicy: Qt.NoFocus
+        Keys.enabled: false
+        Keys.forwardTo: _listView
         padding: Maui.Style.contentMargins
         Maui.Controls.orientation: _listView.orientation
         
@@ -425,7 +428,7 @@ Item
                                        console.log("Area clicked")
 
                                        control.areaClicked(mouse)
-                                       control.forceActiveFocus()
+                                       // control.forceActiveFocus()
 
                                        if(mouse.button === Qt.RightButton)
                                        {

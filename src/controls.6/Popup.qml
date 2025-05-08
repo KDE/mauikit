@@ -36,7 +36,9 @@ import QtQuick.Effects
 QQC.Popup
 {
     id: control
-    
+
+    objectName: "MauiKit Popup"
+
     width: (filling ? parent.width  : mWidth)
     height: (filling ? parent.height : mHeight)
 
@@ -103,6 +105,11 @@ QQC.Popup
     contentItem: Q.Item
     {
         id: _content
+        objectName: "Popup Container"
+
+        Maui.Theme.colorSet: control.Maui.Theme.colorSet
+        Maui.Theme.styleType: control.Maui.Theme.styleType
+        Maui.Theme.inherit: control.Maui.Theme.inherit
 
         layer.enabled: Q.GraphicsInfo.api !== Q.GraphicsInfo.Software
         layer.effect: MultiEffect

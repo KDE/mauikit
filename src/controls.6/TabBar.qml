@@ -56,6 +56,9 @@ import "private" as Private
 QQC.TabBar
 {
     id: control
+    focus: false
+    focusPolicy: Qt.TabFocus
+
     Maui.Controls.level: Maui.Controls.showCSD ? Maui.Controls.Primary : Maui.Controls.Secondary
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
@@ -237,8 +240,8 @@ QQC.TabBar
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
 
-                    keyNavigationEnabled : true
-                    keyNavigationWraps : true
+                    keyNavigationEnabled : false
+                    keyNavigationWraps : false
 
                     onMovementEnded:
                     {

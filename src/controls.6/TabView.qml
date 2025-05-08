@@ -126,6 +126,8 @@ Pane
 {
     id: control
 
+    focus: false
+    focusPolicy: Qt.StrongFocus
     /**
      * @brief Each one of the items declared as the children of this component will become a tab view.
      * @property list<QtObject> TabView::content
@@ -392,21 +394,23 @@ Pane
                 {
                     control.setCurrentIndex(_filterTabsList.currentIndex)
                     _quickSearch.close()
+                    control.forceActiveFocus()
                 }
 
                 Keys.enabled: true
-
                 Keys.onPressed: (event) =>
                                 {
                                     if((event.key === Qt.Key_Up))
                                     {
                                         _filterTabsList.flickable.decrementCurrentIndex()
+                                        event.accepted = true
                                     }
 
                                     if((event.key === Qt.Key_Down))
                                     {
                                         _filterTabsList.flickable.incrementCurrentIndex()
-                                    }
+                                        event.accepted = true
+                                    }                                    
                                 }
             }
 
@@ -477,23 +481,6 @@ Pane
                         model: control.count
                         delegate: control.tabViewButton
                     }
-
-                    Keys.onPressed: (event) =>
-                                    {
-                                        if(event.key == Qt.Key_Return)
-                                        {
-                                            _listView.setCurrentIndex(currentIndex)
-                                            event.accepted = true
-                                        }
-
-                                        if(event.key == Qt.Key_Down)
-                                        {
-                                            _listView.currentItem.forceActiveFocus()
-                                            event.accepted = true
-                                        }
-                                    }
-                                    
-                                    Keys.forwardTo: control
 
                     states: [  State
                         {
@@ -657,8 +644,6 @@ Pane
                         currentIndex: control.currentIndex
 
                         itemSize: Math.min(200, availableWidth /2)
-                        Keys.forwardTo: control
-                        Keys.enabled: true
                         
                         Loader
                         {

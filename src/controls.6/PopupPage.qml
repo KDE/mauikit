@@ -122,11 +122,9 @@ import org.mauikit.controls as Maui
 Maui.Popup
 {
     id: control
+    objectName: "MauiKit PopupPage"
 
     focus: true
-
-    Maui.Theme.colorSet: Maui.Theme.Window
-    Maui.Theme.inherit: false
 
     closePolicy: control.persistent ? Popup.NoAutoClose | Popup.CloseOnEscape : Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
@@ -265,7 +263,6 @@ Maui.Popup
 
                 clip: true
 
-                Maui.Theme.colorSet: control.Maui.Theme.colorSet
                 Maui.Controls.flat: true
 
                 Layout.fillWidth: true

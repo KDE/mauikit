@@ -45,6 +45,8 @@ T.MenuItem
     id: control
     
     opacity: control.enabled ? 1 : 0.5
+
+    Maui.Theme.colorSet: Maui.Theme.Button
     
     hoverEnabled: !Maui.Handy.isMobile
     

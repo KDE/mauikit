@@ -41,6 +41,7 @@ Item
     focus: false
     focusPolicy: Qt.NoFocus
     smooth: !Maui.Handy.isMobile
+    Maui.Theme.inherit: true
 
     implicitHeight: _layout.implicitHeight
     implicitWidth: _layout.implicitWidth

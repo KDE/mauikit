@@ -34,7 +34,8 @@ template<>
 QEvent::Type PlatformThemeEvents::ColorChangedEvent::type = QEvent::None;
 template<>
 QEvent::Type PlatformThemeEvents::FontChangedEvent::type = QEvent::None;
-
+template<>
+QEvent::Type PlatformThemeEvents::StyleTypeChangedEvent::type = QEvent::None;
 // Initialize event types.
 // We want to avoid collisions with application event types so we should use
 // registerEventType for generating the event types. Unfortunately, that method
@@ -48,6 +49,7 @@ struct TypeInitializer {
         PlatformThemeEvents::ColorGroupChangedEvent::type = QEvent::Type(QEvent::registerEventType());
         PlatformThemeEvents::ColorChangedEvent::type = QEvent::Type(QEvent::registerEventType());
         PlatformThemeEvents::FontChangedEvent::type = QEvent::Type(QEvent::registerEventType());
+        PlatformThemeEvents::StyleTypeChangedEvent::type = QEvent::Type(QEvent::registerEventType());
     }
 };
 static TypeInitializer initializer;
@@ -99,6 +101,7 @@ public:
 
     PlatformTheme::ColorSet colorSet = PlatformTheme::Window;
     PlatformTheme::ColorGroup colorGroup = PlatformTheme::Active;
+    PlatformTheme::StyleType styleType = PlatformTheme::Undefined;
 
     std::array<QColor, ColorRoleCount> colors;
 
@@ -110,6 +113,19 @@ public:
     // signal/slots turn out to have a pretty large memory overhead per instance.
     using Watcher = PlatformTheme *;
     QVector<Watcher> watchers;
+
+    inline void setStyleType(PlatformTheme *sender, PlatformTheme::StyleType type)
+    {
+        if (sender != owner || styleType == type) {
+            return;
+        }
+
+        auto oldValue = styleType;
+
+        styleType = type;
+
+        notifyWatchers<PlatformTheme::StyleType>(sender, oldValue, type);
+    }
 
     inline void setColorSet(PlatformTheme *sender, PlatformTheme::ColorSet set)
     {
@@ -232,6 +248,7 @@ public:
         , pendingChildUpdate(false)
         , colorSet(PlatformTheme::Window)
         , colorGroup(PlatformTheme::Active)
+        , styleType(PlatformTheme::Undefined)
     {
     }
 
@@ -363,6 +380,7 @@ public:
     // to save space.
     uint8_t colorSet : 4;
     uint8_t colorGroup : 4;
+    uint8_t styleType : 4;
 
     // Ensure the above assumption holds. Should this static assert fail, the
     // bit size above needs to be adjusted.
@@ -380,7 +398,6 @@ PlatformTheme::PlatformTheme(QObject *parent)
         connect(item, &QQuickItem::windowChanged, this, &PlatformTheme::update);
         connect(item, &QQuickItem::parentChanged, this, &PlatformTheme::update);
     }
-
     update();
 }
 
@@ -404,6 +421,7 @@ void PlatformTheme::setColorSet(PlatformTheme::ColorSet colorSet)
 
 PlatformTheme::ColorSet PlatformTheme::colorSet() const
 {
+    // return static_cast<PlatformTheme::ColorSet>( d->colorSet);
     return d->data ? d->data->colorSet : Window;
 }
 
@@ -779,7 +797,8 @@ PlatformTheme *PlatformTheme::qmlAttachedProperties(QObject *object)
 
 bool PlatformTheme::event(QEvent *event)
 {
-    if (event->type() == PlatformThemeEvents::DataChangedEvent::type) {
+    if (event->type() == PlatformThemeEvents::DataChangedEvent::type)
+    {
         auto changeEvent = static_cast<PlatformThemeEvents::DataChangedEvent *>(event);
 
         if (changeEvent->sender != this) {
@@ -794,8 +813,9 @@ bool PlatformTheme::event(QEvent *event)
             auto data = changeEvent->newValue;
             data->addChangeWatcher(this);
 
-            Q_EMIT colorSetChanged(data->colorSet);
+            // Q_EMIT colorSetChanged(data->colorSet);
             Q_EMIT colorGroupChanged(data->colorGroup);
+            Q_EMIT styleTypeChanged(data->styleType);
 
             d->emitCompressedColorChanged(this);
         }
@@ -806,6 +826,13 @@ bool PlatformTheme::event(QEvent *event)
     if (event->type() == PlatformThemeEvents::ColorSetChangedEvent::type) {
         if (d->data) {
             Q_EMIT colorSetChanged(d->data->colorSet);
+        }
+        return true;
+    }
+
+    if (event->type() == PlatformThemeEvents::StyleTypeChangedEvent::type) {
+        if (d->data) {
+            Q_EMIT styleTypeChanged(d->data->styleType);
         }
         return true;
     }
@@ -839,11 +866,14 @@ void PlatformTheme::update()
 
     auto oldData = d->data;
 
-    if (d->inherit) {
+    if (d->inherit)
+    {
         QObject *candidate = parent();
-        while (true) {
+        while (true)
+        {
             candidate = determineParent(candidate);
-            if (!candidate) {
+            if (!candidate)
+            {
                 break;
             }
 
@@ -854,7 +884,10 @@ void PlatformTheme::update()
                     return;
                 }
 
-                d->data = t->d->data;
+
+                // PlatformTheme::ColorSet oldvalue = static_cast<PlatformTheme::ColorSet>(d->colorSet);
+                 d->data = t->d->data;
+                // d->data->setColorSet(t, oldvalue);
 
                 PlatformThemeEvents::DataChangedEvent event{this, oldData, t->d->data};
                 QCoreApplication::sendEvent(this, &event);
@@ -862,20 +895,24 @@ void PlatformTheme::update()
                 return;
             }
         }
-    } else if (d->data->owner != this) {
+    } else if (d->data->owner != this)
+    {
         // Inherit has changed and we no longer want to inherit, clear the data
         // so it is recreated below.
         d->data = nullptr;
     }
 
-    if (!d->data) {
+    if (!d->data)
+    {
         d->data = std::make_shared<PlatformThemeData>();
         d->data->owner = this;
         d->data->setColorSet(this, static_cast<ColorSet>(d->colorSet));
         d->data->setColorGroup(this, static_cast<ColorGroup>(d->colorGroup));
+        d->data->setStyleType(this, static_cast<StyleType>(d->styleType));
     }
 
-    if (d->localOverrides) {
+    if (d->localOverrides)
+    {
         for (auto entry : *d->localOverrides) {
             d->data->setColor(this, PlatformThemeData::ColorRole(entry.first), entry.second);
         }
@@ -926,6 +963,20 @@ QObject *PlatformTheme::determineParent(QObject *object)
         return item->parentItem();
     } else {
         return object->parent();
+    }
+}
+
+PlatformTheme::StyleType PlatformTheme::styleType() const
+{
+    return d->data ? d->data->styleType : Undefined;
+}
+
+void PlatformTheme::setStyleType(const StyleType &newStyleType)
+{
+    d->styleType = newStyleType;
+
+    if (d->data) {
+        d->data->setStyleType(this, newStyleType);
     }
 }
 

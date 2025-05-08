@@ -37,7 +37,7 @@ T.Button
     hoverEnabled: !Maui.Handy.isMobile
 
     Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
+    // Maui.Theme.inherit: false
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize
@@ -49,7 +49,7 @@ T.Button
 
     font: Maui.Style.defaultFont
 
-    focus: true
+    focus: false
     focusPolicy: Qt.TabFocus
 
     Keys.enabled: true
@@ -82,13 +82,6 @@ T.Button
         Behavior on color
         {
             Maui.ColorTransition{}
-        }
-
-        Rectangle
-        {
-            anchors.fill: parent
-            visible: control.activeFocus
-            color: "green"
         }
     }
 
@@ -166,11 +159,11 @@ T.Button
         if(control.Maui.Controls.status)
         {
             switch(control.Maui.Controls.status)
-            {                
+            {
             case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
             case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
             case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
-            case Maui.Controls.Normal: 
+            case Maui.Controls.Normal:
             default:
             return defaultColor(control.Maui.Theme.backgroundColor)
             }

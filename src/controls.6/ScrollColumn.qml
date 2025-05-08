@@ -65,7 +65,7 @@ import org.mauikit.controls as Maui
  */
 ScrollView
 {
-    id: control
+    id: control    
 
     /**
      * @brief The default content declared as the children is placed unser a ColumnLayout.

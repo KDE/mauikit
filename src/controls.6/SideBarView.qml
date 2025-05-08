@@ -100,7 +100,8 @@ import "private" as Private
 Item
 {
     id: control
-
+    focus: false
+    focusPolicy: Qt.NoFocus
     /**
      * @brief
      * All child items declared will become part of the main area section.

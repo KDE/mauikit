@@ -376,7 +376,7 @@ Item
         {
             persistent: false
 
-           stack: Maui.ListBrowser
+            stack: Maui.ListBrowser
             {
                 id: selectionList
 
@@ -458,74 +458,74 @@ Item
         leftContent: Loader
         {
             asynchronous: true
-             active: !control.singleSelection && control.count > 1
-             visible: active
+            active: !control.singleSelection && control.count > 1
+            visible: active
 
             sourceComponent: ToolButton
-        {
-            id: _counter
-
-            text: control.count
-            font.bold: true
-            font.weight: Font.Black
-            Maui.Theme.colorSet: control.Maui.Theme.colorSet
-            Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
-                                            Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
-
-           flat: false
-
-            MouseArea
             {
-                id: _mouseArea
-                anchors.fill: parent
-                propagateComposedEvents: true
-                property int startX
-                property int startY
-                Drag.active: drag.active
-                Drag.hotSpot.x: 0
-                Drag.hotSpot.y: 0
-                Drag.dragType: Drag.Automatic
-                Drag.supportedActions: Qt.CopyAction
-                Drag.keys: ["text/plain","text/uri-list"]
+                id: _counter
 
-                onPressed: (mouse) =>
-                           {
-                               if( mouse.source !== Qt.MouseEventSynthesizedByQt)
+                text: control.count
+                font.bold: true
+                font.weight: Font.Black
+                Maui.Theme.colorSet: control.Maui.Theme.colorSet
+                Maui.Theme.backgroundColor: _loader.item && _loader.item.visible ?
+                                                Maui.Theme.highlightColor : Qt.tint(control.Maui.Theme.textColor, Qt.rgba(control.Maui.Theme.backgroundColor.r, control.Maui.Theme.backgroundColor.g, control.Maui.Theme.backgroundColor.b, 0.9))
+
+                flat: false
+
+                MouseArea
+                {
+                    id: _mouseArea
+                    anchors.fill: parent
+                    propagateComposedEvents: true
+                    property int startX
+                    property int startY
+                    Drag.active: drag.active
+                    Drag.hotSpot.x: 0
+                    Drag.hotSpot.y: 0
+                    Drag.dragType: Drag.Automatic
+                    Drag.supportedActions: Qt.CopyAction
+                    Drag.keys: ["text/plain","text/uri-list"]
+
+                    onPressed: (mouse) =>
                                {
-                                   drag.target = _counter
-                                   _counter.grabToImage(function(result)
+                                   if( mouse.source !== Qt.MouseEventSynthesizedByQt)
                                    {
-                                       _mouseArea.Drag.imageSource = result.url
-                                   })
+                                       drag.target = _counter
+                                       _counter.grabToImage(function(result)
+                                       {
+                                           _mouseArea.Drag.imageSource = result.url
+                                       })
 
-                                   _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
+                                       _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
 
-                                   startX = _counter.x
-                                   startY = _counter.y
+                                       startX = _counter.x
+                                       startY = _counter.y
 
-                               }else
-                               {
-                                   mouse.accepted = false
+                                   }else
+                                   {
+                                       mouse.accepted = false
+                                   }
                                }
-                           }
 
-                onReleased :
-                {
-                    _counter.x = startX
-                    _counter.y = startY
-                }
-
-                onClicked:
-                {
-                    if(!_loader.item)
+                    onReleased :
                     {
-                        _loader.sourceComponent = _listContainerComponent
+                        _counter.x = startX
+                        _counter.y = startY
                     }
-                    _loader.item.open()
-                    console.log("Opening list")
+
+                    onClicked:
+                    {
+                        if(!_loader.item)
+                        {
+                            _loader.sourceComponent = _listContainerComponent
+                        }
+                        _loader.item.open()
+                        console.log("Opening list")
+                    }
                 }
             }
-        }
         }
 
         Repeater
@@ -645,10 +645,10 @@ Item
     }
 
     Keys.onBackPressed: (event) =>
-    {
-        control.exitClicked();
-        event.accepted = true
-    }
+                        {
+                            control.exitClicked();
+                            event.accepted = true
+                        }
 
     /**
      * @brief Removes all the items from the selection.

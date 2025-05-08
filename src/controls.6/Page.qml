@@ -172,7 +172,6 @@ Pane
     bottomPadding: control.padding
 
     Maui.Theme.colorSet: Maui.Theme.View
-    Maui.Theme.inherit: false
 
     Maui.Controls.showCSD: false
     Maui.Controls.level: control.Maui.Controls.showCSD === true ? Maui.Controls.Primary : Maui.Controls.Secondary
@@ -551,7 +550,7 @@ Pane
 
         background: Rectangle
         {
-            id:_headerBg
+            id: _headerBg
             color: Maui.Theme.backgroundColor
             radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
 
@@ -675,10 +674,12 @@ Pane
                 id: _footerEffect
                 anchors.fill: parent
                 visible: false
+                // recursive: true
                 textureSize: Qt.size(_footBar.width, _footBar.height)
                 sourceItem: _parentContainer
-                // sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
-                sourceRect: _footBar.mapToItem(_parentContainer, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
+                sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
+                // sourceRect: _parentContainer.mapFromItem(_footBar, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
+
             }
 
             Loader

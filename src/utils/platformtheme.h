@@ -33,6 +33,8 @@ class PlatformTheme : public QObject
     QML_NAMED_ELEMENT(Theme)
     QML_ATTACHED(Maui::PlatformTheme)
     QML_UNCREATABLE("Attached Property")
+
+    Q_PROPERTY(StyleType styleType READ styleType WRITE setStyleType NOTIFY styleTypeChanged)
     /**
      * This enumeration describes the color set for which a color is being selected.
      *
@@ -43,7 +45,7 @@ class PlatformTheme : public QObject
 
     /**
      * This enumeration describes the color group used to generate the colors.
-     * The enum value is based upon QPalette::CpolorGroup and has the same values.
+     * The enum value is based upon QPalette::ColorGroup and has the same values.
      * It's redefined here in order to make it work with QML
      * @since 4.43
      */
@@ -187,6 +189,15 @@ public:
     };
     Q_ENUM(ColorSet)
 
+    enum StyleType
+    {
+        Undefined,
+        Light,
+        Dark,
+        Adaptive
+    };
+    Q_ENUM(StyleType)
+
     enum ColorGroup {
         Disabled = QPalette::Disabled,
         Active = QPalette::Active,
@@ -202,12 +213,16 @@ public:
 
     void setColorSet(PlatformTheme::ColorSet);
     PlatformTheme::ColorSet colorSet() const;
+    PlatformTheme::ColorSet staticColorSet = PlatformTheme::ColorSet::View;
 
     void setColorGroup(PlatformTheme::ColorGroup);
     PlatformTheme::ColorGroup colorGroup() const;
 
     bool inherit() const;
-    void setInherit(bool inherit);
+    void setInherit(bool inherit);    
+
+    StyleType styleType() const;
+    void setStyleType(const StyleType &newStyleType);
 
     // foreground colors
     QColor textColor() const;
@@ -278,6 +293,8 @@ Q_SIGNALS:
     void paletteChanged(const QPalette &pal);
     void inheritChanged(bool inherit);
 
+    void styleTypeChanged(Maui::PlatformTheme::StyleType type);
+
 protected:
     // Setters, not accessible from QML but from implementations
     void setSupportsIconColoring(bool support);
@@ -309,6 +326,7 @@ protected:
     void setHoverColor(const QColor &color);
 
     bool event(QEvent *event) override;
+    ColorSet m_staticColorSet = ColorSet::View;
 
 private:
     void update();
@@ -316,7 +334,6 @@ private:
     void emitSignals();
     void emitColorChanged();
     QObject *determineParent(QObject *object);
-
     PlatformThemePrivate *d;
     friend class PlatformThemePrivate;
     friend class PlatformThemeData;
@@ -358,6 +375,7 @@ using ColorSetChangedEvent = PropertyChangedEvent<PlatformTheme::ColorSet>;
 using ColorGroupChangedEvent = PropertyChangedEvent<PlatformTheme::ColorGroup>;
 using ColorChangedEvent = PropertyChangedEvent<QColor>;
 using FontChangedEvent = PropertyChangedEvent<QFont>;
+using StyleTypeChangedEvent = PropertyChangedEvent<PlatformTheme::StyleType>;
 
 }
 

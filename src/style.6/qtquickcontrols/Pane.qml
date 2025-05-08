@@ -43,7 +43,7 @@ T.Pane
     id: control
     
     Maui.Theme.colorSet: Maui.Theme.View
-    Maui.Theme.inherit: false
+    // Maui.Theme.inherit: false
     
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentWidth + leftPadding + rightPadding)

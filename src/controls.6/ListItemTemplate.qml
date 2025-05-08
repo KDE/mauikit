@@ -43,6 +43,7 @@ Item
      focusPolicy: Qt.NoFocus
      implicitHeight: _layout.implicitHeight
      implicitWidth: _layout.implicitWidth
+     Maui.Theme.inherit: true
 
      /**
       * @brief By default all children will be positioned at the right end of the row.

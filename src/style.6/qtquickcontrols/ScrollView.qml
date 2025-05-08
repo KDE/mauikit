@@ -48,7 +48,6 @@ T.ScrollView
                              contentHeight + topPadding + bottomPadding)
 
     Maui.Theme.colorSet: Maui.Theme.View
-    Maui.Theme.inherit: false
 
     clip: false
 
