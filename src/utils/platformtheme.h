@@ -189,6 +189,37 @@ public:
     };
     Q_ENUM(ColorSet)
 
+    // An enum for all colors in PlatformTheme.
+    // This is used so we can have a QHash of local overrides in the
+    // PlatformTheme, which avoids needing to store all these colors in
+    // PlatformTheme even when they're not used.
+    enum ColorRole {
+        TextColor,
+        DisabledTextColor,
+        HighlightedTextColor,
+        ActiveTextColor,
+        LinkColor,
+        VisitedLinkColor,
+        NegativeTextColor,
+        NeutralTextColor,
+        PositiveTextColor,
+        BackgroundColor,
+        AlternateBackgroundColor,
+        HighlightColor,
+        ActiveBackgroundColor,
+        LinkBackgroundColor,
+        VisitedLinkBackgroundColor,
+        NegativeBackgroundColor,
+        NeutralBackgroundColor,
+        PositiveBackgroundColor,
+        FocusColor,
+        HoverColor,
+
+        // This should always be the last item. It indicates how many items
+        // there are and is used for the storage array below.
+        ColorRoleCount,
+    };
+
     enum StyleType
     {
         Undefined,
@@ -284,7 +315,8 @@ public:
 
     // QML attached property
     static PlatformTheme *qmlAttachedProperties(QObject *object);
-
+public Q_SLOTS:
+    void printColorTable();
 Q_SIGNALS:
     // TODO: parameters to signals as this is also a c++ api
     void colorsChanged();

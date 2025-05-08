@@ -35,9 +35,9 @@ Maui.PopupPage
     width: 360
     maxHeight: implicitHeight
 
-    // Maui.Theme.inherit: false
-    // Maui.Theme.styleType: Maui.Theme.Dark
-    // Maui.Theme.colorSet: Maui.Theme.Window
+    Maui.Theme.inherit: false
+    Maui.Theme.styleType: Maui.Theme.Dark
+    Maui.Theme.colorSet: Maui.Theme.Window
 
     Maui.SectionItem
     {
@@ -108,7 +108,7 @@ Maui.PopupPage
         {
             width: parent.width
             text: i18nd("mauikit", "Reports")
-            onClicked: Qt.openUrlExternally(Maui.App.about.bugAddress)
+            onClicked: Maui.Theme.printColorTable()
         }
 
         Button

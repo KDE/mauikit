@@ -33,7 +33,7 @@ T.ToolBar
     focusPolicy: Qt.NoFocus
 
     Maui.Theme.colorSet: Maui.Theme.Header
-    Maui.Theme.inherit: false
+    // Maui.Theme.inherit: false
 
     Maui.Controls.flat: true
 

@@ -21,7 +21,7 @@
 #include <functional>
 #include <memory>
 #include <unordered_map>
-
+#include <iostream>
 namespace Maui
 {
 template<>
@@ -62,57 +62,63 @@ class PlatformThemeData : public QObject
     Q_OBJECT
 
 public:
-    // An enum for all colors in PlatformTheme.
-    // This is used so we can have a QHash of local overrides in the
-    // PlatformTheme, which avoids needing to store all these colors in
-    // PlatformTheme even when they're not used.
-    enum ColorRole {
-        TextColor,
-        DisabledTextColor,
-        HighlightedTextColor,
-        ActiveTextColor,
-        LinkColor,
-        VisitedLinkColor,
-        NegativeTextColor,
-        NeutralTextColor,
-        PositiveTextColor,
-        BackgroundColor,
-        AlternateBackgroundColor,
-        HighlightColor,
-        ActiveBackgroundColor,
-        LinkBackgroundColor,
-        VisitedLinkBackgroundColor,
-        NegativeBackgroundColor,
-        NeutralBackgroundColor,
-        PositiveBackgroundColor,
-        FocusColor,
-        HoverColor,
+    PlatformThemeData(QObject *parent = nullptr) : QObject(parent)
+    {
+        resetTable();
+    }
 
-        // This should always be the last item. It indicates how many items
-        // there are and is used for the storage array below.
-        ColorRoleCount,
-    };
 
-    using ColorMap = std::unordered_map<std::underlying_type<ColorRole>::type, QColor>;
+    using ColorMap = std::unordered_map<std::underlying_type<PlatformTheme::ColorRole>::type, QColor>;
 
-    // Which PlatformTheme instance "owns" this data object. Only the owner is
-    // allowed to make changes to data.
+           // Which PlatformTheme instance "owns" this data object. Only the owner is
+           // allowed to make changes to data.
     QPointer<PlatformTheme> owner;
 
     PlatformTheme::ColorSet colorSet = PlatformTheme::Window;
     PlatformTheme::ColorGroup colorGroup = PlatformTheme::Active;
     PlatformTheme::StyleType styleType = PlatformTheme::Undefined;
 
-    std::array<QColor, ColorRoleCount> colors;
+    QColor colors [PlatformTheme::ColorRoleCount][PlatformTheme::ColorSetCount];
 
     QPalette palette;
 
-    // A list of PlatformTheme instances that want to be notified when the data
-    // changes. This is used instead of signal/slots as this way we only store
-    // a little bit of data and that data is shared among instances, whereas
-    // signal/slots turn out to have a pretty large memory overhead per instance.
+           // A list of PlatformTheme instances that want to be notified when the data
+           // changes. This is used instead of signal/slots as this way we only store
+           // a little bit of data and that data is shared among instances, whereas
+           // signal/slots turn out to have a pretty large memory overhead per instance.
     using Watcher = PlatformTheme *;
     QVector<Watcher> watchers;
+
+    inline void resetTable()
+    {
+        for(auto i = 0; i<PlatformTheme::ColorRoleCount; i++ )
+        {
+            for(auto j = 0; j<PlatformTheme::ColorSetCount; j++ )
+            {
+                colors[i][j] = BasicTheme::getColor(styleType,
+                                                    static_cast<PlatformTheme::ColorRole>(i),
+                                                    static_cast<PlatformTheme::ColorSet>(j),
+                                                    colorGroup);
+            }
+        }
+    }
+
+    inline void printColors(PlatformTheme *sender)
+    {
+        qDebug() << "COLOR TABLE FROM " << sender->parent() << " AND TAKEN FROM OWNER " << owner->parent();
+        qDebug() << "The object color set is set to " << sender->backgroundColor().name(QColor::NameFormat::HexRgb) << sender->colorSet();
+        qDebug() << "The owner color set is set to " << owner->backgroundColor().name(QColor::NameFormat::HexRgb) << owner->colorSet();
+        for(auto i = 0; i<PlatformTheme::ColorRoleCount; i++ )
+        {
+            QDebug dbg(QtDebugMsg);
+
+            for(auto j = 0; j<PlatformTheme::ColorSetCount; j++ )
+            {
+                dbg << colors[i][j].name(QColor::NameFormat::HexRgb) << " | ";
+            }
+            std::cout << std::endl;
+        }
+    }
 
     inline void setStyleType(PlatformTheme *sender, PlatformTheme::StyleType type)
     {
@@ -123,22 +129,22 @@ public:
         auto oldValue = styleType;
 
         styleType = type;
-
+        resetTable();
         notifyWatchers<PlatformTheme::StyleType>(sender, oldValue, type);
     }
 
-    inline void setColorSet(PlatformTheme *sender, PlatformTheme::ColorSet set)
-    {
-        if (sender != owner || colorSet == set) {
-            return;
-        }
+           // inline void setColorSet(PlatformTheme *sender, PlatformTheme::ColorSet set)
+           // {
+           //     if (sender != owner || colorSet == set) {
+           //         return;
+           //     }
 
-        auto oldValue = colorSet;
+           //     auto oldValue = colorSet;
 
-        colorSet = set;
+           //     colorSet = set;
 
-        notifyWatchers<PlatformTheme::ColorSet>(sender, oldValue, set);
-    }
+           //     notifyWatchers<PlatformTheme::ColorSet>(sender, oldValue, set);
+           // }
 
     inline void setColorGroup(PlatformTheme *sender, PlatformTheme::ColorGroup group)
     {
@@ -154,18 +160,21 @@ public:
         notifyWatchers<PlatformTheme::ColorGroup>(sender, oldValue, group);
     }
 
-    inline void setColor(PlatformTheme *sender, ColorRole role, const QColor &color)
+    using ColorVect = QColor[PlatformTheme::ColorRoleCount] ;
+
+    inline void setColor(PlatformTheme *sender, PlatformTheme::ColorRole role, PlatformTheme::ColorSet set, const QColor &color)
     {
-        if (sender != owner || colors[role] == color) {
+        if (sender != owner || colors[role][set] == color) {
             return;
         }
 
-        auto oldValue = colors[role];
+        auto oldValue = colors[role][set];
 
-        colors[role] = color;
-        updatePalette(palette, colors);
+        resetTable();
+        colors[role][set] = color;
+        // updatePalette(palette, moveColumnToVector());
 
-        notifyWatchers<QColor>(sender, oldValue, colors[role]);
+        notifyWatchers<QColor>(sender, oldValue, colors[role][set]);
     }
 
     inline void addChangeWatcher(PlatformTheme *object)
@@ -186,49 +195,48 @@ public:
             QCoreApplication::sendEvent(object, &event);
         }
     }
-
     // Update a palette from a list of colors.
-    inline static void updatePalette(QPalette &palette, const std::array<QColor, ColorRoleCount> &colors)
+    inline static void updatePalette(QPalette &palette, const ColorVect &colors)
     {
-        for (std::size_t i = 0; i < colors.size(); ++i) {
-            setPaletteColor(palette, ColorRole(i), colors.at(i));
+        for (std::size_t i = 0; i < PlatformTheme::ColorRoleCount; ++i) {
+            setPaletteColor(palette, PlatformTheme::ColorRole(i), colors[i]);
         }
     }
 
-    // Update a palette from a hash of colors.
+           // Update a palette from a hash of colors.
     inline static void updatePalette(QPalette &palette, const ColorMap &colors)
     {
         for (auto entry : colors) {
-            setPaletteColor(palette, ColorRole(entry.first), entry.second);
+            setPaletteColor(palette, PlatformTheme::ColorRole(entry.first), entry.second);
         }
     }
 
-    inline static void setPaletteColor(QPalette &palette, ColorRole role, const QColor &color)
+    inline static void setPaletteColor(QPalette &palette, PlatformTheme::ColorRole role, const QColor &color)
     {
         switch (role) {
-        case TextColor:
+        case PlatformTheme::TextColor:
             palette.setColor(QPalette::Text, color);
             palette.setColor(QPalette::WindowText, color);
             palette.setColor(QPalette::ButtonText, color);
             break;
-        case BackgroundColor:
+        case PlatformTheme::BackgroundColor:
             palette.setColor(QPalette::Window, color);
             palette.setColor(QPalette::Base, color);
             palette.setColor(QPalette::Button, color);
             break;
-        case AlternateBackgroundColor:
+        case PlatformTheme::AlternateBackgroundColor:
             palette.setColor(QPalette::AlternateBase, color);
             break;
-        case HighlightColor:
+        case PlatformTheme::HighlightColor:
             palette.setColor(QPalette::Highlight, color);
             break;
-        case HighlightedTextColor:
+        case PlatformTheme::HighlightedTextColor:
             palette.setColor(QPalette::HighlightedText, color);
             break;
-        case LinkColor:
+        case PlatformTheme::LinkColor:
             palette.setColor(QPalette::Link, color);
             break;
-        case VisitedLinkColor:
+        case PlatformTheme::VisitedLinkColor:
             palette.setColor(QPalette::LinkVisited, color);
             break;
 
@@ -250,19 +258,22 @@ public:
         , colorGroup(PlatformTheme::Active)
         , styleType(PlatformTheme::Undefined)
     {
+      // std::fill_n(,A*B,my_val)
     }
 
-    inline QColor color(const PlatformTheme *theme, PlatformThemeData::ColorRole color) const
+    inline QColor color(const PlatformTheme *theme, PlatformTheme::ColorRole role) const
     {
         if (!data) {
             return QColor{};
         }
 
-        QColor value = data->colors.at(color);
+        QColor value = data->colors[role][static_cast<PlatformTheme::ColorSet>(this->colorSet)];
 
-        if (data->owner != theme && localOverrides) {
-            auto itr = localOverrides->find(color);
-            if (itr != localOverrides->end()) {
+        if (data->owner != theme && localOverrides)
+        {
+            auto itr = localOverrides->find(role);
+            if (itr != localOverrides->end())
+            {
                 value = itr->second;
             }
         }
@@ -270,24 +281,26 @@ public:
         return value;
     }
 
-    inline void setColor(PlatformTheme *theme, PlatformThemeData::ColorRole color, const QColor &value)
+    inline void setColor(PlatformTheme *theme, PlatformTheme::ColorRole role, const QColor &value)
     {
         if (!localOverrides) {
             localOverrides = std::make_unique<PlatformThemeData::ColorMap>();
         }
 
-        if (!value.isValid()) {
+        if (!value.isValid())
+        {
             // Invalid color, assume we are resetting the value.
-            auto itr = localOverrides->find(color);
+            auto itr = localOverrides->find(role);
             if (itr != localOverrides->end()) {
                 localOverrides->erase(itr);
 
-                if (data) {
+                if (data)
+                {
                     // TODO: Find a better way to determine "default" color.
                     // Right now this sets the color to transparent to force a
                     // color change and relies on the style-specific subclass to
                     // handle resetting the actual color.
-                    data->setColor(theme, color, Qt::transparent);
+                    data->setColor(theme, role, static_cast<PlatformTheme::ColorSet>(this->colorSet), Qt::transparent);
                 }
 
                 emitCompressedColorChanged(theme);
@@ -296,27 +309,30 @@ public:
             return;
         }
 
-        auto itr = localOverrides->find(color);
-        if (itr != localOverrides->end() && itr->second == value && (data && data->owner != theme)) {
+        auto itr = localOverrides->find(role);
+        if (itr != localOverrides->end() && itr->second == value && (data && data->owner != theme))
+        {
             return;
         }
 
-        (*localOverrides)[color] = value;
+        (*localOverrides)[role] = value;
 
-        if (data) {
-            data->setColor(theme, color, value);
+        if (data)
+        {
+            data->setColor(theme, role, static_cast<PlatformTheme::ColorSet>(this->colorSet), value);
         }
 
         emitCompressedColorChanged(theme);
     }
 
-    inline void setDataColor(PlatformTheme *theme, PlatformThemeData::ColorRole color, const QColor &value)
+    inline void setDataColor(PlatformTheme *theme, PlatformTheme::ColorRole color, const QColor &value)
     {
         // Only set color if we have no local override of the color.
         // This is done because colorSet/colorGroup changes will trigger most
         // subclasses to reevaluate and reset the colors, breaking any local
         // overrides we have.
-        if (localOverrides) {
+        if (localOverrides)
+        {
             auto itr = localOverrides->find(color);
             if (itr != localOverrides->end()) {
                 return;
@@ -324,7 +340,7 @@ public:
         }
 
         if (data) {
-            data->setColor(theme, color, value);
+            data->setColor(theme, color, static_cast<PlatformTheme::ColorSet>(this->colorSet), value);
         }
     }
 
@@ -362,8 +378,8 @@ public:
      * works the same without needing memory.
      */
 
-    // An instance of the data object. This is potentially shared with many
-    // instances of PlatformTheme.
+           // An instance of the data object. This is potentially shared with many
+           // instances of PlatformTheme.
     std::shared_ptr<PlatformThemeData> data;
     // Used to store color overrides of inherited data. This is created on
     // demand and will only exist if we actually have local overrides.
@@ -374,16 +390,16 @@ public:
     bool pendingColorChange : 1;
     bool pendingChildUpdate : 1;
 
-    // Note: We use these to store local values of PlatformTheme::ColorSet and
-    // PlatformTheme::ColorGroup. While these are standard enums and thus 32
-    // bits they only contain a few items so we store the value in only 4 bits
-    // to save space.
+           // Note: We use these to store local values of PlatformTheme::ColorSet and
+           // PlatformTheme::ColorGroup. While these are standard enums and thus 32
+           // bits they only contain a few items so we store the value in only 4 bits
+           // to save space.
     uint8_t colorSet : 4;
     uint8_t colorGroup : 4;
     uint8_t styleType : 4;
 
-    // Ensure the above assumption holds. Should this static assert fail, the
-    // bit size above needs to be adjusted.
+           // Ensure the above assumption holds. Should this static assert fail, the
+           // bit size above needs to be adjusted.
     static_assert(PlatformTheme::ColorGroupCount <= 16, "PlatformTheme::ColorGroup contains more elements than can be stored in PlatformThemePrivate");
     static_assert(PlatformTheme::ColorSetCount <= 16, "PlatformTheme::ColorSet contains more elements than can be stored in PlatformThemePrivate");
 
@@ -412,17 +428,20 @@ PlatformTheme::~PlatformTheme()
 
 void PlatformTheme::setColorSet(PlatformTheme::ColorSet colorSet)
 {
+    auto old = d->colorSet;
     d->colorSet = colorSet;
 
-    if (d->data) {
-        d->data->setColorSet(this, colorSet);
-    }
+    PlatformThemeEvents::ColorSetChangedEvent event{this, static_cast<PlatformTheme::ColorSet>(old), colorSet};
+    QCoreApplication::sendEvent(this, &event);
+    // if (d->data) {
+    //     d->data->setColorSet(this, colorSet);
+    // }
 }
 
 PlatformTheme::ColorSet PlatformTheme::colorSet() const
 {
-    // return static_cast<PlatformTheme::ColorSet>( d->colorSet);
-    return d->data ? d->data->colorSet : Window;
+    return static_cast<PlatformTheme::ColorSet>( d->colorSet);
+    // return d->data ? d->data->colorSet : Window;
 }
 
 void PlatformTheme::setColorGroup(PlatformTheme::ColorGroup colorGroup)
@@ -458,304 +477,304 @@ void PlatformTheme::setInherit(bool inherit)
 
 QColor PlatformTheme::textColor() const
 {
-    return d->color(this, PlatformThemeData::TextColor);
+    return d->color(this, PlatformTheme::TextColor);
 }
 
 QColor PlatformTheme::disabledTextColor() const
 {
-    return d->color(this, PlatformThemeData::DisabledTextColor);
+    return d->color(this, PlatformTheme::DisabledTextColor);
 }
 
 QColor PlatformTheme::highlightColor() const
 {
-    return d->color(this, PlatformThemeData::HighlightColor);
+    return d->color(this, PlatformTheme::HighlightColor);
 }
 
 QColor PlatformTheme::highlightedTextColor() const
 {
-    return d->color(this, PlatformThemeData::HighlightedTextColor);
+    return d->color(this, PlatformTheme::HighlightedTextColor);
 }
 
 QColor PlatformTheme::backgroundColor() const
 {
-    return d->color(this, PlatformThemeData::BackgroundColor);
+    return d->color(this, PlatformTheme::BackgroundColor);
 }
 
 QColor PlatformTheme::alternateBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::AlternateBackgroundColor);
+    return d->color(this, PlatformTheme::AlternateBackgroundColor);
 }
 
 QColor PlatformTheme::activeTextColor() const
 {
-    return d->color(this, PlatformThemeData::ActiveTextColor);
+    return d->color(this, PlatformTheme::ActiveTextColor);
 }
 
 QColor PlatformTheme::activeBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::ActiveBackgroundColor);
+    return d->color(this, PlatformTheme::ActiveBackgroundColor);
 }
 
 QColor PlatformTheme::linkColor() const
 {
-    return d->color(this, PlatformThemeData::LinkColor);
+    return d->color(this, PlatformTheme::LinkColor);
 }
 
 QColor PlatformTheme::linkBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::LinkBackgroundColor);
+    return d->color(this, PlatformTheme::LinkBackgroundColor);
 }
 
 QColor PlatformTheme::visitedLinkColor() const
 {
-    return d->color(this, PlatformThemeData::VisitedLinkColor);
+    return d->color(this, PlatformTheme::VisitedLinkColor);
 }
 
 QColor PlatformTheme::visitedLinkBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::VisitedLinkBackgroundColor);
+    return d->color(this, PlatformTheme::VisitedLinkBackgroundColor);
 }
 
 QColor PlatformTheme::negativeTextColor() const
 {
-    return d->color(this, PlatformThemeData::NegativeTextColor);
+    return d->color(this, PlatformTheme::NegativeTextColor);
 }
 
 QColor PlatformTheme::negativeBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::NegativeBackgroundColor);
+    return d->color(this, PlatformTheme::NegativeBackgroundColor);
 }
 
 QColor PlatformTheme::neutralTextColor() const
 {
-    return d->color(this, PlatformThemeData::NeutralTextColor);
+    return d->color(this, PlatformTheme::NeutralTextColor);
 }
 
 QColor PlatformTheme::neutralBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::NeutralBackgroundColor);
+    return d->color(this, PlatformTheme::NeutralBackgroundColor);
 }
 
 QColor PlatformTheme::positiveTextColor() const
 {
-    return d->color(this, PlatformThemeData::PositiveTextColor);
+    return d->color(this, PlatformTheme::PositiveTextColor);
 }
 
 QColor PlatformTheme::positiveBackgroundColor() const
 {
-    return d->color(this, PlatformThemeData::PositiveBackgroundColor);
+    return d->color(this, PlatformTheme::PositiveBackgroundColor);
 }
 
 QColor PlatformTheme::focusColor() const
 {
-    return d->color(this, PlatformThemeData::FocusColor);
+    return d->color(this, PlatformTheme::FocusColor);
 }
 
 QColor PlatformTheme::hoverColor() const
 {
-    return d->color(this, PlatformThemeData::HoverColor);
+    return d->color(this, PlatformTheme::HoverColor);
 }
 
 // setters for theme implementations
 void PlatformTheme::setTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::TextColor, color);
+    d->setDataColor(this, PlatformTheme::TextColor, color);
 }
 
 void PlatformTheme::setDisabledTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::DisabledTextColor, color);
+    d->setDataColor(this, PlatformTheme::DisabledTextColor, color);
 }
 
 void PlatformTheme::setBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::BackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::BackgroundColor, color);
 }
 
 void PlatformTheme::setAlternateBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::AlternateBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::AlternateBackgroundColor, color);
 }
 
 void PlatformTheme::setHighlightColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::HighlightColor, color);
+    d->setDataColor(this, PlatformTheme::HighlightColor, color);
 }
 
 void PlatformTheme::setHighlightedTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::HighlightedTextColor, color);
+    d->setDataColor(this, PlatformTheme::HighlightedTextColor, color);
 }
 
 void PlatformTheme::setActiveTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::ActiveTextColor, color);
+    d->setDataColor(this, PlatformTheme::ActiveTextColor, color);
 }
 
 void PlatformTheme::setActiveBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::ActiveBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::ActiveBackgroundColor, color);
 }
 
 void PlatformTheme::setLinkColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::LinkColor, color);
+    d->setDataColor(this, PlatformTheme::LinkColor, color);
 }
 
 void PlatformTheme::setLinkBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::LinkBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::LinkBackgroundColor, color);
 }
 
 void PlatformTheme::setVisitedLinkColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::VisitedLinkColor, color);
+    d->setDataColor(this, PlatformTheme::VisitedLinkColor, color);
 }
 
 void PlatformTheme::setVisitedLinkBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::VisitedLinkBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::VisitedLinkBackgroundColor, color);
 }
 
 void PlatformTheme::setNegativeTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::NegativeTextColor, color);
+    d->setDataColor(this, PlatformTheme::NegativeTextColor, color);
 }
 
 void PlatformTheme::setNegativeBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::NegativeBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::NegativeBackgroundColor, color);
 }
 
 void PlatformTheme::setNeutralTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::NeutralTextColor, color);
+    d->setDataColor(this, PlatformTheme::NeutralTextColor, color);
 }
 
 void PlatformTheme::setNeutralBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::NeutralBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::NeutralBackgroundColor, color);
 }
 
 void PlatformTheme::setPositiveTextColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::PositiveTextColor, color);
+    d->setDataColor(this, PlatformTheme::PositiveTextColor, color);
 }
 
 void PlatformTheme::setPositiveBackgroundColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::PositiveBackgroundColor, color);
+    d->setDataColor(this, PlatformTheme::PositiveBackgroundColor, color);
 }
 
 void PlatformTheme::setHoverColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::HoverColor, color);
+    d->setDataColor(this, PlatformTheme::HoverColor, color);
 }
 
 void PlatformTheme::setFocusColor(const QColor &color)
 {
-    d->setDataColor(this, PlatformThemeData::FocusColor, color);
+    d->setDataColor(this, PlatformTheme::FocusColor, color);
 }
 
 // setters for QML clients
 void PlatformTheme::setCustomTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::TextColor, color);
+    d->setColor(this, PlatformTheme::TextColor, color);
 }
 
 void PlatformTheme::setCustomDisabledTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::DisabledTextColor, color);
+    d->setColor(this, PlatformTheme::DisabledTextColor, color);
 }
 
 void PlatformTheme::setCustomBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::BackgroundColor, color);
+    d->setColor(this, PlatformTheme::BackgroundColor, color);
 }
 
 void PlatformTheme::setCustomAlternateBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::AlternateBackgroundColor, color);
+    d->setColor(this, PlatformTheme::AlternateBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomHighlightColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::HighlightColor, color);
+    d->setColor(this, PlatformTheme::HighlightColor, color);
 }
 
 void PlatformTheme::setCustomHighlightedTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::HighlightedTextColor, color);
+    d->setColor(this, PlatformTheme::HighlightedTextColor, color);
 }
 
 void PlatformTheme::setCustomActiveTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::ActiveTextColor, color);
+    d->setColor(this, PlatformTheme::ActiveTextColor, color);
 }
 
 void PlatformTheme::setCustomActiveBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::ActiveBackgroundColor, color);
+    d->setColor(this, PlatformTheme::ActiveBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomLinkColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::LinkColor, color);
+    d->setColor(this, PlatformTheme::LinkColor, color);
 }
 
 void PlatformTheme::setCustomLinkBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::LinkBackgroundColor, color);
+    d->setColor(this, PlatformTheme::LinkBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomVisitedLinkColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::TextColor, color);
+    d->setColor(this, PlatformTheme::TextColor, color);
 }
 
 void PlatformTheme::setCustomVisitedLinkBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::VisitedLinkBackgroundColor, color);
+    d->setColor(this, PlatformTheme::VisitedLinkBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomNegativeTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::NegativeTextColor, color);
+    d->setColor(this, PlatformTheme::NegativeTextColor, color);
 }
 
 void PlatformTheme::setCustomNegativeBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::NegativeBackgroundColor, color);
+    d->setColor(this, PlatformTheme::NegativeBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomNeutralTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::NeutralTextColor, color);
+    d->setColor(this, PlatformTheme::NeutralTextColor, color);
 }
 
 void PlatformTheme::setCustomNeutralBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::NeutralBackgroundColor, color);
+    d->setColor(this, PlatformTheme::NeutralBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomPositiveTextColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::PositiveTextColor, color);
+    d->setColor(this, PlatformTheme::PositiveTextColor, color);
 }
 
 void PlatformTheme::setCustomPositiveBackgroundColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::PositiveBackgroundColor, color);
+    d->setColor(this, PlatformTheme::PositiveBackgroundColor, color);
 }
 
 void PlatformTheme::setCustomHoverColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::HoverColor, color);
+    d->setColor(this, PlatformTheme::HoverColor, color);
 }
 
 void PlatformTheme::setCustomFocusColor(const QColor &color)
 {
-    d->setColor(this, PlatformThemeData::FocusColor, color);
+    d->setColor(this, PlatformTheme::FocusColor, color);
 }
 
 QPalette PlatformTheme::palette() const
@@ -795,6 +814,11 @@ PlatformTheme *PlatformTheme::qmlAttachedProperties(QObject *object)
     return new BasicTheme(object);
 }
 
+void PlatformTheme::printColorTable()
+{
+    d->data->printColors(this);
+}
+
 bool PlatformTheme::event(QEvent *event)
 {
     if (event->type() == PlatformThemeEvents::DataChangedEvent::type)
@@ -813,7 +837,7 @@ bool PlatformTheme::event(QEvent *event)
             auto data = changeEvent->newValue;
             data->addChangeWatcher(this);
 
-            // Q_EMIT colorSetChanged(data->colorSet);
+                   // Q_EMIT colorSetChanged(data->colorSet);
             Q_EMIT colorGroupChanged(data->colorGroup);
             Q_EMIT styleTypeChanged(data->styleType);
 
@@ -885,8 +909,8 @@ void PlatformTheme::update()
                 }
 
 
-                // PlatformTheme::ColorSet oldvalue = static_cast<PlatformTheme::ColorSet>(d->colorSet);
-                 d->data = t->d->data;
+                       // PlatformTheme::ColorSet oldvalue = static_cast<PlatformTheme::ColorSet>(d->colorSet);
+                d->data = t->d->data;
                 // d->data->setColorSet(t, oldvalue);
 
                 PlatformThemeEvents::DataChangedEvent event{this, oldData, t->d->data};
@@ -906,7 +930,7 @@ void PlatformTheme::update()
     {
         d->data = std::make_shared<PlatformThemeData>();
         d->data->owner = this;
-        d->data->setColorSet(this, static_cast<ColorSet>(d->colorSet));
+        // d->data->setColorSet(this, static_cast<ColorSet>(d->colorSet));
         d->data->setColorGroup(this, static_cast<ColorGroup>(d->colorGroup));
         d->data->setStyleType(this, static_cast<StyleType>(d->styleType));
     }
@@ -914,7 +938,7 @@ void PlatformTheme::update()
     if (d->localOverrides)
     {
         for (auto entry : *d->localOverrides) {
-            d->data->setColor(this, PlatformThemeData::ColorRole(entry.first), entry.second);
+            d->data->setColor(this, PlatformTheme::ColorRole(entry.first), static_cast<PlatformTheme::ColorSet>(d->colorSet), entry.second);
         }
     }
 
@@ -979,6 +1003,8 @@ void PlatformTheme::setStyleType(const StyleType &newStyleType)
         d->data->setStyleType(this, newStyleType);
     }
 }
+
+
 
 }
 

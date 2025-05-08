@@ -543,7 +543,6 @@ BasicThemeInstance::BasicThemeInstance(QObject *parent)
 
 BasicThemeDefinition &BasicThemeInstance::themeDefinition(PlatformTheme::StyleType type)
 {
-
     switch(type)
     {
     case PlatformTheme::Light:
@@ -603,87 +602,140 @@ BasicTheme::~BasicTheme()
     basicThemeInstance()->watchers.removeOne(this);
 }
 
-void BasicTheme::setColorSet(PlatformTheme::ColorSet colorSet)
+QColor BasicTheme::getColor(StyleType style, ColorRole role, ColorSet set, ColorGroup group)
 {
-    auto old = m_staticColorSet;
-    m_staticColorSet = colorSet;
-    sync();
-}
+    auto &definition = basicThemeInstance()->themeDefinition(style);
 
+    auto otherRole = [&](ColorRole role) -> QColor
+    {
+        switch(role)
+        {
+        case PlatformTheme::DisabledTextColor: return tint(definition.disabledTextColor, group);
+        case PlatformTheme::HighlightedTextColor: return tint(definition.highlightedTextColor, group);
+        case PlatformTheme::ActiveTextColor:return tint(definition.activeTextColor, group);
+        case PlatformTheme::LinkColor:return tint(definition.linkColor, group);
+        case PlatformTheme::VisitedLinkColor:return tint(definition.visitedLinkColor, group);
+        case PlatformTheme::NegativeTextColor:return tint(definition.negativeTextColor, group);
+        case PlatformTheme::NeutralTextColor:return tint(definition.neutralTextColor, group);
+        case PlatformTheme::PositiveTextColor:return tint(definition.positiveTextColor, group);
+        case PlatformTheme::HighlightColor:return tint(definition.highlightColor, group);
+        case PlatformTheme::ActiveBackgroundColor:return tint(definition.activeBackgroundColor, group);
+        case PlatformTheme::LinkBackgroundColor:return tint(definition.linkBackgroundColor, group);
+        case PlatformTheme::VisitedLinkBackgroundColor:return tint(definition.visitedLinkBackgroundColor, group);
+        case PlatformTheme::NegativeBackgroundColor:return tint(definition.negativeBackgroundColor, group);
+        case PlatformTheme::NeutralBackgroundColor:return tint(definition.neutralBackgroundColor, group);
+        case PlatformTheme::PositiveBackgroundColor:return tint(definition.positiveBackgroundColor, group);
+        }
+    };
+
+    switch (set)
+    {
+    case BasicTheme::Button:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.buttonTextColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.buttonBackgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.buttonAlternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.buttonHoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.buttonFocusColor, group);
+        default: return otherRole(role);
+        }
+        break;
+    case BasicTheme::View:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.viewTextColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.viewBackgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.viewAlternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.viewHoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.viewFocusColor, group);
+         default: return otherRole(role);
+        }
+        break;
+    case BasicTheme::Selection:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.selectionTextColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.selectionBackgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.selectionAlternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.selectionHoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.selectionFocusColor, group);
+        default: return otherRole(role);
+        }
+        break;
+    case BasicTheme::Tooltip:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.tooltipTextColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.tooltipBackgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.tooltipAlternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.tooltipHoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.tooltipFocusColor, group);
+        default: return otherRole(role);
+        }
+        break;
+    case BasicTheme::Complementary:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.complementaryTextColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.complementaryBackgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.complementaryAlternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.complementaryHoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.complementaryFocusColor, group);
+        default: return otherRole(role);
+        }
+        break;
+    case BasicTheme::Header:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.headerTextColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.headerBackgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.headerAlternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.headerHoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.headerFocusColor, group);
+        default: return otherRole(role);
+        }
+        break;
+    case BasicTheme::Window:
+    default:
+        switch(role)
+        {
+        case BasicTheme::TextColor: return tint(definition.textColor, group);
+        case BasicTheme::BackgroundColor: return tint(definition.backgroundColor, group);
+        case BasicTheme::AlternateBackgroundColor: return tint(definition.alternateBackgroundColor, group);
+        case BasicTheme::HoverColor : return tint(definition.hoverColor, group);
+        case BasicTheme::FocusColor: return tint(definition.focusColor, group);
+        default: return otherRole(role);
+        }
+        break;
+    }
+
+}
 
 void BasicTheme::sync()
 {
     auto &definition = basicThemeInstance()->themeDefinition(styleType());
 
-    switch (colorSet())
-    {
-    case BasicTheme::Button:
-        setTextColor(tint(definition.buttonTextColor));
-        setBackgroundColor(tint(definition.buttonBackgroundColor));
-        setAlternateBackgroundColor(tint(definition.buttonAlternateBackgroundColor));
-        setHoverColor(tint(definition.buttonHoverColor));
-        setFocusColor(tint(definition.buttonFocusColor));
-        break;
-    case BasicTheme::View:
-        setTextColor(tint(definition.viewTextColor));
-        setBackgroundColor(tint(definition.viewBackgroundColor));
-        setAlternateBackgroundColor(tint(definition.viewAlternateBackgroundColor));
-        setHoverColor(tint(definition.viewHoverColor));
-        setFocusColor(tint(definition.viewFocusColor));
-        break;
-    case BasicTheme::Selection:
-        setTextColor(tint(definition.selectionTextColor));
-        setBackgroundColor(tint(definition.selectionBackgroundColor));
-        setAlternateBackgroundColor(tint(definition.selectionAlternateBackgroundColor));
-        setHoverColor(tint(definition.selectionHoverColor));
-        setFocusColor(tint(definition.selectionFocusColor));
-        break;
-    case BasicTheme::Tooltip:
-        setTextColor(tint(definition.tooltipTextColor));
-        setBackgroundColor(tint(definition.tooltipBackgroundColor));
-        setAlternateBackgroundColor(tint(definition.tooltipAlternateBackgroundColor));
-        setHoverColor(tint(definition.tooltipHoverColor));
-        setFocusColor(tint(definition.tooltipFocusColor));
-        break;
-    case BasicTheme::Complementary:
-        setTextColor(tint(definition.complementaryTextColor));
-        setBackgroundColor(tint(definition.complementaryBackgroundColor));
-        setAlternateBackgroundColor(tint(definition.complementaryAlternateBackgroundColor));
-        setHoverColor(tint(definition.complementaryHoverColor));
-        setFocusColor(tint(definition.complementaryFocusColor));
-        break;
-    case BasicTheme::Header:
-        setTextColor(tint(definition.headerTextColor));
-        setBackgroundColor(tint(definition.headerBackgroundColor));
-        setAlternateBackgroundColor(tint(definition.headerAlternateBackgroundColor));
-        setHoverColor(tint(definition.headerHoverColor));
-        setFocusColor(tint(definition.headerFocusColor));
-        break;
-    case BasicTheme::Window:
-    default:
-        setTextColor(tint(definition.textColor));
-        setBackgroundColor(tint(definition.backgroundColor));
-        setAlternateBackgroundColor(tint(definition.alternateBackgroundColor));
-        setHoverColor(tint(definition.hoverColor));
-        setFocusColor(tint(definition.focusColor));
-        break;
-    }
-
-    setDisabledTextColor(tint(definition.disabledTextColor));
-    setHighlightColor(tint(definition.highlightColor));
-    setHighlightedTextColor(tint(definition.highlightedTextColor));
-    setActiveTextColor(tint(definition.activeTextColor));
-    setActiveBackgroundColor(tint(definition.activeBackgroundColor));
-    setLinkColor(tint(definition.linkColor));
-    setLinkBackgroundColor(tint(definition.linkBackgroundColor));
-    setVisitedLinkColor(tint(definition.visitedLinkColor));
-    setVisitedLinkBackgroundColor(tint(definition.visitedLinkBackgroundColor));
-    setNegativeTextColor(tint(definition.negativeTextColor));
-    setNegativeBackgroundColor(tint(definition.negativeBackgroundColor));
-    setNeutralTextColor(tint(definition.neutralTextColor));
-    setNeutralBackgroundColor(tint(definition.neutralBackgroundColor));
-    setPositiveTextColor(tint(definition.positiveTextColor));
-    setPositiveBackgroundColor(tint(definition.positiveBackgroundColor));
+    setTextColor(getColor(styleType(), PlatformTheme::TextColor, colorSet(), colorGroup()));
+    setBackgroundColor(getColor(styleType(), PlatformTheme::BackgroundColor, colorSet(), colorGroup()));
+    setAlternateBackgroundColor(getColor(styleType(), PlatformTheme::AlternateBackgroundColor, colorSet(), colorGroup()));
+    setHoverColor(getColor(styleType(), PlatformTheme::HoverColor, colorSet(), colorGroup()));
+    setFocusColor(getColor(styleType(), PlatformTheme::FocusColor, colorSet(), colorGroup()));
+    setDisabledTextColor(getColor(styleType(), PlatformTheme::DisabledTextColor, colorSet(), colorGroup()));
+    setHighlightColor(getColor(styleType(), PlatformTheme::HighlightColor, colorSet(), colorGroup()));
+    setHighlightedTextColor(getColor(styleType(), PlatformTheme::HighlightedTextColor, colorSet(), colorGroup()));
+    setActiveTextColor(getColor(styleType(), PlatformTheme::ActiveTextColor, colorSet(), colorGroup()));
+    setActiveBackgroundColor(getColor(styleType(), PlatformTheme::ActiveBackgroundColor, colorSet(), colorGroup()));
+    setLinkColor(getColor(styleType(), PlatformTheme::LinkColor, colorSet(), colorGroup()));
+    setLinkBackgroundColor(getColor(styleType(), PlatformTheme::LinkBackgroundColor, colorSet(), colorGroup()));
+    setVisitedLinkColor(getColor(styleType(), PlatformTheme::VisitedLinkColor, colorSet(), colorGroup()));
+    setVisitedLinkBackgroundColor(getColor(styleType(), PlatformTheme::VisitedLinkBackgroundColor, colorSet(), colorGroup()));
+    setNegativeTextColor(getColor(styleType(), PlatformTheme::NegativeTextColor, colorSet(), colorGroup()));
+    setNegativeBackgroundColor(getColor(styleType(), PlatformTheme::NegativeBackgroundColor, colorSet(), colorGroup()));
+    setNeutralTextColor(getColor(styleType(), PlatformTheme::NeutralTextColor, colorSet(), colorGroup()));
+    setNeutralBackgroundColor(getColor(styleType(), PlatformTheme::NeutralBackgroundColor, colorSet(), colorGroup()));
+    setPositiveTextColor(getColor(styleType(), PlatformTheme::PositiveTextColor, colorSet(), colorGroup()));
+    setPositiveBackgroundColor(getColor(styleType(), PlatformTheme::PositiveBackgroundColor, colorSet(), colorGroup()));
 }
 
 bool BasicTheme::event(QEvent *event)
@@ -715,9 +767,10 @@ bool BasicTheme::event(QEvent *event)
     return PlatformTheme::event(event);
 }
 
-QColor BasicTheme::tint(const QColor &color)
+QColor BasicTheme::tint(const QColor &color, PlatformTheme::ColorGroup group)
 {
-    switch (colorGroup()) {
+    switch (group)
+    {
     case PlatformTheme::Inactive:
         return QColor::fromHsvF(color.hueF(), color.saturationF() * 0.5, color.valueF());
     case PlatformTheme::Disabled:

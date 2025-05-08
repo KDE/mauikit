@@ -551,6 +551,7 @@ Pane
         background: Rectangle
         {
             id: _headerBg
+            Maui.Theme.colorSet: _headBar.Maui.Theme.colorSet
             color: Maui.Theme.backgroundColor
             radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
 
@@ -666,7 +667,7 @@ Pane
         background: Rectangle
         {
             id:_footerBg
-            color: Maui.Theme.backgroundColor
+            color: _footBar.Maui.Theme.backgroundColor
             radius: control.footerMargins > 0 ? Maui.Style.radiusV : 0
 
             ShaderEffectSource

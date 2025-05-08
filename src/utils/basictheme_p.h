@@ -227,13 +227,12 @@ public:
     ~BasicTheme() override;
 
     void sync();
-    void setColorSet(PlatformTheme::ColorSet colorSet) ;
-
+    static QColor getColor(PlatformTheme::StyleType style, PlatformTheme::ColorRole role, PlatformTheme::ColorSet set, ColorGroup group);
 protected:
     bool event(QEvent *event) override;
 
 private:
-    QColor tint(const QColor &color);
+    static QColor tint(const QColor &color, PlatformTheme::ColorGroup);
 };
 
 }
