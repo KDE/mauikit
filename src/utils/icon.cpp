@@ -53,10 +53,10 @@ void Icon::setSource(const QVariant &icon)
     m_monochromeHeuristics.clear();
 
     if (!m_theme) {
-        m_theme = static_cast<Maui::PlatformTheme *>(qmlAttachedPropertiesObject<Maui::PlatformTheme>(this, true));
+        m_theme = static_cast<MauiKit::Platform::PlatformTheme *>(qmlAttachedPropertiesObject<MauiKit::Platform::PlatformTheme>(this, true));
         Q_ASSERT(m_theme);
 
-        connect(m_theme, &Maui::PlatformTheme::PlatformTheme::colorsChanged, this, &QQuickItem::polish);
+        connect(m_theme, &MauiKit::Platform::PlatformTheme::PlatformTheme::colorsChanged, this, &QQuickItem::polish);
     }
 
     if (icon.type() == QVariant::String) {

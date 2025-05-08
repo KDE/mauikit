@@ -105,7 +105,7 @@ Control
     font.pointSize: Maui.Style.fontSizes.small
     
     Maui.Theme.colorSet: Maui.Theme.Button
-    // Maui.Theme.inherit: false
+    Maui.Theme.inherit: false
     
     /**
      * @brief The list of QQC2 Action to be listed. These can be declared a children elements of this control.

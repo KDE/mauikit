@@ -14,7 +14,7 @@
 #include "libs/style.h"
 #include "imagecolors.h"
 
-namespace Maui
+namespace MauiKit
 {
 BasicThemeDefinition::BasicThemeDefinition(QObject *parent)
     : QObject(parent)
@@ -528,10 +528,10 @@ void BasicThemeDefinition::setAdaptiveColors()
     tooltipFocusColor = QColor{"#000"};
 }
 
-void BasicThemeDefinition::syncToQml(PlatformTheme *object)
+void BasicThemeDefinition::syncToQml(Platform::PlatformTheme *object)
 {
     auto item = qobject_cast<QQuickItem *>(object->parent());
-    if (item && qmlAttachedPropertiesObject<PlatformTheme>(item, false) == object) {
+    if (item && qmlAttachedPropertiesObject<Platform::PlatformTheme>(item, false) == object) {
         Q_EMIT sync(item);
     }
 }
@@ -541,44 +541,17 @@ BasicThemeInstance::BasicThemeInstance(QObject *parent)
 {
 }
 
-BasicThemeDefinition &BasicThemeInstance::themeDefinition(PlatformTheme::StyleType type)
+BasicThemeDefinition &BasicThemeInstance::themeDefinition()
 {
-
-    switch(type)
-    {
-    case PlatformTheme::Light:
-    {
-        if (m_themeDefinitionLight) {
-            return *m_themeDefinitionLight;
-        }
-
-        m_themeDefinitionLight = std::make_unique<BasicThemeDefinition>();
-        m_themeDefinitionLight->setLightColors();
-        return *m_themeDefinitionLight;
-    }
-
-    case Maui::PlatformTheme::Dark:
-    {
-        if (m_themeDefinitionDark) {
-            return *m_themeDefinitionDark;
-        }
-
-        m_themeDefinitionDark = std::make_unique<BasicThemeDefinition>();
-        m_themeDefinitionDark->setDarkColors();
-        return *m_themeDefinitionDark;
-    }
-    case PlatformTheme::Undefined:
-    default:
-        if (m_themeDefinition) {
-            return *m_themeDefinition;
-        }
-
-        m_themeDefinition = std::make_unique<BasicThemeDefinition>();
-
-        connect(m_themeDefinition.get(), &BasicThemeDefinition::changed, this, &BasicThemeInstance::onDefinitionChanged);
-
+    if (m_themeDefinition) {
         return *m_themeDefinition;
     }
+
+    m_themeDefinition = std::make_unique<BasicThemeDefinition>();
+
+    connect(m_themeDefinition.get(), &BasicThemeDefinition::changed, this, &BasicThemeInstance::onDefinitionChanged);
+
+    return *m_themeDefinition;
 }
 
 void BasicThemeInstance::onDefinitionChanged()
@@ -603,17 +576,9 @@ BasicTheme::~BasicTheme()
     basicThemeInstance()->watchers.removeOne(this);
 }
 
-void BasicTheme::setColorSet(PlatformTheme::ColorSet colorSet)
-{
-    auto old = m_staticColorSet;
-    m_staticColorSet = colorSet;
-    sync();
-}
-
-
 void BasicTheme::sync()
 {
-    auto &definition = basicThemeInstance()->themeDefinition(styleType());
+    auto &definition = basicThemeInstance()->themeDefinition();
 
     switch (colorSet())
     {
@@ -688,28 +653,28 @@ void BasicTheme::sync()
 
 bool BasicTheme::event(QEvent *event)
 {
-    if (event->type() == PlatformThemeEvents::DataChangedEvent::type) {
+    if (event->type() == Platform::PlatformThemeEvents::DataChangedEvent::type) {
         sync();
     }
 
-    if (event->type() == PlatformThemeEvents::ColorSetChangedEvent::type) {
+    if (event->type() == Platform::PlatformThemeEvents::ColorSetChangedEvent::type) {
         sync();
     }
 
-    if (event->type() == PlatformThemeEvents::StyleTypeChangedEvent::type) {
+           // if (event->type() == PlatformThemeEvents::StyleTypeChangedEvent::type) {
+           //     sync();
+           // }
+
+    if (event->type() == Platform::PlatformThemeEvents::ColorGroupChangedEvent::type) {
         sync();
     }
 
-    if (event->type() == PlatformThemeEvents::ColorGroupChangedEvent::type) {
-        sync();
+    if (event->type() == Platform::PlatformThemeEvents::ColorChangedEvent::type) {
+        basicThemeInstance()->themeDefinition().syncToQml(this);
     }
 
-    if (event->type() == PlatformThemeEvents::ColorChangedEvent::type) {
-        basicThemeInstance()->themeDefinition(styleType()).syncToQml(this);
-    }
-
-    if (event->type() == PlatformThemeEvents::FontChangedEvent::type) {
-        basicThemeInstance()->themeDefinition(styleType()).syncToQml(this);
+    if (event->type() == Platform::PlatformThemeEvents::FontChangedEvent::type) {
+        basicThemeInstance()->themeDefinition().syncToQml(this);
     }
 
     return PlatformTheme::event(event);

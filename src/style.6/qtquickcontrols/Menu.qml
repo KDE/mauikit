@@ -160,7 +160,6 @@ T.Menu
 
         implicitHeight: _listView.contentHeight + topPadding + bottomPadding
         Maui.Theme.colorSet: control.Maui.Theme.colorSet
-        Maui.Theme.styleType: control.Maui.Theme.styleType
         Maui.Theme.inherit: control.Maui.Theme.inherit
         ListView
         {

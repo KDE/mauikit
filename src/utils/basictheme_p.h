@@ -4,14 +4,13 @@
  *  SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-#ifndef BASICTHEME_H
-#define BASICTHEME_H
+#pragma once
 
 #include "platformtheme.h"
 
 class ImageColors;
 
-namespace Maui
+namespace MauiKit
 {
 class BasicTheme;
 
@@ -83,7 +82,7 @@ class BasicThemeDefinition : public QObject
 public:
     explicit BasicThemeDefinition(QObject *parent = nullptr);
 
-    virtual void syncToQml(PlatformTheme *object);
+    virtual void syncToQml(Platform::PlatformTheme *object);
 
     QColor textColor ;
     QColor disabledTextColor ;
@@ -208,7 +207,7 @@ class BasicThemeInstance : public QObject
 public:
     explicit BasicThemeInstance(QObject *parent = nullptr);
 
-    BasicThemeDefinition &themeDefinition(PlatformTheme::StyleType type);
+    BasicThemeDefinition &themeDefinition();
     QVector<BasicTheme *> watchers;
 
 private:
@@ -218,7 +217,7 @@ private:
     std::unique_ptr<BasicThemeDefinition> m_themeDefinitionDark;
 };
 
-class BasicTheme : public PlatformTheme
+class BasicTheme : public Platform::PlatformTheme
 {
     Q_OBJECT
 
@@ -227,7 +226,7 @@ public:
     ~BasicTheme() override;
 
     void sync();
-    void setColorSet(PlatformTheme::ColorSet colorSet) ;
+    void setColorSet(Platform::PlatformTheme::ColorSet colorSet) ;
 
 protected:
     bool event(QEvent *event) override;
@@ -237,5 +236,3 @@ private:
 };
 
 }
-
-#endif // BASICTHEME_H

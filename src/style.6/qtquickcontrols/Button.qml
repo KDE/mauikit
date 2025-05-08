@@ -37,7 +37,7 @@ T.Button
     hoverEnabled: !Maui.Handy.isMobile
 
     Maui.Theme.colorSet: Maui.Theme.Button
-    // Maui.Theme.inherit: false
+    Maui.Theme.inherit: false
 
     icon.width: Maui.Style.iconSize
     icon.height: Maui.Style.iconSize

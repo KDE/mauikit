@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "platformtheme.h"
 #include <QIcon>
 #include <QPointer>
 #include <QQuickItem>
@@ -222,7 +223,7 @@ protected:
     void itemChange(QQuickItem::ItemChange change, const QQuickItem::ItemChangeData &value) override;
 
 private:
-    Maui::PlatformTheme *m_theme = nullptr;
+    MauiKit::Platform::PlatformTheme *m_theme = nullptr;
     QPointer<QNetworkReply> m_networkReply;
     QHash<int, bool> m_monochromeHeuristics;
     QVariant m_source;

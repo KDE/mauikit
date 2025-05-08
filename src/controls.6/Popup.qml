@@ -108,7 +108,6 @@ QQC.Popup
         objectName: "Popup Container"
 
         Maui.Theme.colorSet: control.Maui.Theme.colorSet
-        Maui.Theme.styleType: control.Maui.Theme.styleType
         Maui.Theme.inherit: control.Maui.Theme.inherit
 
         layer.enabled: Q.GraphicsInfo.api !== Q.GraphicsInfo.Software
