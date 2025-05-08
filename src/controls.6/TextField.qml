@@ -39,7 +39,6 @@ T.TextField
 {
     id: control
     Maui.Theme.colorSet: Maui.Theme.Button
-    Maui.Theme.inherit: false
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: 200
@@ -174,7 +173,7 @@ T.TextField
     background: Rectangle
     {
         implicitHeight: Maui.Style.iconSize
-        color: control.enabled ? (control.hovered ? Maui.Theme.hoverColor :  Maui.Theme.backgroundColor) : "transparent"
+        color: control.enabled ? (control.hovered ? control.Maui.Theme.hoverColor :  control.Maui.Theme.backgroundColor) : "transparent"
 
         radius: Maui.Style.radiusV
 

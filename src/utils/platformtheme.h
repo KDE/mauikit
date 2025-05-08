@@ -317,6 +317,7 @@ public:
     static PlatformTheme *qmlAttachedProperties(QObject *object);
 public Q_SLOTS:
     void printColorTable();
+    void resetColors();
 Q_SIGNALS:
     // TODO: parameters to signals as this is also a c++ api
     void colorsChanged();

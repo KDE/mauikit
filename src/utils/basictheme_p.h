@@ -81,7 +81,7 @@ class BasicThemeDefinition : public QObject
 
 
 public:
-    explicit BasicThemeDefinition(QObject *parent = nullptr);
+    explicit BasicThemeDefinition(PlatformTheme::StyleType type, QObject *parent = nullptr);
 
     virtual void syncToQml(PlatformTheme *object);
 
@@ -156,6 +156,7 @@ public:
 
 private:
     ImageColors *m_imgColors;
+    PlatformTheme::StyleType m_initialType = PlatformTheme::Undefined;
 
 
     struct LightColor

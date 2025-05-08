@@ -16,13 +16,17 @@
 
 namespace Maui
 {
-BasicThemeDefinition::BasicThemeDefinition(QObject *parent)
+BasicThemeDefinition::BasicThemeDefinition(PlatformTheme::StyleType type, QObject *parent)
     : QObject(parent)
-    ,m_imgColors(new ImageColors(this))
+    ,m_initialType(type)
+    , m_imgColors(new ImageColors(this))
 {
     auto style = Style::instance();
     connect(style, &Style::styleTypeChanged, [this, style](Style::StyleType type)
             {
+                if(m_initialType != PlatformTheme::Undefined)
+                    return;
+
                 switch(type)
                 {
                 case Style::StyleType::Light:
@@ -114,38 +118,61 @@ BasicThemeDefinition::BasicThemeDefinition(QObject *parent)
                 }
             });
 
-    switch(style->styleType())
+    switch(type)
     {
-    case Style::StyleType::Light:
+    case PlatformTheme::StyleType::Light:
     {
         setLightColors();
         break;
     }
-    case Style::StyleType::Dark:
+    case PlatformTheme::StyleType::Dark:
     {
         setDarkColors();
         break;
     }
-    case Style::StyleType::Adaptive:
+    case PlatformTheme::StyleType::Adaptive:
     {
         m_imgColors->setSource(style->adaptiveColorSchemeSource());
         break;
     }
-    case Style::StyleType::TrueBlack:
-    {
-        setTrueBlackColors();
-        break;
-    }
-    case Style::StyleType::Inverted:
-    {
-        setTrueBlackColors(true);
-        break;
-    }
-    case Style::StyleType::Auto:
     default:
+    case PlatformTheme::StyleType::Undefined:
     {
-        setSystemPaletteColors();
-        break;
+        switch(style->styleType())
+        {
+        case Style::StyleType::Light:
+        {
+            setLightColors();
+            break;
+        }
+        case Style::StyleType::Dark:
+        {
+            setDarkColors();
+            break;
+        }
+        case Style::StyleType::Adaptive:
+        {
+            m_imgColors->setSource(style->adaptiveColorSchemeSource());
+            break;
+        }
+
+        case Style::StyleType::TrueBlack:
+        {
+            setTrueBlackColors();
+            break;
+        }
+        case Style::StyleType::Inverted:
+        {
+            setTrueBlackColors(true);
+            break;
+        }
+        case Style::StyleType::Auto:
+        default:
+        {
+            setSystemPaletteColors();
+            break;
+        }
+        }
     }
     }
 }
@@ -551,32 +578,29 @@ BasicThemeDefinition &BasicThemeInstance::themeDefinition(PlatformTheme::StyleTy
             return *m_themeDefinitionLight;
         }
 
-        m_themeDefinitionLight = std::make_unique<BasicThemeDefinition>();
-        m_themeDefinitionLight->setLightColors();
+        m_themeDefinitionLight = std::make_unique<BasicThemeDefinition>(type);
         return *m_themeDefinitionLight;
-    }
-
+    }        
     case Maui::PlatformTheme::Dark:
     {
         if (m_themeDefinitionDark) {
             return *m_themeDefinitionDark;
         }
 
-        m_themeDefinitionDark = std::make_unique<BasicThemeDefinition>();
-        m_themeDefinitionDark->setDarkColors();
+        m_themeDefinitionDark = std::make_unique<BasicThemeDefinition>(type);
         return *m_themeDefinitionDark;
     }
     case PlatformTheme::Undefined:
     default:
+    {
         if (m_themeDefinition) {
             return *m_themeDefinition;
         }
 
-        m_themeDefinition = std::make_unique<BasicThemeDefinition>();
-
+        m_themeDefinition = std::make_unique<BasicThemeDefinition>(type);
         connect(m_themeDefinition.get(), &BasicThemeDefinition::changed, this, &BasicThemeInstance::onDefinitionChanged);
-
         return *m_themeDefinition;
+    }
     }
 }
 
@@ -584,7 +608,12 @@ void BasicThemeInstance::onDefinitionChanged()
 {
     for (auto watcher : std::as_const(watchers))
     {
-        watcher->sync();
+        if(watcher->styleType() == PlatformTheme::StyleType::Undefined)
+        {
+            watcher->sync();
+            watcher->resetColors();
+
+        }
     }
 }
 
@@ -605,7 +634,6 @@ BasicTheme::~BasicTheme()
 QColor BasicTheme::getColor(StyleType style, ColorRole role, ColorSet set, ColorGroup group)
 {
     auto &definition = basicThemeInstance()->themeDefinition(style);
-
     auto otherRole = [&](ColorRole role) -> QColor
     {
         switch(role)
@@ -649,7 +677,7 @@ QColor BasicTheme::getColor(StyleType style, ColorRole role, ColorSet set, Color
         case BasicTheme::AlternateBackgroundColor: return tint(definition.viewAlternateBackgroundColor, group);
         case BasicTheme::HoverColor : return tint(definition.viewHoverColor, group);
         case BasicTheme::FocusColor: return tint(definition.viewFocusColor, group);
-         default: return otherRole(role);
+        default: return otherRole(role);
         }
         break;
     case BasicTheme::Selection:
@@ -714,8 +742,6 @@ QColor BasicTheme::getColor(StyleType style, ColorRole role, ColorSet set, Color
 
 void BasicTheme::sync()
 {
-    auto &definition = basicThemeInstance()->themeDefinition(styleType());
-
     setTextColor(getColor(styleType(), PlatformTheme::TextColor, colorSet(), colorGroup()));
     setBackgroundColor(getColor(styleType(), PlatformTheme::BackgroundColor, colorSet(), colorGroup()));
     setAlternateBackgroundColor(getColor(styleType(), PlatformTheme::AlternateBackgroundColor, colorSet(), colorGroup()));

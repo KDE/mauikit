@@ -170,7 +170,7 @@ public:
 
         auto oldValue = colors[role][set];
 
-        resetTable();
+        // resetTable();
         colors[role][set] = color;
         // updatePalette(palette, moveColumnToVector());
 
@@ -817,6 +817,11 @@ PlatformTheme *PlatformTheme::qmlAttachedProperties(QObject *object)
 void PlatformTheme::printColorTable()
 {
     d->data->printColors(this);
+}
+
+void PlatformTheme::resetColors()
+{
+    d->data->resetTable();
 }
 
 bool PlatformTheme::event(QEvent *event)

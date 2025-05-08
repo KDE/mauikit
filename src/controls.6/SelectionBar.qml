@@ -174,8 +174,9 @@ Item
 {
     id: control
 
+    Maui.Theme.colorSet: Maui.Theme.Window
     Maui.Theme.inherit: false
-    Maui.Theme.colorSet: Maui.Theme.Complementary
+    Maui.Theme.styleType: Maui.Theme.Dark
 
     implicitHeight: _layout.implicitHeight + Maui.Style.space.big
     implicitWidth: _layout.implicitWidth
@@ -448,9 +449,6 @@ Item
         id: _layout
         width: control.width
         padding: Maui.Style.space.medium
-
-        Maui.Theme.inherit: false
-        Maui.Theme.colorSet: Maui.Theme.Complementary
 
         forceCenterMiddleContent: false
         position: ToolBar.Footer
