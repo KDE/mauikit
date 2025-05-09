@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-03 00:41+0000\n"
+"POT-Creation-Date: 2025-05-09 00:40+0000\n"
 "PO-Revision-Date: 2025-05-03 09:22+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -149,22 +149,22 @@ msgstr "Домашня сторінка"
 msgid "Authors"
 msgstr "Автори"
 
-#: src/controls.6/private/AboutDialog.qml:174
+#: src/controls.6/private/AboutDialog.qml:168
 #, kde-format
 msgid "Translators"
 msgstr "Перекладачі"
 
-#: src/controls.6/private/AboutDialog.qml:215
+#: src/controls.6/private/AboutDialog.qml:203
 #, kde-format
 msgid "Credits"
 msgstr "Подяки"
 
-#: src/controls.6/private/AboutDialog.qml:261
+#: src/controls.6/private/AboutDialog.qml:243
 #, kde-format
 msgid "Licenses"
 msgstr "Ліцензування"
 
-#: src/controls.6/private/AboutDialog.qml:289
+#: src/controls.6/private/AboutDialog.qml:263
 #, kde-format
 msgid "Components"
 msgstr "Компоненти"
@@ -193,7 +193,7 @@ msgstr "Припинити всі"
 msgid "Settings"
 msgstr "Параметри"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:326
 #, kde-format
 msgid "Close"
 msgstr "Закрити"
@@ -203,7 +203,7 @@ msgstr "Закрити"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Ви справді хочете закрити розділений перегляд: «%1»?"
 
-#: src/controls.6/TabView.qml:313
+#: src/controls.6/TabView.qml:315
 #, kde-format
 msgid "Open"
 msgstr "Відкрити"

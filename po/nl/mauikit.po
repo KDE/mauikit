@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-03 00:41+0000\n"
+"POT-Creation-Date: 2025-05-09 00:40+0000\n"
 "PO-Revision-Date: 2025-05-03 12:42+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -148,22 +148,22 @@ msgstr "Thuispagina"
 msgid "Authors"
 msgstr "Auteurs"
 
-#: src/controls.6/private/AboutDialog.qml:174
+#: src/controls.6/private/AboutDialog.qml:168
 #, kde-format
 msgid "Translators"
 msgstr "Vertalers"
 
-#: src/controls.6/private/AboutDialog.qml:215
+#: src/controls.6/private/AboutDialog.qml:203
 #, kde-format
 msgid "Credits"
 msgstr "Dankbetuigingen"
 
-#: src/controls.6/private/AboutDialog.qml:261
+#: src/controls.6/private/AboutDialog.qml:243
 #, kde-format
 msgid "Licenses"
 msgstr "Licenties"
 
-#: src/controls.6/private/AboutDialog.qml:289
+#: src/controls.6/private/AboutDialog.qml:263
 #, kde-format
 msgid "Components"
 msgstr "Componenten"
@@ -190,7 +190,7 @@ msgstr "Alles wegdoen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:326
 #, kde-format
 msgid "Close"
 msgstr "Sluiten"
@@ -200,7 +200,7 @@ msgstr "Sluiten"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Wilt u de gesplitste sessie sluiten: '%1'?"
 
-#: src/controls.6/TabView.qml:313
+#: src/controls.6/TabView.qml:315
 #, kde-format
 msgid "Open"
 msgstr "Openen"
