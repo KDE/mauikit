@@ -45,7 +45,7 @@ T.Menu
     id: control
 
     Maui.Theme.colorSet: Maui.Theme.View
-    // Maui.Theme.inherit: false
+    Maui.Theme.inherit: false
 
     readonly property bool responsive: Maui.Handy.isMobile
 

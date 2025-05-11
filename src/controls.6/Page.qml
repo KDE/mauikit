@@ -861,14 +861,17 @@ Pane
         {
             active: control.Maui.Controls.showCSD === true && control.altHeader && !Maui.Handy.isMobile
             asynchronous: true
-            width: parent.width
-
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.margins: control.headerMargins
             sourceComponent: Maui.ToolBar
             {
-                anchors.top: parent.top
+
                 Maui.Controls.showCSD: true
                 background: Rectangle
                 {
+                    radius: control.headerMargins > 0 ?  Maui.Style.radiusV : 0
                     Maui.Theme.colorSet: control.Maui.Theme.colorSet
                     Maui.Theme.inherit: false
                     opacity: 0.8
