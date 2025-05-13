@@ -498,7 +498,7 @@ Item
                                            _mouseArea.Drag.imageSource = result.url
                                        })
 
-                                       _mouseArea.Drag.mimeData = { "text/uri-list": control.uris.join("\n")}
+                                       _mouseArea.Drag.mimeData = { "text/uri-list": control.uris}
 
                                        startX = _counter.x
                                        startY = _counter.y

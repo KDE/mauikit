@@ -190,22 +190,23 @@ Style::Style(QObject *parent) : QObject(parent)
     //TODO Use new Qt6 StyelHint properties for this
 
     //For Maui Session we want to use MauiMan
-    if(!MauiManUtils::isMauiSession())
-    {
-        switch(QGuiApplication::styleHints()->colorScheme())
-        {
-        case Qt::ColorScheme::Unknown:
-            m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
-            break;
-        case Qt::ColorScheme::Light:
-            m_styleType = Style::StyleType::Light;
-            break;
-        case Qt::ColorScheme::Dark:
-            m_styleType = Style::StyleType::Dark;
-            break;
-        }
-    }
-    else
+    //Hold this back until a stable maui session is released
+    // if(!MauiManUtils::isMauiSession())
+    // {
+    //     switch(QGuiApplication::styleHints()->colorScheme())
+    //     {
+    //     case Qt::ColorScheme::Unknown:
+    //         m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
+    //         break;
+    //     case Qt::ColorScheme::Light:
+    //         m_styleType = Style::StyleType::Light;
+    //         break;
+    //     case Qt::ColorScheme::Dark:
+    //         m_styleType = Style::StyleType::Dark;
+    //         break;
+    //     }
+    // }
+    // else
     {
         m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
     }
