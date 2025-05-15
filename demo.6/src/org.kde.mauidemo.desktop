@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Maui Demo
+Name[ar]=عينة ماوي
 Name[ca]=Demostració del Maui
 Name[ca@valencia]=Demostració de Maui
 Name[cs]=Ukázka Maui
@@ -27,6 +28,7 @@ Name[x-test]=xxMaui Demoxx
 Name[zh_CN]=Maui 演示
 Name[zh_TW]=Maui 範例
 Comment=MauiKit Demo App
+Comment[ar]=تطبييق عينة ماوي
 Comment[ca]=Aplicació de demostració del MauiKit
 Comment[ca@valencia]=Aplicació de demostració de MauiKit
 Comment[cs]=Ukázková aplikace Maui
@@ -59,6 +61,7 @@ Terminal=false
 Type=Application
 Categories=Qt;KDE;Utility;TextEditor;
 GenericName=MauiKit Demo
+GenericName[ar]=عينة ماوي
 GenericName[ca]=Demostració del MauiKit
 GenericName[ca@valencia]=Demostració de MauiKit
 GenericName[cs]=Ukázka MauiKit
