@@ -26,6 +26,7 @@ import org.mauikit.controls as Maui
 T.Button
 {
     id: control
+
     opacity: control.enabled ? 1 : 0.5
 
     highlighted: activeFocus

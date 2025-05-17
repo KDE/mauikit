@@ -46,7 +46,7 @@ T.ToolButton
     focusPolicy: Qt.TabFocus
 
     Maui.Theme.colorSet:  Maui.Theme.Button
-    // Maui.Theme.inherit: false
+    Maui.Theme.inherit: false
 
     opacity: enabled ? 1 : 0.5
 

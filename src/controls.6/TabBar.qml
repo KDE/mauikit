@@ -59,9 +59,16 @@ QQC.TabBar
     focus: false
     focusPolicy: Qt.TabFocus
 
+    Maui.Theme.colorSet:  Maui.Theme.Header
+    Maui.Theme.inherit: false
+
     Maui.Controls.level: Maui.Controls.showCSD ? Maui.Controls.Primary : Maui.Controls.Secondary
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.small
+
     /**
      * @brief An alias to manually add elements to the container directly. This is the middle section of the control.
      * @property list<QtObject> TabBar::content
@@ -214,6 +221,7 @@ QQC.TabBar
 
                 contentHeight: availableHeight
                 implicitHeight: _content.currentItem ? _content.currentItem.height : 0
+                padding: 0
 
                 ListView
                 {

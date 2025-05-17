@@ -179,6 +179,11 @@ Pane
     property bool altTabBar : false
 
     /**
+      *@brief Margins around the tabbar
+      */
+    property int tabBarMargins: 0
+
+    /**
          * @brief Whether the view will support swipe gestures for switching between tab views.
          */
     property bool interactive: Maui.Handy.isTouch
@@ -446,6 +451,7 @@ Pane
         {
             anchors.fill: parent
             id: _stackView
+            background: null
 
             initialItem:  Item
             {
@@ -457,6 +463,7 @@ Pane
 
                     anchors.left: parent.left
                     anchors.right: parent.right
+                    anchors.margins: control.tabBarMargins
 
                     Maui.Controls.showCSD : control.Maui.Controls.showCSD === true && position === TabBar.Header
 
@@ -480,6 +487,13 @@ Pane
                     {
                         model: control.count
                         delegate: control.tabViewButton
+                    }
+
+                    background: Rectangle
+                    {
+                        color: Maui.Theme.backgroundColor
+                        opacity: tabBarMargins > 0 ? 0.8 : 1
+                        radius: tabBarMargins > 0 ? Maui.Style.radiusV : 0
                     }
 
                     states: [  State
@@ -524,8 +538,8 @@ Pane
                     id: _listView
                     anchors.fill: parent
 
-                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height : 0
-                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height : 0
+                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height + control.tabBarMargins *2 : 0
+                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height + control.tabBarMargins *2 : 0
 
                     interactive: false
 
