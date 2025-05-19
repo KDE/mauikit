@@ -149,6 +149,8 @@ ApplicationWindow
         z: Overlay.overlay.z
         anchors.fill: parent
         asynchronous: true
+        focus: false
+        focusPolicy: Qt.Nofocus
 
         sourceComponent: Rectangle
         {
@@ -185,10 +187,13 @@ ApplicationWindow
         active: Maui.CSD.enabled
         visible: active
         anchors.fill: parent
-        
+        focus: false
+        focusPolicy: Qt.Nofocus
+
         sourceComponent: WindowResizeHandlers
         {
-            
+            focus: false
+            focusPolicy: Qt.Nofocus
         }
     }
     

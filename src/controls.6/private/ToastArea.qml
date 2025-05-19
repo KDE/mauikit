@@ -34,15 +34,14 @@ Control
 {
     id: control
     focus: true
+    focusPolicy: Qt.StrongFocus
     padding: Maui.Style.contentMargins
     visible: _container.count > 0
     
     hoverEnabled: true
     
     property bool autoClose :  Window.window.active
-    
-    property Item previousItem : null
-    
+        
     SoundEffect
     {
         id: playSound
@@ -56,6 +55,7 @@ Control
     }
     
     Keys.enabled: true
+    Keys.forwardTo: Window.window
     Keys.onEscapePressed:
     {
         control.dismiss()
@@ -65,15 +65,10 @@ Control
     {
         if(visible)
         {
-            control.previousItem = Window.window.activeFocusItem
             control.forceActiveFocus()
         }else
         {
-            if(control.previousItem)
-            {
-                control.previousItem.forceActiveFocus()
-                control.previousItem = null
-            }
+            nextItemInFocusChain().forceActiveFocus()
         }
     }
     
@@ -127,11 +122,11 @@ Control
 
             property int timeout : 3500
             
-            onClicked: 
+            onClicked:
             {
                 if( _toast.actions.length > 0)
                     return
-                    
+
                 control.remove(mindex)
             }
             
@@ -150,54 +145,54 @@ Control
                 {
                     id: _bglay
                     anchors.fill: parent
-                ProgressBar
-                {
-                    id: _progressBar
-                    visible: (!_toast.hovered && !_container.hovered ) && control.autoClose
-                    anchors.bottom: parent.bottom
-                    height: 2
-                    width: parent.width
-                    from: 0
-                    to : _toastTimer.interval
-                    value: _progressTimer.progress
-                    opacity: value/to
-                    
-                    Timer
+                    ProgressBar
                     {
-                        id: _progressTimer
-                        running: _toastTimer.running
-                        property int progress : 0                        
-                        interval: 50
-                        repeat: _toastTimer.running
-                        onTriggered: progress += _progressTimer.interval
-                    }
-                    
-                    function restart()
-                    {
-                        _progressTimer.progress = 0
-                        _progressTimer.restart()
-                    }    
-                }                
-                layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
-                layer.effect: MultiEffect
-                {
-                    maskEnabled: true
-                    maskThresholdMin: 0.5
-                    maskSpreadAtMin: 1.0
-                    maskSpreadAtMax: 0.0
-                    maskThresholdMax: 1.0
-                    maskSource: ShaderEffectSource
-                    {
-                        sourceItem: Rectangle
+                        id: _progressBar
+                        visible: (!_toast.hovered && !_container.hovered ) && control.autoClose
+                        anchors.bottom: parent.bottom
+                        height: 2
+                        width: parent.width
+                        from: 0
+                        to : _toastTimer.interval
+                        value: _progressTimer.progress
+                        opacity: value/to
+
+                        Timer
                         {
-                            x: _bglay.x
-                            y: _bglay.y
-                            width: _bglay.width
-                            height: _bglay.height
-                            radius: Maui.Style.radiusV
+                            id: _progressTimer
+                            running: _toastTimer.running
+                            property int progress : 0
+                            interval: 50
+                            repeat: _toastTimer.running
+                            onTriggered: progress += _progressTimer.interval
+                        }
+
+                        function restart()
+                        {
+                            _progressTimer.progress = 0
+                            _progressTimer.restart()
                         }
                     }
-                }
+                    layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
+                    layer.effect: MultiEffect
+                    {
+                        maskEnabled: true
+                        maskThresholdMin: 0.5
+                        maskSpreadAtMin: 1.0
+                        maskSpreadAtMax: 0.0
+                        maskThresholdMax: 1.0
+                        maskSource: ShaderEffectSource
+                        {
+                            sourceItem: Rectangle
+                            {
+                                x: _bglay.x
+                                y: _bglay.y
+                                width: _bglay.width
+                                height: _bglay.height
+                                radius: Maui.Style.radiusV
+                            }
+                        }
+                    }
                 }
                 
                 layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
@@ -231,7 +226,7 @@ Control
                     }
                     _progressTimer.stop()
                     control.remove(_toast.mindex)
-                }                
+                }
             }
             
             contentItem: ColumnLayout
@@ -267,7 +262,7 @@ Control
                             onClicked:
                             {
                                 // if(_toast.actions.length === 1)
-                                    control.remove(_toast.mindex)
+                                control.remove(_toast.mindex)
                             }
                         }
                     }
@@ -353,6 +348,7 @@ Control
         const object = _toastComponent.createObject(_listView.flickable, properties);
         _container.insertItem(0, object)
         playSound.play()
+        control.forceActiveFocus()
     }
 
     function dismiss()

@@ -304,10 +304,7 @@ Maui.ItemDelegate
 
             padding: 2
             font.pointSize: Maui.Style.fontSizes.tiny
-
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            Maui.Controls.status: Maui.Controls.Negative
         }
     }
 
