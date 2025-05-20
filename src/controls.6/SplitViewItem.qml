@@ -94,7 +94,7 @@ Pane
 
     contentItem: Item
     {
-        state: control.compact ? "compactBadge" : "uncompactBadge"
+        state: control.padding === 0 ? "compactBadge" : "uncompactBadge"
 
         id: _parent
         Item
@@ -167,7 +167,7 @@ Pane
                            }
             }
 
-            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && !control.compact
+            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.padding > 0
             layer.smooth: true
             layer.effect: MultiEffect
             {

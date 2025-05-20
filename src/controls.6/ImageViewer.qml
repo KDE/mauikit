@@ -107,6 +107,9 @@ Flickable
      * @brief Emitted when the image area has been pressed for a few seconds. 
      */
     signal pressAndHold()
+
+    signal clicked(var mouse)
+    signal doubleClicked(var mouse)
     
     PinchArea
     {
@@ -218,6 +221,8 @@ Flickable
                                {
                                    flick.rightClicked()
                                }
+
+                               flick.clicked(mouse)
                            }
                 
                 onPressAndHold: flick.pressAndHold()
@@ -241,6 +246,8 @@ Flickable
                                          zoomAnim.running = true;
                                          flick.interactive = !flick.interactive
                                      }
+
+                                     flick.doubleClicked(mouse)
                                  }
 
                 onWheel: (wheel) =>

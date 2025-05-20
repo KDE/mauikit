@@ -466,6 +466,7 @@ Pane
                     anchors.margins: control.tabBarMargins
 
                     Maui.Controls.showCSD : control.Maui.Controls.showCSD === true && position === TabBar.Header
+                    Maui.Theme.colorSet: Maui.Theme.Window
 
                     visible: _listView.count > 1
 
@@ -491,9 +492,57 @@ Pane
 
                     background: Rectangle
                     {
+                        id: _tabBarBg
                         color: Maui.Theme.backgroundColor
-                        opacity: tabBarMargins > 0 ? 0.8 : 1
+                        // opacity: tabBarMargins > 0 ? 0.8 : 1
                         radius: tabBarMargins > 0 ? Maui.Style.radiusV : 0
+
+                        ShaderEffectSource
+                        {
+                            id: _effect
+                            anchors.fill: parent
+                            visible: false
+                            textureSize: Qt.size(_tabBarBg.width, _tabBarBg.height)
+                            sourceItem: _listView2
+                            sourceRect:  _tabBarBg.mapToItem(_listView2, Qt.rect(_tabBarBg.x, _tabBarBg.y, _tabBarBg.width, _tabBarBg.height))
+                        }
+
+                        Loader
+                        {
+                            asynchronous: true
+                            // active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                            anchors.fill: parent
+                            sourceComponent: MultiEffect
+                            {
+                                opacity: 0.2
+                                saturation: -0.5
+                                blurEnabled: true
+                                blurMax: 32
+                                blur: 1.0
+
+                                // autoPaddingEnabled: false
+                                source: _effect
+                            }
+                        }
+
+                        layer.enabled: _tabBarBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+                        layer.effect: MultiEffect
+                        {
+                            maskEnabled: true
+                            maskThresholdMin: 0.5
+                            maskSpreadAtMin: 1.0
+                            maskSpreadAtMax: 0.0
+                            maskThresholdMax: 1.0
+                            maskSource: ShaderEffectSource
+                            {
+                                sourceItem: Rectangle
+                                {
+                                    width: _tabBarBg.width
+                                    height: _tabBarBg.height
+                                    radius: _tabBarBg.radius
+                                }
+                            }
+                        }
                     }
 
                     states: [  State
@@ -796,7 +845,6 @@ Pane
             }
         }
     }
-
     /**
          * @brief Close a tab view at a given index. This will release the resources, and move the focus to the previous tab view
          * @param index index of the tab to be closed

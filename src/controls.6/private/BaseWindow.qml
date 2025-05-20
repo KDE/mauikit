@@ -193,7 +193,7 @@ ApplicationWindow
         sourceComponent: WindowResizeHandlers
         {
             focus: false
-            focusPolicy: Qt.Nofocus
+            focusPolicy: Qt.NoFocus
         }
     }
     
