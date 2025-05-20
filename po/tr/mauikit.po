@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-09 00:40+0000\n"
+"POT-Creation-Date: 2025-05-20 00:41+0000\n"
 "PO-Revision-Date: 2025-05-03 20:56+0300\n"
 "Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -128,7 +128,7 @@ msgstr "Görsel yüklenemedi."
 msgid "Version ID copied to clipboard"
 msgstr "Sürüm kimliği panoya kopyalandı"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:398
 #, kde-format
 msgid "Copy"
 msgstr "Kopyala"
@@ -180,7 +180,7 @@ msgid_plural "%1 items"
 msgstr[0] "1 öge"
 msgstr[1] "%1 öge"
 
-#: src/controls.6/private/ToastArea.qml:337
+#: src/controls.6/private/ToastArea.qml:332
 #, kde-format
 msgid "Dismiss All"
 msgstr "Tümünü At"
@@ -190,7 +190,7 @@ msgstr "Tümünü At"
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:326
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:331
 #, kde-format
 msgid "Close"
 msgstr "Kapat"
@@ -200,32 +200,32 @@ msgstr "Kapat"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Bölünmüş görünümü kapatmak istediğinizden emin misiniz: “%1”?"
 
-#: src/controls.6/TabView.qml:315
+#: src/controls.6/TabView.qml:320
 #, kde-format
 msgid "Open"
 msgstr "Aç"
 
-#: src/controls.6/TextField.qml:408
+#: src/controls.6/TextField.qml:405
 #, kde-format
 msgid "Cut"
 msgstr "Kes"
 
-#: src/controls.6/TextField.qml:415
+#: src/controls.6/TextField.qml:412
 #, kde-format
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: src/controls.6/TextField.qml:425
+#: src/controls.6/TextField.qml:422
 #, kde-format
 msgid "Select All"
 msgstr "Tümünü Seç"
 
-#: src/controls.6/TextField.qml:432
+#: src/controls.6/TextField.qml:429
 #, kde-format
 msgid "Undo"
 msgstr "Geri Al"
 
-#: src/controls.6/TextField.qml:439
+#: src/controls.6/TextField.qml:436
 #, kde-format
 msgid "Redo"
 msgstr "Yinele"

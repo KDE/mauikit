@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-09 00:40+0000\n"
+"POT-Creation-Date: 2025-05-20 00:41+0000\n"
 "PO-Revision-Date: 2025-05-15 21:21+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -133,7 +133,7 @@ msgstr "Irudia ezin izan du zamatu."
 msgid "Version ID copied to clipboard"
 msgstr "Bertsioaren ID arbelera kopiatu da"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:398
 #, kde-format
 msgid "Copy"
 msgstr "Kopiatu"
@@ -185,7 +185,7 @@ msgid_plural "%1 items"
 msgstr[0] "elementu 1"
 msgstr[1] "%1 elementu"
 
-#: src/controls.6/private/ToastArea.qml:337
+#: src/controls.6/private/ToastArea.qml:332
 #, kde-format
 msgid "Dismiss All"
 msgstr "Baztertu guztia"
@@ -195,7 +195,7 @@ msgstr "Baztertu guztia"
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:326
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:331
 #, kde-format
 msgid "Close"
 msgstr "Itxi"
@@ -205,32 +205,32 @@ msgstr "Itxi"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Ziur zaude ikuspegi zatitua itxi nahi duzula: '%1'?"
 
-#: src/controls.6/TabView.qml:315
+#: src/controls.6/TabView.qml:320
 #, kde-format
 msgid "Open"
 msgstr "Ireki"
 
-#: src/controls.6/TextField.qml:408
+#: src/controls.6/TextField.qml:405
 #, kde-format
 msgid "Cut"
 msgstr "Ebaki"
 
-#: src/controls.6/TextField.qml:415
+#: src/controls.6/TextField.qml:412
 #, kde-format
 msgid "Paste"
 msgstr "Itsatsi"
 
-#: src/controls.6/TextField.qml:425
+#: src/controls.6/TextField.qml:422
 #, kde-format
 msgid "Select All"
 msgstr "Hautatu denak"
 
-#: src/controls.6/TextField.qml:432
+#: src/controls.6/TextField.qml:429
 #, kde-format
 msgid "Undo"
 msgstr "Desegin"
 
-#: src/controls.6/TextField.qml:439
+#: src/controls.6/TextField.qml:436
 #, kde-format
 msgid "Redo"
 msgstr "Berregin"
