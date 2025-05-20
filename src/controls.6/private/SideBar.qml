@@ -112,6 +112,8 @@ Pane
      */
     property int minimumWidth:  Maui.Style.units.gridUnit * 4
 
+    property bool floats : false
+
     visible: position > 0
 
     width: (position * constrainedWidth)
@@ -135,7 +137,6 @@ Pane
         property bool initial: true
         property double position
         property int resizeValue
-        property int finalWidth : control.constrainedWidth + _dragHandler.centroid.position.x
 
         Binding on position
         {
@@ -204,8 +205,8 @@ Pane
                 enabled: control.resizeable
                 yAxis.enabled: false
                 xAxis.enabled: true
-                xAxis.minimum: control.minimumWidth - control.constrainedWidth
-                xAxis.maximum: control.maximumWidth - control.constrainedWidth
+                // xAxis.minimum: control.minimumWidth - control.constrainedWidth
+                // xAxis.maximum: control.maximumWidth - control.constrainedWidth
                 target: null
                 cursorShape: Qt.SizeHorCursor
 

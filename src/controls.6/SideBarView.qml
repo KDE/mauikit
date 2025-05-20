@@ -105,6 +105,7 @@ Pane
          Maui.Theme.colorSet: Maui.Theme.Window
          Maui.Theme.inherit: true
          padding: 0
+
          /**
      * @brief
      * All child items declared will become part of the main area section.
@@ -143,10 +144,10 @@ Pane
                            clip: false
                            transform: Translate
                            {
-                                    x: control.sideBar.collapsed ? control.sideBar.position * (control.sideBar.width) : 0
+                                    x: control.sideBar.collapsed && !control.sideBar.floats ? control.sideBar.position * (control.sideBar.width) : 0
                            }
 
-                           anchors.leftMargin: control.sideBar.collapsed ? 0 : control.sideBar.width  * control.sideBar.position
+                           anchors.leftMargin: control.sideBar.collapsed ? 0 : (control.sideBar.floats ? 0 : control.sideBar.width  * control.sideBar.position)
 
                            Item
                            {
