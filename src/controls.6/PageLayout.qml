@@ -162,12 +162,11 @@ Maui.Page
         return control.rightContent
     }
 
-    Rectangle
+    Item
     {
         id: _rec
         Layout.fillHeight: true
         Layout.preferredWidth: 1
-        color: "yellow"
     }
 
     headBar.middleContent:
