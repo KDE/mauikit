@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:41+0000\n"
+"POT-Creation-Date: 2025-05-21 00:41+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Fonts"
 msgstr "字体"
 
-#: src/controls.6/FontPickerDialog.qml:96
+#: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
@@ -115,12 +115,12 @@ msgstr "取消"
 msgid "Accept"
 msgstr "接受"
 
-#: src/controls.6/ImageViewer.qml:207
+#: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
 msgstr "发生问题"
 
-#: src/controls.6/ImageViewer.qml:208
+#: src/controls.6/ImageViewer.qml:211
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "无法加载此图像。"

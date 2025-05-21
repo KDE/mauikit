@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:41+0000\n"
+"POT-Creation-Date: 2025-05-21 00:41+0000\n"
 "PO-Revision-Date: 2023-03-12 10:37+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Fonts"
 msgstr ""
 
-#: src/controls.6/FontPickerDialog.qml:96
+#: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
 msgid "Cancel"
 msgstr "Zrušiť"
@@ -111,12 +111,12 @@ msgstr "Zrušiť"
 msgid "Accept"
 msgstr "Prijať"
 
-#: src/controls.6/ImageViewer.qml:207
+#: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
 msgstr ""
 
-#: src/controls.6/ImageViewer.qml:208
+#: src/controls.6/ImageViewer.qml:211
 #, kde-format
 msgid "The image could not be loaded."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:41+0000\n"
+"POT-Creation-Date: 2025-05-21 00:41+0000\n"
 "PO-Revision-Date: 2023-05-05 19:32+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -105,7 +105,7 @@ msgstr "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg"
 msgid "Fonts"
 msgstr "Schriftarten"
 
-#: src/controls.6/FontPickerDialog.qml:96
+#: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -115,12 +115,12 @@ msgstr "Abbrechen"
 msgid "Accept"
 msgstr "Annehmen"
 
-#: src/controls.6/ImageViewer.qml:207
+#: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
 msgstr "Ups!"
 
-#: src/controls.6/ImageViewer.qml:208
+#: src/controls.6/ImageViewer.qml:211
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "Das Bild kann nicht geladen werden."

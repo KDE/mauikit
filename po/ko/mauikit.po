@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:41+0000\n"
+"POT-Creation-Date: 2025-05-21 00:41+0000\n"
 "PO-Revision-Date: 2024-08-20 00:33+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -103,7 +103,7 @@ msgstr "키스의 고유 조건은 입술끼리 만나야 되고 특별한 요�
 msgid "Fonts"
 msgstr "글꼴"
 
-#: src/controls.6/FontPickerDialog.qml:96
+#: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
 msgid "Cancel"
 msgstr "취소"
@@ -113,12 +113,12 @@ msgstr "취소"
 msgid "Accept"
 msgstr "수락"
 
-#: src/controls.6/ImageViewer.qml:207
+#: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
 msgstr "이런!"
 
-#: src/controls.6/ImageViewer.qml:208
+#: src/controls.6/ImageViewer.qml:211
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "그림을 불러올 수 없습니다."

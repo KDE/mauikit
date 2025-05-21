@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:41+0000\n"
+"POT-Creation-Date: 2025-05-21 00:41+0000\n"
 "PO-Revision-Date: 2025-05-03 09:28+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -105,7 +105,7 @@ msgstr "Jove xef, porte ací per a beure whisky amb quinze glaçons d'hidrogen"
 msgid "Fonts"
 msgstr "Lletres"
 
-#: src/controls.6/FontPickerDialog.qml:96
+#: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -115,12 +115,12 @@ msgstr "Cancel·la"
 msgid "Accept"
 msgstr "Accepta"
 
-#: src/controls.6/ImageViewer.qml:207
+#: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
 msgstr "Vaja!"
 
-#: src/controls.6/ImageViewer.qml:208
+#: src/controls.6/ImageViewer.qml:211
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "No s'ha pogut carregar la imatge."
