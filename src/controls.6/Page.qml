@@ -403,7 +403,7 @@ Pane
     {
         id: _private
         readonly property int headerTotalHeight : _headerContent.visibleChildren.length > 0 ? (control.floatingHeader ? 0 : _headerContent.implicitHeight + control.headerMargins *2) : 0
-        readonly property int footerTotalHeight : _footerContent.visibleChildren.length > 0 ? (control.floatingFooter ? 0: _footerContent.implicitHeight + control.headerMargins *2) : 0
+        readonly property int footerTotalHeight : _footerContent.visibleChildren.length > 0 ? (control.floatingFooter ? 0: _footerContent.implicitHeight + control.footerMargins *2) : 0
 
         readonly property int topMargin : (control.altHeader ? 0 : headerTotalHeight) + control.topMargin
         readonly property int bottomMargin: ((control.altHeader ? headerTotalHeight + footerTotalHeight : footerTotalHeight)) + control.bottomMargin
