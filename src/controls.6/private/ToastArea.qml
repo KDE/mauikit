@@ -55,7 +55,7 @@ Control
     }
     
     Keys.enabled: true
-    Keys.forwardTo: Window.window
+    Keys.forwardTo: _container
     Keys.onEscapePressed:
     {
         control.dismiss()
@@ -101,6 +101,24 @@ Control
         {
             id: _toast
             clip: false
+            focus: true
+
+            Keys.enabled: true
+            Keys.onEscapePressed: control.remove(mindex)
+            Keys.forwardTo: _actionRepeater
+            Keys.onPressed: (event) =>
+                            {
+                                console.log("Key on notification nof", _toast.body, _toast.mindex, event.key === Qt.Key_Enter, _toast.actions.length)
+                                if(event.key === Qt.Key_Return)
+                                {
+                                    if(_toast.actions.length >= 1)
+                                    {
+                                        _toast.actions[0].trigger()
+                                        event.accepted = true
+                                    }
+                                }
+
+                            }
 
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.inherit: false
@@ -253,9 +271,12 @@ Control
 
                     Repeater
                     {
+                        id :_actionRepeater
                         model: _toast.actions
                         delegate: Button
                         {
+                            focus: true
+                            focusPolicy: Qt.StrongFocus
                             action: modelData
                             Maui.Controls.status: modelData.Maui.Controls.status
                             Layout.fillWidth: true
@@ -299,11 +320,14 @@ Control
             clip: false
             hoverEnabled: true
             
-            width:  Math.min(400, parent.width)
+            width: Math.min(400, parent.width)
             height: Math.min( _listView.implicitHeight + topPadding + bottomPadding, 500)
             
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
+
+            Keys.enabled: true
+            Keys.forwardTo: _listView
             
             contentItem: Maui.ListBrowser
             {
@@ -315,6 +339,13 @@ Control
                 snapMode: ListView.SnapOneItem
 
                 spacing: Maui.Style.space.medium
+
+                Keys.enabled: true
+                Keys.forwardTo: currentItem
+                Keys.onPressed: (event) =>
+                                {
+                                    console.log("Key on notification item")
+                                }
 
                 model: _container.contentModel
 
@@ -332,6 +363,12 @@ Control
                         text: i18n("Dismiss All")
                         onClicked: control.dismiss()
                     }
+                }
+
+                Label
+                {
+                    color: "orange"
+                    text: Window.window.activeFocusItem + " " +Window.window.activeFocusControl
                 }
             }
         }

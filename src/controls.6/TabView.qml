@@ -504,7 +504,7 @@ Pane
                             visible: false
                             textureSize: Qt.size(_tabBarBg.width, _tabBarBg.height)
                             sourceItem: _listView2
-                            sourceRect:  _tabBarBg.mapToItem(_listView2, Qt.rect(_tabBarBg.x, _tabBarBg.y, _tabBarBg.width, _tabBarBg.height))
+                            sourceRect: control.count > 0 ? _tabBarBg.mapToItem(_listView2, Qt.rect(_tabBarBg.x, _tabBarBg.y, _tabBarBg.width, _tabBarBg.height)) : Qt.rect()
                         }
 
                         Loader
