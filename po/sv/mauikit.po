@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-21 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
 "PO-Revision-Date: 2024-06-30 19:49+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -180,7 +180,7 @@ msgid_plural "%1 items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/controls.6/private/ToastArea.qml:332
+#: src/controls.6/private/ToastArea.qml:363
 #, kde-format
 msgid "Dismiss All"
 msgstr "Stäng alla"

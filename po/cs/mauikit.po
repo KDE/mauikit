@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-21 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
 "PO-Revision-Date: 2024-06-26 15:17+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -181,7 +181,7 @@ msgstr[0] "1 položka"
 msgstr[1] "%1 položky"
 msgstr[2] "%1 položek"
 
-#: src/controls.6/private/ToastArea.qml:332
+#: src/controls.6/private/ToastArea.qml:363
 #, kde-format
 msgid "Dismiss All"
 msgstr "Zahodit vše"

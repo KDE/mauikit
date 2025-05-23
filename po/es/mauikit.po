@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-21 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
 "PO-Revision-Date: 2025-05-03 18:30+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -182,7 +182,7 @@ msgid_plural "%1 items"
 msgstr[0] "1 elemento"
 msgstr[1] "%1 elementos"
 
-#: src/controls.6/private/ToastArea.qml:332
+#: src/controls.6/private/ToastArea.qml:363
 #, kde-format
 msgid "Dismiss All"
 msgstr "Descartar todo"
