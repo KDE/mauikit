@@ -523,7 +523,7 @@ Pane
                         Loader
                         {
                             asynchronous: true
-                            // active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                            active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
                             anchors.fill: parent
                             sourceComponent: MultiEffect
                             {
@@ -532,8 +532,6 @@ Pane
                                 blurEnabled: true
                                 blurMax: 32
                                 blur: 1.0
-
-                                // autoPaddingEnabled: false
                                 source: _effect
                             }
                         }
