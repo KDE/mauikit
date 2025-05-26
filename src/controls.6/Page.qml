@@ -328,12 +328,12 @@ Pane
     /**
       * @brief Margins around the footer column section
       */
-    property int footerMargins: 0
+    property alias footerMargins: _footerContent.margins
 
     /**
       * @brief Margins around the footer header section
       */
-    property int headerMargins: 0
+    property alias headerMargins: _headerContent.margins
 
     /**
          * @brief If set to `true` the header bar will be positioned to the bottom under the footer bar.
@@ -402,8 +402,8 @@ Pane
     QtObject
     {
         id: _private
-        readonly property int headerTotalHeight : _headerContent.visibleChildren.length > 0 ? (control.floatingHeader ? 0 : _headerContent.implicitHeight + control.headerMargins *2) : 0
-        readonly property int footerTotalHeight : _footerContent.visibleChildren.length > 0 ? (control.floatingFooter ? 0: _footerContent.implicitHeight + control.footerMargins *2) : 0
+        readonly property int headerTotalHeight : _headerContent.visibleChildren.length > 0 ? (control.floatingHeader ? 0 : _headerContent.implicitHeight + _headerContent.topMargin + _headerContent.bottomMargin) : 0
+        readonly property int footerTotalHeight : _footerContent.visibleChildren.length > 0 ? (control.floatingFooter ? 0: _footerContent.implicitHeight +  _footerContent.topMargin + _footerContent.bottomMargin) : 0
 
         readonly property int topMargin : (control.altHeader ? 0 : headerTotalHeight) + control.topMargin
         readonly property int bottomMargin: ((control.altHeader ? headerTotalHeight + footerTotalHeight : footerTotalHeight)) + control.bottomMargin
@@ -889,22 +889,41 @@ Pane
             }
         }
 
-        Column
+        component ViewColumn : Column
         {
-            id: _headerContent
-            spacing: control.headerMargins
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.margins: control.headerMargins
+            property int margins : 0
+            property int leftMargin: margins
+            property int rightMargin: margins
+            property int topMargin: margins
+            property int bottomMargin: margins
         }
 
-        Column
+        ViewColumn
         {
-            id: _footerContent
-            spacing: control.footerMargins
+            id: _headerContent
+            spacing: margins
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.margins: control.footerMargins
+            anchors.margins: margins
+            anchors.topMargin: topMargin
+            anchors.bottomMargin: bottomMargin
+            anchors.leftMargin: leftMargin
+            anchors.rightMargin: rightMargin
+
+        }
+
+        ViewColumn
+        {
+            id: _footerContent
+            spacing: margins
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: margins
+            anchors.topMargin: topMargin
+            anchors.bottomMargin: bottomMargin
+            anchors.leftMargin: leftMargin
+            anchors.rightMargin: rightMargin
+
         }
 
         Loader

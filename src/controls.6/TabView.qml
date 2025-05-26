@@ -181,7 +181,7 @@ Pane
     /**
       *@brief Margins around the tabbar
       */
-    property int tabBarMargins: 0
+    property alias tabBarMargins: _tabBar.margins
 
     /**
          * @brief Whether the view will support swipe gestures for switching between tab views.
@@ -445,6 +445,15 @@ Pane
         }
     }
 
+    component ViewTabBar : Maui.TabBar
+    {
+        property int margins : 0
+        property int leftMargin: margins
+        property int rightMargin: margins
+        property int topMargin: margins
+        property int bottomMargin: margins
+    }
+
     contentItem: Item
     {
         StackView
@@ -455,7 +464,7 @@ Pane
 
             initialItem:  Item
             {
-                Maui.TabBar
+                ViewTabBar
                 {
                     id: _tabBar
 
@@ -463,7 +472,11 @@ Pane
 
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.margins: control.tabBarMargins
+                    anchors.margins: margins
+                    anchors.topMargin: topMargin
+                    anchors.bottomMargin: bottomMargin
+                    anchors.leftMargin: leftMargin
+                    anchors.rightMargin: rightMargin
 
                     Maui.Controls.showCSD : control.Maui.Controls.showCSD === true && position === TabBar.Header
                     Maui.Theme.colorSet: Maui.Theme.Window
@@ -587,8 +600,8 @@ Pane
                     id: _listView
                     anchors.fill: parent
 
-                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height + control.tabBarMargins *2 : 0
-                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height + control.tabBarMargins *2 : 0
+                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height + _tabBar.topMargin + _tabBar.bottomMargin : 0
+                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height + _tabBar.topMargin + _tabBar.bottomMargin : 0
 
                     interactive: false
 
