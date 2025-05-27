@@ -107,7 +107,8 @@ Maui.ItemDelegate
     isCurrentItem : GridView.isCurrentItem || checked
     flat : !Maui.Handy.isMobile
 
-    implicitHeight: _template.implicitHeight + topPadding +bottomPadding
+    implicitHeight: _template.implicitHeight + topPadding + bottomPadding
+    implicitWidth: _template.implicitWidth + leftPadding + rightPadding
 
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium

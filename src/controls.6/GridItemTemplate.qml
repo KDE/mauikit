@@ -93,6 +93,7 @@ Item
            * @property Item GridItemTemplate::iconItem
            */
     readonly property alias iconItem : _iconLoader.item
+    property color iconColor : Maui.Theme.textColor
 
     /**
            * @brief The container for the icon header section. This is handled by a QQC2 Loader.
@@ -234,6 +235,7 @@ Item
             image.autoTransform: control.autoTransform
 
             alignment: control.alignment
+            // icon.color: control.iconColor
         }
     }
 
