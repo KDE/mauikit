@@ -21,6 +21,7 @@ import QtQuick
 import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 
 import org.mauikit.controls as Maui
 
@@ -107,7 +108,7 @@ Maui.Page
      * This elements will not be wrapped and will stay in place.
      * @note The contents are placed using a RowLayout, so use the layout attached properties accordingly.
      */
-    property list<QtObject> middleContent : control.headBar.middleContent
+    property list<QtObject> middleContent
 
     /**
      * @brief Whether the toolbar content should be wrapped - as in split - into a new secondary toolbar.
@@ -122,11 +123,66 @@ Maui.Page
      */
     property int splitIn : ToolBar.Header
 
-    headBar.forceCenterMiddleContent: !control.split
-    headBar.leftContent: !control.split && control.leftContent ? control.leftContent : null
-    headBar.rightContent: !control.split && control.rightContent ? control.rightContent : null
+    enum Section
+    {
+        Left, Right, Middle, Sides
+    }
 
-    headBar.middleContent: control.middleContent ? control.middleContent : null
+    property int splitSection : PageLayout.Section.Sides
+
+    headBar.leftContent:
+    {
+        if(!control.leftContent)
+            return []
+
+        if(control.split)
+        {
+            if(control.splitSection === PageLayout.Section.Sides
+                    || control.splitSection === PageLayout.Section.Right)
+            {
+                return []
+            }
+        }
+        return control.leftContent
+    }
+
+    headBar.rightContent:
+    {
+        if(!control.rightContent)
+            return []
+
+        if(control.split)
+        {
+            if(control.splitSection === PageLayout.Section.Sides
+                    || control.splitSection === PageLayout.Section.Left)
+            {
+                return []
+            }
+        }
+        return control.rightContent
+    }
+
+    Item
+    {
+        id: _rec
+        Layout.fillHeight: true
+        Layout.preferredWidth: 1
+    }
+
+    headBar.middleContent:
+    {
+        if(!control.middleContent)
+            return []
+
+        if(control.split)
+        {
+            if(control.splitSection === PageLayout.Section.Middle)
+            {
+                return _rec
+            }
+        }
+        return control.middleContent
+    }
 
     headerColumn: Loader
     {
@@ -137,18 +193,65 @@ Maui.Page
         sourceComponent: Maui.ToolBar
         {
             id: _headBar
-            Maui.Controls.level: control.Maui.Controls.level ?  control.Maui.Controls.level : Maui.Controls.Secondary
-            leftContent: control.split && control.leftContent ? control.leftContent : null
-            rightContent: control.split && control.rightContent ? control.rightContent : null
+            Maui.Controls.showCSD: false
+            Maui.Controls.level: control.Maui.Controls.level ? control.Maui.Controls.level : Maui.Controls.Secondary
+            leftContent: control.split && control.leftContent && (control.splitSection === PageLayout.Section.Left || control.splitSection === PageLayout.Section.Sides) ? control.leftContent : null
+            rightContent: control.split && control.rightContent && (control.splitSection === PageLayout.Section.Right || control.splitSection === PageLayout.Section.Sides) ? control.rightContent : null
+            middleContent: control.split && control.middleContent && (control.splitSection === PageLayout.Section.Middle) ? control.middleContent : null
 
-            Maui.Controls.item: ShaderEffectSource
+            background: Rectangle
             {
-                sourceItem: control.pageContent
-                sourceRect:  _headBar.background ?
-                                 (control.floatingHeader ?
-                                      Qt.rect(0, (_headBar.position === ToolBar.Header ? control.headBar.background.height :  control.pageContent.height - _headBar.background.height), _headBar.background.width, _headBar.background.height)
-                                    : Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 - (_headBar.background.height) :  control.pageContent.height), _headBar.background.width, _headBar.background.height))
-                               : null
+                id:_headerBg
+                color: Maui.Theme.backgroundColor
+                radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
+
+                ShaderEffectSource
+                {
+                    id: _effect
+                    anchors.fill: parent
+                    visible: false
+                    textureSize: Qt.size(_headBar.width, _headBar.height)
+                    sourceItem:  control.pageContent
+                    sourceRect: _headBar.mapToItem(control.pageContent, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height))
+                }
+
+                Loader
+                {
+                    asynchronous: true
+                    active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                    anchors.fill: parent
+                    sourceComponent: MultiEffect
+                    {
+                        opacity: 0.2
+                        saturation: -0.5
+                        blurEnabled: true
+                        blurMax: 32
+                        blur: 1.0
+
+                        autoPaddingEnabled: false
+                        source: _effect
+                    }
+                }
+
+                layer.enabled: _headerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+
+                layer.effect: MultiEffect
+                {
+                    maskEnabled: true
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
+                    maskSpreadAtMax: 0.0
+                    maskThresholdMax: 1.0
+                    maskSource: ShaderEffectSource
+                    {
+                        sourceItem: Rectangle
+                        {
+                            width: _headerBg.width
+                            height: _headerBg.height
+                            radius: _headerBg.radius
+                        }
+                    }
+                }
             }
         }
     }
@@ -161,8 +264,65 @@ Maui.Page
 
         sourceComponent: Maui.ToolBar
         {
-            leftContent: control.split && control.leftContent ? control.leftContent : null
-            rightContent: control.split && control.rightContent ? control.rightContent : null
+            id: _footBar
+            leftContent: control.split && control.leftContent && (control.splitSection === PageLayout.Section.Left || control.splitSection === PageLayout.Section.Sides) ? control.leftContent : null
+            rightContent: control.split && control.rightContent && (control.splitSection === PageLayout.Section.Right || control.splitSection === PageLayout.Section.Sides) ? control.rightContent : null
+            middleContent: control.split && control.middleContent && (control.splitSection === PageLayout.Section.Middle) ? control.middleContent : null
+
+            background: Rectangle
+            {
+                id:_footerBg
+                color: Maui.Theme.backgroundColor
+                radius: control.footerMargins > 0 ? Maui.Style.radiusV : 0
+
+                ShaderEffectSource
+                {
+                    id: _footerEffect
+                    anchors.fill: parent
+                    visible: false
+                    textureSize: Qt.size(_footBar.width, _footBar.height)
+                    sourceItem: control.pageContent
+                    // sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
+                    sourceRect: _footBar.mapToItem(control.pageContent, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
+                }
+
+                Loader
+                {
+                    asynchronous: true
+                    active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                    anchors.fill: parent
+                    sourceComponent: MultiEffect
+                    {
+                        opacity: 0.2
+                        saturation: -0.5
+                        blurEnabled: true
+                        blurMax: 32
+                        blur: 1.0
+
+                        autoPaddingEnabled: true
+                        source: _footerEffect
+                    }
+                }
+
+                layer.enabled: _footerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+                layer.effect: MultiEffect
+                {
+                    maskEnabled: true
+                    maskThresholdMin: 0.5
+                    maskSpreadAtMin: 1.0
+                    maskSpreadAtMax: 0.0
+                    maskThresholdMax: 1.0
+                    maskSource: ShaderEffectSource
+                    {
+                        sourceItem: Rectangle
+                        {
+                            width: _footerBg.width
+                            height: _footerBg.height
+                            radius: _footerBg.radius
+                        }
+                    }
+                }
+            }
         }
     }
 }

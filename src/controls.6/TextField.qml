@@ -19,6 +19,7 @@
 
 import QtQuick
 import QtQuick.Controls as QC
+import QtQuick.Templates as T
 
 import org.mauikit.controls as Maui
 import QtQuick.Layouts
@@ -26,7 +27,7 @@ import QtQuick.Layouts
 
 /**
  * TextField
- * A global sidebar for the application window that can be collapsed.
+ * A customizable text field for MauiKit applications.
  *
  *
  *
@@ -34,9 +35,7 @@ import QtQuick.Layouts
  *
  *
  */
-
-
-QC.TextField
+T.TextField
 {
     id: control
     Maui.Theme.colorSet: Maui.Theme.Button
@@ -228,7 +227,6 @@ QC.TextField
         }
     }
 
-
     Loader
     {
         id: _subtitleLoader
@@ -321,7 +319,9 @@ QC.TextField
             {
                 flat: !checkable
                 focusPolicy: Qt.NoFocus
-
+                topInset: 2
+                rightInset: 2
+                bottomInset: 2
                 visible: control.text.length || control.activeFocus
                 icon.name: "edit-clear"
 
@@ -368,10 +368,7 @@ QC.TextField
 
             padding: 2
             font.pointSize: Maui.Style.fontSizes.tiny
-
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            Maui.Controls.status: Maui.Controls.Negative
 
             OpacityAnimator on opacity
             {

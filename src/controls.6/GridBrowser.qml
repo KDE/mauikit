@@ -25,33 +25,33 @@ import org.mauikit.controls as Maui
 /**
  * @inherit QtQuick.Item
  * @brief A browser view with a grid layout.
- * 
+ *
  * <a href="https://doc.qt.io/qt-6/qml-qtquick-controls-item.html">This controls inherits from QQC2 Item, to checkout its inherited properties refer to the Qt Docs.</a>
- * 
- * This component might seem similar to QQC2 GridView - and it does uses it underneath - but this one includes a few more predefined elements, such as auto adaptable uniform cell width, a placeholder element, pinch to zoom gestures, and lasso selection support. 
- * 
+ *
+ * This component might seem similar to QQC2 GridView - and it does uses it underneath - but this one includes a few more predefined elements, such as auto adaptable uniform cell width, a placeholder element, pinch to zoom gestures, and lasso selection support.
+ *
  *  @section structure Structure
  * The browser has a dedicated placeholder element handled by MauiKit Holder, where a message can be set when the view is on a determined state the user should be warned about, such as if the view is empty, or not search results were found.
  * @see Holder
- * 
+ *
  * The lasso selection feature works with a mouse or a track-pad, and allows to select multiple items in the browser-view that are under the lasso rectangle area. A signal is emitted when the selection has been triggered - this is when the lasso rectangle is released - sending as an argument an array of numbers representing the indexes of the selected items.
- * @see itemsSelected 
- * 
+ * @see itemsSelected
+ *
  * @image html Browsers/gridbrowser_resize.gif "The GridBrowser with adaptable content enabled"
- * 
+ *
  * @note Notice the yellow rectangles vs the grey ones. The yellow rectangles will preserve the `itemSize` dimensions, while the cell area, represented by the gray rectangle, will vary. The example below demonstrates this behavior.
- * 
+ *
  * @section notes Notes
  * Use the `itemSize` property to set an uniform size for the cell item. At first the `cellWidth` will have the same value as the `itemSize`.
- * 
- * If the `adaptContent` is enabled, the cell width will vary, while the cell height will maintain the same value as the `itemSize`. 
+ *
+ * If the `adaptContent` is enabled, the cell width will vary, while the cell height will maintain the same value as the `itemSize`.
  * @see adaptContent
- * 
+ *
  * When the view is resized and the `adaptContent` is enabled, the cell width - `cellWidth` - values will be updated to a value that can fill the width of the view-port uniformly. The modified values of the `cellWidth` will never be less than the value defined in the `itemSize` property.
  * @see itemSize
- * 
+ *
  * @warning Keep in mind that the `cellWidth` values will be modified when enabling the `adaptContent` property. So any binding to this property will break.
- * 
+ *
  * @code
  * Maui.Page
  * {
@@ -59,58 +59,59 @@ import org.mauikit.controls as Maui
  *    anchors.fill: parent
  *    Maui.Controls.showCSD: true
  *    headBar.forceCenterMiddleContent: true
- * 
+ *
  *    headBar.leftContent: Switch
  *    {
  *        text: "Adapt Content"
  *        checked: _gridBrowser.adaptContent
  *        onToggled: _gridBrowser.adaptContent = !_gridBrowser.adaptContent
  *    }
- * 
+ *
  *    Maui.GridBrowser
  *    {
  *        id: _gridBrowser
  *        anchors.fill: parent
  *        model: 30
- * 
+ *
  *        itemSize: 200
  *        itemHeight: 300
- * 
+ *
  *        adaptContent: true
- * 
+ *
  *        delegate: Rectangle
  *        {
  *            width: GridView.view.cellWidth
  *            height: GridView.view.cellHeight
  *            color: "gray"
  *            border.color: "white"
- * 
+ *
  *            Rectangle
  *            {
  *                width: _gridBrowser.itemSize
  *                height: _gridBrowser.itemSize
- * 
+ *
  *                color: "yellow"
- * 
+ *
  *                anchors.centerIn: parent
  *            }
  *        }
  *    }
  * }
  * @endcode
- *  
- * @note You can use the GridView attached properties to refer to the control properties from the delegates. For example, you could use `GridView.view.itemSize` or GridView.view.cellWidth`. * 
- *  
+ *
+ * @note You can use the GridView attached properties to refer to the control properties from the delegates. For example, you could use `GridView.view.itemSize` or GridView.view.cellWidth`. *
+ *
  * @image html Browsers/gridbrowser_alt.png "The GridBrowser with adaptable content disabled"
- * 
+ *
  * @note Notice the yellow rectangles vs the grey ones. The yellow rectangles will preserve the `itemSize` dimensions, and the cell width - as the gray area- will also keep the same dimensions as `itemSize`.
- *  
+ *
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/GridBrowser.qml">You can find a more complete example at this link.</a>
  */
 Item
 {
     id: control
     focus: true
+    focusPolicy: Qt.StrongFocus
     clip: false
     
     implicitHeight: contentHeight + topPadding + bottomPadding
@@ -118,13 +119,13 @@ Item
     
     /**
      * @brief The uniform size of the element in the cell. This value is used for the width and height. This value will stay the same even when the width of the cell changes.
-     * 
+     *
      * The dimensions of the item can be changed manually for its height and its width.
      * @see itemHeight
      * @see itemWidth
-     * 
+     *
      * @note This is meant to set an initial uniform size, so notice this value will be use for the `cellWidth`, `cellHeight`, `itemHeight` and `itemWidth`.
-     * 
+     *
      * @property int GridBrowser::itemSize
      */
     property alias itemSize: controlView.itemSize
@@ -138,14 +139,14 @@ Item
     
     /**
      * @brief The height of the element in the cell. This value will vary even if `adaptContent` is enabled.
-     * This value is used as the `cellHeight` value by default. 
+     * This value is used as the `cellHeight` value by default.
      * @property int GridBrowser::itemHeight
      */
     property alias itemHeight : controlView.itemHeight
     
     /**
      * @brief The width size of the cell area.
-     * 
+     *
      * @warning This value will be modified when the viewport area is resized and the `adaptContent` is enabled. So any binding will be lost. To have a fixed cell width value, set `adaptContent: false`.
      * @see adaptContent
      * @property int GridBrowser::cellWidth
@@ -193,7 +194,7 @@ Item
     property alias count : controlView.count
     
     /**
-     * @brief The cache buffer. 
+     * @brief The cache buffer.
      * Refer to the QQC2 GridView documentation.
      * @property int GridBrowser::cacheBuffer
      */
@@ -214,7 +215,7 @@ Item
     
     /**
      * @brief The total width of all the elements.
-     * @property int GridBrowser::contentWidth 
+     * @property int GridBrowser::contentWidth
      */
     property alias contentWidth : controlView.contentWidth
     
@@ -269,12 +270,12 @@ Item
      * - ScrollBar.AsNeeded
      */
     property int verticalScrollBarPolicy: switch(Maui.Style.scrollBarPolicy)
-                {
-                    case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
-                    case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
-                    case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
-                    case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
-                }    
+                                          {
+                                          case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+                                          case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+                                          case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+                                          case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+                                          }
     
     /**
      * @brief The policy of the horizontal scroll bar from the scroll view.
@@ -289,21 +290,21 @@ Item
     {
         if(control.orientation === GridView.Vertical)
             return ScrollBar.AlwaysOff
-            
-            switch(Maui.Style.scrollBarPolicy)
-            {
-                case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
-                case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
-                case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
-                case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
-            }
+
+        switch(Maui.Style.scrollBarPolicy)
+        {
+        case Maui.Style.AlwaysOn: return ScrollBar.AlwaysOn;
+        case Maui.Style.AlwaysOff: return ScrollBar.AlwaysOff;
+        case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
+        case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
+        }
     }
     
     /**
      * @brief An alias to access the placeholder properties. This is handled by a MauiKit Holder.
      * @see Holder::title
      * @see Holder::body
-     * 
+     *
      * @property Holder GridBrowser::holder
      */
     property alias holder : _holder
@@ -317,8 +318,8 @@ Item
     {
         if(adaptContent)
             control.adaptGrid()
-            else
-                control.resetCellWidth()
+        else
+            control.resetCellWidth()
     }
     
     /**
@@ -329,7 +330,7 @@ Item
     property bool enableLassoSelection : false
     
     /**
-     * @brief 
+     * @brief
      */
     property bool selectionMode: false
     
@@ -401,13 +402,7 @@ Item
      * @brief Emitted when an empty space of the area area background has been right clicked.
      */
     signal areaRightClicked()
-    
-    /**
-     * @brief Emitted when a physical key from the device has been pressed.
-     * @param event The object with information about the event.
-     */
-    signal keyPress(var event)
-    
+
     Keys.enabled : true
     Keys.forwardTo : controlView
     
@@ -425,6 +420,7 @@ Item
         id: _scrollView
         anchors.fill: parent
         focus: true
+        focusPolicy: Qt.StrongFocus
         padding: Maui.Style.contentMargins
         
         clip: control.clip
@@ -435,11 +431,14 @@ Item
         contentHeight: controlView.contentHeight
         contentWidth: availableWidth
         
+        Maui.Controls.orientation: control.Maui.Controls.orientation
+        
         GridView
         {
             id: controlView
             focus: true
             
+            parent: _scrollView
             /**
              * itemSize : int
              */
@@ -487,18 +486,25 @@ Item
             onWidthChanged: if(adaptContent) control.adaptGrid()
             onCountChanged: if(adaptContent) control.adaptGrid()
             
-            keyNavigationEnabled : true
+            keyNavigationEnabled : false // Causes many issues with the keyboard navigation
             keyNavigationWraps : true
 
-            Keys.onPressed: (event) =>
+            Keys.enabled: true
+            Keys.onLeftPressed: controlView.moveCurrentIndexLeft()
+            Keys.onRightPressed: controlView.moveCurrentIndexRight()
+            Keys.onUpPressed:
             {
-                control.keyPress(event)
+                console.log("GO UP gridBrowser")
+                controlView.moveCurrentIndexUp()
             }
-            
+
+            Keys.onDownPressed: controlView.moveCurrentIndexDown()
+
             Maui.Holder
             {
                 id: _holder
                 visible: false
+                Keys.forwardTo: controlView
                 anchors.fill : parent
                 anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
                 anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
@@ -532,9 +538,9 @@ Item
                 sourceComponent: PinchArea
                 {
                     onPinchFinished: (pinch) =>
-                    {
-                        resizeContent(pinch.scale)
-                    }
+                                     {
+                                         resizeContent(pinch.scale)
+                                     }
                 }
             }
             
@@ -553,132 +559,132 @@ Item
                     propagateComposedEvents: true
                     preventStealing: true
                     acceptedButtons: Qt.RightButton | Qt.LeftButton
-                                            scrollGestureEnabled: false
+                    scrollGestureEnabled: false
 
                     onClicked: (mouse) =>
-                    {
-                        console.log("Area clicked")
-                        control.areaClicked(mouse)
-                        control.forceActiveFocus()
-                        
-                        if(mouse.button === Qt.RightButton)
-                        {
-                            control.areaRightClicked()
-                            return
-                        }
-                    }
+                               {
+                                   console.log("Area clicked")
+                                   control.areaClicked(mouse)
+                                   control.forceActiveFocus()
+
+                                   if(mouse.button === Qt.RightButton)
+                                   {
+                                       control.areaRightClicked()
+                                       return
+                                   }
+                               }
                     
                     onWheel: (wheel) =>
-                    {
-                        if (wheel.modifiers & Qt.ControlModifier)
-                        {
-                            if (wheel.angleDelta.y != 0)
-                            {
-                                var factor = 1 + wheel.angleDelta.y / 600;
-                                control.resizeContent(factor)
-                            }
-                        }else
-                            wheel.accepted = false
-                    }
+                             {
+                                 if (wheel.modifiers & Qt.ControlModifier)
+                                 {
+                                     if (wheel.angleDelta.y != 0)
+                                     {
+                                         var factor = 1 + wheel.angleDelta.y / 600;
+                                         control.resizeContent(factor)
+                                     }
+                                 }else
+                                 wheel.accepted = false
+                             }
                     
                     onPositionChanged: (mouse) =>
-                    {
-                        console.log("Area clicked >>> Moving")
-                        
-                        if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
-                        {
-                            if(mouseX >= selectLayer.newX)
-                            {
-                                selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
-                            } else {
-                                selectLayer.x = mouseX < control.x ? control.x : mouseX;
-                                selectLayer.width = selectLayer.newX - selectLayer.x;
-                            }
-                            
-                            if(mouseY >= selectLayer.newY) {
-                                selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
-                                if(!controlView.atYEnd &&  mouseY > (control.y + control.height))
-                                    controlView.contentY += 10
-                            } else {
-                                selectLayer.y = mouseY < control.y ? control.y : mouseY;
-                                selectLayer.height = selectLayer.newY - selectLayer.y;
-                                
-                                if(!controlView.atYBeginning && selectLayer.y === 0)
-                                    controlView.contentY -= 10
-                            }
-                        }
-                    }
+                                       {
+                                           console.log("Area clicked >>> Moving")
+
+                                           if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
+                                           {
+                                               if(mouseX >= selectLayer.newX)
+                                               {
+                                                   selectLayer.width = (mouseX + 10) < (control.x + control.width) ? (mouseX - selectLayer.x) : selectLayer.width;
+                                               } else {
+                                                   selectLayer.x = mouseX < control.x ? control.x : mouseX;
+                                                   selectLayer.width = selectLayer.newX - selectLayer.x;
+                                               }
+
+                                               if(mouseY >= selectLayer.newY) {
+                                                   selectLayer.height = (mouseY + 10) < (control.y + control.height) ? (mouseY - selectLayer.y) : selectLayer.height;
+                                                   if(!controlView.atYEnd &&  mouseY > (control.y + control.height))
+                                                   controlView.contentY += 10
+                                               } else {
+                                                   selectLayer.y = mouseY < control.y ? control.y : mouseY;
+                                                   selectLayer.height = selectLayer.newY - selectLayer.y;
+
+                                                   if(!controlView.atYBeginning && selectLayer.y === 0)
+                                                   controlView.contentY -= 10
+                                               }
+                                           }
+                                       }
                     
                     onPressed: (mouse) =>
-                    {
-                        if (mouse.source === Qt.MouseEventNotSynthesized)
-                        {
-                            if(control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
-                            {
-                                selectLayer.visible = true;
-                                selectLayer.x = mouseX;
-                                selectLayer.y = mouseY;
-                                selectLayer.newX = mouseX;
-                                selectLayer.newY = mouseY;
-                                selectLayer.width = 0
-                                selectLayer.height = 0;
-                            }
-                        }
-                    }
+                               {
+                                   if (mouse.source === Qt.MouseEventNotSynthesized)
+                                   {
+                                       if(control.enableLassoSelection && mouse.button === Qt.LeftButton && control.count > 0)
+                                       {
+                                           selectLayer.visible = true;
+                                           selectLayer.x = mouseX;
+                                           selectLayer.y = mouseY;
+                                           selectLayer.newX = mouseX;
+                                           selectLayer.newY = mouseY;
+                                           selectLayer.width = 0
+                                           selectLayer.height = 0;
+                                       }
+                                   }
+                               }
                     
                     onPressAndHold: (mouse) =>
-                    {
-                        if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible )
-                        {
-                            selectLayer.visible = true;
-                            selectLayer.x = mouseX;
-                            selectLayer.y = mouseY;
-                            selectLayer.newX = mouseX;
-                            selectLayer.newY = mouseY;
-                            selectLayer.width = 0
-                            selectLayer.height = 0;
-                            
-                            mouse.accepted = true
-                        }else
-                        {
-                            mouse.accepted = false
-                        }
-                    }
+                                    {
+                                        if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible )
+                                        {
+                                            selectLayer.visible = true;
+                                            selectLayer.x = mouseX;
+                                            selectLayer.y = mouseY;
+                                            selectLayer.newX = mouseX;
+                                            selectLayer.newY = mouseY;
+                                            selectLayer.width = 0
+                                            selectLayer.height = 0;
+
+                                            mouse.accepted = true
+                                        }else
+                                        {
+                                            mouse.accepted = false
+                                        }
+                                    }
                     
                     onReleased: (mouse) =>
-                    {
-                        if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
-                        {
-                            mouse.accepted = false
-                            return;
-                        }
-                        
-                        if(selectLayer.y > controlView.contentHeight)
-                        {
-                            return selectLayer.reset();
-                        }
-                        
-                        var lassoIndexes = []
-                        const limitX = mouse.x === lassoRec.x ? lassoRec.x+lassoRec.width : mouse.x
-                        const limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
-                        
-                        for(var i =lassoRec.x; i < limitX; i+=(lassoRec.width/(controlView.cellWidth* 0.5)))
-                        {
-                            for(var y = lassoRec.y; y < limitY; y+=(lassoRec.height/(controlView.cellHeight * 0.5)))
-                            {
-                                const index = controlView.indexAt(i,y+controlView.contentY)
-                                if(!lassoIndexes.includes(index) && index>-1 && index< controlView.count)
-                                    lassoIndexes.push(index)
-                            }
-                        }
-                        
-                        if(lassoIndexes.length > 0)
-                        {
-                            control.itemsSelected(lassoIndexes)
-                        }
-                        
-                        selectLayer.reset()
-                    }
+                                {
+                                    if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
+                                    {
+                                        mouse.accepted = false
+                                        return;
+                                    }
+
+                                    if(selectLayer.y > controlView.contentHeight)
+                                    {
+                                        return selectLayer.reset();
+                                    }
+
+                                    var lassoIndexes = []
+                                    const limitX = mouse.x === lassoRec.x ? lassoRec.x+lassoRec.width : mouse.x
+                                    const limitY =  mouse.y === lassoRec.y ?  lassoRec.y+lassoRec.height : mouse.y
+
+                                    for(var i =lassoRec.x; i < limitX; i+=(lassoRec.width/(controlView.cellWidth* 0.5)))
+                                    {
+                                        for(var y = lassoRec.y; y < limitY; y+=(lassoRec.height/(controlView.cellHeight * 0.5)))
+                                        {
+                                            const index = controlView.indexAt(i,y+controlView.contentY)
+                                            if(!lassoIndexes.includes(index) && index>-1 && index< controlView.count)
+                                            lassoIndexes.push(index)
+                                        }
+                                    }
+
+                                    if(lassoIndexes.length > 0)
+                                    {
+                                        control.itemsSelected(lassoIndexes)
+                                    }
+
+                                    selectLayer.reset()
+                                }
                 }
             }
             

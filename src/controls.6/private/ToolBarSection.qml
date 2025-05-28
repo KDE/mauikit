@@ -5,7 +5,7 @@ Item
 {
     id: control
 
-    visible: _layout.children.length
+    visible: _layout.children.length > 0
 
     implicitWidth: _layout.implicitWidth
     implicitHeight: _layout.implicitHeight

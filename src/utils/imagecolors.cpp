@@ -32,7 +32,7 @@
 
 #define return_fallback_finally(value, finally)                                                                                                                \
     if (m_imageData.m_samples.size() == 0) {                                                                                                                   \
-        return value.isValid() ? value : static_cast<Maui::PlatformTheme *>(qmlAttachedPropertiesObject<Maui::PlatformTheme>(this, true))->finally();  \
+return value.isValid() ? value : static_cast<MauiKit::Platform::PlatformTheme *>(qmlAttachedPropertiesObject<MauiKit::Platform::PlatformTheme>(this, true))->finally();  \
     }
 
 ImageColors::ImageColors(QObject *parent)

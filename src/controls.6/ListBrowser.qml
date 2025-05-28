@@ -340,13 +340,7 @@ Item
      * @brief Emitted when an empty space of the area area background has been right clicked.
      */
     signal areaRightClicked()
-    
-    /**
-     * @brief Emitted when a physical key from the device has been pressed.
-     * @param event The object with information about the event.
-     */
-    signal keyPress(var event)
-    
+
     Keys.enabled : true
     Keys.forwardTo : _listView
     
@@ -355,9 +349,12 @@ Item
         id: _scrollView
         anchors.fill: parent
         clip: control.clip
-        focus: true
+        focus: false
+        focusPolicy: Qt.NoFocus
+        Keys.enabled: false
+        Keys.forwardTo: _listView
         padding: Maui.Style.contentMargins
-        orientation: _listView.orientation
+        Maui.Controls.orientation: _listView.orientation
         
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
@@ -387,18 +384,20 @@ Item
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
-            
-            keyNavigationEnabled : true
+
+            keyNavigationEnabled : false // Causes many issues with the keyboard navigation
             keyNavigationWraps : true
 
-            Keys.onPressed: (event) => control.keyPress(event)
+            Keys.enabled: true
+            Keys.onUpPressed: _listView.decrementCurrentIndex()
+            Keys.onDownPressed: _listView.incrementCurrentIndex()
             
             Maui.Holder
             {
                 id: _holder
                 visible: false
                 anchors.fill : parent
-                
+                Keys.forwardTo: _listView
                 anchors.topMargin: _listView.headerItem ? _listView.headerItem.height : 0
                 anchors.bottomMargin: _listView.footerItem ?  _listView.footerItem.height : 0
             }
@@ -429,7 +428,7 @@ Item
                                        console.log("Area clicked")
 
                                        control.areaClicked(mouse)
-                                       control.forceActiveFocus()
+                                       // control.forceActiveFocus()
 
                                        if(mouse.button === Qt.RightButton)
                                        {

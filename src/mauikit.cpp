@@ -83,6 +83,7 @@ void MauiKit::registerTypes(const char *uri)
     qmlRegisterType(componentUrl(QStringLiteral("PieButton.qml")), uri, 1, 0, "PieButton");
     qmlRegisterType(componentUrl(QStringLiteral("SideBarView.qml")), uri, 1, 0, "SideBarView");
     qmlRegisterType(componentUrl(QStringLiteral("Holder.qml")), uri, 1, 0, "Holder");
+    qmlRegisterType(componentUrl(QStringLiteral("Notification.qml")), uri, 1, 0, "Notification");
 
     qmlRegisterType(componentUrl(QStringLiteral("ListDelegate.qml")), uri, 1, 0, "ListDelegate");
     qmlRegisterType(componentUrl(QStringLiteral("ListBrowserDelegate.qml")), uri, 1, 0, "ListBrowserDelegate");

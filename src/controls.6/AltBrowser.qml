@@ -231,6 +231,7 @@ Maui.Page
         id: _holder
         anchors.fill: parent
         visible: false
+        Keys.forwardTo: control.currentView
     }
 
     /**

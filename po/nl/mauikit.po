@@ -1,13 +1,13 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the mauikit package.
 #
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 01:49+0000\n"
-"PO-Revision-Date: 2024-06-26 11:47+0200\n"
+"POT-Creation-Date: 2025-05-23 00:41+0000\n"
+"PO-Revision-Date: 2025-05-03 12:42+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
@@ -103,7 +103,7 @@ msgstr "Filmquiz bracht knappe ex-yogi van de wijs"
 msgid "Fonts"
 msgstr "Lettertypen"
 
-#: src/controls.6/FontPickerDialog.qml:96
+#: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
@@ -113,12 +113,12 @@ msgstr "Annuleren"
 msgid "Accept"
 msgstr "Accepteren"
 
-#: src/controls.6/ImageViewer.qml:204
+#: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
 msgstr "Oops!"
 
-#: src/controls.6/ImageViewer.qml:205
+#: src/controls.6/ImageViewer.qml:211
 #, kde-format
 msgid "The image could not be loaded."
 msgstr "De afbeelding kon niet worden geladen."
@@ -128,7 +128,7 @@ msgstr "De afbeelding kon niet worden geladen."
 msgid "Version ID copied to clipboard"
 msgstr "Versie-ID gekopieerd naar klembord"
 
-#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:401
+#: src/controls.6/private/AboutDialog.qml:98 src/controls.6/TextField.qml:398
 #, kde-format
 msgid "Copy"
 msgstr "Kopiëren"
@@ -148,22 +148,22 @@ msgstr "Thuispagina"
 msgid "Authors"
 msgstr "Auteurs"
 
-#: src/controls.6/private/AboutDialog.qml:174
+#: src/controls.6/private/AboutDialog.qml:168
 #, kde-format
 msgid "Translators"
 msgstr "Vertalers"
 
-#: src/controls.6/private/AboutDialog.qml:215
+#: src/controls.6/private/AboutDialog.qml:203
 #, kde-format
 msgid "Credits"
 msgstr "Dankbetuigingen"
 
-#: src/controls.6/private/AboutDialog.qml:261
+#: src/controls.6/private/AboutDialog.qml:243
 #, kde-format
 msgid "Licenses"
 msgstr "Licenties"
 
-#: src/controls.6/private/AboutDialog.qml:289
+#: src/controls.6/private/AboutDialog.qml:263
 #, kde-format
 msgid "Components"
 msgstr "Componenten"
@@ -173,7 +173,14 @@ msgstr "Componenten"
 msgid "Share"
 msgstr "Delen"
 
-#: src/controls.6/private/ToastArea.qml:302
+#: src/controls.6/private/ShareDialogLinux.qml:92
+#, kde-format
+msgid "1 item"
+msgid_plural "%1 items"
+msgstr[0] "1 item"
+msgstr[1] "%1 items"
+
+#: src/controls.6/private/ToastArea.qml:363
 #, kde-format
 msgid "Dismiss All"
 msgstr "Alles wegdoen"
@@ -183,7 +190,7 @@ msgstr "Alles wegdoen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:324
+#: src/controls.6/SplitViewItem.qml:130 src/controls.6/TabView.qml:331
 #, kde-format
 msgid "Close"
 msgstr "Sluiten"
@@ -193,32 +200,32 @@ msgstr "Sluiten"
 msgid "Are you sure you want to close the split view: '%1'?"
 msgstr "Wilt u de gesplitste sessie sluiten: '%1'?"
 
-#: src/controls.6/TabView.qml:313
+#: src/controls.6/TabView.qml:320
 #, kde-format
 msgid "Open"
 msgstr "Openen"
 
-#: src/controls.6/TextField.qml:408
+#: src/controls.6/TextField.qml:405
 #, kde-format
 msgid "Cut"
 msgstr "Knippen"
 
-#: src/controls.6/TextField.qml:415
+#: src/controls.6/TextField.qml:412
 #, kde-format
 msgid "Paste"
 msgstr "Plakken"
 
-#: src/controls.6/TextField.qml:425
+#: src/controls.6/TextField.qml:422
 #, kde-format
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: src/controls.6/TextField.qml:432
+#: src/controls.6/TextField.qml:429
 #, kde-format
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: src/controls.6/TextField.qml:439
+#: src/controls.6/TextField.qml:436
 #, kde-format
 msgid "Redo"
 msgstr "Opnieuw"

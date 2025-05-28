@@ -1,5 +1,5 @@
 /*
- *  SPDX-FileCopyrightText: 2017 by Marco Martin <mart@kde.org>
+ *  SPDX-FileCopyrightText: 2017 Marco Martin <mart@kde.org>
  *  SPDX-FileCopyrightText: 2021 Arjen Hiemstra <ahiemstra@heimr.nl>
  *
  *  SPDX-License-Identifier: LGPL-2.0-or-later
@@ -9,7 +9,9 @@
 #include "basictheme_p.h"
 #include <QDebug>
 #include <QDir>
+#include <QFontDatabase>
 #include <QGuiApplication>
+#include <QPluginLoader>
 #include <QPointer>
 #include <QQmlContext>
 #include <QQmlEngine>
@@ -22,18 +24,20 @@
 #include <memory>
 #include <unordered_map>
 
-namespace Maui
+namespace MauiKit
+{
+namespace Platform
 {
 template<>
-QEvent::Type PlatformThemeEvents::DataChangedEvent::type = QEvent::None;
+MAUIKIT_EXPORT QEvent::Type PlatformThemeEvents::DataChangedEvent::type = QEvent::None;
 template<>
-QEvent::Type PlatformThemeEvents::ColorSetChangedEvent::type = QEvent::None;
+MAUIKIT_EXPORT QEvent::Type PlatformThemeEvents::ColorSetChangedEvent::type = QEvent::None;
 template<>
-QEvent::Type PlatformThemeEvents::ColorGroupChangedEvent::type = QEvent::None;
+MAUIKIT_EXPORT QEvent::Type PlatformThemeEvents::ColorGroupChangedEvent::type = QEvent::None;
 template<>
-QEvent::Type PlatformThemeEvents::ColorChangedEvent::type = QEvent::None;
+MAUIKIT_EXPORT QEvent::Type PlatformThemeEvents::ColorChangedEvent::type = QEvent::None;
 template<>
-QEvent::Type PlatformThemeEvents::FontChangedEvent::type = QEvent::None;
+MAUIKIT_EXPORT QEvent::Type PlatformThemeEvents::FontChangedEvent::type = QEvent::None;
 
 // Initialize event types.
 // We want to avoid collisions with application event types so we should use
@@ -93,8 +97,8 @@ public:
 
     using ColorMap = std::unordered_map<std::underlying_type<ColorRole>::type, QColor>;
 
-    // Which PlatformTheme instance "owns" this data object. Only the owner is
-    // allowed to make changes to data.
+           // Which PlatformTheme instance "owns" this data object. Only the owner is
+           // allowed to make changes to data.
     QPointer<PlatformTheme> owner;
 
     PlatformTheme::ColorSet colorSet = PlatformTheme::Window;
@@ -102,14 +106,18 @@ public:
 
     std::array<QColor, ColorRoleCount> colors;
 
+    QFont defaultFont;
+    QFont smallFont = QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont);
+    QFont fixedWidthFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+
     QPalette palette;
 
-    // A list of PlatformTheme instances that want to be notified when the data
-    // changes. This is used instead of signal/slots as this way we only store
-    // a little bit of data and that data is shared among instances, whereas
-    // signal/slots turn out to have a pretty large memory overhead per instance.
+           // A list of PlatformTheme instances that want to be notified when the data
+           // changes. This is used instead of signal/slots as this way we only store
+           // a little bit of data and that data is shared among instances, whereas
+           // signal/slots turn out to have a pretty large memory overhead per instance.
     using Watcher = PlatformTheme *;
-    QVector<Watcher> watchers;
+    QList<Watcher> watchers;
 
     inline void setColorSet(PlatformTheme *sender, PlatformTheme::ColorSet set)
     {
@@ -152,6 +160,45 @@ public:
         notifyWatchers<QColor>(sender, oldValue, colors[role]);
     }
 
+    inline void setDefaultFont(PlatformTheme *sender, const QFont &font)
+    {
+        if (sender != owner || font == defaultFont) {
+            return;
+        }
+
+        auto oldValue = defaultFont;
+
+        defaultFont = font;
+
+        notifyWatchers<QFont>(sender, oldValue, font);
+    }
+
+    inline void setSmallFont(PlatformTheme *sender, const QFont &font)
+    {
+        if (sender != owner || font == smallFont) {
+            return;
+        }
+
+        auto oldValue = smallFont;
+
+        smallFont = font;
+
+        notifyWatchers<QFont>(sender, oldValue, smallFont);
+    }
+
+    inline void setFixedWidthFont(PlatformTheme *sender, const QFont &font)
+    {
+        if (sender != owner || font == fixedWidthFont) {
+            return;
+        }
+
+        auto oldValue = fixedWidthFont;
+
+        fixedWidthFont = font;
+
+        notifyWatchers<QFont>(sender, oldValue, fixedWidthFont);
+    }
+
     inline void addChangeWatcher(PlatformTheme *object)
     {
         watchers.append(object);
@@ -171,7 +218,7 @@ public:
         }
     }
 
-    // Update a palette from a list of colors.
+           // Update a palette from a list of colors.
     inline static void updatePalette(QPalette &palette, const std::array<QColor, ColorRoleCount> &colors)
     {
         for (std::size_t i = 0; i < colors.size(); ++i) {
@@ -179,7 +226,7 @@ public:
         }
     }
 
-    // Update a palette from a hash of colors.
+           // Update a palette from a hash of colors.
     inline static void updatePalette(QPalette &palette, const ColorMap &colors)
     {
         for (auto entry : colors) {
@@ -205,6 +252,7 @@ public:
             break;
         case HighlightColor:
             palette.setColor(QPalette::Highlight, color);
+            palette.setColor(QPalette::Accent, color);
             break;
         case HighlightedTextColor:
             palette.setColor(QPalette::HighlightedText, color);
@@ -230,6 +278,7 @@ public:
         , supportsIconColoring(false)
         , pendingColorChange(false)
         , pendingChildUpdate(false)
+        , useAlternateBackgroundColor(false)
         , colorSet(PlatformTheme::Window)
         , colorGroup(PlatformTheme::Active)
     {
@@ -263,6 +312,7 @@ public:
             // Invalid color, assume we are resetting the value.
             auto itr = localOverrides->find(color);
             if (itr != localOverrides->end()) {
+                PlatformThemeChangeTracker tracker(theme, PlatformThemeChangeTracker::PropertyChange::Color);
                 localOverrides->erase(itr);
 
                 if (data) {
@@ -272,8 +322,6 @@ public:
                     // handle resetting the actual color.
                     data->setColor(theme, color, Qt::transparent);
                 }
-
-                emitCompressedColorChanged(theme);
             }
 
             return;
@@ -284,13 +332,13 @@ public:
             return;
         }
 
+        PlatformThemeChangeTracker tracker(theme, PlatformThemeChangeTracker::PropertyChange::Color);
+
         (*localOverrides)[color] = value;
 
         if (data) {
             data->setColor(theme, color, value);
         }
-
-        emitCompressedColorChanged(theme);
     }
 
     inline void setDataColor(PlatformTheme *theme, PlatformThemeData::ColorRole color, const QColor &value)
@@ -306,35 +354,11 @@ public:
             }
         }
 
+        PlatformThemeChangeTracker tracker(theme, PlatformThemeChangeTracker::PropertyChange::Color);
+
         if (data) {
             data->setColor(theme, color, value);
         }
-    }
-
-    inline void emitCompressedColorChanged(PlatformTheme *theme)
-    {
-        if (pendingColorChange) {
-            return;
-        }
-
-        pendingColorChange = true;
-        QMetaObject::invokeMethod(theme, &PlatformTheme::emitColorChanged, Qt::QueuedConnection);
-    }
-
-    inline void queueChildUpdate(PlatformTheme *theme)
-    {
-        if (pendingChildUpdate) {
-            return;
-        }
-
-        pendingChildUpdate = true;
-        QMetaObject::invokeMethod(
-            theme,
-            [this, theme]() {
-                pendingChildUpdate = false;
-                theme->updateChildren(theme->parent());
-            },
-            Qt::QueuedConnection);
     }
 
     /*
@@ -345,8 +369,8 @@ public:
      * works the same without needing memory.
      */
 
-    // An instance of the data object. This is potentially shared with many
-    // instances of PlatformTheme.
+           // An instance of the data object. This is potentially shared with many
+           // instances of PlatformTheme.
     std::shared_ptr<PlatformThemeData> data;
     // Used to store color overrides of inherited data. This is created on
     // demand and will only exist if we actually have local overrides.
@@ -356,29 +380,38 @@ public:
     bool supportsIconColoring : 1; // TODO KF6: Remove in favour of virtual method
     bool pendingColorChange : 1;
     bool pendingChildUpdate : 1;
+    bool useAlternateBackgroundColor : 1;
 
-    // Note: We use these to store local values of PlatformTheme::ColorSet and
-    // PlatformTheme::ColorGroup. While these are standard enums and thus 32
-    // bits they only contain a few items so we store the value in only 4 bits
-    // to save space.
+           // Note: We use these to store local values of PlatformTheme::ColorSet and
+           // PlatformTheme::ColorGroup. While these are standard enums and thus 32
+           // bits they only contain a few items so we store the value in only 4 bits
+           // to save space.
     uint8_t colorSet : 4;
     uint8_t colorGroup : 4;
 
-    // Ensure the above assumption holds. Should this static assert fail, the
-    // bit size above needs to be adjusted.
+           // Ensure the above assumption holds. Should this static assert fail, the
+           // bit size above needs to be adjusted.
     static_assert(PlatformTheme::ColorGroupCount <= 16, "PlatformTheme::ColorGroup contains more elements than can be stored in PlatformThemePrivate");
     static_assert(PlatformTheme::ColorSetCount <= 16, "PlatformTheme::ColorSet contains more elements than can be stored in PlatformThemePrivate");
 
 };
-
 
 PlatformTheme::PlatformTheme(QObject *parent)
     : QObject(parent)
     , d(new PlatformThemePrivate)
 {
     if (QQuickItem *item = qobject_cast<QQuickItem *>(parent)) {
-        connect(item, &QQuickItem::windowChanged, this, &PlatformTheme::update);
+        connect(item, &QQuickItem::windowChanged, this, [this](QQuickWindow *window) {
+            if (window) {
+                update();
+            }
+        });
         connect(item, &QQuickItem::parentChanged, this, &PlatformTheme::update);
+        // Needs to be connected to enabledChanged twice to correctly fully update when a
+        // Theme that does inherit becomes temporarly non-inherit and back due to
+        // the item being enabled or disabled
+        connect(item, &QQuickItem::enabledChanged, this, &PlatformTheme::update);
+        connect(item, &QQuickItem::enabledChanged, this, &PlatformTheme::update, Qt::QueuedConnection);
     }
 
     update();
@@ -395,6 +428,7 @@ PlatformTheme::~PlatformTheme()
 
 void PlatformTheme::setColorSet(PlatformTheme::ColorSet colorSet)
 {
+    PlatformThemeChangeTracker tracker(this, PlatformThemeChangeTracker::PropertyChange::ColorSet);
     d->colorSet = colorSet;
 
     if (d->data) {
@@ -409,6 +443,7 @@ PlatformTheme::ColorSet PlatformTheme::colorSet() const
 
 void PlatformTheme::setColorGroup(PlatformTheme::ColorGroup colorGroup)
 {
+    PlatformThemeChangeTracker tracker(this, PlatformThemeChangeTracker::PropertyChange::ColorGroup);
     d->colorGroup = colorGroup;
 
     if (d->data) {
@@ -639,6 +674,60 @@ void PlatformTheme::setFocusColor(const QColor &color)
     d->setDataColor(this, PlatformThemeData::FocusColor, color);
 }
 
+QFont PlatformTheme::defaultFont() const
+{
+    return d->data ? d->data->defaultFont : QFont{};
+}
+
+void PlatformTheme::setDefaultFont(const QFont &font)
+{
+    PlatformThemeChangeTracker tracker(this, PlatformThemeChangeTracker::PropertyChange::Font);
+    if (d->data) {
+        d->data->setDefaultFont(this, font);
+    }
+}
+
+QFont PlatformTheme::smallFont() const
+{
+    return d->data ? d->data->smallFont : QFont{};
+}
+
+void PlatformTheme::setSmallFont(const QFont &font)
+{
+    PlatformThemeChangeTracker tracker(this, PlatformThemeChangeTracker::PropertyChange::Font);
+    if (d->data) {
+        d->data->setSmallFont(this, font);
+    }
+}
+
+QFont PlatformTheme::fixedWidthFont() const
+{
+    return d->data ? d->data->fixedWidthFont : QFont{};
+}
+
+void PlatformTheme::setFixedWidthFont(const QFont &font)
+{
+    PlatformThemeChangeTracker tracker(this, PlatformThemeChangeTracker::PropertyChange::Font);
+    if (d->data) {
+        d->data->setFixedWidthFont(this, font);
+    }
+}
+
+qreal PlatformTheme::frameContrast() const
+{
+    // This value must be kept in sync with
+    // the value from Breeze Qt Widget theme.
+    // See: https://invent.kde.org/plasma/breeze/-/blob/master/kstyle/breezemetrics.h?ref_type=heads#L162
+    return 0.20;
+}
+
+qreal PlatformTheme::lightFrameContrast() const
+{
+    // This can be utilized to return full contrast
+    // if high contrast accessibility setting is enabled
+    return frameContrast() / 2.0;
+}
+
 // setters for QML clients
 void PlatformTheme::setCustomTextColor(const QColor &color)
 {
@@ -740,6 +829,21 @@ void PlatformTheme::setCustomFocusColor(const QColor &color)
     d->setColor(this, PlatformThemeData::FocusColor, color);
 }
 
+bool PlatformTheme::useAlternateBackgroundColor() const
+{
+    return d->useAlternateBackgroundColor;
+}
+
+void PlatformTheme::setUseAlternateBackgroundColor(bool alternate)
+{
+    if (alternate == d->useAlternateBackgroundColor) {
+        return;
+    }
+
+    d->useAlternateBackgroundColor = alternate;
+    Q_EMIT useAlternateBackgroundColorChanged(alternate);
+}
+
 QPalette PlatformTheme::palette() const
 {
     if (!d->data) {
@@ -774,11 +878,50 @@ void PlatformTheme::setSupportsIconColoring(bool support)
 
 PlatformTheme *PlatformTheme::qmlAttachedProperties(QObject *object)
 {
-    return new BasicTheme(object);
+    // QQmlEngine *engine = qmlEngine(object);
+
+    return new MauiKit::BasicTheme(object);
+}
+
+void PlatformTheme::emitSignalsForChanges(int changes)
+{
+    if (!d->data) {
+        return;
+    }
+
+    auto propertyChanges = PlatformThemeChangeTracker::PropertyChanges::fromInt(changes);
+
+    if (propertyChanges & PlatformThemeChangeTracker::PropertyChange::ColorSet) {
+        Q_EMIT colorSetChanged(ColorSet(d->data->colorSet));
+    }
+
+    if (propertyChanges & PlatformThemeChangeTracker::PropertyChange::ColorGroup) {
+        Q_EMIT colorGroupChanged(ColorGroup(d->data->colorGroup));
+    }
+
+    if (propertyChanges & PlatformThemeChangeTracker::PropertyChange::Color) {
+        Q_EMIT colorsChanged();
+    }
+
+    if (propertyChanges & PlatformThemeChangeTracker::PropertyChange::Palette) {
+        Q_EMIT paletteChanged(d->data->palette);
+    }
+
+    if (propertyChanges & PlatformThemeChangeTracker::PropertyChange::Font) {
+        Q_EMIT defaultFontChanged(d->data->defaultFont);
+        Q_EMIT smallFontChanged(d->data->smallFont);
+        Q_EMIT fixedWidthFontChanged(d->data->fixedWidthFont);
+    }
+
+    if (propertyChanges & PlatformThemeChangeTracker::PropertyChange::Data) {
+        updateChildren(parent());
+    }
 }
 
 bool PlatformTheme::event(QEvent *event)
 {
+    PlatformThemeChangeTracker tracker(this);
+
     if (event->type() == PlatformThemeEvents::DataChangedEvent::type) {
         auto changeEvent = static_cast<PlatformThemeEvents::DataChangedEvent *>(event);
 
@@ -793,40 +936,29 @@ bool PlatformTheme::event(QEvent *event)
         if (changeEvent->newValue) {
             auto data = changeEvent->newValue;
             data->addChangeWatcher(this);
-
-            Q_EMIT colorSetChanged(data->colorSet);
-            Q_EMIT colorGroupChanged(data->colorGroup);
-
-            d->emitCompressedColorChanged(this);
         }
 
+        tracker.markDirty(PlatformThemeChangeTracker::PropertyChange::All);
         return true;
     }
 
     if (event->type() == PlatformThemeEvents::ColorSetChangedEvent::type) {
-        if (d->data) {
-            Q_EMIT colorSetChanged(d->data->colorSet);
-        }
+        tracker.markDirty(PlatformThemeChangeTracker::PropertyChange::ColorSet);
         return true;
     }
 
     if (event->type() == PlatformThemeEvents::ColorGroupChangedEvent::type) {
-        if (d->data) {
-            Q_EMIT colorGroupChanged(d->data->colorGroup);
-        }
+        tracker.markDirty(PlatformThemeChangeTracker::PropertyChange::ColorGroup);
         return true;
     }
 
     if (event->type() == PlatformThemeEvents::ColorChangedEvent::type) {
-        d->emitCompressedColorChanged(this);
+        tracker.markDirty(PlatformThemeChangeTracker::PropertyChange::Color | PlatformThemeChangeTracker::PropertyChange::Palette);
         return true;
     }
 
     if (event->type() == PlatformThemeEvents::FontChangedEvent::type) {
-        if (d->data) {
-            // Q_EMIT defaultFontChanged(d->data->defaultFont);
-            // Q_EMIT smallFontChanged(d->data->smallFont);
-        }
+        tracker.markDirty(PlatformThemeChangeTracker::PropertyChange::Font);
         return true;
     }
 
@@ -835,11 +967,17 @@ bool PlatformTheme::event(QEvent *event)
 
 void PlatformTheme::update()
 {
-    d->queueChildUpdate(this);
-
     auto oldData = d->data;
 
-    if (d->inherit) {
+    bool actualInherit = d->inherit;
+    if (QQuickItem *item = qobject_cast<QQuickItem *>(parent())) {
+        // For inactive windows it should work already, as also the non inherit themes get it
+        if (colorGroup() != Disabled && !item->isEnabled()) {
+            actualInherit = false;
+        }
+    }
+
+    if (actualInherit) {
         QObject *candidate = parent();
         while (true) {
             candidate = determineParent(candidate);
@@ -862,7 +1000,7 @@ void PlatformTheme::update()
                 return;
             }
         }
-    } else if (d->data->owner != this) {
+    } else if (d->data && d->data->owner != this) {
         // Inherit has changed and we no longer want to inherit, clear the data
         // so it is recreated below.
         d->data = nullptr;
@@ -871,8 +1009,16 @@ void PlatformTheme::update()
     if (!d->data) {
         d->data = std::make_shared<PlatformThemeData>();
         d->data->owner = this;
+
         d->data->setColorSet(this, static_cast<ColorSet>(d->colorSet));
         d->data->setColorGroup(this, static_cast<ColorGroup>(d->colorGroup));
+
+               // If we normally inherit but do not do so currently due to an override,
+               // copy over the old colorSet to ensure we do not suddenly change to a
+               // different colorSet.
+        if (d->inherit && !actualInherit && oldData) {
+            d->data->setColorSet(this, oldData->colorSet);
+        }
     }
 
     if (d->localOverrides) {
@@ -902,16 +1048,6 @@ void PlatformTheme::updateChildren(QObject *object)
     }
 }
 
-void PlatformTheme::emitColorChanged()
-{
-    if (d->data) {
-        Q_EMIT paletteChanged(d->data->palette);
-    }
-
-    Q_EMIT colorsChanged();
-    d->pendingColorChange = false;
-}
-
 // We sometimes set theme properties on non-visual objects. However, if an item
 // has a visual and a non-visual parent that are different, we should prefer the
 // visual parent, so we need to apply some extra logic.
@@ -929,6 +1065,39 @@ QObject *PlatformTheme::determineParent(QObject *object)
     }
 }
 
+PlatformThemeChangeTracker::PlatformThemeChangeTracker(PlatformTheme *theme, PropertyChanges changes)
+    : m_theme(theme)
+{
+    auto itr = s_blockedChanges.constFind(theme);
+    if (itr == s_blockedChanges.constEnd() || (*itr).expired()) {
+        m_data = std::make_shared<Data>();
+        s_blockedChanges.insert(theme, m_data);
+    } else {
+        m_data = (*itr).lock();
+    }
+
+    m_data->changes |= changes;
 }
 
+PlatformThemeChangeTracker::~PlatformThemeChangeTracker() noexcept
+{
+    std::weak_ptr<Data> dataWatcher = m_data;
+
+    auto changes = m_data->changes;
+    m_data.reset();
+
+    if (dataWatcher.use_count() <= 0) {
+        m_theme->emitSignalsForChanges(changes);
+        s_blockedChanges.remove(m_theme);
+    }
+}
+
+void PlatformThemeChangeTracker::markDirty(PropertyChanges changes)
+{
+    m_data->changes |= changes;
+}
+}
+}
+
+#include "moc_platformtheme.cpp"
 #include "platformtheme.moc"

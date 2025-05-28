@@ -68,10 +68,10 @@ Item
 {
     id: control
 
-    visible: icon.valid || img.status === Image.Ready
+    // visible: icon.valid || img.status === Image.Ready
 
-    implicitHeight: visible ? Math.max(iconSizeHint, imageSizeHint) : 0
-    implicitWidth: implicitHeight
+    implicitHeight: img.visible ? Math.max(imageSizeHint, iconSizeHint) : iconSizeHint
+    implicitWidth: img.visible ? Math.max(imageSizeHint, iconSizeHint) : iconSizeHint
 
     smooth: !Maui.Handy.isMobile
 
@@ -103,7 +103,7 @@ Item
      *
      * By default this is set to `-1`.
      */
-    property int imageSizeHint : -1
+    property int imageSizeHint :  -1
 
     /**
      * @brief The local or remote file URL of the image to be used.
@@ -182,11 +182,11 @@ Item
     Maui.Icon
     {
         id: icon
-        visible: img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error
+        visible: (img.status === Image.Null || img.status !== Image.Ready || img.status === Image.Error) && valid
 
         smooth: control.smooth
         anchors.centerIn: parent
-        height: valid ? Math.min(parent.height, control.iconSizeHint) : 0
+        height: visible ? Math.min(parent.height, control.iconSizeHint) : 0
         width: height
         color: control.color
         isMask: (height <= Maui.Style.iconSizes.medium)
@@ -196,12 +196,12 @@ Item
     {
         id: img
 
-
-//         width: Math.min(imageSizeHint >=0  ? imageSizeHint : parent.width, parent.width)
-//         height: Math.min(imageSizeHint >= 0 ? imageSizeHint : parent.height, parent.height)
+        width: imageSizeHint >=0 ? Math.min(parent.width, imageSizeHint) : parent.width
+        height: imageSizeHint >= 0 ? Math.min(parent.height, imageSizeHint) : parent.height
 //
-        height: imageSizeHint >=0 ? imageSizeHint : parent.height
-        width: imageSizeHint >=0 ?  imageSizeHint : parent.width
+        visible: status == Image.Ready
+        // height: visible ? (control.imageSizeHint > parent.height ? parent.height : control.imageSizeHint) : 0
+        // width: visible ? (control.imageSizeHint > parent.width ? parent.width : control.imageSizeHint) : 0
 
         anchors.verticalCenter: parent.verticalCenter
         x: switch(control.alignment)
@@ -222,7 +222,7 @@ Item
         smooth: control.smooth
         mipmap: false
 
-        layer.enabled: control.maskRadius
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.maskRadius
         layer.effect: MultiEffect
         {
             maskEnabled: true

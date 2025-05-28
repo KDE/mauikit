@@ -89,20 +89,20 @@ Dialog
             id: _content
             clip: true
             spacing: control.spacing
-            
+                        
             Maui.ListItemTemplate
             {
                 id: _template
                 visible: control.message.length
                 Layout.fillWidth: true
+                Layout.preferredHeight: visible ? implicitHeight : -_content.spacing
+                
                 label2.textFormat : TextEdit.AutoText
                 label2.wrapMode: TextEdit.WordWrap
-                iconVisible: control.width > Maui.Style.units.gridUnit * 10
                 
                 iconSizeHint: Maui.Style.iconSizes.large
+                imageSizeHint: Maui.Style.iconSizes.large
                 spacing: Maui.Style.space.big
-                
-                leftLabels.spacing: control.spacing
             }
             
             Maui.Chip
@@ -110,10 +110,11 @@ Dialog
                 id: _alertMessage
                 
                 visible: text.length > 0
-                
+               
                 property int level : 0
                 
                 Layout.fillWidth: true
+                Layout.preferredHeight: visible ? implicitHeight : -_content.spacing
                 
                 color: switch(level)
                 {

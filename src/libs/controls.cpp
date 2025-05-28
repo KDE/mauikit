@@ -181,3 +181,17 @@ void Controls::setItem(QQuickItem *item)
     m_item = item;
     Q_EMIT itemChanged();
 }
+
+void Controls::setOrientation(Qt::Orientation orientation)
+{
+    if(m_orientation == orientation)
+        return;
+    
+    m_orientation = orientation;
+    Q_EMIT orientationChanged();
+}
+
+Qt::Orientation Controls::orientation() const
+{
+    return m_orientation;
+}

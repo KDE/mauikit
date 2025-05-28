@@ -19,8 +19,10 @@
 
 import QtQuick
 import QtQml
+
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 
 import org.mauikit.controls as Maui
 
@@ -170,7 +172,6 @@ Pane
     bottomPadding: control.padding
 
     Maui.Theme.colorSet: Maui.Theme.View
-    Maui.Theme.inherit: false
 
     Maui.Controls.showCSD: false
     Maui.Controls.level: control.Maui.Controls.showCSD === true ? Maui.Controls.Primary : Maui.Controls.Secondary
@@ -190,7 +191,7 @@ Pane
          * @brief An alias to the actual page container.
          * @property Item Page::pageContent
          */
-    readonly property alias pageContent : _content
+    readonly property alias pageContent : _parentContainer
 
     /**
          *
@@ -282,7 +283,7 @@ Pane
          * @brief The actual container for all the footer bars.
          * @property Column Page::footerContainer
          */
-    property alias footerContainer : _footerContent
+    readonly property alias footerContainer : _footerContent
 
     /**
          * @brief Quick way to add more children to the header bar.
@@ -295,7 +296,7 @@ Pane
          * @brief The actual container for all the header bars.
          * @property Column Page::headerContainer
          */
-    property alias headerContainer : _headerContent
+    readonly property alias headerContainer : _headerContent
 
     /**
          * @brief The page margins for the page contents.
@@ -323,6 +324,16 @@ Pane
          * @brief Page bottom margins
          */
     property int bottomMargin: margins
+
+    /**
+      * @brief Margins around the footer column section
+      */
+    property alias footerMargins: _footerContent.margins
+
+    /**
+      * @brief Margins around the footer header section
+      */
+    property alias headerMargins: _headerContent.margins
 
     /**
          * @brief If set to `true` the header bar will be positioned to the bottom under the footer bar.
@@ -391,8 +402,11 @@ Pane
     QtObject
     {
         id: _private
-        property int topMargin : (!control.altHeader ? (control.floatingHeader ? 0 : _headerContent.implicitHeight) : 0) + control.topMargin
-        property int bottomMargin: ((control.floatingFooter && control.footerPositioning === ListView.InlineFooter ? 0 : _footerContent.implicitHeight)  + (control.altHeader ? _headerContent.implicitHeight : 0))
+        readonly property int headerTotalHeight : _headerContent.visibleChildren.length > 0 ? (control.floatingHeader ? 0 : _headerContent.implicitHeight + _headerContent.topMargin + _headerContent.bottomMargin) : 0
+        readonly property int footerTotalHeight : _footerContent.visibleChildren.length > 0 ? (control.floatingFooter ? 0: _footerContent.implicitHeight +  _footerContent.topMargin + _footerContent.bottomMargin) : 0
+
+        readonly property int topMargin : (control.altHeader ? 0 : headerTotalHeight) + control.topMargin
+        readonly property int bottomMargin: ((control.altHeader ? headerTotalHeight + footerTotalHeight : footerTotalHeight)) + control.bottomMargin
     }
 
     onFlickableChanged:
@@ -402,10 +416,19 @@ Pane
 
     Binding
     {
-        when:  control.floatingFooter && control.footerPositioning === ListView.InlineFooter && _footerContent.implicitHeight > 0
+        when:  control.floatingFooter && _footerContent.implicitHeight > 0
         target: control.flickable
         property: "bottomMargin"
-        value: _footerContent.implicitHeight
+        value: _footerContent.implicitHeight+control.footerMargins
+        restoreMode: Binding.RestoreBindingOrValue
+    }
+
+    Binding
+    {
+        when:  control.floatingHeader && _headerContent.implicitHeight > 0
+        target: control.flickable
+        property: "topMargin"
+        value: _headerContent.implicitHeight+control.headerMargins*2
         restoreMode: Binding.RestoreBindingOrValue
     }
 
@@ -527,16 +550,59 @@ Pane
         Maui.Controls.showCSD: control.Maui.Controls.showCSD && control.Maui.Controls.showCSD === true && !control.altHeader
         Maui.Controls.level: control.Maui.Controls.level
         Maui.Controls.flat: control.Maui.Controls.flat
-        Maui.Controls.item: ShaderEffectSource
+
+        background: Rectangle
         {
-            layer.enabled: true
-            // textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
-            sourceItem: _content
-            sourceRect:  _headBar.background ?
-                             (control.floatingHeader ?
-                                  Qt.rect(0, (_headBar.position === ToolBar.Header ? 0 :  _content.height - _headBar.background.height), _headBar.background.width, _headBar.background.height)
-                                : Qt.rect(0, (_headBar.position === ToolBar.Header ?  0 - (_headerContent.implicitHeight) :  _content.height), _headBar.background.width, _headBar.background.height))
-                           : null
+            id: _headerBg
+            color: Maui.Theme.backgroundColor
+            radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
+
+            ShaderEffectSource
+            {
+                id: _effect
+                anchors.fill: parent
+                visible: false
+                textureSize: Qt.size(_headBar.width, _headBar.height)
+                sourceItem: _parentContainer
+                sourceRect: _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height))
+            }
+
+            Loader
+            {
+                asynchronous: true
+                active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                anchors.fill: parent
+                sourceComponent: MultiEffect
+                {
+                    opacity: 0.2
+                    saturation: -0.5
+                    blurEnabled: true
+                    blurMax: 32
+                    blur: 1.0
+
+                    autoPaddingEnabled: false
+                    source: _effect
+                }
+            }
+
+            layer.enabled: _headerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+            layer.effect: MultiEffect
+            {
+                maskEnabled: true
+                maskThresholdMin: 0.5
+                maskSpreadAtMin: 1.0
+                maskSpreadAtMax: 0.0
+                maskThresholdMax: 1.0
+                maskSource: ShaderEffectSource
+                {
+                    sourceItem: Rectangle
+                    {
+                        width: _headerBg.width
+                        height: _headerBg.height
+                        radius: _headerBg.radius
+                    }
+                }
+            }
         }
 
         Binding on height
@@ -559,21 +625,15 @@ Pane
         Component
         {
             id: _titleComponent
-
-            Item
+            
+            Label
             {
-                implicitHeight:_titleLabel.implicitHeight
-
-                Label
-                {
-                    id: _titleLabel
-                    anchors.fill: parent
-                    text: control.title
-                    elide : Text.ElideRight
-                    font: Maui.Style.h2Font
-                    horizontalAlignment : Text.AlignHCenter
-                    verticalAlignment :  Text.AlignVCenter
-                }
+                id: _titleLabel
+                text: control.title
+                elide : Text.ElideRight
+                // font: Maui.Style.h2Font
+                horizontalAlignment : Text.AlignHCenter
+                verticalAlignment :  Text.AlignVCenter
             }
         }
 
@@ -587,15 +647,10 @@ Pane
 
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.maximumWidth: 200
+            Layout.alignment: Qt.AlignCenter
         }
     }
-
-    //Label
-    //{
-    //z: 999999999999
-    //color: "yellow"
-    //text: _footBar.visibleCount + " / " + _footBar.count + " - " + _footBar.height + " / " + footer.height + " - " + _footBar.visible + " / " + footer.visible + " / " + footer.height + " / " + _footerContent.implicitHeight  + " / " + _footerContent.implicitHeight
-    //}
 
     /**
          * @brief The main single footer bar.
@@ -611,12 +666,61 @@ Pane
 
         position: ToolBar.Footer
 
-        Maui.Controls.item: ShaderEffectSource
+        background: Rectangle
         {
-            layer.enabled: true
-            //textureSize: Qt.size(_headBarBG.width * 0.2, _headBarBG.height * 0.2)
-            sourceItem: _content
-            sourceRect: _footBar.background ? (control.floatingFooter ? Qt.rect(0, _content.height - _footBar.background.height, _footBar.background.width, _footBar.background.height) : Qt.rect(0, _content.height, _footBar.background.width, _footBar.background.height)) : Qt.rect(0,0,0,0)
+            id:_footerBg
+            color: Maui.Theme.backgroundColor
+            radius: control.footerMargins > 0 ? Maui.Style.radiusV : 0
+
+            ShaderEffectSource
+            {
+                id: _footerEffect
+                anchors.fill: parent
+                visible: false
+                // recursive: true
+                textureSize: Qt.size(_footBar.width, _footBar.height)
+                sourceItem: _parentContainer
+                sourceRect: Qt.rect(_footerContent.x, _footerContent.y, _footBar.width, _footBar.height)
+                // sourceRect: _parentContainer.mapFromItem(_footBar, Qt.rect(_footBar.x, _footBar.y, _footBar.width, _footBar.height))
+
+            }
+
+            Loader
+            {
+                asynchronous: true
+                active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                anchors.fill: parent
+                sourceComponent: MultiEffect
+                {
+                    opacity: 0.2
+                    saturation: -0.5
+                    blurEnabled: true
+                    blurMax: 32
+                    blur: 1.0
+
+                    autoPaddingEnabled: true
+                    source: _footerEffect
+                }
+            }
+
+            layer.enabled: _footerBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+            layer.effect: MultiEffect
+            {
+                maskEnabled: true
+                maskThresholdMin: 0.5
+                maskSpreadAtMin: 1.0
+                maskSpreadAtMax: 0.0
+                maskThresholdMax: 1.0
+                maskSource: ShaderEffectSource
+                {
+                    sourceItem: Rectangle
+                    {
+                        width: _footerBg.width
+                        height: _footerBg.height
+                        radius: _footerBg.radius
+                    }
+                }
+            }
         }
 
         Behavior on height
@@ -648,6 +752,14 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: parent.bottom
             }
+
+            // PropertyChanges
+            // {
+            //     target: _headerContent
+            //     data: {
+            //         _headerContent.data = data.reverse()
+            //     }
+            // }
         },
 
         State
@@ -667,6 +779,16 @@ Pane
                 anchors.top: undefined
                 anchors.bottom: _headerContent.top
             }
+
+            // PropertyChanges
+            // {
+            //     target: _headerContent
+            //     data: {
+            //         var data = []
+            //         data = _headerContent.data
+            //         _headerContent.data = data.reverse()
+            //     }
+            // }
         } ]
 
     onAutoHideHeaderChanged:
@@ -690,7 +812,11 @@ Pane
             pullDownFooter()
         }
     }
-    onAltHeaderChanged: pullDownHeader()
+
+    onAltHeaderChanged:
+    {
+        pullDownHeader()
+    }
 
 
     //                 Label
@@ -714,28 +840,41 @@ Pane
     {
         Item
         {
-            id: _content
             anchors.fill: parent
+            id: _parentContainer
 
-            anchors.topMargin: _private.topMargin
-            anchors.bottomMargin: _private.bottomMargin
+            Item
+            {
+                id: _content
+                focus: true
+                objectName: "Page Content Item"
 
-            anchors.leftMargin: control.leftMargin
-            anchors.rightMargin: control.rightMargin
+                anchors.fill: parent
+
+                anchors.topMargin: _private.topMargin
+                anchors.bottomMargin: _private.bottomMargin
+
+                anchors.leftMargin: control.leftMargin
+                anchors.rightMargin: control.rightMargin
+            }
         }
+
 
         Loader
         {
             active: control.Maui.Controls.showCSD === true && control.altHeader && !Maui.Handy.isMobile
             asynchronous: true
-            width: parent.width
-
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.margins: control.headerMargins
             sourceComponent: Maui.ToolBar
             {
-                anchors.top: parent.top
+
                 Maui.Controls.showCSD: true
                 background: Rectangle
                 {
+                    radius: control.headerMargins > 0 ?  Maui.Style.radiusV : 0
                     Maui.Theme.colorSet: control.Maui.Theme.colorSet
                     Maui.Theme.inherit: false
                     opacity: 0.8
@@ -750,18 +889,41 @@ Pane
             }
         }
 
-        Column
+        component ViewColumn : Column
         {
-            id: _headerContent
-            anchors.left: parent.left
-            anchors.right: parent.right
+            property int margins : 0
+            property int leftMargin: margins
+            property int rightMargin: margins
+            property int topMargin: margins
+            property int bottomMargin: margins
         }
 
-        Column
+        ViewColumn
         {
-            id: _footerContent
+            id: _headerContent
+            spacing: margins
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.margins: margins
+            anchors.topMargin: topMargin
+            anchors.bottomMargin: bottomMargin
+            anchors.leftMargin: leftMargin
+            anchors.rightMargin: rightMargin
+
+        }
+
+        ViewColumn
+        {
+            id: _footerContent
+            spacing: margins
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.margins: margins
+            anchors.topMargin: topMargin
+            anchors.bottomMargin: bottomMargin
+            anchors.leftMargin: leftMargin
+            anchors.rightMargin: rightMargin
+
         }
 
         Loader
@@ -968,45 +1130,30 @@ Pane
         }
     }
 
-    //Keys.onBackPressed:
-    //{
-    //control.goBackTriggered();
-    //}
-
-    //Shortcut
-    //{
-    //sequence: "Forward"
-    //onActivated: control.goForwardTriggered();
-    //}
-
-    //Shortcut
-    //{
-    //sequence: StandardKey.Forward
-    //onActivated: control.goForwardTriggered();
-    //}
-
-    //Shortcut
-    //{
-    //sequence: StandardKey.Back
-    //onActivated: control.goBackTriggered();
-    //}
-
-
     Component.onCompleted :
     {
         if(footer)
         {
-            _footerContent.data.push(footer)
+            let fdata = [footer] //ordering the headers for the main headBar to always be the first/top in the column
+
+            for(var i in _footerContent.data)
+            {
+                fdata.push(_footerContent.data[i])
+            }
+            _footerContent.data = fdata
         }
 
         if(header)
         {
-            let data = [header]
+            let data = [header] //ordering the headers for the main headBar to always be the first/top in the column
 
             for(var i in _headerContent.data)
             {
                 data.push(_headerContent.data[i])
             }
+
+            // if(control.altHeader)
+            //     data.reverse()
             _headerContent.data = data
         }
     }

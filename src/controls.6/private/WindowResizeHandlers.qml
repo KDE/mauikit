@@ -24,8 +24,10 @@ import QtQuick.Controls
 
 Item
 {
+    id: control
     Loader
     {
+        active: canResizeH
         asynchronous: true
         visible: active
         height: parent.height
@@ -49,7 +51,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.RightEdge)
+                        control.Window.window.startSystemResize(Qt.RightEdge)
                     }
                 }
             }
@@ -58,6 +60,8 @@ Item
     
     Loader
     {
+        active: canResizeH
+        
         asynchronous: true
         visible: active
         height: parent.height
@@ -81,7 +85,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.LeftEdge)
+                        control.Window.window.startSystemResize(Qt.LeftEdge)
                     }
                 }
             }
@@ -90,6 +94,8 @@ Item
     
     Loader
     {
+        active: canResizeV
+        
         asynchronous: true
         visible: active
         height: 6
@@ -113,7 +119,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.BottomEdge)
+                        control.Window.window.startSystemResize(Qt.BottomEdge)
                     }
                 }
             }
@@ -123,6 +129,8 @@ Item
     
     Loader
     {
+        active: canResizeV || canResizeH        
+        
         asynchronous: true
         visible: active
         height: 16
@@ -147,7 +155,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
+                        control.Window.window.startSystemResize(Qt.LeftEdge | Qt.BottomEdge);
                     }
                 }
             }
@@ -180,7 +188,7 @@ Item
                 {
                     if (active)
                     {
-                        root.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
+                        control.Window.window.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
                     }
                 }
             }

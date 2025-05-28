@@ -28,7 +28,8 @@ T.CheckBox
 {
     id: control
     opacity: enabled ? 1 : 0.5
-    
+    focus: true
+    focusPolicy: Qt.TabFocus
     implicitWidth: Math.max(contentItem.implicitWidth, indicator ? indicator.implicitWidth : 0) + leftPadding + rightPadding
     implicitHeight: Math.max(contentItem.implicitHeight, indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding
     

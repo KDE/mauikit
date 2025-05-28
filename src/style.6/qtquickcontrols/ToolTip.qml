@@ -56,7 +56,7 @@ T.ToolTip
         opacity: 0.95
         color: Maui.Theme.backgroundColor
         Maui.Theme.colorSet: Maui.Theme.Tooltip
-        layer.enabled: true
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
         layer.effect: MultiEffect
         {
             autoPaddingEnabled: true

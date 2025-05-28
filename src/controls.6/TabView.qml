@@ -126,6 +126,8 @@ Pane
 {
     id: control
 
+    focus: false
+    focusPolicy: Qt.StrongFocus
     /**
      * @brief Each one of the items declared as the children of this component will become a tab view.
      * @property list<QtObject> TabView::content
@@ -175,6 +177,11 @@ Pane
          *
          */
     property bool altTabBar : false
+
+    /**
+      *@brief Margins around the tabbar
+      */
+    property alias tabBarMargins: _tabBar.margins
 
     /**
          * @brief Whether the view will support swipe gestures for switching between tab views.
@@ -392,21 +399,23 @@ Pane
                 {
                     control.setCurrentIndex(_filterTabsList.currentIndex)
                     _quickSearch.close()
+                    control.forceActiveFocus()
                 }
 
                 Keys.enabled: true
-
                 Keys.onPressed: (event) =>
                                 {
                                     if((event.key === Qt.Key_Up))
                                     {
                                         _filterTabsList.flickable.decrementCurrentIndex()
+                                        event.accepted = true
                                     }
 
                                     if((event.key === Qt.Key_Down))
                                     {
                                         _filterTabsList.flickable.incrementCurrentIndex()
-                                    }
+                                        event.accepted = true
+                                    }                                    
                                 }
             }
 
@@ -436,16 +445,26 @@ Pane
         }
     }
 
+    component ViewTabBar : Maui.TabBar
+    {
+        property int margins : 0
+        property int leftMargin: margins
+        property int rightMargin: margins
+        property int topMargin: margins
+        property int bottomMargin: margins
+    }
+
     contentItem: Item
     {
         StackView
         {
             anchors.fill: parent
             id: _stackView
+            background: null
 
             initialItem:  Item
             {
-                Maui.TabBar
+                ViewTabBar
                 {
                     id: _tabBar
 
@@ -453,8 +472,14 @@ Pane
 
                     anchors.left: parent.left
                     anchors.right: parent.right
+                    anchors.margins: margins
+                    anchors.topMargin: topMargin
+                    anchors.bottomMargin: bottomMargin
+                    anchors.leftMargin: leftMargin
+                    anchors.rightMargin: rightMargin
 
                     Maui.Controls.showCSD : control.Maui.Controls.showCSD === true && position === TabBar.Header
+                    Maui.Theme.colorSet: Maui.Theme.Window
 
                     visible: _listView.count > 1
 
@@ -478,22 +503,58 @@ Pane
                         delegate: control.tabViewButton
                     }
 
-                    Keys.onPressed: (event) =>
-                                    {
-                                        if(event.key == Qt.Key_Return)
-                                        {
-                                            _listView.setCurrentIndex(currentIndex)
-                                            event.accepted = true
-                                        }
+                    background: Rectangle
+                    {
+                        id: _tabBarBg
+                        color: Maui.Theme.backgroundColor
+                        // opacity: tabBarMargins > 0 ? 0.8 : 1
+                        radius: tabBarMargins > 0 ? Maui.Style.radiusV : 0
 
-                                        if(event.key == Qt.Key_Down)
-                                        {
-                                            _listView.currentItem.forceActiveFocus()
-                                            event.accepted = true
-                                        }
-                                    }
-                                    
-                                    Keys.forwardTo: control
+                        ShaderEffectSource
+                        {
+                            id: _effect
+                            anchors.fill: parent
+                            visible: false
+                            textureSize: Qt.size(_tabBarBg.width, _tabBarBg.height)
+                            sourceItem: _listView2
+                            sourceRect: control.count > 0 ? _tabBarBg.mapToItem(_listView2, Qt.rect(_tabBarBg.x, _tabBarBg.y, _tabBarBg.width, _tabBarBg.height)) : Qt.rect()
+                        }
+
+                        Loader
+                        {
+                            asynchronous: true
+                            active: Maui.Style.enableEffects && GraphicsInfo.api !== GraphicsInfo.Software
+                            anchors.fill: parent
+                            sourceComponent: MultiEffect
+                            {
+                                opacity: 0.2
+                                saturation: -0.5
+                                blurEnabled: true
+                                blurMax: 32
+                                blur: 1.0
+                                source: _effect
+                            }
+                        }
+
+                        layer.enabled: _tabBarBg.radius > 0 &&  GraphicsInfo.api !== GraphicsInfo.Software
+                        layer.effect: MultiEffect
+                        {
+                            maskEnabled: true
+                            maskThresholdMin: 0.5
+                            maskSpreadAtMin: 1.0
+                            maskSpreadAtMax: 0.0
+                            maskThresholdMax: 1.0
+                            maskSource: ShaderEffectSource
+                            {
+                                sourceItem: Rectangle
+                                {
+                                    width: _tabBarBg.width
+                                    height: _tabBarBg.height
+                                    radius: _tabBarBg.radius
+                                }
+                            }
+                        }
+                    }
 
                     states: [  State
                         {
@@ -537,8 +598,8 @@ Pane
                     id: _listView
                     anchors.fill: parent
 
-                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height : 0
-                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height : 0
+                    anchors.bottomMargin: control.altTabBar && _tabBar.visible ? _tabBar.height + _tabBar.topMargin + _tabBar.bottomMargin : 0
+                    anchors.topMargin: !control.altTabBar && _tabBar.visible ? _tabBar.height + _tabBar.topMargin + _tabBar.bottomMargin : 0
 
                     interactive: false
 
@@ -657,8 +718,6 @@ Pane
                         currentIndex: control.currentIndex
 
                         itemSize: Math.min(200, availableWidth /2)
-                        Keys.forwardTo: control
-                        Keys.enabled: true
                         
                         Loader
                         {
@@ -747,7 +806,7 @@ Pane
 
                                         textureSize: Qt.size(width,height)
                                         sourceItem: _listView.contentModel.get(index)
-                                        layer.enabled: Maui.Style.enableEffects
+                                        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && Maui.Style.enableEffects
                                         layer.smooth: true
                                         layer.effect: MultiEffect
                                         {
@@ -797,7 +856,6 @@ Pane
             }
         }
     }
-
     /**
          * @brief Close a tab view at a given index. This will release the resources, and move the focus to the previous tab view
          * @param index index of the tab to be closed

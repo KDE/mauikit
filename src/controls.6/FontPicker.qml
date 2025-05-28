@@ -126,7 +126,7 @@ Control
                 Layout.fillWidth: true
                 model: _model.styles
                 Component.onCompleted: currentIndex = find(control.mfont.styleName, Qt.MatchExactly)
-                icon.source: "format-text-color"
+                Maui.Controls.iconName: "format-text-color"
                 onActivated:
                 {
                     control.mfont.styleName = currentText
@@ -146,7 +146,7 @@ Control
                 Layout.fillWidth: true
                 model: _model.sizes
                 Component.onCompleted: currentIndex = find(control.mfont.pointSize, Qt.MatchExactly)
-                icon.source: "font-size-down"
+               Maui.Controls.iconName: "font-size-down"
                 onActivated:
                 {
                     control.mfont.pointSize = currentText

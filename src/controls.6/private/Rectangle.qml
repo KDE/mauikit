@@ -27,7 +27,7 @@ Shape
       */
     property bool solidBorder : true
 
-    layer.enabled: true
+    layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
     layer.samples: 4
 
     ShapePath

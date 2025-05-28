@@ -42,6 +42,9 @@ T.ToolButton
 {
     id: control
 
+    focus: false
+    focusPolicy: Qt.TabFocus
+
     Maui.Theme.colorSet:  Maui.Theme.Button
     Maui.Theme.inherit: false
 

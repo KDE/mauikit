@@ -61,6 +61,7 @@ Control
     padding: 0
     
     focus: true
+    focusPolicy: Qt.TabFocus
     
     ToolTip.delay: 1000
     ToolTip.timeout: 5000

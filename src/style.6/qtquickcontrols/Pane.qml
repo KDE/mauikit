@@ -41,10 +41,10 @@ import org.mauikit.controls as Maui
 T.Pane
 {
     id: control
-    
+
     Maui.Theme.colorSet: Maui.Theme.View
     Maui.Theme.inherit: false
-    
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             contentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
@@ -54,13 +54,13 @@ T.Pane
     // bottomInset: 10
     background: Rectangle
     {
-        color: control.Maui.Controls.level && control.Maui.Controls.level === Maui.Controls.Secondary ? control.Maui.Theme.alternateBackgroundColor: control.Maui.Theme.backgroundColor
-        
+        color: control.Maui.Controls.level && control.Maui.Controls.level === Maui.Controls.Secondary ? Maui.Theme.backgroundColor: Maui.Theme.backgroundColor
+
         Behavior on border.color
         {
             Maui.ColorTransition{}
         }
-        
+
         border.color: switch(control.Maui.Controls.status)
         {
                                   case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor

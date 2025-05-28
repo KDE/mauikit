@@ -207,15 +207,15 @@ Item
         {
             id: _icon
             
-            implicitHeight: visible && control.icon ? control.icon.height : 0
-            implicitWidth: visible && control.icon ? control.icon.width : 0
+            implicitHeight: visible && control.icon ? control.icon.height : -control.spacing
+            implicitWidth: visible && control.icon ? control.icon.width : -control.spacing
             
             Layout.alignment: Qt.AlignCenter
             
             visible: String(_icon.source).length > 0 && (control.display !== ToolButton.TextOnly)        
             
             color: control.icon ? control.icon.color : control.color       
-            source: control.icon ? control.icon.name || control.icon.source : ""        
+            source: control.icon ? control.icon.name || control.icon.source : ""   
         }    
         
         Label

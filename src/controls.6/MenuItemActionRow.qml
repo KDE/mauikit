@@ -83,7 +83,7 @@ MenuItem
     hoverEnabled: !Maui.Handy.isMobile
     
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
-    implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
+    implicitWidth: ListView.view ? ListView.view.width : Math.max(implicitBackgroundWidth + leftInset + rightInset, _layout.implicitWidth + leftPadding + rightPadding)
     
     background: null
     

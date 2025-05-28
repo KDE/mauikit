@@ -26,6 +26,7 @@ import org.mauikit.controls as Maui
 T.Button
 {
     id: control
+
     opacity: control.enabled ? 1 : 0.5
 
     highlighted: activeFocus
@@ -49,13 +50,15 @@ T.Button
 
     font: Maui.Style.defaultFont
 
-    focusPolicy: Qt.StrongFocus
-    focus: true
+    focus: false
+    focusPolicy: Qt.TabFocus
 
     Keys.enabled: true
 
     Keys.onReturnPressed: { control.clicked() }
     Keys.onEnterPressed: { control.clicked() }
+
+    enabled: action ? action.enabled :  true
 
     contentItem: Maui.IconLabel
     {
@@ -157,11 +160,11 @@ T.Button
         if(control.Maui.Controls.status)
         {
             switch(control.Maui.Controls.status)
-            {                
+            {
             case Maui.Controls.Positive: return control.Maui.Theme.positiveBackgroundColor
             case Maui.Controls.Negative: return control.Maui.Theme.negativeBackgroundColor
             case Maui.Controls.Neutral: return control.Maui.Theme.neutralBackgroundColor
-            case Maui.Controls.Normal: 
+            case Maui.Controls.Normal:
             default:
             return defaultColor(control.Maui.Theme.backgroundColor)
             }

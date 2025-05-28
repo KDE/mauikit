@@ -96,7 +96,7 @@ void MauiApp::setIconName(const QString &value)
 {
     if (m_iconName == value)
         return;
-    
+
     m_iconName = value;
     Q_EMIT this->iconNameChanged();
 }
@@ -110,7 +110,7 @@ void MauiApp::setDonationPage(const QString &value)
 {
     if (m_donationPage == value)
         return;
-    
+
     m_donationPage = value;
     Q_EMIT this->donationPageChanged();
 }
@@ -127,8 +127,8 @@ void MauiApp::setDefaultMauiStyle()
     QIcon::setThemeSearchPaths({":/icons/luv-icon-theme"});
     QIcon::setThemeName("Luv");
 #endif
-    
-    if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE"))
+
+    // if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE"))
     {
         QQuickStyle::setStyle(QStringLiteral("org.mauikit.style"));
     }
@@ -150,7 +150,7 @@ void MauiApp::setRootComponent(QObject *item)
     qDebug() << "Setting the MauiApp root component" << item;
     if(m_rootComponent == item)
         return;
-    
+
     m_rootComponent = item;
     Q_EMIT rootComponentChanged();
 }
@@ -164,6 +164,11 @@ void MauiApp::aboutDialog()
 {
     if(!m_rootComponent)
         return;
-    
+
     QMetaObject::invokeMethod(m_rootComponent, "about");
+}
+
+int MauiApp::windowsOpened()
+{
+    return QGuiApplication::allWindows().count();
 }

@@ -17,12 +17,12 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.10
-import QtQuick.Controls 2.10
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.mauikit.controls 1.2 as Maui
-import org.kde.purpose 1.0 as Purpose
+import org.mauikit.controls as Maui
+import org.kde.purpose as Purpose
 
 /**
  * @brief The Linux implementation for the ShareDialog
@@ -54,8 +54,8 @@ Maui.PopupPage
         icon.name: "go-previous"
         onClicked:
         {
-             _purpose.reset()
-             _purpose.error = false
+            _purpose.reset()
+            _purpose.error = false
         }
     }
     
@@ -70,6 +70,30 @@ Maui.PopupPage
         clip: true
         spacing: Maui.Style.defaultSpacing
         
+        header: Pane
+        {
+            width: parent.width
+            background: null
+
+            contentItem: Item
+            {
+                implicitHeight: 150
+
+                Maui.GridItemTemplate
+                {
+                    readonly property var itemInfo : FB.FM.getFileInfo( control.urls[0])
+
+                    anchors.fill: parent
+                    anchors.margins: Maui.Style.space.tiny
+                    iconSizeHint: Maui.Style.iconSizes.huge
+                    fillMode: Image.PreserveAspectFit
+                    iconSource: itemInfo.icon
+                    imageSource:  itemInfo.thumbnail
+                    text1: i18np("1 item", "%1 items", control.urls.length)
+                }
+            }
+        }
+
         inputData :
         {
             'urls': control.urls,
@@ -87,22 +111,22 @@ Maui.PopupPage
         }
         
         onFinished: (output, error, message) =>
-        {
-            if(error!=0)
-            {
-                _purpose.error = true
-                _holder.body = message
-                return
-            }
-            
-            _purpose.error = false
-        }
+                    {
+                        if(error!=0)
+                        {
+                            _purpose.error = true
+                            _holder.body = message
+                            return
+                        }
+
+                        _purpose.error = false
+                    }
         
         Maui.Holder
         {
             id: _holder
-         anchors.fill: parent
-         visible: _purpose.error
+            anchors.fill: parent
+            visible: _purpose.error
         }
     }
 }

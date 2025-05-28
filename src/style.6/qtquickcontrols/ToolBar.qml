@@ -20,7 +20,6 @@
  */
 
 import QtQuick
-import QtQuick.Effects
 
 import QtQuick.Templates as T
 import org.mauikit.controls as Maui
@@ -30,12 +29,13 @@ T.ToolBar
     id: control
 
     // default property alias content : _layout.data
+    focus: true
+    focusPolicy: Qt.NoFocus
 
     Maui.Theme.colorSet: Maui.Theme.Header
     Maui.Theme.inherit: false
-    Maui.Controls.flat: true
 
-    readonly property Item translucencySource : Maui.Controls.item
+    Maui.Controls.flat: true
 
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
@@ -61,37 +61,7 @@ T.ToolBar
             Maui.ColorTransition{}
         }
 
-        clip: true
-        Loader
-        {
-            asynchronous: true
-            active: control.translucencySource !== null && Maui.Style.enableEffects
-            anchors.fill: parent
-            sourceComponent: MultiEffect
-            {
-                opacity: 0.2
-                blurEnabled: true
-                blurMax: 64
-                saturation: -0.5
-                // blurMax: 32
-                blur: 1.0
-                autoPaddingEnabled: true
-                // layer.enabled: true
-                // layer.effect: Desaturate
-                // {
-                //     desaturation: -1.2
-                // }
-
-                source: control.translucencySource
-
-                Rectangle
-                {
-                    color: _headBarBG.color
-                    anchors.fill: parent
-                    opacity: 0.9
-                }
-            }
-        }
+        clip: true      
 
         Maui.Separator
         {

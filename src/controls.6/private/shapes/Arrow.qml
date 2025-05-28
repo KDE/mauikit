@@ -27,7 +27,7 @@ Shape
       */
     property int borderWidth: -1
 
-    layer.enabled: smooth
+    layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && smooth
     layer.samples: 16
 
     smooth: true

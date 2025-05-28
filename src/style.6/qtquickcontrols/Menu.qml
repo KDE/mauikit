@@ -97,6 +97,7 @@ T.Menu
         template.maskRadius: 0
         template.imageSizeHint: Maui.Style.iconSizes.big
         template.iconSizeHint: Maui.Style.iconSizes.small
+        Maui.Controls.badgeText: control.Maui.Controls.badgeText
 
         background: Rectangle
         {
@@ -150,8 +151,6 @@ T.Menu
 
     // topMargin: _headerLoader.implicitHeight + 100
 
-
-
     contentItem: ScrollView
     {
         id: _scrollView
@@ -160,11 +159,11 @@ T.Menu
         padding: Maui.Style.contentMargins
 
         implicitHeight: _listView.contentHeight + topPadding + bottomPadding
-
+        Maui.Theme.colorSet: control.Maui.Theme.colorSet
+        Maui.Theme.inherit: control.Maui.Theme.inherit
         ListView
         {
             id: _listView
-
             clip: true
             focus: true
 
@@ -204,7 +203,7 @@ T.Menu
             Maui.ColorTransition{}
         }
 
-        layer.enabled: true
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
         layer.effect: MultiEffect
         {
             autoPaddingEnabled: true

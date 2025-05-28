@@ -17,7 +17,7 @@ Shape
       */
     property int borderWidth: 2
 
-    layer.enabled: true
+    layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
     layer.samples: 4
     
 Behavior on color

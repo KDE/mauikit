@@ -152,7 +152,7 @@ Loader
     
     property bool maximized : Window.window.visibility === Window.Maximized
     property bool isActiveWindow : Window.window.active
-    readonly property bool canMaximize: !(Window.window.isDialog)
+    readonly property bool canMaximize: !(Window.window.isDialog) && (Window.window.width !== Window.window.maximumWidth || Window.window.width !== Window.window.minimumWidth || Window.window.height !== Window.window.maximumHeight || Window.window.height !== Window.window.minimumHeight)
     readonly property bool canMinimize : !(Window.window.isDialog)
     readonly property var buttonsModel : Maui.CSD.rightWindowControls
     

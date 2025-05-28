@@ -1,5 +1,5 @@
-import QtQuick 
-import QtQuick.Controls 
+import QtQuick
+import QtQuick.Controls
 
 import org.mauikit.controls as Maui
 
@@ -9,10 +9,10 @@ Control
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
     implicitWidth: _layout.implicitWidth + leftPadding + rightPadding
-    
-    spacing: Maui.Style.space.small   
-    padding: Maui.Style.defaultPadding
-    
+
+    spacing: Maui.Style.space.small
+    padding: 0
+
     background: null
 
     contentItem: Row
@@ -44,12 +44,13 @@ Control
             visible: modelData === "A" ? canMaximize : true
 
             hoverEnabled: true
+            padding: 0
 
             implicitWidth: 22
             implicitHeight: 22
 
             focusPolicy: Qt.NoFocus
-            
+
             Maui.CSDButton
             {
                 id: button
@@ -73,8 +74,8 @@ Control
                         Maui.ColorTransition{}
                     }
                 }
-            
-            
+
+
             onClicked:
             {
                 console.log("NITRUX CSD BUTTON CLICKED", button.type)

@@ -94,7 +94,7 @@ T.ProgressBar
             }
         }
         
-        layer.enabled: control.background && control.background.radius > 0
+        layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && control.background && control.background.radius > 0
         layer.effect: MultiEffect
         {
             maskEnabled: true

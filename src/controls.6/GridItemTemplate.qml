@@ -38,10 +38,13 @@ import org.mauikit.controls as Maui
 Item
 {
     id: control
-    focus: true
+    focus: false
+    focusPolicy: Qt.NoFocus
     smooth: !Maui.Handy.isMobile
+    Maui.Theme.inherit: true
 
     implicitHeight: _layout.implicitHeight
+    implicitWidth: _layout.implicitWidth
 
     /**
       * @brief The spacing size between the image/icon header and the label title and message.
@@ -90,6 +93,7 @@ Item
            * @property Item GridItemTemplate::iconItem
            */
     readonly property alias iconItem : _iconLoader.item
+    property color iconColor : Maui.Theme.textColor
 
     /**
            * @brief The container for the icon header section. This is handled by a QQC2 Loader.
@@ -231,6 +235,7 @@ Item
             image.autoTransform: control.autoTransform
 
             alignment: control.alignment
+            // icon.color: control.iconColor
         }
     }
 
@@ -251,14 +256,13 @@ Item
             active: visible
             sourceComponent: control.iconComponent
 
-            Behavior on scale
-            {
-                NumberAnimation
-                {
-                    duration: Maui.Style.units.longDuration
-                    easing.type: Easing.OutBack
-                }
-            }
+            // OpacityAnimator on opacity
+            // {
+            //     from: 0
+            //     to: 1
+            //     duration: Maui.Style.units.longDuration
+            //     running: _iconLoader.status === Loader.Ready
+            // }
         }
 
         Item
@@ -267,7 +271,7 @@ Item
             property int labelSizeHint: Math.min(64, _labels.implicitHeight)
             visible: control.labelsVisible && ( _label1.text || _label2.text)
 
-            Layout.preferredHeight: labelSizeHint
+            Layout.preferredHeight: visible ? labelSizeHint : -_layout.spacing
             Layout.fillWidth: true
             Layout.maximumHeight: control.height* 0.9
             Layout.minimumHeight: labelSizeHint

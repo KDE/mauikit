@@ -15,7 +15,7 @@ T.SplitView
     id: control
 
     Maui.Theme.colorSet: Maui.Theme.Window
-    Maui.Theme.inherit: false
+    Maui.Theme.inherit: true
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -30,20 +30,13 @@ T.SplitView
     {
         id: _horizontalHandleComponent
         
-        Rectangle
+        Item
         {
             Maui.Theme.colorSet: Maui.Theme.Window
             Maui.Theme.inherit: false
 
             implicitWidth: 10
             implicitHeight: 10
-
-            color: Maui.Theme.backgroundColor
-
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
 
             Rectangle
             {
@@ -86,20 +79,13 @@ T.SplitView
     {
         id: _verticalHandleComponent
         
-        Rectangle
+        Item
         {
             Maui.Theme.colorSet: Maui.Theme.Window
             Maui.Theme.inherit: false
 
             implicitWidth: 10
             implicitHeight: 10
-
-            color: Maui.Theme.backgroundColor
-
-            Behavior on color
-            {
-                Maui.ColorTransition{}
-            }
 
             Rectangle
             {

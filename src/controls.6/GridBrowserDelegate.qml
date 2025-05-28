@@ -107,12 +107,16 @@ Maui.ItemDelegate
     isCurrentItem : GridView.isCurrentItem || checked
     flat : !Maui.Handy.isMobile
 
-    implicitHeight: _template.implicitHeight + topPadding +bottomPadding
+    implicitHeight: _template.implicitHeight + topPadding + bottomPadding
+    implicitWidth: _template.implicitWidth + leftPadding + rightPadding
 
     padding: Maui.Style.defaultPadding
     spacing: Maui.Style.space.medium
 
     radius: Maui.Style.radiusV
+
+    focus: true
+    focusPolicy: Qt.TabFocus
 
     /**
      * @brief An alias to access the GridItemTemplate control properties. This is the template element that layouts all the information: labels and icon/image.
@@ -301,10 +305,7 @@ Maui.ItemDelegate
 
             padding: 2
             font.pointSize: Maui.Style.fontSizes.tiny
-
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            Maui.Controls.status: Maui.Controls.Negative
         }
     }
 

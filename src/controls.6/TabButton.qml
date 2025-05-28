@@ -19,6 +19,8 @@ import org.mauikit.controls as Maui
 QQC.TabButton
 {
     id: control
+    focus: false
+    focusPolicy: Qt.NoFocus
 
     /**
         * @brief An alias exposed to append more elements into the main container of this control.
@@ -177,9 +179,7 @@ QQC.TabButton
             padding: 2
             font.pointSize: Maui.Style.fontSizes.tiny
 
-            Maui.Theme.colorSet: Maui.Theme.View
-            Maui.Theme.backgroundColor: Maui.Theme.negativeBackgroundColor
-            Maui.Theme.textColor: Maui.Theme.negativeTextColor
+            Maui.Controls.status: Maui.Controls.Negative
 
             OpacityAnimator on opacity
             {

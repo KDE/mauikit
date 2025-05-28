@@ -97,24 +97,29 @@ import "private" as Private
  * <a href="https://invent.kde.org/maui/mauikit/-/blob/qt6-2/examples/SideBarView.qml">You can find a more complete example at this link.</a>
  *
  */
-Item
+Pane
 {
-    id: control
+         id: control
+         focus: false
+         focusPolicy: Qt.NoFocus
+         Maui.Theme.colorSet: Maui.Theme.Window
+         Maui.Theme.inherit: true
+         padding: 0
 
-    /**
+         /**
      * @brief
      * All child items declared will become part of the main area section.
      * @property list<QtObject> SideBarView::content
      */
-    default property alias content : _content.data
+         default property alias content : _content.data
 
-        /**
+         /**
          * @brief Convenient property to easily add items to the sidebar section.
          * @property list<QtObject> SideBarView::sideBarContent
          */
-        property alias sideBarContent: _sideBar.content
+         property alias sideBarContent: _sideBar.content
 
-        /**
+         /**
          * @brief This is an alias exposed to access all the sidebar section properties.
          * To know more about the available properties visit the control documentation.
          * @see SideBar
@@ -128,62 +133,69 @@ Item
          * }
          * @endcode
          */
-        readonly property alias sideBar : _sideBar
+         readonly property alias sideBar : _sideBar
 
-        Private.SideBar
-        {
-            id: _sideBar
-            height: parent.height
-            collapsed: control.width < (preferredWidth * 2.5)
-            sideBarView: control
-        }
+         contentItem: Item
+         {
 
-        Item
-        {
-            anchors.fill: parent
-            clip: true
-            transform: Translate
-            {
-                x: control.sideBar.collapsed ? control.sideBar.position * (control.sideBar.width) : 0
-            }
+                  Item
+                  {
+                           anchors.fill: parent
+                           clip: false
+                           transform: Translate
+                           {
+                                    x: control.sideBar.collapsed && !control.sideBar.floats ? control.sideBar.position * (control.sideBar.width) : 0
+                           }
 
-            anchors.leftMargin: control.sideBar.collapsed ? 0 : control.sideBar.width  * control.sideBar.position
+                           anchors.leftMargin: control.sideBar.collapsed ? 0 : (control.sideBar.floats ? 0 : control.sideBar.width  * control.sideBar.position)
 
-            Item
-            {
-                id: _content
-                anchors.fill: parent
-            }
+                           Item
+                           {
+                                    id: _content
+                                    anchors.fill: parent
+                           }
 
-            Loader
-            {
-                id: _overlayLoader
+                  }
 
-                anchors.fill: parent
-                active: _sideBar.collapsed && _sideBar.position === 1
-                asynchronous: true
 
-                visible: active
+                  Loader
+                  {
+                           id: _overlayLoader
 
-                sourceComponent: MouseArea
-                {
-                    onClicked: _sideBar.close()
+                           width: control.width
+                           height: control.height
+                           active: _sideBar.collapsed && _sideBar.position === 1
+                           asynchronous: true
 
-                    Rectangle
-                    {
-                        anchors.fill: parent
-                        color: "#000"
-                    }
+                           visible: active
 
-                    OpacityAnimator on opacity
-                    {
-                        from: 0
-                        to: 0.5
-                        duration: Maui.Style.units.longDuration
-                        running: parent.visible
-                    }
-                }
-            }
-        }
+                           sourceComponent: MouseArea
+                           {
+                                    onClicked: _sideBar.close()
+
+                                    Rectangle
+                                    {
+                                             anchors.fill: parent
+                                             color: "#000"
+                                    }
+
+                                    OpacityAnimator on opacity
+                                    {
+                                             from: 0
+                                             to: 0.5
+                                             duration: Maui.Style.units.longDuration
+                                             running: parent.visible
+                                    }
+                           }
+                  }
+
+                  Private.SideBar
+                  {
+                           id: _sideBar
+                           height: parent.height
+                           collapsed: control.width < (preferredWidth * 2.5)
+                           sideBarView: control
+                  }
+         }
 }
 

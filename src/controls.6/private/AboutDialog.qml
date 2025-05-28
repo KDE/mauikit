@@ -35,8 +35,9 @@ Maui.PopupPage
     width: 360
     maxHeight: implicitHeight
 
-    Maui.Theme.inherit: false
-    Maui.Theme.colorSet: Maui.Theme.Complementary
+    // Maui.Theme.inherit: false
+    // Maui.Theme.styleType: Maui.Theme.Dark
+    // Maui.Theme.colorSet: Maui.Theme.Window
 
     Maui.SectionItem
     {
@@ -63,7 +64,6 @@ Maui.PopupPage
 
     Label
     {
-        Maui.Theme.inherit: true
         Layout.alignment: horizontalAlignment
         // Layout.fillWidth: true
         horizontalAlignment:Qt.AlignLeft
@@ -135,38 +135,32 @@ Maui.PopupPage
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
 
-        Column
+        Repeater
         {
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-            opacity: 0.8
+            model: Maui.App.about.authors
 
-            Repeater
+            Maui.ListItemTemplate
             {
-                model: Maui.App.about.authors
+                id: _credits
+                Layout.fillWidth: true
+                opacity: 0.8
 
-                Maui.ListItemTemplate
+                label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
+                label1.textFormat: Text.RichText
+                // label1.linkColor: Maui.Theme.textColor
+                label3.text: modelData.task
+
+                Connections
                 {
-                    id: _credits
-
-                    width: parent.width
-
-                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
-                    label1.textFormat: Text.RichText
-                    // label1.linkColor: Maui.Theme.textColor
-                    label3.text: modelData.task
-
-                    Connections
+                    target: _credits.label1
+                    function onLinkActivated(link)
                     {
-                        target: _credits.label1
-                        function onLinkActivated(link)
-                        {
-                            Qt.openUrlExternally(link)
-                        }
+                        Qt.openUrlExternally(link)
                     }
                 }
             }
         }
+
     }
 
     Maui.SectionItem
@@ -177,37 +171,31 @@ Maui.PopupPage
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
 
-        Column
+        Repeater
         {
-            id: _translators
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-            opacity: 0.8
+            model: Maui.App.about.translators
 
-            Repeater
+            Maui.ListItemTemplate
             {
-                model: Maui.App.about.translators
+                id: _tCredits
 
-                Maui.ListItemTemplate
+                Layout.fillWidth: true
+                opacity: 0.8
+
+                label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
+                label1.textFormat: Text.RichText
+                label3.text: modelData.task
+                Connections
                 {
-                    id: _tCredits
-
-                    width: parent.width
-
-                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
-                    label1.textFormat: Text.RichText
-                    label3.text: modelData.task
-                    Connections
+                    target: _tCredits.label1
+                    function onLinkActivated(link)
                     {
-                        target: _tCredits.label1
-                        function onLinkActivated(link)
-                        {
-                            Qt.openUrlExternally(link)
-                        }
+                        Qt.openUrlExternally(link)
                     }
                 }
             }
         }
+
     }
 
     Maui.SectionItem
@@ -217,37 +205,31 @@ Maui.PopupPage
         // iconSource: "love"
         template.isMask: true
         template.iconSizeHint: Maui.Style.iconSize
-
-        Column
+        Repeater
         {
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-            opacity: 0.8
+            model: Maui.App.about.credits
 
-            Repeater
+            Maui.ListItemTemplate
             {
-                model: Maui.App.about.credits
+                id: _tCredits
 
-                Maui.ListItemTemplate
+                Layout.fillWidth: true
+                opacity: 0.8
+
+                label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
+                label1.textFormat: Text.RichText
+                label3.text: modelData.task
+                Connections
                 {
-                    id: _tCredits
-
-                    width: parent.width
-
-                    label1.text: modelData.emailAddress ? formatLink(modelData.name, String("mailto:%1").arg(modelData.emailAddress)) : modelData.name
-                    label1.textFormat: Text.RichText
-                    label3.text: modelData.task
-                    Connections
+                    target: _tCredits.label1
+                    function onLinkActivated(link)
                     {
-                        target: _tCredits.label1
-                        function onLinkActivated(link)
-                        {
-                            Qt.openUrlExternally(link)
-                        }
+                        Qt.openUrlExternally(link)
                     }
                 }
             }
         }
+
     }
 
     Maui.SectionItem
@@ -259,22 +241,14 @@ Maui.PopupPage
         template.iconSizeHint: Maui.Style.iconSize
 
         label1.text: i18nd("mauikit", "Licenses")
-
-        Column
+        Repeater
         {
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-            opacity: 0.8
-
-            Repeater
+            model: Maui.App.about.licenses
+            Maui.ListItemTemplate
             {
-                model: Maui.App.about.licenses
-                Maui.ListItemTemplate
-                {
-                    width: parent.width
-                    label1.text: modelData.name
-                    label3.text: modelData.spdx
-                }
+                Layout.fillWidth: true
+                label1.text: modelData.name
+                label3.text: modelData.spdx
             }
         }
     }
@@ -288,31 +262,26 @@ Maui.PopupPage
 
         label1.text: i18nd("mauikit", "Components")
 
-        Column
+        Repeater
         {
-            spacing: Maui.Style.defaultSpacing
-            Layout.fillWidth: true
-            opacity: 0.8
-            Repeater
+            model: Maui.App.about.components
+            Maui.ListItemTemplate
             {
-                model: Maui.App.about.components
-                Maui.ListItemTemplate
+                Layout.fillWidth: true
+                opacity: 0.8
+                label1.textFormat: Text.RichText
+
+                label1.text: modelData.webAddress ? formatLink(modelData.name, modelData.webAddress) : modelData.name
+
+                label2.text: modelData.description
+                label3.text: modelData.version
+
+                Connections
                 {
-                    width: parent.width
-                    label1.textFormat: Text.RichText
-                    
-                    label1.text: modelData.webAddress ? formatLink(modelData.name, modelData.webAddress) : modelData.name
-
-                    label2.text: modelData.description
-                    label3.text: modelData.version
-
-                    Connections
+                    target: label1
+                    function onLinkActivated(link)
                     {
-                        target: label1
-                        function onLinkActivated(link)
-                        {
-                            Qt.openUrlExternally(link)
-                        }
+                        Qt.openUrlExternally(link)
                     }
                 }
             }

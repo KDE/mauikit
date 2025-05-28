@@ -34,15 +34,14 @@ Control
 {
     id: control
     focus: true
+    focusPolicy: Qt.StrongFocus
     padding: Maui.Style.contentMargins
     visible: _container.count > 0
     
     hoverEnabled: true
     
     property bool autoClose :  Window.window.active
-    
-    property Item previousItem : null
-    
+        
     SoundEffect
     {
         id: playSound
@@ -56,6 +55,7 @@ Control
     }
     
     Keys.enabled: true
+    Keys.forwardTo: _container
     Keys.onEscapePressed:
     {
         control.dismiss()
@@ -65,15 +65,10 @@ Control
     {
         if(visible)
         {
-            control.previousItem = Window.window.activeFocusItem
             control.forceActiveFocus()
         }else
         {
-            if(control.previousItem)
-            {
-                control.previousItem.forceActiveFocus()
-                control.previousItem = null
-            }
+            nextItemInFocusChain().forceActiveFocus()
         }
     }
     
@@ -106,6 +101,24 @@ Control
         {
             id: _toast
             clip: false
+            focus: true
+
+            Keys.enabled: true
+            Keys.onEscapePressed: control.remove(mindex)
+            Keys.forwardTo: _actionRepeater
+            Keys.onPressed: (event) =>
+                            {
+                                console.log("Key on notification nof", _toast.body, _toast.mindex, event.key === Qt.Key_Enter, _toast.actions.length)
+                                if(event.key === Qt.Key_Return)
+                                {
+                                    if(_toast.actions.length >= 1)
+                                    {
+                                        _toast.actions[0].trigger()
+                                        event.accepted = true
+                                    }
+                                }
+
+                            }
 
             Maui.Theme.colorSet: Maui.Theme.View
             Maui.Theme.inherit: false
@@ -127,11 +140,11 @@ Control
 
             property int timeout : 3500
             
-            onClicked: 
+            onClicked:
             {
                 if( _toast.actions.length > 0)
                     return
-                    
+
                 control.remove(mindex)
             }
             
@@ -140,33 +153,67 @@ Control
                 radius: Maui.Style.radiusV
                 color: _toast.hovered && _toast.actions.length === 0? Maui.Theme.hoverColor : Maui.Theme.backgroundColor
                 
-                ProgressBar
+                // Text
+                // {
+                //     text: _progressTimer.progress + " / " + _toastTimer.interval
+                //     color: "yellow"
+                //     z: _toast.z+9999
+                // }
+                Item
                 {
-                    id: _progressBar
-                    anchors.bottom: parent.bottom
-                    height: 2
-                    width: parent.width
-                    from: 0
-                    to : _toastTimer.interval
-                    value: _progressTimer.progress
-                    
-                    Timer
+                    id: _bglay
+                    anchors.fill: parent
+                    ProgressBar
                     {
-                        id: _progressTimer
-                        property int progress : 0
-                        interval: 5
-                        repeat: _toastTimer.running
-                        onTriggered: progress += _progressTimer.interval
+                        id: _progressBar
+                        visible: (!_toast.hovered && !_container.hovered ) && control.autoClose
+                        anchors.bottom: parent.bottom
+                        height: 2
+                        width: parent.width
+                        from: 0
+                        to : _toastTimer.interval
+                        value: _progressTimer.progress
+                        opacity: value/to
+
+                        Timer
+                        {
+                            id: _progressTimer
+                            running: _toastTimer.running
+                            property int progress : 0
+                            interval: 50
+                            repeat: _toastTimer.running
+                            onTriggered: progress += _progressTimer.interval
+                        }
+
+                        function restart()
+                        {
+                            _progressTimer.progress = 0
+                            _progressTimer.restart()
+                        }
                     }
-                    
-                    function restart()
+                    layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
+                    layer.effect: MultiEffect
                     {
-                        _progressTimer.progress = 0
-                        _progressTimer.restart()
+                        maskEnabled: true
+                        maskThresholdMin: 0.5
+                        maskSpreadAtMin: 1.0
+                        maskSpreadAtMax: 0.0
+                        maskThresholdMax: 1.0
+                        maskSource: ShaderEffectSource
+                        {
+                            sourceItem: Rectangle
+                            {
+                                x: _bglay.x
+                                y: _bglay.y
+                                width: _bglay.width
+                                height: _bglay.height
+                                radius: Maui.Style.radiusV
+                            }
+                        }
                     }
                 }
                 
-                layer.enabled: true
+                layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
                 layer.effect: MultiEffect
                 {
                     autoPaddingEnabled: true
@@ -177,22 +224,23 @@ Control
             
             Component.onCompleted:
             {
-                _progressTimer.start()
+                // _progressTimer.start()
+                _toastTimer.interval = _toast.timeout + (_listView.count * 1500)
+                
                 _toastTimer.start()
             }
             
             Timer
             {
                 id: _toastTimer
-                interval: _toast.timeout + (_toast.mindex * 500)
-                
+                // running: !_toast.hovered && !_container.hovered && control.autoClose
                 onTriggered:
                 {
                     if(_toast.hovered || _container.hovered || !control.autoClose)
                     {
                         _toastTimer.restart()
                         _progressBar.restart()
-                        return;
+                        return
                     }
                     _progressTimer.stop()
                     control.remove(_toast.mindex)
@@ -223,16 +271,19 @@ Control
 
                     Repeater
                     {
+                        id :_actionRepeater
                         model: _toast.actions
                         delegate: Button
                         {
+                            focus: true
+                            focusPolicy: Qt.StrongFocus
                             action: modelData
                             Maui.Controls.status: modelData.Maui.Controls.status
                             Layout.fillWidth: true
                             onClicked:
                             {
                                 // if(_toast.actions.length === 1)
-                                    control.remove(_toast.mindex)
+                                control.remove(_toast.mindex)
                             }
                         }
                     }
@@ -269,11 +320,14 @@ Control
             clip: false
             hoverEnabled: true
             
-            width:  Math.min(400, parent.width)
+            width: Math.min(400, parent.width)
             height: Math.min( _listView.implicitHeight + topPadding + bottomPadding, 500)
             
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
+
+            Keys.enabled: true
+            Keys.forwardTo: _listView
             
             contentItem: Maui.ListBrowser
             {
@@ -285,6 +339,13 @@ Control
                 snapMode: ListView.SnapOneItem
 
                 spacing: Maui.Style.space.medium
+
+                Keys.enabled: true
+                Keys.forwardTo: currentItem
+                Keys.onPressed: (event) =>
+                                {
+                                    console.log("Key on notification item")
+                                }
 
                 model: _container.contentModel
 
@@ -303,6 +364,12 @@ Control
                         onClicked: control.dismiss()
                     }
                 }
+
+                Label
+                {
+                    color: "orange"
+                    text: Window.window.activeFocusItem + " " +Window.window.activeFocusControl
+                }
             }
         }
     }
@@ -318,6 +385,7 @@ Control
         const object = _toastComponent.createObject(_listView.flickable, properties);
         _container.insertItem(0, object)
         playSound.play()
+        control.forceActiveFocus()
     }
 
     function dismiss()

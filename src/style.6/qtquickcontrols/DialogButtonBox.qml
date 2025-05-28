@@ -29,8 +29,8 @@ T.DialogButtonBox
 {
     id: control
 
-    implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
-    implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
+    implicitWidth: visible ? contentItem.implicitWidth + leftPadding + rightPadding : 0
+    implicitHeight: visible ? contentItem.implicitHeight + topPadding + bottomPadding : 0
     
     padding: 0
     spacing: Maui.Style.space.small
@@ -61,5 +61,5 @@ T.DialogButtonBox
         }
     }
 
-    background: Item {}
+    background: null
 }

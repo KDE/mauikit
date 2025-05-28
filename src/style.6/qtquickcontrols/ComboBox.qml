@@ -55,9 +55,7 @@ T.ComboBox
     //NOTE: typeof necessary to not have warnings on Qt 5.7
     Maui.Theme.colorSet: typeof(editable) != "undefined" && editable ? Maui.Theme.View : Maui.Theme.Button
     Maui.Theme.inherit: false
-    
-    property alias icon : _icon
-    
+       
     readonly property bool responsive: Maui.Handy.isMobile
     
     readonly property size parentWindow : parent.Window.window ? Qt.size(parent.Window.window.width, parent.Window.window.height) : Qt.size(0,0)
@@ -123,11 +121,12 @@ T.ComboBox
         Maui.Icon
         {
             id: _icon
-            visible: source ? true : false
+            visible: source.length ? true : false
             height: visible ? Maui.Style.iconSize : 0
             width: height
             color: Maui.Theme.textColor
             anchors.verticalCenter: parent.verticalCenter
+            source: control.Maui.Controls.iconName ? control.Maui.Controls.iconName : ""
         }
     }
     
@@ -305,7 +304,7 @@ T.ComboBox
                 }
             }
             
-            layer.enabled: true
+            layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
             layer.effect: MultiEffect
             {
                 autoPaddingEnabled: true

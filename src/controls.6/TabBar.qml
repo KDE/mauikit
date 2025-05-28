@@ -56,9 +56,19 @@ import "private" as Private
 QQC.TabBar
 {
     id: control
+    focus: false
+    focusPolicy: Qt.TabFocus
+
+    Maui.Theme.colorSet:  Maui.Theme.Header
+    Maui.Theme.inherit: false
+
     Maui.Controls.level: Maui.Controls.showCSD ? Maui.Controls.Primary : Maui.Controls.Secondary
 
     implicitHeight: _layout.implicitHeight + topPadding + bottomPadding
+
+    padding: Maui.Style.defaultPadding
+    spacing: Maui.Style.space.small
+
     /**
      * @brief An alias to manually add elements to the container directly. This is the middle section of the control.
      * @property list<QtObject> TabBar::content
@@ -204,13 +214,14 @@ QQC.TabBar
             {
                 Layout.fillWidth: true
 
-                orientation : Qt.Horizontal
+                Maui.Controls.orientation : Qt.Horizontal
 
                 QQC.ScrollBar.horizontal.policy: QQC.ScrollBar.AlwaysOff
                 QQC.ScrollBar.vertical.policy: QQC.ScrollBar.AlwaysOff
 
                 contentHeight: availableHeight
                 implicitHeight: _content.currentItem ? _content.currentItem.height : 0
+                padding: 0
 
                 ListView
                 {
@@ -237,8 +248,8 @@ QQC.TabBar
                     boundsBehavior: Flickable.StopAtBounds
                     boundsMovement: Flickable.StopAtBounds
 
-                    keyNavigationEnabled : true
-                    keyNavigationWraps : true
+                    keyNavigationEnabled : false
+                    keyNavigationWraps : false
 
                     onMovementEnded:
                     {
