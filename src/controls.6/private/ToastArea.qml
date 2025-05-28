@@ -364,12 +364,6 @@ Control
                         onClicked: control.dismiss()
                     }
                 }
-
-                Label
-                {
-                    color: "orange"
-                    text: Window.window.activeFocusItem + " " +Window.window.activeFocusControl
-                }
             }
         }
     }
