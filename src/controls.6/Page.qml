@@ -564,7 +564,7 @@ Pane
                 visible: false
                 textureSize: Qt.size(_headBar.width, _headBar.height)
                 sourceItem: _parentContainer
-                sourceRect: _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height))
+                sourceRect: control.altHeader ? _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height)) : _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height)) 
             }
 
             Loader

@@ -144,17 +144,6 @@ Pane
             value: control.enabled ? (!control.autoShow ? 0 : (control.collapsed && control.autoHide ? 0 : 1)) : 0
             restoreMode: Binding.RestoreBindingOrValue
         }
-
-        Behavior on position
-        {
-            enabled: Maui.Style.enableEffects
-
-            NumberAnimation
-            {
-                duration: Maui.Style.units.shortDuration
-                easing.type: Easing.InOutQuad
-            }
-        }
     }
 
     onCollapsedChanged:
@@ -244,9 +233,12 @@ Pane
     /**
      * @brief Force to close the sidebar. This will make the position of the sidebar equal to 0.
      */
-    function close()
+    function close(cb)
     {
         _private.position = 0
+        
+        if(cb)
+            cb()
     }
 
     /**
