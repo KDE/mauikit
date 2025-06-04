@@ -81,7 +81,7 @@ Maui.TabButton
     {
         id: dragArea
         anchors.fill: parent
-        enabled: !Maui.Handy.isMobile && control.tabView.count > 1
+        enabled: !Maui.Handy.isMobile && control.tabView.count > 1 && !Maui.Handy.hasTransientTouchInput
 
         cursorShape: drag.active ? Qt.OpenHandCursor : undefined
 

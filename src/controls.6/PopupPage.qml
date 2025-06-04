@@ -250,12 +250,29 @@ Maui.Popup
          * @see closeButtonVisible
          */
         signal closeTriggered()
+            opacity: 1 - (Math.abs(_private.translateY)/height)
 
+           
+                    
         ColumnLayout
         {
             id: _layout
             anchors.fill: parent
             spacing: 0
+            
+            QtObject
+            {
+                id: _private
+                property int translateY : 0
+            }
+            
+            transform: Translate
+                    {
+                        y: _private.translateY   
+                    }
+                    
+                    
+                    
 
             Maui.Page
             {
@@ -395,6 +412,57 @@ Maui.Popup
                 }
             }
         }
+        
+         Item
+            {
+                width: parent.width
+                height: _page.headBar.height
+            DragHandler
+                    {
+                        id: _dragHandler
+                        enabled: _scrollView.flickable.atYBeginning
+                        yAxis.enabled: true
+                        xAxis.enabled: false
+                        target: null
+                        property int position : 0
+                        readonly property int value : activeTranslation.y
+                        property int distance : 0
+                        acceptedPointerTypes: PointerDevice.Finger
+                        grabPermissions: PointerHandler.ApprovesTakeOverByItems | PointerHandler.CanTakeOverFromAnything
+                        
+                        onValueChanged: 
+                        {
+                            if(!active || value<0)
+                                return
+                                
+                            distance = value
+                            console.log("move distance: " , distance)
+                            _private.translateY = 0+distance
+                            
+                            
+                        }
+                        
+                        onActiveChanged: 
+                        {
+                            if(!active)
+                            {
+//                                 if(value > 10)
+//                                     _sideBar.open()
+                                    console.log("Velocity: " , centroid.velocity.y )
+                                     if(value > 100 && centroid.velocity.y > 150)
+                                    {
+                                        control.close()
+                                        _private.translateY = 0
+                                    } else
+                                    {
+                                     _private.translateY = 0   
+                                    }
+                                    
+                                    
+                            }
+                        }
+                    }
+            }
 
         onClosed: _alertMessage.reset()
 

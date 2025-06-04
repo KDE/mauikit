@@ -186,7 +186,7 @@ Pane
     /**
          * @brief Whether the view will support swipe gestures for switching between tab views.
          */
-    property bool interactive: Maui.Handy.isTouch
+    property bool interactive: Maui.Handy.isTouch || Maui.Handy.hasTransientTouchInput
 
     /**
          * @brief Checks if the overview mode is open.

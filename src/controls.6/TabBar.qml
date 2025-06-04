@@ -238,7 +238,7 @@ QQC.TabBar
                     model: control.contentModel
                     currentIndex: control.currentIndex
 
-                    interactive: Maui.Handy.isMobile
+                    interactive: Maui.Handy.isMobile || Maui.Handy.hasTransientTouchInput
                     snapMode: ListView.SnapOneItem
 
                     highlightFollowsCurrentItem: true
