@@ -69,36 +69,36 @@ Item
     id: control
     focus: true
     clip: false
-    
+
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding
-    
+
     /**
      * @brief The model to be used to populate the browsing view.
      * @property var ListBrowser::model
      */
     property alias model : _listView.model
-    
+
     /**
      * @brief The component to be used as the delegate.
      * @note Consider using the MauiKit delegate controls, such as ListBrowserDelegate, ListDelegate or LabelDelegate.
      * @property Component ListBrowser::delegate
      */
     property alias delegate : _listView.delegate
-    
+
     /**
      * @brief The section group property to set the ListView sections.
      * Refer to the Qt documentation on the ListView section.
      * @property section ListBrowser::section
      */
     property alias section : _listView.section
-    
+
     /**
      * @brief The position of the view contents on the Y axis.
      * @property double ListBrowser::contentY
      */
     property alias contentY: _listView.contentY
-    
+
     /**
      * @brief The position of the view contents on the X axis.
      * @property double ListBrowser::contentY
@@ -111,120 +111,120 @@ Item
      * @property int ListBrowser::currentIndex
      */
     property alias currentIndex : _listView.currentIndex
-    
+
     /**
      * @brief The current item selected.
      * @property Item ListBrowser::currentItem
      */
     property alias currentItem : _listView.currentItem
-    
+
     /**
      * @brief The total amount of elements listed in the view.
      * @property int ListBrowser::count
      */
     property alias count : _listView.count
-    
+
     /**
      * @brief The cache buffer.
      * Refer to the QQC2 ListView for proper documentation.
      * @property int ListBrowser::cacheBuffer
      */
     property alias cacheBuffer : _listView.cacheBuffer
-    
+
     /**
      * @brief The orientation of the list view.
      * By default this is set to `ListView.Vertical`.
      * @property enum ListBrowser::orientation
      */
     property alias orientation: _listView.orientation
-    
+
     /**
      * @brief How to snap the elements of the list view while scrolling.
      * @note See Qt documentation.
      * @property enum ListBrowser::snapMode
      */
     property alias snapMode: _listView.snapMode
-    
+
     /**
      * @brief The spacing between the elements in the list view.
      * By default this is set to `Style.defaultSpacing`
      * @property int ListBrowser::spacing
      */
     property alias spacing: _listView.spacing
-    
+
     /**
      * @brief An alias to access the QQC2 ListView.
      * @property ListView ListBrowser::flickable
      */
     readonly property alias flickable : _listView
-    
+
     /**
      * @brief An alias to access the QQC2 ScrollView.
      * @property ScrollView ListBrowser::scrollView
      */
     readonly property alias scrollView : _scrollView
-    
+
     /**
      * @brief The total height of all the elements listed in the view.
      * @property int ListBrowser::contentHeight
      */
     property alias contentHeight : _listView.contentHeight
-    
+
     /**
      * @brief The total width of all the elements.
      * @property int ListBrowser::contentWidth
      */
     property alias contentWidth : _listView.contentWidth
-    
+
     /**
      * @brief Whether the view is positioned at the end on the Y axis.
      * Meant to be used if the view `orientation` has been set to vertical.
      * @property bool ListBrowser::atYEnd
      */
     readonly property alias atYEnd : _listView.atYEnd
-    
+
     /**
      * @brief Whether the view is positioned at the beginning on the Y axis.
     * Meant to be used if the view `orientation` has been set to vertical.
      * @property bool ListBrowser::atYBeginning
      */
     readonly property alias atYBeginning : _listView.atYBeginning
-    
+
     /**
      * @brief The top padding.
      * @see padding
      * @property int ListBrowser::topPadding
      */
     property alias topPadding: _scrollView.topPadding
-    
+
     /**
      * @brief The bottom padding.
      * @see padding
      * @property int ListBrowser::bottomPadding
      */
     property alias bottomPadding: _scrollView.bottomPadding
-    
+
     /**
      * @brief The right padding.
      * @see padding
      * @property int ListBrowser::rightPadding
      */
     property alias rightPadding: _scrollView.rightPadding
-    
+
     /**
      * @brief The left padding.
      * @see padding
      * @property int ListBrowser::leftPadding
      */
     property alias leftPadding: _scrollView.leftPadding
-    
+
     /**
      * @brief The total padding all around the list view. The padding is added to the ScrollView.
      * This is the same as setting `scrollView.padding`.
      * @property int ListBrowser::padding
      */
     property alias padding: _scrollView.padding
-    
+
     /**
      * @brief The policy of the vertical scroll bar from the scroll view.
      * @see scrollView
@@ -247,7 +247,7 @@ Item
         case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
         }
     }
-    
+
     /**
      * @brief The policy of the horizontal scroll bar from the scroll view.
      * @see scrollView
@@ -270,7 +270,7 @@ Item
         case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
         }
     }
-    
+
     /**
      * @brief An alias to access the placeholder properties. This is handled by a MauiKit Holder.
      * @see Holder::title
@@ -279,14 +279,14 @@ Item
      * @property Holder ListBrowser::holder
      */
     property alias holder : _holder
-    
+
     /**
      * @brief Whether to enable the lasso selection, to select multiple items.
      * By default this is set to `false`.
      * @see itemsSelected
      */
     property bool enableLassoSelection : false
-    
+
     /**
      * @brief
      */
@@ -297,45 +297,46 @@ Item
      * @property Rectangle ListBrowser::lassoRec
      */
     readonly property alias lassoRec : selectLayer
-    
+
     /**
      * @brief The header section of the ListView element.
      * @see flickable
      * @property Component ListBrowser::header
      */
     property alias header : _listView.header
-    
+
     /**
      * @brief The footer section of the ListView element
      * @see flickable
      * @property Component ListBrowser::footer
      */
     property alias footer : _listView.footer
-    
+
     /**
      * @brief The actual width of the view-port. This is the actual width without any padding.
      * @property int ListBrowser::availableWidth
      */
     readonly property alias availableWidth: _listView.width
-    
+
     /**
      * @brief The actual height of the view-port. This is the actual height without any padding.
      * @property int ListBrowser::availableHeight
      */
     readonly property alias availableHeight: _listView.height
-    
+
+    property alias background : _scrollView.background
     /**
      * @brief Emitted when the lasso selection has been released.
      * @param indexes A array of index numbers is sent as the argument, representing the index value of the items under the lasso rectangle area.
      */
     signal itemsSelected(var indexes)
-    
+
     /**
      * @brief Emitted when an empty space of the background area has been clicked.
      * @param mouse Object with information about the click event.
      */
     signal areaClicked(var mouse)
-    
+
     /**
      * @brief Emitted when an empty space of the area area background has been right clicked.
      */
@@ -343,7 +344,7 @@ Item
 
     Keys.enabled : true
     Keys.forwardTo : _listView
-    
+
     ScrollView
     {
         id: _scrollView
@@ -355,32 +356,35 @@ Item
         Keys.forwardTo: _listView
         padding: Maui.Style.contentMargins
         Maui.Controls.orientation: _listView.orientation
-        
+
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
-        
-        contentHeight: _listView.contentHeight
-        contentWidth: availableWidth
-        
+
+        // contentHeight: _listView.contentHeight
+        // contentWidth: availableWidth
+        Flickable
+        {
         ListView
         {
             id: _listView
+            height: parent.height
+            width: parent.width
             focus: true
             clip: control.clip
-            
+
             property var selectedIndexes : []
 
             spacing: Maui.Style.defaultSpacing
-            
+
             snapMode: ListView.NoSnap
-            
+
             displayMarginBeginning: Maui.Style.toolBarHeight * 4
             displayMarginEnd: Maui.Style.toolBarHeight * 4
-            
+
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
-            
-            interactive: Maui.Handy.hasTransientTouchInput
+
+            interactive: Maui.Handy.isTouch
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
@@ -391,7 +395,7 @@ Item
             Keys.enabled: true
             Keys.onUpPressed: _listView.decrementCurrentIndex()
             Keys.onDownPressed: _listView.incrementCurrentIndex()
-            
+
             Maui.Holder
             {
                 id: _holder
@@ -401,7 +405,7 @@ Item
                 anchors.topMargin: _listView.headerItem ? _listView.headerItem.height : 0
                 anchors.bottomMargin: _listView.footerItem ?  _listView.footerItem.height : 0
             }
-            
+
             Item
             {
                 anchors.fill: parent
@@ -413,16 +417,16 @@ Item
                     asynchronous: true
                     anchors.fill: parent
                     //                active: !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isMobile
-                    
+
                     sourceComponent: MouseArea
                     {
                         id: _mouseArea
-                        
+
                         propagateComposedEvents: true
                         preventStealing: true
                         scrollGestureEnabled: false
                         acceptedButtons: Qt.RightButton | Qt.LeftButton
-                        
+
                         onClicked: (mouse) =>
                                    {
                                        console.log("Area clicked")
@@ -437,7 +441,7 @@ Item
                                            return
                                        }
                                    }
-                        
+
                         onPositionChanged: (mouse) =>
                                            {
                                                if(_mouseArea.pressed && control.enableLassoSelection && selectLayer.visible)
@@ -463,7 +467,7 @@ Item
                                                    }
                                                }
                                            }
-                        
+
                         onPressed: (mouse) =>
                                    {
                                        console.log("MOUSE EVENT SOURCE", mouse.source)
@@ -478,7 +482,7 @@ Item
                                            selectLayer.height = 0;
                                        }
                                    }
-                        
+
                         onPressAndHold: (mouse) =>
                                         {
                                             if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible && !Maui.Handy.hasTransientTouchInput && !Maui.Handy.isAndroid)
@@ -496,7 +500,7 @@ Item
                                                 mouse.accepted = false
                                             }
                                         }
-                        
+
                         onReleased: (mouse) =>
                                     {
                                         if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
@@ -527,7 +531,7 @@ Item
                     }
                 }
             }
-            
+
             Maui.Rectangle
             {
                 id: selectLayer
@@ -540,11 +544,11 @@ Item
                 visible: false
                 color: Qt.rgba(control.Maui.Theme.highlightColor.r,control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.2)
                 opacity: 0.7
-                
+
                 borderColor: control.Maui.Theme.highlightColor
                 borderWidth: 2
                 solidBorder: false
-                
+
                 function reset()
                 {
                     selectLayer.x = 0;
@@ -556,6 +560,7 @@ Item
                     selectLayer.height = 0;
                 }
             }
+        }
         }
     }
 }

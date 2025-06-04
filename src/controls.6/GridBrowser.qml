@@ -113,10 +113,10 @@ Item
     focus: true
     focusPolicy: Qt.StrongFocus
     clip: false
-    
+
     implicitHeight: contentHeight + topPadding + bottomPadding
     implicitWidth: contentWidth + leftPadding + rightPadding
-    
+
     /**
      * @brief The uniform size of the element in the cell. This value is used for the width and height. This value will stay the same even when the width of the cell changes.
      *
@@ -129,21 +129,21 @@ Item
      * @property int GridBrowser::itemSize
      */
     property alias itemSize: controlView.itemSize
-    
+
     /**
      * @brief The width of the element in the cell. This value will vary even if `adaptContent` is enabled.
      * This value is used as the `cellWidth` value by default.
      * @property int GridBrowser::itemWidth
      */
     property alias itemWidth : controlView.itemWidth
-    
+
     /**
      * @brief The height of the element in the cell. This value will vary even if `adaptContent` is enabled.
      * This value is used as the `cellHeight` value by default.
      * @property int GridBrowser::itemHeight
      */
     property alias itemHeight : controlView.itemHeight
-    
+
     /**
      * @brief The width size of the cell area.
      *
@@ -152,7 +152,7 @@ Item
      * @property int GridBrowser::cellWidth
      */
     property alias cellWidth: controlView.cellWidth
-    
+
     /**
      * @brief The height size of the cell area.
      * This value is set to the `itemHeight` value, or `itemSize` if the formerly one has not been set.
@@ -161,105 +161,105 @@ Item
      * @property int GridBrowser::cellHeight
      */
     property alias cellHeight: controlView.cellHeight
-    
+
     /**
      * @brief The model to be used to populate the browsing view.
      * @property var GridBrowser::model
      */
     property alias model : controlView.model
-    
+
     /**
      * @brief The component to be used as the delegate.
      * @note Consider using the MauiKit delegate controls, such as GridBrowserDelegate, GalleryRollItem or CollageItem.
      * @property Component GridBrowser::delegate
      */
     property alias delegate : controlView.delegate
-    
+
     /**
      * @brief The position of the view contents on the Y axis.
      * @property double GridBrowser::contentY
      */
     property alias contentY: controlView.contentY
-    
+
     /**
      * @brief The index number of the current element selected.
      * @property int GridBrowser::currentIndex
      */
     property alias currentIndex : controlView.currentIndex
-    
+
     /**
      * @brief The total amount of elements listed in the view.
      * @property int GridBrowser::count
      */
     property alias count : controlView.count
-    
+
     /**
      * @brief The cache buffer.
      * Refer to the QQC2 GridView documentation.
      * @property int GridBrowser::cacheBuffer
      */
     property alias cacheBuffer : controlView.cacheBuffer
-    
+
     /**
      * @brief The element controlling the layout fo element, AKA the flickable element.
      * This is an alias to the QQC2 GridView control.
      * @property GridView GridBrowser::flickable
      */
     property alias flickable : controlView
-    
+
     /**
      * @brief The total height of all the elements listed in the view.
      * @property int GridBrowser::contentHeight
      */
     property alias contentHeight : controlView.contentHeight
-    
+
     /**
      * @brief The total width of all the elements.
      * @property int GridBrowser::contentWidth
      */
     property alias contentWidth : controlView.contentWidth
-    
+
     /**
      * @brief An alias to the QQC2 ScrollView element attached to the view.
      * @property ScrollView GridBrowser::scrollView
      */
     property alias scrollView: _scrollView
-    
+
     /**
      * @brief Top padding of the view. This padding is added to the scroll view container.
      * @see scrollView
      * @property int GridBrowser::topPadding
      */
     property alias topPadding: _scrollView.topPadding
-    
+
     /**
      * @brief Bottom padding of the view. This padding is added to the scroll view container.
      * @see scrollView
      * @property int GridBrowser::bottomPadding
      */
     property alias bottomPadding: _scrollView.bottomPadding
-    
+
     /**
      * @brief Right padding of the view. This padding is added to the scroll view container.
      * @see scrollView
      * @property int GridBrowser::rightPadding
      */
     property alias rightPadding: _scrollView.rightPadding
-    
+
     /**
      * @brief Left padding of the view. This padding is added to the scroll view container.
      * @see scrollView
      * @property int GridBrowser::leftPadding
      */
     property alias leftPadding: _scrollView.leftPadding
-    
+
     /**
      * @brief Padding of the view. This padding is added to the scroll view container.
      * @see scrollView
      * @property int GridBrowser::padding
      */
     property alias padding: _scrollView.padding
-    
+
     /**
      * @brief The policy of the vertical scroll bar from the scroll view.
      * @see scrollView
@@ -276,7 +276,7 @@ Item
                                           case Maui.Style.AsNeeded: return ScrollBar.AsNeeded;
                                           case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
                                           }
-    
+
     /**
      * @brief The policy of the horizontal scroll bar from the scroll view.
      * @see scrollView
@@ -299,7 +299,7 @@ Item
         case Maui.Style.AutoHide: return ScrollBar.AsNeeded;
         }
     }
-    
+
     /**
      * @brief An alias to access the placeholder properties. This is handled by a MauiKit Holder.
      * @see Holder::title
@@ -308,7 +308,7 @@ Item
      * @property Holder GridBrowser::holder
      */
     property alias holder : _holder
-    
+
     /**
      * @brief Whether the width value of the cells should be recalculated when the view-port is resized. This will result in a uniform set of cells. The minimum width of the cells is constrained by the `itemSize` property.
      * By default this is set to `true`.
@@ -321,63 +321,63 @@ Item
         else
             control.resetCellWidth()
     }
-    
+
     /**
      * @brief Whether to enable the lasso selection, to select multiple items.
      * By default this is set to `false`.
      * @see itemsSelected
      */
     property bool enableLassoSelection : false
-    
+
     /**
      * @brief
      */
     property bool selectionMode: false
-    
+
     /**
      * @brief An alias to the lasso rectangle.
      * @property Rectangle GridBrowser::lassoRec
      */
     readonly property alias lassoRec : selectLayer
-    
+
     /**
      * @brief Whether the pinch-to-zoom gesture is enabled.
      * By default this is set to `false`.
      */
     property bool pinchEnabled : false
-    
+
     /**
      * @brief The current item selected.
      * @property Item GridBrowser::currentItem
      */
     property alias currentItem : controlView.currentItem
-    
+
     /**
      * @brief The header section of the GridView element.
      * @see flickable
      * @property Component GridBrowser::header
      */
     property alias header : controlView.header
-    
+
     /**
      * @brief The footer section of the GridView element
      * @see flickable
      * @property Component GridBrowser::footer
      */
     property alias footer : controlView.footer
-    
+
     /**
      * @brief The actual width of the view-port. This is the actual width without any padding.
      * @property int GridBrowser::availableWidth
      */
     readonly property alias availableWidth: controlView.width
-    
+
     /**
      * @brief The actual height of the view-port. This is the actual height without any padding.
      * @property int GridBrowser::availableHeight
      */
     readonly property alias availableHeight: controlView.height
-    
+
     /**
      * @brief Whether the view is moving horizontally or vertically. This reacts to changes in the content Y and/or X axis.
      * @see contentY
@@ -385,19 +385,21 @@ Item
      * @property bool GridBrowser::moving
      */
     readonly property alias moving: updateContentDelay.running
-    
+
+    property alias background : _scrollView.background
+
     /**
      * @brief Emitted when the lasso selection has been released.
      * @param indexes A array of index numbers is sent as the argument, representing the index value of the items under the lasso rectangle area.
      */
     signal itemsSelected(var indexes)
-    
+
     /**
      * @brief Emitted when an empty space of the background area has been clicked.
      * @param mouse Object with information about the click event.
      */
     signal areaClicked(var mouse)
-    
+
     /**
      * @brief Emitted when an empty space of the area area background has been right clicked.
      */
@@ -405,7 +407,7 @@ Item
 
     Keys.enabled : true
     Keys.forwardTo : controlView
-    
+
     onItemSizeChanged :
     {
         controlView.size_ = itemSize
@@ -414,7 +416,7 @@ Item
         if(adaptContent)
             control.adaptGrid()
     }
-    
+
     ScrollView
     {
         id: _scrollView
@@ -422,70 +424,71 @@ Item
         focus: true
         focusPolicy: Qt.StrongFocus
         padding: Maui.Style.contentMargins
-        
+
         clip: control.clip
-        
+
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
-        
-        contentHeight: controlView.contentHeight
-        contentWidth: availableWidth
-        
+
         Maui.Controls.orientation: control.Maui.Controls.orientation
-        
+
+        Flickable
+        {
         GridView
         {
             id: controlView
+            height: parent.height
+            width: parent.width
             focus: true
-            
+
             parent: _scrollView
             /**
              * itemSize : int
              */
             property int itemSize: 0
-            
+
             /**
              * itemWidth : int
              */
             property int itemWidth : itemSize
-            
+
             /**
              * itemHeight : int
              */
             property int itemHeight : itemSize
-            
-            
+
+
             property bool firstSelectionPress
             property var selectedIndexes : []
-            
+
             //nasty trick
             property int size_
             Component.onCompleted:
             {
                 controlView.size_ = control.itemWidth
             }
-            
+
             flow: GridView.FlowLeftToRight
             clip: control.clip
-            
+
             displayMarginBeginning: Maui.Style.effectsEnabled ? Maui.Style.toolBarHeight * 4 : 0
             displayMarginEnd: displayMarginBeginning
             cacheBuffer: control.itemHeight * 4
-            
+
             cellWidth: control.itemWidth
             cellHeight: control.itemHeight
-            
+
             boundsBehavior: Flickable.StopAtBounds
-            
+
             flickableDirection: Flickable.AutoFlickDirection
             snapMode: GridView.NoSnap
             highlightMoveDuration: 0
 
-            interactive: Maui.Handy.hasTransientTouchInput
-            
+            interactive: Maui.Handy.isTouch
+
             onWidthChanged: if(adaptContent) control.adaptGrid()
             onCountChanged: if(adaptContent) control.adaptGrid()
-            
+
             keyNavigationEnabled : false // Causes many issues with the keyboard navigation
             keyNavigationWraps : true
 
@@ -509,32 +512,32 @@ Item
                 anchors.topMargin: controlView.headerItem ? controlView.headerItem.height : 0
                 anchors.bottomMargin: controlView.footerItem ? controlView.footerItem.height : 0
             }
-            
+
             onContentXChanged:
             {
                 updateContentDelay.restart()
             }
-            
+
             onContentYChanged:
             {
                 updateContentDelay.restart()
             }
-            
+
             Timer
             {
                 id: updateContentDelay
                 interval: 500
                 repeat: false
             }
-            
+
             Loader
             {
                 asynchronous: true
                 active: control.pinchEnabled
-                
+
                 anchors.fill: parent
                 z: -1
-                
+
                 sourceComponent: PinchArea
                 {
                     onPinchFinished: (pinch) =>
@@ -543,7 +546,7 @@ Item
                                      }
                 }
             }
-            
+
             Loader
             {
                 asynchronous: true
@@ -551,11 +554,11 @@ Item
                 anchors.fill: parent
                 z: parent.z-1
                 clip: false
-                
+
                 sourceComponent: MouseArea
                 {
                     id: _mouseArea
-                    
+
                     propagateComposedEvents: true
                     preventStealing: true
                     acceptedButtons: Qt.RightButton | Qt.LeftButton
@@ -573,7 +576,7 @@ Item
                                        return
                                    }
                                }
-                    
+
                     onWheel: (wheel) =>
                              {
                                  if (wheel.modifiers & Qt.ControlModifier)
@@ -586,7 +589,7 @@ Item
                                  }else
                                  wheel.accepted = false
                              }
-                    
+
                     onPositionChanged: (mouse) =>
                                        {
                                            console.log("Area clicked >>> Moving")
@@ -614,7 +617,7 @@ Item
                                                }
                                            }
                                        }
-                    
+
                     onPressed: (mouse) =>
                                {
                                    if (mouse.source === Qt.MouseEventNotSynthesized)
@@ -631,7 +634,7 @@ Item
                                        }
                                    }
                                }
-                    
+
                     onPressAndHold: (mouse) =>
                                     {
                                         if ( mouse.source !== Qt.MouseEventNotSynthesized && control.enableLassoSelection && !selectLayer.visible )
@@ -650,7 +653,7 @@ Item
                                             mouse.accepted = false
                                         }
                                     }
-                    
+
                     onReleased: (mouse) =>
                                 {
                                     if(mouse.button !== Qt.LeftButton || !control.enableLassoSelection || !selectLayer.visible)
@@ -687,7 +690,7 @@ Item
                                 }
                 }
             }
-            
+
             Maui.Rectangle
             {
                 id: selectLayer
@@ -700,11 +703,11 @@ Item
                 visible: false
                 color: Qt.rgba(control.Maui.Theme.highlightColor.r,control.Maui.Theme.highlightColor.g, control.Maui.Theme.highlightColor.b, 0.2)
                 opacity: 0.7
-                
+
                 borderColor: control.Maui.Theme.highlightColor
                 borderWidth: 2
                 solidBorder: false
-                
+
                 function reset()
                 {
                     selectLayer.x = 0;
@@ -717,10 +720,10 @@ Item
                 }
             }
         }
-        
-        
+        }
+
     }
-    
+
     /**
      * @brief Request to resize the view elements. This will result in the `itemSize` property being modified.
      * @param factor a factor for resizing.
@@ -729,7 +732,7 @@ Item
     function resizeContent(factor)
     {
         const newSize = control.itemSize * factor
-        
+
         if(newSize > control.itemSize)
         {
             control.itemSize =  newSize
@@ -740,7 +743,7 @@ Item
                 control.itemSize =  newSize
         }
     }
-    
+
     /**
      * @brief Forces to adapt the width of the grid cells. This will result on the `cellWidth` property being modified.
      */
@@ -749,13 +752,13 @@ Item
         var fullWidth = controlView.width
         var realAmount = parseInt(fullWidth / controlView.size_, 0)
         var amount = parseInt(fullWidth / control.cellWidth, 0)
-        
+
         var leftSpace = parseInt(fullWidth - ( realAmount * controlView.size_ ), 0)
         var size = Math.min(amount, realAmount) >= control.count ? Math.max(control.cellWidth, control.itemSize) : parseInt((controlView.size_) + (parseInt(leftSpace/realAmount, 0)), 0)
-        
+
         control.cellWidth = size
     }
-    
+
     /**
      * @brief Resets the value of the `cellWidth` back to the initial size set with `itemSize`.
      */
