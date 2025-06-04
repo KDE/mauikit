@@ -384,7 +384,7 @@ Item
             boundsBehavior: Flickable.StopAtBounds
             boundsMovement: Flickable.StopAtBounds
 
-            interactive: Maui.Handy.isTouch
+            interactive: Maui.Handy.hasTransientTouchInput
             highlightFollowsCurrentItem: true
             highlightMoveDuration: 0
             highlightResizeDuration : 0
