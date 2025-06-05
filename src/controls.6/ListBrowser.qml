@@ -360,15 +360,9 @@ Item
         ScrollBar.horizontal.policy: control.horizontalScrollBarPolicy
         ScrollBar.vertical.policy: control.verticalScrollBarPolicy
 
-        // contentHeight: _listView.contentHeight
-        // contentWidth: availableWidth
-        Flickable
-        {
         ListView
         {
             id: _listView
-            height: parent.height
-            width: parent.width
             focus: true
             clip: control.clip
 
@@ -560,7 +554,6 @@ Item
                     selectLayer.height = 0;
                 }
             }
-        }
         }
     }
 }

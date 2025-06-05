@@ -432,13 +432,9 @@ Item
 
         Maui.Controls.orientation: control.Maui.Controls.orientation
 
-        Flickable
-        {
         GridView
         {
             id: controlView
-            height: parent.height
-            width: parent.width
             focus: true
 
             parent: _scrollView
@@ -720,8 +716,6 @@ Item
                 }
             }
         }
-        }
-
     }
 
     /**
