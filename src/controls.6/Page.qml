@@ -389,6 +389,9 @@ Pane
          */
     property bool floatingFooter: false
 
+    property bool interactive : true
+    readonly property alias translateY : _private.translateY
+
     /**
          * @brief Emitted when the user has requested to go back by a gesture or keyboard shortcut.
          */
@@ -399,6 +402,8 @@ Pane
          */
     signal goForwardTriggered()
 
+    signal pulled(var distance, var velocity)
+
     QtObject
     {
         id: _private
@@ -407,6 +412,9 @@ Pane
 
         readonly property int topMargin : (control.altHeader ? 0 : headerTotalHeight) + control.topMargin
         readonly property int bottomMargin: ((control.altHeader ? headerTotalHeight + footerTotalHeight : footerTotalHeight)) + control.bottomMargin
+
+        property int translateY : 0
+
     }
 
     onFlickableChanged:
@@ -564,7 +572,7 @@ Pane
                 visible: false
                 textureSize: Qt.size(_headBar.width, _headBar.height)
                 sourceItem: _parentContainer
-                sourceRect: control.altHeader ? _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height)) : _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height)) 
+                sourceRect: control.altHeader ? _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height)) : _headBar.mapToItem(_parentContainer, Qt.rect(_headBar.x, _headBar.y, _headBar.width, _headBar.height))
             }
 
             Loader
@@ -625,7 +633,7 @@ Pane
         Component
         {
             id: _titleComponent
-            
+
             Label
             {
                 id: _titleLabel
@@ -838,6 +846,50 @@ Pane
 
     contentItem: Item
     {
+        transform: Translate
+        {
+            y: _private.translateY
+        }
+
+
+        DragHandler
+        {
+            id: _dragHandler
+            enabled: control.interactive
+            yAxis.enabled: true
+            xAxis.enabled: false
+            target: null
+            property int position : 0
+            readonly property int value : activeTranslation.y
+            property int distance : 0
+            acceptedPointerTypes: PointerDevice.Finger
+            // grabPermissions: PointerHandler.ApprovesTakeOverByItems
+
+            onValueChanged:
+            {
+                if(!active || value<0)
+                    return
+
+                    distance = value
+                    console.log("move distance: " , distance)
+                    _private.translateY = 0+distance
+
+
+            }
+
+            onActiveChanged:
+            {
+                if(!active)
+                {
+                    console.log("Velocity: " , centroid.velocity.y )
+                    control.pulled(value, centroid.velocity.y)
+                    _private.translateY = 0
+
+                }
+            }
+        }
+
+
         Item
         {
             anchors.fill: parent
@@ -909,8 +961,8 @@ Pane
             anchors.bottomMargin: bottomMargin
             anchors.leftMargin: leftMargin
             anchors.rightMargin: rightMargin
-
         }
+
 
         ViewColumn
         {
