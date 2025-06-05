@@ -194,11 +194,8 @@ bool Handy::eventFilter(QObject *watched, QEvent *event)
     }
     case QEvent::MouseMove: {
 
-        qDebug() << "DEVICES_______________________" << event->isPointerEvent() << event->isSinglePointEvent() << event->isInputEvent() << event->type() << event->spontaneous();
-
         QMouseEvent *me = static_cast<QMouseEvent *>(event);
-        // qDebug() << "Event type" <<  me->source() << me->pointingDevice()->pointerType();
-
+   
         auto device = me->device();
         if (me->source() == Qt::MouseEventNotSynthesized)
         {

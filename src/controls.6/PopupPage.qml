@@ -263,6 +263,7 @@ Maui.Popup
             Maui.Page
             {
                 id: _page
+                interactive: true
 
                 clip: true
 

@@ -389,7 +389,7 @@ Pane
          */
     property bool floatingFooter: false
 
-    property bool interactive : true
+    property bool interactive : false
     readonly property alias translateY : _private.translateY
 
     /**
@@ -851,49 +851,10 @@ Pane
             y: _private.translateY
         }
 
-
-        DragHandler
-        {
-            id: _dragHandler
-            enabled: control.interactive
-            yAxis.enabled: true
-            xAxis.enabled: false
-            target: null
-            property int position : 0
-            readonly property int value : activeTranslation.y
-            property int distance : 0
-            acceptedPointerTypes: PointerDevice.Finger
-            // grabPermissions: PointerHandler.ApprovesTakeOverByItems
-
-            onValueChanged:
-            {
-                if(!active || value<0)
-                    return
-
-                    distance = value
-                    console.log("move distance: " , distance)
-                    _private.translateY = 0+distance
-
-
-            }
-
-            onActiveChanged:
-            {
-                if(!active)
-                {
-                    console.log("Velocity: " , centroid.velocity.y )
-                    control.pulled(value, centroid.velocity.y)
-                    _private.translateY = 0
-
-                }
-            }
-        }
-
-
         Item
         {
             anchors.fill: parent
-            id: _parentContainer
+            id: _parentContainer           
 
             Item
             {
@@ -903,7 +864,7 @@ Pane
 
                 anchors.fill: parent
 
-                anchors.topMargin: _private.topMargin
+                anchors.topMargin: _private.topMargin 
                 anchors.bottomMargin: _private.bottomMargin
 
                 anchors.leftMargin: control.leftMargin
@@ -961,6 +922,64 @@ Pane
             anchors.bottomMargin: bottomMargin
             anchors.leftMargin: leftMargin
             anchors.rightMargin: rightMargin
+            
+    Item
+    {
+        id: _handleItem
+        visible: control.interactive
+        width: parent.width
+        height: visible ? 40 : -parent.spacingz
+        // color: "red"
+        
+        Rectangle
+        {
+            width: _dragHandler.active  ? 100 : 60
+            height: 4
+            radius: 6
+            anchors.centerIn: parent
+            
+            color: _dragHandler.active ? Maui.Theme.highlightColor : Maui.Theme.textColor
+        }
+        
+        DragHandler
+        {
+            id: _dragHandler
+            enabled: control.interactive
+            yAxis.enabled: true
+            xAxis.enabled: false
+            target: null
+            property int position : 0
+            readonly property int value : activeTranslation.y
+            property int distance : 0
+            acceptedPointerTypes: PointerDevice.Finger
+             acceptedDevices: PointerDevice.TouchScreen
+            // grabPermissions: PointerHandler.ApprovesTakeOverByItems
+
+            onValueChanged:
+            {
+                if(!active || value<0)
+                    return
+
+                    distance = value
+                    console.log("move distance: " , distance)
+                    _private.translateY = 0+distance
+
+
+            }
+
+            onActiveChanged:
+            {
+                if(!active)
+                {
+                    console.log("Velocity: " , centroid.velocity.y )
+                    control.pulled(value, centroid.velocity.y)
+                    _private.translateY = 0
+
+                }
+            }
+        }
+    }
+
         }
 
 
