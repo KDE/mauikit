@@ -343,7 +343,7 @@ Maui.PopupPage
 
         DragHandler
         {
-            enabled: !Maui.Handy.isMobile
+            acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
             target: null
             grabPermissions: TapHandler.CanTakeOverFromAnything
             onActiveChanged: if (active) {  Maui.App.rootComponent.startSystemMove(); }

@@ -188,6 +188,7 @@ QQC.TabBar
                 DragHandler
                 {
                     target: null
+                     acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
                     grabPermissions: TapHandler.CanTakeOverFromAnything
                     onActiveChanged: if (active) {  control.Window.window.startSystemMove(); }
                 }

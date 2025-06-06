@@ -564,6 +564,63 @@ Pane
             id: _headerBg
             color: Maui.Theme.backgroundColor
             radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
+            
+            Item
+    {
+        id: _handleItem
+        visible: control.interactive
+        anchors.fill: parent
+        // color: "red"
+        
+        Rectangle
+        {
+            width: _dragHandler.active  ? 100 : 60
+            height: 4
+            radius: 6
+            anchors.verticalCenter: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            
+            color: _dragHandler.active ? Maui.Theme.highlightColor : Maui.Theme.textColor
+        }
+        
+        DragHandler
+        {
+            id: _dragHandler
+            enabled: control.interactive
+            yAxis.enabled: true
+            xAxis.enabled: false
+            target: null
+            property int position : 0
+            readonly property int value : activeTranslation.y
+            property int distance : 0
+            acceptedPointerTypes: PointerDevice.Finger
+             acceptedDevices: PointerDevice.TouchScreen
+            // grabPermissions: PointerHandler.ApprovesTakeOverByItems
+
+            onValueChanged:
+            {
+                if(!active || value<0)
+                    return
+
+                    distance = value
+                    console.log("move distance: " , distance)
+                    _private.translateY = 0+distance
+
+
+            }
+
+            onActiveChanged:
+            {
+                if(!active)
+                {
+                    console.log("Velocity: " , centroid.velocity.y )
+                    control.pulled(value, centroid.velocity.y)
+                    _private.translateY = 0
+
+                }
+            }
+        }
+    }
 
             ShaderEffectSource
             {
@@ -922,64 +979,6 @@ Pane
             anchors.bottomMargin: bottomMargin
             anchors.leftMargin: leftMargin
             anchors.rightMargin: rightMargin
-            
-    Item
-    {
-        id: _handleItem
-        visible: control.interactive
-        width: parent.width
-        height: visible ? 40 : -parent.spacingz
-        // color: "red"
-        
-        Rectangle
-        {
-            width: _dragHandler.active  ? 100 : 60
-            height: 4
-            radius: 6
-            anchors.centerIn: parent
-            
-            color: _dragHandler.active ? Maui.Theme.highlightColor : Maui.Theme.textColor
-        }
-        
-        DragHandler
-        {
-            id: _dragHandler
-            enabled: control.interactive
-            yAxis.enabled: true
-            xAxis.enabled: false
-            target: null
-            property int position : 0
-            readonly property int value : activeTranslation.y
-            property int distance : 0
-            acceptedPointerTypes: PointerDevice.Finger
-             acceptedDevices: PointerDevice.TouchScreen
-            // grabPermissions: PointerHandler.ApprovesTakeOverByItems
-
-            onValueChanged:
-            {
-                if(!active || value<0)
-                    return
-
-                    distance = value
-                    console.log("move distance: " , distance)
-                    _private.translateY = 0+distance
-
-
-            }
-
-            onActiveChanged:
-            {
-                if(!active)
-                {
-                    console.log("Velocity: " , centroid.velocity.y )
-                    control.pulled(value, centroid.velocity.y)
-                    _private.translateY = 0
-
-                }
-            }
-        }
-    }
-
         }
 
 
