@@ -263,7 +263,7 @@ Maui.Popup
             Maui.Page
             {
                 id: _page
-                interactive: true
+                interactive: Maui.Handy.isTouch
 
                 clip: true
 
