@@ -212,7 +212,8 @@
                         property int position : _private.position 
                         readonly property int value : activeTranslation.x
                         property int distance : 0
-                        
+                        acceptedPointerTypes: PointerDevice.Finger
+             acceptedDevices: PointerDevice.TouchScreen
                         onValueChanged: 
                         {
                             if(!active || value>0)
