@@ -60,6 +60,9 @@ Handy::Handy(QObject *parent)
 
     connect(m_accessibility, &MauiMan::AccessibilityManager::singleClickChanged, [&](bool value)
             {
+                if(m_singleClick_blocked)
+                    return;
+
                 m_singleClick = value;
                 Q_EMIT singleClickChanged();
             });
@@ -128,6 +131,13 @@ Handy::Handy(QObject *parent)
     qDebug() << "DONE CREATING INSTANCE OF MAUI HANDY";
 }
 
+
+Handy *Handy::qmlAttachedProperties(QObject *object)
+{
+    Q_UNUSED(object)
+    return Handy::instance();
+}
+
 Handy *Handy::instance()
 {
     return handyInstance();
@@ -136,6 +146,28 @@ Handy *Handy::instance()
 bool Handy::isTouch()
 {
     return m_isTouch;
+}
+
+bool Handy::singleClick() const
+{
+    return m_singleClick;
+}
+
+void Handy::setSingleClick(bool value)
+{
+    if( value == m_singleClick)
+        return;
+
+    m_singleClick_blocked = true;
+    m_singleClick = value;
+    Q_EMIT singleClickChanged();
+}
+
+void Handy::resetSingleClick()
+{
+    m_singleClick_blocked = false;
+    m_singleClick = m_accessibility->singleClick();
+    Q_EMIT singleClickChanged();
 }
 
 Handy::FFactor Handy::formFactor()

@@ -41,7 +41,9 @@ class Handy : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
-    QML_SINGLETON
+    QML_ATTACHED(Handy)
+    QML_UNCREATABLE("Cannot be created Handy")
+
     Q_DISABLE_COPY(Handy)
     
     /**
@@ -98,7 +100,7 @@ class Handy : public QObject
      * Whether the system preference is to open/trigger items with a single click
      * @note This preference is taken from MauiMan global preference. 
      */
-    Q_PROPERTY(bool singleClick MEMBER m_singleClick NOTIFY singleClickChanged)
+    Q_PROPERTY(bool singleClick READ singleClick WRITE setSingleClick RESET resetSingleClick NOTIFY singleClickChanged)
     
     /**
      * The current preferred from factor the user has selected.
@@ -154,6 +156,10 @@ public:
     
     void setTransientTouchInput(bool touch);
     bool hasTransientTouchInput() const;    
+
+    void setSingleClick(bool value);
+    bool singleClick() const;
+    void resetSingleClick();
     
 protected:
     
@@ -172,6 +178,8 @@ private:
     bool m_singleClick = true;
     bool m_mobile = 1;
     bool m_hasTransientTouchInput = 1;
+
+    bool m_singleClick_blocked = false;
 
 public Q_SLOTS:
     
@@ -293,4 +301,5 @@ Q_SIGNALS:
     void formFactorChanged();
     void isTouchChanged();
 };
+QML_DECLARE_TYPEINFO(Handy, QML_HAS_ATTACHED_PROPERTIES)
 
