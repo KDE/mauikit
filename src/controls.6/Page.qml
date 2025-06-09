@@ -391,6 +391,7 @@ Pane
 
     property bool interactive : false
     readonly property alias translateY : _private.translateY
+    readonly property alias pulling : _dragHandler.active
 
     /**
          * @brief Emitted when the user has requested to go back by a gesture or keyboard shortcut.
@@ -604,17 +605,13 @@ Pane
                     return
 
                     distance = value
-                    console.log("move distance: " , distance)
                     _private.translateY = 0+distance
-
-
             }
 
             onActiveChanged:
             {
                 if(!active)
                 {
-                    console.log("Velocity: " , centroid.velocity.y )
                     control.pulled(value, centroid.velocity.y)
                     _private.translateY = 0
 

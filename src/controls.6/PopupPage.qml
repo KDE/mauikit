@@ -251,8 +251,13 @@ Maui.Popup
          */
         signal closeTriggered()
          opacity: 1 - (Math.abs(_page.translateY)/height)
-
-
+        // Binding
+        // {
+        //     when: _page.pulling
+        //     target: control.background
+        //     property: "visible"
+        //     value: false
+        // }
 
         ColumnLayout
         {
