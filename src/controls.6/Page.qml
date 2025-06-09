@@ -577,7 +577,8 @@ Pane
             width: _dragHandler.active  ? 100 : 60
             height: 4
             radius: 6
-            anchors.verticalCenter: parent.bottom
+            anchors.margins: 2
+            anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             
             color: _dragHandler.active ? Maui.Theme.highlightColor : Maui.Theme.textColor

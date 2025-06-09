@@ -41,7 +41,7 @@ Maui.InfoDialog
      * @note See Qt documentation on TextField for further information on its properties.
      * @property TextField InputDialog::textEntry
      */
-    property alias textEntry: _textEntry
+    readonly property alias textEntry: _textEntry
     
     /**
      * @brief Emitted when the dialog has been accepted. 

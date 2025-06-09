@@ -705,6 +705,7 @@ Pane
                                     // acceptedDevices: PointerDevice.GenericPointer
                                     grabPermissions:  PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
                                     onActiveChanged: if (active) { control.Window.window.startSystemMove(); }
+                                   acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
                                 }
                             }
                         }
@@ -741,10 +742,39 @@ Pane
                         {
                             height: GridView.view.cellHeight
                             width: GridView.view.cellWidth
+                            opacity: translateY < 0 ? 1 - (Math.abs(translateY)/height) : 1
+                            property int translateY : 0
+                            transform: Translate
+                            {
+                                y: translateY
+                            }
+
+                            DragHandler
+                            {
+                                id :_itemDragHandler
+                                target: null
+                                readonly property int distance : activeTranslation.y
+
+                                xAxis.enabled: false
+                                onDistanceChanged: translateY = distance
+                                onActiveChanged:
+                                {
+                                    if(!active)
+                                    {
+                                        if(distance <  -60)
+                                            control.closeTabClicked(index)
+
+                                            translateY = 0
+                                    }
+                                }
+                            }
 
                             Maui.GridBrowserDelegate
                             {
                                 id: _delegate
+
+                                Maui.Theme.colorSet: Maui.Theme.Button
+                                Maui.Theme.inherit: false
 
                                 anchors.fill: parent
                                 anchors.margins: Maui.Style.space.medium
@@ -785,9 +815,13 @@ Pane
                                     openTabMenu(control.currentIndex)
                                 }
 
-                                template.iconComponent: Item
+                                template.iconComponent: Rectangle
                                 {
+                                    Maui.Theme.colorSet: Maui.Theme.View
+                                    Maui.Theme.inherit: false
                                     clip: true
+                                    color: Maui.Theme.backgroundColor
+                                    radius: Maui.Style.radiusV
 
                                     ShaderEffectSource
                                     {
