@@ -507,7 +507,6 @@ Pane
                     {
                         id: _tabBarBg
                         color: Maui.Theme.backgroundColor
-                        // opacity: tabBarMargins > 0 ? 0.8 : 1
                         radius: tabBarMargins > 0 ? Maui.Style.radiusV : 0
                         border.color: tabBarMargins > 0 ? Maui.Theme.alternateBackgroundColor : "transparent"
 

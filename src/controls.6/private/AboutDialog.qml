@@ -67,16 +67,17 @@ Maui.PopupPage
         Layout.alignment: horizontalAlignment
         // Layout.fillWidth: true
         horizontalAlignment:Qt.AlignLeft
-        text: Maui.App.about.version + " " + Maui.App.about.otherText
+        text: Maui.App.about.version + " [" + Maui.App.about.otherText+"]"
         font.family: "Monospace"
-        opacity: 0.6
-        font.pointSize: Maui.Style.fontSizes.tiny
+        font.pointSize: Maui.Style.fontSizes.small
+        font.letterSpacing: 2
         padding: Maui.Style.space.small
+        color: Maui.Theme.backgroundColor
         background: Rectangle
         {
-            opacity: 0.5
-            color: "black"
-            radius: Maui.Style.radiusV
+            color: Maui.Theme.textColor
+            radius: 4
+            border.color: Qt.darker(color)
         }
 
         MouseArea
@@ -118,14 +119,14 @@ Maui.PopupPage
             onClicked: Qt.openUrlExternally(Maui.App.about.homepage)
         }
     }
-    
+
     Maui.Separator
     {
         Layout.fillWidth: true
     }
 
     Item{}
-    
+
     Maui.SectionItem
     {
         label1.text: i18nd("mauikit", "Authors")
@@ -349,7 +350,7 @@ Maui.PopupPage
             onActiveChanged: if (active) {  Maui.App.rootComponent.startSystemMove(); }
         }
     }
-    
+
     /**
      * @private
      */
