@@ -509,13 +509,13 @@ Pane
             {
                 _headerAnimation.enabled = true
 
-                if (control.header.height >= (control.header.implicitHeight/2) || control.flickable.atYBeginning )
+                if (!control.header.pullBack || control.flickable.atYBeginning )
                 {
-                    control.header.height =  control.header.implicitHeight
+                    control.header.pullBack =  false
 
                 } else
                 {
-                    control.header.height = 0
+                    control.header.pullBack = true
                 }
             }
 
@@ -523,23 +523,23 @@ Pane
             {
                 _footerAnimation.enabled = true
 
-                if (control.footer.height >= (control.footer.implicitHeight/2) ||  control.flickable.atYEnd)
+                if (!control.footer.pullBack ||  control.flickable.atYEnd)
                 {
                     if(control.flickable.atYEnd)
                     {
-                        control.footer.height =  control.footer.implicitHeight
+                        control.footer.pullBack =  false
 
                         control.flickable.contentY = control.flickable.contentHeight - control.flickable.height
                         oldContentY = control.flickable.contentY
                     }else
                     {
-                        control.footer.height =  control.footer.implicitHeight
+                        control.footer.pullBack = true
 
                     }
 
                 } else
                 {
-                    control.footer.height = 0
+                    control.footer.pullBack = true
                 }
             }
         }
@@ -553,8 +553,9 @@ Pane
     property Item header : Maui.ToolBar
     {
         id: _headBar
+        property bool pullBack: false
         visible: count > 0
-        width: visible ? _headerContent.width : 0
+        width: _headerContent.width
         position: control.altHeader ? ToolBar.Footer : ToolBar.Header
         Maui.Controls.showCSD: control.Maui.Controls.showCSD && control.Maui.Controls.showCSD === true && !control.altHeader
         Maui.Controls.level: control.Maui.Controls.level
@@ -565,14 +566,18 @@ Pane
             id: _headerBg
             color: Maui.Theme.backgroundColor
             radius: control.headerMargins > 0 ? Maui.Style.radiusV : 0
-            
+            border.color: control.headerMargins > 0 ? Maui.Theme.alternateBackgroundColor : "transparent"
+
+            border.pixelAligned :false
+            antialiasing: true
+
             Item
     {
         id: _handleItem
         visible: control.interactive
         anchors.fill: parent
         // color: "red"
-        
+
         Rectangle
         {
             width: _dragHandler.active  ? 100 : 60
@@ -581,10 +586,10 @@ Pane
             anchors.margins: 2
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            
+
             color: _dragHandler.active ? Maui.Theme.highlightColor : Maui.Theme.textColor
         }
-        
+
         DragHandler
         {
             id: _dragHandler
@@ -668,22 +673,22 @@ Pane
             }
         }
 
-        Binding on height
+        transform: Translate
         {
-            value: visible ? _headBar.implicitHeight : 0
-            restoreMode: Binding.RestoreBindingOrValue
-        }
+            y: _headBar.pullBack ? -_headBar.implicitHeight : 0
 
-        Behavior on height
-        {
-            id: _headerAnimation
-            enabled: false
-            NumberAnimation
+            Behavior on y
             {
-                duration: Maui.Style.units.shortDuration
-                easing.type: Easing.InOutQuad
+                id: _headerAnimation
+                enabled: true
+                NumberAnimation
+                {
+                    duration: Maui.Style.units.longDuration
+                    easing.type: _headBar.pullBack ?Easing.OutBack: Easing.InBack
+                }
             }
         }
+
 
         Component
         {
@@ -723,9 +728,10 @@ Pane
     property Item footer : Maui.ToolBar
     {
         id: _footBar
+        property bool pullBack: false
+
         visible: count > 0
-        width: visible ? _footerContent.width : 0
-        height: visible ? implicitHeight : 0
+        width: _footerContent.width
 
         position: ToolBar.Footer
 
@@ -734,6 +740,9 @@ Pane
             id:_footerBg
             color: Maui.Theme.backgroundColor
             radius: control.footerMargins > 0 ? Maui.Style.radiusV : 0
+            border.color: control.footerMargins > 0 ? Maui.Theme.alternateBackgroundColor : "transparent"
+            border.pixelAligned :false
+            antialiasing: true
 
             ShaderEffectSource
             {
@@ -786,14 +795,19 @@ Pane
             }
         }
 
-        Behavior on height
+        transform: Translate
         {
-            id: _footerAnimation
-            enabled: false
-            NumberAnimation
+            y: _footBar.pullBack ? _footBar.implicitHeight : 0
+
+            Behavior on y
             {
-                duration: Maui.Style.units.shortDuration
-                easing.type: Easing.InOutQuad
+                id: _footerAnimation
+                // enabled: false
+                NumberAnimation
+                {
+                    duration: Maui.Style.units.longDuration
+                     easing.type: _footBar.pullBack ?Easing.OutBack: Easing.InBack
+                }
             }
         }
     }
@@ -909,7 +923,7 @@ Pane
         Item
         {
             anchors.fill: parent
-            id: _parentContainer           
+            id: _parentContainer
 
             Item
             {
@@ -919,7 +933,7 @@ Pane
 
                 anchors.fill: parent
 
-                anchors.topMargin: _private.topMargin 
+                anchors.topMargin: _private.topMargin
                 anchors.bottomMargin: _private.bottomMargin
 
                 anchors.leftMargin: control.leftMargin
@@ -1041,7 +1055,7 @@ Pane
                     {
                         if(control.autoHideHeader)
                         {
-                            if(header.height !== 0)
+                            if(!header.pullBack)
                             {
                                 _autoHideHeaderTimer.start()
                                 _revealHeaderTimer.stop()
@@ -1055,7 +1069,7 @@ Pane
 
                         if(control.autoHideFooter)
                         {
-                            if(footer.height !== 0)
+                            if(!footer.pullBack)
                             {
                                 _autoHideFooterTimer.start()
 
@@ -1247,8 +1261,8 @@ Pane
          */
     function pullBackHeader()
     {
-        _headerAnimation.enabled = true
-        header.height = 0
+        // _headerAnimation.enabled = true
+        header.pullBack = true
     }
 
     /**
@@ -1256,8 +1270,8 @@ Pane
          */
     function pullDownHeader()
     {
-        _headerAnimation.enabled = true
-        header.height = header.implicitHeight
+        // _headerAnimation.enabled = true
+        header.pullBack = false
     }
 
     /**
@@ -1265,8 +1279,8 @@ Pane
          */
     function pullBackFooter()
     {
-        _footerAnimation.enabled = true
-        footer.height= 0
+        // _footerAnimation.enabled = true
+        footer.pullBack = true
     }
 
     /**
@@ -1274,7 +1288,7 @@ Pane
          */
     function pullDownFooter()
     {
-        _footerAnimation.enabled = true
-        footer.height = footer.implicitHeight
+        // _footerAnimation.enabled = true
+        footer.pullBack = false
     }
 }

@@ -291,7 +291,7 @@ Pane
                         {
                             control.findTab()
                         }
-                        
+
                         if(event.key == Qt.Key_Return)
                         {
                             control.closeOverview()
@@ -415,7 +415,7 @@ Pane
                                     {
                                         _filterTabsList.flickable.incrementCurrentIndex()
                                         event.accepted = true
-                                    }                                    
+                                    }
                                 }
             }
 
@@ -509,6 +509,7 @@ Pane
                         color: Maui.Theme.backgroundColor
                         // opacity: tabBarMargins > 0 ? 0.8 : 1
                         radius: tabBarMargins > 0 ? Maui.Style.radiusV : 0
+                        border.color: tabBarMargins > 0 ? Maui.Theme.alternateBackgroundColor : "transparent"
 
                         ShaderEffectSource
                         {
@@ -719,7 +720,7 @@ Pane
                         currentIndex: control.currentIndex
 
                         itemSize: Math.min(200, availableWidth /2)
-                        
+
                         Loader
                         {
                             asynchronous: true
