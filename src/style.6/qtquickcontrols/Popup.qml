@@ -56,7 +56,7 @@ T.Popup
 
         radius: control.Maui.Controls.flat ? 0 : Maui.Style.radiusV
         // property color borderColor: Maui.Theme.textColor
-        // border.color: Maui.Style.trueBlack ? Qt.rgba(borderColor.r, borderColor.g, borderColor.b, 0.3) : undefined
+        border.color: Maui.Theme.alternateBackgroundColor
         layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software && !control.Maui.Controls.flat
         layer.effect: MultiEffect
         {

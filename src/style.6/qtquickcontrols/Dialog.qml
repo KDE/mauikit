@@ -72,7 +72,7 @@ T.Dialog
     {
         radius: Maui.Style.radiusV
         color: Maui.Theme.backgroundColor
-
+        border.color: Maui.Theme.alternateBackgroundColor
         layer.enabled: GraphicsInfo.api !== GraphicsInfo.Software
         layer.effect: MultiEffect
         {
@@ -94,18 +94,18 @@ T.Dialog
         asynchronous: true
         
         sourceComponent: Maui.ToolBar
-    {
-        background: null
-
-        middleContent: Label
         {
-            text: control.title
-            horizontalAlignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignHCenter
-            // font: Maui.Style.h2Font
+            background: null
+
+            middleContent: Label
+            {
+                text: control.title
+                horizontalAlignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
+                // font: Maui.Style.h2Font
+            }
         }
-    }
     }
 
     footer: DialogButtonBox
