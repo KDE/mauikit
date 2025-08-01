@@ -96,9 +96,7 @@ msgstr "测试字体显示效果。"
 #: src/controls.6/FontPicker.qml:180
 #, kde-format
 msgid "The Quick Brown Fox Jumps Over The Lazy Dog"
-msgstr ""
-"The Quick Brown Fox Jumps Over The Lazy Dog\n"
-"龙跳天门，虎卧凰阁"
+msgstr "The Quick Brown Fox Jumps Over The Lazy Dog 龙跳天门 虎卧凰阁"
 
 #: src/controls.6/FontPickerDialog.qml:79
 #, kde-format
