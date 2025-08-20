@@ -451,7 +451,22 @@ void Style::setStyleType(const Style::StyleType &type)
 void Style::unsetStyeType()
 {
     m_styleType_blocked = false;
-    m_styleType = static_cast<Style::StyleType>(m_themeSettings->styleType());
+    int styleType = m_themeSettings->styleType();
+    if (qEnvironmentVariableIsSet("MAUI_STYLE_TYPE"))
+    {
+        auto type = qgetenv("MAUI_STYLE_TYPE");
+
+        bool ok; // This boolean will indicate if the conversion was successful
+        int intValue = type.toInt(&ok);
+        if (ok) {
+            if(intValue >=0 && intValue <= 3)
+            {
+                styleType = intValue;
+            }
+        }
+    }
+
+    m_styleType = static_cast<Style::StyleType>(styleType);
     Q_EMIT styleTypeChanged(m_styleType);
 }
 
