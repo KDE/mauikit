@@ -58,7 +58,7 @@ msgstr "Família"
 #: src/controls.6/FontPicker.qml:98
 #, kde-format
 msgid "Pick the font family."
-msgstr "Seleccioneu la família de la lletra tipogràfica."
+msgstr "Trieu la família de la lletra tipogràfica."
 
 #: src/controls.6/FontPicker.qml:120
 #, kde-format
