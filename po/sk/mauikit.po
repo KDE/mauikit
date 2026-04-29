@@ -199,7 +199,7 @@ msgstr "Zavrieť"
 #: src/controls.6/SplitViewItem.qml:197
 #, kde-format
 msgid "Are you sure you want to close the split view: '%1'?"
-msgstr "Ste si istý, you want to close the split view: '%1'?"
+msgstr "Naozaj chcete zavrieť rozdelené zobrazenie: '%1'?"
 
 #: src/controls.6/TabView.qml:320
 #, kde-format
