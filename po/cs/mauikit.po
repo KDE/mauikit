@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2026-05-21 11:41+0200\n"
+"PO-Revision-Date: 2026-05-22 11:40+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #: src/controls.6/Doodle.qml:167 src/controls.6/Doodle.qml:189
 #, kde-format
@@ -82,7 +82,7 @@ msgstr "Písma s pevnou šířkou"
 #: src/controls.6/FontPicker.qml:161
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr "Zobrazit pouze písma s pevnou šířkou"
+msgstr "Zobrazit pouze písma s pevnou šířkou."
 
 #: src/controls.6/FontPicker.qml:172
 #, kde-format
@@ -117,7 +117,7 @@ msgstr "Přijmout"
 #: src/controls.6/ImageViewer.qml:210
 #, kde-format
 msgid "Oops!"
-msgstr "Jejda"
+msgstr "Jejda!"
 
 #: src/controls.6/ImageViewer.qml:211
 #, kde-format
