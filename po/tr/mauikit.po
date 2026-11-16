@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2026-11-10 21:39+0300\n"
+"PO-Revision-Date: 2026-11-15 20:18+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -56,7 +56,7 @@ msgstr "Aile"
 #: src/controls.6/FontPicker.qml:98
 #, kde-format
 msgid "Pick the font family."
-msgstr "Yazıtipi ailesini seçin."
+msgstr "Yazı tipi ailesini seçin."
 
 #: src/controls.6/FontPicker.qml:120
 #, kde-format
@@ -66,22 +66,22 @@ msgstr "Stil"
 #: src/controls.6/FontPicker.qml:121
 #, kde-format
 msgid "Font style."
-msgstr "Yazıtipi stili."
+msgstr "Yazı tipi stili."
 
 #: src/controls.6/FontPicker.qml:141
 #, kde-format
 msgid "Font size from recommended values."
-msgstr "Tavsiye edilen değerlerden yazıtipi puntosu."
+msgstr "Tavsiye edilen değerlerden yazı tipi puntosu."
 
 #: src/controls.6/FontPicker.qml:160
 #, kde-format
 msgid "Monospaced Fonts"
-msgstr "Eş Aralıklı Yazıtipleri"
+msgstr "Eş Aralıklı Yazı Tipleri"
 
 #: src/controls.6/FontPicker.qml:161
 #, kde-format
 msgid "Display only monospaced fonts."
-msgstr "Yalnızca eş aralıklı yazıtiplerini görüntüleyin."
+msgstr "Yalnızca eş aralıklı yazı tiplerini görüntüleyin."
 
 #: src/controls.6/FontPicker.qml:172
 #, kde-format
@@ -91,7 +91,7 @@ msgstr "Önizleme"
 #: src/controls.6/FontPicker.qml:173
 #, kde-format
 msgid "Test the font."
-msgstr "Yazıtipini sınayın."
+msgstr "Yazı tipini sınayın."
 
 #: src/controls.6/FontPicker.qml:180
 #, kde-format
@@ -101,7 +101,7 @@ msgstr "Pijamalı hasta, yağız şoföre çabucak güvendi"
 #: src/controls.6/FontPickerDialog.qml:79
 #, kde-format
 msgid "Fonts"
-msgstr "Yazıtipleri"
+msgstr "Yazı Tipleri"
 
 #: src/controls.6/FontPickerDialog.qml:96 src/controls.6/SelectionBar.qml:399
 #, kde-format
