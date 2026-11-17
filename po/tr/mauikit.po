@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: mauikit\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2026-11-15 20:18+0300\n"
+"PO-Revision-Date: 2026-11-16 19:29+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -86,7 +86,7 @@ msgstr "Yalnızca eş aralıklı yazı tiplerini görüntüleyin."
 #: src/controls.6/FontPicker.qml:172
 #, kde-format
 msgid "Preview"
-msgstr "Önizleme"
+msgstr "Ön izleme"
 
 #: src/controls.6/FontPicker.qml:173
 #, kde-format
